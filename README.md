@@ -1,4 +1,4 @@
-# Core Marketing (MKTG 4333) — Interactive Textbook (V6 prototype)
+# Principles of Marketing: An AI-Integrated Approach (MKTG 4333) — Interactive Textbook (V6 prototype)
 
 Static prototype of the Principles of Marketing book and its "bookshelf" reader.
 Open `index.html`. Use the depth toggle to switch **Comprehensive ⇄ Concise**, the
