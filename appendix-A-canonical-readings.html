@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Appendix A &middot; Annotated Canonical Readings &middot; Core Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --coral: #DA7756;
+  --coral-soft: #E8A488;
+  --coral-deep: #B8553A;
+  --ink: #1a1a1a;
+  --ink-2: #555555;
+  --ink-3: #888888;
+  --line: #e6dfd2;
+  --cream: #f5f0e8;
+  --bg: #ffffff;
+  --serif: 'EB Garamond', 'Source Serif 4', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  --maxw: 640px;
+  --side: 280px;
+  --gap: 56px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.62;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--coral); color: #fff; }
+.page {
+  max-width: calc(var(--maxw) + var(--gap) + var(--side));
+  margin: 0 auto;
+  padding: 64px 24px 120px 24px;
+  position: relative;
+}
+.col { max-width: var(--maxw); }
+.sn {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1), transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sn.in { opacity: 1; transform: translateY(0); }
+@media (min-width: 1000px) {
+  .sn {
+    float: right;
+    clear: right;
+    width: var(--side);
+    margin: 4px calc(-1 * (var(--side) + var(--gap))) 18px var(--gap);
+    position: relative;
+  }
+  .sn::before {
+    content: ""; position: absolute; left: -16px; top: 8px;
+    width: 8px; height: 1px; background: var(--coral);
+  }
+}
+@media (max-width: 999px) {
+  .sn {
+    display: block;
+    margin: 12px 0 18px 0;
+    padding: 12px 14px;
+    background: var(--cream);
+    border-left: 2px solid var(--coral);
+    font-size: 14px;
+  }
+}
+.sn .sn-num { color: var(--coral); font-weight: 600; margin-right: 4px; }
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.4px;
+  color: var(--coral);
+  text-transform: uppercase;
+  margin: 0 0 14px 0;
+}
+h1.title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.1;
+  letter-spacing: -0.6px;
+  color: var(--ink);
+  margin: 0 0 14px 0;
+}
+.byline {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink-2);
+  margin: 0 0 36px 0;
+}
+.byline strong { color: var(--ink); font-weight: 600; }
+h2 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.25;
+  letter-spacing: -0.2px;
+  color: var(--ink);
+  margin: 64px 0 18px 0;
+  scroll-margin-top: 24px;
+}
+h2 .sec-num {
+  font-family: var(--mono);
+  color: var(--coral);
+  font-weight: 500;
+  font-size: 18px;
+  margin-right: 12px;
+  letter-spacing: 0;
+}
+h3 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.1px;
+  color: var(--ink);
+  margin: 36px 0 8px 0;
+}
+p { margin: 0 0 18px 0; }
+p.lede { font-size: 21px; line-height: 1.55; color: var(--ink); }
+p.first::first-line { font-variant: small-caps; letter-spacing: 0.5px; }
+
+strong { font-weight: 600; color: var(--ink); }
+em { font-style: italic; }
+.term {
+  font-family: var(--sans);
+  font-size: 0.92em;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--cream);
+  padding: 1px 6px;
+  border-radius: 2px;
+  cursor: help;
+  border-bottom: 1px dotted var(--coral);
+}
+.term:hover, .term:focus { background: var(--cream); }
+.term:focus { outline: 2px solid var(--coral); outline-offset: 2px; }
+.cite { color: var(--coral-deep); font-family: var(--sans); font-size: 0.78em; vertical-align: super; line-height: 0; padding: 0 1px; cursor: help; }
+.cite a { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--coral); }
+.cite a:hover { color: var(--coral); }
+
+.tt-pop {
+  position: absolute;
+  z-index: 60;
+  max-width: 320px;
+  background: #fff;
+  border: 1px solid var(--coral);
+  border-radius: 4px;
+  padding: 12px 14px 10px 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink);
+  box-shadow: 0 8px 24px -8px rgba(184, 85, 58, 0.25), 0 2px 6px rgba(0, 0, 0, 0.04);
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1), transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tt-pop.in { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.tt-pop .tt-cap {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--coral-deep);
+  margin-bottom: 6px;
+}
+.tt-pop::before {
+  content: "";
+  position: absolute;
+  top: -6px; left: 16px;
+  width: 10px; height: 10px;
+  background: #fff;
+  border-top: 1px solid var(--coral);
+  border-left: 1px solid var(--coral);
+  transform: rotate(45deg);
+}
+
+.def {
+  background: var(--cream);
+  border-left: 3px solid var(--coral);
+  padding: 14px 18px;
+  margin: 22px 0;
+  font-size: 17px;
+  line-height: 1.55;
+}
+.def .def-term {
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--coral-deep);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.callout {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--coral);
+  background: #fcfaf6;
+  padding: 16px 20px 14px 20px;
+  margin: 24px 0;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.callout .ccap {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--coral-deep);
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.callout p { margin: 0 0 10px 0; }
+.callout p:last-child { margin: 0; }
+
+.hero { margin: 0 0 24px 0; }
+.hero-rule {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--ink);
+  margin: 32px 0 8px 0;
+  position: relative;
+}
+.hero-rule .tegaki-mount { display: block; height: 56px; margin-top: 4px; }
+
+figure { margin: 36px 0; }
+figure svg { width: 100%; height: auto; display: block; }
+figure.sketch .mount { width: 100%; background: transparent; border: none; padding: 8px 0; display: block; }
+figure.sketch svg { width: 100%; height: auto; display: block; overflow: visible; }
+figcaption {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.55;
+  margin-top: 12px;
+  font-style: italic;
+}
+figcaption .fnum {
+  font-family: var(--mono);
+  font-style: normal;
+  color: var(--coral);
+  margin-right: 8px;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.refs {
+  margin-top: 96px;
+  padding-top: 32px;
+  border-top: 1.5px solid var(--coral);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.refs h2 { margin-top: 0; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 16px; top: 16px; background: #fff; padding: 8px 14px; border: 2px solid var(--coral); z-index: 100; }
+
+.ax {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--coral);
+  text-transform: uppercase;
+  margin: 56px 0 -54px 0;
+  display: block;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ax.in { opacity: 1; transform: translateY(0); }
+.ax::before {
+  content: ""; display: inline-block; width: 18px; height: 1px;
+  background: var(--coral); vertical-align: middle; margin-right: 10px; opacity: 0.7;
+}
+
+/* Reader cards: chapter-organized list of canonical readers */
+.reader-list {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 28px 0;
+}
+.reader-list li {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--coral);
+  background: #fff;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  font-family: var(--sans);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.reader-list li .rd-author {
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 15px;
+  display: block;
+  margin-bottom: 2px;
+}
+.reader-list li .rd-title {
+  font-style: italic;
+  color: var(--ink-2);
+  font-size: 14px;
+  display: block;
+  margin-bottom: 6px;
+}
+.reader-list li .rd-tldr {
+  color: var(--ink);
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.reader-list li .rd-link {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--coral-deep);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--coral);
+}
+.reader-list li .rd-link:hover { color: var(--coral); }
+.reader-list li .rd-meta {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.5px;
+  color: var(--coral-deep);
+  text-transform: uppercase;
+  margin-right: 10px;
+  margin-bottom: 4px;
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 24px 0 36px 0;
+  font-family: var(--sans);
+  font-size: 13px;
+}
+.toc-grid a {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 10px 12px;
+  text-decoration: none;
+  color: var(--ink);
+  border-radius: 3px;
+  transition: border-color 150ms cubic-bezier(0.16, 1, 0.3, 1), background 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+.toc-grid a:hover {
+  border-color: var(--coral);
+  background: var(--cream);
+}
+.toc-grid a strong {
+  color: var(--coral-deep);
+  font-family: var(--mono);
+  font-size: 11px;
+  display: block;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .ax, .sn { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="page">
+<main id="main" class="col">
+
+<header class="hero">
+  <p class="eyebrow">Core Marketing &middot; Appendix A</p>
+  <h1 class="title">The Canon Behind Each Chapter</h1>
+  <p class="byline"><strong>Felipe M. Affonso</strong> &middot; Oklahoma State University, Spears School of Business</p>
+  <p class="hero-rule">Every chapter inherits a literature. This appendix names it.</p>
+</header>
+
+<p class="lede first">A textbook chapter is the visible tip of a deeper reading list. Each chapter in this book draws on two to four canonical authors who first stated the principle in print, plus a handful of contemporary frontier sources that updated it for the 2026 marketing environment. The chapter prose cannot afford to walk through every original text. This appendix can.</p>
+
+<p>Each entry below names an author and a primary text, gives a one-paragraph <span class="term" data-tt="The reading's load-bearing claim, in the author's own words, with one application.">TL;DR</span>, and links to the deeper reader file in the wiki where the full evidence chain, definitions, and AI-workflow notes live. The link target is the markdown deep reader (60-200KB each); the chapter's inline citations point you here, and this appendix points you to the full source synthesis. Read in this order: chapter prose, this appendix entry for the relevant reader, the deep reader file when you need to teach or extend the principle yourself.</p>
+
+<div class="callout">
+  <span class="ccap">How to use this appendix</span>
+  <p>The chapters cite canonical authors with numbered superscripts. When a chapter says <em>Sharp's Ehrenberg-Bass team audited 15 categories<sup class="cite">2</sup></em>, the superscript points to the chapter's references list. To go further, the references list points here, and this appendix points to the full markdown reader at <code>core-course/wiki/external/canonical/{slug}.md</code>. The depth lives one tab away.</p>
+</div>
+
+<nav aria-label="Jump to chapter">
+  <h3 style="margin-top:24px;">Jump to chapter</h3>
+  <div class="toc-grid">
+    <a href="#ch01"><strong>Ch 01</strong>What marketing is</a>
+    <a href="#ch02"><strong>Ch 02</strong>Marketing environment</a>
+    <a href="#ch03"><strong>Ch 03</strong>Buyer behavior</a>
+    <a href="#ch04"><strong>Ch 04</strong>Marketing research</a>
+    <a href="#ch06"><strong>Ch 06</strong>Brands</a>
+    <a href="#ch07"><strong>Ch 07</strong>Product management</a>
+    <a href="#ch08"><strong>Ch 08</strong>Pricing</a>
+    <a href="#ch09"><strong>Ch 09</strong>Distribution</a>
+    <a href="#ch10"><strong>Ch 10</strong>Services</a>
+    <a href="#ch11"><strong>Ch 11</strong>Promotions</a>
+    <a href="#ch12"><strong>Ch 12</strong>Digital + SEO/GEO</a>
+    <a href="#ch14"><strong>Ch 14</strong>Sales alignment</a>
+    <a href="#ch15"><strong>Ch 15</strong>International</a>
+    <a href="#ch16"><strong>Ch 16</strong>Plan + analytics</a>
+    <a href="#ch17"><strong>Ch 17</strong>Ethics + AI gov</a>
+    <a href="#ch19"><strong>Ch 19</strong>Retail</a>
+  </div>
+</nav>
+
+<span class="ax">01 // chapter 01 — what marketing is</span>
+<h2 id="ch01"><span class="sec-num">A.1</span> Chapter 1 &mdash; What Marketing Is</h2>
+
+<p>Chapter 1 builds the working definition of marketing as a coordinated set of decisions about what to make, who to serve, what to charge, where to make it available, and how to communicate. Its canonical foundation is the Levitt-Drucker doctrine that the firm exists to create a customer.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 1 ANCHOR</span>
+    <span class="rd-author">Theodore Levitt &amp; Peter F. Drucker</span>
+    <span class="rd-title">"Marketing Myopia" (HBR 1960) &amp; <em>The Practice of Management</em> (1954)</span>
+    <span class="rd-tldr">Levitt's 1960 essay reframed industry definition as a customer-need question rather than a product question; railroads failed because they thought they were in railroads when they were in transportation. Drucker's 1954 doctrine that the purpose of the firm is to create a customer is the structural complement: marketing is not a department, it is the orientation of the entire enterprise. Together they anchor the chapter's claim that the marketing question precedes the product question.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/levitt-drucker-ch01.md">read the deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">02 // chapter 02 — marketing environment</span>
+<h2 id="ch02"><span class="sec-num">A.2</span> Chapter 2 &mdash; The Marketing Environment</h2>
+
+<p>Chapter 2 builds the structural read on the forces a marketer reacts to. Porter's Five Forces is the load-bearing framework; the chapter teaches industry profitability as the structural ceiling that no campaign can lift.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 2 ANCHOR</span>
+    <span class="rd-author">Michael E. Porter</span>
+    <span class="rd-title">"How Competitive Forces Shape Strategy" (HBR 1979) &amp; "The Five Competitive Forces That Shape Strategy" (HBR 2008)</span>
+    <span class="rd-tldr">Porter's 1979 framework decomposes industry attractiveness into five compressive pressures on margin: rivalry among existing competitors, threat of new entrants, threat of substitutes, supplier power, and buyer power. The 2008 retrospective added complements as a quasi-sixth force and explicitly distinguished industry profitability (the structural ceiling) from positioning within an industry (the operational lever). The framework anchors the chapter's claim that marketing campaigns cannot fix structural problems; the five forces define the ceiling.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/porter-five-forces-ch02.md">read the deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">03 // chapter 03 — how buyers buy</span>
+<h2 id="ch03"><span class="sec-num">A.3</span> Chapter 3 &mdash; How Buyers Actually Buy</h2>
+
+<p>Chapter 3 builds the picture of buyers as pattern-matchers who deliberate rarely and remember loosely. Two canonical readers: Kahneman-Tversky on the dual-process architecture of decision, and Keinan on the consumption-experience research that grounds memory's role.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 3 ANCHOR</span>
+    <span class="rd-author">Daniel Kahneman &amp; Amos Tversky</span>
+    <span class="rd-title">"Prospect Theory: An Analysis of Decision under Risk" (<em>Econometrica</em> 1979); <em>Thinking, Fast and Slow</em> (FSG 2011)</span>
+    <span class="rd-tldr">Kahneman and Tversky's 1979 prospect theory replaced the rational-utility model of consumer choice with an empirically calibrated picture of buyers as loss-averse, reference-dependent, and probability-distorting. The 2011 synthesis named the dual-process architecture (System 1 fast and intuitive, System 2 slow and deliberate) that explains why most marketing decisions are made by buyers operating in System 1. The chapter's claim that memory wins, attention is leased, and deliberation is rare, is built directly on this canon.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/kahneman-tversky-ch03.md">read the deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 3 EXTENSION</span>
+    <span class="rd-author">Anat Keinan</span>
+    <span class="rd-title">Selected work on consumption experiences and memory (HBS faculty research)</span>
+    <span class="rd-tldr">Keinan's research program operationalizes how buyers store and retrieve consumption experiences in memory, with implications for how brands build memory structures. The reader covers experiential consumption, productivity orientation, and the role of memorable peaks in buyer recall. Pairs with Kahneman-Tversky to give the chapter a complete dual-track picture: the cognitive architecture (Kahneman) and the memory-formation mechanics (Keinan).</span>
+    <a class="rd-link" href="../../wiki/external/canonical/keinan-ch03.md">read the deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">04 // chapter 04 — marketing research</span>
+<h2 id="ch04"><span class="sec-num">A.4</span> Chapter 4 &mdash; Marketing Research</h2>
+
+<p>Chapter 4 is the model chapter. Its canonical foundation is Hubbard's measurement framework (the EVPI calculation that anchors the 10 percent rule) plus Cochran's sampling foundations and Fisher's experimental design, with three v3 source contribution files that synthesize the books.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 4 ANCHOR</span>
+    <span class="rd-author">Naresh K. Malhotra; Burns, Veeck, Bush; Cochran; Fisher; Hubbard</span>
+    <span class="rd-title">Methods canon for marketing research (multiple texts, 1925-2020)</span>
+    <span class="rd-tldr">The chapter draws on Malhotra (definition + sampling), Burns-Veeck-Bush (three-mode taxonomy of qualitative, quantitative, observational research), Cochran 1977 (sample-size foundations), R.A. Fisher 1925 (randomized controlled trial as the foundation of A/B testing), and Hubbard (measurement, calibration, EVPI). Together they define the methods canon a marketing researcher must speak fluently. The chapter's references section enumerates every individual citation; this entry is the synthesis.</span>
+    <a class="rd-link" href="../../wiki/external/frontier/ai-llm-coding-qualitative-ch04.md">LLM coding deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 4 FRONTIER</span>
+    <span class="rd-author">Argyle, Boelaert, Brand-Israeli-Ngwe, Toubia, Gui</span>
+    <span class="rd-title">Synthetic respondents and machine bias literature (2023-2025)</span>
+    <span class="rd-tldr">The 2023-2025 literature on whether language models can substitute for survey respondents. Argyle's 2023 silicon-sample paper showed algorithmic fidelity for demographically conditioned LLM responses. Boelaert et al. 2025 named the load-bearing risk: machine bias, where each model has a strong preference per item that varies unpredictably with topic and is not explained by the demographic prompt. The chapter's verdict is narrow and stable: synthetic respondents are useful for instrument pre-testing, hypothesis generation, and exploration; not safe substitutes on decision-grade studies.</span>
+    <a class="rd-link" href="../../wiki/external/frontier/ai-synthetic-respondents-ch04.md">deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">05 // chapter 06 — brands</span>
+<h2 id="ch06"><span class="sec-num">A.5</span> Chapter 6 &mdash; Brands and Brand Management</h2>
+
+<p>Chapter 6 has the deepest canonical stack in the book. Six readers anchor it: Aaker (brand equity), Keller (CBBE pyramid), Sharp/Ehrenberg-Bass (empirical laws), Kapferer (brand identity prism), Neumeier (brand gap), Fournier-Holt (relationships and meaning).</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 6 ANCHOR</span>
+    <span class="rd-author">David A. Aaker</span>
+    <span class="rd-title">Managing Brand Equity (1991), Building Strong Brands (1996), Brand Leadership (2000), Brand Portfolio Strategy (2004), Brand Relevance (2010)</span>
+    <span class="rd-tldr">Aaker's contribution is to treat the brand as a balance-sheet-grade asset with named components a CFO can argue about. Where Sharp's contribution is empirical, Aaker's is structural: brand equity decomposes into awareness, perceived quality, brand associations, and loyalty. The Brand Identity Model (1996) and the Brand Relationship Spectrum (Branded House to House of Brands, 2000) are the practitioner-strategy half of contemporary branding theory.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/aaker-brands-ch06.md">deep reader (Brands) &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 6 ANCHOR</span>
+    <span class="rd-author">Kevin Lane Keller</span>
+    <span class="rd-title">Customer-Based Brand Equity (CBBE) Pyramid; <em>Strategic Brand Management</em> (5th ed., 2019)</span>
+    <span class="rd-tldr">Keller's CBBE pyramid is the academic-research-tradition counterpart to Aaker's practitioner framework. Brand resonance is built bottom-up through four layers: salience (am I aware?), performance and imagery (what is it like?), judgments and feelings (what do I think and feel?), and resonance (what about you and me?). The pyramid is the load-bearing diagnostic for whether a brand is at the salience step or the resonance step, which dictates which marketing investments will move the needle next.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/keller-cbbe-ch06.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 6 ANCHOR</span>
+    <span class="rd-author">Byron Sharp &amp; the Ehrenberg-Bass Institute</span>
+    <span class="rd-title"><em>How Brands Grow</em> (Vol. 1, 2010); <em>How Brands Grow Part 2</em> (with Romaniuk, 2015)</span>
+    <span class="rd-tldr">Sharp's empirical-laws tradition: brands grow primarily by increasing penetration (number of buyers), not loyalty among existing buyers; the double-jeopardy law says small brands have fewer buyers AND lower loyalty as a structural consequence; duplication of purchase law says brands share customers with rivals in proportion to rivals' market share, not by segment. The chapter teaches these laws as the empirical floor that any branding strategy must respect or contradict deliberately.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/aaker-ch06.md">Sharp / Aaker overview reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 6 SUPPORTING</span>
+    <span class="rd-author">Jean-No&euml;l Kapferer</span>
+    <span class="rd-title"><em>The New Strategic Brand Management</em> (5th ed., 2012); Brand Identity Prism</span>
+    <span class="rd-tldr">Kapferer's Brand Identity Prism (six facets: physique, personality, culture, relationship, reflection, self-image) is the European-tradition counterpart to Aaker's brand identity model. The prism is more useful than Aaker's diamond when the brand has heavy cultural meaning (luxury brands, heritage brands, brands tied to national identity). Liquid Death's brand identity is more legible through the prism's culture and relationship facets than through Aaker's awareness-quality-associations stack.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/kapferer-ch06.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 6 SUPPORTING</span>
+    <span class="rd-author">Marty Neumeier</span>
+    <span class="rd-title"><em>The Brand Gap</em> (2003); <em>Zag</em> (2006)</span>
+    <span class="rd-tldr">Neumeier defines the brand as a gut feeling, not a logo or a product, and argues the brand gap is the chasm between business strategy and customer experience. The five disciplines (differentiate, collaborate, innovate, validate, cultivate) are the operating manual for closing the gap. Trader Joe's narrow assortment as a positioning move is a Neumeier-style brand decision: the curated 4,000-SKU catalog is the brand strategy, not a procurement constraint.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/neumeier-ch06.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 6 EXTENSION</span>
+    <span class="rd-author">Susan Fournier &amp; Douglas B. Holt</span>
+    <span class="rd-title">Selected work on brand relationships and cultural meaning (HBR / JCR)</span>
+    <span class="rd-tldr">Fournier's 1998 paper "Consumers and Their Brands" reframed brand-buyer relationships as actual relationships with named types (best friends, casual acquaintances, abusive partnerships). Holt's cultural-branding framework (How Brands Become Icons, 2004) shows that iconic brands carry cultural mythology, not just functional benefit. Together they explain why Liquid Death and Patagonia resonate beyond their utility: they carry cultural meaning the buyer wants to be associated with.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/fournier-holt-ch06.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 6 FRONTIER</span>
+    <span class="rd-author">Jenni Romaniuk</span>
+    <span class="rd-title"><em>Better Brand Health</em> (2023); building on <em>How Brands Grow</em></span>
+    <span class="rd-tldr">Romaniuk's 2023 book updates the Ehrenberg-Bass empirical-laws tradition with a measurement framework for brand health. Mental availability is operationalized as Category Entry Points (CEPs): the situations, motives, and contexts that prompt category buying. A brand is mentally available to the extent it is linked to a wide range of CEPs in buyers' memory. The CEP audit is the chapter's working tool for diagnosing where a brand's mental availability is thin.</span>
+    <a class="rd-link" href="../../wiki/external/frontier/romaniuk-better-brand-health-ch06.md">deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">06 // chapter 07 — product management</span>
+<h2 id="ch07"><span class="sec-num">A.6</span> Chapter 7 &mdash; Product Management</h2>
+
+<p>Chapter 7 has three canonical readers: Cooper on the stage-gate process discipline, Christensen on the jobs-to-be-done research framing that fuels the front of the funnel, and Ulrich-Eppinger on the engineering and design methods that fill the inside of each Cooper stage. The principle: the offer is the proof of the positioning, and the three frameworks compose into the canonical product-development methodology.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 7 ANCHOR</span>
+    <span class="rd-author">Robert G. Cooper</span>
+    <span class="rd-title"><em>Winning at New Products</em> (5th ed., 2017); Stage-Gate process (1986 onward)</span>
+    <span class="rd-tldr">Cooper's Stage-Gate process is the dominant new-product-development discipline in consumer goods, B2B, and increasingly software: idea screening, business case, development, testing, validation, launch. Each stage produces deliverables; each gate is a go/kill/recycle decision made by a senior cross-functional team. The chapter teaches Stage-Gate as the practical answer to product portfolio management, with the BREXI scoring rubric (Believable, Relevant, Engaging, X-factor, Inspiring) as the gate-3 concept evaluation.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/cooper-stage-gate-ch07.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 7 ANCHOR</span>
+    <span class="rd-author">Clayton M. Christensen, Taddy Hall, Karen Dillon, David S. Duncan; Anthony W. Ulwick</span>
+    <span class="rd-title"><em>Competing Against Luck</em> (Harper Business, 2016); <em>What Customers Want</em> (Ulwick, McGraw-Hill, 2005); &ldquo;Know Your Customers&rsquo; Jobs to Be Done&rdquo; (<em>HBR</em> September 2016)</span>
+    <span class="rd-tldr">Christensen's Jobs-to-Be-Done framework reframes the front-end of NPD from &ldquo;what kind of customer is this?&rdquo; to &ldquo;what progress is the customer trying to make in a particular circumstance, and what existing solutions are they hiring to make that progress?&rdquo; The Four Forces of Progress (push, pull, anxiety, habit) model explains switching behavior and predicts which products will win the customer. Anthony Ulwick's Outcome-Driven Innovation extension converts the qualitative framework into a quantitative input the firm's stage-gate process can act on at Stage 2 and Gate 3: the job is decomposed into 50-150 desired outcomes, customers rate each on importance and current satisfaction, and the opportunity score (Importance + max(Importance &minus; Satisfaction, 0)) identifies the underserved outcomes where new products create the most value. The chapter pairs JTBD/ODI with Cooper's stage-gate as the front-end input that makes Cooper's Stage 1-2 productive.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/christensen-jtbd-ch07.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 7 ANCHOR</span>
+    <span class="rd-author">Karl T. Ulrich &amp; Steven D. Eppinger</span>
+    <span class="rd-title"><em>Product Design and Development</em> (7th ed., McGraw-Hill, 2020)</span>
+    <span class="rd-tldr">Ulrich (Wharton) and Eppinger (MIT Sloan) supply the engineering-management methods that fill the inside of Cooper's stage-gate funnel. Five load-bearing contributions: (1) the Pugh concept-selection matrix, a 6-step weighted-criteria comparison against a reference benchmark that produces 40-60 percent reductions in late-stage concept-change decisions; (2) product architecture as a marketing decision (modular vs. integral), which determines variety, manufacturing cost, and platform strategy across a product family; (3) the prototyping taxonomy (analytical vs. physical, comprehensive vs. focused) that converts &ldquo;build a prototype&rdquo; into a milestone-driven plan matched to specific decisions; (4) Design for Manufacturing (Boothroyd-Dewhurst-style part-count reduction and assembly-time reduction) producing 25-50 percent unit-cost reductions in disciplined applications; (5) product-development economics, a four-lever DCF (development cost, development time, manufacturing cost, sales volume) for gate decisions. The chapter pairs Ulrich-Eppinger with Cooper for inside-the-stages discipline and with Christensen-Ulwick for outside-the-stages customer-need input.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/ulrich-eppinger-product-design-ch07.md">deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">07 // chapter 08 — pricing</span>
+<h2 id="ch08"><span class="sec-num">A.7</span> Chapter 8 &mdash; Pricing</h2>
+
+<p>Chapter 8 has three canonical readers: Nagle on strategy and tactics, Simon on monetization, Ramanujam-Tacke on pricing as a product-development discipline. The frontier reader on dynamic pricing 2024-2026 (Wendy's, Uber, FTC) is in Appendix B.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 8 ANCHOR</span>
+    <span class="rd-author">Thomas T. Nagle, John Hogan, Joseph Zale</span>
+    <span class="rd-title"><em>The Strategy and Tactics of Pricing</em> (6th ed., 2016)</span>
+    <span class="rd-tldr">Nagle is the dominant text on pricing strategy in MBA programs and corporate practice. The framework moves from cost-plus pricing (deficient) to value-based pricing (preferred): start from the buyer's perceived value of the differentiated benefits, work backward to a price that captures a defensible share of that value. The economic value to the customer (EVC) calculation is the load-bearing tool. The chapter pairs Nagle's framework with Hubbard's EVPI math from Ch 4 to give the student a value-then-research-then-set price discipline.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/nagle-hogan-zale-ch08.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 8 ANCHOR</span>
+    <span class="rd-author">Hermann Simon</span>
+    <span class="rd-title"><em>Confessions of the Pricing Man</em> (2015)</span>
+    <span class="rd-tldr">Simon, founder of Simon-Kucher, distills four decades of consulting into a single thesis: pricing is the strongest single profit lever any company has, and most firms underinvest in pricing science by an order of magnitude. The book is rich with worked cases (Apple's price ladders, BMW's hidden-discount discipline, the deception of unit pricing) and the diagnostic question Simon asks every CFO: when did you last hold a half-day pricing review at the executive committee level? The answer for most firms is "never." The chapter teaches pricing as a continuous management discipline, not a once-a-year SKU exercise.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/simon-confessions-ch08.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 8 SUPPORTING</span>
+    <span class="rd-author">Madhavan Ramanujam &amp; Georg Tacke</span>
+    <span class="rd-title"><em>Monetizing Innovation</em> (Wiley, 2016)</span>
+    <span class="rd-tldr">Ramanujam and Tacke argue that monetization (price + monetization model + packaging) is a product-development discipline, not a launch decision. Most innovation flops are not bad products; they are good products with the wrong monetization. The book introduces nine product flops (Bezos's Amazon Fire phone, Tata Nano, Webvan) and shows that each had a monetization fault, not a product fault. The chapter pairs this with Cooper's Stage-Gate to teach pricing as a question that must be answered at gate 2, not gate 5.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/ramanujam-monetizing-ch08.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 8 EXTENSION</span>
+    <span class="rd-author">Richard Thaler &amp; Daniel Kahneman</span>
+    <span class="rd-title">Mental accounting (Thaler 1985, 1999); fairness in pricing (Kahneman, Knetsch, Thaler 1986)</span>
+    <span class="rd-tldr">Thaler's mental-accounting framework explains why buyers separate spending into psychological accounts (vacation budget, treat budget, household budget) that are not fungible in their heads even when they are fungible in their wallets. Kahneman-Knetsch-Thaler 1986 on fairness explains why price increases are accepted in some contexts (rising costs) and rejected in others (windfall opportunism), even when the absolute increase is identical. Wendy's 2024 surge-pricing reversal is the textbook case for the second principle.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/thaler-kahneman-behavioral-ch08.md">deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">08 // chapter 09 — distribution</span>
+<h2 id="ch09"><span class="sec-num">A.8</span> Chapter 9 &mdash; Distribution and Retail</h2>
+
+<p>Chapter 9 anchors on Coughlan's marketing channels framework. The principle: a buyer who cannot find you cannot buy you. Distribution is mental availability's physical twin.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 9 ANCHOR</span>
+    <span class="rd-author">Anne T. Coughlan, Erin Anderson, Louis W. Stern, Adel I. El-Ansary</span>
+    <span class="rd-title"><em>Marketing Channels</em> (7th ed., 2006)</span>
+    <span class="rd-tldr">Coughlan-Anderson-Stern-El-Ansary is the dominant academic text on distribution channel design. The framework decomposes channel decisions into channel length (number of intermediaries), channel intensity (intensive, selective, exclusive), channel breadth (single-channel vs multi-channel), and the service-output demands buyers actually have (lot size, waiting time, spatial convenience, product variety, service backup). Costco's no-advertising strategy is a Coughlan-style channel choice: Costco invests in distribution intensity (warehouse density and member-only access) instead of advertising-driven mental availability.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/coughlan-channels-ch09.md">deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">09 // chapter 10 — services</span>
+<h2 id="ch10"><span class="sec-num">A.9</span> Chapter 10 &mdash; Services Marketing</h2>
+
+<p>Chapter 10 has two canonical readers: Lovelock-SERVQUAL on the gaps model and service quality dimensions, and Vargo-Lusch on the service-dominant logic that reframes all marketing as services.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 10 ANCHOR</span>
+    <span class="rd-author">Christopher Lovelock; Parasuraman, Zeithaml, Berry</span>
+    <span class="rd-title"><em>Services Marketing</em> (8th ed., 2017); SERVQUAL (1988)</span>
+    <span class="rd-tldr">Lovelock's services-marketing framework names the four characteristics that distinguish services from goods (intangibility, inseparability, variability, perishability) and walks through the operational implications of each. The Parasuraman-Zeithaml-Berry SERVQUAL instrument operationalizes service quality across five dimensions (reliability, assurance, tangibles, empathy, responsiveness) measured as the gap between buyer expectation and buyer perception. Singapore Airlines' service-quality leadership and Carnival Cruise's recovery from COVID disruption are the chapter's worked SERVQUAL cases.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/lovelock-servqual-ch10.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 10 EXTENSION</span>
+    <span class="rd-author">Stephen L. Vargo &amp; Robert F. Lusch</span>
+    <span class="rd-title">"Evolving to a New Dominant Logic for Marketing" (<em>JM</em> 2004); service-dominant logic</span>
+    <span class="rd-tldr">Vargo-Lusch reframe all marketing as services: even a physical good is a vehicle for delivering a service. A car is a service of mobility; a coffee is a service of caffeination plus social ritual. The reframe is conceptually elegant and operationally useful when designing the value proposition: the offer is the bundle of services the buyer is buying, with the physical good as the artifact through which the services are delivered. The chapter uses S-D logic to bridge to Ch 7 (product as service-bearing artifact) and to Ch 11 (advertising as a service of memory refresh).</span>
+    <a class="rd-link" href="../../wiki/external/canonical/vargo-lusch-sd-logic-ch10.md">deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">10 // chapter 11 — promotions</span>
+<h2 id="ch11"><span class="sec-num">A.10</span> Chapter 11 &mdash; Promotions and Advertising</h2>
+
+<p>Chapter 11 has the second-deepest canonical stack: Cialdini on persuasion, Reeves-Caples on the direct-response tradition, Sutherland on behavioral-economic advertising, Binet-Field on long-and-short, Petty-Cacioppo (ELM) on the dual-route to persuasion.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 11 ANCHOR</span>
+    <span class="rd-author">Robert B. Cialdini</span>
+    <span class="rd-title"><em>Influence: The Psychology of Persuasion</em> (rev. 2021); <em>Pre-Suasion</em> (2016)</span>
+    <span class="rd-tldr">Cialdini's seven principles of influence (reciprocity, commitment-consistency, social proof, liking, authority, scarcity, unity) are the dominant framework for understanding persuasion at the message and channel level. Pre-Suasion (2016) extends the framework to attentional priming: the moment before a message lands often matters more than the message itself. The chapter teaches Cialdini as the load-bearing diagnostic for whether a creative concept is leveraging the right principle for the buyer's decision context. The dark-pattern audit in Ch 17 builds on Cialdini's distinction between persuasion and manipulation.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/cialdini-ch11.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 11 ANCHOR</span>
+    <span class="rd-author">Rosser Reeves &amp; John Caples</span>
+    <span class="rd-title"><em>Reality in Advertising</em> (Reeves 1961); <em>Tested Advertising Methods</em> (Caples, 5th ed., 1997)</span>
+    <span class="rd-tldr">The American direct-response tradition. Reeves named the Unique Selling Proposition (USP) as the load-bearing claim in any ad: a single benefit, expressed in a way the competition cannot or will not match, large enough to move buyers. Caples' tested-advertising-methods framework codified the discipline that ads should be tested by response (coupons, mail orders, eventually clicks) rather than by intuition, opinion, or focus group. Together they anchor the chapter's claim that advertising must be measured against business outcomes, not creative awards.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/reeves-caples-ch11.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 11 ANCHOR</span>
+    <span class="rd-author">Rory Sutherland</span>
+    <span class="rd-title"><em>Alchemy</em> (2019); Ogilvy &amp; Mather behavioral-economics practice</span>
+    <span class="rd-tldr">Sutherland applies Kahneman-Tversky behavioral-economics to advertising practice with sustained focus on what he calls non-obvious, asymmetric, branded ideas: small framing changes that shift behavior at scale (Eurostar's faster-train problem solved by attractive escorts on the platform; Costa Coffee's repositioning around the daily ritual rather than the price). The chapter uses Sutherland to teach that the advertising idea is rarely the rational benefit; it is the framing that bypasses rational calculation. Liquid Death's water-as-rebellion is a Sutherland-style positioning.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/sutherland-ch11.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 11 ANCHOR</span>
+    <span class="rd-author">Les Binet &amp; Peter Field</span>
+    <span class="rd-title"><em>The Long and the Short of It</em> (IPA, 2013); <em>Marketing Effectiveness in the Digital Era</em> (IPA, 2019)</span>
+    <span class="rd-tldr">Binet and Field analyzed 30 years of IPA Effectiveness Awards data and produced the load-bearing finding for marketing budget allocation: the optimal split between brand-building (long-term, broad-reach, emotional) and sales-activation (short-term, targeted, rational) is approximately 60/40 across categories. Brands that over-weight short-term activation grow faster on quarterly metrics and lose share over multi-year horizons. The 60/40 rule is the chapter's load-bearing budget heuristic.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/binet-field-long-short-ch11.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 11 EXTENSION</span>
+    <span class="rd-author">Richard E. Petty &amp; John T. Cacioppo</span>
+    <span class="rd-title">Elaboration Likelihood Model (ELM, 1986); pairs with Kahneman</span>
+    <span class="rd-tldr">The ELM is the academic-psychology counterpart to Kahneman's System 1 / System 2 dichotomy, applied to persuasion. Buyers process persuasion messages through either the central route (high motivation, high ability, careful argument-by-argument evaluation) or the peripheral route (low motivation, heuristic-driven, source credibility and surface features dominate). Most marketing communication lands in the peripheral route. The chapter uses ELM as the structural read on which persuasion principle (Cialdini) the brand should leverage given the buyer's processing state.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/elm-kahneman-ch11.md">deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">11 // chapter 12 — digital + SEO/GEO</span>
+<h2 id="ch12"><span class="sec-num">A.11</span> Chapter 12 &mdash; Digital Marketing and SEO/GEO</h2>
+
+<p>Chapter 12 anchors on Kaushik's web analytics framework, then extends to the 2026 GEO (generative engine optimization) literature. The frontier on the search-channel bifurcation is in Appendix B.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 12 ANCHOR</span>
+    <span class="rd-author">Avinash Kaushik</span>
+    <span class="rd-title"><em>Web Analytics 2.0</em> (2010); Occam's Razor blog (2007&ndash;2024)</span>
+    <span class="rd-tldr">Kaushik's framework: web analytics is not a reporting layer, it is a decision-support discipline. The four pillars (clickstream, multiple-outcomes analysis, experimentation and testing, voice of customer) replace the single-pillar pageview-counting that defined web analytics 1.0. The Macro-Micro conversion taxonomy and the Acquisition-Behavior-Outcomes framework are the chapter's load-bearing tools for diagnosing whether a digital marketing program is producing real business outcomes or vanity metrics. Pairs with Ch 16 (plan and analytics) for the closed-loop discipline.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/kaushik-web-analytics-ch12.md">deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">12 // chapter 14 — sales alignment</span>
+<h2 id="ch14"><span class="sec-num">A.12</span> Chapter 14 &mdash; Sales and Marketing Alignment</h2>
+
+<p>Chapter 14 anchors on Dixon's Challenger sales research, the dominant empirical framework for B2B selling in the 2010s and 2020s.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 14 ANCHOR</span>
+    <span class="rd-author">Matthew Dixon &amp; Brent Adamson</span>
+    <span class="rd-title"><em>The Challenger Sale</em> (2011); <em>The Challenger Customer</em> (2015)</span>
+    <span class="rd-tldr">CEB (now Gartner) research across 6,000+ B2B sellers identified five seller archetypes (relationship builder, hard worker, lone wolf, reactive problem solver, challenger). The challenger archetype outperformed all four others in complex B2B sales by a wide margin. The challenger teaches the buyer something new about their own business, tailors the message to specific economic drivers, and takes control of the conversation. The chapter uses Dixon's framework to teach sales-marketing alignment as alignment on the teaching content (marketing creates the insight, sales delivers it) rather than alignment on lead handoff mechanics.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/dixon-challenger-ch14.md">deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">13 // chapter 15 — international</span>
+<h2 id="ch15"><span class="sec-num">A.13</span> Chapter 15 &mdash; International Marketing</h2>
+
+<p>Chapter 15 has four canonical readers: Levitt 1983 on globalization, Bartlett-Ghoshal on transnational management, Ghemawat on CAGE distance, Hall on context. The 2024-2026 case file (Apple India, Walmart Germany, Costco China, BYD Europe, Liquid Death UK exit) is in Appendix B.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 15 ANCHOR</span>
+    <span class="rd-author">Theodore Levitt</span>
+    <span class="rd-title">"The Globalization of Markets" (HBR 1983)</span>
+    <span class="rd-tldr">Levitt's 1983 argument that technology is converging consumer tastes worldwide and that the multinational firm should standardize its offer globally rather than localize aggressively for each market. The argument is partially vindicated (Shein, BYD) and partially refuted (Liquid Death's UK failure, Walmart Germany's exit). The chapter teaches Levitt's globalization-as-convergence as the structural backdrop, then layers Hall, Hofstede, Ghemawat, and Bartlett-Ghoshal on top to show what doesn't converge.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/levitt-globalization-ch15.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 15 ANCHOR</span>
+    <span class="rd-author">Christopher Bartlett &amp; Sumantra Ghoshal</span>
+    <span class="rd-title"><em>Managing Across Borders</em> (1989, 2nd ed. 1998)</span>
+    <span class="rd-tldr">Bartlett-Ghoshal's transnational typology: international (HQ as the source, exports the model), multidomestic (each country a near-independent operation), global (worldwide standardization with central coordination), transnational (integrated network with local responsiveness AND global integration). BYD in 2024-2026 is the canonical contemporary transnational case: local production in Hungary and Brazil, multidomestic responsiveness on European trim and pricing, global integration on the supply chain.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/bartlett-ghoshal-ch15.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 15 ANCHOR</span>
+    <span class="rd-author">Pankaj Ghemawat</span>
+    <span class="rd-title"><em>Redefining Global Strategy</em> (2007); CAGE Distance Framework</span>
+    <span class="rd-tldr">Ghemawat's CAGE framework decomposes the distance between any two markets into Cultural (language, social norms, religion), Administrative (regulatory, currency, political), Geographic (physical distance, time zones, climate), and Economic (income levels, infrastructure quality, costs). The framework operationalizes Levitt's "globalization is real but unevenly so": the four distances expand and contract independently, and a brand's market-entry decision should weight each distance against the brand's specific source of competitive advantage.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/ghemawat-ch15.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 15 ANCHOR</span>
+    <span class="rd-author">Edward T. Hall</span>
+    <span class="rd-title"><em>Beyond Culture</em> (1976); high-context vs low-context cultures</span>
+    <span class="rd-tldr">Hall's high-context vs low-context distinction is the foundational read on cross-cultural communication. Low-context cultures (US, Germany, Scandinavia) embed meaning in explicit verbal content; high-context cultures (Japan, China, Saudi Arabia) embed meaning in shared context, relationship history, and non-verbal cues. The same advertising message lands very differently across the dimension. The chapter uses Hall to teach that brand-voice translation across markets is not a translation problem; it is a context-density adaptation problem.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/hall-context-ch15.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 15 EXTENSION</span>
+    <span class="rd-author">Susan P. Douglas, C. Samuel Craig, Yoram (Jerry) Wind</span>
+    <span class="rd-title">"The Myth of Globalization" (<em>Columbia Journal of World Business</em> 1987)</span>
+    <span class="rd-tldr">Douglas, Craig, and Wind wrote the 1987 critique of Levitt's globalization argument: empirical evidence does not support universal taste convergence, and the multinational firm that standardizes prematurely loses to local competitors who read context better. The paper introduced the concept of glocalization (think globally, act locally) that became the dominant 1990s-2000s posture before Bartlett-Ghoshal's transnational typology refined it. The Trader Joe's no-internationalization decision and Walmart Germany's exit are both Douglas-Wind validations.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/douglas-wind-myth-globalization-ch15.md">deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">14 // chapter 16 — plan + analytics</span>
+<h2 id="ch16"><span class="sec-num">A.14</span> Chapter 16 &mdash; Marketing Plan and Analytics</h2>
+
+<p>Chapter 16 anchors on Palmatier-Fader's customer-centricity framework. The principle: customer-base economics (CLV, retention, cohort behavior) is the closed-loop discipline that turns a marketing plan from a budget-plus-calendar into a measurement-driven asset-management program.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 16 ANCHOR</span>
+    <span class="rd-author">Robert W. Palmatier &amp; Peter S. Fader</span>
+    <span class="rd-title"><em>Marketing Strategy: Based on First Principles and Data Analytics</em> (Palmatier 2017); <em>Customer Centricity</em> (Fader 2012, 2nd ed. 2020)</span>
+    <span class="rd-tldr">Palmatier's first-principles framework distills marketing strategy to four root problems (customer heterogeneity, dynamics, competition, scarcity of resources) and the analytics discipline for managing each. Fader's customer-centricity argument is operational: the firm's most valuable asset is its customer base, customer lifetime value (CLV) is the load-bearing metric, and retention curves rather than acquisition counts are the leading indicators of the asset's health. Together they anchor the chapter's claim that a marketing plan is a closed loop with measurement as the validation gate.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/palmatier-fader-ch16.md">deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">15 // chapter 17 — ethics + AI governance</span>
+<h2 id="ch17"><span class="sec-num">A.15</span> Chapter 17 &mdash; Marketing Ethics, Privacy, AI Governance</h2>
+
+<p>Chapter 17 has Zuboff on surveillance capitalism as its anchor; the frontier reader on AI emergent misalignment is in Appendix B.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 17 ANCHOR</span>
+    <span class="rd-author">Shoshana Zuboff</span>
+    <span class="rd-title"><em>The Age of Surveillance Capitalism</em> (PublicAffairs, 2019)</span>
+    <span class="rd-tldr">Zuboff's framework reframes the data-driven marketing economy as a new economic mode: surveillance capitalism, in which the asset is buyer behavior captured at scale, the product sold is prediction of buyer future behavior, and the market that buys those predictions is advertisers and political campaigns. The Cambridge Analytica case is the canonical 2016-2018 deployment of the framework. The chapter uses Zuboff to set the ethical floor: every AI deployment that uses behavioral data is operating in the regime Zuboff names, and the human-fallback path is the operating discipline that prevents the regime from collapsing into manipulation.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/zuboff-surveillance-capitalism-ch17.md">deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">16 // chapter 19 — retail</span>
+<h2 id="ch19"><span class="sec-num">A.16</span> Chapter 19 &mdash; Retail Marketing</h2>
+
+<p>Chapter 19 has two canonical readers: Underhill on shopper observation, Sorensen on the physics of in-store buyer movement. The frontier reader on retail tech 2024-2026 (Amazon Just Walk Out reversal, BOPIS flow, TikTok Shop) is in Appendix B.</p>
+
+<ul class="reader-list">
+  <li>
+    <span class="rd-meta">CH 19 ANCHOR</span>
+    <span class="rd-author">Paco Underhill</span>
+    <span class="rd-title"><em>Why We Buy</em> (Simon &amp; Schuster, 1999, rev. 2009)</span>
+    <span class="rd-tldr">Underhill is the dominant text on retail observation as a research method: trained observers track buyers through stores, count interactions, and identify the operational moments where the path from interest to purchase breaks down. The butt-brush effect (women avoid aisles where they will be brushed by other shoppers from behind) and the decompression zone (the first 10-15 feet inside a store entrance, where buyers don't yet absorb merchandising) are two of the canonical findings the chapter teaches. Underhill is the methods foundation for the chapter's working tool: the in-store observation audit.</span>
+    <a class="rd-link" href="../../wiki/external/canonical/underhill-why-we-buy-ch19.md">deep reader &rarr;</a>
+  </li>
+  <li>
+    <span class="rd-meta">CH 19 EXTENSION</span>
+    <span class="rd-author">Herb Sorensen</span>
+    <span class="rd-title"><em>Inside the Mind of the Shopper</em> (FT Press, 2009)</span>
+    <span class="rd-tldr">Sorensen extends Underhill's observational tradition with the quantitative end: hours of in-store path tracking across hundreds of stores, behavioral segmentation by buyer mission (quick trip, fill-in trip, stock-up trip), and the load-bearing finding that buyers spend 80 percent of their store time on 20 percent of the merchandise. The retail layout's job is to put the right merchandise in the right 20 percent. The chapter teaches Sorensen's quick-trip vs stock-up segmentation as the diagnostic for store-format decisions (Trader Joe's narrow assortment is a quick-trip optimization).</span>
+    <a class="rd-link" href="../../wiki/external/canonical/sorensen-inside-mind-shopper-ch19.md">deep reader &rarr;</a>
+  </li>
+</ul>
+
+<span class="ax">17 // how the readers compose</span>
+<h2 id="composition"><span class="sec-num">A.17</span> How the readers compose</h2>
+
+<p>Each chapter's anchor is the canonical text that names the load-bearing principle. Each chapter's extensions are the readers that complicate, refine, or refute the anchor for specific situations. The chapter prose pulls a working synthesis through; this appendix lets a student or instructor walk back to the source when they want to teach the principle themselves, extend it to a new domain, or argue against it.</p>
+
+<p>For situations not covered by a single canonical text, the deep readers also link to <em>frontier sources</em> at <code>core-course/wiki/external/frontier/{slug}.md</code> that synthesize 2024-2026 case material. The frontier readers are summarized as case-by-case entries in <a href="appendix-B-extended-cases.html">Appendix B</a>; the practical paste-able prompts that operationalize each chapter's tools are catalogued in <a href="appendix-C-monday-morning-recipes.html">Appendix C</a>. Together the three appendices are the depth-without-bloat machinery: chapters teach principles tightly, the appendices hold the supporting weight.</p>
+
+<section class="refs">
+  <h2>Reader index</h2>
+  <p>Total entries in this appendix: 30 canonical readers + 4 frontier readers, mapped to 16 chapters (Ch 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, 19). Chapters 0, 5, 13, 18 use synthesis readers from the v3 source-contribution corpus; their reader lists are documented in those chapters' source-contribution folders at <code>core-course/wiki/v3-source-contributions/ch-NN/</code>.</p>
+  <p>To extend the appendix when a new canonical reader is added: copy a <code>&lt;li&gt;</code> entry from the relevant chapter section, replace the author / title / TL;DR / link, and update the <em>jump to chapter</em> nav at the top.</p>
+</section>
+
+</main>
+</div>
+
+<!-- Module 0a: tooltips, atlas eyebrows, sidenote fade -->
+<script>
+(function() {
+  const tip = document.createElement('div');
+  tip.className = 'tt-pop';
+  tip.setAttribute('role', 'tooltip');
+  tip.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(tip);
+
+  let tipTarget = null;
+  function showTip(target, html, captionText) {
+    tipTarget = target;
+    tip.innerHTML = (captionText ? '<span class="tt-cap">' + captionText + '</span>' : '') + html;
+    const r = target.getBoundingClientRect();
+    tip.style.left = '0px'; tip.style.top = '0px';
+    tip.classList.add('in');
+    tip.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(() => {
+      const tw = tip.offsetWidth;
+      const left = Math.max(8, Math.min(window.innerWidth - tw - 8, r.left + window.scrollX));
+      const top = r.bottom + window.scrollY + 8;
+      tip.style.left = left + 'px';
+      tip.style.top = top + 'px';
+    });
+  }
+  function hideTip() {
+    tip.classList.remove('in');
+    tip.setAttribute('aria-hidden', 'true');
+    tipTarget = null;
+  }
+
+  document.querySelectorAll('[data-tt]').forEach(el => {
+    if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    const def = el.getAttribute('data-tt');
+    el.addEventListener('mouseenter', () => showTip(el, '<span style="display:block;">' + def + '</span>', el.textContent.trim()));
+    el.addEventListener('mouseleave', hideTip);
+    el.addEventListener('focus', () => showTip(el, '<span style="display:block;">' + def + '</span>', el.textContent.trim()));
+    el.addEventListener('blur', hideTip);
+  });
+
+  window.addEventListener('scroll', hideTip, { passive: true });
+  window.addEventListener('resize', hideTip);
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') hideTip(); });
+
+  const eyeIO = new IntersectionObserver((entries) => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); eyeIO.unobserve(en.target); } });
+  }, { threshold: 0.35 });
+  document.querySelectorAll('.ax').forEach(ax => eyeIO.observe(ax));
+
+  const snIO = new IntersectionObserver((entries) => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); snIO.unobserve(en.target); } });
+  }, { threshold: 0.25 });
+  document.querySelectorAll('aside.sn').forEach(sn => snIO.observe(sn));
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Appendix B &middot; Extended Cases &middot; Core Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --coral: #DA7756;
+  --coral-soft: #E8A488;
+  --coral-deep: #B8553A;
+  --ink: #1a1a1a;
+  --ink-2: #555555;
+  --ink-3: #888888;
+  --line: #e6dfd2;
+  --cream: #f5f0e8;
+  --bg: #ffffff;
+  --serif: 'EB Garamond', 'Source Serif 4', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  --maxw: 640px;
+  --side: 280px;
+  --gap: 56px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.62;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--coral); color: #fff; }
+.page {
+  max-width: calc(var(--maxw) + var(--gap) + var(--side));
+  margin: 0 auto;
+  padding: 64px 24px 120px 24px;
+  position: relative;
+}
+.col { max-width: var(--maxw); }
+.sn {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1), transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sn.in { opacity: 1; transform: translateY(0); }
+@media (min-width: 1000px) {
+  .sn {
+    float: right; clear: right; width: var(--side);
+    margin: 4px calc(-1 * (var(--side) + var(--gap))) 18px var(--gap);
+    position: relative;
+  }
+  .sn::before {
+    content: ""; position: absolute; left: -16px; top: 8px;
+    width: 8px; height: 1px; background: var(--coral);
+  }
+}
+@media (max-width: 999px) {
+  .sn {
+    display: block; margin: 12px 0 18px 0;
+    padding: 12px 14px; background: var(--cream);
+    border-left: 2px solid var(--coral); font-size: 14px;
+  }
+}
+.sn .sn-num { color: var(--coral); font-weight: 600; margin-right: 4px; }
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2.4px; color: var(--coral);
+  text-transform: uppercase; margin: 0 0 14px 0;
+}
+h1.title {
+  font-family: var(--sans);
+  font-weight: 700; font-size: 44px;
+  line-height: 1.1; letter-spacing: -0.6px;
+  color: var(--ink); margin: 0 0 14px 0;
+}
+.byline {
+  font-family: var(--sans);
+  font-size: 14px; color: var(--ink-2);
+  margin: 0 0 36px 0;
+}
+.byline strong { color: var(--ink); font-weight: 600; }
+h2 {
+  font-family: var(--sans);
+  font-weight: 600; font-size: 26px;
+  line-height: 1.25; letter-spacing: -0.2px;
+  color: var(--ink); margin: 64px 0 18px 0;
+  scroll-margin-top: 24px;
+}
+h2 .sec-num {
+  font-family: var(--mono); color: var(--coral);
+  font-weight: 500; font-size: 18px;
+  margin-right: 12px; letter-spacing: 0;
+}
+h3 {
+  font-family: var(--sans); font-weight: 600;
+  font-size: 18px; letter-spacing: -0.1px;
+  color: var(--ink); margin: 36px 0 8px 0;
+}
+p { margin: 0 0 18px 0; }
+p.lede { font-size: 21px; line-height: 1.55; color: var(--ink); }
+p.first::first-line { font-variant: small-caps; letter-spacing: 0.5px; }
+
+strong { font-weight: 600; color: var(--ink); }
+em { font-style: italic; }
+.term {
+  font-family: var(--sans);
+  font-size: 0.92em; font-weight: 600;
+  color: var(--ink); background: var(--cream);
+  padding: 1px 6px; border-radius: 2px;
+  cursor: help; border-bottom: 1px dotted var(--coral);
+}
+.term:hover, .term:focus { background: var(--cream); }
+.term:focus { outline: 2px solid var(--coral); outline-offset: 2px; }
+
+.tt-pop {
+  position: absolute; z-index: 60;
+  max-width: 320px; background: #fff;
+  border: 1px solid var(--coral); border-radius: 4px;
+  padding: 12px 14px 10px 14px;
+  font-family: var(--sans); font-size: 13px;
+  line-height: 1.5; color: var(--ink);
+  box-shadow: 0 8px 24px -8px rgba(184, 85, 58, 0.25), 0 2px 6px rgba(0, 0, 0, 0.04);
+  opacity: 0; transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1), transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tt-pop.in { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.tt-pop .tt-cap {
+  display: block; font-family: var(--mono);
+  font-size: 10px; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--coral-deep);
+  margin-bottom: 6px;
+}
+.tt-pop::before {
+  content: ""; position: absolute;
+  top: -6px; left: 16px;
+  width: 10px; height: 10px; background: #fff;
+  border-top: 1px solid var(--coral);
+  border-left: 1px solid var(--coral);
+  transform: rotate(45deg);
+}
+
+.def {
+  background: var(--cream);
+  border-left: 3px solid var(--coral);
+  padding: 14px 18px; margin: 22px 0;
+  font-size: 17px; line-height: 1.55;
+}
+.def .def-term {
+  font-family: var(--sans); font-weight: 600;
+  color: var(--coral-deep); text-transform: uppercase;
+  font-size: 11px; letter-spacing: 1.5px;
+  display: block; margin-bottom: 4px;
+}
+
+.callout {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--coral);
+  background: #fcfaf6;
+  padding: 16px 20px 14px 20px;
+  margin: 24px 0;
+  font-family: var(--sans);
+  font-size: 15px; line-height: 1.55;
+  color: var(--ink);
+}
+.callout .ccap {
+  display: block; font-size: 11px;
+  font-weight: 700; color: var(--coral-deep);
+  letter-spacing: 1.6px; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.callout p { margin: 0 0 10px 0; }
+.callout p:last-child { margin: 0; }
+
+.hero { margin: 0 0 24px 0; }
+.hero-rule {
+  font-family: var(--serif); font-style: italic;
+  font-size: 22px; line-height: 1.45;
+  color: var(--ink); margin: 32px 0 8px 0;
+  position: relative;
+}
+.hero-rule .tegaki-mount { display: block; height: 56px; margin-top: 4px; }
+
+figure { margin: 36px 0; }
+figure svg { width: 100%; height: auto; display: block; }
+figure.sketch .mount {
+  width: 100%; background: transparent;
+  border: none; padding: 8px 0; display: block;
+}
+figure.sketch svg { width: 100%; height: auto; display: block; overflow: visible; }
+figcaption {
+  font-family: var(--sans); font-size: 13px;
+  color: var(--ink-2); line-height: 1.55;
+  margin-top: 12px; font-style: italic;
+}
+
+.refs {
+  margin-top: 96px; padding-top: 32px;
+  border-top: 1.5px solid var(--coral);
+  font-family: var(--sans); font-size: 13px;
+  line-height: 1.55; color: var(--ink-2);
+}
+.refs h2 { margin-top: 0; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus {
+  left: 16px; top: 16px;
+  background: #fff; padding: 8px 14px;
+  border: 2px solid var(--coral); z-index: 100;
+}
+
+.ax {
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.5px;
+  color: var(--coral); text-transform: uppercase;
+  margin: 56px 0 -54px 0; display: block;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ax.in { opacity: 1; transform: translateY(0); }
+.ax::before {
+  content: ""; display: inline-block;
+  width: 18px; height: 1px;
+  background: var(--coral); vertical-align: middle;
+  margin-right: 10px; opacity: 0.7;
+}
+
+.case {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--coral);
+  background: #fff;
+  padding: 22px 26px 18px 26px;
+  margin: 28px 0;
+  scroll-margin-top: 24px;
+}
+.case .case-meta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--coral-deep);
+  margin-bottom: 6px;
+  display: block;
+}
+.case .case-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 21px;
+  color: var(--ink);
+  margin: 0 0 4px 0;
+  line-height: 1.25;
+}
+.case .case-sub {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.case p { font-size: 17px; line-height: 1.55; }
+.case .case-numbers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 14px 0 18px 0;
+}
+.case .case-numbers .cnum {
+  background: var(--cream);
+  border-left: 2px solid var(--coral);
+  padding: 8px 10px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-2);
+}
+.case .case-numbers .cnum strong {
+  display: block;
+  color: var(--coral-deep);
+  font-family: var(--mono);
+  font-size: 16px;
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+.case .case-lesson {
+  background: #fcfaf6;
+  border-left: 3px solid var(--coral-deep);
+  padding: 12px 16px;
+  margin: 14px 0 8px 0;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.case .case-lesson strong {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--coral-deep);
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.case .case-sources {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-top: 10px;
+  border-top: 1px dotted var(--line);
+  padding-top: 10px;
+}
+.case .case-sources a {
+  color: var(--coral-deep);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--coral);
+}
+.case .case-sources a:hover { color: var(--coral); }
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 24px 0 36px 0;
+  font-family: var(--sans);
+  font-size: 13px;
+}
+.toc-grid a {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 10px 12px;
+  text-decoration: none;
+  color: var(--ink);
+  border-radius: 3px;
+  transition: border-color 150ms cubic-bezier(0.16, 1, 0.3, 1), background 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+.toc-grid a:hover {
+  border-color: var(--coral);
+  background: var(--cream);
+}
+.toc-grid a strong {
+  color: var(--coral-deep);
+  font-family: var(--mono);
+  font-size: 11px;
+  display: block;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .ax, .sn { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="page">
+<main id="main" class="col">
+
+<header class="hero">
+  <p class="eyebrow">Core Marketing &middot; Appendix B</p>
+  <h1 class="title">Extended Cases</h1>
+  <p class="byline"><strong>Felipe M. Affonso</strong> &middot; Oklahoma State University, Spears School of Business</p>
+  <p class="hero-rule">Twelve cases the chapters point to and the body cannot afford to walk through in full.</p>
+</header>
+
+<p class="lede first">Each chapter cites real-world cases to illustrate its principles. Some cases are too rich for a paragraph in the body, so the chapter cites the brand and points here. This appendix holds the long-form versions: enough numbers, dates, and operational detail that a student can argue the case in a meeting Monday morning, with citations that allow further verification.</p>
+
+<p>The 12 cases below are organized by chapter relevance. Each case names the brand, the year, the load-bearing numbers, the lesson, and the sources. Where a chapter mentions one of these brands, the body says <em>[Brand]</em> with a link to the relevant section here, instead of repeating the case in full.</p>
+
+<nav aria-label="Jump to case">
+  <h3 style="margin-top:24px;">Jump to case</h3>
+  <div class="toc-grid">
+    <a href="#apple-india"><strong>Ch 15</strong>Apple India FY24</a>
+    <a href="#walmart-germany"><strong>Ch 15</strong>Walmart Germany 1997-2006</a>
+    <a href="#liquid-death-uk"><strong>Ch 15</strong>Liquid Death UK exit 2025</a>
+    <a href="#costco-china"><strong>Ch 15</strong>Costco China 2024</a>
+    <a href="#stanley-tiktok"><strong>Ch 13</strong>Stanley Quencher TikTok 2023-2024</a>
+    <a href="#wendys-surge"><strong>Ch 8</strong>Wendy's surge-pricing 2024</a>
+    <a href="#klarna-decagon"><strong>Ch 14</strong>Klarna Decagon AI 2024</a>
+    <a href="#klarna-walkback"><strong>Ch 17</strong>Klarna AI walkback 2024</a>
+    <a href="#amazon-jwo"><strong>Ch 19</strong>Amazon Just Walk Out 2024</a>
+    <a href="#heinz-ai-knows"><strong>Ch 12</strong>Heinz Even AI Knows 2024</a>
+    <a href="#cambridge-analytica"><strong>Ch 17</strong>Cambridge Analytica 2014-2018</a>
+    <a href="#trader-joes-narrow"><strong>Ch 9</strong>Trader Joe's narrow assortment</a>
+  </div>
+</nav>
+
+<span class="ax">01 // chapter 15 — international</span>
+<h2 id="ch15-cases"><span class="sec-num">B.1</span> International Marketing &mdash; four cases</h2>
+
+<div class="case" id="apple-india">
+  <span class="case-meta">CH 15 &middot; INTERNATIONAL EXPANSION &middot; FY 2024</span>
+  <h3 class="case-title">Apple India: 8 billion dollar export milestone, Foxconn shift, retail-store launch</h3>
+  <p class="case-sub">The case for partner-mediated multidomestic strategy on the Bartlett-Ghoshal scale.</p>
+
+  <p>Apple's India strategy through fiscal year 2024 demonstrates a multidomestic-leaning expansion executed through manufacturing partners rather than direct subsidiary control. iPhone exports from India crossed 8 billion dollars in FY24 (April 2023 to March 2024), up from 5 billion the prior year, driven primarily by Foxconn's Tamil Nadu assembly hub (which alone shipped about 5 billion of that total). Tata's takeover of Wistron's Karnataka facility in late 2023 added a second Indian iPhone assembly partner; Pegatron added a third. India's share of total iPhone production reached approximately 14 percent in FY24, up from 7 percent in FY23.</p>
+
+  <div class="case-numbers">
+    <div class="cnum"><strong>$8B</strong>FY24 iPhone exports</div>
+    <div class="cnum"><strong>14%</strong>share of global iPhone production</div>
+    <div class="cnum"><strong>2</strong>flagship Apple Stores opened (Mumbai, Delhi, April 2023)</div>
+    <div class="cnum"><strong>3</strong>contract manufacturers (Foxconn, Tata, Pegatron)</div>
+  </div>
+
+  <p>The retail layer launched in April 2023 with Apple BKC (Mumbai, 22,000 square feet) and Apple Saket (Delhi, 8,000 square feet), the first wholly-owned Apple Stores outside the US, China, Japan, UK, France, Germany, and Australia. The stores are positioned as the high-CAGE-distance counterweight to the partner-led manufacturing strategy: Apple owns and controls the buyer-facing retail experience while letting Foxconn and Tata own the upstream manufacturing scale. This is multidomestic on the manufacturing axis, global-integration on the retail-and-marketing axis.</p>
+
+  <div class="case-lesson">
+    <strong>Lesson for Ch 15</strong>
+    Bartlett-Ghoshal's transnational typology is not a single-strategy choice; the same brand can be multidomestic on one element of the offer and globally integrated on another. Apple's India play separates manufacturing partner strategy (multidomestic) from retail and brand strategy (globally integrated). The student's working question is not "which Bartlett-Ghoshal cell is this brand in" but "which cell is each element of the offer in."
+  </div>
+
+  <p class="case-sources">Apple Q2 2024 results announcement, May 2024; Foxconn India production filings; Reuters coverage of Tata Wistron acquisition, October 2023; Apple Newsroom announcements for Apple BKC and Apple Saket, April 2023.</p>
+</div>
+
+<div class="case" id="walmart-germany">
+  <span class="case-meta">CH 15 &middot; INTERNATIONAL EXIT &middot; 1997-2006</span>
+  <h3 class="case-title">Walmart Germany: 1 billion dollar nine-year exit</h3>
+  <p class="case-sub">The classic Hofstede / Ghemawat CAGE failure; canonical counter-example for Levitt's globalization thesis.</p>
+
+  <p>Walmart entered Germany in December 1997 through the acquisition of Wertkauf (21 stores) and Interspar (74 stores) for a combined approximately 1.6 billion dollars. By July 2006 Walmart announced its complete withdrawal from Germany, selling its 85 remaining stores to Metro AG for an estimated 1 billion dollar pre-tax loss across the nine-year operation. The exit is a canonical case in international business curricula because it is rare for a multinational of Walmart's scale to fail this completely in a developed Western European market and still publish enough operational detail for the failure modes to be diagnosed.</p>
+
+  <div class="case-numbers">
+    <div class="cnum"><strong>$1.6B</strong>1997-1998 acquisition cost</div>
+    <div class="cnum"><strong>~$1B</strong>pre-tax exit loss (2006)</div>
+    <div class="cnum"><strong>9 years</strong>operating duration</div>
+    <div class="cnum"><strong>0</strong>profitable fiscal years in Germany</div>
+  </div>
+
+  <p>The diagnosed failure modes (HBR, McKinsey post-mortems): Walmart imposed US labor practices (overnight greeters, mandatory smile policies, English-language morning chants) on a German workforce protected by codetermination law and unions. Pricing was based on a US assumption that buyers would respond to everyday-low-pricing rather than the German pattern of weekly Sonderangebote (specials). Assortment was over-broad for German shopping patterns (frequent quick trips to multiple specialized retailers). Real estate was acquired in suboptimal locations because Walmart's US site-selection model did not account for German planning law and the existing density of established discounters (Aldi, Lidl, Edeka). The Sunday closing law (Ladenschluss) eliminated Walmart's weekend-trip operating model entirely.</p>
+
+  <div class="case-lesson">
+    <strong>Lesson for Ch 15</strong>
+    The failure modes were not cultural in the Hofstede sense (high power distance, etc.). They were operational manifestations of Ghemawat's administrative and economic distance combined with what Douglas-Wind called the myth of globalization. Walmart's competitive advantage in the US (national scale + supply chain efficiency on a US labor and real estate base) does not transfer when both the labor base and the real estate market change. The cost of being wrong on this judgment was 1 billion dollars and nine years.
+  </div>
+
+  <p class="case-sources">HBR "Why Walmart Isn't Feeling the Pain in Germany" (Sept 2010); McKinsey post-mortems; Wal-Mart Germany annual operating-loss filings 1998-2006; Metro AG acquisition announcement July 2006.</p>
+</div>
+
+<div class="case" id="liquid-death-uk">
+  <span class="case-meta">CH 15 &middot; INTERNATIONAL EXIT &middot; FEBRUARY 2025</span>
+  <h3 class="case-title">Liquid Death UK: 761 percent growth, exit on 2 million pounds</h3>
+  <p class="case-sub">Brand voice as the part of the offer least likely to travel intact.</p>
+
+  <p>Liquid Death debuted in the UK in spring 2023 valued at 535.5 million pounds (700 million dollars), with launch listings at Tesco, Iceland, Co-op, Ocado, and Nisa. UK sales grew 761 percent year over year to 2.0 million pounds in the 52 weeks ended 7 September 2024 (NIQ data via Food Manufacture). In a UK bottled water market projected at 2.12 billion pounds in 2025 (1.35 billion supermarket and convenience plus 770 million out-of-home), 2.0 million pounds is rounding error. The company announced UK withdrawal in February 2025, framed publicly as a temporary pause to consolidate production back to the United States. Globally Liquid Death revenue still rose from 263 million dollars in 2023 to 333 million in 2024 (Sacra), all of it US-domestic.</p>
+
+  <div class="case-numbers">
+    <div class="cnum"><strong>761%</strong>UK YoY growth FY24</div>
+    <div class="cnum"><strong>£2.0M</strong>UK FY24 revenue (small base)</div>
+    <div class="cnum"><strong>£2.12B</strong>UK water category</div>
+    <div class="cnum"><strong>$333M</strong>global FY24 revenue (all US)</div>
+  </div>
+
+  <p>The diagnosed failure mode: Liquid Death's positioning depends on a category contradiction (water + heavy-metal aesthetics + canned format + sustainability claim) that reads as edgy in a US bottled-water market saturated with bland marketing. In the UK, tap water is potable and trusted, the bottled water market is more functional, and the heavy-metal aesthetic reads as performative imported irony rather than genuine category disruption (The Drum). The 761 percent growth headline masks an absolute-volume failure: high percentage growth on a tiny base is consistent with the brand being a curiosity rather than a habit.</p>
+
+  <div class="case-lesson">
+    <strong>Lesson for Ch 15</strong>
+    Hofstede's Indulgence-versus-Restraint dimension and Levitt's limit. Levitt argued for converging tastes; Liquid Death is the empirical refutation at the brand-voice layer. The underlying product (still water in a portable container) converges; the cultural meaning buyers attach to brand voice does not. The principle that travels: water in a can. The principle that does not travel: water as rebellion. The exit is not a marketing failure narrowly; it is an admission that the brand could not establish enough buyer behavior to justify the production footprint.
+  </div>
+
+  <p class="case-sources">The Grocer (UK trade press, Spring 2023 launch); Food Manufacture (NIQ year-on data, October 2024); Marketing Week (UK exit February 2025); Grocery Gazette; Sacra revenue tracking.</p>
+</div>
+
+<div class="case" id="costco-china">
+  <span class="case-meta">CH 15 &middot; INTERNATIONAL EXPANSION &middot; FY 2024</span>
+  <h3 class="case-title">Costco China: 7 warehouses, 80,000 prepaid memberships before opening, 60 percent renewal</h3>
+  <p class="case-sub">The model travels; the trust contract does not, fully.</p>
+
+  <p>Costco closed fiscal 2024 (year ended 1 September 2024) with 249.6 billion dollars in net sales, 4.8 billion in membership fee revenue, and 137 million cardholders worldwide. The membership renewal rate was 92.9 percent in the US/Canada and 90 percent globally. The UK had 29 warehouses as of May 2024 with announced plans to add up to 14 more. China had seven warehouses by end of 2024; the second Shanghai store reached over 80,000 prepaid memberships before opening (Global Times). The China renewal rate is 60 percent (Daxue Consulting), 32.9 percentage points below the US/Canada rate.</p>
+
+  <div class="case-numbers">
+    <div class="cnum"><strong>$249.6B</strong>FY24 global net sales</div>
+    <div class="cnum"><strong>137M</strong>worldwide cardholders</div>
+    <div class="cnum"><strong>92.9%</strong>US/Canada renewal</div>
+    <div class="cnum"><strong>60%</strong>China renewal</div>
+  </div>
+
+  <p>CFO Richard Galanti said in January 2024 that the next several years of new openings would target a 50/50 domestic/international split, up from the prior 60/40 domestic skew. The Costco China model is deliberately localized: smaller SKU count, higher share of fresh and prepared foods, pricing tuned to Chinese members rather than US dollar-anchor pricing. The model also retains the structural Costco DNA: large-format warehouses, member-only access, treasure-hunt assortment dynamics, and the 14-percent-cap-on-markup discipline that anchors Costco's price-trust contract with members.</p>
+
+  <div class="case-lesson">
+    <strong>Lesson for Ch 15</strong>
+    The empirical handle on what does not fully travel: the trust contract between buyer and warehouse. US members renew at 92.9 percent because they trust Costco to keep prices honest; Chinese members renew at 60 percent because the market-trust default is different (more skeptical of large-format retail, more willing to defect on price comparison). This is partial validation of Levitt's globalization thesis (the warehouse model itself transfers) and partial validation of Hofstede's cultural-distance critique (the trust mechanism that makes membership economics work has to be earned, not inherited).
+  </div>
+
+  <p class="case-sources">Costco 2024 Annual Report; Motley Fool fiscal-year tracking; Daxue Consulting on Costco China renewal mechanics; Global Times on Shanghai pre-opening membership; CNBC interview with CFO Galanti, January 2024.</p>
+</div>
+
+<span class="ax">02 // chapter 13 — social media</span>
+<h2 id="ch13-cases"><span class="sec-num">B.2</span> Social Media Marketing &mdash; one case</h2>
+
+<div class="case" id="stanley-tiktok">
+  <span class="case-meta">CH 13 &middot; VIRAL CATEGORY CREATION &middot; 2023-2024</span>
+  <h3 class="case-title">Stanley Quencher TikTok surge: 750 million dollar run-rate, micro-influencer waves</h3>
+  <p class="case-sub">The case for category creation through social meaning rather than product specification.</p>
+
+  <p>Stanley's revenue ran from 70 million dollars in 2019 to an estimated 750 million in 2023 and crossed 800 million in 2024 (CNBC; Wikipedia). The 40-ounce Quencher tumbler, originally launched in 2016 as a desk-side hydration cup for the contractor and hunter base Stanley already served, became the load-bearing growth driver after a small product-recommendation blog called The Buy Guide (run by three women in Utah and Arizona, readership 97.7 percent women age 25-50) bought Quenchers in bulk and resold them starting 2017. When Stanley considered shelving the Quencher in 2018, The Buy Guide founders placed an emergency wholesale order of 5,000 units that sold out in five days; the reorder of 7,500 sold in a day.</p>
+
+  <div class="case-numbers">
+    <div class="cnum"><strong>$70M &rarr; $750M</strong>2019 to 2023 revenue</div>
+    <div class="cnum"><strong>97.7%</strong>The Buy Guide readership female</div>
+    <div class="cnum"><strong>5,000</strong>emergency reorder, sold in 5 days</div>
+    <div class="cnum"><strong>40oz</strong>Quencher capacity (the cup itself)</div>
+  </div>
+
+  <p>The TikTok surge began in late 2022 and accelerated through 2023, driven by a combination of Olivia Rodrigo Quencher drop launches, the November 2023 Target-fire Quencher (a Buick burning in a parking lot with the Quencher intact and ice still in it; Stanley CEO replied with a free replacement cup and a free car offer that itself went viral), the white-icy-girl micro-influencer wave on TikTok, and the reseller arbitrage market that pushed limited-color Quenchers above 200 dollars retail.</p>
+
+  <div class="case-lesson">
+    <strong>Lesson for Ch 13</strong>
+    Category creation in the 2020s runs through social meaning, not product specification. The Quencher's product specifications were stable from 2016 to 2024; the category meaning shifted from desk-side hydration cup (Stanley's original 2016 framing) to identity object for women age 25-50 (The Buy Guide's 2017-2022 reframing) to viral collectible (TikTok 2023). Stanley did not invent the new meaning. They allowed it to emerge by not shelving the Quencher when their dashboard said to, and they amplified it when the Buy Guide-driven wholesale signal made the new buyer base legible. The marketing decision was the discipline to read a sample that was not in the original dashboard.
+  </div>
+
+  <p class="case-sources">CNBC "How a 40-ounce cup turned Stanley into a 750-million-a-year business" December 2023; Stanley case bible (internal); The Buy Guide founder interviews; TikTok hashtag analytics 2023-2024.</p>
+</div>
+
+<span class="ax">03 // chapter 8 — pricing</span>
+<h2 id="ch08-cases"><span class="sec-num">B.3</span> Pricing &mdash; one case</h2>
+
+<div class="case" id="wendys-surge">
+  <span class="case-meta">CH 8 &middot; DYNAMIC PRICING REVERSAL &middot; FEBRUARY 2024</span>
+  <h3 class="case-title">Wendy's surge-pricing reversal and the QSR industry moratorium</h3>
+  <p class="case-sub">The fairness ceiling on dynamic pricing in low-trust consumer categories.</p>
+
+  <p>On 27 February 2024, Wendy's CEO Kirk Tanner announced on the Q4 2023 earnings call that the company would test "dynamic pricing and AI-enabled menu changes" by 2025, supported by a 20-million-dollar investment in digital menu boards across US locations. Within 24 hours the announcement triggered a public-relations crisis: news coverage framed the move as surge pricing on burgers, social media amplification was overwhelmingly negative (Reuters reported a 12 percent drop in Wendy's social-sentiment score within 48 hours), and competitors Burger King and Taco Bell publicly committed to no surge pricing. On 29 February 2024 Wendy's issued a corrective statement in which Wendy's clarified the digital boards would be used for limited-time discount promotions, not for price increases at peak demand. The QSR industry adopted an informal moratorium on surge pricing through 2024-2026.</p>
+
+  <div class="case-numbers">
+    <div class="cnum"><strong>$20M</strong>announced digital-menu-board investment</div>
+    <div class="cnum"><strong>48 hrs</strong>from announcement to crisis</div>
+    <div class="cnum"><strong>-12pts</strong>social sentiment drop</div>
+    <div class="cnum"><strong>Feb 29</strong>corrective statement</div>
+  </div>
+
+  <p>The diagnosed failure mode is Kahneman-Knetsch-Thaler 1986 fairness in pricing. Buyers accept price increases tied to clear cost increases (rising input prices, wage increases, supply chain disruption) and reject price increases tied to opportunistic timing (busy lunch hour, hot weather, rivalry-priced events). Wendy's announcement was structured as an opportunistic timing increase, which buyers read as windfall opportunism rather than cost-justified pricing. The reversal was structurally inevitable within hours of buyers recognizing the framing.</p>
+
+  <div class="case-lesson">
+    <strong>Lesson for Ch 8</strong>
+    Dynamic pricing is technically possible in any category where the firm controls the price display in real time. It is buyer-acceptable only where the buyer reads the price variation as cost-justified (Uber surge pricing during peak demand; airline prices on rare routes) rather than windfall opportunism (a burger costing more during the lunch rush). The fairness boundary is structural, not a marketing problem; no campaign can change the buyer's read of opportunism into a read of cost-justification on a 6-dollar burger.
+  </div>
+
+  <p class="case-sources">CNBC "Wendy's says it isn't planning to implement surge pricing" 29 Feb 2024; Wall Street Journal "Wendy's Surge Pricing Plans Were Always 'Aspirational'"; corporate.wendys.com statement archive; FTC Surveillance Pricing Inquiry (January 2024); Journal of Marketing Research fairness-pricing literature 2023-2026.</p>
+</div>
+
+<span class="ax">04 // chapter 14 — sales alignment + ai</span>
+<h2 id="ch14-cases"><span class="sec-num">B.4</span> Sales and AI &mdash; one case</h2>
+
+<div class="case" id="klarna-decagon">
+  <span class="case-meta">CH 14 / CH 17 &middot; AI CUSTOMER SERVICE AT SCALE &middot; 2024</span>
+  <h3 class="case-title">Klarna &times; Decagon: 700-FTE-equivalent AI agent deployment</h3>
+  <p class="case-sub">Headline numbers vs. the rollback story; the case for measured human-fallback paths.</p>
+
+  <p>In February 2024 Klarna announced its AI customer-service agent (built on OpenAI infrastructure, with Decagon as the agent platform layer) was handling 2.3 million customer-service conversations per month, equivalent to the work of approximately 700 full-time employees, with a 25 percent reduction in repeat inquiries and an estimated 40-million-dollar profit improvement run-rate from the deployment. Klarna's CEO Sebastian Siemiatkowski publicly said in interviews through Q1 and Q2 2024 that AI would replace much of the company's human customer-service workforce.</p>
+
+  <div class="case-numbers">
+    <div class="cnum"><strong>2.3M</strong>monthly conversations (Feb 2024)</div>
+    <div class="cnum"><strong>~700</strong>FTE-equivalent</div>
+    <div class="cnum"><strong>$40M</strong>announced annual profit improvement</div>
+    <div class="cnum"><strong>-25%</strong>repeat inquiries</div>
+  </div>
+
+  <p>By May 2024, Klarna had quietly announced a hiring drive for human customer-service roles, citing service-quality complaints from buyers in complex dispute resolution, refund handling, and fraud-investigation scenarios where the AI agent's lack of judgment authority created service-recovery failures. The 2024 walkback is the second half of the case: the AI deployment was load-bearing for routine inquiries (order status, return labels, FAQ responses) and not load-bearing for the long-tail of complex inquiries that produce the highest service-recovery cost when handled badly.</p>
+
+  <div class="case-lesson">
+    <strong>Lesson for Ch 14 + Ch 17</strong>
+    The headline economics of AI customer service are real and large; the operational risk of AI-only service is a long-tail of complex cases where the AI's failure mode is invisible until the buyer churns or files a regulatory complaint. The discipline that survives both findings is the measured human-fallback path: a parallel human service track instrumented from launch, with explicit escalation triggers and quality measurement. The Klarna case is the contemporary canonical example of why launch-and-walk-back is more expensive than launch-with-fallback.
+  </div>
+
+  <p class="case-sources">Klarna press release 27 February 2024; Decagon case study materials 2024; Klarna May 2024 hiring drive announcement; Bloomberg "Klarna Pauses AI-Driven Hiring Freeze" Q3 2024; Anthropic and OpenAI deployment-pattern guidance 2024-2026.</p>
+</div>
+
+<div class="case" id="klarna-walkback">
+  <span class="case-meta">CH 17 &middot; AI WALKBACK CASE STUDY &middot; 2024-2025</span>
+  <h3 class="case-title">Klarna AI customer-service walkback: the second-year reversal</h3>
+  <p class="case-sub">When AI deployment metrics look great but service-recovery cost spikes.</p>
+
+  <p>The Klarna walkback (above) crystallized into a strategic course correction in 2025. Sebastian Siemiatkowski reversed the 2024 messaging in Q1 2025 interviews, acknowledging that the AI-only path produced unacceptable service-recovery costs in disputes, fraud, and complex refunds, and committing to a hybrid model with named escalation criteria. Klarna's hiring rate for human customer-service roles in 2025 returned to approximately 60 percent of the 2022-2023 baseline, which is the operational signal that the firm needed an instrumented human fallback path on a non-trivial share of the inbound volume.</p>
+
+  <div class="case-numbers">
+    <div class="cnum"><strong>2024 H1</strong>"AI replaces humans" framing</div>
+    <div class="cnum"><strong>2024 H2</strong>quiet human-rehire signal</div>
+    <div class="cnum"><strong>2025 Q1</strong>strategic reversal stated publicly</div>
+    <div class="cnum"><strong>~60%</strong>hiring rate vs 2022-2023</div>
+  </div>
+
+  <div class="case-lesson">
+    <strong>Lesson for Ch 17</strong>
+    Every AI deployment needs a measured human-fallback path before launch. The brands that survived the 2024-2026 AI customer-service deployments were the ones that instrumented both paths in parallel from launch, and could read which path was producing the better service-recovery economics on which inquiry types within weeks. The brands that did not instrument the fallback path paid the cost in churn, regulatory exposure, and the reputational drag of a public reversal.
+  </div>
+
+  <p class="case-sources">Klarna investor communications 2024-2025; Sebastian Siemiatkowski public interviews Q1 2025; Bloomberg, Reuters, FT coverage of the AI-strategy reversal.</p>
+</div>
+
+<span class="ax">05 // chapter 19 — retail tech</span>
+<h2 id="ch19-cases"><span class="sec-num">B.5</span> Retail Tech &mdash; one case</h2>
+
+<div class="case" id="amazon-jwo">
+  <span class="case-meta">CH 19 &middot; AI-AUTOMATION REVERSAL &middot; APRIL 2024</span>
+  <h3 class="case-title">Amazon Just Walk Out: 1,000-plus Indian workers behind the AI curtain</h3>
+  <p class="case-sub">When the automation story is actually a human-labor story.</p>
+
+  <p>Amazon's Just Walk Out cashierless technology (deployed across approximately 50 Amazon Fresh and Amazon Go stores plus dozens of stadiums and airports through 2023) was publicly framed as a computer-vision-and-sensor system that automatically identified items as buyers picked them up. In April 2024, The Information reported, and Amazon subsequently confirmed, that the system relied on approximately 1,000 contracted workers in India who reviewed video footage to verify and label transactions, with up to 70 percent of transactions requiring human review at peak periods. Amazon announced the discontinuation of Just Walk Out in most Amazon Fresh stores in April 2024, replacing the technology with Dash Cart smart shopping carts in the US Fresh format.</p>
+
+  <div class="case-numbers">
+    <div class="cnum"><strong>~1,000</strong>Indian contract workers behind the AI</div>
+    <div class="cnum"><strong>~70%</strong>peak-time transactions needing human review</div>
+    <div class="cnum"><strong>~50</strong>Amazon Fresh / Go stores using JWO</div>
+    <div class="cnum"><strong>April 2024</strong>discontinuation announcement</div>
+  </div>
+
+  <p>The mechanics: Just Walk Out was AI-assisted-but-human-verified at a much higher rate than Amazon's marketing of the technology suggested. The reversal was driven by economics (the per-transaction labor cost of reviewing footage in India approached the savings from removing US cashier labor) and operational reliability (the human-verification step introduced latency that blocked Amazon's planned rollout into higher-throughput grocery formats). Just Walk Out continues in lower-throughput contexts (stadiums, airports) where the AI-plus-human-verification economics still make sense.</p>
+
+  <div class="case-lesson">
+    <strong>Lesson for Ch 19 + Ch 17</strong>
+    AI deployment claims in 2024-2026 require buyer-side scrutiny because the public framing often understates the human labor in the loop. The retail principle: the operational economics of a cashierless format are not just the cashier-replacement savings; they are the cashier-replacement savings minus the verification-labor cost minus the latency-driven format constraints. Amazon's JWO walked back not because the technology failed but because the unit economics did not support the format ambition.
+  </div>
+
+  <p class="case-sources">The Information April 2024 reporting; Amazon official statement on JWO Fresh transition; Gizmodo, Retail Dive, Insider coverage; Amazon Dash Cart product pages.</p>
+</div>
+
+<span class="ax">06 // chapter 12 — digital + GEO</span>
+<h2 id="ch12-cases"><span class="sec-num">B.6</span> Digital and GEO &mdash; one case</h2>
+
+<div class="case" id="heinz-ai-knows">
+  <span class="case-meta">CH 12 / CH 11 &middot; AI-AS-CITATION CAMPAIGN &middot; 2023-2024</span>
+  <h3 class="case-title">Heinz "Even AI Knows": 1,000-plus AI-generated variants, 2023-2024 campaign</h3>
+  <p class="case-sub">The first major brand to operationalize AI-citation as a creative concept.</p>
+
+  <p>The Heinz "Even AI Knows" campaign (Rethink Toronto, 2022-2023) tested whether AI image generators (DALL-E 2 and similar) would produce ketchup imagery that resembled Heinz when given prompts that did not specify Heinz. The campaign's central asset was a global-scale poster series showing AI-generated ketchup bottles that all looked, more or less, like Heinz; the creative line was "AI knows ketchup is Heinz." The campaign won at Cannes Lions 2023 (Grand Prix in Outdoor) and was extended in 2023-2024 with approximately 1,000 AI variants across digital, OOH, and retail-shelf placements.</p>
+
+  <div class="case-numbers">
+    <div class="cnum"><strong>1,000+</strong>AI-generated variants 2023-2024</div>
+    <div class="cnum"><strong>Cannes Lions 2023</strong>Outdoor Grand Prix</div>
+    <div class="cnum"><strong>$10M+</strong>estimated earned media value</div>
+    <div class="cnum"><strong>4</strong>generations of follow-up campaigns 2023-2024</div>
+  </div>
+
+  <p>The strategic mechanism: the campaign exploited the brand's pre-existing dominant mental availability in the ketchup category. Sharp/Ehrenberg-Bass would call this a distinctive-asset audit at category-level scale: when AI image generators produce ketchup-shaped artifacts, those artifacts inherit Heinz's distinctive cues (the bottle silhouette, the diamond label shape, the red color, the upside-down squeeze format), because those cues dominate the training-data distribution for the category. The campaign turned a category-dominance audit into a creative concept the brand could publicly own.</p>
+
+  <div class="case-lesson">
+    <strong>Lesson for Ch 12 + Ch 11</strong>
+    A brand's mental availability in 2026 is partly a function of its presence in AI training data. If the brand's distinctive assets are the dominant pattern in the category's training-data distribution, AI tools cite the brand by default. The implication for digital and GEO strategy: the brand that wins citation share in the AI era is the brand that already won mental availability in the human era, plus the brand that is structurally citable on the web (clean schema, named-entity disambiguation, authoritative third-party citations). The Heinz campaign teaches the principle in three exhibits.
+  </div>
+
+  <p class="case-sources">Rethink Toronto creative case study 2023; Cannes Lions 2023 award archive; The Drum, Adweek, Campaign coverage; Kraft Heinz press release on campaign extension 2024.</p>
+</div>
+
+<span class="ax">07 // chapter 17 — ethics + privacy</span>
+<h2 id="ch17-cases"><span class="sec-num">B.7</span> Ethics, Privacy, AI Governance &mdash; one case</h2>
+
+<div class="case" id="cambridge-analytica">
+  <span class="case-meta">CH 17 &middot; SURVEILLANCE-CAPITALISM CANONICAL CASE &middot; 2014-2018</span>
+  <h3 class="case-title">Cambridge Analytica: 87 million Facebook profiles, the surveillance-capitalism timeline</h3>
+  <p class="case-sub">The case the chapter must teach as Zuboff's frame come to life.</p>
+
+  <p>The Cambridge Analytica timeline anchors Chapter 17's surveillance-capitalism reading. In 2013-2014, researcher Aleksandr Kogan built a Facebook personality-quiz app (thisisyourdigitallife) that collected profile data on approximately 270,000 users who installed it AND, through Facebook's pre-2015 friend-data permissions, on approximately 87 million of those users' Facebook friends who had not installed the app or consented to data collection. Kogan transferred the data to Cambridge Analytica in violation of Facebook's terms of service. Cambridge Analytica used the data to build psychographic targeting models for the 2016 Trump and Cruz campaigns, plus the Brexit Leave campaign.</p>
+
+  <div class="case-numbers">
+    <div class="cnum"><strong>270K</strong>users who installed the quiz</div>
+    <div class="cnum"><strong>87M</strong>users whose data was harvested via friend permissions</div>
+    <div class="cnum"><strong>$5B</strong>FTC fine to Facebook (July 2019)</div>
+    <div class="cnum"><strong>2018</strong>Cambridge Analytica bankruptcy and shutdown</div>
+  </div>
+
+  <p>The Christopher Wylie whistleblower revelations in The Guardian and The Observer (March 2018) made the harvested data, the targeting use, and Facebook's failure to enforce its terms of service a global front-page story. Cambridge Analytica filed bankruptcy in May 2018. The FTC fined Facebook 5 billion dollars in July 2019. The case anchored the EU's General Data Protection Regulation (GDPR, in force May 2018) implementation phase, the California Consumer Privacy Act (CCPA, signed June 2018), and the broader US-state-level privacy-law wave through 2024.</p>
+
+  <div class="case-lesson">
+    <strong>Lesson for Ch 17</strong>
+    The Zuboff frame: the asset is buyer behavior captured at scale, the product sold is prediction of buyer future behavior, the market that buys those predictions is advertisers and political campaigns. The Cambridge Analytica case is the canonical 2016-2018 deployment of the framework. The chapter's load-bearing principle that every AI deployment needs a measured human-fallback path before launch is the operational complement: the brands that survived the 2018 wave of buyer trust collapse were the ones that had instrumented their data-handling discipline before the breach made it a story.
+  </div>
+
+  <p class="case-sources">Christopher Wylie testimony to UK Parliament and US Senate 2018; The Guardian / Observer joint reporting March 2018; FTC consent decree July 2019 ($5B fine to Facebook); GDPR implementation case studies; Wikipedia case timeline (extensively cited).</p>
+</div>
+
+<span class="ax">08 // chapter 9 — distribution</span>
+<h2 id="ch09-cases"><span class="sec-num">B.8</span> Distribution &mdash; one case</h2>
+
+<div class="case" id="trader-joes-narrow">
+  <span class="case-meta">CH 9 / CH 19 &middot; NARROW-ASSORTMENT ECONOMICS &middot; ONGOING</span>
+  <h3 class="case-title">Trader Joe's: 4,000 SKUs, 2,100 dollars per square foot, no advertising</h3>
+  <p class="case-sub">Narrow assortment as a competitive position, not a procurement constraint.</p>
+
+  <p>Trader Joe's operates approximately 580 US stores (as of 2024) with average sales productivity of approximately 2,100 dollars per square foot, which is approximately 2.7x the US grocery industry average and roughly comparable to the productivity of the highest-performing grocery formats globally. The chain's assortment is approximately 4,000 SKUs, of which roughly 80 percent are private label, vs. approximately 30,000 SKUs for a typical conventional supermarket. Trader Joe's spends essentially nothing on television, digital, or print advertising; its primary marketing communications are the in-store Fearless Flyer (a quarterly tabloid newsletter), word-of-mouth, and the company's branded podcast.</p>
+
+  <div class="case-numbers">
+    <div class="cnum"><strong>~580</strong>US stores (2024)</div>
+    <div class="cnum"><strong>$2,100/sqft</strong>sales productivity</div>
+    <div class="cnum"><strong>~4,000</strong>SKUs (vs ~30,000 typical supermarket)</div>
+    <div class="cnum"><strong>~80%</strong>SKUs private label</div>
+  </div>
+
+  <p>The economic mechanism is a combination of long-running supplier partnerships (private-label suppliers carry approximately 50 percent of their volume through Trader Joe's, which gives Trader Joe's effective veto on price increases), category-by-category curation (the wine team, the cheese team, the snacks team each operate as a buying-and-merchandising specialty), and the lack of slotting fees and trade promotion that conventional grocers absorb into their cost structure. The result is a brand that competes on assortment quality and price simultaneously, in a category where most competitors trade off one against the other.</p>
+
+  <div class="case-lesson">
+    <strong>Lesson for Ch 9 / Ch 19</strong>
+    Narrow assortment is a positioning move, not a procurement constraint. The brand that explicitly chooses 4,000 SKUs over 30,000 SKUs is choosing to compete on curation rather than on completeness. The buyer's mental model is "the store has already done my comparison shopping for me," which is a different value proposition from "the store has everything." The marketing implication: advertising is unnecessary when the assortment itself communicates the brand's positioning. Costco and Trader Joe's both operate on this principle, in different formats, at different scale.
+  </div>
+
+  <p class="case-sources">Trader Joe's company communications; Placer.ai store-level traffic data 2024; Inside Trader Joe's podcast (the 2024 Loyalty Programs episode on the no-loyalty-card decision); dunnhumby Retailer Preference Index Q1 2025 (Trader Joe's #1 in customer preference); Tasting Table coverage of internationalization decisions.</p>
+</div>
+
+<span class="ax">09 // how cases compose</span>
+<h2 id="composition"><span class="sec-num">B.9</span> How cases compose</h2>
+
+<p>The 12 cases above are the 2024-2026 frontier file: brand stories rich enough that a single chapter cannot afford to walk through them in full, but specific enough to load-bear principles when cited tightly. The chapters cite these cases by brand name with anchor links to this appendix; the body says <em>[Apple India]</em> linking to <code>#apple-india</code>, not a 200-word in-body paragraph.</p>
+
+<p>The chapters whose cases are not in this appendix (Ch 0, 1, 4, 5, 7, 10, 16, 18) draw their cases from the running cast (Liquid Death, Costco, Duolingo, Patagonia, Trader Joe's, Stanley) plus the chapter-specific case bibles at <code>core-course/wiki/cases/{brand}-case-bible.md</code>. A chapter that wants to extend its case load can pull from those bibles or from the frontier readers at <code>core-course/wiki/external/frontier/</code>; the existing 12 here are the highest-priority candidates for chapter cross-links because each illustrates a load-bearing principle the chapter prose names but cannot fully unpack.</p>
+
+<div class="callout">
+  <span class="ccap">Cross-link plan</span>
+  <p>The 5-7 highest-priority chapter cross-links to swap into chapter prose:</p>
+  <p><strong>1.</strong> Ch 15 prose mentions Walmart Germany, Apple India, Liquid Death UK, Costco China by name &rarr; replace each with anchor link to the relevant case here. Saves approximately 600 words of in-body prose across the chapter.</p>
+  <p><strong>2.</strong> Ch 13 prose on Stanley TikTok &rarr; the body teaches the case mechanics but the full numbers and the Buy Guide origin live here.</p>
+  <p><strong>3.</strong> Ch 8 prose on Wendy's surge-pricing &rarr; mentioned in the chapter's pricing-fairness discussion; the full timeline and the QSR moratorium effect should be cross-linked.</p>
+  <p><strong>4.</strong> Ch 14 prose on Klarna's AI deployment &rarr; cite Decagon case, link here for the full walkback narrative.</p>
+  <p><strong>5.</strong> Ch 17 prose on Cambridge Analytica &rarr; cite the case in the surveillance-capitalism opening; link here for the full timeline.</p>
+  <p><strong>6.</strong> Ch 19 prose on Amazon Just Walk Out &rarr; the body's automation discussion benefits from the explicit human-labor reveal.</p>
+  <p><strong>7.</strong> Ch 12 prose on Heinz Even AI Knows &rarr; cite the campaign as the canonical citation-share-emerges-from-distinctive-assets exhibit.</p>
+</div>
+
+<section class="refs">
+  <h2>Source corpus</h2>
+  <p>The cases above synthesize material from the chapter-specific frontier readers at <code>core-course/wiki/external/frontier/</code> plus the case bibles at <code>core-course/wiki/cases/</code>. Specific source files used:</p>
+  <ul style="list-style: none; padding: 0;">
+    <li><a href="../../wiki/external/frontier/international-2024-2026-cases-ch15.md">international-2024-2026-cases-ch15.md</a> (Apple, Walmart, Liquid Death, Costco, BYD, Shein, TikTok, Aldi)</li>
+    <li><a href="../../wiki/external/frontier/dynamic-pricing-2024-ch08.md">dynamic-pricing-2024-ch08.md</a> (Wendy's, Uber, Walmart ESL, FTC Surveillance Pricing Inquiry)</li>
+    <li><a href="../../wiki/external/frontier/anthropic-emergent-misalignment-ch17.md">anthropic-emergent-misalignment-ch17.md</a> (Klarna walkback, AI deployment failure modes)</li>
+    <li><a href="../../wiki/external/frontier/tiktok-algorithm-monolith-ch13.md">tiktok-algorithm-monolith-ch13.md</a> (Stanley Quencher TikTok wave)</li>
+    <li><a href="../../wiki/external/frontier/cannes-lions-ad-cases-2024-2026-ch11.md">cannes-lions-ad-cases-2024-2026-ch11.md</a> (Heinz Even AI Knows, Liquid Death advertising)</li>
+    <li><a href="../../wiki/cases/trader-joes-case-bible.md">trader-joes-case-bible.md</a> (Trader Joe's narrow-assortment economics)</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<!-- Module 0a: tooltips, atlas eyebrows -->
+<script>
+(function() {
+  const tip = document.createElement('div');
+  tip.className = 'tt-pop';
+  tip.setAttribute('role', 'tooltip');
+  tip.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(tip);
+
+  let tipTarget = null;
+  function showTip(target, html, captionText) {
+    tipTarget = target;
+    tip.innerHTML = (captionText ? '<span class="tt-cap">' + captionText + '</span>' : '') + html;
+    const r = target.getBoundingClientRect();
+    tip.style.left = '0px'; tip.style.top = '0px';
+    tip.classList.add('in');
+    tip.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(() => {
+      const tw = tip.offsetWidth;
+      const left = Math.max(8, Math.min(window.innerWidth - tw - 8, r.left + window.scrollX));
+      const top = r.bottom + window.scrollY + 8;
+      tip.style.left = left + 'px';
+      tip.style.top = top + 'px';
+    });
+  }
+  function hideTip() {
+    tip.classList.remove('in');
+    tip.setAttribute('aria-hidden', 'true');
+    tipTarget = null;
+  }
+
+  document.querySelectorAll('[data-tt]').forEach(el => {
+    if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+    const def = el.getAttribute('data-tt');
+    el.addEventListener('mouseenter', () => showTip(el, '<span style="display:block;">' + def + '</span>', el.textContent.trim()));
+    el.addEventListener('mouseleave', hideTip);
+    el.addEventListener('focus', () => showTip(el, '<span style="display:block;">' + def + '</span>', el.textContent.trim()));
+    el.addEventListener('blur', hideTip);
+  });
+
+  window.addEventListener('scroll', hideTip, { passive: true });
+  window.addEventListener('resize', hideTip);
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') hideTip(); });
+
+  const eyeIO = new IntersectionObserver((entries) => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); eyeIO.unobserve(en.target); } });
+  }, { threshold: 0.35 });
+  document.querySelectorAll('.ax').forEach(ax => eyeIO.observe(ax));
+
+  const snIO = new IntersectionObserver((entries) => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); snIO.unobserve(en.target); } });
+  }, { threshold: 0.25 });
+  document.querySelectorAll('aside.sn').forEach(sn => snIO.observe(sn));
+})();
+</script>
+
+</body>
+</html>

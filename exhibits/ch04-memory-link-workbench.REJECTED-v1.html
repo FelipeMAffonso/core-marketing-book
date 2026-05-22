@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memory Link Workbench · Chapter 4 Interactive · Core Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coral: #DA7756;
+    --coral-deep: #B8553A;
+    --coral-soft: #E8A488;
+    --coral-glow: rgba(218, 119, 86, 0.55);
+    --coral-faint: rgba(218, 119, 86, 0.10);
+    --ink: #1a1a1a;
+    --ink-2: #555555;
+    --ink-3: #888888;
+    --ink-4: #b4b4b4;
+    --line: #e6dfd2;
+    --cream: #f5f0e8;
+    --paper: #ffffff;
+    --void: #07060d;
+    --void-2: #0e0c18;
+    --void-edge: #16131f;
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --hand: 'Caveat', 'Comic Sans MS', cursive;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    padding: 18px 18px 22px;
+    overflow-x: hidden;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* =================== HEAD =================== */
+  .head {
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .eyebrow {
+    font: 700 11px var(--mono);
+    color: var(--coral);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .title {
+    font: 700 22px var(--sans);
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .sub {
+    font: 14px var(--serif);
+    font-style: italic;
+    color: var(--ink-2);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.45;
+  }
+
+  /* =================== MOMENT PICKER =================== */
+  .moments {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 18px 0 12px;
+  }
+  .moment {
+    background: #fff;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    padding: 7px 12px 7px 11px;
+    border-radius: 999px;
+    cursor: pointer;
+    font: 500 12.5px var(--sans);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: border-color 200ms var(--ease), background 200ms var(--ease), color 200ms var(--ease), transform 200ms var(--ease);
+  }
+  .moment .clock {
+    font: 700 10px var(--mono);
+    color: var(--ink-3);
+    background: var(--cream);
+    padding: 1px 5px;
+    border-radius: 3px;
+    transition: background 200ms var(--ease), color 200ms var(--ease);
+  }
+  .moment:hover { border-color: var(--coral); }
+  .moment[aria-pressed="true"] {
+    background: var(--coral);
+    color: #fff;
+    border-color: var(--coral);
+  }
+  .moment[aria-pressed="true"] .clock {
+    background: rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* =================== STAGE (THE VOID) =================== */
+  .stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 720 / 440;
+    border-radius: 14px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 50% 60%, var(--void-2) 0%, var(--void) 70%, var(--void-edge) 100%);
+    box-shadow:
+      inset 0 0 0 1px rgba(218, 119, 86, 0.10),
+      inset 0 0 40px 2px rgba(0, 0, 0, 0.6),
+      0 8px 28px -8px rgba(0, 0, 0, 0.22);
+  }
+  .stage canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .stage .hand-note {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font: 600 18px var(--hand);
+    color: var(--coral-soft);
+    opacity: 0.75;
+    transform: rotate(-3deg);
+    pointer-events: none;
+    text-shadow: 0 0 12px rgba(232, 164, 136, 0.4);
+  }
+  .stage .stage-hint {
+    position: absolute;
+    bottom: 12px;
+    left: 18px;
+    font: italic 12.5px var(--serif);
+    color: rgba(232, 164, 136, 0.7);
+    pointer-events: none;
+    letter-spacing: 0.2px;
+  }
+  .stage .stage-cost {
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    font: 600 10px var(--mono);
+    color: rgba(232, 164, 136, 0.55);
+    letter-spacing: 0.06em;
+    pointer-events: none;
+  }
+
+  /* =================== CONTROLS =================== */
+  .controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 14px 0 12px;
+  }
+  .btn {
+    border: 1px solid var(--coral);
+    background: #fff;
+    color: var(--coral-deep);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font: 600 13px var(--sans);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 180ms var(--ease), color 180ms var(--ease), transform 180ms var(--ease), border-color 180ms var(--ease);
+  }
+  .btn:hover { background: var(--coral); color: #fff; }
+  .btn:active { transform: translateY(1px); }
+  .btn:focus-visible { outline: 2px solid var(--coral); outline-offset: 2px; }
+  .btn[disabled] { opacity: 0.5; cursor: wait; }
+  .btn.solid { background: var(--coral); color: #fff; }
+  .btn.solid:hover { background: var(--coral-deep); }
+  .btn.ghost { border-color: var(--line); color: var(--ink-2); }
+  .btn.ghost:hover { background: var(--cream); color: var(--ink); border-color: var(--line); }
+  .btn .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--coral);
+    box-shadow: 0 0 0 3px var(--coral-faint);
+    animation: pulseLive 1.6s ease-in-out infinite;
+  }
+  .btn.solid .dot { background: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,0.32); }
+  @keyframes pulseLive {
+    0%, 100% { box-shadow: 0 0 0 3px var(--coral-faint); }
+    50%      { box-shadow: 0 0 0 6px transparent; }
+  }
+  .hint {
+    flex: 1 1 200px;
+    min-width: 160px;
+    font: italic 13px var(--serif);
+    color: var(--ink-2);
+  }
+  .hint .strong {
+    font-style: normal;
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--coral-deep);
+  }
+
+  /* =================== CUE POOL =================== */
+  .pool {
+    background: var(--cream);
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .pool-cap {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .pool-cap .lab {
+    font: 700 10.5px var(--sans);
+    color: var(--ink-2);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .pool-cap .hint-mini {
+    font: italic 12px var(--serif);
+    color: var(--ink-3);
+  }
+  .cues {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .cue {
+    background: #fff;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    padding: 6px 11px;
+    border-radius: 999px;
+    cursor: pointer;
+    font: 500 12.5px var(--sans);
+    user-select: none;
+    transition: all 180ms var(--ease);
+    position: relative;
+  }
+  .cue:hover { border-color: var(--coral); }
+  .cue.matches {
+    border-color: var(--coral);
+    background: rgba(218, 119, 86, 0.06);
+    color: var(--coral-deep);
+  }
+  .cue.dim { opacity: 0.40; }
+  .cue.selected {
+    background: var(--coral);
+    color: #fff;
+    border-color: var(--coral);
+    box-shadow: 0 0 0 4px rgba(218, 119, 86, 0.18);
+  }
+  .cue.fired {
+    animation: cueFire 720ms var(--ease);
+  }
+  @keyframes cueFire {
+    0%   { box-shadow: 0 0 0 0 rgba(218, 119, 86, 0); transform: scale(1); }
+    35%  { box-shadow: 0 0 0 14px rgba(218, 119, 86, 0); transform: scale(1.08); }
+    100% { box-shadow: 0 0 0 0 rgba(218, 119, 86, 0); transform: scale(1); }
+  }
+  .cue.ai {
+    border-style: solid;
+    border-color: var(--coral-deep);
+    position: relative;
+    animation: cueFlyIn 540ms var(--ease) backwards;
+  }
+  .cue.ai::after {
+    content: "AI";
+    margin-left: 6px;
+    font: 700 9px var(--mono);
+    background: rgba(218, 119, 86, 0.16);
+    color: var(--coral-deep);
+    padding: 1px 4px;
+    border-radius: 3px;
+    letter-spacing: 0.08em;
+    vertical-align: 1px;
+  }
+  @keyframes cueFlyIn {
+    from { opacity: 0; transform: translateY(8px) scale(0.92); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* =================== AI BUTTON ROW =================== */
+  .ai-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--line);
+  }
+  .ai-row .ai-cap {
+    font: 700 10.5px var(--sans);
+    color: var(--ink-2);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .ai-row select {
+    padding: 6px 10px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    font: 500 13px var(--sans);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .ai-row select:focus { outline: 2px solid var(--coral); outline-offset: 1px; border-color: var(--coral); }
+  .ai-cost {
+    font: 600 11px var(--mono);
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+  }
+  .ai-cost.success { color: var(--coral-deep); }
+  .ai-cost.error { color: #c0392b; }
+
+  /* =================== CONSIDERATION SET =================== */
+  .cs {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px 12px;
+    position: relative;
+  }
+  .cs-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .cs-cap {
+    font: 700 10.5px var(--sans);
+    color: var(--ink-2);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .cs-sub {
+    font: italic 12px var(--serif);
+    color: var(--ink-3);
+  }
+  .cs-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .cs-row {
+    display: grid;
+    grid-template-columns: 28px 140px 1fr 64px;
+    align-items: center;
+    gap: 12px;
+    font: 13px var(--sans);
+    padding: 4px 0;
+    border-top: 1px solid var(--cream);
+  }
+  .cs-row:first-child { border-top: none; }
+  .cs-rank {
+    font: 700 13px var(--mono);
+    color: var(--coral-deep);
+    text-align: center;
+  }
+  .cs-name { color: var(--ink); font-weight: 600; }
+  .cs-name small { color: var(--ink-3); font-weight: 400; font-style: italic; margin-left: 6px; }
+  .cs-bar {
+    height: 8px;
+    background: var(--cream);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+  }
+  .cs-bar > i {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--coral-soft) 0%, var(--coral) 100%);
+    border-radius: 999px;
+    transition: width 700ms var(--ease);
+  }
+  .cs-cue {
+    font: 600 11px var(--mono);
+    color: var(--ink-3);
+    text-align: right;
+  }
+  .cs-row.missing .cs-rank { color: var(--ink-4); }
+  .cs-row.missing .cs-name { color: var(--ink-3); font-weight: 500; }
+  .cs-row.missing .cs-cue::before { content: "—"; color: var(--ink-4); }
+
+  /* =================== FEEDBACK =================== */
+  .feedback {
+    margin-top: 12px;
+    background: var(--cream);
+    border-left: 3px solid var(--coral);
+    padding: 12px 14px;
+    border-radius: 0 6px 6px 0;
+    font: 14px/1.55 var(--serif);
+    color: var(--ink);
+    min-height: 56px;
+  }
+  .feedback .flabel {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--coral-deep);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-right: 8px;
+  }
+  .feedback b { font-weight: 700; color: var(--ink); }
+  .feedback em { font-style: italic; color: var(--ink-2); }
+
+  /* =================== AI TOOLTIP =================== */
+  .ai-tip {
+    position: fixed;
+    background: #fff;
+    border: 1px solid var(--coral);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font: 13px/1.45 var(--sans);
+    color: var(--ink);
+    box-shadow: 0 10px 30px -10px rgba(184, 85, 58, 0.35), 0 2px 6px rgba(0,0,0,0.05);
+    max-width: 280px;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 180ms var(--ease), transform 180ms var(--ease);
+  }
+  .ai-tip.in { opacity: 1; transform: translateY(0); }
+  .ai-tip .tcap {
+    font: 700 10px var(--mono);
+    color: var(--coral-deep);
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .ai-tip .ratio {
+    margin-top: 6px;
+    font: italic 12px var(--serif);
+    color: var(--ink-2);
+  }
+  .ai-tip .score {
+    margin-top: 6px;
+    font: 600 11px var(--mono);
+    color: var(--coral);
+  }
+
+  /* =================== ACCESSIBILITY / MOTION =================== */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* =================== RESPONSIVE =================== */
+  @media (max-width: 600px) {
+    body { padding: 12px 10px 16px; }
+    .stage { aspect-ratio: 4/3.4; }
+    .cs-row { grid-template-columns: 24px 1fr 90px 50px; gap: 8px; font-size: 12px; }
+    .moment { font-size: 11.5px; padding: 6px 10px; }
+    .cue { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ HEAD ============ -->
+  <div class="head">
+    <div class="eyebrow">Interactive 4.1 · Memory Link Workbench</div>
+    <h1 class="title">How a brand reaches the buyer's mind</h1>
+    <p class="sub">Pick a moment, attach the situational cues that fire it, then watch which brand reaches the buyer first. The brand with no cues never enters the set, no matter how famous it is.</p>
+  </div>
+
+  <!-- ============ MOMENT PICKER ============ -->
+  <div class="moments" role="radiogroup" aria-label="Buying moment">
+    <button class="moment" data-moment="morning" aria-pressed="true"><span class="clock">08:14</span>walking to an 8:30 class</button>
+    <button class="moment" data-moment="afternoon"><span class="clock">14:42</span>post-lunch crash</button>
+    <button class="moment" data-moment="library"><span class="clock">22:50</span>library at night</button>
+    <button class="moment" data-moment="gym"><span class="clock">16:05</span>about to lift</button>
+  </div>
+
+  <!-- ============ STAGE ============ -->
+  <div class="stage" id="stage">
+    <canvas id="cv"></canvas>
+    <div class="hand-note">famous &ne; retrievable</div>
+    <div class="stage-cost" id="stage-cost"></div>
+    <div class="stage-hint">click a cue, then click a brand to plant the link</div>
+  </div>
+
+  <!-- ============ CONTROLS ============ -->
+  <div class="controls">
+    <button class="btn solid" id="fire-btn"><span class="dot"></span>Fire the moment</button>
+    <button class="btn ghost" id="reset-btn">Reset network</button>
+    <p class="hint" id="hint"><span class="strong">Tip.</span> A brand only enters the buyer's mind through cue links. Random links hurt the brand more than help.</p>
+  </div>
+
+  <!-- ============ CUE POOL ============ -->
+  <div class="pool">
+    <div class="pool-cap">
+      <span class="lab">Cues that might fire</span>
+      <span class="hint-mini">faded = doesn't match this moment</span>
+    </div>
+    <div class="cues" id="cues">
+      <button class="cue" data-cue="cold"      data-moments="morning,gym">cold outside</button>
+      <button class="cue" data-cue="tired"     data-moments="morning,afternoon,library">tired</button>
+      <button class="cue" data-cue="early"     data-moments="morning">early class</button>
+      <button class="cue" data-cue="rushed"    data-moments="morning">rushed</button>
+      <button class="cue" data-cue="crash"     data-moments="afternoon">post-lunch crash</button>
+      <button class="cue" data-cue="group"     data-moments="afternoon,library">group meeting</button>
+      <button class="cue" data-cue="cram"      data-moments="library">cramming for exam</button>
+      <button class="cue" data-cue="long-night" data-moments="library">long night ahead</button>
+      <button class="cue" data-cue="focus"     data-moments="afternoon,library">need to focus</button>
+      <button class="cue" data-cue="pre-lift"  data-moments="gym">about to lift</button>
+      <button class="cue" data-cue="cardio"    data-moments="gym">long cardio</button>
+      <button class="cue" data-cue="boost"     data-moments="morning,afternoon,gym">need a boost</button>
+      <button class="cue" data-cue="treat"     data-moments="afternoon">small treat</button>
+      <button class="cue" data-cue="friend"    data-moments="afternoon">meeting a friend</button>
+    </div>
+    <div class="ai-row">
+      <span class="ai-cap">Ask Claude for more cues:</span>
+      <select id="ai-brand" aria-label="Brand">
+        <option value="Roast &amp; Co|local roaster coffee shop">Roast &amp; Co (local coffee)</option>
+        <option value="Brewer's Bay|campus coffee chain">Brewer's Bay (campus chain)</option>
+        <option value="BoltUp|energy drink">BoltUp (energy drink)</option>
+        <option value="MegaCaf|famous mass-market coffee">MegaCaf (famous mass-market)</option>
+      </select>
+      <button class="btn" id="ai-btn"><span class="dot"></span>Generate live with Haiku</button>
+      <span class="ai-cost" id="ai-cost"></span>
+    </div>
+  </div>
+
+  <!-- ============ CONSIDERATION SET ============ -->
+  <div class="cs" aria-live="polite" aria-atomic="true">
+    <div class="cs-head">
+      <span class="cs-cap">Consideration set when this moment fires</span>
+      <span class="cs-sub">ranked by matching cue links</span>
+    </div>
+    <div class="cs-rows" id="cs-rows">
+      <div class="cs-row" data-brand="roastco">
+        <span class="cs-rank">—</span>
+        <span class="cs-name">Roast &amp; Co <small>local</small></span>
+        <span class="cs-bar"><i></i></span>
+        <span class="cs-cue">0 cues</span>
+      </div>
+      <div class="cs-row" data-brand="brewersbay">
+        <span class="cs-rank">—</span>
+        <span class="cs-name">Brewer's Bay <small>campus chain</small></span>
+        <span class="cs-bar"><i></i></span>
+        <span class="cs-cue">0 cues</span>
+      </div>
+      <div class="cs-row" data-brand="boltup">
+        <span class="cs-rank">—</span>
+        <span class="cs-name">BoltUp <small>energy</small></span>
+        <span class="cs-bar"><i></i></span>
+        <span class="cs-cue">0 cues</span>
+      </div>
+      <div class="cs-row missing" data-brand="megacaf">
+        <span class="cs-rank">—</span>
+        <span class="cs-name">MegaCaf <small>famous, no cues</small></span>
+        <span class="cs-bar"><i></i></span>
+        <span class="cs-cue"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FEEDBACK ============ -->
+  <div class="feedback" id="fb">
+    <span class="flabel">Principle</span>
+    <span id="fb-text">Pick the cues you would actually feel in this moment, plant two or three to a brand, then press <b>Fire the moment</b>.</span>
+  </div>
+
+</div>
+
+<!-- floating AI tooltip -->
+<div class="ai-tip" id="ai-tip" role="tooltip" aria-hidden="true">
+  <div class="tcap" id="ai-tip-cap">Claude-generated cue</div>
+  <div id="ai-tip-body"></div>
+  <div class="ratio" id="ai-tip-ratio"></div>
+  <div class="score" id="ai-tip-score"></div>
+</div>
+
+<script>
+"use strict";
+
+// ============================================================
+// MEMORY LINK WORKBENCH
+// canvas-based memory network with real Anthropic integration
+// ============================================================
+
+(function () {
+  // ---------- DOM
+  const stageEl = document.getElementById("stage");
+  const cv      = document.getElementById("cv");
+  const ctx     = cv.getContext("2d");
+  const cuesEl  = document.getElementById("cues");
+  const fbText  = document.getElementById("fb-text");
+  const fireBtn = document.getElementById("fire-btn");
+  const resetBtn= document.getElementById("reset-btn");
+  const hint    = document.getElementById("hint");
+  const aiBtn   = document.getElementById("ai-btn");
+  const aiBrand = document.getElementById("ai-brand");
+  const aiCost  = document.getElementById("ai-cost");
+  const stageCost = document.getElementById("stage-cost");
+  const tip     = document.getElementById("ai-tip");
+  const tipCap  = document.getElementById("ai-tip-cap");
+  const tipBody = document.getElementById("ai-tip-body");
+  const tipRatio= document.getElementById("ai-tip-ratio");
+  const tipScore= document.getElementById("ai-tip-score");
+
+  // ---------- BRANDS (positioned in canvas-space; will be projected on resize)
+  const brands = [
+    { id:"roastco",    label:"Roast & Co",   tag:"local",      x:0.78, y:0.22, r:54, tier:1 },
+    { id:"brewersbay", label:"Brewer's Bay", tag:"campus chain",x:0.84, y:0.55, r:52, tier:2 },
+    { id:"boltup",     label:"BoltUp",       tag:"energy",     x:0.78, y:0.85, r:46, tier:3 },
+    { id:"megacaf",    label:"MegaCaf",      tag:"famous, no cues", x:0.46, y:0.86, r:38, tier:0 },
+  ];
+  const brandById = Object.fromEntries(brands.map(b => [b.id, b]));
+
+  // ---------- MOMENT (rendered at center-left)
+  const momentNode = { x: 0.22, y: 0.50, r: 42 };
+
+  // ---------- STATE
+  const state = {
+    currentMoment: "morning",
+    selectedCue: null,
+    links: [],            // { cue, brand }
+    cueData: [],          // copy of cue chips: {id, label, moments, el, aiRatio?, aiScore?}
+    firing: null,         // animation handle
+    pulse: 0,             // ambient pulse phase
+    rotation: 0,          // ambient stage rotation
+    devicePR: 1,
+    width: 0,
+    height: 0,
+    pointer: { x: -9999, y: -9999, in: false },
+    particles: [],
+    fireT: -1,
+    starfield: [],
+  };
+
+  const momentLabels = {
+    morning:   "walking to an 8:30 class",
+    afternoon: "post-lunch crash",
+    library:   "at the library at night",
+    gym:       "about to lift"
+  };
+
+  // ---------- CANVAS SIZING
+  function resize() {
+    const rect = stageEl.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    state.devicePR = dpr;
+    state.width = rect.width;
+    state.height = rect.height;
+    cv.width = Math.round(rect.width * dpr);
+    cv.height = Math.round(rect.height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // Build starfield once on first resize
+    if (state.starfield.length === 0) {
+      for (let i = 0; i < 90; i++) {
+        state.starfield.push({
+          x: Math.random(),
+          y: Math.random(),
+          r: 0.5 + Math.random() * 1.2,
+          a: 0.10 + Math.random() * 0.35,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.3 + Math.random() * 0.8
+        });
+      }
+    }
+  }
+  window.addEventListener("resize", resize);
+
+  // ---------- INDEX CUES
+  function indexCues() {
+    state.cueData = [];
+    cuesEl.querySelectorAll(".cue").forEach(el => {
+      state.cueData.push({
+        id: el.dataset.cue,
+        label: el.textContent.trim().replace(/AI$/,'').trim(),
+        moments: (el.dataset.moments || "").split(","),
+        el: el,
+        ai: el.classList.contains("ai"),
+        aiRatio: el.dataset.aiRatio || "",
+        aiScore: parseInt(el.dataset.aiScore || "0", 10) || 0
+      });
+    });
+  }
+
+  // ---------- HELPERS
+  function px(p) { return { x: p.x * state.width, y: p.y * state.height }; }
+  function brandPx(b) { return { x: b.x * state.width, y: b.y * state.height }; }
+  function dist(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
+  function cueByLabel(lab) { return state.cueData.find(c => c.label === lab); }
+  function brandLabel(b) { return brandById[b] ? brandById[b].label : b; }
+  function brandIsLinkedToCue(brandId, cueId) {
+    return state.links.some(l => l.brand === brandId && l.cue === cueId);
+  }
+  function moment() { return state.currentMoment; }
+
+  // ---------- DRAW
+  function draw(t) {
+    const w = state.width, h = state.height;
+    if (!w || !h) { resize(); return requestAnimationFrame(draw); }
+
+    state.pulse = (t / 1400) % (Math.PI * 2);
+    state.rotation += 0.0003;
+
+    // Background subtle vignette (already in CSS gradient, but we add a soft moving glow)
+    ctx.clearRect(0, 0, w, h);
+
+    // Starfield
+    for (const s of state.starfield) {
+      const flick = 0.6 + 0.4 * Math.sin(t * 0.0008 * s.speed + s.phase);
+      ctx.fillStyle = `rgba(232, 198, 178, ${s.a * flick})`;
+      ctx.beginPath();
+      ctx.arc(s.x * w, s.y * h, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Soft floor glow under the moment node
+    const mp = px(momentNode);
+    {
+      const grad = ctx.createRadialGradient(mp.x, mp.y + 6, 0, mp.x, mp.y + 6, 220);
+      grad.addColorStop(0, "rgba(218, 119, 86, 0.16)");
+      grad.addColorStop(0.45, "rgba(218, 119, 86, 0.05)");
+      grad.addColorStop(1, "rgba(218, 119, 86, 0)");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    // Draw connection lines (from cue's nearest pool position to brand)
+    // We use cue positions in the canvas: derive a "phantom" position based on chip rect projected onto stage left side.
+    // Simpler: lay cues out conceptually on the LEFT half of the canvas radially around the moment node.
+    const linkedCueIds = Array.from(new Set(state.links.map(l => l.cue)));
+    const cuePositions = layoutCuesOnStage(linkedCueIds);
+
+    // draw bezier links
+    ctx.lineCap = "round";
+    for (const l of state.links) {
+      const cp = cuePositions[l.cue];
+      const bp = brandPx(brandById[l.brand]);
+      if (!cp || !bp) continue;
+      const cueObj = state.cueData.find(c => c.id === l.cue);
+      const matches = cueObj && cueObj.moments.includes(state.currentMoment);
+      const fireMul = state.fireT >= 0 && matches ? fireMultiplier(state.fireT, 250) : 0;
+
+      const baseAlpha = matches ? 0.55 : 0.20;
+      const alpha = Math.min(1, baseAlpha + fireMul * 0.5);
+      const width = (matches ? 1.6 : 0.9) + fireMul * 2.4;
+
+      ctx.strokeStyle = `rgba(218, 119, 86, ${alpha})`;
+      ctx.lineWidth = width;
+      ctx.beginPath();
+      const dx = (bp.x - cp.x);
+      ctx.moveTo(cp.x, cp.y);
+      ctx.bezierCurveTo(cp.x + dx * 0.3, cp.y - 18, bp.x - dx * 0.3, bp.y + 12, bp.x, bp.y);
+      ctx.stroke();
+    }
+
+    // Draw particles on links (during fire)
+    drawParticles(t);
+
+    // Draw cue dots at their canvas positions (visualize where the chips "live" in the network)
+    for (const id in cuePositions) {
+      const p = cuePositions[id];
+      const cueObj = state.cueData.find(c => c.id === id);
+      const matches = cueObj && cueObj.moments.includes(state.currentMoment);
+      const fireMul = (state.fireT >= 0 && matches) ? fireMultiplier(state.fireT, 250) : 0;
+      // halo
+      if (matches || fireMul > 0) {
+        const gradC = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, 18 + fireMul * 18);
+        gradC.addColorStop(0, `rgba(232, 164, 136, ${0.42 + fireMul * 0.4})`);
+        gradC.addColorStop(1, "rgba(232, 164, 136, 0)");
+        ctx.fillStyle = gradC;
+        ctx.fillRect(p.x - 36, p.y - 36, 72, 72);
+      }
+      // core
+      ctx.fillStyle = matches ? "#DA7756" : "rgba(180, 170, 160, 0.45)";
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, matches ? 4 : 2.8, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Draw the central moment node
+    drawMomentNode(mp, t);
+
+    // Draw brands
+    for (const b of brands) {
+      drawBrand(b, t);
+    }
+  }
+
+  function fireMultiplier(elapsed, peakAt) {
+    // bell-curve-ish pulse around peakAt (ms), duration ~ 1100ms
+    const total = 1100;
+    if (elapsed < 0 || elapsed > total) return 0;
+    const x = elapsed - peakAt;
+    return Math.exp(-(x * x) / (2 * 240 * 240));
+  }
+
+  function layoutCuesOnStage(linkedCueIds) {
+    // Lay cues that have links radially around the moment node on the LEFT half.
+    const mp = px(momentNode);
+    const positions = {};
+    const n = Math.max(linkedCueIds.length, 1);
+    const ringR = Math.min(state.height * 0.36, 150);
+    const start = -Math.PI * 0.85;
+    const end   =  Math.PI * 0.85;
+    const arc = end - start;
+    for (let i = 0; i < linkedCueIds.length; i++) {
+      const id = linkedCueIds[i];
+      // distribute around moment; slight ambient rotation
+      const t = n === 1 ? 0.5 : i / (n - 1);
+      const angle = start + arc * t + state.rotation * 0.5;
+      positions[id] = {
+        x: mp.x + Math.cos(angle) * ringR * 0.95,
+        y: mp.y + Math.sin(angle) * ringR * 0.75
+      };
+    }
+    return positions;
+  }
+
+  function drawMomentNode(p, t) {
+    const r = momentNode.r;
+    const pulse = 0.5 + 0.5 * Math.sin(state.pulse);
+    const glowR = r * 1.8 + pulse * 14;
+
+    // outer glow
+    const grad = ctx.createRadialGradient(p.x, p.y, r * 0.4, p.x, p.y, glowR);
+    grad.addColorStop(0, "rgba(218, 119, 86, 0.65)");
+    grad.addColorStop(0.45, "rgba(218, 119, 86, 0.22)");
+    grad.addColorStop(1, "rgba(218, 119, 86, 0)");
+    ctx.fillStyle = grad;
+    ctx.fillRect(p.x - glowR, p.y - glowR, glowR * 2, glowR * 2);
+
+    // hex
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(state.rotation * 1.7);
+    const hexR = r;
+    ctx.beginPath();
+    for (let i = 0; i < 6; i++) {
+      const a = (i / 6) * Math.PI * 2 - Math.PI / 2;
+      const xx = Math.cos(a) * hexR;
+      const yy = Math.sin(a) * hexR;
+      if (i === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
+    }
+    ctx.closePath();
+    const innerGrad = ctx.createRadialGradient(0, 0, 0, 0, 0, hexR);
+    innerGrad.addColorStop(0, "rgba(232, 164, 136, 0.95)");
+    innerGrad.addColorStop(0.6, "rgba(218, 119, 86, 0.55)");
+    innerGrad.addColorStop(1, "rgba(184, 85, 58, 0.20)");
+    ctx.fillStyle = innerGrad;
+    ctx.fill();
+    ctx.strokeStyle = "rgba(218, 119, 86, 0.95)";
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.restore();
+
+    // Label
+    ctx.font = "italic 12px 'EB Garamond', Georgia, serif";
+    ctx.fillStyle = "rgba(245, 240, 232, 0.90)";
+    ctx.textAlign = "center";
+    ctx.fillText("THE MOMENT", p.x, p.y - r - 20);
+    ctx.font = "600 13px 'Inter', sans-serif";
+    ctx.fillStyle = "rgba(245, 240, 232, 0.95)";
+    ctx.fillText(momentLabels[state.currentMoment] || "", p.x, p.y + r + 24);
+  }
+
+  function drawBrand(b, t) {
+    const p = brandPx(b);
+    const counts = countCuesForBrand(b.id);
+    const matchCount = counts.matching;
+    const totalCount = counts.total;
+    const isMega = b.id === "megacaf";
+
+    // brightness scales with matching cue links
+    const fireMul = (state.fireT >= 0) ? fireMultiplier(state.fireT, 600) : 0;
+    const brightness = Math.min(1, matchCount * 0.20) + fireMul * 0.45;
+
+    // outer glow (only when has matching cues OR firing)
+    if (brightness > 0.05) {
+      const gR = b.r * 1.7 + brightness * 36;
+      const grad = ctx.createRadialGradient(p.x, p.y, b.r * 0.4, p.x, p.y, gR);
+      grad.addColorStop(0, `rgba(218, 119, 86, ${0.32 + brightness * 0.4})`);
+      grad.addColorStop(0.4, `rgba(218, 119, 86, ${0.10 + brightness * 0.2})`);
+      grad.addColorStop(1, "rgba(218, 119, 86, 0)");
+      ctx.fillStyle = grad;
+      ctx.fillRect(p.x - gR, p.y - gR, gR * 2, gR * 2);
+    }
+
+    // orb body
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    // subtle rise on fire-winning brand
+    if (b._rise) ctx.scale(1 + 0.06 * b._rise, 1 + 0.06 * b._rise);
+
+    ctx.beginPath();
+    ctx.arc(0, 0, b.r, 0, Math.PI * 2);
+    const orbGrad = ctx.createRadialGradient(-b.r * 0.3, -b.r * 0.3, 0, 0, 0, b.r);
+    if (isMega) {
+      orbGrad.addColorStop(0, "rgba(220, 210, 200, 0.65)");
+      orbGrad.addColorStop(0.7, "rgba(140, 130, 120, 0.40)");
+      orbGrad.addColorStop(1, "rgba(80, 75, 70, 0.30)");
+    } else {
+      orbGrad.addColorStop(0, `rgba(255, 220, 200, ${0.55 + brightness * 0.45})`);
+      orbGrad.addColorStop(0.5, `rgba(232, 164, 136, ${0.45 + brightness * 0.35})`);
+      orbGrad.addColorStop(1, `rgba(184, 85, 58, ${0.30 + brightness * 0.3})`);
+    }
+    ctx.fillStyle = orbGrad;
+    ctx.fill();
+
+    // stroke
+    ctx.strokeStyle = isMega ? "rgba(180, 170, 160, 0.55)" : `rgba(218, 119, 86, ${0.85 + brightness * 0.15})`;
+    ctx.lineWidth = isMega ? 1 : 1.5;
+    if (isMega) ctx.setLineDash([4, 4]); else ctx.setLineDash([]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Inner highlight ring (only on bright)
+    if (brightness > 0.2 && !isMega) {
+      ctx.beginPath();
+      ctx.arc(0, 0, b.r - 6, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(255, 240, 224, ${0.18 + brightness * 0.22})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Brand name
+    ctx.font = "700 13px 'Inter', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillStyle = isMega ? "rgba(220, 215, 210, 0.70)" : "rgba(255, 248, 240, 0.95)";
+    ctx.fillText(b.label, 0, 0);
+    // Tag
+    ctx.font = "italic 10.5px 'EB Garamond', Georgia, serif";
+    ctx.fillStyle = isMega ? "rgba(200, 195, 190, 0.55)" : "rgba(255, 240, 224, 0.75)";
+    ctx.fillText(b.tag, 0, 15);
+
+    // Count pill
+    if (totalCount > 0) {
+      const px2 = b.r * 0.7;
+      ctx.beginPath();
+      ctx.arc(px2, -px2, 12, 0, Math.PI * 2);
+      ctx.fillStyle = matchCount > 0 ? "rgba(218, 119, 86, 0.95)" : "rgba(80, 75, 70, 0.65)";
+      ctx.fill();
+      ctx.strokeStyle = "rgba(255, 248, 240, 0.75)";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.font = "700 11px 'JetBrains Mono', monospace";
+      ctx.fillStyle = "#fff";
+      ctx.fillText(String(totalCount), px2, -px2 + 4);
+    }
+
+    ctx.restore();
+  }
+
+  function countCuesForBrand(brandId) {
+    let total = 0, matching = 0;
+    for (const l of state.links) {
+      if (l.brand !== brandId) continue;
+      total++;
+      const c = state.cueData.find(cu => cu.id === l.cue);
+      if (c && c.moments.includes(state.currentMoment)) matching++;
+    }
+    return { total, matching };
+  }
+
+  // ---------- PARTICLES (fire)
+  function drawParticles(t) {
+    if (state.fireT < 0) return;
+    const elapsed = performance.now() - state.fireStartTime;
+    state.fireT = elapsed;
+    // emit particles during 400-1200ms window
+    if (elapsed > 350 && elapsed < 1100 && state.particles.length < 80) {
+      const linked = state.links.filter(l => {
+        const c = state.cueData.find(cu => cu.id === l.cue);
+        return c && c.moments.includes(state.currentMoment);
+      });
+      for (const l of linked) {
+        if (Math.random() < 0.18) {
+          const cuePositions = layoutCuesOnStage(Array.from(new Set(state.links.map(x => x.cue))));
+          const cp = cuePositions[l.cue];
+          const bp = brandPx(brandById[l.brand]);
+          if (!cp || !bp) continue;
+          state.particles.push({
+            x: cp.x, y: cp.y,
+            tx: bp.x, ty: bp.y,
+            sx: cp.x, sy: cp.y,
+            born: elapsed,
+            life: 700 + Math.random() * 300,
+            size: 1.6 + Math.random() * 1.6,
+            curve: (cp.x - bp.x) / 4 + (Math.random() - 0.5) * 18,
+          });
+        }
+      }
+    }
+    // update + draw
+    const newP = [];
+    for (const p of state.particles) {
+      const age = elapsed - p.born;
+      const t01 = Math.min(1, age / p.life);
+      if (t01 >= 1) continue;
+      // bezier param interpolation
+      const u = 1 - t01;
+      const cx = (p.sx + p.tx) / 2;
+      const cy = (p.sy + p.ty) / 2 - 40;
+      // quadratic bezier
+      const x = u * u * p.sx + 2 * u * t01 * cx + t01 * t01 * p.tx;
+      const y = u * u * p.sy + 2 * u * t01 * cy + t01 * t01 * p.ty;
+      p.x = x; p.y = y;
+      // draw
+      const alpha = 0.85 * (1 - Math.pow(t01, 2.2));
+      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 6);
+      grad.addColorStop(0, `rgba(255, 220, 196, ${alpha})`);
+      grad.addColorStop(0.6, `rgba(218, 119, 86, ${alpha * 0.55})`);
+      grad.addColorStop(1, "rgba(218, 119, 86, 0)");
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size * 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = `rgba(255, 248, 240, ${alpha})`;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+      newP.push(p);
+    }
+    state.particles = newP;
+    if (elapsed > 1300) {
+      state.fireT = -1;
+      state.particles = [];
+    }
+  }
+
+  // ---------- CUE / BRAND CLASS REFRESH
+  function refreshCueClasses() {
+    for (const c of state.cueData) {
+      const matches = c.moments.includes(state.currentMoment);
+      c.el.classList.toggle("matches", matches);
+      c.el.classList.toggle("dim", !matches);
+      c.el.classList.toggle("selected", state.selectedCue === c.id);
+    }
+  }
+  function refreshMomentBtns() {
+    document.querySelectorAll(".moment").forEach(b => {
+      b.setAttribute("aria-pressed", b.dataset.moment === state.currentMoment ? "true" : "false");
+    });
+  }
+
+  // ---------- CONSIDERATION SET RENDER
+  function renderCS() {
+    const rows = brands.map(b => {
+      const c = countCuesForBrand(b.id);
+      return { brand: b.id, matching: c.matching, total: c.total };
+    });
+    rows.sort((a, b) => b.matching - a.matching);
+    const maxM = Math.max(1, ...rows.map(r => r.matching));
+    rows.forEach((row, i) => {
+      const el = document.querySelector('.cs-row[data-brand="' + row.brand + '"]');
+      if (!el) return;
+      const rank = el.querySelector(".cs-rank");
+      const bar  = el.querySelector(".cs-bar > i");
+      const cue  = el.querySelector(".cs-cue");
+      if (row.matching === 0) {
+        el.classList.add("missing");
+        rank.textContent = "—";
+        bar.style.width = "0%";
+        cue.textContent = row.total > 0 ? row.total + " cue" + (row.total === 1 ? "" : "s") + ", none match" : "0 cues";
+      } else {
+        el.classList.remove("missing");
+        rank.textContent = i + 1;
+        bar.style.width = ((row.matching / maxM) * 100).toFixed(0) + "%";
+        cue.textContent = row.matching + " cue" + (row.matching === 1 ? "" : "s");
+      }
+    });
+  }
+
+  // ---------- INTERACTIONS
+  function selectMoment(m) {
+    state.currentMoment = m;
+    state.selectedCue = null;
+    refreshMomentBtns();
+    refreshCueClasses();
+    renderCS();
+    setFeedback("Moment switched to <b>" + momentLabels[m] + "</b>. Cues that match this moment are highlighted. Links you built for the old moment may not match this one.");
+  }
+
+  function selectCue(cueId) {
+    if (state.selectedCue === cueId) state.selectedCue = null;
+    else state.selectedCue = cueId;
+    refreshCueClasses();
+    if (state.selectedCue) {
+      const c = state.cueData.find(cc => cc.id === cueId);
+      setFeedback("Cue selected: <b>“" + c.label + "”</b>. Now click a brand to plant the link.");
+    }
+  }
+
+  function clickBrand(brandId) {
+    if (!state.selectedCue) {
+      setFeedback("Click a cue first, then a brand. A link is one cue, one brand.");
+      return;
+    }
+    const existing = state.links.findIndex(l => l.cue === state.selectedCue && l.brand === brandId);
+    const c = state.cueData.find(cc => cc.id === state.selectedCue);
+    if (existing >= 0) {
+      state.links.splice(existing, 1);
+      setFeedback("Link removed: <b>“" + c.label + "” &rarr; " + brandLabel(brandId) + "</b>.");
+    } else {
+      state.links.push({ cue: state.selectedCue, brand: brandId });
+      const matches = c.moments.includes(state.currentMoment);
+      setFeedback("Link planted: <b>“" + c.label + "” &rarr; " + brandLabel(brandId) + "</b>." + (matches ? " That cue matches this moment, so it will fire when you press the button." : " That cue doesn't match the current moment, but it could fire in another one."));
+    }
+    state.selectedCue = null;
+    refreshCueClasses();
+    renderCS();
+  }
+
+  function fireMoment() {
+    if (state.links.length === 0) {
+      setFeedback("No links yet. Plant at least one cue on a brand, then fire.");
+      return;
+    }
+    state.fireStartTime = performance.now();
+    state.fireT = 0;
+    state.particles = [];
+    // pulse matching cue chips
+    for (const c of state.cueData) {
+      if (c.moments.includes(state.currentMoment) && state.links.some(l => l.cue === c.id)) {
+        c.el.classList.remove("fired");
+        void c.el.offsetWidth;
+        c.el.classList.add("fired");
+        setTimeout(() => c.el.classList.remove("fired"), 750);
+      }
+    }
+    // pick winner (most matching cues)
+    const rows = brands.map(b => ({ b, c: countCuesForBrand(b.id).matching }));
+    rows.sort((a, b) => b.c - a.c);
+    const winner = rows[0];
+    brands.forEach(b => b._rise = 0);
+    if (winner && winner.c > 0) {
+      // animate rise via a transient marker
+      winner.b._rise = 0;
+      const start = performance.now();
+      const tick = () => {
+        const e = performance.now() - start;
+        const dur = 700;
+        if (e >= dur) { winner.b._rise = 0; return; }
+        // bell curve
+        const t01 = e / dur;
+        winner.b._rise = Math.sin(t01 * Math.PI);
+        requestAnimationFrame(tick);
+      };
+      tick();
+    }
+
+    setTimeout(() => {
+      const win = rows[0];
+      let msg;
+      if (!win || win.c === 0) {
+        msg = "<b>No brand reached the buyer's mind.</b> No linked cue matched this moment, so memory turned up empty. The buyer falls back on whatever is physically in front of her.";
+      } else if (rows[1] && rows[1].c === win.c) {
+        msg = "<b>Tie at the top.</b> Two brands matched equally for this moment. In real life, physical availability or one small situational detail breaks the tie. The marketer's job is to break it before the moment arrives.";
+      } else {
+        msg = "<b>" + win.b.label + " came to mind first.</b> It had " + win.c + " matching cue link" + (win.c === 1 ? "" : "s") + " for this moment — the only kind of memory that pays off here. <em>Awareness alone (see MegaCaf) is not retrieval.</em>";
+      }
+      setFeedback(msg);
+    }, 1200);
+
+    renderCS();
+  }
+
+  function reset() {
+    state.links = [];
+    state.selectedCue = null;
+    refreshCueClasses();
+    renderCS();
+    setFeedback("Network reset. Pick cues and link them again.");
+  }
+
+  function setFeedback(html) {
+    fbText.innerHTML = html;
+  }
+
+  // ---------- AI INTEGRATION
+  async function askClaude() {
+    const sel = aiBrand.value;
+    const [brandName, categoryName] = sel.split("|");
+    aiBtn.disabled = true;
+    aiCost.classList.remove("success", "error");
+    aiCost.textContent = "Calling Haiku…";
+    stageCost.textContent = "AI · " + brandName;
+    try {
+      const resp = await fetch("http://127.0.0.1:8787/api/exhibit/cep-generator", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ brand: brandName, category: categoryName })
+      });
+      if (!resp.ok) throw new Error("HTTP " + resp.status);
+      const json = await resp.json();
+      if (!json.ok) throw new Error(json.error || "AI returned an error");
+      const ceps = (json.data && json.data.ceps) || [];
+      addAiCues(ceps);
+      const cost = json.usage && json.usage.cost_usd;
+      const inp = json.usage && json.usage.input;
+      const out = json.usage && json.usage.output;
+      aiCost.classList.add("success");
+      aiCost.textContent = "Haiku · " + (inp ?? "?") + " in / " + (out ?? "?") + " out · $" + (cost ?? 0).toFixed(4);
+      stageCost.textContent = "live AI · Haiku · $" + (cost ?? 0).toFixed(4);
+      setFeedback("Claude generated <b>" + ceps.length + " situations</b> for <b>" + brandName + "</b>. Hover an <em>AI</em> chip to see its rationale. Drag the strongest ones onto the brand orb above.");
+    } catch (e) {
+      aiCost.classList.add("error");
+      aiCost.textContent = "AI call failed: " + (e.message || "unknown");
+      stageCost.textContent = "";
+      setFeedback("Live AI call failed: " + (e.message || "unknown") + ". The proxy server must be running on port 8787 with an Anthropic key.");
+    } finally {
+      aiBtn.disabled = false;
+    }
+  }
+
+  function addAiCues(ceps) {
+    // map ceps to cue chips with id and an associated buyer-moment guess via heuristic on the W field
+    const usedIds = new Set(state.cueData.map(c => c.id));
+    let added = 0;
+    for (const cep of ceps) {
+      const label = pickCepLabel(cep);
+      const guessedMoment = guessMomentFromCep(cep);
+      if (!label) continue;
+      let baseId = "ai-" + slugify(label).slice(0, 24);
+      let id = baseId;
+      let i = 1;
+      while (usedIds.has(id)) { id = baseId + "-" + (++i); }
+      usedIds.add(id);
+      const el = document.createElement("button");
+      el.className = "cue ai";
+      el.dataset.cue = id;
+      el.dataset.moments = guessedMoment;
+      el.dataset.aiRatio = cep.rationale || "";
+      el.dataset.aiScore = String(cep.score || 0);
+      el.textContent = label;
+      el.style.animationDelay = (added * 80) + "ms";
+      cuesEl.appendChild(el);
+      attachCueHandlers(el);
+      added++;
+    }
+    indexCues();
+    refreshCueClasses();
+    // attach AI tooltip
+    cuesEl.querySelectorAll(".cue.ai").forEach(el => attachAiTip(el));
+  }
+
+  function pickCepLabel(cep) {
+    const fields = ["when", "where", "while", "while_doing_what", "with_whom", "why", "how_feeling"];
+    for (const f of fields) {
+      if (cep[f]) {
+        // compress to a short chip (10-20 chars-ish)
+        const text = String(cep[f]).trim();
+        return summarizeCep(text);
+      }
+    }
+    return null;
+  }
+
+  function summarizeCep(text) {
+    // Take first 6-8 words for the chip label
+    const words = text.split(/\s+/);
+    if (words.length <= 7) return text;
+    let chunk = words.slice(0, 7).join(" ");
+    chunk = chunk.replace(/[,.;:!?]+$/, "");
+    return chunk + "…";
+  }
+
+  function guessMomentFromCep(cep) {
+    const blob = JSON.stringify(cep).toLowerCase();
+    const out = [];
+    if (/(morning|breakfast|wake|coffee|commute|early|monday)/i.test(blob)) out.push("morning");
+    if (/(afternoon|lunch|crash|3 ?pm|slump)/i.test(blob)) out.push("afternoon");
+    if (/(library|study|night|exam|late|cram)/i.test(blob)) out.push("library");
+    if (/(gym|workout|lift|cardio|run|fitness|pre-workout)/i.test(blob)) out.push("gym");
+    if (out.length === 0) {
+      // default: tag to all moments (low confidence)
+      return "morning,afternoon,library,gym";
+    }
+    return out.join(",");
+  }
+
+  function slugify(s) {
+    return (s || "").toString().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  }
+
+  // ---------- AI TOOLTIP
+  function attachAiTip(el) {
+    const show = (e) => {
+      const rect = el.getBoundingClientRect();
+      tip.classList.add("in");
+      tip.setAttribute("aria-hidden", "false");
+      tipCap.textContent = "Claude-generated cue";
+      tipBody.textContent = "“" + (el.textContent.replace(/AI$/,'').trim()) + "”";
+      tipRatio.textContent = el.dataset.aiRatio || "";
+      const s = parseInt(el.dataset.aiScore || "0", 10);
+      tipScore.textContent = s ? "AI confidence: " + s + "/10" : "";
+      let x = rect.left + rect.width / 2 - tip.offsetWidth / 2;
+      let y = rect.bottom + 8;
+      x = Math.max(8, Math.min(window.innerWidth - tip.offsetWidth - 8, x));
+      tip.style.left = x + "px";
+      tip.style.top = y + "px";
+    };
+    const hide = () => {
+      tip.classList.remove("in");
+      tip.setAttribute("aria-hidden", "true");
+    };
+    el.addEventListener("mouseenter", show);
+    el.addEventListener("focus", show);
+    el.addEventListener("mouseleave", hide);
+    el.addEventListener("blur", hide);
+  }
+
+  // ---------- POINTER ON CANVAS (click brand)
+  function attachStageHandlers() {
+    cv.addEventListener("click", (e) => {
+      const rect = cv.getBoundingClientRect();
+      const x = (e.clientX - rect.left);
+      const y = (e.clientY - rect.top);
+      // find brand under pointer
+      for (const b of brands) {
+        const bp = brandPx(b);
+        if (Math.hypot(bp.x - x, bp.y - y) < b.r + 6) {
+          clickBrand(b.id);
+          return;
+        }
+      }
+    });
+    cv.addEventListener("mousemove", (e) => {
+      const rect = cv.getBoundingClientRect();
+      const x = (e.clientX - rect.left);
+      const y = (e.clientY - rect.top);
+      let hover = false;
+      for (const b of brands) {
+        const bp = brandPx(b);
+        if (Math.hypot(bp.x - x, bp.y - y) < b.r + 6) { hover = true; break; }
+      }
+      cv.style.cursor = hover ? "pointer" : "default";
+    });
+  }
+
+  // ---------- CUE HANDLERS
+  function attachCueHandlers(el) {
+    el.addEventListener("click", () => selectCue(el.dataset.cue));
+  }
+
+  // ---------- INIT
+  function init() {
+    resize();
+    indexCues();
+    cuesEl.querySelectorAll(".cue").forEach(attachCueHandlers);
+    document.querySelectorAll(".moment").forEach(b => {
+      b.addEventListener("click", () => selectMoment(b.dataset.moment));
+    });
+    fireBtn.addEventListener("click", fireMoment);
+    resetBtn.addEventListener("click", reset);
+    aiBtn.addEventListener("click", askClaude);
+    attachStageHandlers();
+    refreshCueClasses();
+    refreshMomentBtns();
+    renderCS();
+
+    // RAF loop
+    function loop(t) {
+      draw(t);
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+
+    // iframe-resize signal (so chapter iframes can size correctly)
+    let lastH = 0;
+    const sendHeight = () => {
+      const h = document.documentElement.scrollHeight;
+      if (h !== lastH) {
+        lastH = h;
+        try { window.top.postMessage({ type: "exhibit-resize", height: h }, "*"); } catch (e) {}
+      }
+    };
+    sendHeight();
+    window.addEventListener("load", () => { sendHeight(); setTimeout(sendHeight, 500); });
+    window.addEventListener("resize", sendHeight);
+    document.addEventListener("click", () => setTimeout(sendHeight, 200));
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>

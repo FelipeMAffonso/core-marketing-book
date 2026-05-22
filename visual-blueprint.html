@@ -1,0 +1,1342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Core Course v4 Practical AI Widget Lab</title>
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --muted: #555555;
+      --faint: #888888;
+      --line: #e6ebf1;
+      --soft: #f8f9fa;
+      --paper: #ffffff;
+      --coral: #DA7756;
+      --coral-80: rgba(218, 119, 86, 0.8);
+      --coral-40: rgba(218, 119, 86, 0.4);
+      --coral-20: rgba(218, 119, 86, 0.2);
+      --coral-10: rgba(218, 119, 86, 0.1);
+      --shadow: 0 18px 52px rgba(26, 26, 26, 0.08), 0 2px 8px rgba(26, 26, 26, 0.04);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.52;
+    }
+
+    button, input, textarea, select { font: inherit; }
+
+    a {
+      color: var(--ink);
+      text-decoration-color: var(--coral);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    .hero {
+      padding: 54px 0 38px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(218, 119, 86, 0.09), rgba(255, 255, 255, 0) 64%),
+        var(--paper);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--coral);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--coral);
+    }
+
+    h1 {
+      max-width: 980px;
+      margin: 0;
+      font-size: clamp(38px, 7vw, 76px);
+      line-height: 0.98;
+      letter-spacing: 0;
+      font-weight: 850;
+    }
+
+    .hero p {
+      max-width: 820px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .hero strong { color: var(--ink); }
+
+    .corpus-note {
+      max-width: 980px;
+      margin-top: 24px;
+      border-left: 3px solid var(--coral);
+      padding: 14px 16px;
+      background: var(--coral-10);
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .corpus-note strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .source-strip {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .source {
+      min-height: 112px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.74);
+    }
+
+    .source b {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 13px;
+    }
+
+    .source span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav .wrap {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .nav a {
+      flex: 0 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .nav a:hover {
+      border-color: var(--coral);
+      color: var(--ink);
+      background: var(--coral-10);
+    }
+
+    section {
+      padding: 54px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.48fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 50px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .section-head p,
+    .small {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .cycle {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .cycle-step {
+      position: relative;
+      min-height: 156px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 14px;
+      background: var(--paper);
+    }
+
+    .cycle-step::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -10px;
+      width: 10px;
+      border-top: 1px solid var(--coral);
+    }
+
+    .cycle-step:last-child::after { display: none; }
+
+    .cycle-step b {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--coral);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .cycle-step strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .cycle-step span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .widget-shell {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .tabs {
+      display: grid;
+      gap: 8px;
+      position: sticky;
+      top: 66px;
+    }
+
+    .tab {
+      display: grid;
+      gap: 4px;
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 12px;
+      background: var(--paper);
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      transition: transform 150ms var(--ease), border-color 150ms var(--ease), background 150ms var(--ease);
+    }
+
+    .tab:active,
+    .button:active,
+    .chip:active { transform: scale(0.98); }
+
+    .tab.active {
+      border-color: var(--coral);
+      background: var(--coral-10);
+    }
+
+    .tab b { font-size: 14px; }
+    .tab span { color: var(--muted); font-size: 12px; }
+
+    .stage {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .stage-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      padding: 20px;
+      border-bottom: 1px solid var(--line);
+      background: var(--soft);
+    }
+
+    .stage-header h3 {
+      margin: 0 0 6px;
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .stage-header p {
+      max-width: 720px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 10px;
+      color: var(--muted);
+      background: var(--paper);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .status::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      background: var(--faint);
+    }
+
+    .status.ok::before { background: var(--coral); }
+
+    .stage-body {
+      display: grid;
+      gap: 18px;
+      padding: 20px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 16px;
+      background: var(--paper);
+    }
+
+    .panel.soft { background: var(--soft); }
+
+    .panel h4 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .panel p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 10px 11px;
+      color: var(--ink);
+      background: var(--paper);
+      outline: none;
+    }
+
+    textarea {
+      min-height: 94px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--coral);
+      box-shadow: 0 0 0 3px var(--coral-20);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .button {
+      border: 1px solid var(--coral);
+      border-radius: 999px;
+      padding: 9px 12px;
+      color: var(--ink);
+      background: var(--coral-10);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 850;
+      transition: transform 150ms var(--ease), background 150ms var(--ease), border-color 150ms var(--ease);
+    }
+
+    .button.secondary {
+      border-color: var(--line);
+      color: var(--muted);
+      background: var(--paper);
+    }
+
+    .button:hover {
+      background: var(--coral-20);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 10px;
+      color: var(--muted);
+      background: var(--paper);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .chip.active {
+      border-color: var(--coral);
+      color: var(--ink);
+      background: var(--coral-10);
+    }
+
+    .trace {
+      display: grid;
+      gap: 10px;
+    }
+
+    .trace-row {
+      display: grid;
+      grid-template-columns: 134px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 11px;
+      background: var(--paper);
+    }
+
+    .trace-row b {
+      color: var(--coral);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .trace-row span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    pre {
+      max-height: 360px;
+      overflow: auto;
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 13px;
+      background: var(--soft);
+      color: var(--ink);
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+
+    .receipt {
+      border-left: 3px solid var(--coral);
+      padding: 12px 14px;
+      background: var(--coral-10);
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .diagram {
+      width: 100%;
+      min-height: 250px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--paper);
+    }
+
+    .file-tree {
+      display: grid;
+      gap: 8px;
+    }
+
+    .file-node {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 10px;
+      background: var(--paper);
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .file-node.active {
+      border-color: var(--coral);
+      color: var(--ink);
+      background: var(--coral-10);
+    }
+
+    .agent-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .agent {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 12px;
+      background: var(--paper);
+    }
+
+    .agent b {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--coral);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .agent span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .sources {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .source-card {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 16px;
+      background: var(--soft);
+    }
+
+    .source-card h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+    }
+
+    .source-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer {
+      padding: 36px 0 54px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .source-strip,
+      .sources {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-head,
+      .widget-shell,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .tabs { position: static; }
+
+      .cycle {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .agent-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .wrap { padding: 0 18px; }
+      .source-strip,
+      .sources,
+      .cycle,
+      .agent-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .trace-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.001ms !important;
+        animation-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Core Course v4 practical AI widget lab</div>
+      <h1>The chapter should teach by letting students do the work.</h1>
+      <p>
+        I understand the vision now: each marketing concept needs a practical widget.
+        The widget teaches the principle, runs or simulates the AI workflow, exposes the API or MCP trace,
+        asks for human verification, and leaves behind a usable marketing artifact.
+        <strong>Students learn marketing by building the thing.</strong>
+      </p>
+
+      <div class="corpus-note">
+        <strong>The marketing content source does not change.</strong>
+        The chapters are already built from the reference corpus and the marketing books. The intervention is translation:
+        compress dense source-backed material into plain explanations, visual practice widgets, and AI workflows that help
+        students use the concept. The outside AI courses inform the learning mechanics, not the marketing doctrine.
+      </div>
+
+      <div class="source-strip" aria-label="Outside AI course signals">
+        <a class="source" href="https://grow.google/ai-essentials/"><b>Google AI Essentials</b><span>Hands-on work scenarios, prompting, responsible use, tool selection.</span></a>
+        <a class="source" href="https://grow.google/intl/en_ca/prompting-essentials/"><b>Google Prompting</b><span>Reusable prompt library, prompt chaining, multimodal prompts, evaluation.</span></a>
+        <a class="source" href="https://openai.com/academy/using-chatgpt/"><b>OpenAI Academy</b><span>Files, search, projects, Custom GPTs, Skills, workspace agents.</span></a>
+        <a class="source" href="https://platform.openai.com/docs/guides/tools?api-mode=responses"><b>OpenAI Tools</b><span>Built-in tools, function calling, remote MCP, web search, file search.</span></a>
+        <a class="source" href="https://code.claude.com/docs/en/mcp"><b>Claude MCP</b><span>Resources, tool search, external systems, server instructions.</span></a>
+        <a class="source" href="https://code.claude.com/docs/en/sub-agents"><b>Claude Subagents</b><span>Scoped context, specialized roles, controlled tool access.</span></a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="Sections">
+    <div class="wrap">
+      <a href="#translation">Translation</a>
+      <a href="#widgets">Widget Prototypes</a>
+      <a href="#sources">Source Signals</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="translation">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>The outside course pattern becomes a chapter microcycle.</h2>
+          <p>
+            The course does not need a separate AI literacy unit after every marketing topic.
+            It needs a repeated work pattern that starts with a marketing decision and ends with a verified artifact.
+          </p>
+        </div>
+
+        <div class="cycle" aria-label="In-chapter widget microcycle">
+          <div class="cycle-step">
+            <b>1. Decision</b>
+            <strong>What are we trying to decide?</strong>
+            <span>Price, segment, creator, message, crisis response, channel, budget, or research method.</span>
+          </div>
+          <div class="cycle-step">
+            <b>2. Evidence</b>
+            <strong>What should AI see?</strong>
+            <span>Files, sources, transcripts, survey data, analytics exports, claims, and constraints.</span>
+          </div>
+          <div class="cycle-step">
+            <b>3. Prompt</b>
+            <strong>How do we ask?</strong>
+            <span>Students write or repair the instruction, rubric, output schema, and examples.</span>
+          </div>
+          <div class="cycle-step">
+            <b>4. Tool Call</b>
+            <strong>What can the model use?</strong>
+            <span>API request, function call, MCP resource, file search, web search, or app connector.</span>
+          </div>
+          <div class="cycle-step">
+            <b>5. Verification</b>
+            <strong>What must a human check?</strong>
+            <span>Source quality, missing data, privacy, cost, bias, permissions, and unsupported claims.</span>
+          </div>
+          <div class="cycle-step">
+            <b>6. Artifact</b>
+            <strong>What gets saved?</strong>
+            <span>Prompt pack, Skill, Custom GPT spec, audit memo, dashboard brief, or agent requirement doc.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="widgets">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>These are the kinds of widgets that belong inside the chapters.</h2>
+          <p>
+            Each prototype below is a teaching object. It is clickable, practical, and built around AI work students can understand.
+            When the local proxy is running, the live buttons call <code>/api/exhibit/generic</code>.
+          </p>
+        </div>
+
+        <div class="widget-shell">
+          <div class="tabs" id="tabs"></div>
+          <div class="stage" id="stage"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sources">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>The source signal is clear: practical, reusable, tool-connected work.</h2>
+          <p>
+            The official materials are beginner friendly, but they are not abstract. They teach people to use AI on real tasks,
+            save reusable prompts, use files and tools, and move toward agents.
+          </p>
+        </div>
+
+        <div class="sources">
+          <a class="source-card" href="https://grow.google/ai-essentials/">
+            <h3>Google AI Essentials</h3>
+            <p>Hands-on activities based on real-world scenarios, prompt practice, responsible use, and tool selection.</p>
+          </a>
+          <a class="source-card" href="https://grow.google/intl/en_ca/prompting-essentials/">
+            <h3>Google Prompting Essentials</h3>
+            <p>Prompt design in five steps, reusable prompt libraries, prompt chaining, multimodal prompting, output evaluation.</p>
+          </a>
+          <a class="source-card" href="https://openai.com/academy/using-chatgpt/">
+            <h3>OpenAI Academy</h3>
+            <p>Core skills, files, search, projects, Custom GPTs, Skills, and workspace agents.</p>
+          </a>
+          <a class="source-card" href="https://code.claude.com/docs/en/agent-sdk/agent-loop">
+            <h3>Claude Agent Loop</h3>
+            <p>Tools let agents read files, run commands, search the web, connect to MCP servers, and invoke Skills.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      This file is a prototype lab for the Core Course v4 rebuild. The next production step is to turn these patterns into reusable in-chapter components and then pilot them in Chapters 1, 5, and 18.
+    </div>
+  </footer>
+
+  <script>
+    const PROXY = "http://127.0.0.1:8787";
+    let proxyOnline = false;
+    let activeWidget = "geo";
+    let activeEvidence = ["owned-content", "third-party"];
+    let activeFile = "SKILL.md";
+    let mcpStep = 0;
+    let agentStep = 0;
+
+    const widgets = [
+      {
+        id: "geo",
+        title: "AI Search Visibility Lab",
+        subtitle: "Ch18 Digital Marketing",
+        purpose: "Students learn GEO by building the evidence an AI answer can cite."
+      },
+      {
+        id: "skill",
+        title: "Prompt-to-Skill Builder",
+        subtitle: "Ch6 STP, Ch20 Creator Economy",
+        purpose: "Students turn a repeated marketing judgment into a reusable workflow."
+      },
+      {
+        id: "mcp",
+        title: "MCP Tool Call Trace",
+        subtitle: "Ch13 Ecommerce, Ch24 Analytics",
+        purpose: "Students see how an AI assistant uses external systems without magic."
+      },
+      {
+        id: "agent",
+        title: "Subagent Campaign Studio",
+        subtitle: "Ch27 Capstone",
+        purpose: "Students split a marketing problem across scoped agents with tool limits."
+      },
+      {
+        id: "verify",
+        title: "Human Verification Gate",
+        subtitle: "All chapters",
+        purpose: "Students practice judging AI output before it becomes marketing action."
+      }
+    ];
+
+    const files = {
+      "SKILL.md": `# Positioning Audit Skill
+
+Use this Skill when the marketer needs to evaluate a brand's positioning.
+
+Inputs:
+- brand
+- category
+- target segment
+- competitor set
+- evidence links
+
+Process:
+1. State the claimed frame of reference.
+2. Identify the buyer memory cue.
+3. Compare the claim against competitors.
+4. Flag missing evidence.
+5. Return a one-page positioning memo.`,
+      "rubric.md": `# Positioning Rubric
+
+Score each item from 1 to 5.
+
+1. Clear target buyer
+2. Specific category frame
+3. Distinct memory cue
+4. Proof from evidence
+5. Difference that matters to buying`,
+      "examples.json": `[
+  {
+    "brand": "Liquid Death",
+    "cue": "water that behaves like a metal brand",
+    "risk": "the joke can overpower the product benefit"
+  },
+  {
+    "brand": "Duolingo",
+    "cue": "daily language practice with playful pressure",
+    "risk": "social content can drift from product usage"
+  }
+]`
+    };
+
+    const mcpTools = [
+      {
+        name: "GA4 MCP",
+        tool: "report(start, end, metrics, dimensions)",
+        resource: "@ga4:property://core-store",
+        receipt: { sessions: 18422, conversion_rate: "2.8%", top_channel: "organic search", note: "Last 7 days" }
+      },
+      {
+        name: "Qualtrics MCP",
+        tool: "get_responses(survey_id, since)",
+        resource: "@qualtrics:survey://spring-brand-tracker",
+        receipt: { responses: 214, top_theme: "delivery speed", unresolved: 17, note: "New responses since Monday" }
+      },
+      {
+        name: "Slack MCP",
+        tool: "read_channel(channel, since)",
+        resource: "@slack:channel://customer-feedback",
+        receipt: { messages: 82, repeated_issue: "unclear onboarding", urgency: "medium", note: "Last 48 hours" }
+      }
+    ];
+
+    function el(tag, attrs = {}, children = []) {
+      const node = document.createElement(tag);
+      Object.entries(attrs).forEach(([key, value]) => {
+        if (key === "class") node.className = value;
+        else if (key === "text") node.textContent = value;
+        else if (key === "html") node.innerHTML = value;
+        else node.setAttribute(key, value);
+      });
+      children.forEach(child => node.appendChild(child));
+      return node;
+    }
+
+    function statusPill() {
+      return el("span", {
+        class: "status " + (proxyOnline ? "ok" : ""),
+        text: proxyOnline ? "AI proxy online" : "AI proxy offline"
+      });
+    }
+
+    async function checkProxy() {
+      try {
+        const res = await fetch(PROXY + "/health", { method: "GET" });
+        proxyOnline = res.ok;
+      } catch (err) {
+        proxyOnline = false;
+      }
+      renderTabs();
+      renderStage();
+    }
+
+    async function callGeneric(system, user, output, fallback) {
+      output.textContent = "Calling local AI proxy...";
+      try {
+        const response = await fetch(PROXY + "/api/exhibit/generic", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ system, user, max_tokens: 500 })
+        });
+        const payload = await response.json();
+        if (!response.ok || !payload.ok) throw new Error(payload.error || "Proxy returned an error.");
+        const usage = payload.usage ? "\\n\\nUsage receipt: " + JSON.stringify(payload.usage, null, 2) : "";
+        output.textContent = (payload.data && payload.data.text ? payload.data.text : JSON.stringify(payload, null, 2)) + usage;
+      } catch (err) {
+        output.textContent = fallback + "\\n\\nLive AI requires `python core-course/scripts/proxy_server.py` running on port 8787.";
+      }
+    }
+
+    function renderTabs() {
+      const root = document.getElementById("tabs");
+      root.innerHTML = "";
+      widgets.forEach(widget => {
+        const button = el("button", { type: "button", class: "tab " + (activeWidget === widget.id ? "active" : "") });
+        button.appendChild(el("b", { text: widget.title }));
+        button.appendChild(el("span", { text: widget.subtitle }));
+        button.addEventListener("click", () => {
+          activeWidget = widget.id;
+          renderTabs();
+          renderStage();
+        });
+        root.appendChild(button);
+      });
+    }
+
+    function stageHeader(widget) {
+      return el("div", { class: "stage-header" }, [
+        el("div", {}, [
+          el("h3", { text: widget.title }),
+          el("p", { text: widget.purpose })
+        ]),
+        statusPill()
+      ]);
+    }
+
+    function renderStage() {
+      const widget = widgets.find(item => item.id === activeWidget);
+      const stage = document.getElementById("stage");
+      stage.innerHTML = "";
+      stage.appendChild(stageHeader(widget));
+      if (activeWidget === "geo") renderGeo(stage);
+      if (activeWidget === "skill") renderSkill(stage);
+      if (activeWidget === "mcp") renderMcp(stage);
+      if (activeWidget === "agent") renderAgent(stage);
+      if (activeWidget === "verify") renderVerify(stage);
+    }
+
+    function renderGeo(stage) {
+      const body = el("div", { class: "stage-body" });
+      const controls = el("div", { class: "panel" });
+      controls.appendChild(el("h4", { text: "Student Task" }));
+      controls.appendChild(el("p", { text: "Make an AI answer more likely to cite the brand by improving the evidence package." }));
+
+      const brand = el("input", { id: "geoBrand", value: "Bison Brew" });
+      const category = el("input", { id: "geoCategory", value: "ready-to-drink coffee for college students" });
+      controls.appendChild(el("label", { text: "Brand" }, [brand]));
+      controls.appendChild(el("label", { text: "Category" }, [category]));
+
+      const chipWrap = el("div", { class: "chips" });
+      [
+        ["owned-content", "Owned content"],
+        ["third-party", "Third-party proof"],
+        ["structured-data", "Structured data"],
+        ["reddit", "Forum language"],
+        ["reviews", "Review themes"]
+      ].forEach(([id, label]) => {
+        const chip = el("button", { type: "button", class: "chip " + (activeEvidence.includes(id) ? "active" : ""), text: label });
+        chip.addEventListener("click", () => {
+          activeEvidence = activeEvidence.includes(id)
+            ? activeEvidence.filter(item => item !== id)
+            : activeEvidence.concat(id);
+          renderStage();
+        });
+        chipWrap.appendChild(chip);
+      });
+      controls.appendChild(el("label", { text: "Evidence the AI answer can see" }));
+      controls.appendChild(chipWrap);
+
+      const output = el("pre", { text: "Click Run live AI or Generate teaching fallback." });
+      const request = el("pre");
+      const buildRequest = () => {
+        const payload = {
+          model: "claude-haiku via local proxy",
+          endpoint: "/api/exhibit/generic",
+          system: "You are a marketing instructor. Explain GEO as practical evidence work.",
+          user: `Brand: ${brand.value}\\nCategory: ${category.value}\\nEvidence available: ${activeEvidence.join(", ")}\\nTask: produce a practical AI-search visibility action plan with verification checks.`
+        };
+        request.textContent = JSON.stringify(payload, null, 2);
+        return payload;
+      };
+      buildRequest();
+      brand.addEventListener("input", buildRequest);
+      category.addEventListener("input", buildRequest);
+
+      const run = el("button", { type: "button", class: "button", text: "Run live AI" });
+      run.addEventListener("click", () => {
+        const payload = buildRequest();
+        callGeneric(payload.system, payload.user, output, fallbackGeo(brand.value, category.value));
+      });
+      const fallback = el("button", { type: "button", class: "button secondary", text: "Generate teaching fallback" });
+      fallback.addEventListener("click", () => { output.textContent = fallbackGeo(brand.value, category.value); });
+      controls.appendChild(el("div", { class: "button-row" }, [run, fallback]));
+
+      const right = el("div", { class: "panel soft" }, [
+        el("h4", { text: "Visible API Trace" }),
+        request,
+        el("div", { class: "receipt", text: "Teaching point: GEO is not prompt magic. The model can only cite what it can find, read, and trust." }),
+        el("h4", { text: "AI Output" }),
+        output
+      ]);
+
+      body.appendChild(el("div", { class: "split" }, [controls, right]));
+      body.appendChild(traceBlock([
+        ["Marketing principle", "AI visibility depends on evidence availability, source credibility, and language match."],
+        ["AI skill", "Use search, files, and prompts to test whether the brand appears in answerable sources."],
+        ["Human check", "Open every cited source, confirm it supports the claim, and record gaps."]
+      ]));
+      stage.appendChild(body);
+    }
+
+    function fallbackGeo(brand, category) {
+      return `Action plan for ${brand}
+
+Decision: make the brand easier for AI systems to cite when someone asks about ${category}.
+
+1. Evidence gap
+The brand has owned claims, but the answer will be weak unless third-party sources repeat those claims in plain category language.
+
+2. Content fix
+Create one page that states the category, buyer, use case, proof, and comparison set in direct language.
+
+3. Source fix
+Earn or document third-party evidence: reviews, local press, retailer pages, creator mentions, and structured product data.
+
+4. Verification
+Ask three AI systems the same buyer question. Record whether they mention the brand, which sources they cite, and which claim each citation supports.
+
+Artifact: AI search visibility audit with source receipts.`;
+    }
+
+    function renderSkill(stage) {
+      const body = el("div", { class: "stage-body" });
+      const left = el("div", { class: "panel" }, [
+        el("h4", { text: "From one prompt to reusable workflow" }),
+        el("p", { text: "Students learn that a serious AI workflow has instructions, rubrics, examples, and files. That is why OpenAI Academy and Google Prompting emphasize reusable prompts, Skills, GPTs, and projects." })
+      ]);
+      const task = el("textarea");
+      task.value = "Audit Liquid Death's positioning for college students buying non-alcoholic beverages.";
+      left.appendChild(el("label", { text: "One-off task" }, [task]));
+      const oneOff = el("pre");
+      oneOff.textContent = `Weak prompt:
+${task.value}
+
+Why it fails:
+- no rubric
+- no evidence requirements
+- no output shape
+- no examples
+- no verification step`;
+      const updateOneOff = () => {
+        oneOff.textContent = `Weak prompt:
+${task.value}
+
+Why it fails:
+- no rubric
+- no evidence requirements
+- no output shape
+- no examples
+- no verification step`;
+      };
+      task.addEventListener("input", updateOneOff);
+      left.appendChild(oneOff);
+
+      const tree = el("div", { class: "file-tree" });
+      Object.keys(files).forEach(name => {
+        const node = el("button", { type: "button", class: "file-node " + (name === activeFile ? "active" : ""), text: name });
+        node.addEventListener("click", () => {
+          activeFile = name;
+          renderStage();
+        });
+        tree.appendChild(node);
+      });
+
+      const output = el("pre", { text: files[activeFile] });
+      const run = el("button", { type: "button", class: "button", text: "Ask AI to improve the Skill" });
+      run.addEventListener("click", () => {
+        callGeneric(
+          "You are helping a marketing professor design a beginner-friendly AI Skill for students.",
+          `Task: ${task.value}\\nCurrent file ${activeFile}:\\n${files[activeFile]}\\nSuggest concrete improvements and keep the language simple.`,
+          output,
+          `Suggested improvement:
+
+Add a verification section that requires the student to attach at least two sources. Add an output schema with four headings: claim, evidence, risk, recommendation. Add one weak example and one strong example so the model can compare.`
+        );
+      });
+
+      const right = el("div", { class: "panel soft" }, [
+        el("h4", { text: "Skill folder" }),
+        tree,
+        el("div", { class: "button-row" }, [run]),
+        el("h4", { text: "Selected file or AI improvement" }),
+        output
+      ]);
+
+      body.appendChild(el("div", { class: "split" }, [left, right]));
+      body.appendChild(traceBlock([
+        ["Marketing principle", "Positioning becomes clearer when the same rubric is applied across competitors."],
+        ["AI skill", "Turn repeated judgment into a Skill or Custom GPT with a rubric and examples."],
+        ["Student artifact", "A positioning audit Skill folder that can be reused on a real brand."]
+      ]));
+      stage.appendChild(body);
+    }
+
+    function renderMcp(stage) {
+      const body = el("div", { class: "stage-body" });
+      const selected = mcpTools[mcpStep % mcpTools.length];
+      const controls = el("div", { class: "panel" }, [
+        el("h4", { text: "Tool-connected marketing work" }),
+        el("p", { text: "Students learn that MCP gives the assistant a controlled way to read resources and call tools. The tool returns a receipt. The model interprets the receipt." })
+      ]);
+
+      const select = el("select");
+      mcpTools.forEach((tool, index) => {
+        const option = el("option", { value: String(index), text: tool.name });
+        if (index === mcpStep) option.selected = true;
+        select.appendChild(option);
+      });
+      select.addEventListener("change", () => {
+        mcpStep = Number(select.value);
+        renderStage();
+      });
+      controls.appendChild(el("label", { text: "MCP server" }, [select]));
+
+      const output = el("pre", { text: fallbackMcp(selected) });
+      const run = el("button", { type: "button", class: "button", text: "Ask AI to interpret receipt" });
+      run.addEventListener("click", () => {
+        callGeneric(
+          "You are a marketing analytics instructor. Explain the business implication of an MCP tool receipt.",
+          `Server: ${selected.name}\\nTool: ${selected.tool}\\nResource: ${selected.resource}\\nReceipt: ${JSON.stringify(selected.receipt)}\\nWrite a short Monday-morning marketing recommendation and include a verification check.`,
+          output,
+          fallbackMcp(selected)
+        );
+      });
+
+      controls.appendChild(el("div", { class: "button-row" }, [run]));
+
+      const right = el("div", { class: "panel soft" }, [
+        el("h4", { text: "MCP Trace" }),
+        el("pre", { text: JSON.stringify({
+          prompt: "What changed this week, and what should marketing do?",
+          resource: selected.resource,
+          tool_schema: selected.tool,
+          tool_result: selected.receipt,
+          model_task: "Interpret the result with a human verification step."
+        }, null, 2) }),
+        el("h4", { text: "Model interpretation" }),
+        output
+      ]);
+
+      body.appendChild(el("div", { class: "split" }, [controls, right]));
+      body.appendChild(traceBlock([
+        ["Marketing principle", "Dashboards answer only when the right system is queried with the right metric."],
+        ["AI skill", "Read tool schemas, inspect receipts, and separate data retrieval from interpretation."],
+        ["Human check", "Confirm scope, permission, freshness, and whether the result supports the recommendation."]
+      ]));
+      stage.appendChild(body);
+    }
+
+    function fallbackMcp(tool) {
+      return `Recommendation from ${tool.name}
+
+The tool returned a bounded receipt, not a final decision:
+${JSON.stringify(tool.receipt, null, 2)}
+
+Marketing action:
+Use this as a signal for the next weekly decision, then check one source outside the tool before acting.
+
+Verification:
+Confirm the date range, property or survey ID, metric definitions, and permissions.`;
+    }
+
+    function renderAgent(stage) {
+      const body = el("div", { class: "stage-body" });
+      const agents = [
+        ["Researcher", "Find sources and extract evidence. Read-only web and file access."],
+        ["Analyst", "Compare evidence against the rubric. Spreadsheet and chart access."],
+        ["Builder", "Draft the marketing artifact. No external posting permission."],
+        ["Evaluator", "Check claims, privacy, and missing evidence before release."]
+      ];
+
+      const left = el("div", { class: "panel" }, [
+        el("h4", { text: "Campaign problem" }),
+        el("p", { text: "A beverage brand wants a creator campaign for college students. Students design the agent team and watch how scoped roles protect quality." })
+      ]);
+      const next = el("button", { type: "button", class: "button", text: "Advance agent loop" });
+      next.addEventListener("click", () => {
+        agentStep = (agentStep + 1) % 6;
+        renderStage();
+      });
+      const reset = el("button", { type: "button", class: "button secondary", text: "Reset" });
+      reset.addEventListener("click", () => {
+        agentStep = 0;
+        renderStage();
+      });
+      left.appendChild(el("div", { class: "button-row" }, [next, reset]));
+      left.appendChild(el("pre", { text: agentLoopText(agentStep) }));
+
+      const grid = el("div", { class: "agent-grid" });
+      agents.forEach(([name, role], index) => {
+        grid.appendChild(el("div", { class: "agent" }, [
+          el("b", { text: index === agentStep - 1 ? name + " active" : name }),
+          el("span", { text: role })
+        ]));
+      });
+
+      const right = el("div", { class: "panel soft" }, [
+        el("h4", { text: "Scoped subagents" }),
+        grid,
+        el("div", { class: "receipt", text: "Teaching point: subagents are a design choice for focused work, context control, and tool permissions." })
+      ]);
+
+      body.appendChild(el("div", { class: "split" }, [left, right]));
+      body.appendChild(traceBlock([
+        ["Marketing principle", "A campaign brief improves when research, analysis, creation, and evaluation are separated."],
+        ["AI skill", "Use subagents for bounded tasks with tool limits and final summaries."],
+        ["Student artifact", "Agent team spec with roles, allowed tools, inputs, outputs, and stop conditions."]
+      ]));
+      stage.appendChild(body);
+    }
+
+    function agentLoopText(step) {
+      const steps = [
+        "Step 1: Goal\\nCreate a creator campaign recommendation for Bison Brew. Keep claims evidence-based.",
+        "Step 2: Researcher\\nCollect creator examples, audience evidence, and brand constraints. Return only sources and notes.",
+        "Step 3: Analyst\\nScore creators against fit, reach, risk, rights, and evidence quality. Return a ranked shortlist.",
+        "Step 4: Builder\\nDraft the campaign brief using the shortlist. Do not invent performance claims.",
+        "Step 5: Evaluator\\nCheck every claim, source, privacy issue, and brand-safety risk. Flag gaps.",
+        "Step 6: Human fallback\\nThe marketer approves, edits, rejects, or asks a subagent for more evidence."
+      ];
+      return steps[step];
+    }
+
+    function renderVerify(stage) {
+      const body = el("div", { class: "stage-body" });
+      const text = el("textarea");
+      text.value = "AI says college students prefer canned cold brew because it is cheaper, more sustainable, and more energizing than energy drinks.";
+      const output = el("pre", { text: verifyFallback(text.value) });
+      const update = () => { output.textContent = verifyFallback(text.value); };
+      text.addEventListener("input", update);
+      const live = el("button", { type: "button", class: "button", text: "Ask AI to critique the claim" });
+      live.addEventListener("click", () => {
+        callGeneric(
+          "You are a marketing evidence reviewer. Evaluate claims for source support, missing evidence, privacy risk, and actionability.",
+          `Claim to review: ${text.value}\\nReturn: supported, unsupported, needs source, privacy risk, marketing action.`,
+          output,
+          verifyFallback(text.value)
+        );
+      });
+
+      const left = el("div", { class: "panel" }, [
+        el("h4", { text: "Claim from AI output" }),
+        el("label", { text: "Paste or edit the claim" }, [text]),
+        el("div", { class: "button-row" }, [live])
+      ]);
+
+      const right = el("div", { class: "panel soft" }, [
+        el("h4", { text: "Verification Gate" }),
+        output
+      ]);
+
+      body.appendChild(el("div", { class: "split" }, [left, right]));
+      body.appendChild(traceBlock([
+        ["Marketing principle", "AI output becomes marketing action only after evidence review."],
+        ["AI skill", "Use AI to critique AI output, then verify the critique with sources."],
+        ["Human check", "Never let a generated claim ship without source support and risk review."]
+      ]));
+      stage.appendChild(body);
+    }
+
+    function verifyFallback(claim) {
+      return `Claim under review:
+${claim}
+
+Supported:
+No source is attached yet.
+
+Needs source:
+- preference among college students
+- price comparison
+- sustainability comparison
+- energy comparison
+
+Risk:
+The claim combines multiple unsupported advantages. It should not ship as copy.
+
+Better next action:
+Turn it into a research question, collect evidence, then rewrite only the supported part.`;
+    }
+
+    function traceBlock(rows) {
+      const trace = el("div", { class: "trace" });
+      rows.forEach(([label, body]) => {
+        trace.appendChild(el("div", { class: "trace-row" }, [
+          el("b", { text: label }),
+          el("span", { text: body })
+        ]));
+      });
+      return trace;
+    }
+
+    renderTabs();
+    renderStage();
+    checkProxy();
+  </script>
+</body>
+</html>

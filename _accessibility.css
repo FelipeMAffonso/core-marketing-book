@@ -1,0 +1,332 @@
+/* =============================================================
+   Core Marketing v3 — Accessibility Overlay
+   -------------------------------------------------------------
+   Locked 2026-05-10. Coral palette (#DA7756) is the DEFAULT.
+   These overrides are activated only when the corresponding
+   data-a11y-* attribute is set on the <html> element.
+
+   Toggles (all default OFF):
+     data-a11y-contrast="high"  → darker neutrals, coral kept
+                                  only on real claim-bearing
+                                  surfaces (eyebrow, headings,
+                                  rule strokes). Body, sidenote
+                                  and meta text move to a high-
+                                  contrast ink so WCAG AA 4.5:1
+                                  is met against the cream/white
+                                  backgrounds.
+     data-a11y-text="large"     → body 19→22, sidenotes 13→17.
+                                  Lede + h2 scale proportionally.
+     data-a11y-motion="reduced" → IO observer scroll reveals,
+                                  sidenote fades, and stroke-dash
+                                  reveals all snap to final state.
+     data-a11y-font="dyslexia"  → swap EB Garamond body to
+                                  Atkinson Hyperlegible (better
+                                  letter differentiation for
+                                  dyslexic readers).
+   No new color tokens are introduced. Each toggle is scoped
+   to its data attribute and inherits from the existing :root.
+   ============================================================= */
+
+/* --------------------------------------------------------------
+   1. HIGH CONTRAST
+   --------------------------------------------------------------
+   The book's :root sets --ink (#1a1a1a), --ink-2 (#555),
+   --ink-3 (#888). Sidenote, byline, and meta text at #555 / #888
+   sit below WCAG AA 4.5:1 against the cream sidenote
+   background. We darken those secondary text tokens (without
+   touching the primary --ink) and clamp coral text to surfaces
+   where coral is the claim itself (eyebrows, h1/h2, accent
+   rules, links). Coral on a button / coral on a chip stays.
+   -------------------------------------------------------------- */
+html[data-a11y-contrast="high"] {
+  --ink-2: #1f1f1f;
+  --ink-3: #2a2a2a;
+  --gray: #1f1f1f;
+  --light-gray: #2a2a2a;
+}
+html[data-a11y-contrast="high"] body {
+  color: #0d0d0d;
+}
+html[data-a11y-contrast="high"] .ch-summary,
+html[data-a11y-contrast="high"] .part-summary,
+html[data-a11y-contrast="high"] .lede,
+html[data-a11y-contrast="high"] .byline,
+html[data-a11y-contrast="high"] .institution,
+html[data-a11y-contrast="high"] .sn,
+html[data-a11y-contrast="high"] aside.sn,
+html[data-a11y-contrast="high"] .resource p,
+html[data-a11y-contrast="high"] footer {
+  color: #1a1a1a;
+}
+/* Captions, secondary meta lines (figure numbers, ax eyebrows)
+   keep coral because the coral IS the signal there. The mono
+   meta below them moves to a stronger ink for legibility. */
+html[data-a11y-contrast="high"] .ch-meta,
+html[data-a11y-contrast="high"] .ch-summary,
+html[data-a11y-contrast="high"] .figcap,
+html[data-a11y-contrast="high"] figcaption {
+  color: #1a1a1a;
+}
+/* Links: keep coral so wayfinding does not break, but darken
+   to terracotta for the higher-contrast variant against white. */
+html[data-a11y-contrast="high"] a {
+  color: #9a3d1f;
+}
+html[data-a11y-contrast="high"] a:hover {
+  color: #6f2a14;
+}
+
+/* --------------------------------------------------------------
+   2. LARGE TEXT
+   --------------------------------------------------------------
+   Bump body 19 → 22 px and sidenotes 13 → 17 px. The lede,
+   h2, and h1 scale up proportionally so the type hierarchy
+   holds. Line-height is held to keep the same density feel.
+   -------------------------------------------------------------- */
+html[data-a11y-text="large"] body {
+  font-size: 22px;
+  line-height: 1.65;
+}
+html[data-a11y-text="large"] .lede,
+html[data-a11y-text="large"] p.lede {
+  font-size: 25px;
+  line-height: 1.55;
+}
+html[data-a11y-text="large"] .sn,
+html[data-a11y-text="large"] aside.sn {
+  font-size: 17px;
+  line-height: 1.6;
+}
+html[data-a11y-text="large"] .ch-title { font-size: 22px; }
+html[data-a11y-text="large"] .ch-summary { font-size: 19px; }
+html[data-a11y-text="large"] h1.title { font-size: clamp(48px, 6.4vw, 76px); }
+html[data-a11y-text="large"] h2 { font-size: 30px; }
+html[data-a11y-text="large"] h3 { font-size: 22px; }
+html[data-a11y-text="large"] .eyebrow,
+html[data-a11y-text="large"] .ax,
+html[data-a11y-text="large"] .part-num { font-size: 12.5px; }
+
+/* --------------------------------------------------------------
+   3. REDUCED MOTION
+   --------------------------------------------------------------
+   The book uses IO observers that add an .in class when an
+   element enters the viewport, triggering opacity / transform
+   transitions on .ax (Atlas eyebrows), .sn (sidenotes), and
+   figure animations. With reduced motion on, everything is
+   visible immediately and all transitions collapse to 0ms.
+   -------------------------------------------------------------- */
+html[data-a11y-motion="reduced"] *,
+html[data-a11y-motion="reduced"] *::before,
+html[data-a11y-motion="reduced"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-delay: 0ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  transition-delay: 0ms !important;
+  scroll-behavior: auto !important;
+}
+html[data-a11y-motion="reduced"] .ax,
+html[data-a11y-motion="reduced"] .sn,
+html[data-a11y-motion="reduced"] aside.sn,
+html[data-a11y-motion="reduced"] figure,
+html[data-a11y-motion="reduced"] .reveal,
+html[data-a11y-motion="reduced"] .fade-in {
+  opacity: 1 !important;
+  transform: none !important;
+}
+/* Stroke-dash sketches: render their final state, no draw-in. */
+html[data-a11y-motion="reduced"] svg [stroke-dasharray],
+html[data-a11y-motion="reduced"] svg path,
+html[data-a11y-motion="reduced"] svg line,
+html[data-a11y-motion="reduced"] svg polyline {
+  stroke-dashoffset: 0 !important;
+  stroke-dasharray: none !important;
+}
+
+/* --------------------------------------------------------------
+   4. DYSLEXIA-FRIENDLY FONT
+   --------------------------------------------------------------
+   Swap the EB Garamond body for Atkinson Hyperlegible. Atkinson
+   has heavier letter differentiation (the Braille Institute
+   commissioned it specifically for low-vision and dyslexic
+   readers). Headings keep Inter; mono keeps JetBrains Mono;
+   only the serif body type changes. The font is pulled from
+   Google Fonts; the @import sits inside this stylesheet so
+   the chapter HTML does not need any other change.
+   -------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap');
+
+html[data-a11y-font="dyslexia"] body,
+html[data-a11y-font="dyslexia"] .col,
+html[data-a11y-font="dyslexia"] p,
+html[data-a11y-font="dyslexia"] li,
+html[data-a11y-font="dyslexia"] blockquote,
+html[data-a11y-font="dyslexia"] .lede,
+html[data-a11y-font="dyslexia"] .ch-summary,
+html[data-a11y-font="dyslexia"] .part-summary {
+  font-family: 'Atkinson Hyperlegible', 'EB Garamond', Georgia, serif;
+  letter-spacing: 0.005em;
+}
+/* Slightly looser line-height helps tracking. */
+html[data-a11y-font="dyslexia"] body {
+  line-height: 1.7;
+}
+
+/* --------------------------------------------------------------
+   5. ACCESSIBILITY PANEL ON BOOKSHELF (index.html only)
+   --------------------------------------------------------------
+   Scoped styles for the toggle panel itself. Coral palette is
+   preserved; the panel reads as part of the book's chrome.
+   -------------------------------------------------------------- */
+.a11y-panel {
+  margin: 16px 0 0;
+  border: 1px solid var(--rule, #e6ebf1);
+  border-radius: 4px;
+  background: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.a11y-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--coral, #DA7756);
+  list-style: none;
+  user-select: none;
+}
+.a11y-summary::-webkit-details-marker { display: none; }
+.a11y-summary::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 1px;
+  background: var(--coral, #DA7756);
+  opacity: 0.7;
+}
+.a11y-summary .a11y-chev {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--coral, #DA7756);
+  transition: transform 200ms ease;
+}
+.a11y-panel[open] .a11y-summary .a11y-chev { transform: rotate(90deg); }
+.a11y-body {
+  padding: 4px 20px 18px;
+  border-top: 1px solid var(--rule, #e6ebf1);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px 24px;
+}
+.a11y-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.a11y-option input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--coral, #DA7756);
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+.a11y-option input[type="checkbox"]:checked {
+  background: var(--coral, #DA7756);
+  border-color: var(--coral, #DA7756);
+}
+.a11y-option input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.a11y-option input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--coral, #DA7756);
+  outline-offset: 2px;
+}
+.a11y-option-text { display: flex; flex-direction: column; gap: 2px; }
+.a11y-option-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink, #1a1a1a);
+  line-height: 1.4;
+}
+.a11y-option-help {
+  font-size: 12px;
+  color: var(--gray, #555);
+  line-height: 1.4;
+}
+
+/* Floating accessibility button on chapter pages (rendered by JS
+   only when not on index.html). Stays out of the reading column. */
+.a11y-fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid var(--coral, #DA7756);
+  color: var(--coral, #DA7756);
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  z-index: 9990;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 150ms ease, color 150ms ease;
+}
+.a11y-fab:hover {
+  background: var(--coral, #DA7756);
+  color: #ffffff;
+}
+.a11y-fab:focus-visible {
+  outline: 2px solid var(--coral, #DA7756);
+  outline-offset: 3px;
+}
+.a11y-popover {
+  position: fixed;
+  right: 16px;
+  bottom: 72px;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  background: #ffffff;
+  border: 1px solid var(--rule, #e6ebf1);
+  border-radius: 4px;
+  padding: 16px 18px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  z-index: 9991;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: none;
+}
+.a11y-popover[data-open="true"] { display: block; }
+.a11y-popover h4 {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--coral, #DA7756);
+}
+.a11y-popover .a11y-option { padding: 6px 0; }

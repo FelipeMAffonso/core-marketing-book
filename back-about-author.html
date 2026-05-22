@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About the Author &middot; Core Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --coral: #DA7756;
+  --coral-soft: #E8A488;
+  --coral-deep: #B8553A;
+  --ink: #1a1a1a;
+  --ink-2: #555555;
+  --ink-3: #888888;
+  --line: #e6dfd2;
+  --cream: #f5f0e8;
+  --bg: #ffffff;
+  --serif: 'EB Garamond', 'Source Serif 4', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  --maxw: 640px;
+  --side: 240px;
+  --gap: 48px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.62;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--coral); color: #fff; }
+.page {
+  max-width: calc(var(--maxw) + var(--gap) + var(--side));
+  margin: 0 auto;
+  padding: 64px 24px 120px 24px;
+  position: relative;
+}
+.col { max-width: var(--maxw); }
+
+.hero { margin: 0 0 24px 0; }
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--coral);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+h1.title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 14px 0 18px 0;
+  color: var(--ink);
+}
+.byline {
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink-2);
+  max-width: 60ch;
+}
+.hero-rule {
+  border: 0;
+  border-top: 1.5px solid var(--coral);
+  width: 56px;
+  margin: 24px 0 24px 0;
+}
+
+p.lede {
+  font-size: 21px;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0 0 18px 0;
+}
+p.lede.first::first-line {
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+}
+p { margin: 0 0 18px 0; }
+strong { font-weight: 600; color: var(--ink); }
+em { font-style: italic; }
+
+.ax {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--coral);
+  letter-spacing: 0.06em;
+  margin: 56px 0 6px 0;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ax::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  background: var(--coral);
+  vertical-align: middle;
+  margin-right: 10px;
+  opacity: 0.7;
+}
+.ax.in { opacity: 1; transform: translateY(0); }
+
+h2 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.2;
+  margin: 8px 0 16px 0;
+  color: var(--ink);
+}
+h2 .sec-num {
+  font-family: var(--mono);
+  font-weight: 500;
+  color: var(--coral);
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--coral);
+  color: #fff;
+  padding: 8px 12px;
+  z-index: 9999;
+}
+.skip:focus { left: 8px; top: 8px; }
+
+@media (max-width: 760px) {
+  .page { padding: 40px 18px 80px 18px; }
+  h1.title { font-size: 34px; }
+  p.lede { font-size: 19px; }
+  h2 { font-size: 22px; }
+  p { font-size: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ax { transition: none; opacity: 1; transform: none; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="page">
+  <main id="main" class="col">
+<header class="hero">
+      <span class="eyebrow">Back Matter</span>
+      <h1 class="title">About the Author</h1>
+      <p class="byline">Felipe M. Affonso, Lecturer, Spears School of Business, Oklahoma State University.</p>
+      <hr class="hero-rule">
+    </header>
+
+    <span class="ax">01 // teaching</span>
+    <h2><span class="sec-num">1</span> Teaching</h2>
+
+    <p class="lede first">Felipe M. Affonso is a Lecturer in the Department of Marketing and International Business at the Spears School of Business, Oklahoma State University, where he teaches the undergraduate marketing curriculum and develops course materials that pair the canonical principles of marketing with the practical workflows a working marketer needs in 2026.</p>
+
+    <p>His primary teaching responsibility is <strong>MKTG 4333 Marketing Research</strong>, a 16-week, three-section course that runs each spring semester. Students in MKTG 4333 work in teams on real client projects across the semester, scraping reviews, designing surveys, running experiments, and presenting their findings to the clients who briefed them. The course alternates between content sessions, where the principles and frameworks are introduced, and hands-on sessions, where teams apply those tools to their projects with the instructor present.</p>
+
+    <p>This book, <em>Core Marketing: A Practical Guide for 2026</em>, grew out of a parallel effort to rebuild the undergraduate marketing principles curriculum from first principles, with the 2026 AI stack woven through every chapter rather than appended as an afterthought.</p>
+
+    <span class="ax">02 // research and practice</span>
+    <h2><span class="sec-num">2</span> Research and Practice</h2>
+
+    <p>Affonso's research and teaching interests sit at the intersection of marketing research methodology, consumer behavior, and the practical deployment of artificial intelligence in marketing workflows. The 2026 AI stack referenced throughout this book reflects the working tools he uses in his own research and consulting practice: built-in web search inside frontier chat models, packaged Skills loaded on demand, Model Context Protocol servers that plug specialized tools into any model that speaks the protocol, and terminal-first agent runtimes that run scripts on a schedule and post their output to wherever the team works.</p>
+
+    <p>Before joining Oklahoma State, Affonso held research and applied positions that grounded his classroom material in the working practice of marketing rather than in textbook abstractions. The case studies that recur throughout this book, from Liquid Death's category-creation story to Stanley's TikTok-driven cup revival, are drawn from the same archive of working examples he uses in client engagements.</p>
+
+    <span class="ax">03 // contact and office</span>
+    <h2><span class="sec-num">3</span> Contact and Office</h2>
+
+    <p>Affonso's office is in <strong>316 Business Building</strong> on the Oklahoma State University campus in Stillwater, Oklahoma. Students enrolled in his courses can find office hours posted on the course syllabus each semester, which typically include both walk-in windows during the week and a scheduling link for longer one-on-one conversations about projects, careers, or graduate school plans.</p>
+
+    <p>Outside of teaching, Affonso writes about marketing research, AI-augmented analysis workflows, and the practical use of frontier AI tools in the working life of a marketer. Links to current writing, course materials, and contact information are maintained on the Spears School of Business faculty directory and the author's personal site.</p>
+
+    <span class="ax">04 // about this book</span>
+    <h2><span class="sec-num">4</span> About This Book</h2>
+
+    <p><em>Core Marketing: A Practical Guide for 2026</em> is the textbook for a one-semester undergraduate marketing principles course rebuilt for the 2026 AI stack. The book runs to twenty-seven chapters across seven parts, each chapter following the same pattern: a concrete hook that creates a question, a principle derived by reasoning, the tool that drops out of the principle as the obvious answer, the four-tier AI workflow that lets a marketer apply the tool on Monday morning, two or three worked cases drawn from a locked roster of six recurring brands, and a bridge into the next chapter.</p>
+
+    <p>The book treats every technical term as something a careful reader is allowed to forget. Inline tooltips in the chapters carry plain-English glosses for every acronym, framework name, vendor product, and method. A unified glossary in the back matter collects all of those terms in one place. A unified bibliography in the back matter collects every source cited across the book, deduplicated and grouped by source type.</p>
+
+    <p>The book is designed to be continuously updateable. Each chapter ships with freshness anchors that flag time-sensitive material, and the back-end build pipeline supports a one-command refresh when vendor pricing, regulatory rulings, or canonical research findings change. The intent is that a 2027 refresh, or a 2028 refresh, can be ordered against the same skeleton without rewriting the chapters from scratch.</p>
+
+    <span class="ax">05 // acknowledgments</span>
+    <h2><span class="sec-num">5</span> Acknowledgments</h2>
+
+    <p>This book exists because the students of MKTG 4333 at Oklahoma State University, across multiple cohorts, were willing to be the first audience for an opinionated rewrite of the marketing principles curriculum. Their feedback, exit tickets, project work, and questions in office hours shaped every chapter. Where the prose lands clearly, the credit belongs to them. Where it does not, the responsibility is the author's alone.</p>
+
+    <p style="font-family: var(--sans); font-size: 13px; color: var(--ink-3); margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line);">[Additional acknowledgments, dedications, and biographical details remain to be added by the author.]</p>
+
+  </main>
+</div>
+<script>
+/* Module 0a — atlas eyebrow fade-in */
+(function() {
+  var axEls = document.querySelectorAll('.ax');
+  if (!axEls.length) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(en) {
+      if (en.isIntersecting) {
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.35 });
+  axEls.forEach(function(el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
