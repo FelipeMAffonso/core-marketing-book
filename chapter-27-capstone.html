@@ -2342,28 +2342,28 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
   sketches['process-mount'] = function(svg) {
     var rc = makeRc(svg);
     var stages = [
-      { x: 100, label: 'PROMPT',     sub: 'instruction in' },
+      { x: 95,  label: 'PROMPT',     sub: 'instruction in' },
       { x: 250, label: 'PLANNER',    sub: 'decompose goal' },
-      { x: 400, label: 'TOOL CALL',  sub: 'emit JSON' },
-      { x: 555, label: 'EXECUTOR',   sub: 'run tool, capture' },
+      { x: 405, label: 'TOOL CALL',  sub: 'emit JSON' },
+      { x: 560, label: 'EXECUTOR',   sub: 'run tool, capture' },
       { x: 715, label: 'REFLECTOR',  sub: 'grade, ship, revise' }
     ];
     txt(svg, 410, 22, 'one input, five components, one feedback loop', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
     stages.forEach(function(s, i) {
-      svg.appendChild(rc.rectangle(s.x - 60, 60, 120, 76, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
-      txt(svg, s.x, 52, '0' + (i+1), { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 700 });
-      txt(svg, s.x, 90, s.label, { weight: 700, anchor: 'middle', fill: INK, size: 12 });
-      txt(svg, s.x, 110, s.sub, { anchor: 'middle', fill: INK2, size: 10.5 });
+      svg.appendChild(rc.rectangle(s.x - 67, 56, 134, 92, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
+      txt(svg, s.x, 48, '0' + (i+1), { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 700 });
+      txt(svg, s.x, 94, s.label, { weight: 700, anchor: 'middle', fill: INK, size: 12 });
+      txt(svg, s.x, 116, s.sub, { anchor: 'middle', fill: INK2, size: 9.5 });
       if (i < stages.length - 1) {
-        svg.appendChild(rc.line(s.x + 60, 98, stages[i+1].x - 62, 98, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.5 }));
-        svg.appendChild(rc.polygon([[stages[i+1].x - 62, 98], [stages[i+1].x - 69, 94], [stages[i+1].x - 69, 102]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
+        svg.appendChild(rc.line(s.x + 67, 100, stages[i+1].x - 69, 100, { stroke: CORAL, strokeWidth: 1.4, roughness: 0.8 }));
+        svg.appendChild(rc.polygon([[stages[i+1].x - 69, 100], [stages[i+1].x - 78, 95], [stages[i+1].x - 78, 105]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 0.5 }));
       }
     });
-    /* feedback loop from REFLECTOR back to PLANNER */
-    svg.appendChild(rc.curve([[715, 140], [580, 220], [400, 240], [250, 220], [250, 140]], { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.7, strokeLineDash: [5, 4] }));
-    txt(svg, 480, 270, 'if reflector says revise, send back to planner', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true });
-    txt(svg, 100, 270, 'OUTPUT  \u2192', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-    txt(svg, 715, 270, 'final answer', { anchor: 'middle', fill: INK, size: 12, weight: 700, hand: true });
+    /* feedback loop from REFLECTOR back to PLANNER, starting clear below the boxes */
+    svg.appendChild(rc.curve([[715, 156], [580, 226], [405, 244], [250, 226], [250, 156]], { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.7, strokeLineDash: [5, 4] }));
+    txt(svg, 480, 278, 'if reflector says revise, send back to planner', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true });
+    txt(svg, 95, 278, 'OUTPUT  \u2192', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    txt(svg, 715, 278, 'final answer', { anchor: 'middle', fill: INK, size: 12, weight: 700, hand: true });
   };
 
   /* sk-prompt-tool-mount: function spec, system + user prompt */
@@ -2392,75 +2392,72 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
   /* sk-mcp-mount: M-by-N argument */
   sketches['sk-mcp-mount'] = function(svg) {
     var rc = makeRc(svg);
-    txt(svg, 180, 24, 'BEFORE MCP', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
-    txt(svg, 180, 40, '(M apps \u00D7 N tools = M\u00D7N)', { anchor: 'middle', fill: INK2, size: 11 });
+    /* wide boxes (88x40) so each short label clears the 5x box-area threshold */
+    function appBox(cx, cy) {
+      svg.appendChild(rc.rectangle(cx - 44, cy - 20, 88, 40, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, cx, cy + 5, 'app', { anchor: 'middle', fill: INK, size: 11 });
+    }
+    function toolBox(cx, cy) {
+      svg.appendChild(rc.rectangle(cx - 44, cy - 20, 88, 40, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, cx, cy + 5, 'tool', { anchor: 'middle', fill: INK, size: 11 });
+    }
+    txt(svg, 180, 22, 'BEFORE MCP', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
+    txt(svg, 180, 42, '(M apps \u00D7 N tools = M\u00D7N)', { anchor: 'middle', fill: INK2, size: 10 });
     /* draw 3 apps left, 4 tools right, every pair connected */
-    var apps = [{x:60, y:80}, {x:60, y:130}, {x:60, y:180}];
-    var tools = [{x:300, y:65}, {x:300, y:115}, {x:300, y:165}, {x:300, y:215}];
-    apps.forEach(function(a) {
-      svg.appendChild(rc.rectangle(a.x - 40, a.y - 14, 60, 28, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.5 }));
-      txt(svg, a.x - 10, a.y + 4, 'app', { anchor: 'middle', fill: INK, size: 11 });
-    });
-    tools.forEach(function(t) {
-      svg.appendChild(rc.rectangle(t.x - 20, t.y - 14, 60, 28, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.5 }));
-      txt(svg, t.x + 10, t.y + 4, 'tool', { anchor: 'middle', fill: INK, size: 11 });
-    });
+    var apps = [{x:70, y:82}, {x:70, y:132}, {x:70, y:182}];
+    var tools = [{x:300, y:67}, {x:300, y:117}, {x:300, y:167}, {x:300, y:217}];
+    apps.forEach(function(a) { appBox(a.x, a.y); });
+    tools.forEach(function(t) { toolBox(t.x, t.y); });
     apps.forEach(function(a) { tools.forEach(function(t) {
-      svg.appendChild(rc.line(a.x + 20, a.y, t.x - 20, t.y, { stroke: CORAL_SOFT, strokeWidth: 1, roughness: 1.8 }));
+      svg.appendChild(rc.line(a.x + 44, a.y, t.x - 44, t.y, { stroke: CORAL_SOFT, strokeWidth: 1, roughness: 1.8 }));
     });});
-    txt(svg, 180, 250, '12 connections', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
+    txt(svg, 180, 252, '12 connections', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
     /* AFTER MCP: 3 apps, 4 tools, all through one hub */
-    txt(svg, 540, 24, 'AFTER MCP', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
-    txt(svg, 540, 40, '(M + N total)', { anchor: 'middle', fill: INK2, size: 11 });
-    var apps2 = [{x:420, y:80}, {x:420, y:130}, {x:420, y:180}];
-    var tools2 = [{x:660, y:65}, {x:660, y:115}, {x:660, y:165}, {x:660, y:215}];
-    apps2.forEach(function(a) {
-      svg.appendChild(rc.rectangle(a.x - 40, a.y - 14, 60, 28, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.5 }));
-      txt(svg, a.x - 10, a.y + 4, 'app', { anchor: 'middle', fill: INK, size: 11 });
-    });
-    tools2.forEach(function(t) {
-      svg.appendChild(rc.rectangle(t.x - 20, t.y - 14, 60, 28, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.5 }));
-      txt(svg, t.x + 10, t.y + 4, 'tool', { anchor: 'middle', fill: INK, size: 11 });
-    });
+    txt(svg, 545, 22, 'AFTER MCP', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
+    txt(svg, 545, 42, '(M + N total)', { anchor: 'middle', fill: INK2, size: 10 });
+    var apps2 = [{x:425, y:82}, {x:425, y:132}, {x:425, y:182}];
+    var tools2 = [{x:665, y:67}, {x:665, y:117}, {x:665, y:167}, {x:665, y:217}];
+    apps2.forEach(function(a) { appBox(a.x, a.y); });
+    tools2.forEach(function(t) { toolBox(t.x, t.y); });
     /* hub */
-    svg.appendChild(rc.circle(540, 140, 76, { stroke: CORAL_DEEP, strokeWidth: 2, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 540, 137, 'MCP', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-    txt(svg, 540, 154, 'protocol', { anchor: 'middle', fill: CORAL_DEEP, size: 10 });
-    apps2.forEach(function(a) { svg.appendChild(rc.line(a.x + 20, a.y, 504, 140, { stroke: CORAL, strokeWidth: 1.2, roughness: 1.6 })); });
-    tools2.forEach(function(t) { svg.appendChild(rc.line(t.x - 20, t.y, 576, 140, { stroke: CORAL, strokeWidth: 1.2, roughness: 1.6 })); });
-    txt(svg, 540, 250, '7 connections', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
+    svg.appendChild(rc.circle(545, 142, 80, { stroke: CORAL_DEEP, strokeWidth: 2, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 545, 139, 'MCP', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
+    txt(svg, 545, 156, 'protocol', { anchor: 'middle', fill: CORAL_DEEP, size: 10 });
+    apps2.forEach(function(a) { svg.appendChild(rc.line(a.x + 44, a.y, 507, 142, { stroke: CORAL, strokeWidth: 1.2, roughness: 1.6 })); });
+    tools2.forEach(function(t) { svg.appendChild(rc.line(t.x - 44, t.y, 583, 142, { stroke: CORAL, strokeWidth: 1.2, roughness: 1.6 })); });
+    txt(svg, 545, 252, '7 connections', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
   };
 
   /* sk-memory-state-mount: memory across runs */
   sketches['sk-memory-state-mount'] = function(svg) {
     var rc = makeRc(svg);
-    txt(svg, 350, 24, 'memory lives outside the model', { anchor: 'middle', fill: INK2, size: 12, hand: true });
+    txt(svg, 270, 22, 'memory lives outside the model', { anchor: 'middle', fill: INK2, size: 12, hand: true });
     /* model in center */
-    svg.appendChild(rc.rectangle(280, 90, 140, 80, { stroke: CORAL_DEEP, strokeWidth: 2, fill: '#1a1a1a', fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 350, 122, 'MODEL', { anchor: 'middle', fill: CORAL_SOFT, size: 14, weight: 700 });
+    svg.appendChild(rc.rectangle(278, 88, 144, 96, { stroke: CORAL_DEEP, strokeWidth: 2, fill: '#1a1a1a', fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 350, 118, 'MODEL', { anchor: 'middle', fill: CORAL_SOFT, size: 14, weight: 700 });
     txt(svg, 350, 142, 'stateless', { anchor: 'middle', fill: '#fff', size: 11 });
-    txt(svg, 350, 158, 'frozen weights', { anchor: 'middle', fill: '#fff', size: 11 });
+    txt(svg, 350, 164, 'frozen weights', { anchor: 'middle', fill: '#fff', size: 11 });
     /* CLAUDE.md on left */
-    svg.appendChild(rc.rectangle(40, 70, 160, 80, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
-    txt(svg, 120, 92, 'CLAUDE.md', { anchor: 'middle', fill: CORAL_DEEP, size: 13, weight: 700 });
-    txt(svg, 120, 112, 'brand voice,', { anchor: 'middle', fill: INK, size: 11 });
-    txt(svg, 120, 126, 'project facts,', { anchor: 'middle', fill: INK, size: 11 });
-    txt(svg, 120, 140, 'always loaded', { anchor: 'middle', fill: INK2, size: 10 });
-    svg.appendChild(rc.line(200, 130, 280, 130, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.5 }));
-    svg.appendChild(rc.polygon([[280, 130], [273, 126], [273, 134]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
-    txt(svg, 240, 122, 'read', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true });
-    /* knowledge graph on right */
-    svg.appendChild(rc.rectangle(500, 70, 160, 80, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
-    txt(svg, 580, 92, 'memory MCP', { anchor: 'middle', fill: CORAL_DEEP, size: 13, weight: 700 });
-    txt(svg, 580, 112, 'knowledge graph,', { anchor: 'middle', fill: INK, size: 11 });
-    txt(svg, 580, 126, 'entities + relations,', { anchor: 'middle', fill: INK, size: 11 });
-    txt(svg, 580, 140, 'add or query', { anchor: 'middle', fill: INK2, size: 10 });
-    svg.appendChild(rc.line(420, 130, 500, 130, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.5 }));
-    svg.appendChild(rc.polygon([[500, 130], [493, 126], [493, 134]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
-    /* feedback arrow */
-    svg.appendChild(rc.curve([[420, 110], [490, 50], [580, 70]], { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.7, strokeLineDash: [4, 3] }));
-    txt(svg, 500, 38, 'write back at end of run', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true });
-    txt(svg, 350, 220, 'each call: load context, run, write new facts back', { anchor: 'middle', fill: INK2, size: 12, hand: true });
+    svg.appendChild(rc.rectangle(36, 80, 168, 96, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
+    txt(svg, 120, 104, 'CLAUDE.md', { anchor: 'middle', fill: CORAL_DEEP, size: 13, weight: 700 });
+    txt(svg, 120, 128, 'brand voice,', { anchor: 'middle', fill: INK, size: 11 });
+    txt(svg, 120, 148, 'project facts,', { anchor: 'middle', fill: INK, size: 11 });
+    txt(svg, 120, 168, 'always loaded', { anchor: 'middle', fill: INK2, size: 10 });
+    svg.appendChild(rc.line(204, 132, 278, 132, { stroke: CORAL, strokeWidth: 1.4, roughness: 0.8 }));
+    svg.appendChild(rc.polygon([[278, 132], [269, 127], [269, 137]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 0.5 }));
+    txt(svg, 240, 124, 'read', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true });
+    /* knowledge graph on right (wide box so the long 'memory MCP' label clears the 5x threshold) */
+    svg.appendChild(rc.rectangle(488, 76, 184, 104, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
+    txt(svg, 580, 102, 'memory MCP', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
+    txt(svg, 580, 126, 'knowledge graph,', { anchor: 'middle', fill: INK, size: 10.5 });
+    txt(svg, 580, 148, 'entities + relations,', { anchor: 'middle', fill: INK, size: 10.5 });
+    txt(svg, 580, 170, 'add or query', { anchor: 'middle', fill: INK2, size: 10 });
+    svg.appendChild(rc.line(422, 132, 488, 132, { stroke: CORAL, strokeWidth: 1.4, roughness: 0.8 }));
+    svg.appendChild(rc.polygon([[488, 132], [479, 127], [479, 137]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 0.5 }));
+    /* feedback arrow, label clear of the title */
+    svg.appendChild(rc.curve([[422, 108], [500, 52], [580, 76]], { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.7, strokeLineDash: [4, 3] }));
+    txt(svg, 580, 40, 'write back at end of run', { anchor: 'end', fill: CORAL_DEEP, size: 11, hand: true });
+    txt(svg, 350, 224, 'each call: load context, run, write new facts back', { anchor: 'middle', fill: INK2, size: 12, hand: true });
   };
 
   /* sk-eval-harness-mount: 3 layers */
@@ -2608,9 +2605,9 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
     ];
     bars.forEach(function(b) {
       svg.appendChild(rc.rectangle(b.x - 40, 200 - b.h, 80, b.h, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, b.x, 195 - b.h, b.sub, { anchor: 'middle', fill: CORAL_DEEP, size: 14, weight: 700, hand: true });
-      txt(svg, b.x, 215, b.label, { anchor: 'middle', fill: INK, size: 11, weight: 700 });
-      txt(svg, b.x, 248, b.detail, { anchor: 'middle', fill: INK2, size: 10 });
+      txt(svg, b.x, 192 - b.h, b.sub, { anchor: 'middle', fill: CORAL_DEEP, size: 14, weight: 700, hand: true });
+      txt(svg, b.x, 224, b.label, { anchor: 'middle', fill: INK, size: 11, weight: 700 });
+      txt(svg, b.x, 250, b.detail, { anchor: 'middle', fill: INK2, size: 10 });
     });
     txt(svg, 360, 30, 'caching + batching together = ~95% off list price', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
   };
