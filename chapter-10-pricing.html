@@ -151,7 +151,7 @@
 <p id="anno-leverage">Picture a firm with $100 of revenue and $97 of cost. The $3 left over is profit, a 3 percent <span class="term" data-tt="Net margin is the share of revenue that a firm keeps as profit after every cost, not just the cost of goods sold. A firm with $100 of revenue and $97 of cost keeps $3, a 3 percent net margin. U.S. grocery chains run on roughly 3 percent, Apple's hardware closer to 25 percent, and pure-software businesses 30 to 50 percent because the cost of one more copy rounds to zero.">net margin</span>, the thin sliver grocery chains and warehouse clubs live with every quarter. Now suppose the firm raises its price by just 1 percent and holds cost constant. Revenue rises to $101, cost stays at $97, and profit jumps from $3 to $4. That is a 33 percent increase in profit on a 1 percent change in price, and it is what people mean when they call pricing the highest-leverage decision in marketing.<sup class="cite" data-cite="ref-2"></sup> Matching that same dollar of profit through volume would take 33 percent more units, because every extra unit drags its proportional share of marketing, distribution, and operations cost. <strong>A 1 percent price move beats a 1 percent volume move by an order of magnitude</strong>, yet most pricing teams are paid to manage volume.<sup class="cite" data-cite="ref-3"></sup></p>
 
 <figure class="sketch">
-  <div class="mount" id="sk-pricing-leverage-mount" data-w="660" data-h="270"></div>
+  <div class="mount" id="sk-pricing-leverage-mount" data-w="660" data-h="285"></div>
 </figure>
 
 <figure class="sketch">
@@ -291,7 +291,7 @@
 
 <figure class="sketch">
   <figcaption>S-curve of cumulative adoption from Bass's diffusion model. A slow innovator start, a steep imitation cascade, and a saturation tail; a high q/p favors a penetration launch and a low q/p favors skimming.</figcaption>
-  <div class="mount" id="sk-bass-curve-mount" data-w="660" data-h="240"></div>
+  <div class="mount" id="sk-bass-curve-mount" data-w="660" data-h="252"></div>
 </figure>
 
 <div class="def">
@@ -785,7 +785,7 @@
 <p>When the marginal cost of one more user falls to near zero, the firm's pricing problem stops being per-unit cost recovery and becomes acquiring users who would not pay anything to try the product. The model works only when the converted cohort covers fixed development and acquisition spend across the whole free-plus-paid population, which makes freemium a conversion problem before it is a pricing one.<sup class="cite" data-cite="ref-40"></sup> Conversion across leading platforms shows the spread. Spotify ended 2024 with roughly 40 percent of its near-600-million monthly users on a paid tier, an exceptionally high rate that reflects an integrated free-and-paid app. Duolingo Super converts around 8 percent and Notion around 4 percent. Slack and Dropbox report team conversion of 25 to 30 percent once a workspace crosses an active-member threshold, the network-effect lift that separates team-dynamic freemium from purely individual use.<sup class="cite" data-cite="ref-39"></sup><sup class="cite" data-cite="ref-40"></sup></p>
 
 <figure class="sketch" aria-label="The freemium conversion funnel.">
-  <div class="mount" id="sk-freemium-funnel-mount" data-w="700" data-h="240"></div>
+  <div class="mount" id="sk-freemium-funnel-mount" data-w="700" data-h="282"></div>
   <figcaption>Freemium is a conversion funnel. The free tier acquires users at almost no cost, the trial qualifies them, and the paid conversion is the lever that decides whether the model funds itself, not the headline price.</figcaption>
 </figure>
 
@@ -817,11 +817,11 @@
   <div class="fm-grid">
     <div class="fm-chart">
       <h4>paid users by month</h4>
-      <svg id="fm-chart-svg" viewBox="0 0 480 220" role="img" aria-label="Paid users by month line chart" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block;">
+      <svg id="fm-chart-svg" viewBox="0 0 480 232" role="img" aria-label="Paid users by month line chart" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block;">
         <g id="fm-chart-axis" font-family="Inter, sans-serif" font-size="10" fill="#888">
           <line x1="50" y1="190" x2="460" y2="190" stroke="#1a1a1a" stroke-width="1"/>
           <line x1="50" y1="20" x2="50" y2="190" stroke="#1a1a1a" stroke-width="1"/>
-          <text x="255" y="212" text-anchor="middle" font-size="11" fill="#1a1a1a" font-weight="600">month</text>
+          <text x="255" y="223" text-anchor="middle" font-size="11" fill="#1a1a1a" font-weight="600">month</text>
           <text x="20" y="105" text-anchor="middle" transform="rotate(-90 20 105)" font-size="11" fill="#1a1a1a" font-weight="600">paid users</text>
         </g>
         <g id="fm-chart-grid"></g>
@@ -1479,24 +1479,25 @@ return '$' + usd.toFixed(4);
   sketches['process-mount'] = function(svg) {
     const rc = makeRc(svg);
     txt(svg, 360, 22, 'four ways to set a price', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-    svg.appendChild(rc.circle(360, 150, 200, { stroke: CORAL, strokeWidth: 1.8, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.6 }));
-    svg.appendChild(rc.circle(360, 80, 46, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.6 }));
-    svg.appendChild(rc.circle(360, 220, 46, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.6 }));
-    svg.appendChild(rc.circle(250, 150, 46, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.6 }));
-    svg.appendChild(rc.circle(470, 150, 46, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.6 }));
-    svg.appendChild(rc.line(335, 205, 275, 175, { stroke: CORAL, strokeWidth: 1.6, roughness: 1.7 }));
-    svg.appendChild(rc.polygon([[275, 175], [287, 173], [283, 185]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.4 }));
-    svg.appendChild(rc.line(275, 130, 335, 100, { stroke: CORAL, strokeWidth: 1.6, roughness: 1.7 }));
-    svg.appendChild(rc.polygon([[335, 100], [328, 110], [340, 108]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 360, 84, 'value', { anchor: 'middle', fill: INK, size: 9, weight: 700 });
-    txt(svg, 360, 224, 'cost', { anchor: 'middle', fill: INK, size: 9, weight: 700 });
-    txt(svg, 250, 154, 'competitor', { anchor: 'middle', fill: INK, size: 7.5, weight: 700 });
-    txt(svg, 470, 154, 'customer', { anchor: 'middle', fill: INK, size: 8, weight: 700 });
-    txt(svg, 600, 100, 'typical sequence', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
-    txt(svg, 600, 118, 'cost \u2192 comp \u2192 value', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true });
-    txt(svg, 100, 270, 'cost sets the floor', { fill: INK2, size: 11, hand: true });
-    txt(svg, 360, 270, 'competitor frames it', { fill: INK2, size: 11, hand: true, anchor: 'middle' });
-    txt(svg, 620, 270, 'value sets the ceiling', { fill: INK2, size: 11, hand: true, anchor: 'middle' });
+    svg.appendChild(rc.circle(360, 148, 196, { stroke: CORAL, strokeWidth: 1.8, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.6 }));
+    // satellite nodes enlarged so each label sits clear of its circle border
+    svg.appendChild(rc.circle(360, 78, 60, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.6 }));
+    svg.appendChild(rc.circle(360, 218, 60, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.6 }));
+    svg.appendChild(rc.circle(246, 148, 74, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.6 }));
+    svg.appendChild(rc.circle(474, 148, 74, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.6 }));
+    svg.appendChild(rc.line(330, 200, 285, 172, { stroke: CORAL, strokeWidth: 1.6, roughness: 1.6 }));
+    svg.appendChild(rc.polygon([[285, 172], [297, 170], [293, 182]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.4 }));
+    svg.appendChild(rc.line(285, 124, 330, 96, { stroke: CORAL, strokeWidth: 1.6, roughness: 1.6 }));
+    svg.appendChild(rc.polygon([[330, 96], [323, 106], [335, 104]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 360, 82, 'value', { anchor: 'middle', fill: INK, size: 9, weight: 700 });
+    txt(svg, 360, 222, 'cost', { anchor: 'middle', fill: INK, size: 9, weight: 700 });
+    txt(svg, 246, 152, 'competitor', { anchor: 'middle', fill: INK, size: 8, weight: 700 });
+    txt(svg, 474, 152, 'customer', { anchor: 'middle', fill: INK, size: 8, weight: 700 });
+    txt(svg, 610, 96, 'typical sequence', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+    txt(svg, 610, 118, 'cost \u2192 comp \u2192 value', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true });
+    txt(svg, 110, 280, 'cost sets the floor', { fill: INK2, size: 11, hand: true });
+    txt(svg, 360, 280, 'competitor frames it', { fill: INK2, size: 11, hand: true, anchor: 'middle' });
+    txt(svg, 610, 280, 'value sets the ceiling', { fill: INK2, size: 11, hand: true, anchor: 'middle' });
   };
 
   sketches['sk-pricing-leverage-mount'] = function(svg) {
@@ -1510,12 +1511,12 @@ return '$' + usd.toFixed(4);
     svg.appendChild(rc.line(40, 200, 620, 200, { stroke: INK2, strokeWidth: 1, roughness: 1.5 }));
     txt(svg, 30, 204, '0', { anchor: 'end', fill: INK2, size: 10 });
     groups.forEach(g => {
-      svg.appendChild(rc.rectangle(g.x - 50, 200 - g.barH, 100, g.barH, { stroke: g.color, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'hachure', hachureGap: 6, hachureAngle: -45, roughness: 1.6 }));
+      svg.appendChild(rc.rectangle(g.x - 50, 200 - g.barH, 100, g.barH, { stroke: g.color, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'hachure', hachureGap: 6, hachureAngle: -45, roughness: 1.1 }));
       txt(svg, g.x, 200 - g.barH - 10, g.lift, { anchor: 'middle', fill: g.color, size: 14, weight: 800, hand: true });
-      txt(svg, g.x, 218, g.label, { anchor: 'middle', fill: INK, size: 11, weight: 700 });
-      txt(svg, g.x, 232, g.sub, { anchor: 'middle', fill: INK2, size: 9.5 });
+      txt(svg, g.x, 221, g.label, { anchor: 'middle', fill: INK, size: 11, weight: 700 });
+      txt(svg, g.x, 239, g.sub, { anchor: 'middle', fill: INK2, size: 9.5 });
     });
-    txt(svg, 330, 218 + 30, 'price beats volume by ~3x at a 3% margin', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+    txt(svg, 330, 263, 'price beats volume by ~3x at a 3% margin', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
   };
 
   sketches['sk-bass-curve-mount'] = function(svg) {
@@ -1526,14 +1527,14 @@ return '$' + usd.toFixed(4);
     txt(svg, 330, 22, 'cumulative adopters over time: the S-curve Bass put numbers on', { anchor: 'middle', fill: INK2, size: 11, hand: true });
 
     // axes
-    svg.appendChild(rc.line(60, 200, 620, 200, { stroke: INK, strokeWidth: 1.2, roughness: 1.4 }));
-    svg.appendChild(rc.line(60, 50, 60, 200, { stroke: INK, strokeWidth: 1.2, roughness: 1.4 }));
+    svg.appendChild(rc.line(60, 200, 620, 200, { stroke: INK, strokeWidth: 1.2, roughness: 0.8 }));
+    svg.appendChild(rc.line(60, 50, 60, 200, { stroke: INK, strokeWidth: 1.2, roughness: 0.8 }));
     // y-axis ceiling reference (market saturation line)
     svg.appendChild(rc.line(60, 60, 620, 60, { stroke: INK3, strokeWidth: 0.8, strokeLineDash: [4, 4], roughness: 0.8 }));
     txt(svg, 620, 50, 'market ceiling', { anchor: 'end', fill: INK3, size: 10, hand: true });
 
     // axis labels
-    txt(svg, 340, 230, 'time (weeks)  \u2192', { anchor: 'middle', fill: INK, size: 11, weight: 600 });
+    txt(svg, 330, 235, 'time (weeks)  \u2192', { anchor: 'middle', fill: INK, size: 11, weight: 600 });
     txt(svg, 22, 125, 'cumulative adopters  \u2192', { anchor: 'middle', fill: INK, size: 11, weight: 600, transform: 'rotate(-90 22 125)' });
 
     // S-curve: three coral path segments to let each zone breathe visually.
@@ -1547,19 +1548,19 @@ return '$' + usd.toFixed(4);
     svg.appendChild(rc.curve([[522, 78], [560, 72], [590, 67], [620, 64]],
       { stroke: CORAL, strokeWidth: 2.4, roughness: 1.8 }));
 
-    // zone divider tick marks on x-axis (sketched, light)
-    svg.appendChild(rc.line(258, 200, 258, 206, { stroke: INK3, strokeWidth: 0.8, roughness: 0.8 }));
-    svg.appendChild(rc.line(522, 200, 522, 206, { stroke: INK3, strokeWidth: 0.8, roughness: 0.8 }));
+    // zone divider tick marks below the x-axis (sketched, light)
+    svg.appendChild(rc.line(258, 200, 258, 208, { stroke: INK3, strokeWidth: 0.8, roughness: 0.5 }));
+    svg.appendChild(rc.line(522, 200, 522, 208, { stroke: INK3, strokeWidth: 0.8, roughness: 0.5 }));
 
-    // hand-written zone annotations beneath the curve
-    txt(svg, 159, 195, 'slow:', { anchor: 'middle', fill: INK2, size: 12, hand: true, weight: 600 });
-    txt(svg, 159, 210, 'only innovators', { anchor: 'middle', fill: INK2, size: 12, hand: true });
-    txt(svg, 390, 215, 'steep: imitators converting friends', { anchor: 'middle', fill: CORAL_DEEP, size: 12.5, hand: true, weight: 700 });
-    txt(svg, 571, 215, 'flat: pool runs dry', { anchor: 'middle', fill: INK2, size: 12, hand: true });
+    // hand-written zone annotations, dropped clear of the axis line and the curve
+    txt(svg, 108, 226, 'slow:', { anchor: 'middle', fill: INK2, size: 10.5, hand: true, weight: 600 });
+    txt(svg, 178, 226, 'only innovators', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
+    txt(svg, 388, 182, 'steep: imitators converting friends', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
+    txt(svg, 578, 226, 'flat: pool runs dry', { anchor: 'middle', fill: INK2, size: 11, hand: true });
 
     // call-out arrow + label pointing at the steep zone
-    svg.appendChild(rc.line(390, 105, 390, 145, { stroke: CORAL_DEEP, strokeWidth: 1.2, roughness: 1.4 }));
-    txt(svg, 390, 100, 'word of mouth lights up', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+    svg.appendChild(rc.line(390, 108, 390, 145, { stroke: CORAL_DEEP, strokeWidth: 1.2, roughness: 0.9 }));
+    txt(svg, 390, 94, 'word of mouth lights up', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
   };
 
   sketches['sk-evc-mount'] = function(svg) {
@@ -1610,10 +1611,10 @@ return '$' + usd.toFixed(4);
     });
     svg.appendChild(rc.line(380, 40, 380, 180, { stroke: CORAL_DEEP, strokeWidth: 2.2, roughness: 1.5 }));
     txt(svg, 388, 50, 'price set here', { fill: CORAL_DEEP, size: 11, weight: 700, hand: true });
-    txt(svg, 200, 90, 'walk away', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-    txt(svg, 200, 105, '(WTP < price)', { anchor: 'middle', fill: INK2, size: 10 });
-    txt(svg, 530, 90, 'buy', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700, hand: true });
-    txt(svg, 530, 106, '(WTP \u2265 price)', { anchor: 'middle', fill: INK2, size: 10 });
+    txt(svg, 152, 74, 'walk away', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    txt(svg, 152, 94, '(WTP < price)', { anchor: 'middle', fill: INK2, size: 10 });
+    txt(svg, 542, 74, 'buy', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700, hand: true });
+    txt(svg, 542, 94, '(WTP \u2265 price)', { anchor: 'middle', fill: INK2, size: 10 });
   };
 
   sketches['sk-elasticity-mount'] = function(svg) {
@@ -1642,13 +1643,13 @@ return '$' + usd.toFixed(4);
     svg.appendChild(rc.polygon([[100, 60], [600, 60], [430, 200], [270, 200]], { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'hachure', hachureGap: 8, hachureAngle: -30, roughness: 1.5 }));
     txt(svg, 350, 90, 'free users (95-98%)', { anchor: 'middle', fill: INK, size: 13, weight: 700 });
     txt(svg, 350, 108, 'near-zero marginal cost', { anchor: 'middle', fill: INK2, size: 11 });
-    svg.appendChild(rc.polygon([[270, 200], [430, 200], [380, 240], [320, 240]], { stroke: CORAL_DEEP, strokeWidth: 2, fill: CORAL_SOFT, fillStyle: 'solid', roughness: 1.5 }));
-    txt(svg, 350, 222, 'paid (2-8%)', { anchor: 'middle', fill: INK, size: 12, weight: 800 });
-    txt(svg, 90, 130, 'Spotify: ~40%', { fill: INK2, size: 11, hand: true });
-    txt(svg, 90, 145, 'Duolingo: ~8%', { fill: INK2, size: 11, hand: true });
-    txt(svg, 90, 160, 'Notion: ~4%', { fill: INK2, size: 11, hand: true });
-    txt(svg, 540, 130, 'high LTV per user', { fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
-    txt(svg, 540, 145, 'subsidizes the rest', { fill: INK2, size: 11, hand: true });
+    svg.appendChild(rc.polygon([[270, 200], [430, 200], [380, 244], [320, 244]], { stroke: CORAL_DEEP, strokeWidth: 2, fill: CORAL_SOFT, fillStyle: 'solid', roughness: 1.5 }));
+    txt(svg, 350, 266, 'paid (2-8%)', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 800 });
+    txt(svg, 78, 128, 'Spotify: ~40%', { fill: INK2, size: 11, hand: true });
+    txt(svg, 78, 150, 'Duolingo: ~8%', { fill: INK2, size: 11, hand: true });
+    txt(svg, 78, 172, 'Notion: ~4%', { fill: INK2, size: 11, hand: true });
+    txt(svg, 540, 128, 'high LTV per user', { fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+    txt(svg, 540, 150, 'subsidizes the rest', { fill: INK2, size: 11, hand: true });
   };
 
   /* ---------- sk-six-principles-mount: 3x2 grid of dynamic-pricing audit principles ---------- */
@@ -1659,16 +1660,16 @@ return '$' + usd.toFixed(4);
     txt(svg, 200, 76, 'cost-justified increase', { anchor: 'middle', fill: CORAL_DEEP, size: 13, weight: 700 });
     txt(svg, 200, 100, '"input prices rose 12%"', { anchor: 'middle', fill: INK, size: 11, hand: true });
     txt(svg, 200, 130, '\u2192 fair', { anchor: 'middle', fill: CORAL_DEEP, size: 16, weight: 800 });
-    txt(svg, 200, 156, 'buyers tolerate', { anchor: 'middle', fill: INK2, size: 11 });
-    txt(svg, 200, 172, 'Netflix content cost', { anchor: 'middle', fill: INK2, size: 10, hand: true });
-    txt(svg, 200, 188, 'Patagonia material cost', { anchor: 'middle', fill: INK2, size: 10, hand: true });
+    txt(svg, 200, 154, 'buyers tolerate', { anchor: 'middle', fill: INK2, size: 11 });
+    txt(svg, 200, 176, 'Netflix content cost', { anchor: 'middle', fill: INK2, size: 10, hand: true });
+    txt(svg, 200, 196, 'Patagonia material cost', { anchor: 'middle', fill: INK2, size: 10, hand: true });
     svg.appendChild(rc.rectangle(380, 50, 320, 170, { stroke: CORAL_DEEP, strokeWidth: 2, fill: '#fff', fillStyle: 'hachure', hachureGap: 5, hachureAngle: 45, roughness: 1.5 }));
     txt(svg, 540, 76, 'demand-justified increase', { anchor: 'middle', fill: CORAL_DEEP, size: 13, weight: 700 });
     txt(svg, 540, 100, '"customers will pay more"', { anchor: 'middle', fill: INK, size: 11, hand: true });
     txt(svg, 540, 130, '\u2192 unfair', { anchor: 'middle', fill: CORAL_DEEP, size: 16, weight: 800 });
-    txt(svg, 540, 156, 'brand absorbs damage', { anchor: 'middle', fill: INK2, size: 11 });
-    txt(svg, 540, 172, 'Uber surge', { anchor: 'middle', fill: INK2, size: 10, hand: true });
-    txt(svg, 540, 188, 'EpiPen / Daraprim', { anchor: 'middle', fill: INK2, size: 10, hand: true });
+    txt(svg, 540, 154, 'brand absorbs damage', { anchor: 'middle', fill: INK2, size: 11 });
+    txt(svg, 540, 176, 'Uber surge', { anchor: 'middle', fill: INK2, size: 10, hand: true });
+    txt(svg, 540, 196, 'EpiPen / Daraprim', { anchor: 'middle', fill: INK2, size: 10, hand: true });
   };
 
   sketches['sk-epipen-mount'] = function(svg) {
@@ -1676,7 +1677,7 @@ return '$' + usd.toFixed(4);
     txt(svg, 350, 22, 'EpiPen wholesale price 2007-2016', { anchor: 'middle', fill: INK2, size: 11, hand: true });
     svg.appendChild(rc.line(80, 200, 660, 200, { stroke: INK, strokeWidth: 1.2, roughness: 1.4 }));
     svg.appendChild(rc.line(80, 50, 80, 200, { stroke: INK, strokeWidth: 1.2, roughness: 1.4 }));
-    txt(svg, 365, 230, 'year', { anchor: 'middle', fill: INK, size: 11, weight: 600 });
+    txt(svg, 365, 238, 'year', { anchor: 'middle', fill: INK, size: 11, weight: 600 });
     txt(svg, 35, 130, 'price ($)', { anchor: 'middle', fill: INK, size: 11, weight: 600, transform: 'rotate(-90 35 130)' });
     txt(svg, 100, 218, '2007', { anchor: 'middle', fill: INK2, size: 10 });
     txt(svg, 360, 218, '2012', { anchor: 'middle', fill: INK2, size: 10 });
@@ -1686,11 +1687,11 @@ return '$' + usd.toFixed(4);
     svg.appendChild(rc.curve([[100, 195], [200, 188], [300, 175], [400, 145], [500, 100], [620, 60]], { stroke: CORAL_DEEP, strokeWidth: 2.4, roughness: 1.6 }));
     svg.appendChild(rc.circle(100, 195, 7, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.5 }));
     svg.appendChild(rc.circle(620, 60, 8, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.5 }));
-    txt(svg, 540, 90, 'Senate hearing', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
-    txt(svg, 540, 106, '(2016)', { anchor: 'middle', fill: INK2, size: 10 });
-    txt(svg, 230, 100, '+500%', { anchor: 'middle', fill: CORAL_DEEP, size: 16, weight: 800, hand: true });
+    txt(svg, 540, 88, 'Senate hearing', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+    txt(svg, 540, 108, '(2016)', { anchor: 'middle', fill: INK2, size: 10 });
+    txt(svg, 230, 98, '+500%', { anchor: 'middle', fill: CORAL_DEEP, size: 16, weight: 800, hand: true });
     txt(svg, 230, 120, 'over 9 years', { anchor: 'middle', fill: INK2, size: 11 });
-    txt(svg, 230, 140, 'fairness ceiling broken', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+    txt(svg, 230, 142, 'fairness ceiling broken', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
   };
 
   // ---------- Five pricing-capture barriers ----------
@@ -1798,9 +1799,9 @@ return '$' + usd.toFixed(4);
       } else {
         // Floating leak bar: hachured coral, sitting between previous top and this bottom
         svg.appendChild(rc.rectangle(c.x, yTopBar, c.w, barH, {
-          stroke: CORAL, strokeWidth: 1.5, fill: CORAL_SOFT, fillStyle: 'hachure', hachureGap: 5, hachureAngle: -45, roughness: 1.5
+          stroke: CORAL, strokeWidth: 1.5, fill: CORAL_SOFT, fillStyle: 'hachure', hachureGap: 5, hachureAngle: -45, roughness: 1.0
         }));
-        txt(svg, c.x + c.w / 2, yTopBar - 6, c.sub, { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700, hand: true });
+        txt(svg, c.x + c.w / 2, yTopBar - 11, c.sub, { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700, hand: true });
         txt(svg, c.x + c.w / 2, yZero + 15, c.label, { anchor: 'middle', fill: INK, size: 9, weight: 600 });
         // notes staggered over two depths so adjacent descriptions never collide
         txt(svg, c.x + c.w / 2, yZero + ((i % 2) ? 32 : 50), c.note, { anchor: 'middle', fill: INK2, size: 8.5 });
@@ -1872,9 +1873,9 @@ return '$' + usd.toFixed(4);
       svg.appendChild(rc.line(70, 60, 70, 195, { stroke: INK3, strokeWidth: 0.8, strokeLineDash: [4, 4], roughness: 0.9 }));
       txt(svg, 70, 212, 'start: $3 profit', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
 
-      svg.appendChild(rc.rectangle(540, 92, 92, 56, { stroke: CORAL_DEEP, strokeWidth: 1.8, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
-      txt(svg, 586, 116, '+$1', { anchor: 'middle', fill: CORAL_DEEP, size: 16, weight: 800, hand: true });
-      txt(svg, 586, 134, 'profit', { anchor: 'middle', fill: INK2, size: 10 });
+      svg.appendChild(rc.rectangle(536, 86, 100, 68, { stroke: CORAL_DEEP, strokeWidth: 1.8, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
+      txt(svg, 586, 112, '+$1', { anchor: 'middle', fill: CORAL_DEEP, size: 16, weight: 800, hand: true });
+      txt(svg, 586, 136, 'profit', { anchor: 'middle', fill: INK2, size: 10 });
 
       // ---- top lane: PRICE path (short solid effort, then a long thin glide) ----
       txt(svg, 90, 78, 'price path', { anchor: 'start', fill: INK, size: 11, weight: 700 });
@@ -1923,27 +1924,28 @@ return '$' + usd.toFixed(4);
       svg.appendChild(rc.line(60, 50, 60, 200, { stroke: INK, strokeWidth: 1.2, roughness: 1.4 }));
       txt(svg, 320, 230, 'price →', { anchor: 'middle', fill: INK, size: 11, weight: 600 });
       txt(svg, 30, 125, 'quality →', { anchor: 'middle', fill: INK, size: 11, weight: 600, transform: 'rotate(-90 30 125)' });
-      svg.appendChild(rc.circle(130, 170, 22, { stroke: CORAL_DEEP, strokeWidth: 2, fill: '#fff', fillStyle: 'solid', roughness: 1.5 }));
-      txt(svg, 130, 174, 'A', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 800 });
-      txt(svg, 130, 196, 'cheap, basic', { anchor: 'middle', fill: INK2, size: 10 });
-      svg.appendChild(rc.circle(490, 80, 22, { stroke: CORAL_DEEP, strokeWidth: 2, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
-      txt(svg, 490, 84, 'B', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 800 });
-      txt(svg, 490, 116, 'premium, full', { anchor: 'middle', fill: INK2, size: 10 });
-      svg.appendChild(rc.circle(460, 140, 18, { stroke: INK3, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.5, strokeLineDash: [3, 3] }));
-      txt(svg, 460, 144, 'D', { anchor: 'middle', fill: INK3, size: 11, weight: 800 });
-      txt(svg, 605, 144, 'decoy', { anchor: 'middle', fill: INK3, size: 11, hand: true, weight: 700 });
-      txt(svg, 605, 162, '(dominated', { anchor: 'middle', fill: INK3, size: 10 });
-      txt(svg, 605, 176, 'by B)', { anchor: 'middle', fill: INK3, size: 10 });
-      svg.appendChild(rc.line(130, 160, 470, 90, { stroke: CORAL, strokeWidth: 1.6, roughness: 1.7, strokeLineDash: [4, 3] }));
-      svg.appendChild(rc.polygon([[470, 90], [458, 92], [463, 102]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.4 }));
+      // option nodes enlarged so each letter sits clear of its circle border
+      svg.appendChild(rc.circle(128, 150, 62, { stroke: CORAL_DEEP, strokeWidth: 2, fill: '#fff', fillStyle: 'solid', roughness: 1.2 }));
+      txt(svg, 128, 154, 'A', { anchor: 'middle', fill: CORAL_DEEP, size: 9, weight: 800 });
+      txt(svg, 128, 202, 'cheap, basic', { anchor: 'middle', fill: INK2, size: 10 });
+      svg.appendChild(rc.circle(494, 78, 62, { stroke: CORAL_DEEP, strokeWidth: 2, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.2 }));
+      txt(svg, 494, 82, 'B', { anchor: 'middle', fill: CORAL_DEEP, size: 9, weight: 800 });
+      txt(svg, 494, 128, 'premium, full', { anchor: 'middle', fill: INK2, size: 10 });
+      svg.appendChild(rc.circle(438, 162, 60, { stroke: INK3, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.2, strokeLineDash: [3, 3] }));
+      txt(svg, 438, 166, 'D', { anchor: 'middle', fill: INK3, size: 9, weight: 800 });
+      txt(svg, 618, 152, 'decoy', { anchor: 'middle', fill: INK3, size: 11, hand: true, weight: 700 });
+      txt(svg, 618, 172, '(dominated', { anchor: 'middle', fill: INK3, size: 10 });
+      txt(svg, 618, 188, 'by B)', { anchor: 'middle', fill: INK3, size: 10 });
+      svg.appendChild(rc.line(158, 150, 462, 92, { stroke: CORAL, strokeWidth: 1.6, roughness: 1.6, strokeLineDash: [4, 3] }));
+      svg.appendChild(rc.polygon([[462, 92], [450, 94], [455, 104]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.4 }));
       txt(svg, 300, 60, 'choice shifts → B', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700, hand: true });
     };
 
     sketches['sk-charm-mount'] = function(svg) {
       const rc = makeRc(svg);
       txt(svg, 330, 22, 'three identical items, three prices', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-      svg.appendChild(rc.line(80, 180, 620, 180, { stroke: INK, strokeWidth: 1.2, roughness: 1.4 }));
-      txt(svg, 350, 210, 'price ($)', { anchor: 'middle', fill: INK, size: 11, weight: 600 });
+      svg.appendChild(rc.line(80, 180, 620, 180, { stroke: INK, strokeWidth: 1.2, roughness: 0.8 }));
+      txt(svg, 350, 222, 'price ($)', { anchor: 'middle', fill: INK, size: 11, weight: 600 });
       txt(svg, 30, 120, 'demand', { anchor: 'middle', fill: INK, size: 11, weight: 600, transform: 'rotate(-90 30 120)' });
       const bars = [
         { x: 150, h: 80, label: '$34', d: 'baseline' },
@@ -1953,8 +1955,8 @@ return '$' + usd.toFixed(4);
       bars.forEach((b, i) => {
         const isCharm = i === 1;
         svg.appendChild(rc.rectangle(b.x - 40, 180 - b.h, 80, b.h, { stroke: isCharm ? CORAL_DEEP : CORAL, strokeWidth: isCharm ? 2 : 1.4, fill: isCharm ? '#fff7f0' : '#fff', fillStyle: 'hachure', hachureGap: isCharm ? 4 : 6, hachureAngle: 45, roughness: 1.5 }));
-        txt(svg, b.x, 196, b.label, { anchor: 'middle', fill: INK, size: 12, weight: 700 });
-        txt(svg, b.x, 175 - b.h, b.d, { anchor: 'middle', fill: isCharm ? CORAL_DEEP : INK2, size: 10, hand: true, weight: isCharm ? 700 : 400 });
+        txt(svg, b.x, 201, b.label, { anchor: 'middle', fill: INK, size: 12, weight: 700 });
+        txt(svg, b.x, 173 - b.h, b.d, { anchor: 'middle', fill: isCharm ? CORAL_DEEP : INK2, size: 10, hand: true, weight: isCharm ? 700 : 400 });
       });
       txt(svg, 350, 42, 'the 9-ending reads as a sale', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
     };
@@ -1965,28 +1967,28 @@ return '$' + usd.toFixed(4);
     sketches['sk-yield-mount'] = function(svg) {
       const rc = makeRc(svg);
       txt(svg, 350, 22, 'Indianapolis Zoo: one price replaced by a published day-of-week grid', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-      svg.appendChild(rc.line(70, 175, 670, 175, { stroke: INK, strokeWidth: 1.2, roughness: 1.4 }));
-      svg.appendChild(rc.line(70, 50, 70, 175, { stroke: INK, strokeWidth: 1.2, roughness: 1.4 }));
-      txt(svg, 370, 205, 'day of week', { anchor: 'middle', fill: INK, size: 11, weight: 600 });
+      svg.appendChild(rc.line(70, 175, 670, 175, { stroke: INK, strokeWidth: 1.2, roughness: 0.8 }));
+      svg.appendChild(rc.line(70, 50, 70, 175, { stroke: INK, strokeWidth: 1.2, roughness: 0.8 }));
+      txt(svg, 370, 214, 'day of week', { anchor: 'middle', fill: INK, size: 11, weight: 600 });
       txt(svg, 35, 112, 'price ($)', { anchor: 'middle', fill: INK, size: 11, weight: 600, transform: 'rotate(-90 35 112)' });
       var days = [
         { x: 110, h: 30, label: 'Tue', p: '$8' },
         { x: 190, h: 42, label: 'Wed', p: '$12' },
         { x: 270, h: 50, label: 'Thu', p: '$15' },
         { x: 350, h: 60, label: 'Fri', p: '$18' },
-        { x: 470, h: 110, label: 'Sat', p: '$30' },
+        { x: 470, h: 98, label: 'Sat', p: '$30' },
         { x: 560, h: 78, label: 'Sun', p: '$22' }
       ];
       days.forEach(function(d) {
         var isPeak = d.label === 'Sat';
         var isFloor = d.label === 'Tue';
         svg.appendChild(rc.rectangle(d.x - 28, 175 - d.h, 56, d.h, { stroke: isPeak ? CORAL_DEEP : CORAL, strokeWidth: isPeak ? 2 : 1.4, fill: (isPeak || isFloor) ? '#fff7f0' : '#fff', fillStyle: 'solid', roughness: 1.5 }));
-        txt(svg, d.x, 190, d.label, { anchor: 'middle', fill: INK, size: 11, weight: 600 });
-        txt(svg, d.x, 170 - d.h, d.p, { anchor: 'middle', fill: isPeak ? CORAL_DEEP : INK2, size: 10, weight: isPeak ? 700 : 400 });
+        txt(svg, d.x, 194, d.label, { anchor: 'middle', fill: INK, size: 11, weight: 600 });
+        txt(svg, d.x, 168 - d.h, d.p, { anchor: 'middle', fill: isPeak ? CORAL_DEEP : INK2, size: 10, weight: isPeak ? 700 : 400 });
       });
-      svg.appendChild(rc.line(85, 95, 655, 95, { stroke: INK3, strokeWidth: 1.2, roughness: 1.4, strokeLineDash: [5, 4] }));
-      txt(svg, 648, 90, 'old single price $16.95', { anchor: 'end', fill: INK3, size: 10, hand: true });
-      txt(svg, 110, 150, 'off-peak floor', { anchor: 'middle', fill: CORAL_DEEP, size: 10, hand: true, weight: 700 });
+      svg.appendChild(rc.line(85, 95, 655, 95, { stroke: INK3, strokeWidth: 1.2, roughness: 0.8, strokeLineDash: [5, 4] }));
+      txt(svg, 92, 84, 'old single price $16.95', { anchor: 'start', fill: INK3, size: 10, hand: true });
+      txt(svg, 140, 116, 'off-peak floor', { anchor: 'middle', fill: CORAL_DEEP, size: 10, hand: true, weight: 700 });
       txt(svg, 470, 50, 'peak ceiling', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
     };
 
@@ -1999,12 +2001,12 @@ return '$' + usd.toFixed(4);
       txt(svg, 35, 130, 'customer tolerance →', { anchor: 'middle', fill: INK, size: 11, weight: 600, transform: 'rotate(-90 35 130)' });
       svg.appendChild(rc.curve([[80, 70], [180, 78], [280, 90], [340, 130], [400, 175], [500, 195], [620, 198]], { stroke: CORAL_DEEP, strokeWidth: 2.2, roughness: 1.6 }));
       svg.appendChild(rc.line(340, 50, 340, 200, { stroke: CORAL, strokeWidth: 1.4, strokeLineDash: [4, 3], roughness: 1.5 }));
-      txt(svg, 348, 65, 'fairness ceiling', { fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
-      txt(svg, 348, 80, '~3x multiplier', { fill: INK2, size: 10 });
-      txt(svg, 200, 70, 'tolerable', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
-      txt(svg, 540, 90, 'outrage', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
-      txt(svg, 540, 105, '(2014 NYE: 9.5x)', { anchor: 'middle', fill: INK2, size: 10 });
-      txt(svg, 540, 120, '($400 snowstorm ride)', { anchor: 'middle', fill: INK2, size: 10 });
+      txt(svg, 348, 62, 'fairness ceiling', { fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+      txt(svg, 348, 83, '~3x multiplier', { fill: INK2, size: 10 });
+      txt(svg, 190, 70, 'tolerable', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
+      txt(svg, 540, 84, 'outrage', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
+      txt(svg, 540, 106, '(2014 NYE: 9.5x)', { anchor: 'middle', fill: INK2, size: 10 });
+      txt(svg, 540, 128, '($400 snowstorm ride)', { anchor: 'middle', fill: INK2, size: 10 });
     };
 
     /* sk-six-principles-mount: 3x2 grid of the pre-launch dynamic-pricing audit */
@@ -2021,9 +2023,9 @@ return '$' + usd.toFixed(4);
       ];
       cells.forEach((c, i) => {
         svg.appendChild(rc.rectangle(c.x, c.y, 200, 100, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
-        txt(svg, c.x + 12, c.y + 22, '0' + (i + 1), { fill: CORAL_DEEP, size: 11, weight: 700 });
-        txt(svg, c.x + 105, c.y + 38, c.name, { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-        txt(svg, c.x + 100, c.y + 70, c.ex, { anchor: 'middle', fill: INK2, size: 11, hand: true });
+        txt(svg, c.x + 14, c.y + 20, '0' + (i + 1), { fill: CORAL_DEEP, size: 11, weight: 700 });
+        txt(svg, c.x + 100, c.y + 48, c.name, { anchor: 'middle', fill: CORAL_DEEP, size: 10.5, weight: 700 });
+        txt(svg, c.x + 100, c.y + 76, c.ex, { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
       });
     };
 
@@ -2070,11 +2072,13 @@ return '$' + usd.toFixed(4);
       ];
       routes.forEach((r, i) => {
         const cy = r.y + 12;
-        svg.appendChild(rc.line(r.x, 216, r.x, cy + 17, { stroke: INK3, strokeWidth: 0.9, strokeLineDash: [3, 3], roughness: 0.9 }));
-        svg.appendChild(rc.circle(r.x, cy, 32, { stroke: i >= 2 ? CORAL_DEEP : CORAL, strokeWidth: i >= 2 ? 2 : 1.5, fill: i >= 2 ? CORAL_SOFT : '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
+        // dashed drop-line runs from the axis up to the circle's underside, clear of text
+        svg.appendChild(rc.line(r.x, 216, r.x, cy + 18, { stroke: INK3, strokeWidth: 0.9, strokeLineDash: [3, 3], roughness: 0.8 }));
+        svg.appendChild(rc.circle(r.x, cy, 32, { stroke: i >= 2 ? CORAL_DEEP : CORAL, strokeWidth: i >= 2 ? 2 : 1.5, fill: i >= 2 ? CORAL_SOFT : '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
         txt(svg, r.x, cy + 4, String(i + 1), { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 800 });
-        txt(svg, r.x, r.y - 12, r.name, { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-        txt(svg, r.x, cy + 38, r.det, { anchor: 'middle', fill: INK2, size: 9, hand: true });
+        // name + detection note both sit above the node, so the drop-line below stays clean
+        txt(svg, r.x, cy - 44, r.name, { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
+        txt(svg, r.x, cy - 24, r.det, { anchor: 'middle', fill: INK2, size: 9, hand: true });
       });
       txt(svg, 100, 236, 'immediate', { anchor: 'middle', fill: INK2, size: 10, hand: true });
       txt(svg, 618, 236, 'indefinite', { anchor: 'middle', fill: CORAL_DEEP, size: 10, hand: true, weight: 700 });
@@ -2084,9 +2088,9 @@ return '$' + usd.toFixed(4);
       const rc = makeRc(svg);
       txt(svg, 360, 22, 'three brands, three commitments on the pricing compass', { anchor: 'middle', fill: INK2, size: 11, hand: true });
       svg.appendChild(rc.line(70, 150, 670, 150, { stroke: INK, strokeWidth: 1.2, roughness: 1.4 }));
-      // end labels sit at the extreme ends, clear of every marker stem
-      txt(svg, 78, 168, 'competitor-based', { anchor: 'start', fill: INK2, size: 10.5, weight: 600 });
-      txt(svg, 662, 168, 'value-based', { anchor: 'end', fill: INK2, size: 10.5, weight: 600 });
+      // end labels hug the extreme ends below the axis, clear of every marker dot
+      txt(svg, 74, 182, 'competitor-based', { anchor: 'start', fill: INK2, size: 10.5, weight: 600 });
+      txt(svg, 666, 182, 'value-based', { anchor: 'end', fill: INK2, size: 10.5, weight: 600 });
       const anchors = [
         { x: 150, name: 'COSTCO', tag: 'EDLP markup cap', up: true },
         { x: 430, name: 'PATAGONIA', tag: 'premium, purpose', up: false },
@@ -2094,12 +2098,12 @@ return '$' + usd.toFixed(4);
       ];
       anchors.forEach(a => {
         svg.appendChild(rc.circle(a.x, 150, 9, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
-        svg.appendChild(rc.line(a.x, 150, a.x, a.up ? 116 : 184, { stroke: CORAL, strokeWidth: 1.2, roughness: 1.4 }));
-        const nameY = a.up ? 104 : 198;
+        svg.appendChild(rc.line(a.x, 150, a.x, a.up ? 116 : 170, { stroke: CORAL, strokeWidth: 1.2, roughness: 1.4 }));
+        const nameY = a.up ? 104 : 204;
         txt(svg, a.x, nameY, a.name, { anchor: 'middle', fill: CORAL_DEEP, size: 11.5, weight: 800 });
         txt(svg, a.x, nameY + (a.up ? -20 : 20), a.tag, { anchor: 'middle', fill: INK2, size: 10, hand: true });
       });
-      txt(svg, 360, 244, 'pick one anchor, then run the whole business off it', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
+      txt(svg, 360, 250, 'pick one anchor, then run the whole business off it', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
     };
 
     sketches['sk-membership-engine'] = function(svg) {

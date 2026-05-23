@@ -626,7 +626,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <p>The reason the two elasticities differ by that much is structural, and the structure tells the planner which channel to reach for in which situation. Picture the buyer&rsquo;s path to a purchase as a ladder, climbing from no idea the brand exists up through awareness, knowledge, liking, preference, and conviction, and finally onto the rung where the buyer actually buys. The <span class="term" data-tt="The hierarchy of effects is a classical six-rung ladder describing the stages a buyer climbs from first awareness of a brand through final purchase. The rungs are awareness, knowledge, liking, preference, conviction, and purchase. The ladder is grouped into three stages: cognitive (awareness and knowledge, the head-level rungs), affective (liking and preference, the heart-level rungs), and conative (conviction and purchase, the action-level rungs). The ladder is planning vocabulary rather than a literal sequence: real buyers skip rungs and revisit rungs constantly. The framework is still useful for matching channels to the rung they actually move.">hierarchy of effects</span> is the planning vocabulary for that ladder, and its rungs group into a cognitive stage, an affective stage, and a conative stage.<sup class="cite" data-cite="ref-15"></sup></p>
 
 <figure class="sketch" aria-label="Lavidge-Steiner hierarchy of effects: six rungs grouped in three stages with channels mapped.">
-  <div class="mount" id="sk-hierarchy-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-hierarchy-mount" data-w="720" data-h="300"></div>
   <figcaption>Hierarchy of effects. Cognitive rungs (awareness, knowledge) carry long-term elasticity; conative rungs (conviction, purchase) carry short-term. A mix sized only by short-term lift starves the cognitive rungs that feed it.</figcaption>
 </figure>
 
@@ -1675,18 +1675,18 @@ return '$' + usd.toFixed(4);
     ];
     txt(svg, 360, 22, 'a marketing plan, top to bottom and back again', { anchor: 'middle', fill: INK2, size: 11, hand: true });
     stages.forEach((s, i) => {
-      const r = rc.rectangle(s.x - 56, 50, 112, 76, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 });
+      const r = rc.rectangle(s.x - 58, 48, 116, 90, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 });
       svg.appendChild(r);
-      txt(svg, s.x, 42, '0' + (i+1), { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 700 });
-      txt(svg, s.x, 80, s.label, { weight: 700, anchor: 'middle', fill: INK, size: 11 });
-      txt(svg, s.x, 100, s.sub, { anchor: 'middle', fill: INK2, size: 10 });
+      txt(svg, s.x, 40, '0' + (i+1), { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 700 });
+      txt(svg, s.x, 84, s.label, { weight: 700, anchor: 'middle', fill: INK, size: 11 });
+      txt(svg, s.x, 106, s.sub, { anchor: 'middle', fill: INK2, size: 9 });
       if (i < stages.length - 1) {
-        svg.appendChild(rc.line(s.x + 56, 88, stages[i+1].x - 58, 88, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.5 }));
-        svg.appendChild(rc.polygon([[stages[i+1].x - 58, 88], [stages[i+1].x - 65, 84], [stages[i+1].x - 65, 92]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
+        svg.appendChild(rc.line(s.x + 60, 93, stages[i+1].x - 62, 93, { stroke: CORAL, strokeWidth: 1.5, roughness: 1.1 }));
+        svg.appendChild(rc.polygon([[stages[i+1].x - 58, 93], [stages[i+1].x - 67, 89], [stages[i+1].x - 67, 97]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
       }
     });
     /* Loop back: control -> goal */
-    svg.appendChild(rc.curve([[650, 130], [600, 200], [200, 210], [90, 130]], { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.7 }));
+    svg.appendChild(rc.curve([[650, 142], [600, 205], [200, 214], [90, 142]], { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.7 }));
     txt(svg, 360, 248, 'control feeds the next goal. the loop closes here.', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
     txt(svg, 360, 280, 'a budget+calendar leaves this arrow off the diagram.', { anchor: 'middle', fill: INK2, size: 11, hand: true });
   };
@@ -2016,42 +2016,40 @@ return '$' + usd.toFixed(4);
     txt(svg, 360, 234, 'customer-asset value: lagging indicator, months behind trust', { anchor: 'middle', fill: INK, size: 11.5, weight: 700 });
   };
 
-  /* ---------- Sk13: Lavidge-Steiner hierarchy of effects ladder ---------- */
+  /* ---------- Sk13: Lavidge-Steiner hierarchy of effects (ascending bars) ---------- */
   sketches['sk-hierarchy-mount'] = function(svg) {
     const rc = makeRc(svg);
-    txt(svg, 360, 22, 'six rungs, three stages, two elasticity windows', { anchor: 'middle', fill: INK2, size: 12, hand: true });
+    txt(svg, 360, 20, 'six rungs, three stages, two elasticity windows', { anchor: 'middle', fill: INK2, size: 12, hand: true });
     /* Six rungs ascending left to right; lower rungs are cognitive, middle affective, top conative */
+    const base = 212, bw = 72;
     const rungs = [
-      { x: 90,  y: 220, label: 'awareness',  stage: 'COGNITIVE', stageColor: CORAL_SOFT, channel: 'linear TV / sponsorship' },
-      { x: 195, y: 196, label: 'knowledge',  stage: 'COGNITIVE', stageColor: CORAL_SOFT, channel: 'broad-reach video' },
-      { x: 300, y: 172, label: 'liking',     stage: 'AFFECTIVE', stageColor: CORAL,      channel: 'content / branded social' },
-      { x: 405, y: 148, label: 'preference', stage: 'AFFECTIVE', stageColor: CORAL,      channel: 'influencer / PR' },
-      { x: 510, y: 124, label: 'conviction', stage: 'CONATIVE',  stageColor: CORAL_DEEP, channel: 'search / retargeting' },
-      { x: 615, y: 100, label: 'purchase',   stage: 'CONATIVE',  stageColor: CORAL_DEEP, channel: 'sales-force / direct response' }
+      { x: 70,  h: 42,  label: 'awareness',  stageColor: CORAL_SOFT },
+      { x: 175, h: 66,  label: 'knowledge',  stageColor: CORAL_SOFT },
+      { x: 280, h: 90,  label: 'liking',     stageColor: CORAL },
+      { x: 385, h: 114, label: 'preference', stageColor: CORAL },
+      { x: 490, h: 138, label: 'conviction', stageColor: CORAL_DEEP },
+      { x: 595, h: 162, label: 'purchase',   stageColor: CORAL_DEEP }
     ];
-    /* Diagonal staircase: connect rung centers */
-    for (let i = 0; i < rungs.length - 1; i++) {
-      svg.appendChild(rc.line(rungs[i].x + 30, rungs[i].y, rungs[i + 1].x - 30, rungs[i + 1].y, { stroke: INK3, strokeWidth: 1.2, roughness: 1.5 }));
-    }
-    /* Each rung as a small box */
+    /* baseline */
+    svg.appendChild(rc.line(40, base, 660, base, { stroke: INK3, strokeWidth: 1, roughness: 1.2 }));
+    /* Each rung as an ascending bar; number above the bar, label below the baseline (both clear of strokes) */
     rungs.forEach((r, i) => {
-      svg.appendChild(rc.rectangle(r.x - 32, r.y - 14, 64, 28, { stroke: r.stageColor, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, r.x, r.y + 4, r.label, { anchor: 'middle', fill: INK, size: 11.5, weight: 700 });
-      /* Rung number */
-      txt(svg, r.x, r.y - 22, String(i + 1), { anchor: 'middle', fill: r.stageColor, size: 10, weight: 700 });
+      svg.appendChild(rc.rectangle(r.x - bw / 2, base - r.h, bw, r.h, { stroke: r.stageColor, strokeWidth: 1.6, fill: '#fffdfb', fillStyle: 'solid', roughness: 1.3 }));
+      txt(svg, r.x, base - r.h - 9, String(i + 1), { anchor: 'middle', fill: r.stageColor, size: 11, weight: 700 });
+      txt(svg, r.x, base + 18, r.label, { anchor: 'middle', fill: INK, size: 11, weight: 700 });
     });
-    /* Stage brackets bottom: cognitive (rungs 1-2), affective (3-4), conative (5-6) */
+    /* Stage brackets at the bottom: cognitive (1-2), affective (3-4), conative (5-6) */
     const brackets = [
-      { x1: 58,  x2: 227, mid: 142, label: 'cognitive', sub: 'long-term elasticity', color: CORAL_SOFT },
-      { x1: 268, x2: 437, mid: 352, label: 'affective', sub: 'mid-window',           color: CORAL },
-      { x1: 478, x2: 647, mid: 562, label: 'conative',  sub: 'short-term elasticity', color: CORAL_DEEP }
+      { x1: 30,  x2: 215, mid: 122, label: 'cognitive', sub: 'long-term elasticity', color: CORAL_SOFT },
+      { x1: 245, x2: 420, mid: 332, label: 'affective', sub: 'mid-window',           color: CORAL },
+      { x1: 455, x2: 660, mid: 557, label: 'conative',  sub: 'short-term elasticity', color: CORAL_DEEP }
     ];
     brackets.forEach(b => {
-      svg.appendChild(rc.line(b.x1, 248, b.x2, 248, { stroke: b.color, strokeWidth: 2, roughness: 1.3 }));
-      svg.appendChild(rc.line(b.x1, 244, b.x1, 252, { stroke: b.color, strokeWidth: 2, roughness: 1.3 }));
-      svg.appendChild(rc.line(b.x2, 244, b.x2, 252, { stroke: b.color, strokeWidth: 2, roughness: 1.3 }));
-      txt(svg, b.mid, 264, b.label, { anchor: 'middle', fill: b.color, size: 11.5, weight: 700 });
-      txt(svg, b.mid, 277, b.sub, { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
+      svg.appendChild(rc.line(b.x1, 244, b.x2, 244, { stroke: b.color, strokeWidth: 2, roughness: 1.2 }));
+      svg.appendChild(rc.line(b.x1, 239, b.x1, 249, { stroke: b.color, strokeWidth: 2, roughness: 1 }));
+      svg.appendChild(rc.line(b.x2, 239, b.x2, 249, { stroke: b.color, strokeWidth: 2, roughness: 1 }));
+      txt(svg, b.mid, 262, b.label, { anchor: 'middle', fill: b.color, size: 11, weight: 700 });
+      txt(svg, b.mid, 285, b.sub, { anchor: 'middle', fill: INK2, size: 10, hand: true });
     });
   };
 
