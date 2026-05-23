@@ -515,7 +515,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <p>The closed loop only runs on a substrate the firm has built, and that substrate has measurable maturity. Some firms run on patchy data that lives in spreadsheets on a manager&rsquo;s laptop. Others run on an integrated warehouse the CFO and the CMO read the same way at the same cadence. The difference between those two firms is a capability difference, not a budget difference, and the literature names it with a <span class="term" data-tt="The five stages of analytical maturity describe how far a firm has built the data, organizational, and leadership scaffolding to run on numbers rather than gut. Stage 1 (&lsquo;Analytically Impaired&rsquo;) cannot pull the same number two ways and get the same answer. Stage 5 (&lsquo;Analytical Competitors&rsquo;) has analytics as its competitive advantage. Most firms cluster at Stage 2 or 3, and reaching Stage 5 takes about a decade of sustained CEO-level commitment.">five-stage maturity staircase</span>. It runs from Stage 1, where the firm cannot pull the same number two ways and get the same answer, up to Stage 5, where analytics is the firm&rsquo;s competitive advantage. Most firms sit at Stage 2 or 3, and reaching the top takes about a decade of CEO-level commitment.<sup class="cite" data-cite="ref-4"></sup> The climb is what decides whether a plan can size its budget by attribution at all or has to fall back on the rules of thumb the survey measured.</p>
 
 <figure class="sketch" aria-label="The five-stage analytical-maturity staircase, climbed over years.">
-  <div class="mount" id="sk-maturity-staircase-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-maturity-staircase-mount" data-w="720" data-h="320"></div>
   <figcaption>The analytical-maturity staircase. The firm climbs from &ldquo;cannot pull the same number two ways&rdquo; to &ldquo;analytics is the competitive advantage,&rdquo; a capability built over years, not a budget bought in a quarter.</figcaption>
 </figure>
 
@@ -644,7 +644,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <p>MMM is the 2026 budget spine, and a marketer should know it is not the only model family before sitting through a vendor pitch.<aside class="sn"><span class="sn-num">8.</span> The canonical 1992 reference catalogs seven model families, and the marketer&rsquo;s first job is choosing the one that fits the firm&rsquo;s category position: a <span class="term" data-tt="The Bass diffusion model, published by Frank Bass in 1969, describes how a new product spreads through a population by treating cumulative adoptions as a function of three numbers: an innovation parameter p (typically between 0.001 and 0.03, capturing the fraction of buyers who adopt because of advertising or external influence), an imitation parameter q (typically between 0.3 and 0.5, capturing the influence of friends who have already adopted), and a market potential M (the total addressable population). The model is the right tool for new-product trajectories like Liquid Death&rsquo;s 2017 launch or the Stanley Quencher&rsquo;s 2020-2024 takeoff, where the diffusion shape is the load-bearing planning question.">Bass diffusion model</span> for a still-diffusing category, a <span class="term" data-tt="A share-attraction model says firm i&rsquo;s market share equals its &lsquo;attraction&rsquo; (a function of its price, advertising, product quality, and other marketing-mix levers) divided by the sum of every competing firm&rsquo;s attraction. The two functional forms most used are the Multinomial Logit (MNL) and the Multiplicative Competitive Interaction (MCI) versions. The model captures the load-bearing fact that one firm&rsquo;s share is constrained by what its rivals are doing, so it is the right tool for mature categories with active rivalry like Costco against Sam&rsquo;s Club or Stanley against Yeti.">share-attraction model</span> for a mature rivalry, a <span class="term" data-tt="Pre-test-market simulation is the technique of converting survey-stated trial intent (from a few hundred or a few thousand respondents) into a year-one sales forecast for a product that has not launched yet. The classic 1978 reference is ASSESSOR by Silk and Urban; the commercial workhorse is Burke&rsquo;s BASES product. Published mean-absolute-percentage-error figures for pre-test-market simulation come in around 5 to 15 percent against actual year-one volume, versus around 50 percent or worse for an unassisted manager forecast on the same product. The method is the right tool for any pre-launch plan that needs a defensible volume number.">pre-test-market simulation</span> for a pre-launch product, and a <span class="term" data-tt="BRANDAID-style decision-support is the family of marketing-mix models that John Little introduced in 1975, where data-rich channels are calibrated using historical regression and data-sparse channels are calibrated using manager judgment (the manager states a best guess for the elasticity, plus a range of uncertainty around it). The hybrid is the conceptual ancestor of every modern Bayesian-MMM-with-priors approach. The pattern is the right tool when a firm has fifty-two weeks of clean data on three channels but only nine weeks on the new fourth channel.">BRANDAID-style</span> hybrid for a brand-building budget. The 2024 open-source floor (Google&rsquo;s <span class="term" data-tt="Google Meridian is an open-source marketing-mix modeling library that Google released in March 2024 and made generally available in January 2025. Meridian runs a hierarchical Bayesian regression across 50 or more geographic markets at once, accepts the results of geo-experiments as priors that anchor the model, and returns a posterior distribution (a range of plausible values, not a single point estimate) for each channel&rsquo;s return on investment. The library is the canonical 2026 open-source choice when a firm wants honest uncertainty around its channel ROI numbers rather than a single number that hides what the model does not know.">Meridian</span>, Meta&rsquo;s <span class="term" data-tt="Meta Robyn is an open-source marketing-mix modeling library that Meta released in 2021 as the older counterpart to Google&rsquo;s Meridian. Robyn combines a ridge regression (a regularized regression that handles correlated channels), Prophet for seasonality, and an evolutionary hyperparameter optimizer that searches over many model configurations. Robyn runs faster than Meridian, because it does not do the full Bayesian uncertainty math, but it also reports less honest ranges around its estimates. For roughly 80 percent of organizations whose data is not large enough to justify the full Bayesian stack, Robyn is the right starting point.">Robyn</span>, the <span class="term" data-tt="PyMC-Marketing is an open-source Python library released by the PyMC Labs team in April 2023 that combines Bayesian marketing-mix modeling and customer-lifetime-value modeling under one stack. A team that uses PyMC-Marketing can run the goal-layer CLV math and the tactics-layer MMM math against the same warehouse without switching tools, which is the practical attraction of the library. The team released an MMM-Agent beta in 2026 that wraps the underlying models in an agent-style workflow.">PyMC-Marketing</span> library) made the libraries free, but a brand without <span class="term" data-tt="A Bayesian method starts with a prior belief (what the analyst expects before seeing the data), updates that belief using the data the analyst actually has, and returns a posterior distribution that says how plausible each possible answer is rather than a single point estimate. Applied to marketing-mix modeling, the practical payoff is honest uncertainty around an ROI number: instead of reporting &lsquo;search ROI is $4.10 per dollar,&rsquo; a Bayesian model reports &lsquo;search ROI is somewhere between $2.80 and $5.40 with 90 percent confidence, most likely around $4.10.&rsquo; The wider the range, the less confident the model is, and the more the planner should hedge.">Bayesian</span>-trained analysts on staff has no realistic <span class="term" data-tt="Open-source software is code whose source files are published publicly under a license that lets anyone read, copy, modify, and run them for free. Meridian (Google, March 2024) and Robyn (Meta, 2021) are open-source MMM libraries: any analytics team can download them from GitHub, run them on the firm&rsquo;s own data, and inspect every line of code that produced the channel-ROI estimate. The opposite is closed-source or proprietary software, where the vendor sells access but does not publish the underlying code, so the buyer has to trust that the model is doing what the marketing collateral claims it is doing.">open-source</span> option no matter the price, because the open-source layer requires the team to do the statistical work a managed platform would do for them. The middle tier is a managed weekly-Bayesian platform like <span class="term" data-tt="Recast is a U.S.-based managed Bayesian marketing-mix-modeling platform that Michael Kaminsky and Thomas Vladeck co-founded, raising $3.4 million in seed funding in December 2022. Where a traditional MMM refit happens once a quarter, Recast rebuilds the model every week and re-estimates roughly 40,000 parameters per refit. Its canonical customer story is Negative Underwear, a direct-to-consumer apparel brand that hired Recast after its in-platform ad reports claimed 2.5 times the sales the warehouse actually shipped, and the 2.5x discrepancy triggered the whole rebuild. Recast sits between the open-source libraries (Meridian, Robyn, PyMC-Marketing) and the enterprise agentic stack a Hershey-scale firm pays for.">Recast</span>, and the plan-level call is to pick the tier the firm can actually act on, not the tier it can technically afford. Open-source stacks implement these families in Bayesian dress, but family choice is a managerial responsibility no <span class="term" data-tt="In 2026 vocabulary, an agent is an AI system that has been given a goal plus a set of tools (a database query, an email client, a script runner, an ad-platform API) and then decides on its own which tool to call and when, until the goal is met. The contrast is with a chatbot, which only answers messages, and with a workflow, which follows a pre-written script of tool calls in fixed order. Claude Code, ChatGPT Operator, and the Skills-and-MCP stack are the most common production substrates marketers encounter in 2026.">agent</span> automates.<sup class="cite" data-cite="ref-17"></sup><sup class="cite" data-cite="ref-18"></sup></aside> A firm that already runs MMM has to decide how fast to refit, because the same elasticities the model estimates drift in weeks rather than quarters, so a quarterly refit acts on a stale curve by the time the analyst reads it.<aside class="sn"><span class="sn-num">9.</span> In late 2025 Hershey committed its $2-billion-plus media and trade portfolio to a monthly <span class="term" data-tt="Agentic MMM is marketing-mix modeling where the regression refit is no longer a single quarterly run by a human analyst, but a monthly cycle in which role-specialist large-language-model agents handle separate slices of the workflow. One agent runs the econometrics fit, a second handles the competitive-pricing context, a third diagnoses model-failure patterns. The Hershey deployment uses Mutinex for the LLM orchestration on top of Claude and Gemini, plus Tracer for the data pipeline into the warehouse, and compresses the refit cycle from roughly 12 weeks (triannual) to roughly 3 weeks (monthly).">agentic-MMM</span> cadence, replacing a triannual cycle on five flagship brands and forecasting a 4-to-5 percent lift on media-attributable revenue. The forecast is a 2025 commitment, not a measured result, and the buy-side should price in four practical risks before quoting any vendor&rsquo;s lift: the warehouse has to be clean enough that daily pulls are not noise, the underlying response model has to be specified correctly before agents speed it up, misconfigured agents just produce the same wrong answer faster, and the brand teams have to act on the monthly outputs rather than ignore them.</aside></p>
 
 <figure class="sketch" aria-label="Response-model media mix vs percentage-of-sales heuristic mix.">
-  <div class="mount" id="sk-media-mix-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-media-mix-mount" data-w="720" data-h="262"></div>
   <figcaption>Two pies, same total spend: the response-model split against the percentage-of-sales heuristic. Reallocation moves dollars to the high-elasticity inputs and is forecast to lift profit with no new headcount.</figcaption>
 </figure>
 
@@ -737,12 +737,12 @@ details.depth > p:first-of-type { margin-top: 4px; }
       <line x1="60" y1="320" x2="660" y2="320" stroke="#1a1a1a" stroke-width="1.2"/>
       <line x1="60" y1="40" x2="60" y2="320" stroke="#1a1a1a" stroke-width="1.2"/>
       <text x="360" y="360" text-anchor="middle" fill="#1a1a1a" font-size="13" font-weight="600">customer decile, ranked by profit (D1 = top 10%)</text>
-      <text x="22" y="180" text-anchor="middle" transform="rotate(-90 22 180)" fill="#1a1a1a" font-size="13" font-weight="600">share of total profit</text>
-      <line x1="56" y1="320" x2="60" y2="320"/><text x="50" y="324" text-anchor="end">0%</text>
-      <line x1="56" y1="250" x2="60" y2="250"/><text x="50" y="254" text-anchor="end">10%</text>
-      <line x1="56" y1="180" x2="60" y2="180"/><text x="50" y="184" text-anchor="end">20%</text>
-      <line x1="56" y1="110" x2="60" y2="110"/><text x="50" y="114" text-anchor="end">30%</text>
-      <line x1="56" y1="40" x2="60" y2="40"/><text x="50" y="44" text-anchor="end">40%</text>
+      <text x="13" y="180" text-anchor="middle" transform="rotate(-90 13 180)" fill="#1a1a1a" font-size="12" font-weight="600">share of total profit</text>
+      <line x1="49" y1="320" x2="60" y2="320"/><text x="44" y="324" text-anchor="end">0%</text>
+      <line x1="49" y1="250" x2="60" y2="250"/><text x="44" y="254" text-anchor="end">10%</text>
+      <line x1="49" y1="180" x2="60" y2="180"/><text x="44" y="184" text-anchor="end">20%</text>
+      <line x1="49" y1="110" x2="60" y2="110"/><text x="44" y="114" text-anchor="end">30%</text>
+      <line x1="49" y1="40" x2="60" y2="40"/><text x="44" y="44" text-anchor="end">40%</text>
       <g fill="#DA7756">
         <rect x="78" y="40" width="44" height="280"/>
         <rect x="136" y="194" width="44" height="126"/>
@@ -797,11 +797,11 @@ details.depth > p:first-of-type { margin-top: 4px; }
       <line x1="60" y1="280" x2="660" y2="280" stroke="#1a1a1a" stroke-width="1"/>
       <line x1="60" y1="30" x2="60" y2="280" stroke="#1a1a1a" stroke-width="1"/>
       <text x="360" y="312" text-anchor="middle" fill="#1a1a1a" font-size="12" font-weight="600">months since acquisition</text>
-      <text x="22" y="155" text-anchor="middle" transform="rotate(-90 22 155)" fill="#1a1a1a" font-size="12" font-weight="600">% of cohort active</text>
-      <line x1="55" y1="280" x2="60" y2="280"/><text x="50" y="284" text-anchor="end">0</text>
-      <line x1="55" y1="155" x2="60" y2="155"/><text x="50" y="159" text-anchor="end">50</text>
-      <line x1="55" y1="30" x2="60" y2="30"/><text x="50" y="34" text-anchor="end">100</text>
-      
+      <text x="13" y="155" text-anchor="middle" transform="rotate(-90 13 155)" fill="#1a1a1a" font-size="12" font-weight="600">% of cohort active</text>
+      <line x1="49" y1="280" x2="60" y2="280"/><text x="44" y="284" text-anchor="end">0</text>
+      <line x1="49" y1="155" x2="60" y2="155"/><text x="44" y="159" text-anchor="end">50</text>
+      <line x1="49" y1="30" x2="60" y2="30"/><text x="44" y="34" text-anchor="end">100</text>
+
       <path d="M 60 30 C 180 95, 320 175, 660 250" fill="none" stroke="#888" stroke-width="2" stroke-dasharray="6,5"/>
       
       <path d="M 60 30 C 110 120, 170 168, 280 178 C 420 190, 540 196, 660 200" fill="none" stroke="#B8553A" stroke-width="2.5"/>
@@ -828,16 +828,16 @@ details.depth > p:first-of-type { margin-top: 4px; }
       <line x1="60" y1="280" x2="660" y2="280" stroke="#1a1a1a" stroke-width="1"/>
       <line x1="60" y1="30" x2="60" y2="280" stroke="#1a1a1a" stroke-width="1"/>
       <text x="360" y="315" text-anchor="middle" fill="#1a1a1a" font-size="12" font-weight="600">months since acquisition</text>
-      <text x="22" y="155" text-anchor="middle" transform="rotate(-90 22 155)" fill="#1a1a1a" font-size="12" font-weight="600">% of cohort active</text>
-      <line x1="55" y1="280" x2="60" y2="280"/><text x="50" y="284" text-anchor="end">0</text>
-      <line x1="55" y1="218" x2="60" y2="218"/><text x="50" y="222" text-anchor="end">25</text>
-      <line x1="55" y1="155" x2="60" y2="155"/><text x="50" y="159" text-anchor="end">50</text>
-      <line x1="55" y1="92" x2="60" y2="92"/><text x="50" y="96" text-anchor="end">75</text>
-      <line x1="55" y1="30" x2="60" y2="30"/><text x="50" y="34" text-anchor="end">100</text>
-      <line x1="135" y1="278" x2="135" y2="282"/><text x="135" y="296" text-anchor="middle">6</text>
-      <line x1="210" y1="278" x2="210" y2="282"/><text x="210" y="296" text-anchor="middle">12</text>
-      <line x1="360" y1="278" x2="360" y2="282"/><text x="360" y="296" text-anchor="middle">24</text>
-      <line x1="660" y1="278" x2="660" y2="282"/><text x="660" y="296" text-anchor="middle">48</text>
+      <text x="13" y="155" text-anchor="middle" transform="rotate(-90 13 155)" fill="#1a1a1a" font-size="12" font-weight="600">% of cohort active</text>
+      <line x1="49" y1="280" x2="60" y2="280"/><text x="44" y="284" text-anchor="end">0</text>
+      <line x1="49" y1="218" x2="60" y2="218"/><text x="44" y="222" text-anchor="end">25</text>
+      <line x1="49" y1="155" x2="60" y2="155"/><text x="44" y="159" text-anchor="end">50</text>
+      <line x1="49" y1="92" x2="60" y2="92"/><text x="44" y="96" text-anchor="end">75</text>
+      <line x1="49" y1="30" x2="60" y2="30"/><text x="44" y="34" text-anchor="end">100</text>
+      <line x1="135" y1="271" x2="135" y2="282"/><text x="135" y="296" text-anchor="middle">6</text>
+      <line x1="210" y1="271" x2="210" y2="282"/><text x="210" y="296" text-anchor="middle">12</text>
+      <line x1="360" y1="271" x2="360" y2="282"/><text x="360" y="296" text-anchor="middle">24</text>
+      <line x1="660" y1="271" x2="660" y2="282"/><text x="660" y="296" text-anchor="middle">48</text>
     </g>
     <path id="wrcf-fit" d="" fill="none" stroke="#DA7756" stroke-width="2.5"/>
     <g id="wrcf-handles"></g>
@@ -1116,7 +1116,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <aside class="sn"><span class="sn-num">17.</span> Patagonia's fiscal-2025 Worn Wear program: about 92,000 garment and bag repairs through 110-plus repair centers worldwide. The 2022 purpose-trust transfer was valued at roughly $3 billion, a fixed historical figure.</aside>
 
 <figure class="sketch" aria-label="Patagonia trust triad: ability, benevolence, integrity feeding customer asset value at the twenty-year horizon">
-  <div class="mount" id="sk-patagonia-trust-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-patagonia-trust-mount" data-w="720" data-h="285"></div>
   <figcaption>Trust decomposes into ability, benevolence, and integrity. Each component leads customer-asset value by months, so a twenty-year plan watches trust as a leading indicator rather than reading customer-asset value after the fact.</figcaption>
 </figure>
 
@@ -1673,16 +1673,17 @@ return '$' + usd.toFixed(4);
       { x: 510, label: 'INSTRUMENTATION', sub: 'audit + dashboard' },
       { x: 650, label: 'CONTROL',       sub: 'attribution + revise' }
     ];
-    txt(svg, 360, 22, 'a marketing plan, top to bottom and back again', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    txt(svg, 360, 16, 'a marketing plan, top to bottom and back again', { anchor: 'middle', fill: INK2, size: 11, hand: true });
     stages.forEach((s, i) => {
-      const r = rc.rectangle(s.x - 58, 48, 116, 90, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 });
+      const r = rc.rectangle(s.x - 62, 48, 124, 90, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 });
       svg.appendChild(r);
       txt(svg, s.x, 40, '0' + (i+1), { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 700 });
-      txt(svg, s.x, 84, s.label, { weight: 700, anchor: 'middle', fill: INK, size: 11 });
-      txt(svg, s.x, 106, s.sub, { anchor: 'middle', fill: INK2, size: 9 });
+      txt(svg, s.x, 80, s.label, { weight: 700, anchor: 'middle', fill: INK, size: 9.5 });
+      txt(svg, s.x, 100, s.sub, { anchor: 'middle', fill: INK2, size: 9 });
       if (i < stages.length - 1) {
-        svg.appendChild(rc.line(s.x + 60, 93, stages[i+1].x - 62, 93, { stroke: CORAL, strokeWidth: 1.5, roughness: 1.1 }));
-        svg.appendChild(rc.polygon([[stages[i+1].x - 58, 93], [stages[i+1].x - 67, 89], [stages[i+1].x - 67, 97]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
+        /* connector sits low in the box band, clear of the label + sub text above it */
+        svg.appendChild(rc.line(s.x + 64, 122, stages[i+1].x - 64, 122, { stroke: CORAL, strokeWidth: 1.5, roughness: 1.1 }));
+        svg.appendChild(rc.polygon([[stages[i+1].x - 60, 122], [stages[i+1].x - 69, 118], [stages[i+1].x - 69, 126]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
       }
     });
     /* Loop back: control -> goal */
@@ -1703,21 +1704,21 @@ return '$' + usd.toFixed(4);
       { x: 465, label: 'INSTRUMENTATION',filled: false, note: 'missing' },
       { x: 610, label: 'CONTROL',        filled: false, note: 'missing' }
     ];
-    /* First pass: draw rectangles + X strokes (so they sit BEHIND the labels). */
+    /* Boxes are the plan's five slots; filled = present, hollow + crossed = missing.
+       Labels sit ABOVE each slot and notes BELOW, so neither crowds the X strokes inside. */
     boxes.forEach(b => {
-      svg.appendChild(rc.rectangle(b.x, 60, 110, 80, { stroke: b.filled ? CORAL : INK3, strokeWidth: 1.4, fill: b.filled ? '#fff7f0' : '#fff', fillStyle: 'solid', roughness: 1.5 }));
+      svg.appendChild(rc.rectangle(b.x, 60, 110, 82, { stroke: b.filled ? CORAL : INK3, strokeWidth: 1.4, fill: b.filled ? '#fff7f0' : '#fff', fillStyle: 'solid', roughness: 1.5 }));
       if (!b.filled) {
-        svg.appendChild(rc.line(b.x + 10, 70, b.x + 100, 130, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.6 }));
-        svg.appendChild(rc.line(b.x + 100, 70, b.x + 10, 130, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.6 }));
+        svg.appendChild(rc.line(b.x + 12, 70, b.x + 98, 132, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.5 }));
+        svg.appendChild(rc.line(b.x + 98, 70, b.x + 12, 132, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.5 }));
       }
     });
-    /* Second pass: labels on top, with white text-stroke on un-filled boxes for legibility over the X. */
     boxes.forEach(b => {
-      txt(svg, b.x + 55, 90, b.label, { anchor: 'middle', fill: b.filled ? INK : INK3, size: 11, weight: 700, stroke: !b.filled ? '#fff' : null });
-      txt(svg, b.x + 55, 110, b.note, { anchor: 'middle', fill: b.filled ? INK2 : CORAL_DEEP, size: 11, hand: true, stroke: !b.filled ? '#fff' : null });
+      txt(svg, b.x + 55, 52, b.label, { anchor: 'middle', fill: b.filled ? INK : INK3, size: 10, weight: 700 });
+      txt(svg, b.x + 55, 158, b.note, { anchor: 'middle', fill: b.filled ? INK2 : CORAL_DEEP, size: 11, hand: true });
     });
-    txt(svg, 360, 175, 'the loop never closes. next year\u2019s plan looks like this year\u2019s.', { anchor: 'middle', fill: INK2, size: 12, hand: true });
-    txt(svg, 360, 200, 'every quarter, the same number, regenerated.', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
+    txt(svg, 360, 184, 'the loop never closes. next year\u2019s plan looks like this year\u2019s.', { anchor: 'middle', fill: INK2, size: 12, hand: true });
+    txt(svg, 360, 208, 'every quarter, the same number, regenerated.', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
   };
 
   /* ---------- Sk2: customer asset value vs customer equity ---------- */
@@ -1727,25 +1728,25 @@ return '$' + usd.toFixed(4);
     txt(svg, 180, 22, 'customer EQUITY (old label)', { anchor: 'middle', fill: INK, size: 12, weight: 700 });
     txt(svg, 540, 22, 'customer ASSET VALUE (new)', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
     /* Old: just a stack of CLVs */
-    svg.appendChild(rc.rectangle(80, 50, 200, 32, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
-    txt(svg, 180, 70, 'sum of CLVs', { anchor: 'middle', fill: INK, size: 12 });
-    svg.appendChild(rc.rectangle(80, 88, 200, 32, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.5 }));
-    txt(svg, 180, 108, '(no fixed costs netted)', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-    txt(svg, 180, 145, '\u2192 flatters the firm', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true });
-    txt(svg, 180, 162, 'not equity in any finance sense', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    svg.appendChild(rc.rectangle(80, 48, 200, 40, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
+    txt(svg, 180, 72, 'sum of CLVs', { anchor: 'middle', fill: INK, size: 9 });
+    svg.appendChild(rc.rectangle(80, 92, 200, 40, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.5 }));
+    txt(svg, 180, 116, '(no fixed costs netted)', { anchor: 'middle', fill: INK2, size: 9, hand: true });
+    txt(svg, 180, 156, '\u2192 flatters the firm', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true });
+    txt(svg, 180, 178, 'not equity in any finance sense', { anchor: 'middle', fill: INK2, size: 11, hand: true });
     /* New */
-    svg.appendChild(rc.rectangle(440, 50, 200, 32, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
-    txt(svg, 540, 70, 'sum of CLVs', { anchor: 'middle', fill: INK, size: 12 });
-    svg.appendChild(rc.rectangle(440, 88, 200, 32, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.5 }));
-    txt(svg, 540, 108, '\u2212 fixed costs', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
-    txt(svg, 540, 145, '\u2192 honest about cost-to-serve', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
-    txt(svg, 540, 162, 'plan-able as a goal', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    svg.appendChild(rc.rectangle(440, 48, 200, 40, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
+    txt(svg, 540, 72, 'sum of CLVs', { anchor: 'middle', fill: INK, size: 9 });
+    svg.appendChild(rc.rectangle(440, 92, 200, 40, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.5 }));
+    txt(svg, 540, 116, '\u2212 fixed costs', { anchor: 'middle', fill: CORAL_DEEP, size: 9, weight: 700 });
+    txt(svg, 540, 156, '\u2192 honest about cost-to-serve', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
+    txt(svg, 540, 178, 'plan-able as a goal', { anchor: 'middle', fill: INK2, size: 11, hand: true });
     /* Arrow */
-    svg.appendChild(rc.line(290, 95, 430, 95, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.7 }));
-    svg.appendChild(rc.polygon([[430, 95], [422, 90], [422, 100]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 360, 80, 'rename', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+    svg.appendChild(rc.line(290, 90, 430, 90, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.5 }));
+    svg.appendChild(rc.polygon([[430, 90], [421, 85], [421, 95]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 360, 76, 'rename', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
     txt(svg, 360, 110, '+ subtract', { anchor: 'middle', fill: INK2, size: 10, hand: true });
-    txt(svg, 360, 200, 'the rule change is bigger than the label change.', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
+    txt(svg, 360, 208, 'the rule change is bigger than the label change.', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
   };
 
   /* ---------- Sk3: AER ladder ---------- */
@@ -1758,9 +1759,9 @@ return '$' + usd.toFixed(4);
       { x: 590, label: 'RETENTION',   sub: 'defend against attrition' }
     ];
     stages.forEach(s => {
-      svg.appendChild(rc.ellipse(s.x, 110, 200, 90, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
-      txt(svg, s.x, 105, s.label, { anchor: 'middle', fill: INK, size: 13, weight: 700 });
-      txt(svg, s.x, 125, s.sub, { anchor: 'middle', fill: INK2, size: 11 });
+      svg.appendChild(rc.ellipse(s.x, 110, 202, 96, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, s.x, 104, s.label, { anchor: 'middle', fill: INK, size: 13, weight: 700 });
+      txt(svg, s.x, 126, s.sub, { anchor: 'middle', fill: INK2, size: 9.5 });
     });
     /* migration arrows */
     svg.appendChild(rc.line(230, 110, 260, 110, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.6 }));
@@ -1795,11 +1796,11 @@ return '$' + usd.toFixed(4);
         path.setAttribute('stroke-width', '1.5');
         svg.appendChild(path);
         const mid = (a0 + a1) / 2;
-        const lx = cx + (r + 18) * Math.cos(mid);
-        const ly = cy + (r + 18) * Math.sin(mid);
-        txt(svg, lx, ly, Math.round(s.frac * 100) + '%', { anchor: 'middle', fill: INK, size: 11, weight: 700 });
+        const lx = cx + (r + 16) * Math.cos(mid);
+        const ly = cy + (r + 16) * Math.sin(mid) + 3 * Math.sin(mid);
+        txt(svg, lx, ly, Math.round(s.frac * 100) + '%', { anchor: 'middle', fill: INK, size: 10, weight: 700 });
       });
-      txt(svg, cx, cy + r + 36, label, { anchor: 'middle', fill: INK, size: 12, weight: 700 });
+      txt(svg, cx, cy + r + 42, label, { anchor: 'middle', fill: INK, size: 12, weight: 700 });
     }
     pie(180, 110, 60, [
       { frac: 0.30, color: CORAL_SOFT },
@@ -1814,11 +1815,11 @@ return '$' + usd.toFixed(4);
       { frac: 0.14, color: CORAL_DEEP }
     ], 'response-model mix');
     /* arrow */
-    svg.appendChild(rc.line(260, 110, 460, 110, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.6 }));
-    svg.appendChild(rc.polygon([[460, 110], [452, 104], [452, 116]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 360, 100, 'reallocate', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
-    txt(svg, 360, 120, 'same total spend', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-    txt(svg, 360, 220, '8\u201314% profit lift, no new headcount', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
+    svg.appendChild(rc.line(262, 110, 458, 110, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.3 }));
+    svg.appendChild(rc.polygon([[458, 110], [449, 105], [449, 115]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 360, 94, 'reallocate', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
+    txt(svg, 360, 132, 'same total spend', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    txt(svg, 360, 242, '8\u201314% profit lift, no new headcount', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
   };
 
   /* ---------- Sk5: elasticity bars (ad 0.12 vs sales-force 0.31) ---------- */
@@ -1851,8 +1852,8 @@ return '$' + usd.toFixed(4);
     txt(svg, 185, 112, 'cadence: quarterly', { anchor: 'middle', fill: INK, size: 12 });
     txt(svg, 185, 134, 'audience: CEO + CFO', { anchor: 'middle', fill: INK, size: 12 });
     txt(svg, 185, 156, 'output: structural picture', { anchor: 'middle', fill: INK, size: 12 });
-    txt(svg, 185, 192, 'which deciles earn the profit?', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
-    txt(svg, 185, 210, 'which cohorts are deteriorating?', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
+    txt(svg, 185, 188, 'which deciles earn the profit?', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+    txt(svg, 185, 212, 'which cohorts are deteriorating?', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
     /* right: dashboard */
     svg.appendChild(rc.rectangle(390, 40, 290, 200, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
     txt(svg, 535, 60, 'MARKETING DASHBOARD', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
@@ -1860,8 +1861,8 @@ return '$' + usd.toFixed(4);
     txt(svg, 535, 112, 'cadence: daily/hourly', { anchor: 'middle', fill: INK, size: 12 });
     txt(svg, 535, 134, 'audience: CMO + ops', { anchor: 'middle', fill: INK, size: 12 });
     txt(svg, 535, 156, 'output: green/red lights', { anchor: 'middle', fill: INK, size: 12 });
-    txt(svg, 535, 192, 'which campaign converts today?', { anchor: 'middle', fill: CORAL, size: 12, hand: true, weight: 700 });
-    txt(svg, 535, 210, 'where is the funnel leaking?', { anchor: 'middle', fill: CORAL, size: 12, hand: true, weight: 700 });
+    txt(svg, 535, 188, 'which campaign converts today?', { anchor: 'middle', fill: CORAL, size: 11, hand: true, weight: 700 });
+    txt(svg, 535, 212, 'where is the funnel leaking?', { anchor: 'middle', fill: CORAL, size: 11, hand: true, weight: 700 });
     /* Bottom note */
     txt(svg, 360, 268, 'both belong in the plan. neither substitutes.', { anchor: 'middle', fill: INK2, size: 12, hand: true, weight: 700 });
   };
@@ -1957,19 +1958,19 @@ return '$' + usd.toFixed(4);
   sketches['sk-clv-formula-mount'] = function(svg) {
     const rc = makeRc(svg);
     /* Center: CLV = (M-C)/(1+d-r) - A */
-    txt(svg, 360, 50, 'CLV = (M \u2212 C) / (1 + d \u2212 r) \u2212 A', { anchor: 'middle', fill: INK, size: 22, weight: 700, size: 17 });
+    txt(svg, 360, 50, 'CLV = (M \u2212 C) / (1 + d \u2212 r) \u2212 A', { anchor: 'middle', fill: INK, weight: 700, size: 17 });
     /* Lever boxes around it */
     const levers = [
-      { x: 90,  y: 120, label: 'M', sub: 'margin per year' },
-      { x: 230, y: 120, label: 'C', sub: 'cost to serve' },
-      { x: 370, y: 120, label: 'r', sub: 'retention rate' },
-      { x: 510, y: 120, label: 'A', sub: 'acquisition cost' },
-      { x: 645, y: 120, label: 'd', sub: 'discount rate' }
+      { x: 90,  y: 118, label: 'M', sub: 'margin per year' },
+      { x: 230, y: 118, label: 'C', sub: 'cost to serve' },
+      { x: 370, y: 118, label: 'r', sub: 'retention rate' },
+      { x: 510, y: 118, label: 'A', sub: 'acquisition cost' },
+      { x: 645, y: 118, label: 'd', sub: 'discount rate' }
     ];
     levers.forEach((l, i) => {
-      svg.appendChild(rc.rectangle(l.x - 60, l.y, 120, 60, { stroke: i < 4 ? CORAL : INK3, strokeWidth: 1.4, fill: i < 4 ? '#fff7f0' : '#fff', fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, l.x, l.y + 25, l.label, { anchor: 'middle', fill: i < 4 ? CORAL_DEEP : INK2, size: 18, weight: 700 });
-      txt(svg, l.x, l.y + 50, l.sub, { anchor: 'middle', fill: INK2, size: 10 });
+      svg.appendChild(rc.rectangle(l.x - 60, l.y, 120, 68, { stroke: i < 4 ? CORAL : INK3, strokeWidth: 1.4, fill: i < 4 ? '#fff7f0' : '#fff', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, l.x, l.y + 30, l.label, { anchor: 'middle', fill: i < 4 ? CORAL_DEEP : INK2, size: 18, weight: 700 });
+      txt(svg, l.x, l.y + 56, l.sub, { anchor: 'middle', fill: INK2, size: 9 });
     });
     txt(svg, 360, 210, 'four levers (coral) are management decisions. one (grey) is a market price.', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
   };
@@ -1996,24 +1997,27 @@ return '$' + usd.toFixed(4);
   /* ---------- Patagonia trust triad feeding customer-asset value ---------- */
   sketches['sk-patagonia-trust-mount'] = function(svg) {
     const rc = makeRc(svg);
-    txt(svg, 360, 22, 'trust leads customer-asset value by months, not quarters', { anchor: 'middle', fill: INK, size: 12, weight: 700 });
+    txt(svg, 360, 17, 'trust leads customer-asset value by months, not quarters', { anchor: 'middle', fill: INK, size: 11, weight: 700 });
     const triad = [
       { x: 130, label: 'ability',     gloss: 'can deliver what is promised',          eg: '174,799 garments repaired (FY25)' },
       { x: 360, label: 'benevolence', gloss: 'acts in customer interest unobserved',  eg: 'lifetime repair warranty' },
       { x: 590, label: 'integrity',   gloss: 'behavior matches stated principles',    eg: 'Purpose-Trust transfer ($3B)' }
     ];
     triad.forEach(t => {
-      svg.appendChild(rc.circle(t.x, 92, 28, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, t.x, 97, t.label, { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
-      txt(svg, t.x, 138, t.gloss, { anchor: 'middle', fill: INK2, size: 10.5 });
-      txt(svg, t.x, 158, t.eg, { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true });
+      /* dimension label sits ABOVE a roomy node circle; gloss + example sit below — all clear of strokes */
+      txt(svg, t.x, 46, t.label, { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
+      svg.appendChild(rc.circle(t.x, 84, 50, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, t.x, 130, t.gloss, { anchor: 'middle', fill: INK2, size: 9 });
+      txt(svg, t.x, 152, t.eg, { anchor: 'middle', fill: CORAL_DEEP, size: 10, hand: true });
     });
     // arrow down from triad to CAV bar
-    svg.appendChild(rc.line(360, 180, 360, 210, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.3 }));
-    svg.appendChild(rc.line(353, 203, 360, 210, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1 }));
-    svg.appendChild(rc.line(367, 203, 360, 210, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1 }));
-    svg.appendChild(rc.rectangle(120, 215, 480, 30, { stroke: CORAL, strokeWidth: 1.4, fill: CORAL_SOFT, fillStyle: 'solid', roughness: 1.5 }));
-    txt(svg, 360, 234, 'customer-asset value: lagging indicator, months behind trust', { anchor: 'middle', fill: INK, size: 11.5, weight: 700 });
+    svg.appendChild(rc.line(360, 162, 360, 204, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.2 }));
+    svg.appendChild(rc.line(352, 196, 360, 204, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1 }));
+    svg.appendChild(rc.line(368, 196, 360, 204, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1 }));
+    svg.appendChild(rc.rectangle(140, 206, 440, 40, { stroke: CORAL, strokeWidth: 1.4, fill: CORAL_SOFT, fillStyle: 'solid', roughness: 1.5 }));
+    txt(svg, 360, 231, 'CUSTOMER-ASSET VALUE', { anchor: 'middle', fill: INK, size: 11, weight: 700 });
+    /* full descriptive line sits BELOW the bar (clear of the stroke) — exact original wording kept */
+    txt(svg, 360, 270, 'customer-asset value: lagging indicator, months behind trust', { anchor: 'middle', fill: INK2, size: 11, weight: 700 });
   };
 
   /* ---------- Sk13: Lavidge-Steiner hierarchy of effects (ascending bars) ---------- */
@@ -2032,6 +2036,10 @@ return '$' + usd.toFixed(4);
     ];
     /* baseline */
     svg.appendChild(rc.line(40, base, 660, base, { stroke: INK3, strokeWidth: 1, roughness: 1.2 }));
+    /* ascending staircase line linking the bar tops (reinforces the climb) */
+    for (let i = 0; i < rungs.length - 1; i++) {
+      svg.appendChild(rc.line(rungs[i].x + bw / 2, base - rungs[i].h, rungs[i + 1].x - bw / 2, base - rungs[i + 1].h, { stroke: INK3, strokeWidth: 1.2, roughness: 1.4 }));
+    }
     /* Each rung as an ascending bar; number above the bar, label below the baseline (both clear of strokes) */
     rungs.forEach((r, i) => {
       svg.appendChild(rc.rectangle(r.x - bw / 2, base - r.h, bw, r.h, { stroke: r.stageColor, strokeWidth: 1.6, fill: '#fffdfb', fillStyle: 'solid', roughness: 1.3 }));
@@ -2087,26 +2095,31 @@ sketches['sk-vodafone-two-reads-mount'] = function(svg) {
   /* ---------- §24.1 NEW: five-stage analytical-maturity staircase ---------- */
   sketches['sk-maturity-staircase-mount'] = function(svg) {
     const rc = makeRc(svg);
-    txt(svg, 360, 24, 'analytical maturity is a climb, not a purchase', { anchor: 'middle', fill: INK2, size: 12, hand: true });
+    txt(svg, 360, 22, 'analytical maturity is a climb, not a purchase', { anchor: 'middle', fill: INK2, size: 12, hand: true });
+    const base = 244;
     const steps = [
-      { x: 60,  base: 250, w: 110, h: 34,  label: 'Stage 1', sub: 'can’t pull a number twice' },
-      { x: 188, base: 250, w: 110, h: 70,  label: 'Stage 2', sub: 'localized analytics' },
-      { x: 316, base: 250, w: 110, h: 106, label: 'Stage 3', sub: 'aspirational' },
-      { x: 444, base: 250, w: 110, h: 142, label: 'Stage 4', sub: 'analytical company' },
-      { x: 572, base: 250, w: 110, h: 178, label: 'Stage 5', sub: 'analytics IS the edge' }
+      { x: 62,  w: 108, h: 34,  label: 'Stage 1', sub: 'can’t pull a number twice' },
+      { x: 188, w: 108, h: 66,  label: 'Stage 2', sub: 'localized analytics' },
+      { x: 314, w: 108, h: 98,  label: 'Stage 3', sub: 'aspirational' },
+      { x: 440, w: 108, h: 130, label: 'Stage 4', sub: 'analytical company' },
+      { x: 566, w: 108, h: 162, label: 'Stage 5', sub: 'analytics IS the edge' }
     ];
+    /* baseline */
+    svg.appendChild(rc.line(50, base, 680, base, { stroke: INK3, strokeWidth: 1, roughness: 1.1 }));
     steps.forEach((s, i) => {
-      const y = s.base - s.h;
+      const y = base - s.h;
       const top = i === steps.length - 1;
-      svg.appendChild(rc.rectangle(s.x, y, s.w, s.h, { stroke: top ? CORAL_DEEP : CORAL, strokeWidth: 1.5, fill: top ? '#fff7f0' : '#fffdfb', fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, s.x + s.w / 2, y - 8, s.label, { anchor: 'middle', fill: top ? CORAL_DEEP : INK, size: 11, weight: 700 });
-      txt(svg, s.x + s.w / 2, s.base - 10, s.sub, { anchor: 'middle', fill: INK2, size: 9.5 });
+      svg.appendChild(rc.rectangle(s.x, y, s.w, s.h, { stroke: top ? CORAL_DEEP : CORAL, strokeWidth: 1.5, fill: top ? '#fff7f0' : '#fffdfb', fillStyle: 'solid', roughness: 1.1 }));
+      /* Stage label sits ABOVE each step top (clear of every stroke) */
+      txt(svg, s.x + s.w / 2, y - 14, s.label, { anchor: 'middle', fill: top ? CORAL_DEEP : INK, size: 11, weight: 700 });
+      /* description below the baseline, alternating two lines so neighbours never share a row */
+      txt(svg, s.x + s.w / 2, base + (i % 2 ? 34 : 18), s.sub, { anchor: 'middle', fill: INK2, size: 8.5 });
     });
-    /* The decade arrow climbing up the steps */
-    svg.appendChild(rc.line(70, 244, 626, 80, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.6 }));
-    svg.appendChild(rc.polygon([[626, 80], [617, 82], [623, 91]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.3 }));
-    txt(svg, 350, 150, 'about a decade of CEO-level commitment', { anchor: 'middle', fill: CORAL_DEEP, size: 11.5, hand: true, weight: 700, transform: 'rotate(-15 350 150)' });
-    txt(svg, 360, 274, 'most firms sit at Stage 2 or 3. the climb is a capability, built over years.', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    /* The decade arrow climbing up the far-left margin (clear of the step tops + Stage-1 label) */
+    svg.appendChild(rc.line(42, 240, 42, 150, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.2 }));
+    svg.appendChild(rc.polygon([[42, 150], [38, 159], [46, 159]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.3 }));
+    txt(svg, 250, 60, 'about a decade of CEO-level commitment', { anchor: 'middle', fill: CORAL_DEEP, size: 11.5, hand: true, weight: 700 });
+    txt(svg, 360, 312, 'most firms sit at Stage 2 or 3. the climb is a capability, built over years.', { anchor: 'middle', fill: INK2, size: 11, hand: true });
   };
 
   /* --- g2 (24.3): sk-penetration-concentration-mount (penetration vs concentration, two levers) --- */
@@ -2118,8 +2131,8 @@ sketches['sk-penetration-concentration-mount'] = function(svg) {
   svg.appendChild(rc.line(360, 44, 360, 270, { stroke: INK3, strokeWidth: 1, strokeLineDash: [4, 4], roughness: 1.4 }));
 
   /* LEFT panel: penetration (grow by acquiring more buyers) */
-  txt(svg, 180, 62, 'GROW THE BASE', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
-  txt(svg, 180, 80, 'penetration lever', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+  txt(svg, 180, 60, 'GROW THE BASE', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
+  txt(svg, 180, 84, 'penetration lever', { anchor: 'middle', fill: INK2, size: 11, hand: true });
   /* a small crowd of buyer dots, then more dots = more buyers */
   const fewX = [70, 100, 130, 85, 115];
   const fewY = [120, 118, 122, 145, 147];
@@ -2134,8 +2147,8 @@ sketches['sk-penetration-concentration-mount'] = function(svg) {
   txt(svg, 180, 250, 'double-jeopardy sizes acquisition', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700, stroke: '#fff', strokeWidth: 4 });
 
   /* RIGHT panel: concentration (profit sits in the top deciles) */
-  txt(svg, 540, 62, 'DEFEND THE PROFIT', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
-  txt(svg, 540, 80, 'allocation lever', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+  txt(svg, 540, 60, 'DEFEND THE PROFIT', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
+  txt(svg, 540, 84, 'allocation lever', { anchor: 'middle', fill: INK2, size: 11, hand: true });
   /* decile bars: top decile tall (40% of profit), tail flat/below zero */
   const base = 200;
   const bars = [
@@ -2159,8 +2172,8 @@ sketches['sk-penetration-concentration-mount'] = function(svg) {
   svg.appendChild(rc.line(424, base, 660, base, { stroke: INK3, strokeWidth: 1, roughness: 1.2 }));
   txt(svg, 443, 95, '40%', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700, hand: true });
   txt(svg, 443, 222, 'top 10%', { anchor: 'middle', fill: INK2, size: 9.5 });
-  txt(svg, 632, 234, 'tail costs money', { anchor: 'middle', fill: INK2, size: 9.5 });
-  txt(svg, 540, 250, 'concentration sizes retention', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700, stroke: '#fff', strokeWidth: 4 });
+  txt(svg, 628, 230, 'tail costs money', { anchor: 'middle', fill: INK2, size: 9 });
+  txt(svg, 540, 256, 'concentration sizes retention', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700, stroke: '#fff', strokeWidth: 4 });
 
   txt(svg, 360, 288, 'one plan runs both at once', { anchor: 'middle', fill: INK2, size: 12, hand: true, weight: 700 });
 };
@@ -2214,9 +2227,9 @@ sketches['sk-failure-to-loop-mount'] = function(svg) {
       { y: 230, label: 'CONTROL',         sub: 'which channel earned it' }
     ];
     layers.forEach(L => {
-      svg.appendChild(rc.rectangle(470, L.y - 22, 220, 48, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, 580, L.y - 4, L.label, { anchor: 'middle', fill: INK, size: 12, weight: 700 });
-      txt(svg, 580, L.y + 14, L.sub, { anchor: 'middle', fill: INK2, size: 10.5 });
+      svg.appendChild(rc.rectangle(464, L.y - 28, 232, 56, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, 580, L.y - 7, L.label, { anchor: 'middle', fill: INK, size: 11, weight: 700 });
+      txt(svg, 580, L.y + 15, L.sub, { anchor: 'middle', fill: INK2, size: 9.5 });
     });
     /* Left column: the failures, each arrowed to its layer */
     const fails = [
@@ -2245,12 +2258,12 @@ sketches['sk-failure-to-loop-mount'] = function(svg) {
       { x: 640, label: 'CLOSE',   sub: 'one attribution, revise' }
     ];
     moves.forEach((m, i) => {
-      svg.appendChild(rc.rectangle(m.x - 56, 60, 112, 70, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
+      svg.appendChild(rc.rectangle(m.x - 59, 56, 118, 82, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
       txt(svg, m.x, 88, m.label, { anchor: 'middle', fill: INK, size: 11, weight: 700 });
-      txt(svg, m.x, 108, m.sub, { anchor: 'middle', fill: INK2, size: 9.5 });
+      txt(svg, m.x, 110, m.sub, { anchor: 'middle', fill: INK2, size: 8.5 });
       if (i < moves.length - 1) {
-        svg.appendChild(rc.line(m.x + 56, 95, moves[i+1].x - 58, 95, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.5 }));
-        svg.appendChild(rc.polygon([[moves[i+1].x - 58, 95], [moves[i+1].x - 65, 91], [moves[i+1].x - 65, 99]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
+        svg.appendChild(rc.line(m.x + 61, 96, moves[i+1].x - 62, 96, { stroke: CORAL, strokeWidth: 1.5, roughness: 1.1 }));
+        svg.appendChild(rc.polygon([[moves[i+1].x - 58, 96], [moves[i+1].x - 67, 92], [moves[i+1].x - 67, 100]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
       }
     });
     txt(svg, 360, 170, 'the Vodafone puzzle, resolved at the end of the strip:', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
@@ -2975,9 +2988,10 @@ sketches['sk-failure-to-loop-mount'] = function(svg) {
     var stock = carryStock(theta);
     svgCarry.appendChild(nsEl(svgCarry, 'line', { x1: pad.l, y1: H - pad.b, x2: W - pad.r, y2: H - pad.b, stroke: '#1a1a1a', 'stroke-width': 1 }));
     svgCarry.appendChild(nsEl(svgCarry, 'line', { x1: pad.l, y1: pad.t, x2: pad.l, y2: H - pad.b, stroke: '#1a1a1a', 'stroke-width': 1 }));
-    [0, 3, 6, 9, 11].forEach(function(w) {
+    [0, 3, 6, 9, 11].forEach(function(w, wi, arr) {
       var x = pad.l + (w / 11) * (W - pad.l - pad.r);
-      var t = nsEl(svgCarry, 'text', { x: x, y: H - 10, 'text-anchor': 'middle', 'font-family': 'JetBrains Mono, monospace', 'font-size': 10, fill: '#555' });
+      var anc = wi === 0 ? 'start' : (wi === arr.length - 1 ? 'end' : 'middle');
+      var t = nsEl(svgCarry, 'text', { x: x, y: H - 10, 'text-anchor': anc, 'font-family': 'JetBrains Mono, monospace', 'font-size': 10, fill: '#555' });
       t.textContent = 'wk' + w;
       svgCarry.appendChild(t);
     });
@@ -3006,9 +3020,10 @@ sketches['sk-failure-to-loop-mount'] = function(svg) {
     var W = 360, H = 180, pad = { l: 36, r: 12, t: 12, b: 28 };
     svgSat.appendChild(nsEl(svgSat, 'line', { x1: pad.l, y1: H - pad.b, x2: W - pad.r, y2: H - pad.b, stroke: '#1a1a1a', 'stroke-width': 1 }));
     svgSat.appendChild(nsEl(svgSat, 'line', { x1: pad.l, y1: pad.t, x2: pad.l, y2: H - pad.b, stroke: '#1a1a1a', 'stroke-width': 1 }));
-    [0, 0.25, 0.5, 0.75, 1].forEach(function(s) {
+    [0, 0.25, 0.5, 0.75, 1].forEach(function(s, si, arr) {
       var x = pad.l + s * (W - pad.l - pad.r);
-      var t = nsEl(svgSat, 'text', { x: x, y: H - 10, 'text-anchor': 'middle', 'font-family': 'JetBrains Mono, monospace', 'font-size': 10, fill: '#555' });
+      var anc = si === 0 ? 'start' : (si === arr.length - 1 ? 'end' : 'middle');
+      var t = nsEl(svgSat, 'text', { x: x, y: H - 10, 'text-anchor': anc, 'font-family': 'JetBrains Mono, monospace', 'font-size': 10, fill: '#555' });
       t.textContent = '$' + Math.round(s * 100) + 'K';
       svgSat.appendChild(t);
     });
@@ -3022,7 +3037,9 @@ sketches['sk-failure-to-loop-mount'] = function(svg) {
     var ix = pad.l + gamma * (W - pad.l - pad.r);
     var iy = H - pad.b - hillSat(alpha, gamma, gamma) * (H - pad.t - pad.b);
     svgSat.appendChild(nsEl(svgSat, 'circle', { cx: ix, cy: iy, r: 4, fill: '#B8553A' }));
-    var it = nsEl(svgSat, 'text', { x: ix + 8, y: iy - 4, 'font-family': 'JetBrains Mono, monospace', 'font-size': 10, fill: '#B8553A', 'font-weight': 600 });
+    /* keep the ceiling label inside the frame: flip to the dot's left when it would run off the right edge */
+    var flip = ix > W - 90;
+    var it = nsEl(svgSat, 'text', { x: ix + (flip ? -8 : 8), y: iy - 4, 'text-anchor': flip ? 'end' : 'start', 'font-family': 'JetBrains Mono, monospace', 'font-size': 10, fill: '#B8553A', 'font-weight': 600 });
     it.textContent = 'ceiling $' + Math.round(gamma * 100) + 'K';
     svgSat.appendChild(it);
     var yl = nsEl(svgSat, 'text', { x: 8, y: pad.t + 8, 'font-family': 'Inter, sans-serif', 'font-size': 9, fill: '#888' });
