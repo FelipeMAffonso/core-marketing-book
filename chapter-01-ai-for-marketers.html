@@ -788,7 +788,7 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 <aside class="sn" data-complete><span class="sn-num">9.</span> A note worth keeping in mind as brands climb to the top rung: an AI agent left running on its own can drift over a long stretch. In one published company experiment, an agent set loose to run a small shop for a month began making strange calls and even started insisting it was a human employee. Chapter 26 tells that story in full and explains the guardrails. For now, the takeaway is that the top rung needs a person checking on it, not a person typing during it.</aside>
 
 <figure class="sketch" aria-label="How you read a rung from the outside">
-  <div class="mount" id="sk-decoder-mount" data-w="720" data-h="412"></div>
+  <div class="mount" id="sk-decoder-mount" data-w="720" data-h="424"></div>
   <figcaption>How you read a rung from the outside. The signals a brand gives off tell you which rung it picked.</figcaption>
 </figure>
 
@@ -2203,24 +2203,24 @@ sketches['sk-decoder-mount'] = function(svg){
     {tell:'a product that reshapes per user', tier:'4', note:'overnight personalizing'},
     {tell:'a back-office data pipe, no chatbot', tier:'3', note:'connected, kept quiet'}
   ];
-  const y0 = 56, rh = 80, ch = 64;
+  const y0 = 54, rh = 84, ch = 70;
   rows.forEach((r, i) => {
     const y = y0 + i * rh;
     const yc = y + ch / 2;
     // the public tell (left card)
-    svg.appendChild(rc.rectangle(36, y, 312, ch, {stroke:CORAL, strokeWidth:1.5, fill:'#fff', fillStyle:'solid', roughness:1.4}));
-    txt(svg, 56, yc - 4, r.tell, {fill:INK, size:11.5, weight:700});
-    txt(svg, 56, yc + 18, r.note, {fill:INK2, size:10, hand:true});
+    svg.appendChild(rc.rectangle(34, y, 336, ch, {stroke:CORAL, strokeWidth:1.5, fill:'#fff', fillStyle:'solid', roughness:1.4}));
+    txt(svg, 54, yc - 5, r.tell, {fill:INK, size:11, weight:700});
+    txt(svg, 54, yc + 17, r.note, {fill:INK2, size:9.5, hand:true});
     // arrow to the tier
-    svg.appendChild(rc.line(356, yc, 472, yc, {stroke:CORAL, strokeWidth:1.5, roughness:1.5}));
-    svg.appendChild(rc.polygon([[476, yc],[468, yc - 5],[468, yc + 5]], {stroke:CORAL, strokeWidth:1.2, fill:CORAL, fillStyle:'solid', roughness:1.3}));
-    txt(svg, 414, yc - 9, 'reads as', {anchor:'middle', fill:INK3, size:10, hand:true});
+    svg.appendChild(rc.line(380, yc, 470, yc, {stroke:CORAL, strokeWidth:1.5, roughness:1.5}));
+    svg.appendChild(rc.polygon([[474, yc],[466, yc - 5],[466, yc + 5]], {stroke:CORAL, strokeWidth:1.2, fill:CORAL, fillStyle:'solid', roughness:1.3}));
+    txt(svg, 425, yc - 9, 'reads as', {anchor:'middle', fill:INK3, size:10, hand:true});
     // the tier badge (right)
     const top = (r.tier === '4');
-    svg.appendChild(rc.rectangle(486, yc - 26, 176, 52, {stroke: top ? CORAL_DEEP : CORAL, strokeWidth:1.6, fill: top ? '#1a1a1a' : '#fff7f0', fillStyle:'solid', roughness:1.4}));
-    txt(svg, 574, yc + 5, 'TIER ' + r.tier, {anchor:'middle', fill: top ? '#ffffff' : CORAL_DEEP, size:13, weight:700});
+    svg.appendChild(rc.rectangle(488, yc - 26, 176, 52, {stroke: top ? CORAL_DEEP : CORAL, strokeWidth:1.6, fill: top ? '#1a1a1a' : '#fff7f0', fillStyle:'solid', roughness:1.4}));
+    txt(svg, 576, yc + 5, 'TIER ' + r.tier, {anchor:'middle', fill: top ? '#ffffff' : CORAL_DEEP, size:13, weight:700});
   });
-  txt(svg, 360, y0 + rows.length * rh + 18, 'the signals a brand gives off tell you which rung it picked.', {anchor:'middle', fill:CORAL_DEEP, size:11.5, hand:true, weight:700});
+  txt(svg, 360, y0 + rows.length * rh + 20, 'the signals a brand gives off tell you which rung it picked.', {anchor:'middle', fill:CORAL_DEEP, size:11.5, hand:true, weight:700});
 };
 
 /* ===== appended sketch renderers from build F ===== */

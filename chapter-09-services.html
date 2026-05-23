@@ -2592,7 +2592,7 @@ return '$' + usd.toFixed(4);
     // Direction arrow at the right end
     svg.appendChild(rc.line(640, 130, 632, 124, { stroke: INK3, strokeWidth: 1.4, roughness: 1.4 }));
     svg.appendChild(rc.line(640, 130, 632, 136, { stroke: INK3, strokeWidth: 1.4, roughness: 1.4 }));
-    txt(svg, 612, 148, 'time', { anchor: 'middle', fill: INK3, size: 10, hand: true });
+    txt(svg, 575, 150, 'time', { anchor: 'middle', fill: INK3, size: 10, hand: true });
 
     // Three moment markers
     const moments = [
@@ -2635,15 +2635,16 @@ return '$' + usd.toFixed(4);
     });
 
     // SMOT-feeds-ZMOT feedback caption, then a dashed return arrow that loops above the boxes.
-    txt(svg, 400, 150, 'the SMOT review becomes the next buyer ZMOT', { anchor: 'middle', fill: CORAL_DEEP, size: 10.5, hand: true });
+    txt(svg, 400, 155, 'the SMOT review becomes the next buyer ZMOT', { anchor: 'middle', fill: CORAL_DEEP, size: 10.5, hand: true });
     // Return path: leaves the SMOT box top-right, runs flat in the clear lane, drops into the ZMOT box top-left
-    // (endpoints sit at the box corners so the line never crosses the centered labels).
-    svg.appendChild(rc.line(665, 176, 645, 166, { stroke: CORAL_DEEP, strokeWidth: 1.2, strokeLineDash: [4, 3], roughness: 1.6 }));
-    svg.appendChild(rc.line(645, 166, 155, 166, { stroke: CORAL_DEEP, strokeWidth: 1.2, strokeLineDash: [4, 3], roughness: 1.6 }));
-    svg.appendChild(rc.line(155, 166, 135, 176, { stroke: CORAL_DEEP, strokeWidth: 1.2, strokeLineDash: [4, 3], roughness: 1.6 }));
+    // (endpoints sit at the box corners so the line never crosses the centered labels; low roughness keeps the
+    // flat run inside its lane, clear of the caption above and the labels below).
+    svg.appendChild(rc.line(665, 176, 645, 166, { stroke: CORAL_DEEP, strokeWidth: 1.2, strokeLineDash: [4, 3], roughness: 0.8 }));
+    svg.appendChild(rc.line(645, 166, 155, 166, { stroke: CORAL_DEEP, strokeWidth: 1.2, strokeLineDash: [4, 3], roughness: 0.8 }));
+    svg.appendChild(rc.line(155, 166, 135, 176, { stroke: CORAL_DEEP, strokeWidth: 1.2, strokeLineDash: [4, 3], roughness: 0.8 }));
     // Arrowhead pointing back down into the top of the ZMOT box
-    svg.appendChild(rc.line(135, 176, 131, 170, { stroke: CORAL_DEEP, strokeWidth: 1.2, roughness: 1.4 }));
-    svg.appendChild(rc.line(135, 176, 141, 172, { stroke: CORAL_DEEP, strokeWidth: 1.2, roughness: 1.4 }));
+    svg.appendChild(rc.line(135, 176, 131, 170, { stroke: CORAL_DEEP, strokeWidth: 1.2, roughness: 0.8 }));
+    svg.appendChild(rc.line(135, 176, 141, 172, { stroke: CORAL_DEEP, strokeWidth: 1.2, roughness: 0.8 }));
   };
 
 
@@ -2699,7 +2700,7 @@ return '$' + usd.toFixed(4);
         { y: 258, trait: 'INSEPARABILITY', discipline: 'internal marketing',    sec: 'Section 9.3' }
       ];
       /* boxes sized so each label keeps generous margin (no text crowding the stroke) */
-      const traitX = 52, traitW = 204, discX = 320, discW = 246, boxH = 52;
+      const traitX = 50, traitW = 210, discX = 318, discW = 250, boxH = 54;
       rows.forEach(r => {
         const midY = r.y + boxH / 2;
         /* trait box (left) */
@@ -2826,9 +2827,9 @@ return '$' + usd.toFixed(4);
       txt(svg, 575, 96, '=', { anchor: 'middle', fill: INK2, size: 18, weight: 700 });
 
       // The result box: 50 million moments
-      svg.appendChild(rc.rectangle(602, 48, 116, 80, { stroke: CORAL_DEEP, strokeWidth: 2.2, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
-      txt(svg, 660, 90, '50M', { anchor: 'middle', fill: CORAL_DEEP, size: 21, weight: 700 });
-      txt(svg, 660, 114, 'moments a year', { anchor: 'middle', fill: INK, size: 9.5 });
+      svg.appendChild(rc.rectangle(596, 46, 122, 84, { stroke: CORAL_DEEP, strokeWidth: 2.2, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
+      txt(svg, 657, 90, '50M', { anchor: 'middle', fill: CORAL_DEEP, size: 18, weight: 700 });
+      txt(svg, 657, 114, 'moments a year', { anchor: 'middle', fill: INK, size: 9.5 });
 
       // Comparison bars: brand exposure vs the biggest TV budget of the era
       const baseY = 162;
