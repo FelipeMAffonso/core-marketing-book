@@ -1037,7 +1037,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p>The claim that linking twenty short articles back to one long page earns a ranking can sound like superstition, but the mechanism is plain once you picture what the engine is doing. Think of a search engine as a librarian deciding which periodicals are authoritative on which subjects. The librarian sees one periodical that publishes a comprehensive reference essay on insulated drinkware, and then publishes twenty narrower pieces (on vacuum versus single-wall construction, on cup-holder fit in standard cars, on the difference between 18/8 and 304 stainless) that all cite the reference essay. The librarian concludes the periodical genuinely knows the subject, because nobody assembles twenty cross-referenced articles unless they have something coherent to say.</p>
 
 <figure class="sketch" aria-label="Pillar page surrounded by cluster pages with bidirectional link arrows">
-  <div class="mount" id="sk-pillar-cluster-mount" data-w="700" data-h="270"></div>
+  <div class="mount" id="sk-pillar-cluster-mount" data-w="700" data-h="300"></div>
   <figcaption>Each cluster page links to the pillar; the pillar links to each cluster. The bidirectional structure is what the search engine reads as topical authority.</figcaption>
 </figure>
 
@@ -1591,7 +1591,7 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
 <p>The strategic correction is direct. Undifferentiated AI-drafted content fails the ignition test by construction, because that content is precisely the pattern an AI Overview can summarize without sending anyone to the source.<sup class="cite" data-cite="ref-22"></sup> The premium in this environment goes to brands willing to publish work an automated engine alone cannot produce, including original reporting the brand commissioned, a named human point of view the reader can attach to a specific person, and format choices that break the brand's own pattern rather than reinforce it. Patagonia's documentary slate and Liquid Death's horror-comedy short films share one property, which is that an Overview summary cannot stand in for watching the source. The community layer extends the correction into the audience itself, because an organized network of buyers connected to each other and to the brand compounds the content investment through their own conversations rather than depreciating once the algorithm moves on. A category subreddit, a Discord for power users, or a Substack chat thread keeps a post alive in conversations the brand never sees.<sup class="cite" data-cite="ref-22"></sup></p>
 
 <figure class="sketch" aria-label="The chapter spine drawn as one labeled left-to-right strip from worldview through pillar, cadence, cascade, distribution, and measurement, with the opening Content Marketing Institute puzzle resolved.">
-  <div class="mount" id="sk-ch17-recap-mount" data-w="760" data-h="250"></div>
+  <div class="mount" id="sk-ch17-recap-mount" data-w="760" data-h="280"></div>
   <figcaption>The chapter in one strip. Own a worldview narrow enough to publish for, build the pillar that anchors it, hold a cadence the team can sustain, repurpose across the channels the audience uses, distribute more aggressively than you create, and measure the slow business numbers. The company that published weekly for eleven years sold the audience that returns on a schedule, not any software.</figcaption>
 </figure>
 
@@ -2084,23 +2084,24 @@ return '$' + usd.toFixed(4);
   // ---- Pillar+cluster sketch ----
   sketches['sk-pillar-cluster-mount'] = function(svg) {
     var rc = makeRc(svg);
-    // Cluster positions
-    var pos = [[120, 60], [580, 60], [70, 170], [630, 170], [220, 210], [480, 210]];
+    // Cluster positions, spread so the larger circles do not touch each other or the pillar
+    var pos = [[112, 58], [588, 58], [64, 168], [636, 168], [214, 214], [486, 214]];
     // 1) Lines first so the pillar circle + cluster circles paint over them
     pos.forEach(function(p) {
-      svg.appendChild(rc.line(350, 120, p[0], p[1], { stroke: CORAL, strokeWidth: 1.2, roughness: 1.7 }));
+      svg.appendChild(rc.line(350, 118, p[0], p[1], { stroke: CORAL, strokeWidth: 1.2, roughness: 1.7 }));
     });
-    // 2) Center pillar (paints over the converging lines)
-    svg.appendChild(rc.circle(350, 120, 110, { stroke: CORAL, strokeWidth: 2.2, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
-    txt(svg, 350, 116, 'PILLAR', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
+    // 2) Center pillar (paints over the converging lines). Larger so its two
+    // stacked labels clear the 5x-text threshold and do not touch each other.
+    svg.appendChild(rc.circle(350, 118, 124, { stroke: CORAL, strokeWidth: 2.2, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
+    txt(svg, 350, 112, 'PILLAR', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
     txt(svg, 350, 132, '~7,000 words', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
-    // 3) Cluster circles + labels last (paint over their tail end of each line)
+    // 3) Cluster circles + labels last (paint over the tail of each line)
     pos.forEach(function(p) {
-      svg.appendChild(rc.circle(p[0], p[1], 56, { stroke: CORAL_DEEP, strokeWidth: 1.5, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, p[0], p[1] - 4, 'cluster', { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 700 });
-      txt(svg, p[0], p[1] + 10, '~1,500w', { anchor: 'middle', fill: INK2, size: 10 });
+      svg.appendChild(rc.circle(p[0], p[1], 82, { stroke: CORAL_DEEP, strokeWidth: 1.5, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, p[0], p[1] - 6, 'cluster', { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 700 });
+      txt(svg, p[0], p[1] + 13, '~1,500w', { anchor: 'middle', fill: INK2, size: 10 });
     });
-    txt(svg, 350, 258, 'each cluster links to the pillar; the pillar links back to all clusters.', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
+    txt(svg, 350, 260, 'each cluster links to the pillar; the pillar links back to all clusters.', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
   };
 
   // ---- Calendar/cadence sketch ----
@@ -2671,21 +2672,23 @@ sketches['sk-ideator-output-mount'] = function(svg) {
 sketches['sk-ch17-recap-mount'] = function(svg) {
     var rc = makeRc(svg);
     txt(svg, 380, 24, 'the chapter in one strip', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
-    // Six labeled stages left to right, each an arrow into the next
+    // Six labeled stages left to right, each an arrow into the next.
+    // The bold stage word sits in the box; the short gloss sits BELOW the box
+    // (outside it) so neither the label/gloss pair nor the gloss/box collide.
     var stages = [
-      { label: 'WORLDVIEW',    sub: 'a niche to publish for' },
-      { label: 'PILLAR',       sub: 'the anchor page' },
-      { label: 'CADENCE',      sub: 'a year you can hold' },
-      { label: 'CASCADE',      sub: 'one piece into five' },
-      { label: 'DISTRIBUTE',   sub: 'more than you create' },
-      { label: 'MEASURE',      sub: 'slow business numbers' }
+      { label: 'WORLDVIEW',    sub: 'a niche' },
+      { label: 'PILLAR',       sub: 'the anchor' },
+      { label: 'CADENCE',      sub: 'sustainable' },
+      { label: 'CASCADE',      sub: '1 into 5' },
+      { label: 'DISTRIBUTE',   sub: 'over-publish' },
+      { label: 'MEASURE',      sub: 'slow numbers' }
     ];
-    var bx = 24, by = 70, bw = 108, bh = 56, gapX = 14;
+    var bx = 24, by = 62, bw = 108, bh = 50, gapX = 14;
     stages.forEach(function(s, i) {
       var x = bx + i * (bw + gapX);
       svg.appendChild(rc.rectangle(x, by, bw, bh, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, x + bw / 2, by + 22, s.label, { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-      txt(svg, x + bw / 2, by + 40, s.sub, { anchor: 'middle', fill: INK2, size: 9.5 });
+      txt(svg, x + bw / 2, by + 30, s.label, { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
+      txt(svg, x + bw / 2, by + bh + 18, s.sub, { anchor: 'middle', fill: INK2, size: 10, hand: true });
       // arrow into the next stage
       if (i < stages.length - 1) {
         var ax1 = x + bw, ax2 = x + bw + gapX;
@@ -2693,47 +2696,50 @@ sketches['sk-ch17-recap-mount'] = function(svg) {
         svg.appendChild(rc.polygon([[ax2, by + bh / 2], [ax2 - 7, by + bh / 2 - 4], [ax2 - 7, by + bh / 2 + 4]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.2 }));
       }
     });
-    // measurement loop: a dashed line from MEASURE back under the strip to WORLDVIEW
+    // measurement loop: a dashed line from MEASURE back under the strip+glosses to WORLDVIEW
     var lastX = bx + 5 * (bw + gapX) + bw / 2;
     var firstX = bx + bw / 2;
-    var loopY = by + bh + 34;
-    svg.appendChild(rc.line(lastX, by + bh, lastX, loopY, { stroke: INK3, strokeWidth: 1, strokeLineDash: [4,3], roughness: 1.3 }));
+    var glossBot = by + bh + 24;          // below the gloss baselines
+    var loopY = by + bh + 50;
+    svg.appendChild(rc.line(lastX, glossBot, lastX, loopY, { stroke: INK3, strokeWidth: 1, strokeLineDash: [4,3], roughness: 1.3 }));
     svg.appendChild(rc.line(lastX, loopY, firstX, loopY, { stroke: INK3, strokeWidth: 1, strokeLineDash: [4,3], roughness: 1.3 }));
-    svg.appendChild(rc.line(firstX, loopY, firstX, by + bh, { stroke: INK3, strokeWidth: 1, strokeLineDash: [4,3], roughness: 1.3 }));
-    svg.appendChild(rc.polygon([[firstX, by + bh + 2], [firstX - 4, by + bh + 11], [firstX + 4, by + bh + 11]], { stroke: INK3, strokeWidth: 1, fill: INK3, fillStyle: 'solid', roughness: 1.2 }));
-    txt(svg, 380, loopY + 4, 'measurement reads back into the worldview', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
+    svg.appendChild(rc.line(firstX, loopY, firstX, glossBot, { stroke: INK3, strokeWidth: 1, strokeLineDash: [4,3], roughness: 1.3 }));
+    svg.appendChild(rc.polygon([[firstX, glossBot], [firstX - 4, glossBot + 9], [firstX + 4, glossBot + 9]], { stroke: INK3, strokeWidth: 1, fill: INK3, fillStyle: 'solid', roughness: 1.2 }));
+    txt(svg, 380, loopY + 18, 'measurement reads back into the worldview', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
     // the resolved opening puzzle, set apart at the bottom
-    svg.appendChild(rc.line(40, loopY + 24, 720, loopY + 24, { stroke: INK3, strokeWidth: 0.8, strokeLineDash: [2,3], roughness: 1.2 }));
-    txt(svg, 380, loopY + 46, 'the company that published weekly for eleven years sold the audience,', { anchor: 'middle', fill: INK, size: 12, hand: true });
-    txt(svg, 380, loopY + 64, 'the one that returns on a schedule, not any software', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
+    svg.appendChild(rc.line(40, loopY + 34, 720, loopY + 34, { stroke: INK3, strokeWidth: 0.8, strokeLineDash: [2,3], roughness: 1.2 }));
+    txt(svg, 380, loopY + 56, 'the company that published weekly for eleven years sold the audience,', { anchor: 'middle', fill: INK, size: 12, hand: true });
+    txt(svg, 380, loopY + 76, 'the one that returns on a schedule, not any software', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
   };
 
   // ---- Saturation convergence (REUSE, RE-AIMED to carry the Ch18 turn-arrow) ----
   sketches['sk-saturation-converge-mount'] = function(svg) {
     var rc = makeRc(svg);
     txt(svg, 450, 24, 'five commitments, one asset that survives an AI Overview', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
-    // Five source nodes on the left, one destination in the middle
+    // Five source nodes on the left, one destination in the middle.
+    // Boxes are wide+tall enough to clear the 5x-text threshold; glosses are short.
     var sources = [
-      { y: 60,  label: 'WORLDVIEW',    sub: 'narrow enough to publish for' },
-      { y: 110, label: 'PILLAR',       sub: 'one anchor per quarter' },
-      { y: 160, label: 'CADENCE',      sub: 'a year the team can hold' },
-      { y: 210, label: 'CASCADE',      sub: 'one piece into five' },
-      { y: 260, label: 'DISTRIBUTION', sub: 'more than you create' }
+      { y: 56,  label: 'WORLDVIEW',    sub: 'a narrow niche' },
+      { y: 110, label: 'PILLAR',       sub: 'one per quarter' },
+      { y: 164, label: 'CADENCE',      sub: 'sustainable' },
+      { y: 218, label: 'CASCADE',      sub: 'one into five' },
+      { y: 272, label: 'DISTRIBUTION', sub: 'over-publish' }
     ];
-    var dx = 420, dy = 130, dw = 180, dh = 90;
+    var sbw = 196, sbh = 46;
+    var dx = 412, dy = 134, dw = 184, dh = 96;
     svg.appendChild(rc.rectangle(dx, dy, dw, dh, { stroke: CORAL_DEEP, strokeWidth: 2.2, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, dx + dw / 2, dy + 26, 'CITABLE ASSET', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
-    txt(svg, dx + dw / 2, dy + 48, 'survives the AI', { anchor: 'middle', fill: INK, size: 11.5, hand: true });
-    txt(svg, dx + dw / 2, dy + 64, 'Overview summary', { anchor: 'middle', fill: INK, size: 11.5, hand: true });
+    txt(svg, dx + dw / 2, dy + 30, 'CITABLE ASSET', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
+    txt(svg, dx + dw / 2, dy + 54, 'survives the AI', { anchor: 'middle', fill: INK, size: 11.5, hand: true });
+    txt(svg, dx + dw / 2, dy + 74, 'Overview summary', { anchor: 'middle', fill: INK, size: 11.5, hand: true });
     // Converging lines from each source to the destination
     sources.forEach(function(s) {
-      svg.appendChild(rc.curve([[210, s.y + 18], [310, s.y + 18], [360, dy + dh / 2], [dx, dy + dh / 2]], { stroke: CORAL, strokeWidth: 1.4, roughness: 1.6 }));
+      svg.appendChild(rc.curve([[40 + sbw, s.y + sbh / 2], [330, s.y + sbh / 2], [380, dy + dh / 2], [dx, dy + dh / 2]], { stroke: CORAL, strokeWidth: 1.4, roughness: 1.6 }));
     });
     // Source boxes painted over the line tails
     sources.forEach(function(s) {
-      svg.appendChild(rc.rectangle(40, s.y, 170, 36, { stroke: CORAL, strokeWidth: 1.5, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, 50, s.y + 16, s.label, { fill: CORAL_DEEP, size: 11, weight: 700 });
-      txt(svg, 50, s.y + 30, s.sub, { fill: INK, size: 10.5 });
+      svg.appendChild(rc.rectangle(40, s.y, sbw, sbh, { stroke: CORAL, strokeWidth: 1.5, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, 54, s.y + 20, s.label, { fill: CORAL_DEEP, size: 11, weight: 700 });
+      txt(svg, 54, s.y + 38, s.sub, { fill: INK, size: 10.5, hand: true });
     });
     // Arrow tip into the destination
     svg.appendChild(rc.polygon([[dx, dy + dh / 2], [dx - 12, dy + dh / 2 - 7], [dx - 12, dy + dh / 2 + 7]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.3 }));
@@ -2741,7 +2747,7 @@ sketches['sk-ch17-recap-mount'] = function(svg) {
     var tx = dx + dw, ty = dy + dh / 2;
     svg.appendChild(rc.line(tx, ty, tx + 56, ty, { stroke: CORAL_DEEP, strokeWidth: 2, roughness: 1.4 }));
     svg.appendChild(rc.polygon([[tx + 66, ty], [tx + 54, ty - 6], [tx + 54, ty + 6]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.3 }));
-    var c18x = tx + 70, c18y = dy + 4, c18w = 220, c18h = 92;
+    var c18x = tx + 66, c18y = dy + 4, c18w = 208, c18h = 92;
     svg.appendChild(rc.rectangle(c18x, c18y, c18w, c18h, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', strokeLineDash: [5,3], roughness: 1.4 }));
     txt(svg, c18x + c18w / 2, c18y + 22, 'CHAPTER 18', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
     txt(svg, c18x + c18w / 2, c18y + 42, 'the search-and-retrieval layer:', { anchor: 'middle', fill: INK, size: 11, hand: true });

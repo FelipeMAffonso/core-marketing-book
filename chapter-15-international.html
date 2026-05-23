@@ -1052,7 +1052,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn"><span class="sn-num">11.</span> The sachet is the visible edge of a <span class="term" data-tt="Bottom of the pyramid (BOP) is the idea that the largest, poorest income tier can be a real market when products are built from the buyer's economics outward. A 2007 critique by Aneel Karnani warned that the headline market size overstates real spending power once subsistence is netted out, and that sourcing from and employing low-income households often does more good than selling more to them.">bottom-of-the-pyramid</span> approach to serving households whose income arrives and is spent on a daily cash cycle: packaging sized to a day's spend, distribution invented for the geography (Project Shakti grew to 200,000-plus village entrepreneurs and roughly 40 percent of Hindustan Unilever revenue by 2025), credit designed for the cash cycle, and product invented from first principles rather than engineered down from a Western model.<sup class="cite" data-cite="ref-31"></sup> Tata Nano failed by treating an emerging-market buyer as a stripped-down Western one, while Reliance Jio passed by inventing free 4G data on daily-recharge plans.</aside>
 
 <figure class="sketch" aria-label="The three product strategies: straight extension keeps the product, product adaptation rebuilds the executional layer, product invention builds a new product">
-  <div class="mount" id="sk-product-strategies-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-product-strategies-mount" data-w="720" data-h="340"></div>
   <figcaption>The three product moves, in rising order of cost and rebuild. Straight extension ships the home product unchanged (a camera, a spreadsheet app). Product adaptation keeps the identity and rebuilds the executional layer (McDonald's keeps the brand, swaps the menu). Product invention builds a new product because the home one is unbuyable in the local context (the one-rupee sachet, not a smaller bottle).</figcaption>
 </figure>
 
@@ -2074,14 +2074,17 @@ return '$' + usd.toFixed(4);
         { y: 132, label: 'JOINT VENTURE',       sub: 'co-own with a local' },
         { y: 92,  label: 'WHOLLY-OWNED',        sub: 'own it outright' }
       ];
+      const geo = rungs.map((r, i) => ({ x0: 92 + i * 18, w: 520 - i * 18, y: r.y }));
+      // stair risers linking each rung to the one above (the climb)
+      for (let i = 0; i < rungs.length - 1; i++) {
+        svg.appendChild(rc.line(geo[i].x0, geo[i].y, geo[i+1].x0, geo[i+1].y + 32, { stroke: CORAL_SOFT, strokeWidth: 1.2, strokeLineDash: [3, 3], roughness: 1.4 }));
+      }
       rungs.forEach((r, i) => {
         const top = (i === rungs.length - 1);
-        // a wide indent that grows as commitment rises, so the stack reads as a climb
-        const x0 = 80 + i * 16;
-        const w = 540 - i * 16;
+        const x0 = geo[i].x0, w = geo[i].w;
         svg.appendChild(rc.rectangle(x0, r.y, w, 32, { stroke: top ? CORAL_DEEP : CORAL, strokeWidth: top ? 2 : 1.6, fill: top ? '#fff7f0' : '#fff', fillStyle: 'solid', roughness: 1.35 }));
-        txt(svg, x0 + 14, r.y + 21, r.label, { anchor: 'start', fill: top ? CORAL_DEEP : INK, size: 11, weight: 700 });
-        txt(svg, x0 + w - 14, r.y + 21, r.sub, { anchor: 'end', fill: INK2, size: 10 });
+        txt(svg, x0 + 18, r.y + 21, r.label, { anchor: 'start', fill: top ? CORAL_DEEP : INK, size: 11, weight: 700 });
+        txt(svg, x0 + w - 18, r.y + 21, r.sub, { anchor: 'end', fill: INK2, size: 10 });
       });
       // up arrow: commitment / risk / control / profit
       svg.appendChild(rc.line(40, 270, 40, 90, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.4 }));
@@ -2244,44 +2247,43 @@ return '$' + usd.toFixed(4);
       // three stacked rows; each = an open heading (no tight box), a what-line, an example, a descriptor line
       const rows = [
         {
-          y: 60, label: 'STRAIGHT EXTENSION', accent: CORAL,
+          yh: 66, label: 'STRAIGHT EXTENSION', accent: CORAL,
           what: 'ship the home product unchanged',
           ex: 'a camera, a spreadsheet app: the job is the same at the border',
           chips: ['same product', 'same package', 'same creative']
         },
         {
-          y: 134, label: 'PRODUCT ADAPTATION', accent: CORAL,
+          yh: 162, label: 'PRODUCT ADAPTATION', accent: CORAL,
           what: 'keep the brand, rebuild execution',
           ex: 'McDonald’s keeps the brand, swaps the menu market by market',
           chips: ['same brand', 'local menu', 'local channel']
         },
         {
-          y: 208, label: 'PRODUCT INVENTION', accent: CORAL_DEEP,
+          yh: 258, label: 'PRODUCT INVENTION', accent: CORAL_DEEP,
           what: 'build new, home one is unbuyable',
           ex: 'the one-rupee sachet, not a smaller bottle',
           chips: ['new unit', 'new cost base', 'new distribution']
         }
       ];
       rows.forEach((r, i) => {
+        const boxTop = r.yh - 24;
         // a wide row container (large enough that no label crowds its stroke)
-        svg.appendChild(rc.rectangle(44, r.y - 22, 660, 60, { stroke: r.accent, strokeWidth: r.accent === CORAL_DEEP ? 1.8 : 1.5, fill: r.accent === CORAL_DEEP ? '#fff7f0' : '#fff', fillStyle: 'solid', roughness: 1.35 }));
-        // heading + what-line on the left
-        txt(svg, 60, r.y, r.label, { anchor: 'start', fill: r.accent, size: 12.5, weight: 700 });
-        txt(svg, 60, r.y + 18, r.what, { anchor: 'start', fill: INK2, size: 10.5 });
-        // example to the right of the heading
-        txt(svg, 312, r.y - 1, r.ex, { anchor: 'start', fill: INK, size: 11, hand: true });
-        // descriptor chips as plain spaced text (no cramped sub-boxes), with thin dot separators between them
-        let dx = 312;
+        svg.appendChild(rc.rectangle(44, boxTop, 660, 84, { stroke: r.accent, strokeWidth: r.accent === CORAL_DEEP ? 1.8 : 1.5, fill: r.accent === CORAL_DEEP ? '#fff7f0' : '#fff', fillStyle: 'solid', roughness: 1.35 }));
+        // heading + what-line on the left, example on the right (top line)
+        txt(svg, 62, r.yh, r.label, { anchor: 'start', fill: r.accent, size: 12.5, weight: 700 });
+        txt(svg, 62, r.yh + 17, r.what, { anchor: 'start', fill: INK2, size: 10.5 });
+        txt(svg, 318, r.yh + 4, r.ex, { anchor: 'start', fill: INK, size: 10.5, hand: true });
+        // three descriptor chips on a lower line, full width; each box is generously larger than its short label
         r.chips.forEach((c, j) => {
-          if (j > 0) { txt(svg, dx, r.y + 18, '·', { anchor: 'middle', fill: CORAL_SOFT, size: 11 }); dx += 12; }
-          const t = txt(svg, dx, r.y + 18, c, { anchor: 'start', fill: INK3, size: 10 });
-          dx += (t.getComputedTextLength ? t.getComputedTextLength() : c.length * 6.4) + 14;
+          const cx = 62 + j * 208;
+          svg.appendChild(rc.rectangle(cx, r.yh + 26, 196, 34, { stroke: CORAL_SOFT, strokeWidth: 1, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+          txt(svg, cx + 98, r.yh + 47, c, { anchor: 'middle', fill: INK3, size: 9.5 });
         });
       });
       // rising arrow on the far left margin (cost + rebuild climb downward through the list)
-      svg.appendChild(rc.line(24, 224, 24, 44, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.5 }));
-      svg.appendChild(rc.polygon([[24, 224], [19, 212], [29, 212]], { stroke: CORAL_DEEP, strokeWidth: 1.2, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.3 }));
-      txt(svg, 24, 250, 'cost + rebuild rise ↓', { anchor: 'start', fill: INK2, size: 9.5, weight: 600 });
+      svg.appendChild(rc.line(24, 296, 24, 44, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.5 }));
+      svg.appendChild(rc.polygon([[24, 296], [19, 284], [29, 284]], { stroke: CORAL_DEEP, strokeWidth: 1.2, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.3 }));
+      txt(svg, 24, 318, 'cost + rebuild rise ↓', { anchor: 'start', fill: INK2, size: 9.5, weight: 600 });
     };
 
     // ---------- REUSE: Euro Disney to Disneyland Paris (verbatim from live L2242) ----------
