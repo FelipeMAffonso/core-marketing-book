@@ -2335,8 +2335,7 @@
       c += '#cc-chtoc-fab:hover { color:' + ac + '; border-color:' + ac + '; }\n';
       // fade the button toward transparent when it overlaps a sidenote (so the note stays
       // readable); hovering brings it back to full so it is always usable.
-      c += '#cc-chtoc-fab { transition: opacity 0.22s ease, color 0.15s, border-color 0.15s; }\n';
-      c += '#cc-chtoc-fab.cc-faded { opacity: 0.16; }\n';
+      c += '#cc-chtoc-fab { transition: opacity 0.16s ease, color 0.15s, border-color 0.15s; }\n';
       c += '#cc-chtoc-fab:hover { opacity: 1 !important; }\n';
       c += 'html[data-cctoc="intext"] nav.chapter-toc { display:block !important; position:static; width:auto !important; max-width:680px; margin:28px auto 8px; padding:18px 22px; border:1px solid ' + line + '; border-radius:12px; background:' + bgAlt + '; }\n';
       c += 'html[data-cctoc="floating"] #cc-chtoc-fab { display:inline-flex !important; }\n';
@@ -2382,9 +2381,14 @@
           // so the note underneath stays readable; fades back when clear (any layout/scroll position).
           var ff = doc.getElementById('cc-chtoc-fab');
           if (ff) {
-            var fr = ff.getBoundingClientRect(), vh = win.innerHeight || 800, ov = false, sns = doc.querySelectorAll('.sn, aside.sn');
-            for (var z = 0; z < sns.length; z++) { var nr = sns[z].getBoundingClientRect(); if (nr.bottom > -16 && nr.top < vh && !(fr.right < nr.left || fr.left > nr.right || fr.bottom < nr.top || fr.top > nr.bottom)) { ov = true; break; } }
-            ff.classList.toggle('cc-faded', ov);
+            var fr = ff.getBoundingClientRect(), vh = win.innerHeight || 800, ratio = 0, sns = doc.querySelectorAll('.sn, aside.sn');
+            for (var z = 0; z < sns.length; z++) { var nr = sns[z].getBoundingClientRect();
+              if (nr.bottom < -16 || nr.top > vh || fr.right < nr.left || fr.left > nr.right) continue;
+              var vo = Math.max(0, Math.min(fr.bottom, nr.bottom) - Math.max(fr.top, nr.top)), r2 = vo / Math.max(1, fr.height);
+              if (r2 > ratio) ratio = r2;
+            }
+            // continuous transparency: fully over a note -> ~0.16, partially -> mid, clear -> 1
+            ff.style.opacity = (1 - Math.min(1, ratio) * 0.84).toFixed(3);
           }
         }
         doc._ccSpy = function () { if (!ticking) { ticking = true; win.requestAnimationFrame(update); } };
@@ -2442,7 +2446,7 @@
             if (sn) { var r = sn.getBoundingClientRect(); if (r.width > 40) {
               var L = Math.round(r.left), Wd = Math.round(r.width);
               nav.style.left = L + 'px'; nav.style.width = Wd + 'px'; nav.style.right = 'auto';
-              var f = doc.getElementById('cc-chtoc-fab'); if (f) { f.style.left = L + 'px'; f.style.right = 'auto'; }
+              var f = doc.getElementById('cc-chtoc-fab'); if (f) { var fw = f.getBoundingClientRect().width || 110; f.style.left = Math.round(L + (Wd - fw) / 2) + 'px'; f.style.right = 'auto'; }
             } }
           };
           posFn();
@@ -2466,23 +2470,55 @@
     // Draw an animated rough-notation BRACKET on each margin sidenote (the Attio GTM-Atlas
     // recipe: rough-notation brackets + IntersectionObserver to trigger on view). The
     // hand-drawn text uses the Caveat face; rough-notation handles the animated bracket.
+    // Reveal a sidenote's text character-by-character, as if being written (the Caveat
+    // handwriting face + this progressive reveal reads like tegaki). Preserves inline markup.
+    function writeOnSidenote(doc, el) {
+      try {
+        if (el._ccWritten) return; el._ccWritten = true;
+        var chars = [];
+        (function walk(node) {
+          var kids = Array.prototype.slice.call(node.childNodes);
+          for (var i = 0; i < kids.length; i++) {
+            var c = kids[i];
+            if (c.nodeType === 3 && c.nodeValue) {
+              var txt = c.nodeValue, frag = doc.createDocumentFragment();
+              for (var k = 0; k < txt.length; k++) { var s = doc.createElement('span'); s.textContent = txt[k]; s.style.opacity = '0'; s.style.transition = 'opacity 120ms ease'; frag.appendChild(s); chars.push(s); }
+              c.parentNode.replaceChild(frag, c);
+            } else if (c.nodeType === 1 && c.nodeName.toLowerCase() !== 'svg' && c.tagName !== 'SCRIPT' && c.tagName !== 'STYLE') {
+              walk(c);
+            }
+          }
+        })(el);
+        var i = 0;
+        (function step() { for (var b = 0; b < 2 && i < chars.length; b++) { chars[i].style.opacity = '1'; i++; } if (i < chars.length) setTimeout(step, 16); })();
+      } catch (e) {}
+    }
+
     function setupSidenoteAnnotations(doc, accent) {
       try {
-        var win = doc.defaultView; if (!win || !win.RoughNotation) return;
+        var win = doc.defaultView; if (!win) return;
         var RN = win.RoughNotation;
         var notes = doc.querySelectorAll('.sn, aside.sn');
         for (var i = 0; i < notes.length; i++) {
           var n = notes[i];
-          if (n._ccBracket) continue;
-          n._ccBracket = true;
+          if (n._ccSetup) continue;
+          n._ccSetup = true;
           (function (note) {
-            try {
-              var ann = RN.annotate(note, { type: 'bracket', edges: ['left'], color: accent, strokeWidth: 2.5, padding: 6, animationDuration: 700 });
-              var io = new win.IntersectionObserver(function (es) {
-                es.forEach(function (e) { if (e.isIntersecting) { try { ann.show(); } catch (_) {} io.unobserve(e.target); } });
-              }, { threshold: 0.12 });
-              io.observe(note);
-            } catch (e) {}
+            var ann = null;
+            if (RN) { try { ann = RN.annotate(note, { type: 'bracket', edges: ['left'], color: accent, strokeWidth: 2.5, padding: 6, animationDuration: 700 }); } catch (e) {} }
+            var io = new win.IntersectionObserver(function (es) {
+              es.forEach(function (e) {
+                if (e.isIntersecting) {
+                  if (ann) { try { ann.show(); } catch (_) {} }
+                  // "write" the text ONLY in the narrow MARGIN form (float:right); skip the char
+                  // animation for the full-width / mid-text box form (Felipe).
+                  var fl = win.getComputedStyle(note).cssFloat || win.getComputedStyle(note).float || '';
+                  if (fl === 'right') writeOnSidenote(doc, note);
+                  io.unobserve(e.target);
+                }
+              });
+            }, { threshold: 0.12 });
+            io.observe(note);
           })(n);
         }
       } catch (e) {}
