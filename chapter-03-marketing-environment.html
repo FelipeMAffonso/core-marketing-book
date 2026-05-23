@@ -1687,12 +1687,18 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
       // stroke cut straight through the text. The label + arrow now read as the node (overlap fix).
       txt(svg, f.x, f.y - 2, f.label, { anchor: 'middle', fill: CORAL_DEEP, size: 9.5, weight: 700 });
       txt(svg, f.x, f.y + 12, f.sub, { anchor: 'middle', fill: INK2, size: 9 });
-      // arrow from force toward hexagon: start outside the force circle (radius 30) so the line never crosses the label
+      // arrow from force toward the BRAND hexagon. Start by exiting the LABEL's bounding box (so
+      // the line never crosses the text) and end just outside the hexagon. DIRECTION-AWARE, not a
+      // fixed offset: a fixed offset zeroed out the close forces (POLITICAL/SOCIOCULTURAL) because
+      // start met end. Every force keeps a visible link.
       const dx = 360 - f.x, dy = 170 - f.y;
-      const dist = Math.sqrt(dx*dx + dy*dy);
+      const dist = Math.sqrt(dx*dx + dy*dy) || 1;
       const nx = dx / dist, ny = dy / dist;
-      const sx = f.x + nx * 60, sy = f.y + ny * 60;
-      const ex = 360 - nx * 70, ey = 170 - ny * 50;
+      const ax = Math.abs(nx) < 0.001 ? 9999 : 1 / Math.abs(nx), ay = Math.abs(ny) < 0.001 ? 9999 : 1 / Math.abs(ny);
+      const tStart = Math.min(60 * ax, 17 * ay);   // clear the label box (~60 x 17 half-extents)
+      const tEnd = Math.min(64 * ax, 34 * ay);      // stop just outside the hexagon (~64 x 34)
+      const sx = f.x + nx * tStart, sy = f.y + ny * tStart;
+      const ex = 360 - nx * tEnd, ey = 170 - ny * tEnd;
       svg.appendChild(rc.line(sx, sy, ex, ey, { stroke: CORAL, strokeWidth: 1.4, roughness: 0.9 }));
     });
   };
