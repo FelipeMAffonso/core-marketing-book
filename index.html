@@ -2416,9 +2416,11 @@
             doc.body.appendChild(fab);
           }
           nav.classList.remove('cc-open');
-          // Align the floating panel to the sidenote column (same x + width as the margin notes).
-          var sn = doc.querySelector('.sn, aside.sn');
-          if (sn) { var r = sn.getBoundingClientRect(); if (r.width > 40) { nav.style.left = Math.round(r.left) + 'px'; nav.style.width = Math.round(r.width) + 'px'; nav.style.right = 'auto'; } }
+          // Align the floating panel to the sidenote column (same x + width). Re-measure after a
+          // frame + a tick, since fonts/float layout can settle after this first runs.
+          var posFn = function () { var sn = doc.querySelector('.sn, aside.sn'); if (sn) { var r = sn.getBoundingClientRect(); if (r.width > 40) { nav.style.left = Math.round(r.left) + 'px'; nav.style.width = Math.round(r.width) + 'px'; nav.style.right = 'auto'; } } };
+          posFn();
+          if (doc.defaultView) { doc.defaultView.requestAnimationFrame(posFn); setTimeout(posFn, 260); }
         } else {
           if (fab && fab.parentNode) fab.parentNode.removeChild(fab);
           nav.classList.remove('cc-open');
@@ -2489,7 +2491,8 @@
         doc.head.appendChild(varStyle);
 
         // inline TOC mode: inject/remove the in-chapter "On this page" list
-        applyChapterToc(doc, readerState.chtoc);
+        // chapter TOC is applied AFTER the injected CSS + content rewrites (see below), so the
+        // floating panel can measure the sidenote column at its final post-layout position.
 
         // (2) font import + (3) zoom/font-family/density CSS.
         var rt = palette;
@@ -2544,6 +2547,17 @@
         css += '.sn::before, aside.sn::before { display: none !important; }\n';
         // left-align the reading column (NOT centred — that hides the margin sidenotes) with comfortable left padding (Felipe)
         css += '.page { margin: 0 !important; max-width: 1056px !important; padding: 64px 24px 120px 56px !important; }\n';
+        // SYSTEM-LEVEL legibility guard: sketch/diagram labels with NO explicit fill inherit the
+        // coral group colour and wash out on a light background. Force inheriting <text> to the
+        // theme ink so every label stays readable in any mode/accent (Felipe). Explicitly-coloured
+        // text (fill="...") is left alone so intentional emphasis survives.
+        css += 'figure svg text:not([fill]):not([fill="none"]), .mount svg text:not([fill]), svg[role="img"] text:not([fill]) { fill: ' + rt.text + ' !important; }\n';
+        // and any element that explicitly paints text in the accent on the page surface keeps the
+        // accent only if it is large; small accent text on the surface is darkened for contrast.
+        css += 'figure svg text[fill="#DA7756"], figure svg text[fill="#da7756"], .mount svg text[fill="#DA7756"], .mount svg text[fill="#da7756"] { fill: ' + rt.accentDeep + ' !important; }\n';
+        // The gear-controlled "Chapter contents" is the single chapter TOC — hide any author-placed
+        // in-chapter TOC callout so there is never a duplicate TOC (Felipe: "why an extra TOC").
+        css += '.callout:has(> .ic-toc), .ic-toc { display: none !important; }\n';
         css += '@media (max-width: 768px) {\n';
         css += '  table { display: block !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }\n';
         css += '  img, svg, canvas { max-width: 100% !important; height: auto !important; }\n';
@@ -2584,7 +2598,10 @@
         // (6) Keep recoloring lazily-drawn sketches as they appear on scroll.
         observeChapterBody(doc, rt, docIsDark);
 
-        // (6b) Animated rough-notation bracket on every margin sidenote, drawn on scroll-in.
+        // (6b) Chapter TOC — applied here so the injected CSS (.page left-align) is in effect
+        // and the floating panel measures the sidenote column at its final position.
+        applyChapterToc(doc, readerState.chtoc);
+        // (6c) Animated rough-notation bracket on every margin sidenote, drawn on scroll-in.
         setupSidenoteAnnotations(doc, rt.accent);
 
         // (7) ACCESSIBILITY: mirror the shell-driven a11y state onto the chapter
