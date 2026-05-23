@@ -932,10 +932,11 @@
       width: 340px; height: 480px;
       margin: 4px auto 38px;
       border-radius: 3px;
-      background: linear-gradient(160deg, #3a3a3a 0%, #2c2c2c 30%, #1e1e1e 60%, #111111 100%);
+      background: radial-gradient(125% 115% at 82% -8%, var(--coral) 0%, var(--coral-deep) 26%, rgba(20,16,12,0) 62%), linear-gradient(158deg, #343434 0%, #1e1e1e 54%, #121212 100%);
       box-shadow: 8px 8px 30px rgba(0,0,0,0.30), 2px 2px 8px rgba(0,0,0,0.15);
       border: 1px solid rgba(255,255,255,0.06);
       overflow: hidden;
+      transition: background 0.5s ease;
     }
     .book-cover canvas { position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; }
     .cover-content { position:relative; z-index:2; display:flex; flex-direction:column; height:100%; padding:0 32px 32px; text-align:left; }
@@ -2373,8 +2374,15 @@
         // tooltips are body>div[role="tooltip"].tt-pop and must stay popup-sized, never
         // forced to full page width (Felipe: tooltips should be adaptable popups).
         css += 'html { overflow-x: hidden !important; }\n';
-        css += 'body > div:not([role="tooltip"]):not(.tt-pop) { max-width: 100% !important; overflow-x: hidden !important; }\n';
+        css += 'body > div:not([role="tooltip"]):not(.tt-pop):not(.page) { max-width: 100% !important; overflow-x: hidden !important; }\n';
         css += 'body > div[role="tooltip"], body > .tt-pop { max-width: min(360px, 90vw) !important; width: auto !important; overflow-x: visible !important; }\n';
+        // CENTER the reading column. The chapter's .page reserves a wide right margin for
+        // float sidenotes, so the text reads left-of-centre with a big empty gutter. Centre
+        // the column and flow sidenotes inline so the text is genuinely centred (Felipe).
+        css += '.page { max-width: 720px !important; }\n';
+        css += '.col { max-width: 100% !important; margin-left: auto !important; margin-right: auto !important; }\n';
+        css += '.sn { float: none !important; clear: none !important; width: auto !important; margin: 18px 0 !important; }\n';
+        css += '.col figure, .col .mount, .col svg, .col canvas, .col img, .col table { max-width: 100% !important; }\n';
         css += '@media (max-width: 768px) {\n';
         css += '  table { display: block !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }\n';
         css += '  img, svg, canvas { max-width: 100% !important; height: auto !important; }\n';
