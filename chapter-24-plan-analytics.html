@@ -793,7 +793,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
       <text x="622" y="305" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#888">1%</text>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 24.1</span> Madrigal profit by customer decile. The top decile produces 40 percent of profit, the top two deciles 58 percent, the bottom decile 1 percent. The exact-numbers reference behind the profit-concentration sketch.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> Madrigal profit by customer decile. The top decile produces 40 percent of profit, the top two deciles 58 percent, the bottom decile 1 percent. The exact-numbers reference behind the profit-concentration sketch.</figcaption>
 </figure>
 
 <aside class="sn"><span class="sn-num">11.</span> A decile this skewed is not automatic, and two shorthands tell the planner whether it is normal. <span class="term" data-tt="Fast-moving consumer goods (FMCG) is the category label for low-price, frequently bought items such as groceries, soft drinks, household supplies, and personal-care products. The label is more common in markets outside the United States; inside the United States, the same idea is called consumer packaged goods (CPG). Both labels point at the same industry: Procter and Gamble, Unilever, Nestle, and Coca-Cola are the canonical players, and the 50:30:20 buyer-share regularity Goodhardt, Sharp, and Romaniuk measured applies across the category.">Fast-moving consumer goods</span> follow what the empirical literature calls the 50:30:20 law: the heaviest 20 percent of buyers account for roughly half of annual purchases, the middle 30 percent for a large slice, the lightest 20 percent for the rest.<sup class="cite" data-cite="ref-12"></sup> A Madrigal-shaped read inside an FMCG category is roughly what the law predicts, so it reads as a normal benchmark. The same shape in a category the law would predict flatter is a warning that the firm has accidentally engineered a heavy-tail base. The audit produces the deciles in the first place, which is what lets the planner tell the two cases apart. The findings are organized through the <span class="term" data-tt="The three Ds are the audit&rsquo;s organizing trio of analytical moves, and they earn the label because each one starts with the letter D. The first D is distributions, which means looking at how the population spreads on any one variable, for example spend per customer or recency of the most recent purchase. The second D is decompositions, which means taking a top-line number and breaking it apart along some meaningful dimension, for example splitting this year&rsquo;s profit into the share that came from the top decile of customers, the share from the middle, and the share from the bottom. The third D is deciles, which is the practice of sorting customers into ten ordered buckets and reading each bucket&rsquo;s economic contribution separately rather than collapsing every customer into one average. Together, the three Ds force the audit to expose the spread that the average is hiding.">three Ds</span> applied across the <span class="term" data-tt="The five lenses are the audit&rsquo;s five analytic viewpoints, applied in sequence on the same customer-transaction data. The first lens is single-period deciles (how is one year&rsquo;s profit distributed across customer deciles?). The second is period-vs-period event impact (how did a specific event, like a price change or a stockout, move the deciles?). The third is single-cohort retention (how does one cohort decay over time?). The fourth is cohort-vs-cohort health (is the new cohort decaying faster or slower than the prior cohort?). The fifth is the C3 chart, which decomposes a period&rsquo;s revenue by the calendar period in which each contributing customer was first acquired.">five lenses</span>. The C3 chart is the lens that most often surprises a board: for Madrigal, the 2019 profit decomposes as 47 percent from customers acquired that year, 14 percent from 2018, and 39 percent from 2017 or earlier, which tells the planner how much of next year&rsquo;s target depends on customers not yet acquired.</aside>
@@ -833,7 +833,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
       <text x="540" y="178" text-anchor="middle" fill="#B8553A" font-size="12" font-weight="700">real world: bend, then flatten</text>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 24.2</span> Textbook geometric vs real retention. High-attrition customers leave first, so survivors are mostly low-attrition; geometric fits on early data extrapolate steep decay and undervalue the base.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> Textbook geometric vs real retention. High-attrition customers leave first, so survivors are mostly low-attrition; geometric fits on early data extrapolate steep decay and undervalue the base.</figcaption>
 </figure>
 
 <aside class="sn"><span class="sn-num">12.</span> The formal way to capture that selection effect is a two-parameter model called the <span class="term" data-tt="The shifted-Beta-geometric (sBG) model, from Fader and Hardie (2007), assumes each customer&rsquo;s churn probability is itself drawn from a distribution across the population rather than being one shared rate. One parameter sets where the average churn probability sits; the other sets how spread out the distribution is. A wide spread bends the retention curve sharply early (the high-churn customers leave fast) and flattens it late (the survivors are the low-churn mix), which is what matches real cohorts. Fitting sBG to a young cohort therefore forecasts the flat tail, while a single-rate geometric model extrapolates the early decline forever and undervalues the base.">shifted-Beta-geometric</span> model. Fitting sBG to a young cohort gives a materially higher CLV than fitting a single-rate geometric model to the same data, because the geometric model extrapolates the early decline forever while sBG forecasts the flat tail.<sup class="cite" data-cite="ref-27"></sup></aside>
@@ -870,7 +870,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
     <div class="wrcf-cell"><span class="wrcf-cap">CLV vs the other fit</span><span id="wrcf-delta" class="wrcf-val">0%</span></div>
   </div>
   <p class="wrcf-hint">Drag the four coral handles (months 6, 12, 24, 48), then switch fits. A curve that bends down and then flattens reads a higher lifetime value than a straight-line decay drawn through the same four points. CLV reads against a $20 monthly margin and a 5 percent annual discount.</p>
-  <figcaption><span class="fnum">Figure 24.3</span> Interactive. The same four points carry a different customer lifetime value depending on whether you fit a bend-and-flatten curve or a constant-rate decay, which is why reading the shape right is what corrects the goal number. A cable subscriber read as a wide spread runs well above the single-rate average the dashboard would have reported.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> Interactive. The same four points carry a different customer lifetime value depending on whether you fit a bend-and-flatten curve or a constant-rate decay, which is why reading the shape right is what corrects the goal number. A cable subscriber read as a wide spread runs well above the single-rate average the dashboard would have reported.</figcaption>
 </figure>
 
 <p data-complete>The retention-curve fitter assumes a clean transaction stream, which raises a fair question about who actually does this work week to week. The honest 2026 answer is that you can ask an AI to run the five-lens audit on your transaction file and flag the deciles and cohorts losing money to serve, written down once as a reusable <span class="term" data-tt="A Skill is a folder that holds one instruction file (SKILL.md) plus the reference files it points to. The folder lives in the team&rsquo;s repository, and any team member who types a slash-command like /customer-base-audit loads the whole bundle as a single instruction set into the model. The pattern is what lets a firm write a senior analyst&rsquo;s tacit recipe down once so a junior, or an agent, can run it on demand against the warehouse. Anthropic open-sourced the Skill standard in December 2025.">Skill</span> that an agent runs against the warehouse through a standard data connector. The Section 24.7 flagship widget shows exactly this in action, so the section names the pattern here and demonstrates it there. One caution travels with the convenience, and it is the one a CFO will ask about first.</p>
@@ -963,14 +963,14 @@ details.depth > p:first-of-type { margin-top: 4px; }
       </g>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 24.4</span> Attribution spectrum. Cost rises with causal accuracy. Marketing-mix modeling is the 2026 budget-allocation standard; incrementality is the gold standard at the cost of speed.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> Attribution spectrum. Cost rises with causal accuracy. Marketing-mix modeling is the 2026 budget-allocation standard; incrementality is the gold standard at the cost of speed.</figcaption>
 </figure>
 
 <p>Six rules score the same five touchpoints and one $150 <span class="term" data-tt="A conversion is the moment a customer takes the action the firm is paying its marketing budget to produce, most commonly a purchase, but also a signup, a demo request, or a download depending on the campaign goal. Conversions are tracked as discrete events in analytics platforms. The attribution problem is the question of which marketing touch should get credit for the conversion when the buyer saw several touches before acting.">conversion</span>; credit swings from 0 to 100 percent by rule, and the budget cut swings with it, which makes attribution a planning decision rather than passive measurement.</p>
 
 <div id="w246" class="w246" aria-label="Interactive: the same five-touchpoint journey scored under six attribution rules.">
   <div class="w246-head">
-    <span class="w246-eyebrow">Interactive 24.6</span>
+    <span class="w246-eyebrow" data-cap="interactive"></span>
     <span class="w246-title">Same journey, six rules, six answers</span>
     <span class="w246-sub">One five-touch journey. Pick a rule and watch which channel a quarterly review would scale or cut.</span>
   </div>
@@ -1080,7 +1080,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 
 <div id="w247-cltv" class="w247-cltv" aria-label="Interactive: a CAC:LTV calculator with payback and a cumulative-margin bar.">
   <div class="cltv2-head">
-    <span class="cltv2-eyebrow">Interactive 24.7a</span>
+    <span class="cltv2-eyebrow" data-cap="interactive"></span>
     <span class="cltv2-title">When does a plan compound?</span>
     <span class="cltv2-sub">Pick a preset, drag the four sliders. A plan compounds only when lifetime value beats acquisition cost with margin to spare.</span>
   </div>
@@ -1192,7 +1192,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
     <div class="chm-cell"><span class="chm-rcap">M6 retention floor</span><span id="chm-floor" class="chm-rval">0%</span></div>
   </div>
   <div id="chm-narrator" class="chm-narrator">Toggle a view. Each cell shades by retained gross margin per acquired customer in that cohort and that month. The rows tell the cohort story; the columns tell the lifecycle story; the diagonal tells the calendar story (every cell on a given diagonal is the same calendar month).</div>
-  <figcaption><span class="fnum">Figure 24.5</span> CLV cohort heatmap. Eight cohorts &times; twelve months. Cell color encodes retained gross margin per acquired customer. The same number a stacked-curve chart compresses into a single line, the matrix shows in two dimensions: which cohort, which month. The plan's goal is the next row to be darker than the row above it for longer.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> CLV cohort heatmap. Eight cohorts &times; twelve months. Cell color encodes retained gross margin per acquired customer. The same number a stacked-curve chart compresses into a single line, the matrix shows in two dimensions: which cohort, which month. The plan's goal is the next row to be darker than the row above it for longer.</figcaption>
 </figure>
 
 <h3 id="klarna-app" data-no-num>Klarna: marketing operations as the closed loop</h3>
@@ -1202,7 +1202,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 
 <div id="w247" class="w247" aria-label="Flagship interactive: read a real customer base with AI.">
   <div class="w247-head">
-    <span class="w247-eyebrow">Interactive 24.7b &middot; live AI</span>
+    <span class="w247-eyebrow"><span class="cap-num" data-cap="interactive"></span>live AI</span>
     <span class="w247-title">Read a real customer base with AI</span>
     <span class="w247-sub">Paste a customer file or name a real firm, then read the audit spine the dashboard hides. The same model and the same cost, two different questions.</span>
   </div>

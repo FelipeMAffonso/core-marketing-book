@@ -892,7 +892,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
       <text x="350" y="306" text-anchor="middle" font-style="italic" fill="#888" font-size="11">the same campaign with the same copy arrives in all three lanes; the marketer&rsquo;s job is to lift the share in lane one</text>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 21.4</span> Inbox placement is the largest source of variance in campaign performance and the metric most marketers never name. Lane one is the goal; the lane-two share is what Gmail introduced in 2017; lane three is what Gmail&rsquo;s February 2024 rules now route 5-to-15 percent of unauthenticated bulk traffic into.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> Inbox placement is the largest source of variance in campaign performance and the metric most marketers never name. Lane one is the goal; the lane-two share is what Gmail introduced in 2017; lane three is what Gmail&rsquo;s February 2024 rules now route 5-to-15 percent of unauthenticated bulk traffic into.</figcaption>
 </figure>
 <span class="ax">03 // the five drips every program runs</span>
 <h2 id="drip">The Five Drips Every Program Runs</h2>
@@ -961,7 +961,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     </div>
     <div id="db-readout" class="db-readout" aria-live="polite"></div>
   </div>
-  <figcaption><span class="fnum">Figure 21.1 (interactive)</span> Drip-sequence builder. Switch the trigger and the recommended cadence and copy change on the action; switch the brand and only the channel and stack note change. The principle the builder reveals is that <em>cadence is dictated by the trigger, not by the brand&rsquo;s preference</em>.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> Drip-sequence builder. Switch the trigger and the recommended cadence and copy change on the action; switch the brand and only the channel and stack note change. The principle the builder reveals is that <em>cadence is dictated by the trigger, not by the brand&rsquo;s preference</em>.</figcaption>
 </figure>
 
 <span class="ax">04 // sms and whatsapp</span>
@@ -1028,7 +1028,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <figure id="fig-2" class="sketch" aria-label="The RFM grid: recency frequency monetary and the named segments">
   <div class="mount" id="sk-rfm-mount" data-w="720" data-h="328"></div>
-  <figcaption><span class="fnum">Figure 21.2</span> RFM segmentation grid. Champions (R5/F5/M5) get retention messages; At Risk (R2/F4/M4) get re-engagement; Hibernating (R1/F2/M2) get the win-back sequence. Each cell maps to a different drip pattern.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> RFM segmentation grid. Champions (R5/F5/M5) get retention messages; At Risk (R2/F4/M4) get re-engagement; Hibernating (R1/F2/M2) get the win-back sequence. Each cell maps to a different drip pattern.</figcaption>
 </figure>
 
 <p data-complete>The candle shop&rsquo;s 200-buyer cube is small enough to score by hand in a spreadsheet, which is the fastest way to see what RFM does. The six Champions bought in the last 60 days, twice or more, above the median order value, so they get the thank-you and an early-access offer on the next scent. The roughly 25 At Risk buyers used to be Champions but have not purchased in 90 days, so they get the re-engagement drip. The 60 Lost buyers have not purchased in a year, so they get one win-back attempt and then suppression to protect deliverability. Each cell points at exactly one drip, which is the whole payoff, because the marketer never has to guess which message a buyer gets.</p>
@@ -1048,7 +1048,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     </label>
   </div>
   <div id="rd-readout" class="rd-readout" aria-live="polite"></div>
-  <figcaption><span class="fnum">Figure 21.3</span> RFM-to-drip scorer. Each slider scores this buyer against a fixed 200-buyer reference list, the three quintile scores concatenate into a cell, and the cell maps to exactly one drip. Drag &ldquo;days since last order&rdquo; from 20 toward 200 and watch the buyer walk from Champion to Lost while the recommended drip swaps from an early-access offer to one win-back, then suppress. The arithmetic runs in your browser; no model is involved.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> RFM-to-drip scorer. Each slider scores this buyer against a fixed 200-buyer reference list, the three quintile scores concatenate into a cell, and the cell maps to exactly one drip. Drag &ldquo;days since last order&rdquo; from 20 toward 200 and watch the buyer walk from Champion to Lost while the recommended drip swaps from an early-access offer to one win-back, then suppress. The arithmetic runs in your browser; no model is involved.</figcaption>
 </figure>
 
 <p data-complete>Knowing which buyer gets which message solves half the problem. The other half is knowing when to send it, and every modern platform now exposes the answer under one name: <span class="term" data-tt="Send-time optimization sends each buyer a message at the hour that buyer is most likely to open it, instead of one universal &lsquo;best time&rsquo; for the whole list. The platform watches when a recipient has opened past messages, builds a small model from that history, and schedules the next message for that recipient&rsquo;s personal best window. One buyer gets it Tuesday at 7 a.m. on a commute; another gets the same message Sunday at 9 p.m. on the couch. Klaviyo calls it Smart Send Time, Iterable calls it Send Time Optimization, and Mailchimp uses the shorthand STO, but the mechanism is the same. The reported lift on click-through runs 5 to 15 percent over a single-time batch send, and it is close to free because the platform moves the existing message into a better slot rather than asking for new copy.">send-time optimization</span>. The platform learns each recipient&rsquo;s most consistent open hour from past behavior and schedules the next message for that buyer&rsquo;s window, so the brand never picks one send time for the whole list. The reported lift runs 5 to 15 percent of click-through over a single-best-time send, which sounds modest until it is applied at scale. On a 100,000-recipient list earning 30 cents per recipient, a 10 percent lift is about 3,000 dollars of revenue from a feature that costs nothing once the platform has 30 to 60 days of open history to learn from.<sup class="cite" data-cite="ref-20"></sup></p>

@@ -922,7 +922,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
       <text x="548" y="216" text-anchor="end" fill="#555" font-size="11">expensive, no longer changes anything</text>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 5.1</span> The value-of-information curve, with the 2-10 percent-of-EVPI band marked. The first cheap data point on an unmeasured question is worth enormous amounts, and that is where research budgets belong. The 1,201st response on a question 200 already answered is worth almost nothing.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> The value-of-information curve, with the 2-10 percent-of-EVPI band marked. The first cheap data point on an unmeasured question is worth enormous amounts, and that is where research budgets belong. The 1,201st response on a question 200 already answered is worth almost nothing.</figcaption>
 </figure>
 
 <figure id="evpi-calc" class="evpi-calc" data-complete aria-label="Interactive: set the cost of being wrong and the current chance the leaning decision is wrong, and read the EVPI ceiling, the 2 to 10 percent spend band, and a verdict on a proposed study budget.">
@@ -982,7 +982,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <figure id="mode-sorter" class="demo" data-complete aria-label="Interactive: drag three research questions into the qualitative, quantitative, or observational bin; a wrong drop bounces back with the reason.">
   <div class="demo-head">
-    <span class="demo-title">Interactive 5.2 &middot; Which mode answers this?</span>
+    <span class="demo-title"><span class="cap-num" data-cap="interactive"></span>Which mode answers this?</span>
     Three real questions a Stanley researcher might ask. Drop each into the mode that answers it. Words about reasoning go to qualitative, numbers about how-many to quantitative, records of what buyers did to observational. A wrong drop bounces back with the reason.
   </div>
   <div class="ms-wrap">
@@ -1038,7 +1038,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
       <text x="350" y="238" text-anchor="middle" fill="#888" font-size="12" font-style="italic">qualitative usually goes first.</text>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 5.2</span> The three modes. Most studies of any size combine two of the three.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> The three modes. Most studies of any size combine two of the three.</figcaption>
 </figure>
 <span class="ax">03 // quantitative mechanics</span>
 <h2 id="mechanics">The mechanics of a quantitative study</h2>
@@ -1164,7 +1164,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     <g id="kmeans-labels"></g>
     <text x="60" y="30" font-family="Inter, sans-serif" font-size="11" fill="#888" id="kmeans-step">step 0: random centroids</text>
   </svg>
-  <figcaption><span class="fnum">Figure 5.3</span> K-means on 200 fictional Stanley buyers, with axes for purchase frequency and annual spend. K=4 finds the collector, gift-giver, one-timer, and resale-watcher segments; try K=2 (light vs heavy) and K=5 (over-fit). The marketing decision is which K makes the segments actionable.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> K-means on 200 fictional Stanley buyers, with axes for purchase frequency and annual spend. K=4 finds the collector, gift-giver, one-timer, and resale-watcher segments; try K=2 (light vs heavy) and K=5 (over-fit). The marketing decision is which K makes the segments actionable.</figcaption>
 </figure>
 
 <h3 id="live-demo" data-no-num data-complete>Ask a model for the sample size</h3>
@@ -1173,7 +1173,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <div class="demo" id="ssize-demo" data-complete>
   <div class="demo-head">
-    <span class="demo-title">Interactive 5.3 &middot; Sample-size calculator (live model)</span>
+    <span class="demo-title"><span class="cap-num" data-cap="interactive"></span>Sample-size calculator (live model)</span>
     Enter a margin of error and a confidence level. The model runs the Cochran formula and explains the result in plain English, through Claude Haiku 4.5 on a local proxy. The cost chip shows what each run costs.
     <span class="ss-cost" id="ssize-cost"></span>
   </div>
@@ -1463,7 +1463,7 @@ i want one that doesn't sweat all over my desk</textarea>
     <g id="aa-bars"></g>
   </svg>
   <div id="aa-narrator" class="aa-narrator">No runs yet. Set the rate and the sample size, then run an A/A test where both groups draw from the same population. Watch what &ldquo;significant&rdquo; means when nothing is actually different.</div>
-  <figcaption><span class="fnum">Figure 5.5</span> The false-positive engine. Both groups are drawn from the same <span class="term" data-tt="The Bernoulli distribution is the simplest probability distribution in statistics: a single trial that has exactly two possible outcomes, conventionally called success and failure, with probability p of success and probability one-minus-p of failure. A coin flip is the canonical example, but every conversion-rate test in marketing is implicitly a Bernoulli problem at heart, because each individual visitor either converts (success) or does not convert (failure), and the question the analyst is asking is what value of p best describes the population the visitor was drawn from.">Bernoulli distribution</span>, so by construction no difference exists. Every red bar left of the &alpha; line crossed the 0.05 threshold despite the absence of a real effect. Across many runs the bars approach a uniform distribution between 0 and 1, which is what the <span class="term" data-tt="The null hypothesis is the default starting assumption that every significance test begins from, which says that there is no real difference between the conditions being compared. Statisticians write it as H-zero (the H with a small zero subscript stands for hypothesis number zero, the baseline assumption against which any alternative gets weighed). The p-value the test computes is the probability of seeing a gap between the control and treatment groups at least as large as the gap actually observed in your data, assuming that the null hypothesis is in fact true. Notice that a significance test never proves the null is true; the only thing the test can do is fail to find enough evidence against it, which is why researchers say they 'fail to reject the null' rather than 'accept the null.'">null hypothesis</span> mathematically guarantees. About five percent of them fall left of the line, which is the definition of a <span class="term" data-tt="A Type I error is the mistake of declaring a difference between control and treatment to be real when in fact no real difference exists, which is the same thing as a false positive. The alpha threshold (conventionally set at 0.05) is the long-run rate at which a Type I error happens by construction, because the procedure is designed so that across many hypothetical reruns of the same test on truly-identical groups, the test will still flag a false positive about five percent of the time. The mirror-image mistake is called a Type II error, which is the failure to detect an effect that is genuinely there because the sample was too small or the effect was too subtle to clear the threshold. Bigger samples shrink Type II errors, because more data makes real effects easier to see, while the alpha threshold the analyst chose at the start controls how many Type I errors slip through.">Type I error</span>, not a bug to fix by running a better test.<sup class="cite" data-cite="ref-24"></sup></figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> The false-positive engine. Both groups are drawn from the same <span class="term" data-tt="The Bernoulli distribution is the simplest probability distribution in statistics: a single trial that has exactly two possible outcomes, conventionally called success and failure, with probability p of success and probability one-minus-p of failure. A coin flip is the canonical example, but every conversion-rate test in marketing is implicitly a Bernoulli problem at heart, because each individual visitor either converts (success) or does not convert (failure), and the question the analyst is asking is what value of p best describes the population the visitor was drawn from.">Bernoulli distribution</span>, so by construction no difference exists. Every red bar left of the &alpha; line crossed the 0.05 threshold despite the absence of a real effect. Across many runs the bars approach a uniform distribution between 0 and 1, which is what the <span class="term" data-tt="The null hypothesis is the default starting assumption that every significance test begins from, which says that there is no real difference between the conditions being compared. Statisticians write it as H-zero (the H with a small zero subscript stands for hypothesis number zero, the baseline assumption against which any alternative gets weighed). The p-value the test computes is the probability of seeing a gap between the control and treatment groups at least as large as the gap actually observed in your data, assuming that the null hypothesis is in fact true. Notice that a significance test never proves the null is true; the only thing the test can do is fail to find enough evidence against it, which is why researchers say they 'fail to reject the null' rather than 'accept the null.'">null hypothesis</span> mathematically guarantees. About five percent of them fall left of the line, which is the definition of a <span class="term" data-tt="A Type I error is the mistake of declaring a difference between control and treatment to be real when in fact no real difference exists, which is the same thing as a false positive. The alpha threshold (conventionally set at 0.05) is the long-run rate at which a Type I error happens by construction, because the procedure is designed so that across many hypothetical reruns of the same test on truly-identical groups, the test will still flag a false positive about five percent of the time. The mirror-image mistake is called a Type II error, which is the failure to detect an effect that is genuinely there because the sample was too small or the effect was too subtle to clear the threshold. Bigger samples shrink Type II errors, because more data makes real effects easier to see, while the alpha threshold the analyst chose at the start controls how many Type I errors slip through.">Type I error</span>, not a bug to fix by running a better test.<sup class="cite" data-cite="ref-24"></sup></figcaption>
 </figure>
 
 <aside class="sn" data-complete><span class="sn-num">9.</span> Why exactly five percent? R.A. Fisher proposed it in <em>Statistical Methods for Research Workers</em> (1925) as a convenient working rule rather than a deep truth, and the threshold stuck because researchers wanted a shared decision rule.<sup class="cite" data-cite="ref-25"></sup></aside>
@@ -1622,7 +1622,7 @@ Tell me what you cannot find.</pre>
       </g>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 5.4</span> A calibration map. The diagonal coral band is where research investment matches the cost of being wrong. Trader Joe's: low-low, aligned. Patagonia: high-high, aligned through continuous qualitative. Stanley 2018: high-low, a high-cost decision made on under-investment in research.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> A calibration map. The diagonal coral band is where research investment matches the cost of being wrong. Trader Joe's: low-low, aligned. Patagonia: high-high, aligned through continuous qualitative. Stanley 2018: high-low, a high-cost decision made on under-investment in research.</figcaption>
 </figure>
 <span class="ax">08 // failure modes</span>
 <h2 id="failures">What goes wrong</h2>

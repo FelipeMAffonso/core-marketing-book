@@ -411,7 +411,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
     <button class="ltv-preset" data-cpi="3" data-len="1">Retention slips ($3, 1 mo)</button>
     <button class="ltv-preset" data-cpi="7" data-len="2">Overpaying ($7, 2 mo)</button>
   </div>
-  <figcaption><span class="fnum">Figure 14.2 (interactive)</span> Lifetime value runs at about $4.50 per subscription month, the $4.99 price net of the store's roughly ten-percent cut. Drag the subscription-length slider down from two months to one and the same $3 install that compounded at 3-to-1 falls to a break-even 1.5-to-1, the retention slip from the worked case above, made movable.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> Lifetime value runs at about $4.50 per subscription month, the $4.99 price net of the store's roughly ten-percent cut. Drag the subscription-length slider down from two months to one and the same $3 install that compounded at 3-to-1 falls to a break-even 1.5-to-1, the retention slip from the worked case above, made movable.</figcaption>
 </figure>
 
 <p data-complete>Pull the subscription-length slider from two months down to one and the ratio crosses the line the same way it does in the worked case, which is the whole reason retention earns a section of its own later in the chapter. The presets fail in recognizable ways. Overpaying for installs at a thin retention level burns cash on every acquisition, and a healthy ratio can tip to break-even from a single month of lost subscription life. The equation is the destination, but the work lives in the surfaces the brand operates to defend each piece of it.</p>
@@ -469,12 +469,12 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
       <text x="350" y="335" text-anchor="middle" fill="#888" font-size="12" font-style="italic">the index decides ranking; the listing decides conversion</text>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 14.1</span> The two halves of ASO. Index weights (left pie) decide whether the listing appears in search. Conversion weights (right column) decide whether a user who sees the listing taps install. The most common ASO mistake is optimizing one half and ignoring the other.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure" data-cap-key="ch14-aso"></span> The two halves of ASO. Index weights (left pie) decide whether the listing appears in search. Conversion weights (right column) decide whether a user who sees the listing taps install. The most common ASO mistake is optimizing one half and ignoring the other.</figcaption>
 </figure>
 <span class="ax">02 // app store optimization</span>
 <h2 id="aso">App Store Optimization</h2>
 
-<aside class="sn" data-complete><span class="sn-num">3.</span> Apple's search index is closed and proprietary, so the weights in Figure 14.1 are recovered through large-scale regression on ranking shifts after controlled metadata changes, the methodology Phiture, AppTweak, and Sensor Tower use in their respective ASO benchmarks. Treat the percentages as approximations within roughly five percentage points.</aside>
+<aside class="sn" data-complete><span class="sn-num">3.</span> Apple's search index is closed and proprietary, so the weights in <span class="figref" data-figref="ch14-aso"></span> are recovered through large-scale regression on ranking shifts after controlled metadata changes, the methodology Phiture, AppTweak, and Sensor Tower use in their respective ASO benchmarks. Treat the percentages as approximations within roughly five percentage points.</aside>
 
 <p data-complete>The store is the shelf Apple and Google own, so the next question is the practical one: how does a brand move its listing up the rankings, and how does it turn the buyers who land on the listing into installs? App Store Optimization does two mechanically separate jobs, and the brand that wins runs them as one workflow. The first job is <span class="term" data-tt="Keyword indexing is the visibility half of App Store Optimization, which means the work of making sure the listing actually appears high up in search results when a user types a relevant query into the App Store or Google Play. When a student searches for the word 'flashcards' in the App Store, the system has to decide which dozen apps to show first, and it makes that decision by reading the title, the subtitle, the hidden keyword field on iOS, and the description on Google Play. Keyword indexing is measured by where the listing actually lands in the search-result rank for the keywords the brand cares about.">keyword indexing</span>, which gets the listing to appear when a buyer searches a relevant term.<sup class="cite" data-cite="ref-7"></sup> The second job is <span class="term" data-tt="Conversion-rate optimization is the second half of App Store Optimization, where the work is turning the user who has already landed on the listing into someone who actually taps the install button. The screenshots, the preview video, the app icon, the star rating, and the user reviews are the elements that drive this decision, because they are what the buyer sees once they have arrived at the page. A top-quartile subscription app typically converts 25 to 35 percent of the people who see its listing into installs, while a poorly designed listing on the same traffic can sit closer to 7 percent.">conversion-rate optimization</span>, which turns the buyer who landed on the listing into an install. The first half is invisible to the buyer, while the second half is everything the buyer sees.</p>
 <p data-focused style="display:none">App Store Optimization does two mechanically separate jobs, run as one workflow. The first is <span class="term" data-tt="Keyword indexing is the visibility half of App Store Optimization: making the listing appear high in search when a user types a relevant query. The system reads the title, subtitle, hidden keyword field on iOS, and the description on Google Play, then ranks the dozen apps it shows first.">keyword indexing</span>, which gets the listing to appear when a buyer searches a relevant term.<sup class="cite" data-cite="ref-7"></sup> The second is <span class="term" data-tt="Conversion-rate optimization is the second half of ASO: turning the user who landed on the listing into someone who taps install. Screenshots, the preview video, the icon, the star rating, and reviews drive it. A top-quartile subscription app converts 25 to 35 percent of viewers; a poor listing on the same traffic sits near 7 percent.">conversion-rate optimization</span>, which turns the buyer who landed there into an install. The first half is invisible to the buyer; the second is everything the buyer sees.</p>
@@ -492,8 +492,8 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>Duolingo shows the tension at scale. The head term <em>spanish</em> carries enormous traffic, somewhere between 90,000 and 130,000 daily App Store searches in the United States, but its difficulty sits near the ceiling because every language app on Earth bids on it. The relevance is perfect, since Duolingo teaches Spanish, yet the difficulty makes the term unwinnable on organic work alone without paid Apple Search Ads behind it. The long-tail variant <em>learn spanish for travel</em> carries roughly a tenth of the traffic, but its difficulty is far lower, and it converts about two-thirds better per impression because the search intent is sharper. The buyer who types <em>learn spanish for travel</em> has a specific goal, which makes them more likely to install once they see the listing.</p>
 <p data-focused style="display:none">Duolingo shows the tension at scale. The head term <em>spanish</em> carries enormous traffic, but every language app bids on it, so its difficulty is near the ceiling and it is unwinnable on organic work alone. The long-tail <em>learn spanish for travel</em> carries about a tenth of the traffic at far lower difficulty, and converts roughly two-thirds better per impression because the buyer who types it has a specific goal.</p>
 
-<p data-complete>The fix is to spread the listing's metadata across thirty to forty long-tail variants of that kind, so the listing indexes against the widest reasonable surface without leaning on any single high-difficulty head term. A 2026 program packs those variants into three places at once: the iOS hidden-keyword field, the title, and the subtitle.<sup class="cite" data-cite="ref-9"></sup> The weights in Figure 14.1 then show roughly how each surface feeds the ranking signal, with the title carrying about 30 percent of the keyword weight, the subtitle 25 percent, and the hidden field 20 percent. The remaining weight sits in the description, the developer name, and the in-app-purchase names, which is why a single field is never the whole strategy.<sup class="cite" data-cite="ref-10"></sup> The same listing indexes differently on Google Play, which reads the description text directly and has no hidden field, so a team running both stores writes the metadata twice.</p>
-<p data-focused style="display:none">The fix is to spread the metadata across thirty to forty long-tail variants, packed into the iOS hidden-keyword field, the title, and the subtitle, so the listing indexes widely without leaning on one head term.<sup class="cite" data-cite="ref-9"></sup> Figure 14.1 shows the rough weights: title near 30 percent, subtitle 25, hidden field 20, the rest in the description and developer name.<sup class="cite" data-cite="ref-10"></sup> Google Play has no hidden field, so a team running both stores writes the metadata twice.</p>
+<p data-complete>The fix is to spread the listing's metadata across thirty to forty long-tail variants of that kind, so the listing indexes against the widest reasonable surface without leaning on any single high-difficulty head term. A 2026 program packs those variants into three places at once: the iOS hidden-keyword field, the title, and the subtitle.<sup class="cite" data-cite="ref-9"></sup> The weights in <span class="figref" data-figref="ch14-aso"></span> then show roughly how each surface feeds the ranking signal, with the title carrying about 30 percent of the keyword weight, the subtitle 25 percent, and the hidden field 20 percent. The remaining weight sits in the description, the developer name, and the in-app-purchase names, which is why a single field is never the whole strategy.<sup class="cite" data-cite="ref-10"></sup> The same listing indexes differently on Google Play, which reads the description text directly and has no hidden field, so a team running both stores writes the metadata twice.</p>
+<p data-focused style="display:none">The fix is to spread the metadata across thirty to forty long-tail variants, packed into the iOS hidden-keyword field, the title, and the subtitle, so the listing indexes widely without leaning on one head term.<sup class="cite" data-cite="ref-9"></sup> <span class="figref" data-figref="ch14-aso"></span> shows the rough weights: title near 30 percent, subtitle 25, hidden field 20, the rest in the description and developer name.<sup class="cite" data-cite="ref-10"></sup> Google Play has no hidden field, so a team running both stores writes the metadata twice.</p>
 
 <h3 id="screenshots" data-no-num>Screenshots and video, the conversion half</h3>
 
@@ -526,7 +526,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
       <text x="350" y="345" text-anchor="middle" fill="#888" font-size="10.5">title and screenshots win impressions; preview and reviews win the tap-through; install rate sits in screenshots; retention sits in onboarding</text>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 14.2</span> The full mobile install funnel. Each stage's conversion rate is a different ASO or in-app lever. The top of the funnel feeds the keyword strategy; the middle feeds the screenshot strategy; the bottom feeds the onboarding strategy.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> The full mobile install funnel. Each stage's conversion rate is a different ASO or in-app lever. The top of the funnel feeds the keyword strategy; the middle feeds the screenshot strategy; the bottom feeds the onboarding strategy.</figcaption>
 </figure>
 
 <h3 id="ratings" data-no-num>Ratings and reviews, the flywheel</h3>
@@ -544,7 +544,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 
 <div class="demo" id="w142">
   <div class="demo-head">
-    <span class="demo-title">Interactive 14.2 &middot; Test a listing's keyword spread</span>
+    <span class="demo-title"><span class="cap-num" data-cap="interactive"></span>Test a listing's keyword spread</span>
     Edit the draft title, subtitle, hidden keyword field, and target keywords. The panel shows how much of each target keyword's indexing weight you have captured across the fields, plus a verdict on whether the listing is over-stuffed, under-utilized, or balanced. Nothing changes until you type; press Reset to return to the Duolingo example.
   </div>
   <div class="kw-controls">
@@ -629,7 +629,7 @@ language learning</textarea>
       <text x="120" y="240" text-anchor="middle" fill="#888" font-size="11" font-style="italic">no push: retention floor</text>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 14.3</span> The push frequency cap. Retention rises from zero pushes through three to five pushes per week, peaks, and falls off as users hit the unsubscribe button or disable notifications. The optimal cadence is the inflection point, not the maximum.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> The push frequency cap. Retention rises from zero pushes through three to five pushes per week, peaks, and falls off as users hit the unsubscribe button or disable notifications. The optimal cadence is the inflection point, not the maximum.</figcaption>
 </figure>
 
 <p data-complete>Push reaches the user when they are away from the app, and <span class="term" data-tt="In-app messaging is the set of prompts, pop-up modals, banners, and small tooltip nudges the brand shows the user while they are actively inside the app. It is distinct from push notifications, which arrive on the lock screen when the app is closed and the user is doing something else. Think of in-app messaging as the mobile equivalent of website pop-ups, except with sharper context, because the brand already knows which screen the user is on, what action they just took, and how long they have been in the current session.">in-app messaging</span> reaches them while they are inside it, which gives it sharper context because the brand already knows what screen the user is on and what they just did.<sup class="cite" data-cite="ref-19"></sup> The in-app surface takes three forms. The onboarding modal is the welcome flow that walks a first-time user to the first valuable action. The contextual prompt is a banner that appears on a specific screen to enable a feature or ask a permission, shown at the moment the feature would actually help the user. The paywall is the screen that turns a free user into a paying subscriber. The principle that runs through all three is to delay friction until after value, which is why Duolingo collects the user's language, level, and goal across the first nine screens, then routes them into a 60-second lesson before it asks for a sign-up, because every screen that asks the user to type or commit loses some of them, and the brand that delivers a complete unit of value first keeps more of them through the ask.<sup class="cite" data-cite="ref-20"></sup><sup class="cite" data-cite="ref-21"></sup></p>
@@ -657,7 +657,7 @@ language learning</textarea>
 
 <div class="demo" id="w143">
   <div class="demo-head">
-    <span class="demo-title">Interactive 14.3 &middot; Place the paywall</span>
+    <span class="demo-title"><span class="cap-num" data-cap="interactive"></span>Place the paywall</span>
     Pick where the paywall sits in this onboarding flow. The token moves to the spot you choose, and the panel shows the conversion rate that placement typically earns and the one-line reason for it. Try all three to see them side by side. Nothing moves until you pick a spot.
   </div>
   <div class="pw-flow" id="pw-flow">
@@ -750,7 +750,7 @@ language learning</textarea>
       <text x="350" y="338" text-anchor="middle" fill="#888" font-size="11.5" font-style="italic">that signal is the input ad networks optimize against</text>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 14.4</span> The deferred deep-link attribution flow. Five stages, two firms (the ad network and the MMP), one connected loop. Without the loop, the ad spend is opaque and the optimization signal degrades.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> The deferred deep-link attribution flow. Five stages, two firms (the ad network and the MMP), one connected loop. Without the loop, the ad spend is opaque and the optimization signal degrades.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="The MMP attribution timeline: from ad click to attribution callback in about 36 hours">
@@ -843,7 +843,7 @@ language learning</textarea>
 
 <div class="demo" id="widget-14-6">
   <div class="demo-head">
-    <span class="demo-title">Interactive 14.6 &middot; Audit a real app's store listing</span>
+    <span class="demo-title"><span class="cap-num" data-cap="interactive"></span>Audit a real app's store listing</span>
     Type a real app you actually use, or pick one below. Then ask the model the vague way and the sharp way. It searches the live web for the app's current listing and reads it through this chapter's machinery. Same model, same cost; only your question changes.
   </div>
   <div class="wv-presets" id="widget-14-6-presets">
@@ -887,7 +887,7 @@ language learning</textarea>
 
 <div class="demo" id="widget-14-6b">
   <div class="demo-head">
-    <span class="demo-title">Interactive 14.6b &middot; Same push, two models, sharp vs vague</span>
+    <span class="demo-title"><span class="cap-num" data-cap="interactive"></span>Same push, two models, sharp vs vague</span>
     Keep or edit the brief for a lapsed Spanish learner, then run it on both models at once. The cheap model and the larger model read the same brief; the gap between them is the gap a brand pays for when copy ships at scale.
   </div>
   <div class="cmp-brief">

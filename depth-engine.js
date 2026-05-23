@@ -418,6 +418,54 @@
   }
 
   /* --------------------------------------------------------------------------
+   * 4.5 ccAutoCaptions()  —  FIGURE / INTERACTIVE caption numbering
+   * Numbers every element carrying [data-cap] from the VISIBLE set, in document
+   * order, as ONE merged sequence (a Figure and an Interactive therefore never
+   * share a number -- killing the duplicate-number class book-wide). Skips
+   * depth-hidden captions in Focused exactly like sections/citations, so hiding a
+   * figure in Concise renumbers the survivors ("18.5" -> "18.4"). The chapter
+   * number prefixes it. data-cap="interactive" emits a trailing " &middot; "
+   * before its sibling title text; data-cap="figure" emits just the label+number.
+   * Idempotent: the visible text is recomputed from the data-* attrs every run.
+   * In-text <span class="figref" data-figref="key"> are filled from the caption
+   * whose data-cap-key matches, so a renumbered figure never strands a stale
+   * "Figure 8.2" in prose.
+   * ------------------------------------------------------------------------ */
+  function ccAutoCaptions(doc) {
+    doc = doc || document;
+    try {
+      var chNum = getChapterNum(doc);
+      var caps = doc.querySelectorAll('[data-cap]');
+      if (!caps.length) return { count: 0 };
+      var keyToNum = {};
+      var counts = {};   // SEPARATE sequence per label (Figure vs Interactive), textbook-style
+      caps.forEach(function (el) {
+        if (isDepthHidden(el, doc)) { el.textContent = ''; return; }  // blank stale hidden
+        var kind = el.getAttribute('data-cap');
+        var label = (kind === 'interactive') ? 'Interactive' : 'Figure';
+        counts[label] = (counts[label] || 0) + 1;
+        var num = chNum ? (chNum + '.' + counts[label]) : String(counts[label]);
+        var key = el.getAttribute('data-cap-key');
+        if (key) keyToNum[key] = label + ' ' + num;
+        // A widget-title prefix (class cap-num) emits the " &middot; " before its
+        // sibling title text; a figcaption number span (class fnum) emits only the
+        // label+number, with its description following as normal caption text.
+        var titlePrefix = el.classList && el.classList.contains('cap-num');
+        if (titlePrefix) {
+          el.innerHTML = label + ' ' + num + ' &middot; ';
+        } else {
+          el.textContent = label + ' ' + num;
+        }
+      });
+      doc.querySelectorAll('[data-figref]').forEach(function (r) {
+        if (isDepthHidden(r, doc)) { r.textContent = ''; return; }
+        r.textContent = keyToNum[r.getAttribute('data-figref')] || '';
+      });
+      return { count: n };
+    } catch (e) { /* chapters without captions: silently no-op */ }
+  }
+
+  /* --------------------------------------------------------------------------
    * 5. TOC HELPER
    * The shell owns its own "On this page" TOC. After a toggle it should resync
    * each TOC label to the (renumbered) heading text and hide rows whose heading
@@ -492,6 +540,7 @@
     injectDepthCSS(doc);   // 2
     ccAutoNumber(doc);     // 3
     var citeInfo = ccAutoCitations(doc); // 4
+    ccAutoCaptions(doc);                 // 5  (figure/interactive caption numbering)
     return citeInfo;
   }
 
@@ -518,6 +567,7 @@
     applyDepth: applyDepth,
     ccAutoNumber: ccAutoNumber,
     ccAutoCitations: ccAutoCitations,
+    ccAutoCaptions: ccAutoCaptions,
     injectDepthCSS: injectDepthCSS,
     ccVisibleHeadings: ccVisibleHeadings,
     getChapterNum: getChapterNum,

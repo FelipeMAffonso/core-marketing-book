@@ -1057,7 +1057,7 @@ OUTPUT 3: ..."></textarea>
       </g>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 27.1</span> The five Anthropic agentic patterns. Almost every production agent in 2026 reduces to one of these five, or a composition of two. Naming the pattern before building is the pattern-recognition work this chapter trains.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> The five Anthropic agentic patterns. Almost every production agent in 2026 reduces to one of these five, or a composition of two. Naming the pattern before building is the pattern-recognition work this chapter trains.</figcaption>
 </figure>
 
 <h3 id="prompt-chaining" data-no-num>Pattern 1: prompt chaining</h3>
@@ -1234,7 +1234,7 @@ OUTPUT 3: ..."></textarea>
       <text x="468" y="286" text-anchor="middle" font-size="10" fill="#555" font-style="italic">Promise.all / asyncio.gather</text>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 27.5</span> Same four calls, two shapes. Serial chains them end-to-end (the agent is still grinding through perplexity when claude has not started). Parallel issues all four in one turn and waits on the slowest. The capstone weekly digest is built on the lower shape; reverting to the upper one is the most common 2026 first-week mistake.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> Same four calls, two shapes. Serial chains them end-to-end (the agent is still grinding through perplexity when claude has not started). Parallel issues all four in one turn and waits on the slowest. The capstone weekly digest is built on the lower shape; reverting to the upper one is the most common 2026 first-week mistake.</figcaption>
 </figure>
 
 <div class="par-box" id="par-demo">
@@ -1314,7 +1314,7 @@ OUTPUT 3: ..."></textarea>
       <text x="640" y="278" font-size="10" fill="#B8553A" text-anchor="end">per question</text>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 27.2</span> The four-tier ladder. Same model on all rungs; what changes is human attention. Tier 1 = per-question + free; Tier 4 runs while you sleep. Climb only when the next rung adds something the current cannot.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> The four-tier ladder. Same model on all rungs; what changes is human attention. Tier 1 = per-question + free; Tier 4 runs while you sleep. Climb only when the next rung adds something the current cannot.</figcaption>
 </figure>
 
 <p data-complete>The four rungs sit in a strict order: climb to rung 2 at roughly the third repetition, to rung 3 when the task needs live data the marketer cannot copy-paste, and to rung 4 when the task no longer needs a human in the loop. A small team runs all four rungs for under $100/month, which makes the capstone defensible on a junior marketer's credit card.<sup class="cite" data-cite="ref-29"></sup></p>
@@ -1545,7 +1545,7 @@ OUTPUT 3: ..."></textarea>
   <button class="ap-go" id="ap-go">run sample workflow</button>
   <div class="ap-log" id="ap-log" aria-live="polite"></div>
 </div>
-<figcaption><span class="fnum">Figure 27.3</span> Pick the four primitives (model, Skill, MCP server, trigger); watch the wire diagram redraw. The four picks specify an agent; the sample workflow log is its first run.</figcaption>
+<figcaption><span class="fnum" data-cap="figure"></span> Pick the four primitives (model, Skill, MCP server, trigger); watch the wire diagram redraw. The four picks specify an agent; the sample workflow log is its first run.</figcaption>
 </figure>
 
 <span class="ax">08 // when NOT to build an agent</span>
@@ -1693,7 +1693,7 @@ OUTPUT 3: ..."></textarea>
       </g>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 27.4</span> Ten waypoints, in order. 1-6 are the agent itself. 7 is the deployment. 8-10 are the production gates the agent must clear before it ships. Right column lists deliverables you will turn in.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> Ten waypoints, in order. 1-6 are the agent itself. 7 is the deployment. 8-10 are the production gates the agent must clear before it ships. Right column lists deliverables you will turn in.</figcaption>
 </figure>
 
 <h3 id="wp1" data-no-num>Waypoints 1-3: rung, prompt, tool</h3>
@@ -1926,7 +1926,7 @@ Run the six-step checklist as the final pre-ship gate, not the first line of the
       <text x="86" y="266" font-family="JetBrains Mono, monospace" font-size="11" fill="#888" font-style="italic">scripts/lint.py (optional, code-side check)</text>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 27.6</span> Skill folder, four files. <code>SKILL.md</code> is the entrypoint the runtime loads as system prompt. <code>references/styleguide.md</code> is the voice corpus the agent reads on every run. <code>evals/voice-pass.json</code> is the reflection rubric the judge call (waypoint 6) and the eval harness (waypoint 8) both consult. Optional <code>scripts/lint.py</code> sits next to them for code-side guards. The folder is the unit of distribution; one folder ships across Claude Desktop, Claude Code, Cursor, Codex, and the Marketplace.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> Skill folder, four files. <code>SKILL.md</code> is the entrypoint the runtime loads as system prompt. <code>references/styleguide.md</code> is the voice corpus the agent reads on every run. <code>evals/voice-pass.json</code> is the reflection rubric the judge call (waypoint 6) and the eval harness (waypoint 8) both consult. Optional <code>scripts/lint.py</code> sits next to them for code-side guards. The folder is the unit of distribution; one folder ships across Claude Desktop, Claude Code, Cursor, Codex, and the Marketplace.</figcaption>
 </figure>
 
 <pre class="code">---
@@ -2075,7 +2075,7 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
     </div>
   </div>
 </div>
-<figcaption><span class="fnum">Figure 27.7</span> Pick the four primitives, click run. The trace prints the agent loop step-by-step with timestamps; the digest panel is the artifact your team reads in Slack. The six preset buttons match Waypoint 1's six tracks; pair the brand-voice file in CLAUDE.md to whichever track you pick.</figcaption>
+<figcaption><span class="fnum" data-cap="figure"></span> Pick the four primitives, click run. The trace prints the agent loop step-by-step with timestamps; the digest panel is the artifact your team reads in Slack. The six preset buttons match Waypoint 1's six tracks; pair the brand-voice file in CLAUDE.md to whichever track you pick.</figcaption>
 </figure>
 
 <span class="ax">10 // looking ahead</span>
