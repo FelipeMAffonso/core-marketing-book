@@ -2076,9 +2076,11 @@
           if (a !== undefined) { var mc = hexToRgbComponents(mapped); return 'rgba(' + mc.r + ',' + mc.g + ',' + mc.b + ',' + a + ')'; }
           return mapped;
         });
-        var trimmed = nv.trim();
-        if (trimmed.indexOf('!important') === -1) nv = trimmed + ' !important';
-        return prop + ': ' + nv;
+        // Do NOT force !important here: the chapter's <style> block is rewritten IN PLACE, so its
+        // own cascade must be preserved. Forcing !important made a hardcoded base colour (e.g.
+        // .file-btn{background:#fff}) override an .active/state variant that uses var(--coral)
+        // (which is left untouched, so it had no !important) -> white-on-white widgets book-wide.
+        return prop + ': ' + nv.trim();
       });
     }
 
