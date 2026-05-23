@@ -1683,14 +1683,15 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
       { x: 610, y: 240, label: 'LEGAL',         sub: 'EU AI Act' }
     ];
     forces.forEach(f => {
-      svg.appendChild(rc.circle(f.x, f.y, 30, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.5 }));
+      // node circle removed: it was r=30 (60px) but the label is ~105px wide, so the rough
+      // stroke cut straight through the text. The label + arrow now read as the node (overlap fix).
       txt(svg, f.x, f.y - 2, f.label, { anchor: 'middle', fill: CORAL_DEEP, size: 9.5, weight: 700 });
       txt(svg, f.x, f.y + 12, f.sub, { anchor: 'middle', fill: INK2, size: 9 });
       // arrow from force toward hexagon: start outside the force circle (radius 30) so the line never crosses the label
       const dx = 360 - f.x, dy = 170 - f.y;
       const dist = Math.sqrt(dx*dx + dy*dy);
       const nx = dx / dist, ny = dy / dist;
-      const sx = f.x + nx * 32, sy = f.y + ny * 32;
+      const sx = f.x + nx * 60, sy = f.y + ny * 60;
       const ex = 360 - nx * 70, ey = 170 - ny * 50;
       svg.appendChild(rc.line(sx, sy, ex, ey, { stroke: CORAL, strokeWidth: 1.4, roughness: 0.9 }));
     });
