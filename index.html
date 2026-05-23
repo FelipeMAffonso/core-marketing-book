@@ -932,11 +932,10 @@
       width: 340px; height: 480px;
       margin: 4px auto 38px;
       border-radius: 3px;
-      background: radial-gradient(125% 115% at 82% -8%, var(--coral) 0%, var(--coral-deep) 26%, rgba(20,16,12,0) 62%), linear-gradient(158deg, #343434 0%, #1e1e1e 54%, #121212 100%);
+      background: linear-gradient(158deg, #2e2e2e 0%, #1c1c1c 55%, #111111 100%);
       box-shadow: 8px 8px 30px rgba(0,0,0,0.30), 2px 2px 8px rgba(0,0,0,0.15);
       border: 1px solid rgba(255,255,255,0.06);
       overflow: hidden;
-      transition: background 0.5s ease;
     }
     .book-cover canvas { position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; }
     .cover-content { position:relative; z-index:2; display:flex; flex-direction:column; height:100%; padding:0 32px 32px; text-align:left; }
@@ -3243,64 +3242,74 @@
   })();
   </script>
 
-  <!-- Book-cover particle network (welcome page). White nodes on the accent gradient. -->
+  <!-- Book-cover background: 6 D3-style patterns. Click the cover to cycle; colour is pulled
+       live from the palette accent (--coral) so it always matches the theme. -->
   <script>
   (function () {
     var canvas = document.getElementById('cover-particles');
     if (!canvas || !canvas.getContext) return;
     var ctx = canvas.getContext('2d');
-    var particles = [];
-    var mouse = { x: -9999, y: -9999 };
-    var cfg = { maxParticles: 35, densityDivisor: 6000, maxDistance: 100, mouseDistance: 120, speed: 0.2, particleAlpha: 0.3, lineAlpha: 0.1, color: '255,255,255' };
-    function initParticles() {
-      particles = [];
-      var n = Math.min(cfg.maxParticles, Math.floor((canvas.width * canvas.height) / cfg.densityDivisor));
-      for (var i = 0; i < n; i++) {
-        particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * cfg.speed, vy: (Math.random() - 0.5) * cfg.speed, r: Math.random() * 2 + 0.5 });
-      }
+    var cover = document.getElementById('book-cover');
+    var W = 0, H = 0, t = 0, P = {};
+    var PATTERNS = ['network', 'flow', 'mesh', 'rings', 'grid', 'constellation'];
+    var idx = (function () { var s = parseInt(localStorage.getItem('cc-cover-pattern'), 10); return (s >= 0 && s < PATTERNS.length) ? s : 0; })();
+    function accent() {
+      var c = (getComputedStyle(document.documentElement).getPropertyValue('--coral') || '#DA7756').trim().replace('#', '');
+      if (c.length === 3) c = c[0] + c[0] + c[1] + c[1] + c[2] + c[2];
+      return [parseInt(c.substr(0, 2), 16) || 218, parseInt(c.substr(2, 2), 16) || 119, parseInt(c.substr(4, 2), 16) || 86];
+    }
+    function rgba(a) { var c = accent(); return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+    function rnd(n) { return Math.random() * n; }
+    function initPattern() {
+      P = {}; var kind = PATTERNS[idx], i;
+      if (kind === 'network' || kind === 'constellation') {
+        var n = kind === 'network' ? 58 : 30; P.pts = [];
+        for (i = 0; i < n; i++) P.pts.push({ x: rnd(W), y: rnd(H), vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25, r: rnd(2) + 1, w: kind === 'constellation' && i % 3 === 0 });
+      } else if (kind === 'flow') {
+        P.pts = []; for (i = 0; i < 95; i++) P.pts.push({ x: rnd(W), y: rnd(H), px: 0, py: 0 });
+      } else if (kind === 'mesh') {
+        P.pts = []; for (i = 0; i < 38; i++) P.pts.push({ x: rnd(W), y: rnd(H), vx: (Math.random() - 0.5) * 0.2, vy: (Math.random() - 0.5) * 0.2 });
+      } else if (kind === 'grid') { P.gap = Math.max(28, W / 8); }
+      else if (kind === 'rings') { P.cx = W * 0.82; P.cy = H * 0.05; }
     }
     function resize() {
-      var rect = canvas.parentElement.getBoundingClientRect();
-      if (rect.width < 2 || rect.height < 2) return;
-      canvas.width = rect.width; canvas.height = rect.height;
-      initParticles();
+      var r = canvas.parentElement.getBoundingClientRect();
+      if (r.width < 2 || r.height < 2) return;
+      canvas.width = W = r.width; canvas.height = H = r.height;
+      initPattern();
     }
     function draw() {
       requestAnimationFrame(draw);
-      if (canvas.width < 2 || !particles.length) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (var i = 0; i < particles.length; i++) {
-        for (var j = i + 1; j < particles.length; j++) {
-          var dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
-          var d = Math.sqrt(dx * dx + dy * dy);
-          if (d < cfg.maxDistance) {
-            ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = 'rgba(' + cfg.color + ',' + (cfg.lineAlpha * (1 - d / cfg.maxDistance)) + ')';
-            ctx.lineWidth = 0.8; ctx.stroke();
-          }
-        }
-        var mdx = particles[i].x - mouse.x, mdy = particles[i].y - mouse.y;
-        var md = Math.sqrt(mdx * mdx + mdy * mdy);
-        if (md < cfg.mouseDistance) {
-          ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = 'rgba(' + cfg.color + ',' + (cfg.lineAlpha * 1.5 * (1 - md / cfg.mouseDistance)) + ')';
-          ctx.lineWidth = 0.6; ctx.stroke();
-        }
-      }
-      for (var k = 0; k < particles.length; k++) {
-        var p = particles[k];
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + cfg.color + ',' + cfg.particleAlpha + ')'; ctx.fill();
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      if (W < 2) return;
+      t += 1; ctx.clearRect(0, 0, W, H);
+      var kind = PATTERNS[idx], i, j, p;
+      if (kind === 'network' || kind === 'constellation') {
+        var maxD = kind === 'network' ? 108 : 150;
+        for (i = 0; i < P.pts.length; i++) { p = P.pts[i]; p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; }
+        for (i = 0; i < P.pts.length; i++) for (j = i + 1; j < P.pts.length; j++) { var a = P.pts[i], b = P.pts[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx * dx + dy * dy);
+          if (d < maxD) { ctx.strokeStyle = rgba(0.22 * (1 - d / maxD)); ctx.lineWidth = 0.8; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); } }
+        P.pts.forEach(function (q) { ctx.fillStyle = q.w ? 'rgba(255,255,255,0.55)' : rgba(0.5); ctx.beginPath(); ctx.arc(q.x, q.y, q.r, 0, 6.3); ctx.fill(); });
+      } else if (kind === 'flow') {
+        P.pts.forEach(function (q) { var ang = Math.sin(q.x * 0.006 + t * 0.004) + Math.cos(q.y * 0.006 - t * 0.003); q.px = q.x; q.py = q.y; q.x += Math.cos(ang) * 1.3; q.y += Math.sin(ang) * 1.3;
+          if (q.x < 0 || q.x > W || q.y < 0 || q.y > H) { q.x = rnd(W); q.y = rnd(H); q.px = q.x; q.py = q.y; }
+          ctx.strokeStyle = rgba(0.16); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(q.px, q.py); ctx.lineTo(q.x, q.y); ctx.stroke(); });
+      } else if (kind === 'mesh') {
+        for (i = 0; i < P.pts.length; i++) { p = P.pts[i]; p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; }
+        P.pts.forEach(function (q) { var near = P.pts.map(function (r2) { return { q: r2, d: Math.hypot(q.x - r2.x, q.y - r2.y) }; }).sort(function (m, n) { return m.d - n.d; }).slice(1, 4);
+          near.forEach(function (o) { ctx.strokeStyle = rgba(0.15); ctx.lineWidth = 0.8; ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(o.q.x, o.q.y); ctx.stroke(); }); });
+        P.pts.forEach(function (q) { ctx.fillStyle = rgba(0.5); ctx.beginPath(); ctx.arc(q.x, q.y, 2, 0, 6.3); ctx.fill(); });
+      } else if (kind === 'rings') {
+        var phase = (t * 0.45) % 46;
+        for (var r = phase; r < W * 1.5; r += 46) { ctx.strokeStyle = rgba(0.3 * (1 - r / (W * 1.5))); ctx.lineWidth = 1.3; ctx.beginPath(); ctx.arc(P.cx, P.cy, r, 0, 6.3); ctx.stroke(); }
+      } else if (kind === 'grid') {
+        for (var gx = P.gap; gx < W; gx += P.gap) for (var gy = P.gap; gy < H; gy += P.gap) { var w = Math.sin(gx * 0.02 + gy * 0.02 - t * 0.03) * 0.5 + 0.5; ctx.fillStyle = rgba(0.15 + w * 0.5); ctx.beginPath(); ctx.arc(gx, gy, 1.4 + w * 3, 0, 6.3); ctx.fill(); }
       }
     }
-    var cover = document.getElementById('book-cover');
     if (cover) {
-      cover.addEventListener('mousemove', function (e) { var r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
-      cover.addEventListener('mouseleave', function () { mouse.x = -9999; mouse.y = -9999; });
-      if (window.ResizeObserver) { new ResizeObserver(resize).observe(cover); }
+      cover.style.cursor = 'pointer';
+      cover.setAttribute('title', 'Click to change the pattern');
+      cover.addEventListener('click', function () { idx = (idx + 1) % PATTERNS.length; try { localStorage.setItem('cc-cover-pattern', idx); } catch (e) {} initPattern(); });
+      if (window.ResizeObserver) new ResizeObserver(resize).observe(cover);
     }
     window.addEventListener('resize', resize);
     window.addEventListener('load', resize);
