@@ -660,7 +660,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>Customization is the ninth attribute, and it earns one extra line because the word hides four different strategies. Pine and Gilmore's <span class="term" data-tt="Pine and Gilmore's customization 2-by-2 is a framework from their 1997 Harvard Business Review article that sorts every form of personalization onto two axes: whether the underlying product physically changes from buyer to buyer (yes or no) and whether the buyer perceives the change (yes or no). The four resulting quadrants are collaborative (Nike By You, where the product changes and the buyer knows), cosmetic (Stanley colorways and printed-initial M&amp;Ms, where the product is identical and the buyer sees a surface change), adaptive (Spotify Daily Mix, where the product changes and the buyer does not consciously notice), and transparent (a hotel quietly assigning a returning guest her preferred floor, where the product changes and the buyer does not perceive it). The point is to pick the right face before committing the factory or the data pipeline, because each face pays for its variety in a different place, whether through modular tooling, surface finishing, behavioral data, or the standard product itself.">four faces of mass customization</span> sort those faces by two yes-or-no questions: does the underlying product change from one buyer to the next, and does the buyer perceive the change. The face a brand picks decides whether it pays for variety on the factory floor, at the surface-finishing step, or in the data pipeline. The cosmetic face scales all the way down: a dorm-room Etsy shop selling name stickers runs the same face Stanley runs at scale, one base template plus a buyer-specified name, with no second engineering line. Customization is an architecture choice, not a Fortune-500 luxury, and the lesson is to pick the face before the assembly line or the recommendation engine is built.<sup class="cite" data-cite="ref-4"></sup></p>
 
 <figure class="sketch" aria-label="Pine and Gilmore's four faces of mass customization arranged on a two-by-two grid: the horizontal axis is whether the buyer perceives the customization, the vertical axis is whether the underlying product changes, and the four quadrants are collaborative, cosmetic, transparent, and adaptive customization with one Fortune-500 example and one undergrad-scale example in each.">
-  <div class="mount" id="sk-four-faces-mount" data-w="720" data-h="380"></div>
+  <div class="mount" id="sk-four-faces-mount" data-w="720" data-h="470"></div>
   <figcaption>The four faces sorted by two yes-or-no questions about the offer. Collaborative and cosmetic share the right column because the buyer sees the customization in both; collaborative and transparent share the top row because the underlying product genuinely changes in both. The face a brand occupies on the grid is what determines whether the operations investment goes into modular tooling, surface finishing, behavioral data, or the standard product itself, so the face is a decision the firm makes before the assembly line or the data pipeline is committed.<sup class="cite" data-cite="ref-4"></sup></figcaption>
 </figure>
 
@@ -2099,37 +2099,39 @@ return '$' + usd.toFixed(4);
   sketches['sk-stage-gate-mount'] = function(svg) {
     const rc = makeRc(svg);
     txt(svg, 350, 22, 'fail the bad idea earlier and cheaper', { anchor: 'middle', fill: INK2, size: 12, hand: true });
-    /* Funnel boxes */
+    /* Funnel boxes: uniform wide boxes so each stage label fits clear of the outline;
+       the gate diamonds sit in the gaps, with the word in the gap below the diamond. */
     const stages = [
-      { x: 60,  label: 'IDEA',     sub: 'generation' },
-      { x: 200, label: 'CONCEPT',  sub: 'development' },
-      { x: 340, label: 'BUSINESS', sub: 'model' },
-      { x: 480, label: 'OFFERING', sub: 'implementation' },
-      { x: 620, label: 'COMMERCIAL', sub: 'deployment' }
+      { x: 70,  label: 'IDEA',       sub: 'generation' },
+      { x: 198, label: 'CONCEPT',    sub: 'development' },
+      { x: 326, label: 'BUSINESS',   sub: 'model' },
+      { x: 454, label: 'OFFERING',   sub: 'implementation' },
+      { x: 582, label: 'COMMERCIAL', sub: 'deployment' }
     ];
+    const boxW = 104, boxTop = 60, boxH = 92;
     stages.forEach((s, i) => {
-      const w = 88 - i * 6;
-      svg.appendChild(rc.rectangle(s.x - w/2, 70, w, 70, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.2 }));
-      txt(svg, s.x, 100, s.label, { anchor: 'middle', fill: INK, size: 11, weight: 700 });
-      txt(svg, s.x, 118, s.sub, { anchor: 'middle', fill: INK2, size: 10 });
-      /* Gate diamond between stages */
+      svg.appendChild(rc.rectangle(s.x - boxW/2, boxTop, boxW, boxH, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.2 }));
+      txt(svg, s.x, boxTop + 38, s.label, { anchor: 'middle', fill: INK, size: 10.5, weight: 700 });
+      txt(svg, s.x, boxTop + 62, s.sub, { anchor: 'middle', fill: INK2, size: 9, hand: true });
+      /* Gate diamond between stages, sitting in the gap; word placed below it, clear of strokes */
       if (i < stages.length - 1) {
         const gx = (s.x + stages[i + 1].x) / 2;
-        svg.appendChild(rc.polygon([[gx, 92], [gx + 10, 105], [gx, 118], [gx - 10, 105]], { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.1 }));
-        txt(svg, gx, 109, 'gate', { anchor: 'middle', fill: CORAL_DEEP, size: 9, weight: 700 });
+        const gy = boxTop + 36;
+        svg.appendChild(rc.polygon([[gx, gy - 11], [gx + 9, gy], [gx, gy + 11], [gx - 9, gy]], { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.1 }));
+        txt(svg, gx, gy + 30, 'gate', { anchor: 'middle', fill: CORAL_DEEP, size: 9, weight: 700, hand: true });
       }
     });
     /* Three aims at the bottom */
-    txt(svg, 350, 178, 'three aims at every gate', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
+    txt(svg, 350, 182, 'three aims at every gate', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
     const aims = [
-      { x: 180, label: 'DESIRABILITY', sub: 'do buyers want it?' },
+      { x: 175, label: 'DESIRABILITY', sub: 'do buyers want it?' },
       { x: 350, label: 'FEASIBILITY',  sub: 'can we build it?' },
-      { x: 520, label: 'VIABILITY',    sub: 'can we make money?' }
+      { x: 525, label: 'VIABILITY',    sub: 'can we make money?' }
     ];
     aims.forEach(a => {
-      svg.appendChild(rc.rectangle(a.x - 80, 195, 160, 50, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, a.x, 215, a.label, { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-      txt(svg, a.x, 232, a.sub, { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
+      svg.appendChild(rc.rectangle(a.x - 84, 196, 168, 62, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, a.x, 222, a.label, { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
+      txt(svg, a.x, 244, a.sub, { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
     });
   };
 
@@ -2454,20 +2456,21 @@ return '$' + usd.toFixed(4);
     /* Title */
     txt(svg, 360, 22, 'Pine & Gilmore four faces: pick the face before the architecture commits', { anchor: 'middle', fill: INK2, size: 12, hand: true });
 
-    /* Grid frame: 2x2 spanning x=120..620, y=60..320. Cell size 250 wide, 130 tall. */
-    const x0 = 120, y0 = 60, cw = 250, ch = 130;
-    /* Axis labels (outside the grid) */
-    /* Vertical axis title (left of grid, rotated) */
-    txt(svg, 64, 125, 'underlying', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700, transform: 'rotate(-90 64 125)' });
-    txt(svg, 80, 125, 'product', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700, transform: 'rotate(-90 80 125)' });
-    txt(svg, 64, 255, 'underlying', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700, transform: 'rotate(-90 64 255)' });
-    txt(svg, 80, 255, 'product', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700, transform: 'rotate(-90 80 255)' });
-    txt(svg, 100, 125, 'CHANGES', { anchor: 'middle', fill: CORAL, size: 10.5, weight: 700, transform: 'rotate(-90 100 125)' });
-    txt(svg, 100, 255, 'STAYS SAME', { anchor: 'middle', fill: INK2, size: 10.5, weight: 700, transform: 'rotate(-90 100 255)' });
+    /* Grid frame: 2x2. Cell size 250 wide, 170 tall, so six text lines per cell breathe. */
+    const x0 = 120, y0 = 78, cw = 250, ch = 170;
+    /* Vertical axis title (left of grid, rotated) - two stacked words per row, then the value word.
+       Columns spaced >=24px apart so their rotated bounding boxes never intersect. */
+    const topMid = y0 + ch / 2, botMid = y0 + ch + ch / 2;
+    txt(svg, 50, topMid, 'underlying', { anchor: 'middle', fill: CORAL_DEEP, size: 10.5, weight: 700, transform: 'rotate(-90 50 ' + topMid + ')' });
+    txt(svg, 74, topMid, 'product', { anchor: 'middle', fill: CORAL_DEEP, size: 10.5, weight: 700, transform: 'rotate(-90 74 ' + topMid + ')' });
+    txt(svg, 100, topMid, 'CHANGES', { anchor: 'middle', fill: CORAL, size: 10, weight: 700, transform: 'rotate(-90 100 ' + topMid + ')' });
+    txt(svg, 50, botMid, 'underlying', { anchor: 'middle', fill: CORAL_DEEP, size: 10.5, weight: 700, transform: 'rotate(-90 50 ' + botMid + ')' });
+    txt(svg, 74, botMid, 'product', { anchor: 'middle', fill: CORAL_DEEP, size: 10.5, weight: 700, transform: 'rotate(-90 74 ' + botMid + ')' });
+    txt(svg, 100, botMid, 'STAYS SAME', { anchor: 'middle', fill: INK2, size: 10, weight: 700, transform: 'rotate(-90 100 ' + botMid + ')' });
     /* Horizontal axis title (above grid) */
-    txt(svg, 360, 48, 'buyer perceives the change?', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-    txt(svg, 245, 60, 'NO', { anchor: 'middle', fill: INK2, size: 10.5, weight: 700 });
-    txt(svg, 495, 60, 'YES', { anchor: 'middle', fill: CORAL, size: 10.5, weight: 700 });
+    txt(svg, 360, 46, 'buyer perceives the change?', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
+    txt(svg, x0 + cw / 2, 70, 'NO', { anchor: 'middle', fill: INK2, size: 10.5, weight: 700 });
+    txt(svg, x0 + cw + cw / 2, 70, 'YES', { anchor: 'middle', fill: CORAL, size: 10.5, weight: 700 });
 
     /* Grid lines: outer border + middle cross */
     svg.appendChild(rc.rectangle(x0, y0, cw * 2, ch * 2, { stroke: INK, strokeWidth: 1.4, fill: 'none', roughness: 1.6 }));
@@ -2477,7 +2480,7 @@ return '$' + usd.toFixed(4);
     /* Cell content: top-left = TRANSPARENT, top-right = COLLABORATIVE, bottom-left = ADAPTIVE, bottom-right = COSMETIC */
     const cells = [
       {
-        cx: x0 + 12, cy: y0 + 16,
+        cx: x0 + 16, cy: y0 + 30,
         label: 'TRANSPARENT',
         bigEx: 'hotel pre-assigns',
         bigEx2: 'your preferred floor',
@@ -2486,7 +2489,7 @@ return '$' + usd.toFixed(4);
         cost: 'cost: data pipeline'
       },
       {
-        cx: x0 + cw + 12, cy: y0 + 16,
+        cx: x0 + cw + 16, cy: y0 + 30,
         label: 'COLLABORATIVE',
         bigEx: 'Nike By You',
         bigEx2: 'colorway + name',
@@ -2495,7 +2498,7 @@ return '$' + usd.toFixed(4);
         cost: 'cost: modular factory'
       },
       {
-        cx: x0 + 12, cy: y0 + ch + 16,
+        cx: x0 + 16, cy: y0 + ch + 30,
         label: 'ADAPTIVE',
         bigEx: 'Spotify Daily Mix',
         bigEx2: 'same app, your songs',
@@ -2504,7 +2507,7 @@ return '$' + usd.toFixed(4);
         cost: 'cost: recommendation engine'
       },
       {
-        cx: x0 + cw + 12, cy: y0 + ch + 16,
+        cx: x0 + cw + 16, cy: y0 + ch + 30,
         label: 'COSMETIC',
         bigEx: 'Stanley colorways',
         bigEx2: 'M&Ms with your initials',
@@ -2517,19 +2520,18 @@ return '$' + usd.toFixed(4);
       /* Quadrant title in coral-deep mono caps */
       txt(svg, c.cx, c.cy, c.label, { fill: CORAL_DEEP, size: 12.5, weight: 700 });
       /* Big-brand example (Fortune-500 anchor) */
-      txt(svg, c.cx, c.cy + 22, c.bigEx, { fill: INK, size: 12, hand: true, weight: 600 });
-      txt(svg, c.cx, c.cy + 40, c.bigEx2, { fill: INK, size: 11.5, hand: true });
+      txt(svg, c.cx, c.cy + 26, c.bigEx, { fill: INK, size: 12, hand: true, weight: 600 });
+      txt(svg, c.cx, c.cy + 46, c.bigEx2, { fill: INK, size: 11.5, hand: true });
       /* Undergrad-scale anchor */
-      txt(svg, c.cx, c.cy + 64, c.smallEx, { fill: INK2, size: 11, hand: true });
-      txt(svg, c.cx, c.cy + 80, c.smallEx2, { fill: INK2, size: 11, hand: true });
+      txt(svg, c.cx, c.cy + 74, c.smallEx, { fill: INK2, size: 11, hand: true });
+      txt(svg, c.cx, c.cy + 94, c.smallEx2, { fill: INK2, size: 11, hand: true });
       /* Cost-of-architecture footer */
-      txt(svg, c.cx, c.cy + 102, c.cost, { fill: CORAL, size: 10.5, hand: true, weight: 600 });
+      txt(svg, c.cx, c.cy + 122, c.cost, { fill: CORAL, size: 10.5, hand: true, weight: 600 });
     });
 
-    /* Diagonal hint: top-right vs bottom-left share the architecture investment style */
-    /* Subtle reading aid under the grid */
-    txt(svg, 360, 348, 'right column = buyer sees it (collaborative + cosmetic)', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-    txt(svg, 360, 366, 'top row = product really changes (collaborative + transparent)', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    /* Subtle reading aids under the grid */
+    txt(svg, 360, y0 + ch * 2 + 24, 'right column = buyer sees it (collaborative + cosmetic)', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    txt(svg, 360, y0 + ch * 2 + 44, 'top row = product really changes (collaborative + transparent)', { anchor: 'middle', fill: INK2, size: 11, hand: true });
   };
 
   /* ===== SPLICED-IN NEW renderers from build files (lockstep with the new mounts). ===== */
@@ -2551,9 +2553,9 @@ return '$' + usd.toFixed(4);
       ];
       steps.forEach((s, i) => {
         const col = s.good ? CORAL : CORAL_DEEP;
-        svg.appendChild(rc.rectangle(s.x - 62, baseY - 58, 124, 46, { stroke: col, strokeWidth: 1.5, fill: s.good ? '#fff7f0' : '#fbeee9', fillStyle: 'solid', roughness: 1.4 }));
-        txt(svg, s.x, baseY - 40, s.top, { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 700 });
-        txt(svg, s.x, baseY - 24, s.mid, { anchor: 'middle', fill: INK2, size: 10.5 });
+        svg.appendChild(rc.rectangle(s.x - 78, baseY - 96, 156, 80, { stroke: col, strokeWidth: 1.5, fill: s.good ? '#fff7f0' : '#fbeee9', fillStyle: 'solid', roughness: 1.4 }));
+        txt(svg, s.x, baseY - 66, s.top, { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 700 });
+        txt(svg, s.x, baseY - 40, s.mid, { anchor: 'middle', fill: INK2, size: 10.5 });
         svg.appendChild(rc.circle(s.x, baseY, 7, { stroke: col, strokeWidth: 1.5, fill: col, fillStyle: 'solid', roughness: 1.3 }));
         if (i < steps.length - 1) {
           const nx = steps[i + 1].x;

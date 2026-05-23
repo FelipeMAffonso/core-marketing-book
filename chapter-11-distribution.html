@@ -879,7 +879,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p>Reach-versus-control stops short of the diagnostic question, which is what the buyer needs the channel to do. The methods literature names six <span class="term" data-tt="Service outputs are the buyer-side benefits that a marketing channel must produce, and the framework names six of them. Coughlan, Anderson, Stern, and El-Ansary catalog the six as bulk-breaking (the ability to buy in small quantities rather than full truckloads), spatial convenience (closeness to where the buyer lives or works), waiting and delivery time (the speed with which the buyer can get the product), assortment and variety (depth and breadth of choice on the shelf), customer service (pre-sale advice and post-sale support), and information provision (comparison, education, and recommendation). The channel-design problem then becomes a question of which outputs each buyer segment actually needs, and at what cost the channel can produce them.">service outputs</span> the channel exists to produce: <strong>bulk-breaking</strong>, <strong>spatial convenience</strong>, <strong>waiting and delivery time</strong>, <strong>assortment and variety</strong>, <strong>customer service</strong>, and <strong>information provision</strong>.<sup class="cite" data-cite="ref-6"></sup> The marketer asks which outputs each segment requires and derives the channel that delivers them at minimum cost. Built from scratch as if no infrastructure existed, this is a <em>zero-based channel</em>, then compared back against the actual one to expose service-output gaps.<sup class="cite" data-cite="ref-6"></sup></p>
 
 <figure class="sketch" data-complete aria-label="Coughlan service-output cost ladder. Six rows, one per service output. Each row pairs a coral bar showing buyer-side demand for the named segment against an ink bar showing the channel cost of producing that output. Higher service output costs more to produce, so the channel that fits matches the demand bar without overpaying for outputs the segment will not value.">
-  <div class="mount" id="sk-service-output-mount" data-w="720" data-h="340"></div>
+  <div class="mount" id="sk-service-output-mount" data-w="720" data-h="364"></div>
   <figcaption>Each service output has a buyer-side demand that varies by segment and a channel-side cost of production. The fit channel matches one to the other without paying to produce outputs the segment refuses to value.</figcaption>
 </figure>
 
@@ -1403,7 +1403,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Behind every format sits one quiet question of where the buyer&rsquo;s purchase history lives and who may read it, and the 2026 answer is a thin data fabric that stitches the buyer&rsquo;s many identifiers into one persistent record the brand&rsquo;s tools all read in the same shape.</p>
 
 <aside class="sn" data-complete><span class="sn-num">N.</span> The data fabric is graduate-grade martech, sketched here and built in your digital marketing course. A CDP sits between the six places a buyer&rsquo;s events are recorded (server, web and app, store POS, call center, loyalty swipe, partner feeds) and the four places they get used (email, paid media, on-site personalization, the warehouse). Pricing enters the channel-design conversation, because a mid-market apparel brand running 100K monthly buyers across Shopify, Instagram, and one wholesaler spends roughly $200K a year, while a national retailer at Costco or Walmart scale spends $3M to $5M and staffs a small engineering team to run it. The clean-room standard use is brand-plus-retailer reach-and-frequency measurement on a retail-media campaign, and the post-cookie shift toward identity graphs (RampID, Unified ID 2.0) is what forces brands without one into smaller addressable audiences and looser attribution.<sup class="cite" data-cite="ref-40"></sup>
-<figure class="sketch" aria-label="A CDP architecture diagram: six data sources flow into a customer data platform at center, four destinations flow out."><div class="mount" id="sk-cdp-architecture-mount" data-w="720" data-h="340"></div><figcaption>The customer data platform: one persistent identity per buyer across server, client, store, call center, loyalty card, and partner feeds.</figcaption></figure></aside>
+<figure class="sketch" aria-label="A CDP architecture diagram: six data sources flow into a customer data platform at center, four destinations flow out."><div class="mount" id="sk-cdp-architecture-mount" data-w="720" data-h="392"></div><figcaption>The customer data platform: one persistent identity per buyer across server, client, store, call center, loyalty card, and partner feeds.</figcaption></figure></aside>
 
 <p>The data fabric matters most when it sits under a loyalty program, because loyalty is the longest-running first-party data asset most brands own. Sephora Beauty Insider, Costco&rsquo;s membership file, and Target Circle each read tens of millions of members as one record, and the mechanics behind those headlines run on five numbers a marketer can compute in an afternoon.</p>
 
@@ -1520,7 +1520,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" data-complete aria-label="The Walmart Germany failure mode: the U.S. Supercenter playbook transplanted into a German retail ecosystem already served by Aldi and Lidl, breaking at every joint.">
-  <div class="mount" id="sk-walmart-germany-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-walmart-germany-mount" data-w="720" data-h="276"></div>
   <figcaption>Walmart Germany. The channel was wrong for the market, and no amount of pricing rigor could fix it.</figcaption>
 </figure>
 
@@ -2312,25 +2312,22 @@ return '$' + usd.toFixed(4);
   // Sketch 10: Walmart Germany
   sketches['sk-walmart-germany-mount'] = function(svg) {
     const rc = makeRc(svg);
-    txt(svg, 360, 22, 'Walmart Germany: right price, wrong channel, $1B+ in losses, 9 years to exit.', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-    svg.appendChild(rc.rectangle(40, 60, 280, 130, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 180, 84, 'U.S. SUPERCENTER PLAYBOOK', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-    txt(svg, 60, 108, '\u2022 200,000-sq-ft store next to highway', { fill: INK, size: 11 });
-    txt(svg, 60, 124, '\u2022 staff greet customers at door', { fill: INK, size: 11 });
-    txt(svg, 60, 140, '\u2022 morning chant for associates', { fill: INK, size: 11 });
-    txt(svg, 60, 156, '\u2022 EDLP under-cuts the chains', { fill: INK, size: 11 });
-    txt(svg, 60, 172, '\u2022 Supercenter logistics', { fill: INK, size: 11 });
-    svg.appendChild(rc.line(320, 125, 400, 125, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.6 }));
-    svg.appendChild(rc.polygon([[400, 125], [390, 120], [390, 130]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 360, 24, 'Walmart Germany: right price, wrong channel, $1B+ in losses, 9 years to exit.', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    // taller boxes so the five bullet lines sit on their own rows with room to breathe
+    var boxTop = 62, boxH = 168, mid = boxTop + boxH / 2;
+    var bulletY = [114, 136, 158, 180, 202];
+    svg.appendChild(rc.rectangle(40, boxTop, 280, boxH, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 180, 88, 'U.S. SUPERCENTER PLAYBOOK', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
+    var us = ['\u2022 200,000-sq-ft store next to highway', '\u2022 staff greet customers at door', '\u2022 morning chant for associates', '\u2022 EDLP under-cuts the chains', '\u2022 Supercenter logistics'];
+    us.forEach(function(s, i) { txt(svg, 60, bulletY[i], s, { fill: INK, size: 11 }); });
+    svg.appendChild(rc.line(320, mid, 400, mid, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.6 }));
+    svg.appendChild(rc.polygon([[400, mid], [390, mid - 5], [390, mid + 5]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
     txt(svg, 360, 50, 'transplanted', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true });
-    svg.appendChild(rc.rectangle(400, 60, 280, 130, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', strokeLineDash: [4, 3], roughness: 1.5 }));
-    txt(svg, 540, 84, 'GERMAN REALITY', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-    txt(svg, 420, 108, '\u2022 Aldi + Lidl already cheaper', { fill: INK, size: 11 });
-    txt(svg, 420, 124, '\u2022 zoning blocks 200K sq-ft sites', { fill: INK, size: 11 });
-    txt(svg, 420, 140, '\u2022 chant banned by works councils', { fill: INK, size: 11 });
-    txt(svg, 420, 156, '\u2022 8-hr shift cap kills scheduling', { fill: INK, size: 11 });
-    txt(svg, 420, 172, '\u2022 greeters experienced as intrusive', { fill: INK, size: 11 });
-    txt(svg, 360, 220, '85 stores acquired 1997 \u2192 sold to Metro AG 2006 at >$1B in losses', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
+    svg.appendChild(rc.rectangle(400, boxTop, 280, boxH, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', strokeLineDash: [4, 3], roughness: 1.5 }));
+    txt(svg, 540, 88, 'GERMAN REALITY', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
+    var de = ['\u2022 Aldi + Lidl already cheaper', '\u2022 zoning blocks 200K sq-ft sites', '\u2022 chant banned by works councils', '\u2022 8-hr shift cap kills scheduling', '\u2022 greeters experienced as intrusive'];
+    de.forEach(function(s, i) { txt(svg, 420, bulletY[i], s, { fill: INK, size: 11 }); });
+    txt(svg, 360, 256, '85 stores acquired 1997 \u2192 sold to Metro AG 2006 at >$1B in losses', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
   };
 
   // Sketch 11: channel conflict (Apple)
@@ -2420,71 +2417,76 @@ return '$' + usd.toFixed(4);
       { label: 'SERVICE',        seg: 'an Apple Genius Bar visitor', demand: 0.70, cost: 0.80 },
       { label: 'INFORMATION',    seg: 'an REI in-store kiosk reader', demand: 0.55, cost: 0.50 }
     ];
-    var rowY0 = 70;
-    var rowH = 42;
+    var rowY0 = 68;
+    var rowH = 46;
     var demandMax = 105;
     var costMax = 105;
     var demandX = 300;
     var costX = 480;
     rows.forEach(function(r, i) {
       var y = rowY0 + i * rowH;
-      txt(svg, 12, y + 12, r.label, { anchor: 'start', fill: CORAL_DEEP, size: 10, weight: 700 });
-      txt(svg, 12, y + 26, r.seg, { anchor: 'start', fill: INK2, size: 10, hand: true });
+      // bold output name and its italic example, spaced so their boxes never touch
+      txt(svg, 12, y + 8, r.label, { anchor: 'start', fill: CORAL_DEEP, size: 10, weight: 700 });
+      txt(svg, 12, y + 28, r.seg, { anchor: 'start', fill: INK2, size: 10, hand: true });
+      // bars centered against the gap between the two text lines
       var dW = Math.round(r.demand * demandMax);
-      svg.appendChild(rc.rectangle(demandX - dW, y + 4, dW, 18, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
+      svg.appendChild(rc.rectangle(demandX - dW, y + 8, dW, 18, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
       var cW = Math.round(r.cost * costMax);
-      svg.appendChild(rc.rectangle(costX, y + 4, cW, 18, { stroke: INK, strokeWidth: 1.2, fill: '#fafaf8', fillStyle: 'solid', roughness: 1.5 }));
+      svg.appendChild(rc.rectangle(costX, y + 8, cW, 18, { stroke: INK, strokeWidth: 1.2, fill: '#fafaf8', fillStyle: 'solid', roughness: 1.5 }));
     });
-    svg.appendChild(rc.line(demandX, 60, demandX, rowY0 + rows.length * rowH - 8, { stroke: INK3, strokeWidth: 1, roughness: 1.4 }));
-    svg.appendChild(rc.line(costX, 60, costX, rowY0 + rows.length * rowH - 8, { stroke: INK3, strokeWidth: 1, roughness: 1.4 }));
-    txt(svg, 360, 326, 'fit channel = demand bar matched without overpaying for unwanted outputs.', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    svg.appendChild(rc.line(demandX, 60, demandX, rowY0 + rows.length * rowH - 10, { stroke: INK3, strokeWidth: 1, roughness: 1.4 }));
+    svg.appendChild(rc.line(costX, 60, costX, rowY0 + rows.length * rowH - 10, { stroke: INK3, strokeWidth: 1, roughness: 1.4 }));
+    txt(svg, 360, 350, 'fit channel = demand bar matched without overpaying for unwanted outputs.', { anchor: 'middle', fill: INK2, size: 11, hand: true });
   };
 
   // Sketch: CDP architecture. 6 sources -> CDP center -> 4 destinations.
   sketches['sk-cdp-architecture-mount'] = function(svg) {
     const rc = makeRc(svg);
-    txt(svg, 360, 22, 'one persistent profile per buyer across six sources, four destinations', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    txt(svg, 360, 24, 'one persistent profile per buyer across six sources, four destinations', { anchor: 'middle', fill: INK2, size: 11, hand: true });
 
-    // Center hub
-    const cx = 360, cy = 175;
-    svg.appendChild(rc.rectangle(cx - 90, cy - 36, 180, 72, { stroke: CORAL_DEEP, strokeWidth: 1.8, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, cx, cy - 10, 'CDP', { anchor: 'middle', fill: CORAL_DEEP, size: 16, weight: 700 });
+    // Center hub (taller, with breathing room between the three lines)
+    const cx = 360, cy = 192, hubHalfW = 96, hubHalfH = 52;
+    svg.appendChild(rc.rectangle(cx - hubHalfW, cy - hubHalfH, hubHalfW * 2, hubHalfH * 2, { stroke: CORAL_DEEP, strokeWidth: 1.8, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
+    txt(svg, cx, cy - 20, 'CDP', { anchor: 'middle', fill: CORAL_DEEP, size: 16, weight: 700 });
     txt(svg, cx, cy + 8, 'one persistent profile', { anchor: 'middle', fill: INK, size: 10.5 });
-    txt(svg, cx, cy + 22, 'Segment / mParticle / Treasure Data', { anchor: 'middle', fill: INK2, size: 9.5, hand: true });
+    txt(svg, cx, cy + 34, 'Segment / mParticle / Treasure Data', { anchor: 'middle', fill: INK2, size: 9.5, hand: true });
 
-    // Six sources on the left
+    // Six sources on the left. Boxes are sized generously around the two label
+    // lines so neither line crowds the other nor the box edges; connectors
+    // leave from the box edge into the hub.
+    const srcW = 212, dstW = 184, boxH = 48, srcX = 22, dstX = 514;
     const sources = [
-      { y: 60,  label: 'SERVER',      sub: 'API conversions' },
-      { y: 105, label: 'CLIENT',      sub: 'web + app analytics' },
-      { y: 150, label: 'OFFLINE POS', sub: 'in-store scans' },
-      { y: 195, label: 'CALL CENTER', sub: 'transcripts, tickets' },
-      { y: 240, label: 'LOYALTY',     sub: 'card swipes' },
-      { y: 285, label: 'PARTNER',     sub: 'retailer feeds' }
+      { y: 66,  label: 'SERVER',      sub: 'API conversions' },
+      { y: 116, label: 'CLIENT',      sub: 'web + app analytics' },
+      { y: 166, label: 'OFFLINE POS', sub: 'in-store scans' },
+      { y: 226, label: 'CALL CENTER', sub: 'transcripts, tickets' },
+      { y: 276, label: 'LOYALTY',     sub: 'card swipes' },
+      { y: 326, label: 'PARTNER',     sub: 'retailer feeds' }
     ];
     sources.forEach(s => {
-      svg.appendChild(rc.rectangle(40, s.y - 14, 140, 30, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.5 }));
-      txt(svg, 110, s.y - 2, s.label, { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 700 });
-      txt(svg, 110, s.y + 10, s.sub, { anchor: 'middle', fill: INK2, size: 9 });
-      svg.appendChild(rc.line(180, s.y, cx - 90, cy, { stroke: CORAL_SOFT, strokeWidth: 1, roughness: 1.6 }));
+      svg.appendChild(rc.rectangle(srcX, s.y - boxH / 2, srcW, boxH, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, srcX + srcW / 2, s.y - 5, s.label, { anchor: 'middle', fill: CORAL_DEEP, size: 9.5, weight: 700 });
+      txt(svg, srcX + srcW / 2, s.y + 13, s.sub, { anchor: 'middle', fill: INK2, size: 8.5 });
+      svg.appendChild(rc.line(srcX + srcW, s.y, cx - hubHalfW, cy + (s.y - cy) * 0.22, { stroke: CORAL_SOFT, strokeWidth: 1, roughness: 1.5 }));
     });
 
     // Four destinations on the right
     const dests = [
-      { y: 80,  label: 'EMAIL / SMS',     sub: 'lifecycle send' },
-      { y: 145, label: 'PAID MEDIA',      sub: 'ad-platform sync' },
-      { y: 210, label: 'PERSONALIZATION', sub: 'on-site, in-app' },
-      { y: 275, label: 'BI / ANALYTICS',  sub: 'cohort, churn' }
+      { y: 96,  label: 'EMAIL / SMS',     sub: 'lifecycle send' },
+      { y: 162, label: 'PAID MEDIA',      sub: 'ad-platform sync' },
+      { y: 228, label: 'PERSONALIZATION', sub: 'on-site, in-app' },
+      { y: 294, label: 'BI / ANALYTICS',  sub: 'cohort, churn' }
     ];
     dests.forEach(d => {
-      svg.appendChild(rc.rectangle(540, d.y - 14, 140, 30, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
-      txt(svg, 610, d.y - 2, d.label, { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 700 });
-      txt(svg, 610, d.y + 10, d.sub, { anchor: 'middle', fill: INK2, size: 9 });
-      svg.appendChild(rc.line(cx + 90, cy, 540, d.y, { stroke: CORAL, strokeWidth: 1.1, roughness: 1.6 }));
+      svg.appendChild(rc.rectangle(dstX, d.y - boxH / 2, dstW, boxH, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, dstX + dstW / 2, d.y - 5, d.label, { anchor: 'middle', fill: CORAL_DEEP, size: 9.5, weight: 700 });
+      txt(svg, dstX + dstW / 2, d.y + 13, d.sub, { anchor: 'middle', fill: INK2, size: 8.5 });
+      svg.appendChild(rc.line(cx + hubHalfW, cy + (d.y - cy) * 0.22, dstX, d.y, { stroke: CORAL, strokeWidth: 1.1, roughness: 1.5 }));
     });
 
-    txt(svg, 110, 30, 'six sources', { anchor: 'middle', fill: INK, size: 11, hand: true, weight: 700 });
-    txt(svg, 610, 30, 'four destinations', { anchor: 'middle', fill: INK, size: 11, hand: true, weight: 700 });
-    txt(svg, 360, 320, 'identity resolved inside the brand. clean rooms join with retailer + publisher.', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
+    txt(svg, srcX + srcW / 2, 38, 'six sources', { anchor: 'middle', fill: INK, size: 11, hand: true, weight: 700 });
+    txt(svg, dstX + dstW / 2, 60, 'four destinations', { anchor: 'middle', fill: INK, size: 11, hand: true, weight: 700 });
+    txt(svg, 360, 372, 'identity resolved inside the brand. clean rooms join with retailer + publisher.', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
   };
 
   // Render-on-scroll dispatcher

@@ -769,7 +769,7 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 <p data-focused style="display:none">You can often read a company's chosen rung from the outside, because what a brand ships and what its leaders say in public are the tells. By 2025, about four in five organizations were using AI in some form, and marketing showed the biggest measured jump in output of any business function studied.<sup class="cite" data-cite="ref-4"></sup> Nearly every brand is already climbing, so the part worth your attention is which rung each one stopped on.</p>
 
 <figure class="sketch" aria-label="Four brands placed on the four rungs">
-  <div class="mount" id="sk-brands-mount" data-w="720" data-h="380"></div>
+  <div class="mount" id="sk-brands-mount" data-w="720" data-h="408"></div>
   <figcaption>Same ladder, four different stopping points. Liquid Death stays low, Costco sits on rung 1, Patagonia connects on rung 3, Duolingo runs overnight on rung 4.</figcaption>
 </figure>
 
@@ -788,7 +788,7 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 <aside class="sn" data-complete><span class="sn-num">9.</span> A note worth keeping in mind as brands climb to the top rung: an AI agent left running on its own can drift over a long stretch. In one published company experiment, an agent set loose to run a small shop for a month began making strange calls and even started insisting it was a human employee. Chapter 26 tells that story in full and explains the guardrails. For now, the takeaway is that the top rung needs a person checking on it, not a person typing during it.</aside>
 
 <figure class="sketch" aria-label="How you read a rung from the outside">
-  <div class="mount" id="sk-decoder-mount" data-w="720" data-h="320"></div>
+  <div class="mount" id="sk-decoder-mount" data-w="720" data-h="412"></div>
   <figcaption>How you read a rung from the outside. The signals a brand gives off tell you which rung it picked.</figcaption>
 </figure>
 
@@ -1868,56 +1868,56 @@ txt(svg,525,196,'anyone can screenshot, copy, or post it',{anchor:'middle',fill:
 
 sketches['sk-autocomplete-mount']= function(svg){
 const rc = makeRc(svg);
-txt(svg,410,24,'where the trick comes from: your phone, scaled up',{anchor:'middle',fill:INK2,size:11.5,hand:true});
+txt(svg,410,22,'where the trick comes from: your phone, scaled up',{anchor:'middle',fill:INK2,size:11.5,hand:true});
 
 // ---- LEFT PANEL: the phone next-word guess ----
-txt(svg,170,58,'YOUR PHONE',{anchor:'middle',fill:CORAL_DEEP,size:10,weight:700});
+txt(svg,168,54,'YOUR PHONE',{anchor:'middle',fill:CORAL_DEEP,size:10,weight:700});
 // phone body
-svg.appendChild(rc.rectangle(70,72,200,150,{stroke:INK3,strokeWidth:1.4,fill:'#fff',fillStyle:'solid',roughness:1.2}));
+svg.appendChild(rc.rectangle(54,64,228,176,{stroke:INK3,strokeWidth:1.4,fill:'#fff',fillStyle:'solid',roughness:1.2}));
 // text bubble being typed
-svg.appendChild(rc.rectangle(86,90,168,40,{stroke:CORAL,strokeWidth:1.4,fill:'#fff7f0',fillStyle:'solid',roughness:1.3}));
-txt(svg,96,108,'I’m running five',{fill:INK,size:12,hand:true});
-txt(svg,96,124,'minutes ___',{fill:INK,size:12,hand:true});
+svg.appendChild(rc.rectangle(72,82,192,52,{stroke:CORAL,strokeWidth:1.4,fill:'#fff7f0',fillStyle:'solid',roughness:1.3}));
+txt(svg,86,103,'I’m running five',{fill:INK,size:11.5,hand:true});
+txt(svg,86,124,'minutes ___',{fill:INK,size:11.5,hand:true});
 // suggestion bar: "late" highlighted + greyed alternatives
-svg.appendChild(rc.rectangle(86,144,52,26,{stroke:CORAL_DEEP,strokeWidth:1.5,fill:CORAL,fillStyle:'solid',roughness:1.3}));
-txt(svg,112,161,'late',{anchor:'middle',fill:'#fff',size:11,weight:700});
-svg.appendChild(rc.rectangle(142,144,52,26,{stroke:INK3,strokeWidth:1,fill:'#f5f0e8',fillStyle:'solid',roughness:1.3}));
-txt(svg,168,161,'now',{anchor:'middle',fill:INK3,size:10.5});
-svg.appendChild(rc.rectangle(198,144,52,26,{stroke:INK3,strokeWidth:1,fill:'#f5f0e8',fillStyle:'solid',roughness:1.3}));
-txt(svg,224,161,'behind',{anchor:'middle',fill:INK3,size:10});
-txt(svg,170,196,'keyboard guesses your',{anchor:'middle',fill:INK2,size:10.5,hand:true});
-txt(svg,170,212,'next word from past texts',{anchor:'middle',fill:INK2,size:10.5,hand:true});
+svg.appendChild(rc.rectangle(72,142,58,48,{stroke:CORAL_DEEP,strokeWidth:1.5,fill:CORAL,fillStyle:'solid',roughness:1.3}));
+txt(svg,101,171,'late',{anchor:'middle',fill:'#fff',size:11,weight:700});
+svg.appendChild(rc.rectangle(135,142,56,48,{stroke:INK3,strokeWidth:1,fill:'#f5f0e8',fillStyle:'solid',roughness:1.3}));
+txt(svg,163,171,'now',{anchor:'middle',fill:INK3,size:10});
+svg.appendChild(rc.rectangle(196,142,76,48,{stroke:INK3,strokeWidth:1,fill:'#f5f0e8',fillStyle:'solid',roughness:1.3}));
+txt(svg,234,171,'behind',{anchor:'middle',fill:INK3,size:9.5});
+txt(svg,168,208,'keyboard guesses your',{anchor:'middle',fill:INK2,size:10.5,hand:true});
+txt(svg,168,226,'next word from past texts',{anchor:'middle',fill:INK2,size:10.5,hand:true});
 
 // ---- FAT ARROW: same trick, scaled up ----
-svg.appendChild(rc.line(282,146,360,146,{stroke:CORAL,strokeWidth:2.4,roughness:1.4}));
-svg.appendChild(rc.polygon([[360,146],[348,140],[348,152]],{stroke:CORAL,strokeWidth:1.4,fill:CORAL,fillStyle:'solid',roughness:1.3}));
-txt(svg,321,134,'same trick,',{anchor:'middle',fill:CORAL_DEEP,size:10.5,hand:true,weight:700});
-txt(svg,321,170,'scaled up',{anchor:'middle',fill:CORAL_DEEP,size:10.5,hand:true,weight:700});
+svg.appendChild(rc.line(298,148,372,148,{stroke:CORAL,strokeWidth:2.4,roughness:1.4}));
+svg.appendChild(rc.polygon([[376,148],[362,141],[362,155]],{stroke:CORAL,strokeWidth:1.4,fill:CORAL,fillStyle:'solid',roughness:1.3}));
+txt(svg,335,130,'same trick,',{anchor:'middle',fill:CORAL_DEEP,size:10.5,hand:true,weight:700});
+txt(svg,335,176,'scaled up',{anchor:'middle',fill:CORAL_DEEP,size:10.5,hand:true,weight:700});
 
 // ---- RIGHT PANEL: the model emitting a sentence one word at a time ----
-txt(svg,600,58,'A MODEL',{anchor:'middle',fill:CORAL_DEEP,size:10,weight:700});
-svg.appendChild(rc.rectangle(386,72,180,52,{stroke:CORAL_DEEP,strokeWidth:1.6,fill:'#1a1a1a',fillStyle:'solid',roughness:1.4}));
-txt(svg,476,94,'MODEL',{anchor:'middle',fill:'#ffffff',size:11,weight:700});
-txt(svg,476,112,'billions of weights',{anchor:'middle',fill:'#E8A488',size:10});
-svg.appendChild(rc.line(476,124,476,142,{stroke:CORAL,strokeWidth:1.4,roughness:1.5}));
-svg.appendChild(rc.polygon([[476,142],[472,136],[480,136]],{stroke:CORAL,strokeWidth:1.2,fill:CORAL,fillStyle:'solid',roughness:1.3}));
+txt(svg,604,54,'A MODEL',{anchor:'middle',fill:CORAL_DEEP,size:10,weight:700});
+svg.appendChild(rc.rectangle(404,66,200,66,{stroke:CORAL_DEEP,strokeWidth:1.6,fill:'#1a1a1a',fillStyle:'solid',roughness:1.4}));
+txt(svg,504,95,'MODEL',{anchor:'middle',fill:'#ffffff',size:11,weight:700});
+txt(svg,504,116,'billions of weights',{anchor:'middle',fill:'#E8A488',size:10});
+svg.appendChild(rc.line(504,132,504,150,{stroke:CORAL,strokeWidth:1.4,roughness:1.5}));
+svg.appendChild(rc.polygon([[504,154],[500,146],[508,146]],{stroke:CORAL,strokeWidth:1.2,fill:CORAL,fillStyle:'solid',roughness:1.3}));
 // the sentence dropping in left to right, word by word
 var awWords =['Reduce','your','plastic','waste','today'];
-var awX = 388;
+var awX = 398;
 awWords.forEach(function(w,i){
-var bw = 30 + w.length * 6.2;
+var bw = 38 + w.length * 6.6;
 var faded = i >= 3;
-svg.appendChild(rc.rectangle(awX,150,bw,28,{stroke:faded?INK3:CORAL,strokeWidth:faded?1:1.4,fill:faded?'#fafaf8':'#fff',fillStyle:'solid',roughness:1.3}));
-txt(svg,awX + bw/2,168,w,{anchor:'middle',fill:faded?INK3:INK,size:11,hand:true});
+svg.appendChild(rc.rectangle(awX,160,bw,46,{stroke:faded?INK3:CORAL,strokeWidth:faded?1:1.4,fill:faded?'#fafaf8':'#fff',fillStyle:'solid',roughness:1.3}));
+txt(svg,awX + bw/2,188,w,{anchor:'middle',fill:faded?INK3:INK,size:11,hand:true});
 if(i < awWords.length - 1){
-svg.appendChild(rc.line(awX + bw + 1,164,awX + bw + 9,164,{stroke:CORAL,strokeWidth:1,roughness:1.6}));
+svg.appendChild(rc.line(awX + bw + 1,183,awX + bw + 9,183,{stroke:CORAL,strokeWidth:1,roughness:1.6}));
 }
-awX += bw + 12;
+awX += bw + 11;
 });
-txt(svg,600,196,'model guesses its next word',{anchor:'middle',fill:INK2,size:10.5,hand:true});
-txt(svg,600,212,'from a slice of the whole internet',{anchor:'middle',fill:INK2,size:10.5,hand:true});
+txt(svg,604,224,'model guesses its next word',{anchor:'middle',fill:INK2,size:10.5,hand:true});
+txt(svg,604,242,'from a slice of the whole internet',{anchor:'middle',fill:INK2,size:10.5,hand:true});
 
-txt(svg,410,250,'one guessed word at a time, until the answer is done.',{anchor:'middle',fill:INK2,size:12,hand:true,weight:700});
+txt(svg,410,270,'one guessed word at a time, until the answer is done.',{anchor:'middle',fill:INK2,size:12,hand:true,weight:700});
 };
 
 sketches['sk-prompt-mount']= function(svg){
@@ -2164,30 +2164,32 @@ sketches['sk-overnight-mount'] = function(svg){
    Liquid Death low, Costco rung 1, Patagonia rung 3, Duolingo rung 4. */
 sketches['sk-brands-mount'] = function(svg){
   const rc = makeRc(svg);
-  txt(svg, LADDER.cx(), 26, 'same ladder, four different stopping points', {anchor:'middle', fill:INK2, size:11.5, hand:true});
+  txt(svg, LADDER.cx(), 24, 'same ladder, four different stopping points', {anchor:'middle', fill:INK2, size:11.5, hand:true});
   for(let tier = 4; tier >= 1; tier--){
     const y = LADDER.rungY(tier);
     const top = (tier === 4);
     svg.appendChild(rc.rectangle(LADDER.x, y, LADDER.w, LADDER.h, {stroke: top ? CORAL_DEEP : CORAL, strokeWidth:1.6, fill: top ? '#1a1a1a' : '#fff7f0', fillStyle:'solid', roughness:1.4}));
-    txt(svg, LADDER.x + 20, y + 24, 'TIER ' + tier, {fill: top ? '#ffffff' : CORAL_DEEP, size:11, weight:700});
-    txt(svg, LADDER.x + 20, y + 40, LADDER.verb[tier], {fill: top ? '#ffffff' : INK2, size:10.5, hand:true});
+    txt(svg, LADDER.x + 20, y + 21, 'TIER ' + tier, {fill: top ? '#ffffff' : CORAL_DEEP, size:11, weight:700});
+    txt(svg, LADDER.x + 20, y + 41, LADDER.verb[tier], {fill: top ? '#ffffff' : INK2, size:10.5, hand:true});
   }
   // brand tags pinned to rungs. Liquid Death sits LOW (below rung 1 / at the bottom edge).
-  function tag(x, y, name, note, top){
-    const w = 150;
-    svg.appendChild(rc.rectangle(x, y, w, 34, {stroke:CORAL_DEEP, strokeWidth:1.6, fill: top ? '#fff' : '#fff', fillStyle:'solid', roughness:1.6}));
-    txt(svg, x + w / 2, y + 16, name, {anchor:'middle', fill:CORAL_DEEP, size:12.5, weight:700});
-    txt(svg, x + w / 2, y + 30, note, {anchor:'middle', fill:INK2, size:9.5, hand:true});
+  function tag(x, y, name, note){
+    const w = 192, h = 60;
+    svg.appendChild(rc.rectangle(x, y, w, h, {stroke:CORAL_DEEP, strokeWidth:1.6, fill:'#fff', fillStyle:'solid', roughness:1.5}));
+    txt(svg, x + w / 2, y + 26, name, {anchor:'middle', fill:CORAL_DEEP, size:12, weight:700});
+    txt(svg, x + w / 2, y + 46, note, {anchor:'middle', fill:INK2, size:9.5, hand:true});
+    return {x:x, y:y, w:w, h:h};
   }
-  const tagX = LADDER.x + 300;
-  tag(tagX, LADDER.rungY(4) + 8, 'Duolingo', 'overnight agents', true);
-  tag(tagX, LADDER.rungY(3) + 8, 'Patagonia', 'connected data', false);
-  tag(tagX, LADDER.rungY(1) + 8, 'Costco', 'quiet back office', false);
+  const tagX = LADDER.x + 286;
+  tag(tagX, LADDER.rungY(4) - 3, 'Duolingo', 'overnight agents');
+  tag(tagX, LADDER.rungY(3) - 3, 'Patagonia', 'connected data');
+  tag(tagX, LADDER.rungY(1) - 3, 'Costco', 'quiet back office');
   // Liquid Death sits near the very bottom, below the climb, with a small pin down to it
-  const ldY = LADDER.rungY(1) + LADDER.h + 18;
-  tag(tagX, ldY, 'Liquid Death', 'creative, stays human', false);
-  svg.appendChild(rc.line(tagX + 75, LADDER.rungY(1) + LADDER.h, tagX + 75, ldY, {stroke:CORAL, strokeWidth:1.2, roughness:1.6, strokeLineDash:[4,3]}));
-  txt(svg, LADDER.cx(), ldY + 50, 'the rung a brand stops on is a choice about where a machine helps.', {anchor:'middle', fill:INK2, size:11, hand:true});
+  const ldY = LADDER.rungY(1) + LADDER.h + 14;
+  tag(tagX, ldY, 'Liquid Death', 'creative, stays human');
+  // pin runs down the LEFT edge of the card so it never crosses the centered label
+  svg.appendChild(rc.line(tagX + 14, LADDER.rungY(1) + LADDER.h, tagX + 14, ldY, {stroke:CORAL, strokeWidth:1.4, roughness:1.4, strokeLineDash:[4,3]}));
+  txt(svg, LADDER.cx(), ldY + 84, 'the rung a brand stops on is a choice about where a machine helps.', {anchor:'middle', fill:INK2, size:11, hand:true});
 };
 
 /* 1.6b — NEW sk-decoder: how you read a rung from the outside.
@@ -2201,23 +2203,24 @@ sketches['sk-decoder-mount'] = function(svg){
     {tell:'a product that reshapes per user', tier:'4', note:'overnight personalizing'},
     {tell:'a back-office data pipe, no chatbot', tier:'3', note:'connected, kept quiet'}
   ];
-  const y0 = 64, rh = 56;
+  const y0 = 56, rh = 80, ch = 64;
   rows.forEach((r, i) => {
     const y = y0 + i * rh;
+    const yc = y + ch / 2;
     // the public tell (left card)
-    svg.appendChild(rc.rectangle(40, y, 300, 44, {stroke:CORAL, strokeWidth:1.5, fill:'#fff', fillStyle:'solid', roughness:1.5}));
-    txt(svg, 56, y + 20, r.tell, {fill:INK, size:12, weight:700});
-    txt(svg, 56, y + 36, r.note, {fill:INK2, size:10.5, hand:true});
+    svg.appendChild(rc.rectangle(36, y, 312, ch, {stroke:CORAL, strokeWidth:1.5, fill:'#fff', fillStyle:'solid', roughness:1.4}));
+    txt(svg, 56, yc - 4, r.tell, {fill:INK, size:11.5, weight:700});
+    txt(svg, 56, yc + 18, r.note, {fill:INK2, size:10, hand:true});
     // arrow to the tier
-    svg.appendChild(rc.line(346, y + 22, 470, y + 22, {stroke:CORAL, strokeWidth:1.5, roughness:1.5}));
-    svg.appendChild(rc.polygon([[474, y + 22],[467, y + 18],[467, y + 26]], {stroke:CORAL, strokeWidth:1.2, fill:CORAL, fillStyle:'solid', roughness:1.3}));
-    txt(svg, 408, y + 14, 'reads as', {anchor:'middle', fill:INK3, size:10, hand:true});
+    svg.appendChild(rc.line(356, yc, 472, yc, {stroke:CORAL, strokeWidth:1.5, roughness:1.5}));
+    svg.appendChild(rc.polygon([[476, yc],[468, yc - 5],[468, yc + 5]], {stroke:CORAL, strokeWidth:1.2, fill:CORAL, fillStyle:'solid', roughness:1.3}));
+    txt(svg, 414, yc - 9, 'reads as', {anchor:'middle', fill:INK3, size:10, hand:true});
     // the tier badge (right)
     const top = (r.tier === '4');
-    svg.appendChild(rc.rectangle(484, y + 4, 156, 36, {stroke: top ? CORAL_DEEP : CORAL, strokeWidth:1.6, fill: top ? '#1a1a1a' : '#fff7f0', fillStyle:'solid', roughness:1.5}));
-    txt(svg, 562, y + 27, 'TIER ' + r.tier, {anchor:'middle', fill: top ? '#ffffff' : CORAL_DEEP, size:13, weight:700});
+    svg.appendChild(rc.rectangle(486, yc - 26, 176, 52, {stroke: top ? CORAL_DEEP : CORAL, strokeWidth:1.6, fill: top ? '#1a1a1a' : '#fff7f0', fillStyle:'solid', roughness:1.4}));
+    txt(svg, 574, yc + 5, 'TIER ' + r.tier, {anchor:'middle', fill: top ? '#ffffff' : CORAL_DEEP, size:13, weight:700});
   });
-  txt(svg, 360, y0 + rows.length * rh + 12, 'the signals a brand gives off tell you which rung it picked.', {anchor:'middle', fill:CORAL_DEEP, size:11.5, hand:true, weight:700});
+  txt(svg, 360, y0 + rows.length * rh + 18, 'the signals a brand gives off tell you which rung it picked.', {anchor:'middle', fill:CORAL_DEEP, size:11.5, hand:true, weight:700});
 };
 
 /* ===== appended sketch renderers from build F ===== */
