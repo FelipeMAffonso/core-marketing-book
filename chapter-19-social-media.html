@@ -1308,7 +1308,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p>The four brands above run a production cadence most teams cannot staff. AI is how a small team, or one student, gets close, and it climbs in four steps that each remove one piece of labor while you keep the decision over what ships. First, you ask in chat: paste a draft and ask the model to score it on the six STEPPS letters and name the one edit that lifts its weakest letter. Second, once you ask that every week, you save it as a <span class="term" data-tt="A Skill is a saved folder of instructions and reference files that an AI model loads on demand when you type a short command. Picture a folder that holds a one-page STEPPS rubric, the brand's voice notes, and its last fifty travel-tested posts. Install it once, and from then on the model scores any draft against the brand's actual library instead of a generic rule. Building and installing a Skill is covered in the digital-marketing chapter; here the point is what it gives you, a repeatable audit in the brand's own voice.">Skill</span> loaded with the brand's last fifty posts, so it scores in the brand's voice every time. Third, you connect your analytics through an <span class="term" data-tt="MCP, the Model Context Protocol, is the open standard that lets an AI model plug into outside tools and data without custom code, the way a USB-C port lets one cable connect many devices. With it, a Skill can read your TikTok and Instagram numbers directly, or pull live trend data from a search service, instead of you copying figures by hand. Wiring an MCP connection is covered in the digital-marketing chapter; here the point is that it lets the model see live numbers.">MCP</span> connection so the Skill reads last week's numbers on its own. Fourth, you schedule it as a weekly agent that reads the analytics, scans live trends, and posts next week's recommendations to your team channel every Monday before anyone arrives.</p>
 
 <figure class="sketch" aria-label="A four-rung ladder: ask in chat, save as a Skill, connect analytics via MCP, schedule a weekly agent, with the human decision point marked at the top">
-  <div class="mount" id="sk-ai-production-loop-mount" data-w="720" data-h="300"></div>
+  <div class="mount" id="sk-ai-production-loop-mount" data-w="720" data-h="340"></div>
   <figcaption>The four steps from asking AI a question to running a weekly job. Each rung removes one piece of repeated human labor: chat answers the one-off question, a Skill remembers the brand's voice so you stop re-explaining it, an MCP connection feeds in live numbers so you stop copying them by hand, and a scheduled agent runs the whole thing on a timer. You keep the decision over what ships at every rung; the ladder removes the busywork under it. The build itself is the digital-marketing chapter; this is what it gets you.</figcaption>
 </figure>
 
@@ -1479,7 +1479,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p>The failure modes in the last section all assume a human writes the post. That assumption is the part of the channel that is changing fastest. A generative model can now write a different version of the same campaign for every viewer, tuned to the profile data the platform already holds, at a cost so low it rounds to nothing per person. The open question is whether per-user persuasion at that scale crosses the line the European Union drew when its AI Act banned <span class="term" data-tt="Manipulative AI, in the EU AI Act, means an AI system that uses hidden or deceptive techniques to materially distort a person's choices in a way that causes harm. Article 5's ban on it has applied since early 2025, so the legal floor exists now rather than in some future version of the rules.">manipulative AI</span> techniques that purposefully distort a person&rsquo;s choices.<sup class="cite" data-cite="ref-41"></sup> That regulatory floor is in force today, and Chapter 26 returns to how a brand operates above it.</p>
 
 <figure class="sketch" aria-label="One source post fanning out into many tailored versions, one per viewer, drawn to show that a generative model can rewrite a single campaign for every reader at almost no extra cost, which is what pushes per-user persuasion up against the manipulation line the EU drew.">
-  <div class="mount" id="sk-ai-persuasion-mount" data-w="720" data-h="270"></div>
+  <div class="mount" id="sk-ai-persuasion-mount" data-w="720" data-h="300"></div>
   <figcaption>One brief, many viewers. A generative model rewrites a single campaign into a tailored version for each reader at almost no extra cost per person, so the persuasion stack scales in a way a human copywriting team never could. That scale is what pushes the practice up against the manipulation line the EU AI Act now enforces.</figcaption>
 </figure>
 
@@ -1506,7 +1506,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p>The green owl that opened this chapter reached 1.7 billion people for less than the cost of one TV spot, and the reason was not luck. Duolingo&rsquo;s team had built the Social Currency engine, the multi-day arc, the saved Skill that scored every draft, and the operational chassis to handle the surge, all before the launch post went out. The reach looked like a stunt, but it was the output of a system the team had assembled in advance.</p>
 
 <figure class="sketch" aria-label="The chapter spine drawn as one labeled left-to-right strip: people share what makes them look good, the six STEPPS levers predict whether a post travels, high-energy feelings travel and calm ones sit, earned beats paid on leverage, every platform is rented, and the production loop is automated, with the opening Cybertruck puzzle resolved at the foot.">
-  <div class="mount" id="sk-ch19-recap-mount" data-w="760" data-h="250"></div>
+  <div class="mount" id="sk-ch19-recap-mount" data-w="760" data-h="272"></div>
   <figcaption>The chapter in one strip. People share what makes them look good, the six STEPPS levers predict whether a post travels, high-energy feelings travel while calm ones sit, earned media beats paid on leverage so a brand seeds many small creators, every platform is rented so a brand spreads across tiers, and the production loop is automated. The owl reached 1.7 billion because the engine, the arc, the Skill stack, and the chassis were built first.</figcaption>
 </figure>
 
@@ -2418,25 +2418,28 @@ return '$' + usd.toFixed(4);
   /* §19.6 sketch C (NEW): the four-tier AI ladder, each rung removing one piece of human labor. */
   sketches['sk-ai-production-loop-mount'] = function (svg) {
     var rc = makeRc(svg);
+    var BW = 158, BH = 80;
     var rungs = [
-      { x: 50, y: 220, label: 'Ask in chat', sub: 'one-off question' },
-      { x: 210, y: 176, label: 'Save as a Skill', sub: 'remembers the voice' },
-      { x: 370, y: 132, label: 'Connect via MCP', sub: 'reads live numbers' },
-      { x: 530, y: 88, label: 'Schedule an agent', sub: 'runs on a timer' }
+      { x: 14, y: 246, label: 'Ask in chat', sub: 'one-off question' },
+      { x: 180, y: 194, label: 'Save as a Skill', sub: 'remembers the voice' },
+      { x: 346, y: 142, label: 'Connect via MCP', sub: 'reads live numbers' },
+      { x: 512, y: 90, label: 'Schedule an agent', sub: 'runs on a timer' }
     ];
-    // the rising step path
+    // the rising step path between rung box edges
     for (var i = 0; i < rungs.length - 1; i++) {
-      svg.appendChild(rc.line(rungs[i].x + 116, rungs[i].y + 15, rungs[i + 1].x, rungs[i + 1].y + 15, { stroke: '#c9a27a', strokeWidth: 1.6, roughness: 1.1 }));
+      svg.appendChild(rc.line(rungs[i].x + BW, rungs[i].y + BH / 2, rungs[i + 1].x, rungs[i + 1].y + BH / 2, { stroke: '#c9a27a', strokeWidth: 1.6, roughness: 1.1 }));
     }
     rungs.forEach(function (r, idx) {
-      svg.appendChild(rc.rectangle(r.x, r.y, 116, 30, { stroke: CORAL, strokeWidth: 1.8, roughness: 1.2, fill: idx === 3 ? 'rgba(218,119,86,0.14)' : 'rgba(218,119,86,0.05)', fillStyle: 'solid' }));
-      txt(svg, r.x + 58, r.y + 13, r.label, { size: 12, weight: 700, anchor: 'middle', fill: INK });
-      txt(svg, r.x + 58, r.y + 26, r.sub, { size: 10, anchor: 'middle', fill: INK2 });
-      txt(svg, r.x + 58, r.y + 46, 'rung ' + (idx + 1), { size: 9.5, anchor: 'middle', fill: INK3 });
+      svg.appendChild(rc.rectangle(r.x, r.y, BW, BH, { stroke: CORAL, strokeWidth: 1.8, roughness: 1.2, fill: idx === 3 ? 'rgba(218,119,86,0.14)' : 'rgba(218,119,86,0.05)', fillStyle: 'solid' }));
+      // rung number badge in the top-left corner, well clear of the centered label
+      txt(svg, r.x + 14, r.y + 20, 'rung ' + (idx + 1), { size: 8, weight: 700, anchor: 'start', fill: CORAL_DEEP });
+      txt(svg, r.x + BW / 2, r.y + 46, r.label, { size: 9.5, weight: 700, anchor: 'middle', fill: INK });
+      txt(svg, r.x + BW / 2, r.y + 66, r.sub, { size: 8.5, anchor: 'middle', fill: INK2 });
     });
     // the human-keeps-the-decision marker above the top rung
-    svg.appendChild(rc.circle(640, 60, 16, { stroke: CORAL_DEEP, strokeWidth: 2, roughness: 1.3 }));
-    txt(svg, 640, 40, 'you still decide what ships', { size: 10.5, weight: 700, anchor: 'middle', fill: CORAL_DEEP, hand: true });
+    svg.appendChild(rc.circle(648, 52, 18, { stroke: CORAL_DEEP, strokeWidth: 2, roughness: 1.3 }));
+    txt(svg, 600, 30, 'you still decide what ships', { size: 10.5, weight: 700, anchor: 'middle', fill: CORAL_DEEP, hand: true });
+    svg.appendChild(rc.line(648, 70, 624, 96, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.2, strokeLineDash: [3, 3] }));
   };
 
   /* §19.7 sketch A (REUSE): platform monoculture = one tall tower vs a wide base. */
@@ -2496,26 +2499,26 @@ return '$' + usd.toFixed(4);
       const rc = makeRc(svg);
       txt(svg, 360, 22, 'one brief, rewritten for every viewer at almost no cost per person', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
       // the single source brief on the left
-      svg.appendChild(rc.rectangle(40, 105, 150, 60, { stroke: CORAL_DEEP, strokeWidth: 1.7, fill: '#fff', fillStyle: 'solid', roughness: 1.3 }));
-      txt(svg, 115, 130, 'ONE CAMPAIGN', { anchor: 'middle', fill: CORAL_DEEP, size: 11.5, weight: 700 });
-      txt(svg, 115, 150, 'the brand writes once', { anchor: 'middle', fill: INK2, size: 10, hand: true });
+      svg.appendChild(rc.rectangle(34, 120, 168, 70, { stroke: CORAL_DEEP, strokeWidth: 1.7, fill: '#fff', fillStyle: 'solid', roughness: 1.3 }));
+      txt(svg, 118, 150, 'ONE CAMPAIGN', { anchor: 'middle', fill: CORAL_DEEP, size: 11.5, weight: 700 });
+      txt(svg, 118, 174, 'the brand writes once', { anchor: 'middle', fill: INK2, size: 9.5, hand: true });
       // the generative model node
-      txt(svg, 300, 100, 'a model rewrites it', { anchor: 'middle', fill: INK, size: 10.5, hand: true });
-      // four tailored variants on the right, one per viewer
+      txt(svg, 320, 96, 'a model rewrites it', { anchor: 'middle', fill: INK, size: 10.5, hand: true });
+      // four tailored variants on the right, one per viewer — boxes large + lines well spaced
       const variants = [
-        { y: 56,  label: 'VIEWER A', sub: 'her interests' },
-        { y: 104, label: 'VIEWER B', sub: 'his late nights' },
-        { y: 152, label: 'VIEWER C', sub: 'their team' },
-        { y: 200, label: 'VIEWER D', sub: 'her city' }
+        { y: 52,  label: 'VIEWER A', sub: 'her interests' },
+        { y: 112, label: 'VIEWER B', sub: 'his late nights' },
+        { y: 172, label: 'VIEWER C', sub: 'their team' },
+        { y: 232, label: 'VIEWER D', sub: 'her city' }
       ];
       variants.forEach(function(v) {
         // fan-out line from the source to each variant
-        svg.appendChild(rc.line(192, 135, 472, v.y + 18, { stroke: CORAL_SOFT, strokeWidth: 1.2, roughness: 1.5 }));
-        svg.appendChild(rc.rectangle(475, v.y, 150, 36, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
-        txt(svg, 495, v.y + 16, v.label, { fill: CORAL_DEEP, size: 10.5, weight: 700 });
-        txt(svg, 495, v.y + 29, 'tuned to ' + v.sub, { fill: INK2, size: 9.5, hand: true });
+        svg.appendChild(rc.line(204, 155, 460, v.y + 26, { stroke: CORAL_SOFT, strokeWidth: 1.2, roughness: 1.5 }));
+        svg.appendChild(rc.rectangle(462, v.y, 200, 52, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
+        txt(svg, 482, v.y + 20, v.label, { fill: CORAL_DEEP, size: 10.5, weight: 700 });
+        txt(svg, 482, v.y + 40, 'tuned to ' + v.sub, { fill: INK2, size: 9, hand: true });
       });
-      txt(svg, 360, 250, 'a human copywriting team can never write a version for every reader; a model can', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true });
+      txt(svg, 360, 292, 'a human copywriting team can never write a version for every reader; a model can', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true });
     };
 
     // 19.8 sketch B: the feed-reranking emotion lever (a thermometer the recommender's dial is nudging)
@@ -2544,6 +2547,7 @@ return '$' + usd.toFixed(4);
     // 19.9 close sketch A: the chapter spine recap strip, the Cybertruck puzzle resolved
     sketches['sk-ch19-recap-mount'] = function(svg) {
       const rc = makeRc(svg);
+      var BW = 130, BH = 64;
       txt(svg, 380, 22, 'the chapter spine, left to right', { anchor: 'middle', fill: INK2, size: 12, hand: true });
       const steps = [
         { x: 95,  label: 'SHARE OR SIT', sub: 'look good to share' },
@@ -2557,24 +2561,24 @@ return '$' + usd.toFixed(4);
         { x: 525, label: 'THE OWL',     sub: 'a system, not luck' }
       ];
       steps.forEach(function(d, i) {
-        svg.appendChild(rc.rectangle(d.x - 58, 50, 116, 52, { stroke: CORAL, strokeWidth: 1.5, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
-        txt(svg, d.x, 74, d.label, { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-        txt(svg, d.x, 90, d.sub, { anchor: 'middle', fill: INK2, size: 9.5 });
+        svg.appendChild(rc.rectangle(d.x - BW / 2, 48, BW, BH, { stroke: CORAL, strokeWidth: 1.5, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
+        txt(svg, d.x, 75, d.label, { anchor: 'middle', fill: CORAL_DEEP, size: 9.5, weight: 700 });
+        txt(svg, d.x, 95, d.sub, { anchor: 'middle', fill: INK2, size: 8 });
         if (i < steps.length - 1) {
-          svg.appendChild(rc.line(d.x + 58, 76, steps[i + 1].x - 60, 76, { stroke: CORAL_SOFT, strokeWidth: 1.2, roughness: 1.5 }));
+          svg.appendChild(rc.line(d.x + BW / 2, 79, steps[i + 1].x - BW / 2 - 2, 79, { stroke: CORAL_SOFT, strokeWidth: 1.2, roughness: 1.5 }));
         }
       });
       row2.forEach(function(d, i) {
-        svg.appendChild(rc.rectangle(d.x - 58, 130, 116, 52, { stroke: CORAL, strokeWidth: 1.5, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
-        txt(svg, d.x, 154, d.label, { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-        txt(svg, d.x, 170, d.sub, { anchor: 'middle', fill: INK2, size: 9.5 });
+        svg.appendChild(rc.rectangle(d.x - BW / 2, 138, BW, BH, { stroke: CORAL, strokeWidth: 1.5, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
+        txt(svg, d.x, 165, d.label, { anchor: 'middle', fill: CORAL_DEEP, size: 9.5, weight: 700 });
+        txt(svg, d.x, 185, d.sub, { anchor: 'middle', fill: INK2, size: 8 });
         if (i < row2.length - 1) {
-          svg.appendChild(rc.line(d.x + 58, 156, row2[i + 1].x - 60, 156, { stroke: CORAL_SOFT, strokeWidth: 1.2, roughness: 1.5 }));
+          svg.appendChild(rc.line(d.x + BW / 2, 169, row2[i + 1].x - BW / 2 - 2, 169, { stroke: CORAL_SOFT, strokeWidth: 1.2, roughness: 1.5 }));
         }
       });
-      svg.appendChild(rc.line(235, 102, 235, 130, { stroke: CORAL_SOFT, strokeWidth: 1, strokeLineDash: [3, 3], roughness: 1.5 }));
-      txt(svg, 380, 216, 'the owl reached 1.7 billion because the engine, the arc, the Skill stack,', { anchor: 'middle', fill: INK, size: 11, hand: true });
-      txt(svg, 380, 234, 'and the chassis were all built before the launch post went out', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true });
+      svg.appendChild(rc.line(235, 110, 235, 138, { stroke: CORAL_SOFT, strokeWidth: 1, strokeLineDash: [3, 3], roughness: 1.5 }));
+      txt(svg, 380, 234, 'the owl reached 1.7 billion because the engine, the arc, the Skill stack,', { anchor: 'middle', fill: INK, size: 11, hand: true });
+      txt(svg, 380, 252, 'and the chassis were all built before the launch post went out', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true });
     };
 
     // 19.9 close sketch B: the turn into Chapter 20 (owning the channel to renting the audience)
