@@ -945,7 +945,7 @@
     .cover-divider { width:32px; height:1px; background:rgba(255,255,255,0.25); margin:16px 0 0; }
     /* LIGHT mode: a light/white cover with the accent ("blue") title. Gray + Night keep the dark charcoal cover above. */
     html[data-mode="light"] .book-cover { background: linear-gradient(158deg, #ffffff 0%, #f3f3f6 100%); border-color: var(--border); box-shadow: 0 16px 44px rgba(0,0,0,0.13), 0 3px 10px rgba(0,0,0,0.07); }
-    html[data-mode="light"] .cover-title, html[data-mode="light"] .cover-title em { color: var(--coral); }
+    html[data-mode="light"] .cover-title, html[data-mode="light"] .cover-title em { color: var(--text); }
     html[data-mode="light"] .cover-subtitle { color: var(--text-muted); }
     html[data-mode="light"] .cover-divider { background: var(--coral); opacity: 0.55; }
 
@@ -2475,10 +2475,29 @@
       } catch (e) {}
     }
 
+    // Shell-side title swap: chapters were authored with "Core Marketing" in their hero
+    // eyebrow/front-matter. The book is now "Principles of Marketing" — replace the visible
+    // text in the chapter iframe (the chapter files stay frozen). Idempotent.
+    function swapBookTitle(doc) {
+      try {
+        if (!doc.body) return;
+        var walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null);
+        var hits = [], n;
+        while ((n = walker.nextNode())) {
+          if (n.nodeValue && n.nodeValue.indexOf('Core Marketing') !== -1) {
+            var tag = n.parentNode && n.parentNode.tagName;
+            if (tag !== 'SCRIPT' && tag !== 'STYLE') hits.push(n);
+          }
+        }
+        hits.forEach(function (t) { t.nodeValue = t.nodeValue.replace(/Core Marketing/g, 'Principles of Marketing'); });
+      } catch (e) {}
+    }
+
     function injectIframeStyles() {
       try {
         var doc = frame.contentDocument;
         if (!doc || !doc.head) return;
+        swapBookTitle(doc);
 
         // ALWAYS re-derive the active palette from the persisted mode + accent.
         // injectIframeStyles is the shared re-theme path for zoom, font, density,
