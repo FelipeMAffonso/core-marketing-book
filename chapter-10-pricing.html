@@ -301,42 +301,41 @@
 
 <figure id="fig-1">
   <svg viewBox="0 0 720 460" role="img" aria-labelledby="fig1-t" xmlns="http://www.w3.org/2000/svg">
-    <title id="fig1-t">Four pricing approaches as a compass; arrows show typical sequence cost-to-competitor-to-value.</title>
-    <defs>
-      <linearGradient id="approach-fill-1" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#DA7756" stop-opacity="0.16"/>
-        <stop offset="100%" stop-color="#DA7756" stop-opacity="0.03"/>
-      </linearGradient>
-    </defs>
-    <g font-family="Inter, sans-serif" font-size="13" fill="#1a1a1a">
-      <text x="360" y="32" text-anchor="middle" font-weight="700" fill="#1a1a1a" font-size="14">four pricing approaches</text>
+    <title id="fig1-t">Four pricing approaches as a price ladder: cost is the floor, competitor the frame, value the ceiling, with the typical sequence running cost to competitor to value; customer-determined is a separate buyer-set mode.</title>
+    <g font-family="Inter, sans-serif" fill="#1a1a1a">
+      <text x="360" y="30" text-anchor="middle" font-weight="700" font-size="15">four pricing approaches</text>
       <text x="360" y="50" text-anchor="middle" fill="#555" font-size="12" font-style="italic">cost sets the floor, competitor sets the frame, value sets the ceiling</text>
-      <circle cx="360" cy="260" r="180" fill="url(#approach-fill-1)" stroke="#DA7756" stroke-width="1.5"/>
-      <line x1="180" y1="260" x2="540" y2="260" stroke="#888" stroke-width="0.6" stroke-dasharray="3,3"/>
-      <line x1="360" y1="80" x2="360" y2="440" stroke="#888" stroke-width="0.6" stroke-dasharray="3,3"/>
-      <text x="360" y="100" text-anchor="middle" font-weight="700" fill="#B8553A" font-size="13" letter-spacing="1.4">VALUE-BASED</text>
-      <text x="360" y="118" text-anchor="middle" fill="#1a1a1a" font-size="11.5">customer's willingness to pay</text>
-      <text x="360" y="134" text-anchor="middle" fill="#555" font-size="11">economic value to customer (EVC)</text>
-      <text x="360" y="150" text-anchor="middle" fill="#888" font-size="10.5" font-style="italic">e.g., Caterpillar 100K pitch</text>
-      <text x="360" y="420" text-anchor="middle" font-weight="700" fill="#B8553A" font-size="13" letter-spacing="1.4">COST-BASED</text>
-      <text x="360" y="402" text-anchor="middle" fill="#1a1a1a" font-size="11.5">unit cost plus markup</text>
-      <text x="360" y="386" text-anchor="middle" fill="#555" font-size="11">target return, cost-plus, markup</text>
-      <text x="360" y="370" text-anchor="middle" fill="#888" font-size="10.5" font-style="italic">e.g., regulated utilities</text>
-      <text x="200" y="258" text-anchor="middle" font-weight="700" fill="#B8553A" font-size="13" letter-spacing="1.4">COMPETITOR</text>
-      <text x="200" y="276" text-anchor="middle" fill="#1a1a1a" font-size="11.5">match or beat rival</text>
-      <text x="200" y="292" text-anchor="middle" fill="#555" font-size="11">going-rate pricing</text>
-      <text x="200" y="308" text-anchor="middle" fill="#888" font-size="10.5" font-style="italic">e.g., Walmart vs Publix</text>
-      <text x="520" y="258" text-anchor="middle" font-weight="700" fill="#B8553A" font-size="13" letter-spacing="1.4">CUSTOMER</text>
-      <text x="520" y="276" text-anchor="middle" fill="#1a1a1a" font-size="11.5">buyer names the price</text>
-      <text x="520" y="292" text-anchor="middle" fill="#555" font-size="11">name-your-own-price</text>
-      <text x="520" y="308" text-anchor="middle" fill="#888" font-size="10.5" font-style="italic">e.g., Priceline 1999</text>
-      <!-- typical sequence as ONE clean curve: cost (floor) -> competitor (frame) -> value (ceiling) -->
-      <path d="M 330 356 C 296 346 286 302 290 260 C 294 218 302 188 322 172" fill="none" stroke="#DA7756" stroke-width="2.4" stroke-linecap="round"/>
-      <polygon points="322,172 312,179 311,166" fill="#DA7756"/>
-      <text x="118" y="226" fill="#B8553A" font-size="14" font-family="'Caveat','Segoe Print',cursive" font-weight="600">typical sequence</text>
+
+      <rect x="152" y="96" width="332" height="66" rx="8" fill="#DA7756" fill-opacity="0.12" stroke="#DA7756" stroke-width="1.6"/>
+      <text x="170" y="123" font-weight="700" font-size="13" letter-spacing="0.6" fill="#B8553A">VALUE-BASED</text>
+      <text x="466" y="123" text-anchor="end" font-size="11" font-style="italic" fill="#B8553A">the ceiling</text>
+      <text x="170" y="142" font-size="11.5">the most a buyer will pay &mdash; willingness to pay (EVC)</text>
+      <text x="170" y="157" font-size="10.5" font-style="italic" fill="#888">e.g., Caterpillar's $100K value pitch</text>
+
+      <rect x="152" y="190" width="332" height="66" rx="8" fill="#DA7756" fill-opacity="0.07" stroke="#DA7756" stroke-width="1.6"/>
+      <text x="170" y="217" font-weight="700" font-size="13" letter-spacing="0.6" fill="#B8553A">COMPETITOR-BASED</text>
+      <text x="466" y="217" text-anchor="end" font-size="11" font-style="italic" fill="#B8553A">the frame</text>
+      <text x="170" y="236" font-size="11.5">match or beat the rival &mdash; going-rate pricing</text>
+      <text x="170" y="251" font-size="10.5" font-style="italic" fill="#888">e.g., Walmart vs Publix</text>
+
+      <rect x="152" y="284" width="332" height="66" rx="8" fill="#DA7756" fill-opacity="0.03" stroke="#DA7756" stroke-width="1.6"/>
+      <text x="170" y="311" font-weight="700" font-size="13" letter-spacing="0.6" fill="#B8553A">COST-BASED</text>
+      <text x="466" y="311" text-anchor="end" font-size="11" font-style="italic" fill="#B8553A">the floor</text>
+      <text x="170" y="330" font-size="11.5">unit cost plus a markup</text>
+      <text x="170" y="345" font-size="10.5" font-style="italic" fill="#888">e.g., regulated utilities</text>
+
+      <line x1="120" y1="344" x2="120" y2="114" stroke="#DA7756" stroke-width="2.6" stroke-linecap="round"/>
+      <polygon points="120,104 113,118 127,118" fill="#DA7756"/>
+      <text x="102" y="229" text-anchor="middle" transform="rotate(-90 102 229)" font-family="'Caveat','Segoe Print',cursive" font-weight="600" font-size="15" fill="#B8553A">typical sequence</text>
+
+      <text x="600" y="181" text-anchor="middle" font-family="'Caveat','Segoe Print',cursive" font-size="13" fill="#888">a different logic</text>
+      <rect x="506" y="190" width="188" height="66" rx="8" fill="none" stroke="#DA7756" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <text x="600" y="215" text-anchor="middle" font-weight="700" font-size="10.5" letter-spacing="0.4" fill="#B8553A">CUSTOMER-DETERMINED</text>
+      <text x="600" y="233" text-anchor="middle" font-size="11">the buyer names the price</text>
+      <text x="600" y="248" text-anchor="middle" font-size="10.5" font-style="italic" fill="#888">e.g., Priceline 1999</text>
     </g>
   </svg>
-  <figcaption><span class="fnum">Figure 10.1</span> The four pricing approaches as a compass.</figcaption>
+  <figcaption><span class="fnum">Figure 10.1</span> The four pricing approaches. Cost, competitor, and value stack as a price ladder &mdash; floor, frame, ceiling &mdash; and a firm typically works up it; customer-determined pricing is a separate mode where the buyer sets the number.</figcaption>
 </figure>
 
 <p>Value-based pricing and the launch-timing rules both take one input as given, which is what each buyer would actually pay. The next section walks the four ways a firm measures that willingness to pay and reads how much pricing room a category really has.</p>
