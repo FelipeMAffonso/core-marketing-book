@@ -739,6 +739,7 @@
     @media (min-width: 769px) {
       html[data-toc="off"] .main,
       html[data-toc="inline"] .main,
+      html[data-toc="floating"] .main,
       html[data-toc="topbar"] .main { margin-left: calc(-1 * var(--sidebar-w)) !important; }
     }
     /* TOP BAR — horizontal chapter strip pinned under the header */
@@ -768,6 +769,25 @@
        would hide them, so force every group fully open + visible (the strip scrolls horizontally). */
     html[data-toc="topbar"] .sb-group,
     html[data-toc="topbar"] .sb-group.closed { max-height: none !important; overflow: visible !important; }
+    /* FLOATING — rail hidden as a right-side overlay drawer; a top-right button opens it */
+    html[data-toc="floating"] .sidebar {
+      left: auto; right: 0; transform: translateX(100%);
+      border-right: none; border-left: 1px solid var(--border); z-index: 95;
+    }
+    html[data-toc="floating"] .sidebar.open { transform: translateX(0); box-shadow: -4px 0 28px rgba(0,0,0,0.16); }
+    html[data-toc="floating"] .sidebar-backdrop.visible { display: block; }
+    .toc-fab { display: none; }
+    html[data-toc="floating"] .toc-fab {
+      display: inline-flex; align-items: center; gap: 7px;
+      position: fixed; top: calc(var(--header-h) + 16px); right: 20px; z-index: 94;
+      padding: 9px 15px; border: 1px solid var(--border); border-radius: 999px;
+      background: var(--bg); color: var(--text-secondary);
+      font-family: var(--font); font-size: 12.5px; font-weight: 600; letter-spacing: 0.01em;
+      cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.08);
+      transition: color 0.15s, border-color 0.15s;
+    }
+    html[data-toc="floating"] .toc-fab:hover { color: var(--coral); border-color: var(--coral); }
+    .toc-fab svg { width: 15px; height: 15px; flex-shrink: 0; }
     /* Settings control */
     .rs-toc-modes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
     .rs-toc-btn {
@@ -1055,7 +1075,8 @@
             <div class="rs-toc-modes" id="rs-toc-modes">
               <button class="rs-toc-btn" data-toc="sidebar">Sidebar</button>
               <button class="rs-toc-btn" data-toc="topbar">Top bar</button>
-              <button class="rs-toc-btn" data-toc="inline" disabled title="Coming soon">In text</button>
+              <button class="rs-toc-btn" data-toc="floating">Floating</button>
+              <button class="rs-toc-btn" data-toc="inline">In text</button>
               <button class="rs-toc-btn" data-toc="off">Off</button>
             </div>
             <div class="rs-hint">Where the chapter list sits. Sidebar pins it left; Top bar pins it above the page; Off hides it. (In text scrolls with the chapter, coming soon.)</div>
@@ -1305,6 +1326,12 @@
   <!-- Mobile backdrop -->
   <div class="sidebar-backdrop" id="backdrop"></div>
 
+  <!-- Floating TOC button (shown only in floating mode; opens the rail as an overlay drawer) -->
+  <button class="toc-fab" id="toc-fab" aria-label="Open table of contents">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+    Contents
+  </button>
+
   <!-- Main content -->
   <main class="main" id="main">
     <div id="welcome" class="welcome">
@@ -1342,7 +1369,7 @@
     // Config-driven (NOT hard-coded): a deployment or platform can set window.CC_CONFIG
     // before this script loads to override the defaults + which options readers are offered.
     window.CC_CONFIG = window.CC_CONFIG || {};
-    CC_CONFIG.toc = CC_CONFIG.toc || { default: 'sidebar', allowed: ['sidebar', 'topbar', 'inline', 'off'] };
+    CC_CONFIG.toc = CC_CONFIG.toc || { default: 'sidebar', allowed: ['sidebar', 'topbar', 'floating', 'inline', 'off'] };
     CC_CONFIG.depth = CC_CONFIG.depth || { default: 'complete', allowed: ['complete', 'focused'] };
 
     // ── DOM refs ──
@@ -1360,6 +1387,7 @@
     var progressFill = document.getElementById('reading-progress-fill');
 
     var isMobile = function() { return window.innerWidth <= 768; };
+    var isFloating = function() { return document.documentElement.getAttribute('data-toc') === 'floating'; };
 
     // ════════════════════════════════════════════════════════════════════
     //  ACCESSIBILITY BRIDGE — shell drives the chapter content
@@ -2569,7 +2597,7 @@
     });
 
     toggle.addEventListener('click', function() {
-      if (isMobile()) {
+      if (isMobile() || isFloating()) {
         sidebar.classList.toggle('open');
         backdrop.classList.toggle('visible');
       } else {
@@ -2583,9 +2611,15 @@
       backdrop.classList.remove('visible');
     });
 
+    var tocFab = document.getElementById('toc-fab');
+    if (tocFab) tocFab.addEventListener('click', function() {
+      sidebar.classList.toggle('open');
+      backdrop.classList.toggle('visible');
+    });
+
     function goHome() {
       navigateTo(null);
-      if (isMobile()) { sidebar.classList.remove('open'); backdrop.classList.remove('visible'); }
+      if (isMobile() || isFloating()) { sidebar.classList.remove('open'); backdrop.classList.remove('visible'); }
     }
     brand.addEventListener('click', goHome);
     brand.addEventListener('keydown', function(e) {
@@ -2648,7 +2682,7 @@
         if (ch.num) headerTitle.innerHTML = '<span>' + escapeHtml(ch.num) + '</span> ' + escapeHtml(ch.title);
         else headerTitle.textContent = ch.title;
       }
-      if (isMobile()) { sidebar.classList.remove('open'); backdrop.classList.remove('visible'); }
+      if (isMobile() || isFloating()) { sidebar.classList.remove('open'); backdrop.classList.remove('visible'); }
     }
 
     document.querySelectorAll('.sb-item').forEach(function(el) {
@@ -2746,7 +2780,7 @@
         navigateTo(href);
         history.replaceState(null, '', '#' + encodeURIComponent(href));
       }
-      if (isMobile()) { sidebar.classList.remove('open'); backdrop.classList.remove('visible'); }
+      if (isMobile() || isFloating()) { sidebar.classList.remove('open'); backdrop.classList.remove('visible'); }
     }
 
     // ════════════════════════════════════════════════════════════════════
@@ -2984,6 +3018,8 @@
       readerState.toc = mode;
       localStorage.setItem('cc-toc', mode);
       document.documentElement.setAttribute('data-toc', mode);
+      // entering/leaving floating: the overlay drawer always starts closed
+      sidebar.classList.remove('open'); backdrop.classList.remove('visible');
       document.querySelectorAll('.rs-toc-btn').forEach(function(b) {
         b.classList.toggle('active', b.dataset.toc === mode);
       });
