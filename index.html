@@ -643,7 +643,7 @@
 
     .sb-part:hover .sb-part-title { color: var(--coral); }
 
-    .sb-group { overflow: hidden; transition: max-height 0.25s ease; }
+    .sb-group { overflow: hidden; max-height: 480px; transition: max-height 0.25s ease; }
     .sb-group.closed { max-height: 0 !important; }
 
     /* Sidebar chapter items */
@@ -764,6 +764,10 @@
     }
     html[data-toc="topbar"] .sb-item .num { display: none; }
     html[data-toc="topbar"] .main { top: calc(var(--header-h) + var(--topbar-h)) !important; }
+    /* topbar must never clip chapters: a collapsed/animated group's max-height/overflow
+       would hide them, so force every group fully open + visible (the strip scrolls horizontally). */
+    html[data-toc="topbar"] .sb-group,
+    html[data-toc="topbar"] .sb-group.closed { max-height: none !important; overflow: visible !important; }
     /* Settings control */
     .rs-toc-modes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
     .rs-toc-btn {
@@ -905,20 +909,20 @@
 
     .book-cover {
       position: relative;
-      width: 300px; height: 420px;
-      margin: 8px auto 36px;
-      border-radius: 4px;
-      background: linear-gradient(160deg, var(--coral-soft) 0%, var(--coral) 42%, var(--coral-deep) 100%);
-      box-shadow: 0 18px 50px rgba(0,0,0,0.22), 0 4px 12px rgba(0,0,0,0.12);
+      width: 340px; height: 480px;
+      margin: 4px auto 38px;
+      border-radius: 3px;
+      background: linear-gradient(160deg, #3a3a3a 0%, #2c2c2c 30%, #1e1e1e 60%, #111111 100%);
+      box-shadow: 8px 8px 30px rgba(0,0,0,0.30), 2px 2px 8px rgba(0,0,0,0.15);
+      border: 1px solid rgba(255,255,255,0.06);
       overflow: hidden;
-      transition: background 0.6s ease;
     }
-    .book-cover canvas { position:absolute; inset:0; width:100%; height:100%; z-index:1; }
-    .cover-content { position:relative; z-index:2; display:flex; flex-direction:column; height:100%; padding:36px 30px 30px; text-align:left; }
-    .cover-title { font-family:var(--font); font-size:36px; font-weight:400; color:#fff; line-height:1.15; letter-spacing:-0.5px; margin-top:auto; }
-    .cover-title em { font-style:italic; font-weight:400; }
-    .cover-subtitle { font-size:11px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.62); margin-top:14px; }
-    .cover-divider { width:34px; height:1px; background:rgba(255,255,255,0.4); margin:18px 0 0; }
+    .book-cover canvas { position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; }
+    .cover-content { position:relative; z-index:2; display:flex; flex-direction:column; height:100%; padding:0 32px 32px; text-align:left; }
+    .cover-title { font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:32px; font-weight:300; color:#fff; line-height:1.25; letter-spacing:-0.3px; margin-top:auto; }
+    .cover-title em { font-style:italic; font-weight:300; }
+    .cover-subtitle { font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-top:12px; }
+    .cover-divider { width:32px; height:1px; background:rgba(255,255,255,0.25); margin:16px 0 0; }
 
     .welcome-stats { display:flex; justify-content:center; gap:44px; margin:0 0 4px; }
     .wstat-num { font-family:var(--font); font-size:34px; font-weight:700; color:var(--coral); line-height:1; letter-spacing:-0.01em; }
@@ -949,8 +953,8 @@
       .welcome { padding: 40px 24px 64px; }
       .welcome h1 { font-size: 36px; }
       .welcome .lede { font-size: 18px; }
-      .book-cover { width: 260px; height: 364px; }
-      .cover-title { font-size: 30px; }
+      .book-cover { width: 280px; height: 396px; }
+      .cover-title { font-size: 26px; }
       .welcome-stats { gap: 28px; }
       .rs-panel { width: calc(100vw - 32px); right: -8px; }
     }
@@ -2598,7 +2602,9 @@
         el.classList.toggle('closed');
       });
     });
-    document.querySelectorAll('.sb-group').forEach(function(g) { g.style.maxHeight = g.scrollHeight + 'px'; });
+    // group open-height is CSS-driven now (.sb-group max-height:480px, .closed:0); no per-mode
+    // JS measuring — that baked a wrong scrollHeight when the page loaded in topbar and clipped
+    // chapters after switching modes.
 
     function escapeHtml(str) {
       return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -3021,7 +3027,7 @@
     var ctx = canvas.getContext('2d');
     var particles = [];
     var mouse = { x: -9999, y: -9999 };
-    var cfg = { maxParticles: 34, densityDivisor: 6000, maxDistance: 100, mouseDistance: 120, speed: 0.2, particleAlpha: 0.36, lineAlpha: 0.13, color: '255,255,255' };
+    var cfg = { maxParticles: 35, densityDivisor: 6000, maxDistance: 100, mouseDistance: 120, speed: 0.2, particleAlpha: 0.3, lineAlpha: 0.1, color: '255,255,255' };
     function initParticles() {
       particles = [];
       var n = Math.min(cfg.maxParticles, Math.floor((canvas.width * canvas.height) / cfg.densityDivisor));
