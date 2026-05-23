@@ -805,6 +805,13 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 @media (max-width: 1300px) {
   .chapter-toc { display: none; }
 }
+.cyu { border-bottom: 1px solid var(--line); }
+.cyu > summary { cursor: pointer; font-family: var(--sans); font-weight: 600; font-size: 16px; color: var(--ink); padding: 12px 0; list-style: none; }
+.cyu > summary::-webkit-details-marker { display: none; }
+.cyu > summary::before { content: "\25B8\00a0\00a0"; color: var(--coral); }
+.cyu[open] > summary::before { content: "\25BE\00a0\00a0"; }
+.cyu > p { color: var(--ink-2); margin: 0 0 14px; padding-left: 20px; }
+.cyu-hint { font-style: italic; color: var(--ink-3); font-size: 14px; margin-bottom: 6px; }
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
