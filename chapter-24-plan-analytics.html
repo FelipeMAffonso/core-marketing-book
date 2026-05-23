@@ -449,6 +449,14 @@ details.depth[open] > summary::before { content: "\25BE\00a0\00a0"; }
 details.depth > p { font-family: var(--serif); font-size: 16px; line-height: 1.6; color: var(--ink-2); margin: 0 16px 14px; }
 details.depth > p:first-of-type { margin-top: 4px; }
 
+/* cc-refs-toggle-v2: References + Further reading collapsible toggles (cite-click auto-expands) */
+.refs-toggle { margin-top: 28px; border-top: 1px dotted var(--coral); padding-top: 14px; }
+.refs-toggle > summary { cursor: pointer; font-family: var(--sans); font-weight: 700; font-size: 20px; color: var(--ink); list-style: none; padding: 2px 0; }
+.refs-toggle > summary::-webkit-details-marker { display: none; }
+.refs-toggle > summary::before { content: "\25B8\00a0\00a0"; color: var(--coral); }
+.refs-toggle[open] > summary::before { content: "\25BE\00a0\00a0"; }
+.refs-toggle > summary:hover { color: var(--coral); }
+.refs-toggle ol, .refs-toggle ul { margin-top: 12px; }
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
@@ -1414,8 +1422,10 @@ cust_003, 2024-04, 70</textarea>
 <p data-ref="ref-36">Fader, <em>Customer Centricity</em>, Ch 5; 70 percent CRM-failure rate, Tesco Clubcard.</p>
 </div>
 <section class="refs">
-  <h2>References</h2>
+  <details class="refs-toggle">
+  <summary>References</summary>
   <ol class="references-list"><!-- populated by depth-engine.js ccAutoCitations() --></ol>
+  </details>
 
   <details class="refs-toggle">
     <summary>Further reading</summary>

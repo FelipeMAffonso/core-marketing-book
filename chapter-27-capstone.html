@@ -492,6 +492,14 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 @media (max-width: 1300px) {
   .chapter-toc { display: none; }
 }
+/* cc-refs-toggle-v2: References + Further reading collapsible toggles (cite-click auto-expands) */
+.refs-toggle { margin-top: 28px; border-top: 1px dotted var(--coral); padding-top: 14px; }
+.refs-toggle > summary { cursor: pointer; font-family: var(--sans); font-weight: 700; font-size: 20px; color: var(--ink); list-style: none; padding: 2px 0; }
+.refs-toggle > summary::-webkit-details-marker { display: none; }
+.refs-toggle > summary::before { content: "\25B8\00a0\00a0"; color: var(--coral); }
+.refs-toggle[open] > summary::before { content: "\25BE\00a0\00a0"; }
+.refs-toggle > summary:hover { color: var(--coral); }
+.refs-toggle ol, .refs-toggle ul { margin-top: 12px; }
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
@@ -2180,8 +2188,10 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
 <p data-ref="ref-45">Vibe-coding teaching ladder for marketing students: four-tool starter stack (Custom GPT, Claude Code, Streamlit plus Anthropic SDK, Cursor) plus the Week 13 Hugging Face Spaces portfolio destination and the Week 15 MCP-server capstone. Cursor pricing 2026 (<a href="https://cursor.com/docs/models-and-pricing">cursor.com/docs/models-and-pricing</a>); Claude Code product page (<a href="https://www.anthropic.com/claude-code">anthropic.com/claude-code</a>); Streamlit + Anthropic primer (<a href="https://streamlit.io">streamlit.io</a>; <a href="https://docs.anthropic.com">docs.anthropic.com</a>); Hugging Face Spaces hosting (<a href="https://huggingface.co/spaces">huggingface.co/spaces</a>); OpenAI Custom GPT Builder (<a href="https://chatgpt.com/gpts">chatgpt.com/gpts</a>) and the Workspace Agents enterprise successor; vibe-coding pitfalls and security audits (Stack Overflow, Databricks, Nucamp 2026); Maven &ldquo;Vibe Coding for Marketers&rdquo; cohort and the Google/Kaggle GenAI Intensive June 2026; toolkit synthesis at <code>ai-toolkit/coding-tools-for-marketers.md</code>.</p>
 </div>
 <section class="refs">
-  <h2>References</h2>
+  <details class="refs-toggle">
+  <summary>References</summary>
   <ol class="references-list"><!-- populated by depth-engine.js ccAutoCitations() --></ol>
+  </details>
 </section>
 
 </main>

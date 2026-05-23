@@ -312,6 +312,14 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 .cyu > p { color: var(--ink-2); margin: 0 0 14px; padding-left: 20px; }
 .cyu-hint { font-style: italic; color: var(--ink-3); font-size: 14px; margin-bottom: 6px; }
 
+/* cc-refs-toggle-v2: References + Further reading collapsible toggles (cite-click auto-expands) */
+.refs-toggle { margin-top: 28px; border-top: 1px dotted var(--coral); padding-top: 14px; }
+.refs-toggle > summary { cursor: pointer; font-family: var(--sans); font-weight: 700; font-size: 20px; color: var(--ink); list-style: none; padding: 2px 0; }
+.refs-toggle > summary::-webkit-details-marker { display: none; }
+.refs-toggle > summary::before { content: "\25B8\00a0\00a0"; color: var(--coral); }
+.refs-toggle[open] > summary::before { content: "\25BE\00a0\00a0"; }
+.refs-toggle > summary:hover { color: var(--coral); }
+.refs-toggle ol, .refs-toggle ul { margin-top: 12px; }
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
@@ -1194,8 +1202,10 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-ref="ref-33">Kwa, West, Becker, et al., &ldquo;Measuring AI Ability to Complete Long Tasks,&rdquo; METR, March 19, 2025, arXiv:<a href="https://arxiv.org/abs/2503.14499">2503.14499</a>; METR, &ldquo;Time Horizon 1.1,&rdquo; January 29, 2026, post-2023 doubling time of 131 days.</p>
 </div>
 <section class="refs">
-  <h2>References</h2>
+  <details class="refs-toggle">
+  <summary>References</summary>
   <ol class="references-list"><!-- populated by depth-engine.js ccAutoCitations() --></ol>
+  </details>
 
   <details class="refs-toggle">
     <summary>Further reading</summary>

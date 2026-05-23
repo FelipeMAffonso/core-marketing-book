@@ -315,6 +315,14 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 @media (max-width: 1300px) {
   .chapter-toc { display: none; }
 }
+/* cc-refs-toggle-v2: References + Further reading collapsible toggles (cite-click auto-expands) */
+.refs-toggle { margin-top: 28px; border-top: 1px dotted var(--coral); padding-top: 14px; }
+.refs-toggle > summary { cursor: pointer; font-family: var(--sans); font-weight: 700; font-size: 20px; color: var(--ink); list-style: none; padding: 2px 0; }
+.refs-toggle > summary::-webkit-details-marker { display: none; }
+.refs-toggle > summary::before { content: "\25B8\00a0\00a0"; color: var(--coral); }
+.refs-toggle[open] > summary::before { content: "\25BE\00a0\00a0"; }
+.refs-toggle > summary:hover { color: var(--coral); }
+.refs-toggle ol, .refs-toggle ul { margin-top: 12px; }
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
@@ -1210,8 +1218,10 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-ref="ref-44">Joe Pisani, &ldquo;Amazon Says Its AI Shopping Assistant Rufus Is So Effective,&rdquo; <em>Fortune</em>, November 2, 2025 (Rufus 250M users in 2025; MAU +140 percent YoY; interactions +210 percent YoY; engaged-shopper conversion +60 percent; $10B attributed incremental annualized sales on a seven-day downstream-impact window); Walmart Corporate, &ldquo;The Future of Shopping Is Agentic. Meet Sparky,&rdquo; June 6, 2025 (AOV +35 percent among engaged users; Wally merchant assistant March 2025; ChatGPT Instant Checkout October 2025); Target Corporate, &ldquo;Target Launches New AI-Powered Features,&rdquo; November 12, 2025 (Target Gift Finder, List Scanner, enhanced Store Mode; ~50 percent higher in-store basket size for app-active visitors); Walmart Corporate, &ldquo;Walmart and Google Turn AI Discovery Into Effortless Shopping,&rdquo; January 11, 2026 (Universal Commerce Protocol, Sam&rsquo;s Club inventory, account-linked personalization); Retail Dive, &ldquo;A Look at Retail&rsquo;s Year of AI News,&rdquo; 2025 (Adobe AI-driven retail traffic +758 percent YoY Nov 1-Dec 1 2025; Salesforce ~20 percent of global Cyber Week orders attributed to AI or agent influence). Frontier reader: <code>core-course/wiki/external/frontier/ai-walmart-sparky-rufus-target-2024-2026-ch12.md</code>.</p>
 </div>
 <section class="refs">
-  <h2>References</h2>
+  <details class="refs-toggle">
+  <summary>References</summary>
   <ol class="references-list"><!-- populated by depth-engine.js ccAutoCitations() --></ol>
+  </details>
 
   <details class="refs-toggle">
     <summary>Further reading</summary>

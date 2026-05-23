@@ -828,6 +828,14 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 .sn.jobaid .sn-num { font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; }
 .sn.jobaid > p { margin: 4px 0 0 0; }
 
+/* cc-refs-toggle-v2: References + Further reading collapsible toggles (cite-click auto-expands) */
+.refs-toggle { margin-top: 28px; border-top: 1px dotted var(--coral); padding-top: 14px; }
+.refs-toggle > summary { cursor: pointer; font-family: var(--sans); font-weight: 700; font-size: 20px; color: var(--ink); list-style: none; padding: 2px 0; }
+.refs-toggle > summary::-webkit-details-marker { display: none; }
+.refs-toggle > summary::before { content: "\25B8\00a0\00a0"; color: var(--coral); }
+.refs-toggle[open] > summary::before { content: "\25BE\00a0\00a0"; }
+.refs-toggle > summary:hover { color: var(--coral); }
+.refs-toggle ol, .refs-toggle ul { margin-top: 12px; }
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
@@ -1661,8 +1669,10 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-ref="ref-44">Piccardi, Saveski, Jia, Hancock, Tsai, Bernstein, &ldquo;Reranking partisan animosity in algorithmic social media feeds,&rdquo; <em>Science</em> 390, 6776 (Nov 27, 2025), DOI 10.1126/science.adu5584; preregistered 10-day field experiment, 1,256 X participants during 2024 campaign; effect +2.11 to &minus;2.48 thermometer points (p = 0.035, 0.036), 3-3.6 years of polarization drift. Synthesis: <code>core-course/wiki/external/frontier/reranking-partisan-animosity-piccardi-2025-ch19.md</code>.</p>
 </div>
 <section class="refs">
-  <h2>References</h2>
+  <details class="refs-toggle">
+  <summary>References</summary>
   <ol class="references-list"><!-- populated by depth-engine.js ccAutoCitations() --></ol>
+  </details>
 
   <details class="refs-toggle">
     <summary>Further reading</summary>

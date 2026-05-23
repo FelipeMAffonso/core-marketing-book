@@ -851,6 +851,14 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 .sn.jobaid::before { display: none; }
 .sn.jobaid .sn-num { font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; }
 .sn.jobaid > p { margin: 4px 0 0 0; }
+/* cc-refs-toggle-v2: References + Further reading collapsible toggles (cite-click auto-expands) */
+.refs-toggle { margin-top: 28px; border-top: 1px dotted var(--coral); padding-top: 14px; }
+.refs-toggle > summary { cursor: pointer; font-family: var(--sans); font-weight: 700; font-size: 20px; color: var(--ink); list-style: none; padding: 2px 0; }
+.refs-toggle > summary::-webkit-details-marker { display: none; }
+.refs-toggle > summary::before { content: "\25B8\00a0\00a0"; color: var(--coral); }
+.refs-toggle[open] > summary::before { content: "\25BE\00a0\00a0"; }
+.refs-toggle > summary:hover { color: var(--coral); }
+.refs-toggle ol, .refs-toggle ul { margin-top: 12px; }
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
@@ -1729,8 +1737,10 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
 <p data-ref="ref-29">Dominique M. Hanssens and Koen H. Pauwels, &ldquo;Demonstrating the Value of Marketing,&rdquo; <em>Journal of Marketing</em>, vol. 80, no. 6, November 2016, 173-190, doi:10.1509/jm.15.0417; P.M. Cain, &ldquo;Modelling Short- and Long-Term Marketing Effects in the Consumer Purchase Journey,&rdquo; <em>International Journal of Research in Marketing</em>, vol. 39, no. 1, 2022, 96-116, doi:10.1016/j.ijresmar.2021.06.006, on observational-versus-experimental marketing-attribution methods.</p>
 </div>
 <section class="refs">
-  <h2>References</h2>
+  <details class="refs-toggle">
+  <summary>References</summary>
   <ol class="references-list"><!-- populated by depth-engine.js ccAutoCitations() --></ol>
+  </details>
 
   <details class="refs-toggle">
     <summary>Further reading</summary>

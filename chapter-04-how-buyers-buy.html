@@ -726,6 +726,14 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 @media (max-width: 1300px) {
   .chapter-toc { display: none; }
 }
+/* cc-refs-toggle-v2: References + Further reading collapsible toggles (cite-click auto-expands) */
+.refs-toggle { margin-top: 28px; border-top: 1px dotted var(--coral); padding-top: 14px; }
+.refs-toggle > summary { cursor: pointer; font-family: var(--sans); font-weight: 700; font-size: 20px; color: var(--ink); list-style: none; padding: 2px 0; }
+.refs-toggle > summary::-webkit-details-marker { display: none; }
+.refs-toggle > summary::before { content: "\25B8\00a0\00a0"; color: var(--coral); }
+.refs-toggle[open] > summary::before { content: "\25BE\00a0\00a0"; }
+.refs-toggle > summary:hover { color: var(--coral); }
+.refs-toggle ol, .refs-toggle ul { margin-top: 12px; }
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
@@ -1239,8 +1247,10 @@ No preamble, no closer.</pre>
 <p data-ref="ref-48">Interactive Advertising Bureau, "IAB Releases Industry's First AI Transparency and Disclosure Framework to Guide Responsible Advertising in a Generative-AI Landscape," January 15 2026, https://www.iab.com/news/iab-releases-industrys-first-ai-transparency-and-disclosure-framework-to-guide-responsible-advertising-in-a-generative-ai-landscape/ (also PRNewswire, https://www.prnewswire.com/news-releases/iab-releases-industrys-first-ai-transparency-and-disclosure-framework-to-guide-responsible-advertising-in-a-generative-ai-landscape-302661683.html). Six mandatory consumer-facing disclosure categories: AI-generated images or videos depicting fictional events; synthetic voices of deceased persons; AI voices of living persons in fabricated scenarios; digital twins of deceased individuals; digital twins of living individuals in fabricated scenarios; AI chatbots and synthetic avatars simulating human interaction. Companion consumer-research evidence: IAB and Sonata Insights consumer-perception study (Gen Z negativity 39% vs Millennial 20%; 37-point executive-vs-consumer perception gap up from 32 points in 2024; 73% of Gen Z and Millennials report disclosure would not reduce purchase intent), https://ppc.land/iab-introduces-disclosure-framework-as-gen-z-trust-in-ai-ads-plummets-19-points/; Raptive study July 2025 (suspected AI content reduces reader trust ~50%, purchase consideration -14%); Koning, Britta, and Hilde A. M. Voorveld, "Disclaimer! This Content Is AI-Generated: How AI-Disclosures Influence Trust in Advertisements and Organizations," <em>Journal of Interactive Advertising</em>, 2025, doi:10.1080/15252019.2025.2554149. EU AI Act Article 50 transparency obligations effective August 2025; Article 99 fines beginning 2026. Course reader: <code>core-course/wiki/external/frontier/iab-ai-disclosure-framework-2026-ch04.md</code>.</p>
 </div>
 <section class="refs">
-  <h2>References</h2>
+  <details class="refs-toggle">
+  <summary>References</summary>
   <ol class="references-list"><!-- populated by depth-engine.js ccAutoCitations() --></ol>
+  </details>
   <details class="refs-toggle">
     <summary>Further reading</summary>
   <ul>

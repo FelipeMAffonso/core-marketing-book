@@ -341,6 +341,14 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 .cyu > p { color: var(--ink-2); margin: 0 0 14px; padding-left: 20px; }
 .cyu-hint { font-style: italic; color: var(--ink-3); font-size: 14px; margin-bottom: 6px; }
 
+/* cc-refs-toggle-v2: References + Further reading collapsible toggles (cite-click auto-expands) */
+.refs-toggle { margin-top: 28px; border-top: 1px dotted var(--coral); padding-top: 14px; }
+.refs-toggle > summary { cursor: pointer; font-family: var(--sans); font-weight: 700; font-size: 20px; color: var(--ink); list-style: none; padding: 2px 0; }
+.refs-toggle > summary::-webkit-details-marker { display: none; }
+.refs-toggle > summary::before { content: "\25B8\00a0\00a0"; color: var(--coral); }
+.refs-toggle[open] > summary::before { content: "\25BE\00a0\00a0"; }
+.refs-toggle > summary:hover { color: var(--coral); }
+.refs-toggle ol, .refs-toggle ul { margin-top: 12px; }
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
@@ -1029,8 +1037,10 @@ The contract carries this in four numbered clauses, each addressing a distinct e
 <p data-ref="ref-34">TikTok Community Guidelines, AI-generated-content labeling, 2024 update; Meta AI Disclosure Policy, January 2025; YouTube Creator Studio AI-disclosure flags, late 2024 rollout.</p>
 </div>
 <section class="refs">
-  <h2>References</h2>
+  <details class="refs-toggle">
+  <summary>References</summary>
   <ol class="references-list"><!-- populated by depth-engine.js ccAutoCitations() --></ol>
+  </details>
 
   <details class="refs-toggle">
     <summary>Further reading</summary>

@@ -519,6 +519,29 @@
   }
 
   /* --------------------------------------------------------------------------
+   * 6.5 setupRefsAutoExpand()  —  click an in-text citation [N] -> open the
+   * (collapsed) References <details> so the target entry is visible, then let the
+   * jump land. Delegated + idempotent (wired once per document); harmless on
+   * chapters whose References is not (yet) a <details>.
+   * ------------------------------------------------------------------------ */
+  function setupRefsAutoExpand(doc) {
+    doc = doc || document;
+    if (doc.__ccRefsExpandWired) return;
+    doc.__ccRefsExpandWired = true;
+    doc.addEventListener('click', function (e) {
+      var a = (e.target && e.target.closest) ? e.target.closest('a[href^="#ref"]') : null;
+      if (!a) return;
+      var t = doc.getElementById(a.getAttribute('href').slice(1));
+      if (!t) return;
+      var det = t.closest ? t.closest('details') : null;
+      if (det && !det.open) {
+        det.open = true;
+        setTimeout(function () { try { t.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e2) {} }, 0);
+      }
+    }, false);
+  }
+
+  /* --------------------------------------------------------------------------
    * 7. applyDepth(mode, doc)  —  THE ORCHESTRATOR  (port of MRV applyDensity @2773)
    * Order matters and matches MRV exactly:
    *   1. normalize + persist depth
@@ -541,6 +564,7 @@
     ccAutoNumber(doc);     // 3
     var citeInfo = ccAutoCitations(doc); // 4
     ccAutoCaptions(doc);                 // 5  (figure/interactive caption numbering)
+    setupRefsAutoExpand(doc);            // 6  (in-text cite click -> open References details)
     return citeInfo;
   }
 
