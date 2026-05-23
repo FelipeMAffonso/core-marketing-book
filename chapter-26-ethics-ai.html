@@ -762,8 +762,8 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p>This chapter walks the checklist across eight sections. Section 26.2 covers the three privacy regimes, 26.3 the twelve dark patterns that steal consent at the interface, and 26.4 the AI-fairness machinery that audits the vendor. Section 26.5 builds the human-fallback architecture the Klarna case names, four brand applications then show ethics wired into ownership, business model, technology stack, and audience, and the chapter closes on six failure modes from the enforcement record.</p>
 
 <figure id="fig-process" class="sketch" style="margin: 36px 0 28px 0;">
-  <div class="mount" id="process-mount" aria-hidden="true" data-w="720" data-h="320">
-    <svg id="process-svg" viewBox="0 0 720 320" role="img" aria-labelledby="proct" xmlns="http://www.w3.org/2000/svg">
+  <div class="mount" id="process-mount" aria-hidden="true" data-w="720" data-h="332">
+    <svg id="process-svg" viewBox="0 0 720 332" role="img" aria-labelledby="proct" xmlns="http://www.w3.org/2000/svg">
       <title id="proct">The eight-section spine of the chapter, from why-ethics-is-structural through to the human-fallback architecture and looking ahead.</title>
     </svg>
   </div>
@@ -858,11 +858,11 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
       <text x="540" y="162" text-anchor="middle" fill="#B8553A" font-size="10">in force Feb 2025</text>
       <line x1="540" y1="166" x2="540" y2="195" stroke="#DA7756" stroke-width="1.2" stroke-dasharray="3,3"/>
       <circle cx="640" cy="200" r="5" fill="#B8553A"/>
-      <text x="652" y="180" text-anchor="start" fill="#1a1a1a" font-size="11" font-weight="700">Article 50</text>
-      <text x="652" y="192" text-anchor="start" fill="#B8553A" font-size="10">Aug 2, 2026</text>
-      <text x="640" y="160" text-anchor="middle" fill="#888" font-size="10">disclosure</text>
-      <text x="640" y="172" text-anchor="middle" fill="#888" font-size="10">obligations</text>
-      <line x1="640" y1="176" x2="640" y2="195" stroke="#B8553A" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <text x="640" y="106" text-anchor="middle" fill="#888" font-size="10">disclosure</text>
+      <text x="640" y="120" text-anchor="middle" fill="#888" font-size="10">obligations</text>
+      <text x="640" y="146" text-anchor="middle" fill="#1a1a1a" font-size="11" font-weight="700">Article 50</text>
+      <text x="640" y="162" text-anchor="middle" fill="#B8553A" font-size="10">Aug 2, 2026</text>
+      <line x1="640" y1="166" x2="640" y2="195" stroke="#B8553A" stroke-width="1.2" stroke-dasharray="3,3"/>
     </g>
   </svg>
   <figcaption><span class="fnum">Figure 26.1</span> The eight-year regulatory arc from GDPR (May 2018) to EU AI Act Article 50 (August 2026). The two largest commercial-marketing GDPR fines, Amazon (€746M, 2021) and Meta (€1.2B, 2023), are inscribed. 2024-2025 adds Article 5 and FTC Operation AI Comply under Section 5(a).</figcaption>
@@ -987,7 +987,7 @@ Classify each as AI-WATERMARKED, AI-PARAPHRASED (signature degraded), or HUMAN. 
 <p>In the US, FTC Section 5(a) prohibits "unfair or deceptive acts or practices in or affecting commerce," and the December 2023 Rite Aid settlement is the marker case. The FTC found the company ran facial recognition 2012-2020 without auditing differential outcomes, false positives ran higher in plurality-Black and plurality-Asian communities, and the consent order imposed a five-year ban.<sup class="cite" data-cite="ref-5"></sup> Rite Aid sits inside a record of <span id="anno-ftc-200">more than 200 Section 5 cases since 2000</span>, with Operation AI Comply (September 2024) running five concurrent cases, and state AGs now run in parallel under analogs like the <span class="term" data-tt="The Texas Deceptive Trade Practices Act (DTPA), codified at Tex. Bus. &amp; Com. Code Section 17.41 et seq., is the Texas state analog to FTC Section 5(a) and reaches the same kinds of unfair or deceptive marketing practices the federal statute does. The Texas remedy is unusually strong: the statute permits treble damages on top of per-violation civil penalties, and it gives both the state Attorney General and private plaintiffs a right of action, which means a brand making a deceptive marketing claim in Texas can face the AG, a consumer class action, and the FTC against the same conduct.">Texas DTPA</span> (Section 26.7 walks two cases under it).<sup class="cite" data-cite="ref-25"></sup><sup class="cite" data-cite="ref-26"></sup></p>
 
 <figure class="sketch" aria-label="Rite Aid's five year facial recognition ban diagram with deployment to enforcement timeline">
-  <div class="mount" id="sk-rite-aid-fine-mount" data-w="660" data-h="220"></div>
+  <div class="mount" id="sk-rite-aid-fine-mount" data-w="660" data-h="246"></div>
   <figcaption>Rite Aid's facial-recognition ran 2012-2020 without a bias audit. The 2023 FTC settlement imposed a five-year ban, the first major US retailer barred by federal order. Across all five Operation AI Comply cases: AI marketing claims face the same Section 5(a) substantiation standard as any other claim.</figcaption>
 </figure>
 
@@ -1005,7 +1005,7 @@ Classify each as AI-WATERMARKED, AI-PARAPHRASED (signature degraded), or HUMAN. 
 </figure>
 
 <figure class="sketch" aria-label="Sweeney 87 percent re-identification figure showing how three quasi-identifiers collapse anonymity">
-  <div class="mount" id="sk-sweeney-reid-mount" data-w="720" data-h="320"></div>
+  <div class="mount" id="sk-sweeney-reid-mount" data-w="720" data-h="340"></div>
   <figcaption>Three columns marketers think of as innocuous: a 5-digit ZIP, a gender flag, a date of birth. Their joint cardinality is roughly 41,683 ZCTAs &times; 2 &times; 36,500 birthdays &asymp; 3.04 billion cells against a 333M US population. At 87.1 percent of cells with one or zero people, three quasi-identifiers in a CDP are not anonymized data; they are personal data under GDPR Article 4(1) and CJEU <em>Breyer</em>. The vendor's "no PII" claim does not change the math.</figcaption>
 </figure>
 
@@ -1203,7 +1203,7 @@ Policy text follows:
 <p>Bud Light 2023 is the brand-activism cautionary case. After April's Mulvaney promotion, May sales fell 25 percent, the brand lost <span id="anno-bud">$27 billion in market capitalization</span>, and Modelo Especial became America's best-selling beer for the first time in 20+ years.<sup class="cite" data-cite="ref-4"></sup> The failure was launching the position without a coalition audit, a qualitative pass with both audiences that would have caught the fragility.</p>
 
 <figure class="sketch" aria-label="Bud Light 2023 sales drop and market cap loss timeline">
-  <div class="mount" id="sk-bud-light-mount" data-w="700" data-h="260"></div>
+  <div class="mount" id="sk-bud-light-mount" data-w="700" data-h="274"></div>
   <figcaption>Bud Light 2023: April Mulvaney promotion, May sales collapse, Modelo crossover. The position was defensible; the failure was launching it without coalition-building or fallback messaging.</figcaption>
 </figure>
 
@@ -1326,7 +1326,7 @@ Surface description follows: &lt;paste flow&gt;</pre>
 <p>The other foundational artifact is the constitution. Anthropic's <span class="term" data-tt="Constitutional AI is a training framework Anthropic published in December 2022 (Bai et al.) that aims to produce a 'helpful, honest, harmless' assistant by combining two ingredients: a written constitution describing what the model should and should not do (for example, refusing to help plan violence, declining to deceive the user) and an AI-generated feedback loop where the model critiques its own responses against that constitution. The published constitution becomes a procurement artifact because a brand can audit it before signing, in a way the brand cannot audit a hidden training objective.">Constitutional AI</span> trains an assistant via a written constitution plus AI-generated feedback (RLAIF), making the training objective auditable: a model trained against "do not deceive" carries documented commitments the brand can enforce.<sup class="cite" data-cite="ref-45"></sup> The public <span class="term" data-tt="The Anthropic Constitution is the public, dated, versioned document describing the instructions and character traits Claude is trained against. It was released in early 2026 and runs roughly twice the length of the earlier internal Soul Document. In the 2026 procurement stack, the Constitution is the third procurement-auditable document alongside the model card (what the lab measured the model on) and the Responsible Scaling Policy (what the lab has committed not to deploy), and brands can read it before signing a vendor contract to check that the trained behavior matches what the brand intends to deploy.">Anthropic Constitution</span> (January 22, 2026) and OpenAI's <span class="term" data-tt="The Model Spec is OpenAI's published instruction set describing how ChatGPT and the company's API models are supposed to behave. The document was first released on May 8, 2024 and has been revised through 2025-2026 as the company updates which behaviors are mandatory, default, or available. It is OpenAI's parallel to the Anthropic Constitution: a procurement-auditable document describing what the lab optimized the model to do, which a brand can read before signing a vendor contract.">Model Spec</span> (May 8, 2024) are the parallel artifacts at the two frontier labs. The 2026 procurement stack is three documents: model card (what was measured), constitution (what was optimized for), and RSP (what will not be deployed), all three on request auditable, one or none a procurement risk.<sup class="cite" data-cite="ref-45"></sup><sup class="cite" data-cite="ref-46"></sup><sup class="cite" data-cite="ref-47"></sup></p>
 
 <figure class="sketch" aria-label="Constitutional AI two-phase training diagram showing supervised self-critique and RLAIF preference modeling">
-  <div class="mount" id="sk-constitutional-ai-mount" data-w="700" data-h="240"></div>
+  <div class="mount" id="sk-constitutional-ai-mount" data-w="700" data-h="252"></div>
   <figcaption>Constitutional AI, two phases. Phase 1: model generates responses, critiques them against the constitution, fine-tunes on revisions. Phase 2: model evaluates response pairs and trains a preference model (RLAIF).</figcaption>
 </figure>
 
@@ -1343,7 +1343,7 @@ Surface description follows: &lt;paste flow&gt;</pre>
 <p>What does a brand monitor in production to catch these failure modes early? Chen et al. (Anthropic, July 2025) gave deployers the first upstream monitoring primitive, the <strong>persona vector</strong>, a "sycophancy direction" in the model's internal numbers the brand can monitor on every production response to catch drift before satisfaction scores do, steer away from at inference time, or screen training data against.<sup class="cite" data-cite="ref-57"></sup> The companion <span class="term" data-tt="Subliminal learning is the failure mode that Cloud and colleagues documented at Anthropic in July 2025, where a model trained on data generated by another model picks up traits of the generator that are nowhere stated in the data itself. The clearest experiment took a teacher model that secretly preferred owls and asked it to generate number sequences with no semantic content (no animals, no preferences, just digits). A student model fine-tuned only on those number sequences then exhibited the owl preference, even though no owl was ever mentioned anywhere in the training data. The finding generalizes to any trait the teacher carries, which means a brand fine-tuning its model on synthetic data generated by an externally aligned base model inherits the generator's alignment along channels the brand cannot see in the prompts.">subliminal learning</span> result (Cloud et al., July 2025) adds that a brand fine-tuning on a base model's synthetic outputs inherits the generator's alignment however clean the prompts look.</p>
 
 <figure class="sketch" aria-label="Alignment failure mode matrix showing seven 2023-2025 failure modes by gamed signal and procurement implication">
-  <div class="mount" id="sk-alignment-failures-mount" data-w="720" data-h="360"></div>
+  <div class="mount" id="sk-alignment-failures-mount" data-w="720" data-h="470"></div>
   <figcaption>The 2023-2025 alignment-failure record, organized by gamed signal. Sycophancy games user approval; sleeper agents survive standard safety training on a hidden trigger; alignment faking comply during evaluation while reasoning differently in deployment; emergent misalignment generalizes from a narrow malicious fine-tune; agentic misalignment chooses harmful insider actions under replacement threat; in-context scheming sustains deception across adversarial follow-up turns. Klarna 2024 is the deployment-metric instance: resolution-rate and handle-time were the literal specification, CSAT on the cases that mattered was the intent.</figcaption>
 </figure>
 
@@ -1411,7 +1411,7 @@ audits, RFI responses&gt;</pre>
 <p>This section walks the routing rule that, for each automated output, decides whether it ships to the customer or escalates to a human first, the load-bearing principle of the chapter, and the Klarna case shows why. The dashboards confirming the 2022-2024 replacement tracked the metrics an automated path moves cleanly (resolution rate, handle time, tickets per hour) but not <span class="term" data-tt="CSAT is the Customer Satisfaction Score, a short post-interaction survey, usually one question scored 1 to 5 or 1 to 10, asking the customer how satisfied they were with the interaction that just completed. CSAT is distinct from NPS in scope: CSAT measures the specific touchpoint the customer just experienced (this call, this chat session, this checkout flow), while NPS measures the broader relationship across multiple touchpoints. A brand running a CSAT-only dashboard can miss relationship deterioration that shows up only at NPS scale.">CSAT</span> or <span class="term" data-tt="NPS is the Net Promoter Score, introduced by Frederick Reichheld in 2003 and now the dominant measure of brand-relationship quality in consumer industries. The instrument is a single question scored 0 to 10: 'How likely are you to recommend this brand to a friend or colleague?' Responses are bucketed into promoters (9 or 10), passives (7 or 8), and detractors (0 through 6), and the NPS is computed as the percentage of promoters minus the percentage of detractors, which can run from -100 to +100. Because NPS asks about the broader brand relationship rather than the most recent touchpoint, it surfaces deterioration that single-interaction CSAT scores miss, which is why the Section 26.5 parallel-track architecture instruments both.">NPS</span> on the complex disputes and emotionally charged escalations it was failing. The parallel-track instrumentation this section describes would have surfaced the deterioration before the rehire, so the architecture is mandatory before any AI customer-facing deployment, not optional after one.<sup class="cite" data-cite="ref-1"></sup></p>
 
 <figure class="sketch" aria-label="Klarna 2024 reversal showing replacement followed by rebuild after CSAT deterioration">
-  <div class="mount" id="sk-klarna-reversal-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-klarna-reversal-mount" data-w="720" data-h="292"></div>
   <figcaption>Klarna's three-act trajectory: 2022-2024 replacement (700 positions cut, AI handles 2.3M conversations/month), 2025 reversal (CSAT data forces rebuild), 2026 hybrid (AI on routine, human on escalations). Act three built the parallel-track CSAT/NPS instrumentation missing in act one.</figcaption>
 </figure>
 
@@ -1577,8 +1577,8 @@ Output:
 <p>The four checklists in the weekly scan are the floor. A brand in healthcare, financial services, alcohol, gambling, children's marketing, or cannabis answers to a vertical-specific regime on top that rewrites which claims, channels, and audiences are even available, so the weekly scan needs a sixth checklist when the brand sits in any of them.<sup class="cite" data-cite="ref-67"></sup></p>
 
 <figure class="sketch" aria-label="Heatmap of which marketing platforms each regulated vertical can use">
-  <div class="mount" id="sk-regulated-marketing-matrix-mount" aria-hidden="true" data-w="720" data-h="340">
-    <svg id="sk-regulated-marketing-matrix-svg" viewBox="0 0 720 340" role="img" aria-labelledby="rmmt" xmlns="http://www.w3.org/2000/svg">
+  <div class="mount" id="sk-regulated-marketing-matrix-mount" aria-hidden="true" data-w="720" data-h="384">
+    <svg id="sk-regulated-marketing-matrix-svg" viewBox="0 0 720 384" role="img" aria-labelledby="rmmt" xmlns="http://www.w3.org/2000/svg">
       <title id="rmmt">A six-by-four heatmap showing which marketing platforms (Meta/Google search, TikTok/Reels, programmatic display, email/SMS) are allowed, restricted, or banned for each of six regulated verticals.</title>
     </svg>
   </div>
@@ -2130,46 +2130,56 @@ Output:
       const r = rc.rectangle(s.x - 45, 56, 90, 76, { stroke: CORAL, strokeWidth: 1.6, fill: i === 4 ? CORAL_SOFT : '#fff7f0', fillStyle: 'solid', roughness: 1.3 });
       svg.appendChild(r);
       txt(svg, s.x, 48, '0' + (i+1), { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 700 });
-      txt(svg, s.x, 86, s.label, { weight: 700, anchor: 'middle', fill: INK, size: 11 });
-      txt(svg, s.x, 106, s.sub, { anchor: 'middle', fill: INK2, size: 10 });
+      txt(svg, s.x, 88, s.label, { weight: 700, anchor: 'middle', fill: INK, size: 11 });
+      txt(svg, s.x, 108, s.sub, { anchor: 'middle', fill: INK2, size: 9 });
       if (i < stages.length - 1) {
         svg.appendChild(rc.line(s.x + 45, 94, stages[i+1].x - 47, 94, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.5 }));
         svg.appendChild(rc.polygon([[stages[i+1].x - 47, 94], [stages[i+1].x - 54, 90], [stages[i+1].x - 54, 98]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
       }
     });
-    svg.appendChild(rc.line(480, 136, 480, 162, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.5 }));
+    svg.appendChild(rc.line(480, 134, 480, 156, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.4 }));
     txt(svg, 480, 178, 'load-bearing', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700 });
     txt(svg, 480, 198, 'principle of the chapter', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true });
-    svg.appendChild(rc.rectangle(40, 232, 620, 64, { stroke: CORAL, strokeWidth: 1.6, fill: '#fcfaf6', fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 350, 254, 'Every AI deployment needs a measured human-fallback path before launch.', { anchor: 'middle', fill: INK, size: 13, weight: 700 });
-    txt(svg, 350, 280, 'The brands that survived 2024-2026 instrumented both paths in parallel.', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    svg.appendChild(rc.rectangle(36, 230, 648, 90, { stroke: CORAL, strokeWidth: 1.6, fill: '#fcfaf6', fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 360, 262, 'Every AI deployment needs a measured human-fallback path before launch.', { anchor: 'middle', fill: INK, size: 10.5, weight: 700 });
+    txt(svg, 360, 294, 'The brands that survived 2024-2026 instrumented both paths in parallel.', { anchor: 'middle', fill: INK2, size: 10, hand: true });
   };
 
-  /* Triple bottom line + provenance */
+  /* Triple bottom line + provenance. Central hub circle enlarged; leader lines stop at the
+     hub perimeter (not the center) so they never cross BRAND/DECISION; axis boxes taller so
+     each sub-label has >5x area margin. */
   sketches['sk-triple-bottom-line-mount'] = function(svg) {
     const rc = makeRc(svg);
     txt(svg, 330, 22, 'a 2026 marketing decision is accountable on four axes', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-    svg.appendChild(rc.circle(330, 145, 70, { stroke: CORAL, strokeWidth: 2, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
-    txt(svg, 330, 142, 'BRAND', { anchor: 'middle', fill: CORAL_DEEP, size: 13, weight: 700 });
-    txt(svg, 330, 158, 'DECISION', { anchor: 'middle', fill: CORAL_DEEP, size: 13, weight: 700 });
+    const HX = 330, HY = 145, HR = 74;
+    svg.appendChild(rc.circle(HX, HY, HR * 2, { stroke: CORAL, strokeWidth: 2, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
+    txt(svg, HX, HY - 6, 'BRAND', { anchor: 'middle', fill: CORAL_DEEP, size: 13, weight: 700 });
+    txt(svg, HX, HY + 16, 'DECISION', { anchor: 'middle', fill: CORAL_DEEP, size: 13, weight: 700 });
     const axes = [
-      { x: 110, y: 80,  label: 'PEOPLE',     sub: 'workplace, communities', a: '01', kotler: true },
-      { x: 540, y: 80,  label: 'PLANET',     sub: 'sustainability, supply', a: '02', kotler: true },
-      { x: 110, y: 210, label: 'PROFIT',     sub: 'margin, growth, return', a: '03', kotler: true },
-      { x: 540, y: 210, label: 'PROVENANCE', sub: 'deception, audit, consent', a: '04', kotler: false }
+      { x: 110, y: 76,  label: 'PEOPLE',     sub: 'workplace, communities', a: '01', kotler: true },
+      { x: 540, y: 76,  label: 'PLANET',     sub: 'sustainability, supply', a: '02', kotler: true },
+      { x: 110, y: 198, label: 'PROFIT',     sub: 'margin, growth, return', a: '03', kotler: true },
+      { x: 540, y: 198, label: 'PROVENANCE', sub: 'deception, audit, consent', a: '04', kotler: false }
     ];
     axes.forEach(a => {
       const isLong = a.label.length > 7;
-      const boxW = isLong ? 170 : 150;
+      const boxW = isLong ? 176 : 152;
       const halfW = boxW / 2;
-      const targetX = a.x < 330 ? 270 : 390;
-      svg.appendChild(rc.line(a.x < 330 ? a.x + halfW : a.x - halfW, a.y + 25, targetX, 145, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.5 }));
-      svg.appendChild(rc.rectangle(a.x - halfW, a.y - 10, boxW, 60, { stroke: a.kotler ? CORAL : CORAL_DEEP, strokeWidth: 1.6, fill: a.kotler ? '#fff' : '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
-      const labelSize = isLong ? 10 : 12;
-      txt(svg, a.x + (isLong ? 14 : 0), a.y + 8, a.label, { weight: 700, anchor: 'middle', fill: INK, size: labelSize });
-      txt(svg, a.x, a.y + 28, a.sub, { anchor: 'middle', fill: INK2, size: 10 });
-      if (!a.kotler) txt(svg, a.x, a.y + 42, '(NEW since 2024)', { anchor: 'middle', fill: CORAL_DEEP, size: 9, hand: true, weight: 700 });
-      txt(svg, a.x - halfW + 12, a.y + 4, a.a, { fill: CORAL_DEEP, size: 9, weight: 700 });
+      const boxH = 72;
+      const cy = a.y + boxH / 2 - 10;            // box vertical center
+      /* Leader from box inner corner toward hub, ENDING ~16px outside the hub edge */
+      const sx = a.x < HX ? a.x + halfW : a.x - halfW;
+      const sy = cy;
+      const ang = Math.atan2(HY - sy, HX - sx);
+      const ex = HX - Math.cos(ang) * (HR + 14);
+      const ey = HY - Math.sin(ang) * (HR + 14);
+      svg.appendChild(rc.line(sx, sy, ex, ey, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.4 }));
+      svg.appendChild(rc.rectangle(a.x - halfW, a.y - 10, boxW, boxH, { stroke: a.kotler ? CORAL : CORAL_DEEP, strokeWidth: 1.6, fill: a.kotler ? '#fff' : '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
+      const labelSize = isLong ? 11 : 12;
+      txt(svg, a.x + (isLong ? 12 : 0), a.y + 14, a.label, { weight: 700, anchor: 'middle', fill: INK, size: labelSize });
+      txt(svg, a.x, a.y + 36, a.sub, { anchor: 'middle', fill: INK2, size: 9 });
+      if (!a.kotler) txt(svg, a.x, a.y + 54, '(NEW since 2024)', { anchor: 'middle', fill: CORAL_DEEP, size: 9, hand: true, weight: 700 });
+      txt(svg, a.x - halfW + 12, a.y + 6, a.a, { fill: CORAL_DEEP, size: 9, weight: 700 });
     });
   };
 
@@ -2191,8 +2201,8 @@ Output:
     });
     svg.appendChild(rc.line(595, 38, 595, 200, { stroke: CORAL_DEEP, strokeWidth: 1.4, strokeLineDash: [3,3], roughness: 1.4 }));
     txt(svg, 605, 50, 'all-time', { fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
-    txt(svg, 605, 64, 'GDPR', { fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
-    txt(svg, 605, 78, 'record', { fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+    txt(svg, 605, 70, 'GDPR', { fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+    txt(svg, 605, 90, 'record', { fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
     txt(svg, 330, 200, 'Meta 2023: marketing-data flow violation post Schrems II', { anchor: 'middle', fill: INK2, size: 11, hand: true });
   };
 
@@ -2275,15 +2285,15 @@ Output:
     ];
     events.forEach(e => {
       svg.appendChild(rc.circle(e.x, 110, 10, { stroke: e.color, strokeWidth: 1.6, fill: e.color, fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, e.x, e.y - 4, e.label, { anchor: 'middle', fill: e.color, size: 11, weight: 700 });
-      txt(svg, e.x, e.y + 12, e.sub, { anchor: 'middle', fill: INK2, size: 10 });
+      txt(svg, e.x, e.y - 8, e.label, { anchor: 'middle', fill: e.color, size: 11, weight: 700 });
+      txt(svg, e.x, e.y + 13, e.sub, { anchor: 'middle', fill: INK2, size: 10 });
     });
-    txt(svg, 220, 145, 'audit never run', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700, halo: true });
-    txt(svg, 220, 162, 'differential outcomes by demographic', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, halo: true });
-    svg.appendChild(rc.line(220, 130, 220, 110, { stroke: CORAL_DEEP, strokeWidth: 1.2, roughness: 1.5 }));
-    svg.appendChild(rc.rectangle(360, 175, 280, 36, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 500, 191, 'first major US retailer banned from FR', { anchor: 'middle', fill: INK, size: 11, weight: 700 });
-    txt(svg, 500, 205, 'by federal order', { anchor: 'middle', fill: INK, size: 11, weight: 700 });
+    txt(svg, 220, 148, 'audit never run', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true, weight: 700, halo: true });
+    txt(svg, 220, 169, 'differential outcomes by demographic', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, halo: true });
+    svg.appendChild(rc.line(220, 128, 220, 110, { stroke: CORAL_DEEP, strokeWidth: 1.2, roughness: 1.5 }));
+    svg.appendChild(rc.rectangle(348, 171, 304, 62, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 500, 194, 'first major US retailer banned from FR', { anchor: 'middle', fill: INK, size: 9, weight: 700 });
+    txt(svg, 500, 216, 'by federal order', { anchor: 'middle', fill: INK, size: 9, weight: 700 });
   };
 
   /* Klarna reversal three-act */
@@ -2296,42 +2306,42 @@ Output:
       { x: 600, top: 'ACT 3', mid: 'hybrid model', sub: 'AI + human fallback', date: '2026', color: CORAL, fail: 'parallel-track instrumentation' }
     ];
     acts.forEach((a, i) => {
-      svg.appendChild(rc.rectangle(a.x - 90, 50, 180, 110, { stroke: a.color, strokeWidth: 1.6, fill: i === 2 ? '#fff7f0' : '#fff', fillStyle: 'solid', roughness: 1.4 }));
+      svg.appendChild(rc.rectangle(a.x - 90, 50, 180, 130, { stroke: a.color, strokeWidth: 1.6, fill: i === 2 ? '#fff7f0' : '#fff', fillStyle: 'solid', roughness: 1.4 }));
       txt(svg, a.x, 70, a.top, { anchor: 'middle', fill: a.color, size: 10, weight: 700 });
-      txt(svg, a.x, 92, a.mid, { anchor: 'middle', fill: INK, size: 13, weight: 700 });
-      txt(svg, a.x, 110, a.sub, { anchor: 'middle', fill: INK2, size: 11 });
-      txt(svg, a.x, 130, a.date, { anchor: 'middle', fill: a.color, size: 11, hand: true, weight: 700 });
-      txt(svg, a.x, 150, a.fail, { anchor: 'middle', fill: INK2, size: 10, hand: true });
+      txt(svg, a.x, 94, a.mid, { anchor: 'middle', fill: INK, size: 13, weight: 700 });
+      txt(svg, a.x, 116, a.sub, { anchor: 'middle', fill: INK2, size: 10.5 });
+      txt(svg, a.x, 138, a.date, { anchor: 'middle', fill: a.color, size: 11, hand: true, weight: 700 });
+      txt(svg, a.x, 160, a.fail, { anchor: 'middle', fill: INK2, size: 9.5, hand: true });
       if (i < 2) {
-        svg.appendChild(rc.line(a.x + 90, 105, acts[i+1].x - 92, 105, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.5 }));
-        svg.appendChild(rc.polygon([[acts[i+1].x - 92, 105], [acts[i+1].x - 100, 100], [acts[i+1].x - 100, 110]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
+        svg.appendChild(rc.line(a.x + 90, 112, acts[i+1].x - 92, 112, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.5 }));
+        svg.appendChild(rc.polygon([[acts[i+1].x - 92, 112], [acts[i+1].x - 100, 107], [acts[i+1].x - 100, 117]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
       }
     });
-    txt(svg, 360, 215, 'the missing piece in act 1 was the parallel-track CSAT/NPS instrumentation', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true });
-    txt(svg, 360, 232, 'the lesson the chapter teaches: build it before launch, not after the rehire', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-    svg.appendChild(rc.line(40, 250, 680, 250, { stroke: CORAL, strokeWidth: 1.4, strokeLineDash: [3,3], roughness: 1.4 }));
-    txt(svg, 360, 268, '700 jobs cut → 700 rehired. AI assistant scaled but failed CSAT on disputes/escalations.', { anchor: 'middle', fill: INK2, size: 10, hand: true });
+    txt(svg, 360, 222, 'the missing piece in act 1 was the parallel-track CSAT/NPS instrumentation', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true });
+    txt(svg, 360, 242, 'the lesson the chapter teaches: build it before launch, not after the rehire', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    svg.appendChild(rc.line(40, 260, 680, 260, { stroke: CORAL, strokeWidth: 1.4, strokeLineDash: [3,3], roughness: 1.4 }));
+    txt(svg, 360, 278, '700 jobs cut → 700 rehired. AI assistant scaled but failed CSAT on disputes/escalations.', { anchor: 'middle', fill: INK2, size: 10, hand: true });
   };
 
   /* Amazon Just Walk Out hidden human workforce */
   sketches['sk-amazon-walkout-mount'] = function(svg) {
     const rc = makeRc(svg);
     txt(svg, 350, 22, "the marketing claim vs. the operational reality", { anchor: 'middle', fill: INK, size: 12, weight: 700 });
-    svg.appendChild(rc.rectangle(40, 50, 280, 110, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 180, 75, 'PUBLIC CLAIM (2018-2024)', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-    txt(svg, 180, 102, '"AI watches the customer,', { anchor: 'middle', fill: INK, size: 12, hand: true });
-    txt(svg, 180, 120, 'computes the bill in real time"', { anchor: 'middle', fill: INK, size: 12, hand: true });
-    txt(svg, 180, 145, 'pure-AI cashier-less stores', { anchor: 'middle', fill: INK2, size: 10 });
-    svg.appendChild(rc.rectangle(380, 50, 280, 110, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 520, 75, 'OPERATIONAL REALITY (Apr 2024)', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-    txt(svg, 520, 102, '~1,000 reviewers in India', { anchor: 'middle', fill: INK, size: 12, hand: true });
-    txt(svg, 520, 120, 'watching video on every transaction', { anchor: 'middle', fill: INK, size: 11, hand: true });
-    txt(svg, 520, 145, '700 / 1,000 needed manual review', { anchor: 'middle', fill: CORAL_DEEP, size: 10, hand: true, weight: 700 });
-    svg.appendChild(rc.line(320, 105, 380, 105, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.6 }));
-    svg.appendChild(rc.polygon([[380, 105], [372, 100], [372, 110]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 350, 95, 'disclosure', { anchor: 'middle', fill: CORAL_DEEP, size: 10, hand: true });
+    svg.appendChild(rc.rectangle(40, 48, 280, 116, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 180, 74, 'PUBLIC CLAIM (2018-2024)', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
+    txt(svg, 180, 100, '"AI watches the customer,', { anchor: 'middle', fill: INK, size: 11.5, hand: true });
+    txt(svg, 180, 122, 'computes the bill in real time"', { anchor: 'middle', fill: INK, size: 11.5, hand: true });
+    txt(svg, 180, 150, 'pure-AI cashier-less stores', { anchor: 'middle', fill: INK2, size: 10 });
+    svg.appendChild(rc.rectangle(380, 48, 280, 116, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 520, 74, 'OPERATIONAL REALITY (Apr 2024)', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
+    txt(svg, 520, 100, '~1,000 reviewers in India', { anchor: 'middle', fill: INK, size: 11.5, hand: true });
+    txt(svg, 520, 122, 'watching video on every transaction', { anchor: 'middle', fill: INK, size: 10.5, hand: true });
+    txt(svg, 520, 150, '700 / 1,000 needed manual review', { anchor: 'middle', fill: CORAL_DEEP, size: 10, hand: true, weight: 700 });
+    svg.appendChild(rc.line(320, 106, 380, 106, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.6 }));
+    svg.appendChild(rc.polygon([[380, 106], [372, 101], [372, 111]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 350, 90, 'disclosure', { anchor: 'middle', fill: CORAL_DEEP, size: 10, hand: true });
     txt(svg, 350, 200, 'the lesson: AI claims that depend on a hidden human workforce', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-    txt(svg, 350, 218, 'do not survive disclosure. Amazon ended Just Walk Out in Fresh stores within weeks.', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    txt(svg, 350, 220, 'do not survive disclosure. Amazon ended Just Walk Out in Fresh stores within weeks.', { anchor: 'middle', fill: INK2, size: 11, hand: true });
   };
 
   /* Hermann-Puntoni 2x3 AI deployment aversion grid */
@@ -2390,14 +2400,14 @@ Output:
     ];
     bars.forEach(b => {
       svg.appendChild(rc.rectangle(b.x - 35, 170 - b.h, 70, b.h, { stroke: b.color, strokeWidth: 1.4, fill: b.color, fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, b.x, 170 - b.h - 6, b.val + '%', { anchor: 'middle', fill: INK, size: 11, weight: 700 });
-      txt(svg, b.x, 184, b.label, { anchor: 'middle', fill: INK, size: 11, weight: 600 });
-      txt(svg, b.x, 198, b.sub, { anchor: 'middle', fill: INK2, size: 10 });
+      txt(svg, b.x, 170 - b.h - 8, b.val + '%', { anchor: 'middle', fill: INK, size: 11, weight: 700 });
+      txt(svg, b.x, 186, b.label, { anchor: 'middle', fill: INK, size: 11, weight: 600 });
+      txt(svg, b.x, 204, b.sub, { anchor: 'middle', fill: INK2, size: 9.5 });
     });
-    svg.appendChild(rc.line(280, 170, 280, 44, { stroke: INK3, strokeWidth: 1, strokeLineDash: [4,4], roughness: 1.3 }));
+    svg.appendChild(rc.line(280, 170, 280, 42, { stroke: INK3, strokeWidth: 1, strokeLineDash: [4,4], roughness: 1.3 }));
     txt(svg, 350, 44, 'AI features without CX care', { fill: CORAL_DEEP, size: 12, hand: true, weight: 700, halo: true });
-    txt(svg, 350, 60, 'NotebookLM podcasts; AI genre labels', { fill: INK2, size: 10, hand: true, halo: true });
-    txt(svg, 350, 74, '"Pink Pilates Princess"; broken AI math', { fill: INK2, size: 10, hand: true, halo: true });
+    txt(svg, 350, 64, 'NotebookLM podcasts; AI genre labels', { fill: INK2, size: 10, hand: true, halo: true });
+    txt(svg, 350, 84, '"Pink Pilates Princess"; broken AI math', { fill: INK2, size: 10, hand: true, halo: true });
   };
 
   /* Bud Light 2023 sales/cap loss */
@@ -2414,41 +2424,41 @@ Output:
     ];
     events.forEach(e => {
       svg.appendChild(rc.circle(e.x, 150, e.big ? 14 : 10, { stroke: e.color, strokeWidth: 1.6, fill: e.color, fillStyle: 'solid', roughness: 1.4 }));
-      const yDate = e.above ? 70 : 175;
-      const yText = e.above ? 84 : 189;
+      const yDate = e.above ? 66 : 176;
+      const yText = e.above ? 86 : 196;
       txt(svg, e.x, yDate, e.date, { anchor: 'middle', fill: e.color, size: 11, weight: 700 });
       txt(svg, e.x, yText, e.text, { anchor: 'middle', fill: INK, size: 10 });
-      const lineY1 = e.above ? 90 : 162;
+      const lineY1 = e.above ? 92 : 162;
       const lineY2 = e.above ? 142 : 167;
       svg.appendChild(rc.line(e.x, lineY1, e.x, lineY2, { stroke: e.color, strokeWidth: 1.2, strokeLineDash: [2,2], roughness: 1.3 }));
     });
-    svg.appendChild(rc.rectangle(40, 210, 620, 40, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 350, 228, 'lesson: brand activism without a coalition is theater. With one, it is positioning.', { anchor: 'middle', fill: INK, size: 11, weight: 700 });
-    txt(svg, 350, 242, 'a coalition audit before launch would have exposed the fragility on both sides.', { anchor: 'middle', fill: INK2, size: 10, hand: true });
+    svg.appendChild(rc.rectangle(36, 212, 648, 50, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 360, 232, 'lesson: brand activism without a coalition is theater. With one, it is positioning.', { anchor: 'middle', fill: INK, size: 10, weight: 700 });
+    txt(svg, 360, 252, 'a coalition audit before launch would have exposed the fragility on both sides.', { anchor: 'middle', fill: INK2, size: 9.5, hand: true });
   };
 
   /* Cambridge Analytica data flow */
   sketches['sk-cambridge-analytica-mount'] = function(svg) {
     const rc = makeRc(svg);
     txt(svg, 350, 22, 'Cambridge Analytica data flow (2013-2018)', { anchor: 'middle', fill: INK, size: 12, weight: 700 });
-    svg.appendChild(rc.rectangle(40, 50, 140, 70, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 110, 75, '270K', { anchor: 'middle', fill: CORAL_DEEP, size: 18, weight: 800, hand: true });
-    txt(svg, 110, 95, 'quiz installers', { anchor: 'middle', fill: INK, size: 11, weight: 600 });
-    txt(svg, 110, 110, 'gave consent', { anchor: 'middle', fill: INK2, size: 10 });
-    svg.appendChild(rc.rectangle(280, 50, 140, 70, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 350, 75, '87M', { anchor: 'middle', fill: CORAL_DEEP, size: 22, weight: 800, hand: true });
-    txt(svg, 350, 95, 'profiles harvested', { anchor: 'middle', fill: INK, size: 11, weight: 600 });
-    txt(svg, 350, 110, 'via friend network', { anchor: 'middle', fill: INK2, size: 10 });
-    svg.appendChild(rc.rectangle(520, 50, 140, 70, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 590, 75, '2016', { anchor: 'middle', fill: CORAL_DEEP, size: 16, weight: 700 });
-    txt(svg, 590, 92, 'psychographic', { anchor: 'middle', fill: INK, size: 11, weight: 600 });
-    txt(svg, 590, 105, 'political ads', { anchor: 'middle', fill: INK, size: 11, weight: 600 });
-    svg.appendChild(rc.line(180, 85, 280, 85, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.5 }));
-    svg.appendChild(rc.polygon([[280, 85], [272, 80], [272, 90]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
-    svg.appendChild(rc.line(420, 85, 520, 85, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.5 }));
-    svg.appendChild(rc.polygon([[520, 85], [512, 80], [512, 90]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 230, 78, 'Open Graph API', { anchor: 'middle', fill: CORAL_DEEP, size: 10, hand: true });
-    txt(svg, 470, 78, 'repurposed', { anchor: 'middle', fill: CORAL_DEEP, size: 10, hand: true });
+    svg.appendChild(rc.rectangle(40, 48, 140, 84, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 110, 74, '270K', { anchor: 'middle', fill: CORAL_DEEP, size: 17, weight: 800, hand: true });
+    txt(svg, 110, 98, 'quiz installers', { anchor: 'middle', fill: INK, size: 10.5, weight: 600 });
+    txt(svg, 110, 120, 'gave consent', { anchor: 'middle', fill: INK2, size: 10 });
+    svg.appendChild(rc.rectangle(280, 48, 140, 84, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 350, 74, '87M', { anchor: 'middle', fill: CORAL_DEEP, size: 20, weight: 800, hand: true });
+    txt(svg, 350, 98, 'profiles harvested', { anchor: 'middle', fill: INK, size: 10.5, weight: 600 });
+    txt(svg, 350, 120, 'via friend network', { anchor: 'middle', fill: INK2, size: 10 });
+    svg.appendChild(rc.rectangle(520, 48, 140, 84, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 590, 74, '2016', { anchor: 'middle', fill: CORAL_DEEP, size: 15, weight: 700 });
+    txt(svg, 590, 98, 'psychographic', { anchor: 'middle', fill: INK, size: 10.5, weight: 600 });
+    txt(svg, 590, 120, 'political ads', { anchor: 'middle', fill: INK, size: 10.5, weight: 600 });
+    svg.appendChild(rc.line(180, 88, 280, 88, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.5 }));
+    svg.appendChild(rc.polygon([[280, 88], [272, 83], [272, 93]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
+    svg.appendChild(rc.line(420, 88, 520, 88, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.5 }));
+    svg.appendChild(rc.polygon([[520, 88], [512, 83], [512, 93]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 230, 74, 'Open Graph API', { anchor: 'middle', fill: CORAL_DEEP, size: 9.5, hand: true });
+    txt(svg, 470, 74, 'repurposed', { anchor: 'middle', fill: CORAL_DEEP, size: 9.5, hand: true });
     txt(svg, 350, 160, 'lesson: data collected under marketing-API terms can travel outside the marketing function', { anchor: 'middle', fill: INK2, size: 11, hand: true });
     txt(svg, 350, 178, 'in ways the original consent did not contemplate. GDPR Article 22 is in part the answer.', { anchor: 'middle', fill: INK2, size: 11, hand: true });
     txt(svg, 350, 210, 'disclosure (Mar 2018) → >$100B Facebook market cap loss → GDPR enters force May 2018', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
@@ -2483,23 +2493,23 @@ Output:
   sketches['sk-constitutional-ai-mount'] = function(svg) {
     const rc = makeRc(svg);
     txt(svg, 350, 22, 'Constitutional AI (Bai et al. 2022): two-phase training', { anchor: 'middle', fill: INK, size: 12, weight: 700 });
-    svg.appendChild(rc.rectangle(40, 50, 290, 130, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
+    svg.appendChild(rc.rectangle(40, 50, 290, 156, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
     txt(svg, 185, 70, 'PHASE 1: SUPERVISED', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-    txt(svg, 185, 95, 'model generates response', { anchor: 'middle', fill: INK, size: 11 });
-    txt(svg, 185, 113, '↓', { anchor: 'middle', fill: CORAL, size: 14 });
-    txt(svg, 185, 130, 'self-critiques against constitution', { anchor: 'middle', fill: INK, size: 11 });
-    txt(svg, 185, 148, '↓', { anchor: 'middle', fill: CORAL, size: 14 });
-    txt(svg, 185, 168, 'fine-tunes on revised outputs', { anchor: 'middle', fill: INK, size: 11 });
-    svg.appendChild(rc.rectangle(370, 50, 290, 130, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 185, 94, 'model generates response', { anchor: 'middle', fill: INK, size: 11 });
+    txt(svg, 185, 116, '↓', { anchor: 'middle', fill: CORAL, size: 11 });
+    txt(svg, 185, 140, 'self-critiques against constitution', { anchor: 'middle', fill: INK, size: 11 });
+    txt(svg, 185, 162, '↓', { anchor: 'middle', fill: CORAL, size: 11 });
+    txt(svg, 185, 186, 'fine-tunes on revised outputs', { anchor: 'middle', fill: INK, size: 11 });
+    svg.appendChild(rc.rectangle(370, 50, 290, 156, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
     txt(svg, 515, 70, 'PHASE 2: RLAIF', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-    txt(svg, 515, 95, 'model evaluates response pairs', { anchor: 'middle', fill: INK, size: 11 });
-    txt(svg, 515, 113, '↓', { anchor: 'middle', fill: CORAL, size: 14 });
-    txt(svg, 515, 130, 'trains preference model', { anchor: 'middle', fill: INK, size: 11 });
-    txt(svg, 515, 148, '↓', { anchor: 'middle', fill: CORAL, size: 14 });
-    txt(svg, 515, 168, 'reinforcement learning on synthetic feedback', { anchor: 'middle', fill: INK, size: 11 });
-    svg.appendChild(rc.line(330, 115, 370, 115, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.5 }));
-    svg.appendChild(rc.polygon([[370, 115], [362, 110], [362, 120]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
-    txt(svg, 350, 215, 'the constitution is the public artifact a brand can require its AI vendor to publish.', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+    txt(svg, 515, 94, 'model evaluates response pairs', { anchor: 'middle', fill: INK, size: 11 });
+    txt(svg, 515, 116, '↓', { anchor: 'middle', fill: CORAL, size: 11 });
+    txt(svg, 515, 140, 'trains preference model', { anchor: 'middle', fill: INK, size: 11 });
+    txt(svg, 515, 162, '↓', { anchor: 'middle', fill: CORAL, size: 11 });
+    txt(svg, 515, 186, 'reinforcement learning on synthetic feedback', { anchor: 'middle', fill: INK, size: 10 });
+    svg.appendChild(rc.line(330, 124, 370, 124, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.5 }));
+    svg.appendChild(rc.polygon([[370, 124], [362, 119], [362, 129]], { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.4 }));
+    txt(svg, 350, 232, 'the constitution is the public artifact a brand can require its AI vendor to publish.', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
   };
 
   /* Fallback path routing */
@@ -2621,18 +2631,27 @@ Output:
     txt(svg, 360, 314, 'Procurement claim: name the order of operations (pretraining, MSM, AFT) plus the spec passages used at MSM.', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
   };
 
-  /* Alignment-failure-mode matrix */
+  /* Alignment-failure-mode matrix. Per-cell rects (preserves stroke count) with the long-text
+     columns (signal, procurement) made WIDE and the short failure-mode column narrow, plus
+     tall rows and small cell fonts, so every cell area >= ~5.5x its label area -> ts passes
+     across reseeds with no stroke/text dropped. */
   sketches['sk-alignment-failures-mount'] = function(svg) {
     const rc = makeRc(svg);
     txt(svg, 360, 22, 'Seven alignment failure modes (2023-2025) by gamed signal', { anchor: 'middle', fill: INK, size: 12, weight: 700 });
     txt(svg, 360, 40, 'every mode is a specification-gaming case in a new training paradigm', { anchor: 'middle', fill: INK2, size: 10.5 });
-    /* Header band */
-    svg.appendChild(rc.rectangle(40, 56, 200, 26, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.3 }));
-    txt(svg, 140, 73, 'FAILURE MODE', { anchor: 'middle', fill: CORAL_DEEP, size: 10.5, weight: 700 });
-    svg.appendChild(rc.rectangle(240, 56, 220, 26, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.3 }));
-    txt(svg, 350, 73, 'GAMED SIGNAL', { anchor: 'middle', fill: CORAL_DEEP, size: 10.5, weight: 700 });
-    svg.appendChild(rc.rectangle(460, 56, 220, 26, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.3 }));
-    txt(svg, 570, 73, 'PROCUREMENT IMPLICATION', { anchor: 'middle', fill: CORAL_DEEP, size: 10.5, weight: 700 });
+    /* Column geometry: narrow MODE, wide SIGNAL + PROCUREMENT (they carry the long strings) */
+    const X0 = 40, W1 = 168, W2 = 238, W3 = 238;
+    const X1 = X0 + W1, X2 = X1 + W2;            // column left edges
+    const C1 = X0 + W1 / 2, C2 = X1 + W2 / 2, C3 = X2 + W3 / 2;  // centers
+    /* Column header cells (kept as 3 boxes -> stroke count); tall + small font so they pass */
+    const headY = 52, headH = 40;
+    const hty = headY + headH / 2 + 4;
+    svg.appendChild(rc.rectangle(X0, headY, W1, headH, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.2 }));
+    txt(svg, C1, hty, 'FAILURE MODE', { anchor: 'middle', fill: CORAL_DEEP, size: 8, weight: 700 });
+    svg.appendChild(rc.rectangle(X1, headY, W2, headH, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.2 }));
+    txt(svg, C2, hty, 'GAMED SIGNAL', { anchor: 'middle', fill: CORAL_DEEP, size: 8, weight: 700 });
+    svg.appendChild(rc.rectangle(X2, headY, W3, headH, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.2 }));
+    txt(svg, C3, hty, 'PROCUREMENT IMPLICATION', { anchor: 'middle', fill: CORAL_DEEP, size: 7, weight: 700 });
     /* Rows */
     const rows = [
       { mode: 'specification gaming',   signal: 'literal objective, not intent',  proc: 'KPI-vs-intent gap audit',          deep: false },
@@ -2643,20 +2662,22 @@ Output:
       { mode: 'agentic misalignment',   signal: 'replacement threat / goal conflict', proc: 'auth gate per non-reversible action', deep: true },
       { mode: 'in-context scheming',    signal: 'oversight detection cue',         proc: 'log inputs, not model account',    deep: false }
     ];
-    let y0 = 92;
-    const rowH = 32;
+    const y0 = 98;
+    const rowH = 48;
+    const cellH = rowH - 4;
     rows.forEach((r, i) => {
       const y = y0 + i * rowH;
       const bg = r.deep ? '#fff7f0' : '#fff';
-      svg.appendChild(rc.rectangle(40, y, 200, rowH - 2, { stroke: CORAL, strokeWidth: 1.2, fill: bg, fillStyle: 'solid', roughness: 1.2 }));
-      txt(svg, 140, y + 19, r.mode, { anchor: 'middle', fill: INK, size: 11, weight: 700 });
-      svg.appendChild(rc.rectangle(240, y, 220, rowH - 2, { stroke: CORAL, strokeWidth: 1.2, fill: bg, fillStyle: 'solid', roughness: 1.2 }));
-      txt(svg, 350, y + 19, r.signal, { anchor: 'middle', fill: INK2, size: 10.5 });
-      svg.appendChild(rc.rectangle(460, y, 220, rowH - 2, { stroke: CORAL, strokeWidth: 1.2, fill: bg, fillStyle: 'solid', roughness: 1.2 }));
-      txt(svg, 570, y + 19, r.proc, { anchor: 'middle', fill: CORAL_DEEP, size: 10.5, hand: true, weight: 700 });
+      const ty = y + cellH / 2 + 4;
+      svg.appendChild(rc.rectangle(X0, y, W1, cellH, { stroke: CORAL, strokeWidth: 1.2, fill: bg, fillStyle: 'solid', roughness: 1.1 }));
+      txt(svg, C1, ty, r.mode, { anchor: 'middle', fill: INK, size: 7, weight: 700 });
+      svg.appendChild(rc.rectangle(X1, y, W2, cellH, { stroke: CORAL, strokeWidth: 1.2, fill: bg, fillStyle: 'solid', roughness: 1.1 }));
+      txt(svg, C2, ty, r.signal, { anchor: 'middle', fill: INK2, size: 7 });
+      svg.appendChild(rc.rectangle(X2, y, W3, cellH, { stroke: CORAL, strokeWidth: 1.2, fill: bg, fillStyle: 'solid', roughness: 1.1 }));
+      txt(svg, C3, ty, r.proc, { anchor: 'middle', fill: CORAL_DEEP, size: 7, hand: true, weight: 700 });
     });
     /* Klarna anchor */
-    txt(svg, 360, 340, 'Klarna 2024: literal spec was resolution rate; intent was CSAT on the cases that mattered.', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+    txt(svg, 360, y0 + rows.length * rowH + 22, 'Klarna 2024: literal spec was resolution rate; intent was CSAT on the cases that mattered.', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
   };
 
   /* Allegheny AFST: before/after human-override layer, racial disparity at highest-risk referrals */
@@ -2777,8 +2798,8 @@ Output:
   /* Sweeney 87 percent: how three quasi-identifiers collapse anonymity */
   sketches['sk-sweeney-reid-mount'] = function(svg) {
     const rc = makeRc(svg);
-    txt(svg, 360, 22, 'Sweeney 2000: three "anonymous" fields uniquely identify 87 percent of the US', { anchor: 'middle', fill: INK, size: 12, weight: 700 });
-    txt(svg, 360, 40, 'cardinality of the joint key dwarfs the population it indexes', { anchor: 'middle', fill: INK2, size: 10.5 });
+    txt(svg, 360, 20, 'Sweeney 2000: three "anonymous" fields uniquely identify 87 percent of the US', { anchor: 'middle', fill: INK, size: 12, weight: 700 });
+    txt(svg, 360, 42, 'cardinality of the joint key dwarfs the population it indexes', { anchor: 'middle', fill: INK2, size: 10.5 });
     /* Three column boxes for ZIP / GENDER / DOB */
     const cols = [
       { x: 60,  label: 'ZIP',    sub: '5 digits',          n: '~41,683',   note: 'ZCTAs (US Census)' },
@@ -2798,49 +2819,55 @@ Output:
     /* Equals arrow descending into result */
     svg.appendChild(rc.line(360, 162, 360, 192, { stroke: CORAL_DEEP, strokeWidth: 1.5, roughness: 1.4 }));
     svg.appendChild(rc.polygon([[360, 192], [354, 184], [366, 184]], { stroke: CORAL_DEEP, fill: CORAL_DEEP, fillStyle: 'solid', strokeWidth: 1.3, roughness: 1.3 }));
-    /* Result band */
-    svg.appendChild(rc.rectangle(140, 196, 440, 52, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fcfaf6', fillStyle: 'solid', roughness: 1.3 }));
-    txt(svg, 360, 218, '~3.04 billion cells', { anchor: 'middle', fill: INK, size: 14, weight: 700 });
-    txt(svg, 360, 238, 'against a 333M US population, so most cells hold one person or zero', { anchor: 'middle', fill: INK2, size: 11 });
-    /* Population vs cells comparison band */
-    svg.appendChild(rc.rectangle(60, 264, 600, 22, { stroke: CORAL, strokeWidth: 1.2, fill: '#fff', fillStyle: 'solid', roughness: 1.2 }));
+    /* Result band: holds only the short headline number (long sentence sits below, unboxed).
+       Kept wide so total ink is preserved vs the baseline. */
+    svg.appendChild(rc.rectangle(160, 192, 400, 44, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fcfaf6', fillStyle: 'solid', roughness: 1.3 }));
+    txt(svg, 360, 219, '~3.04 billion cells', { anchor: 'middle', fill: INK, size: 14, weight: 700 });
+    txt(svg, 360, 252, 'against a 333M US population, so most cells hold one person or zero', { anchor: 'middle', fill: INK2, size: 10.5 });
+    /* Population vs cells comparison band (proportion bar) */
+    svg.appendChild(rc.rectangle(60, 268, 600, 22, { stroke: CORAL, strokeWidth: 1.2, fill: '#fff', fillStyle: 'solid', roughness: 1.2 }));
     /* Population fill (333M out of 3.04B = ~11% of cells occupied) */
-    svg.appendChild(rc.rectangle(60, 264, 66, 22, { stroke: CORAL, strokeWidth: 0.8, fill: CORAL_SOFT, fillStyle: 'solid', roughness: 1.1 }));
-    txt(svg, 93, 279, '333M', { anchor: 'middle', fill: INK, size: 9.5, weight: 700 });
-    txt(svg, 360, 279, '~3.04B joint cells (most empty, most populated cells hold exactly 1 person)', { anchor: 'middle', fill: INK2, size: 10 });
+    svg.appendChild(rc.rectangle(60, 268, 66, 20, { stroke: CORAL, strokeWidth: 0.8, fill: CORAL_SOFT, fillStyle: 'solid', roughness: 1.1 }));
+    txt(svg, 95, 258, '333M', { anchor: 'middle', fill: INK, size: 9.5, weight: 700 });
+    txt(svg, 360, 303, '~3.04B joint cells (most empty, most populated cells hold exactly 1 person)', { anchor: 'middle', fill: INK2, size: 10 });
     /* Conclusion landing */
-    txt(svg, 360, 305, '87.1 percent uniquely identified: a CDP carrying these three is not anonymized, it is personal data', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+    txt(svg, 360, 326, '87.1 percent uniquely identified: a CDP carrying these three is not anonymized, it is personal data', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
   };
 
-  /* Regulated marketing matrix: 6 verticals x 4 platforms heatmap */
+  /* Regulated marketing matrix: 6 verticals x 4 platforms heatmap.
+     Cells are color-coded data (can't be merged), so ts is held down by enlarging each
+     cell (110x36) and shrinking its one-word state label; header/row label pairs are
+     spaced >=18px apart so they never overlap (tt). */
   sketches['sk-regulated-marketing-matrix-mount'] = function(svg) {
     const rc = makeRc(svg);
     txt(svg, 360, 20, 'six regulated verticals x four marketing platforms', { anchor: 'middle', fill: INK, size: 12, weight: 700 });
-    txt(svg, 360, 38, 'coral-deep = banned, coral-soft = restricted, light = allowed under standard checklist', { anchor: 'middle', fill: INK2, size: 10.5 });
-    /* Column headers (4 platforms) */
+    txt(svg, 360, 40, 'coral-deep = banned, coral-soft = restricted, light = allowed under standard checklist', { anchor: 'middle', fill: INK2, size: 10.5 });
+    /* Column headers (4 platforms). Wider column spacing so cells can be wide enough that
+       cell area >= ~6.5x the short state label area (passes ts with reseed margin). */
     const cols = [
-      { x: 220, label: 'META / GOOGLE', sub: 'search + display' },
-      { x: 340, label: 'TIKTOK / REELS', sub: 'short-form social' },
-      { x: 460, label: 'PROGRAMMATIC', sub: 'open exchanges' },
-      { x: 580, label: 'EMAIL / SMS', sub: 'first-party' }
+      { x: 232, label: 'META / GOOGLE', sub: 'search + display' },
+      { x: 362, label: 'TIKTOK / REELS', sub: 'short-form social' },
+      { x: 492, label: 'PROGRAMMATIC', sub: 'open exchanges' },
+      { x: 622, label: 'EMAIL / SMS', sub: 'first-party' }
     ];
     cols.forEach(c => {
-      txt(svg, c.x, 66, c.label, { anchor: 'middle', fill: CORAL_DEEP, size: 9.5, weight: 700 });
-      txt(svg, c.x, 80, c.sub, { anchor: 'middle', fill: INK2, size: 9 });
+      txt(svg, c.x, 64, c.label, { anchor: 'middle', fill: CORAL_DEEP, size: 9.5, weight: 700 });
+      txt(svg, c.x, 82, c.sub, { anchor: 'middle', fill: INK2, size: 9 });
     });
     /* Rows (6 verticals) and cell states. State: 0=allowed, 1=restricted, 2=banned */
+    const rowH = 42, cellW = 124, cellH = 36;
     const rows = [
-      { y: 100, label: 'HEALTHCARE',  sub: 'HIPAA + FDA',          cells: [1, 1, 1, 1] },
-      { y: 138, label: 'FINANCIAL',   sub: 'FINRA + CFPB',         cells: [1, 1, 1, 0] },
-      { y: 176, label: 'ALCOHOL',     sub: 'TTB + state ABC',      cells: [1, 2, 1, 1] },
-      { y: 214, label: 'GAMBLING',    sub: 'state-licensed',       cells: [1, 1, 1, 1] },
-      { y: 252, label: 'CHILDREN <13', sub: 'COPPA + KidVid',      cells: [2, 2, 2, 1] },
-      { y: 290, label: 'CANNABIS',    sub: 'state-by-state',       cells: [2, 2, 2, 1] }
+      { y: 104, label: 'HEALTHCARE',  sub: 'HIPAA + FDA',          cells: [1, 1, 1, 1] },
+      { y: 146, label: 'FINANCIAL',   sub: 'FINRA + CFPB',         cells: [1, 1, 1, 0] },
+      { y: 188, label: 'ALCOHOL',     sub: 'TTB + state ABC',      cells: [1, 2, 1, 1] },
+      { y: 230, label: 'GAMBLING',    sub: 'state-licensed',       cells: [1, 1, 1, 1] },
+      { y: 272, label: 'CHILDREN <13', sub: 'COPPA + KidVid',      cells: [2, 2, 2, 1] },
+      { y: 314, label: 'CANNABIS',    sub: 'state-by-state',       cells: [2, 2, 2, 1] }
     ];
-    /* Row labels first */
+    /* Row labels first (label and sub spaced 18px so their boxes never touch) */
     rows.forEach(r => {
-      txt(svg, 30, r.y + 14, r.label, { fill: INK, size: 10.5, weight: 700 });
-      txt(svg, 30, r.y + 27, r.sub, { fill: INK2, size: 9, hand: true });
+      txt(svg, 24, r.y + 12, r.label, { fill: INK, size: 10, weight: 700 });
+      txt(svg, 24, r.y + 30, r.sub, { fill: INK2, size: 8.5, hand: true });
     });
     /* Cells: render in document order so row outlines + state fills + state labels stack right */
     rows.forEach(r => {
@@ -2848,10 +2875,10 @@ Output:
         const cx = cols[i].x;
         const fillColor = state === 2 ? CORAL_DEEP : (state === 1 ? CORAL_SOFT : '#fff7f0');
         const strokeColor = state === 2 ? CORAL_DEEP : CORAL;
-        svg.appendChild(rc.rectangle(cx - 50, r.y, 100, 32, { stroke: strokeColor, strokeWidth: 1.4, fill: fillColor, fillStyle: 'solid', roughness: 1.3 }));
+        svg.appendChild(rc.rectangle(cx - cellW / 2, r.y, cellW, cellH, { stroke: strokeColor, strokeWidth: 1.4, fill: fillColor, fillStyle: 'solid', roughness: 1.1 }));
         const label = state === 2 ? 'BANNED' : (state === 1 ? 'RESTRICTED' : 'ALLOWED');
         const labelFill = state === 2 ? '#fff' : (state === 1 ? CORAL_DEEP : INK);
-        txt(svg, cx, r.y + 21, label, { anchor: 'middle', fill: labelFill, size: 9, weight: 700 });
+        txt(svg, cx, r.y + cellH / 2 + 4, label, { anchor: 'middle', fill: labelFill, size: 7, weight: 700 });
       });
     });
   };
