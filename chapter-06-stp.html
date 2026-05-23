@@ -1145,7 +1145,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
       <!-- Divider arrow band -->
       <line x1="335" y1="200" x2="385" y2="200" stroke="#DA7756" stroke-width="1.6"/>
       <polygon points="385,200 373,194 373,206" fill="#DA7756"/>
-      <text x="360" y="184" text-anchor="middle" fill="#B8553A" font-size="10.5" font-weight="700" letter-spacing="1">ADD BUYERS</text>
+      <text x="345" y="184" text-anchor="middle" fill="#B8553A" font-size="10.5" font-weight="700" letter-spacing="1">ADD BUYERS</text>
 
       <!-- RIGHT PANEL: joint-space -->
       <text x="540" y="56" text-anchor="middle" font-weight="700" fill="#B8553A" font-size="12" letter-spacing="1.4">JOINT-SPACE MAP</text>
@@ -1191,17 +1191,17 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
       <circle cx="540" cy="135" r="2.4" fill="#DA7756" opacity="0.75"/>
       <circle cx="572" cy="138" r="2.4" fill="#DA7756" opacity="0.75"/>
       <circle cx="548" cy="148" r="2.4" fill="#DA7756" opacity="0.75"/>
-      <text x="555" y="175" text-anchor="middle" fill="#B8553A" font-size="10.5" font-style="italic" font-weight="600">social listener</text>
+      <text x="545" y="98" text-anchor="middle" fill="#B8553A" font-size="10.5" font-style="italic" font-weight="600">social listener</text>
       <!-- Brand dots (right) - same positions, rendered AFTER clusters -->
       <circle cx="625" cy="115" r="7" fill="#B8553A"/>
       <text x="625" y="103" text-anchor="middle" font-weight="700" fill="#1a1a1a" font-size="11.5">Spotify</text>
       <circle cx="625" cy="245" r="7" fill="#B8553A"/>
       <text x="625" y="263" text-anchor="middle" font-weight="700" fill="#1a1a1a" font-size="11.5">Apple Music</text>
       <circle cx="540" cy="220" r="7" fill="#B8553A"/>
-      <text x="540" y="208" text-anchor="middle" font-weight="700" fill="#1a1a1a" font-size="11.5">YouTube Music</text>
-      <!-- Distance line: YouTube to social-listener cluster -->
+      <text x="520" y="246" text-anchor="middle" font-weight="700" fill="#1a1a1a" font-size="11.5">YouTube Music</text>
+      <!-- Distance line: YouTube to social-listener cluster (the gap it could close) -->
       <line x1="540" y1="220" x2="555" y2="135" stroke="#B8553A" stroke-width="1" stroke-dasharray="2,2"/>
-      <text x="500" y="180" fill="#B8553A" font-size="10" font-style="italic">YouTube&apos;s opening</text>
+      <text x="560" y="185" fill="#B8553A" font-size="10" font-style="italic">YouTube&apos;s opening</text>
       <!-- Dead-air annotation: upper-left and lower-left empty -->
       <text x="455" y="115" fill="#888" font-size="10" font-style="italic" text-anchor="start">no brand</text>
       <text x="455" y="129" fill="#888" font-size="10" font-style="italic" text-anchor="start">no buyers</text>
@@ -1484,7 +1484,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;"><strong>Liquid Death</strong> entered a flat category by inventing a meaning no one had claimed. In 2018 every bottled-water brand competed on purity and wellness, so Mike Cessario left the product ordinary, real Alpine water in a 16-ounce tallboy, and put all the work on the meaning: a can that looked like cheap beer and the tagline "Murder Your Thirst." What changed was the comparison, since a buyer weighing it against wellness culture itself is offered a different identity. The target was 20-to-35-year-olds for whom the wellness look had stopped feeling aspirational. A 2025 price test makes it concrete: at the same shelf price, the labeled can earned about 27 percent more revenue per unit than the identical unbranded water, the cash value of meaning alone.<sup class="cite" data-cite="ref-41"></sup></p>
 
 <figure class="sketch" aria-label="Liquid Death's trajectory as a rising line from a 1500-dollar video in 2019 to a 1.4 billion valuation in 2024, retail-door growth stacked underneath, and a flat product line across the whole span.">
-  <div class="mount" id="sk-liquiddeath-arc-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-liquiddeath-arc-mount" data-w="720" data-h="300"></div>
   <figcaption>The seven-year trajectory the position carried. The product never changed; the brand identity did all of the competitive work.</figcaption>
 </figure>
 
@@ -2458,19 +2458,21 @@ return '$' + usd.toFixed(4);
       { x: 600, year: '2026', headline: '$340M revenue', detail: '133K doors, 27% brand-name uplift' }
     ];
     stops.forEach(function(s, i) {
-      svg.appendChild(rc.line(s.x, 164, s.x, 176, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.4 }));
-      // Year directly under the line
-      txt(svg, s.x, 192, s.year, { anchor: 'middle', fill: CORAL_DEEP, size: 12.5, weight: 700 });
-      // Stagger headline above vs below
-      var isUp = (i % 2 === 0);
-      var hY = isUp ? 94 : 215;
-      var dY = isUp ? 72 : 233;
-      svg.appendChild(rc.line(s.x, isUp ? 162 : 178, s.x, isUp ? 108 : 204, { stroke: INK3, strokeWidth: 1, roughness: 1.4 }));
+      // Tick straddles the axis; ends above the year so its box stays clear of the year text.
+      svg.appendChild(rc.line(s.x, 165, s.x, 174, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.4 }));
+      // Year directly under the line, with a clear gap below the tick
+      txt(svg, s.x, 197, s.year, { anchor: 'middle', fill: CORAL_DEEP, size: 12.5, weight: 700 });
+      // All callouts sit ABOVE the line (annotated-timeline convention) so no leader ever
+      // crosses the year text below. Two height tiers stagger neighbours apart horizontally.
+      var isFar = (i % 2 === 0);
+      var hY = isFar ? 74 : 126;
+      var dY = isFar ? 52 : 104;
+      svg.appendChild(rc.line(s.x, 162, s.x, isFar ? 84 : 136, { stroke: INK3, strokeWidth: 1, roughness: 1.4 }));
       txt(svg, s.x, hY, s.headline, { anchor: 'middle', fill: INK, size: 11.5, weight: 700, hand: true });
       txt(svg, s.x, dY, s.detail, { anchor: 'middle', fill: INK2, size: 10, hand: true });
     });
     // Footer note
-    txt(svg, 360, 258, 'product never changed: Alpine water in a tallboy can. only the position did the work.', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true });
+    txt(svg, 360, 250, 'product never changed: Alpine water in a tallboy can. only the position did the work.', { anchor: 'middle', fill: CORAL_DEEP, size: 12, hand: true });
   };
 
   /* ===== SPLICED-IN renderers from build files (override-by-last-wins). ===== */

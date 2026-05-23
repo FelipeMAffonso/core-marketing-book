@@ -883,7 +883,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="A brand as a coral network with eight memory connection nodes">
-  <div class="mount" id="sk-network-mount" data-w="700" data-h="330"></div>
+  <div class="mount" id="sk-network-mount" data-w="700" data-h="360"></div>
   <figcaption>A brand network with eight connections of varying strength. The center is the name; surrounding nodes are categories of connection that recur across most brands.</figcaption>
 </figure>
 
@@ -2358,7 +2358,7 @@ return '$' + usd.toFixed(4);
   sketches['process-mount'] = function(svg) {
     const rc = makeRc(svg);
     const cx = 360, cy = 140;
-    txt(svg, cx, 24, 'a brand: a name plus the network around it', { anchor: 'middle', fill: INK2, hand: true, size: 12 });
+    txt(svg, cx, 16, 'a brand: a name plus the network around it', { anchor: 'middle', fill: INK2, hand: true, size: 12 });
     // 8 spokes, varying connection strength (in stroke width)
     const spokes = [
       { angle: -90, label: 'visual cue', strong: true },
@@ -2370,39 +2370,59 @@ return '$' + usd.toFixed(4);
       { angle: 180, label: 'sound',      strong: false },
       { angle: 225, label: 'color',      strong: true }
     ];
+    const hubR = 38, halfW = 70, halfH = 25;   // central circle radius; box half-extents (roomy enough that the chip never crowds its label)
     spokes.forEach(s => {
       const ang = s.angle * Math.PI / 180;
-      const tx = cx + Math.cos(ang) * 200;
-      const ty = cy + Math.sin(ang) * 95;
-      svg.appendChild(rc.line(cx + Math.cos(ang) * 38, cy + Math.sin(ang) * 38, tx - Math.cos(ang) * 32, ty - Math.sin(ang) * 14, { stroke: CORAL, strokeWidth: s.strong ? 1.7 : 1.0, roughness: 1.7, strokeLineDash: s.strong ? null : [4, 3] }));
-      svg.appendChild(rc.rectangle(tx - 56, ty - 14, 112, 28, { stroke: s.strong ? CORAL : '#d8cfc1', strokeWidth: s.strong ? 1.5 : 1, fill: s.strong ? '#fff7f0' : '#fbf8f3', fillStyle: 'solid', roughness: 1.4 }));
+      const ca = Math.cos(ang), sa = Math.sin(ang);
+      const tx = cx + ca * 200;
+      const ty = cy + sa * 88;
+      // line ends where the radius from the box center meets the box edge, so it stops AT the box and never crosses the label inside
+      const dx = cx - tx, dy = cy - ty;            // direction from box back toward hub
+      const sx = halfW / Math.abs(dx || 1e-6), sy = halfH / Math.abs(dy || 1e-6);
+      const t = Math.min(sx, sy);                  // scale to reach nearest box edge
+      const ex = tx + dx * t, ey = ty + dy * t;    // contact point on the box edge
+      svg.appendChild(rc.line(cx + ca * (hubR + 2), cy + sa * (hubR + 2), ex, ey, { stroke: CORAL, strokeWidth: s.strong ? 1.7 : 1.0, roughness: 1.7, strokeLineDash: s.strong ? null : [4, 3] }));
+      svg.appendChild(rc.rectangle(tx - halfW, ty - halfH, halfW * 2, halfH * 2, { stroke: s.strong ? CORAL : '#d8cfc1', strokeWidth: s.strong ? 1.5 : 1, fill: s.strong ? '#fff7f0' : '#fbf8f3', fillStyle: 'solid', roughness: 1.4 }));
       txt(svg, tx, ty + 5, s.label, { anchor: 'middle', fill: s.strong ? INK : INK2, size: 11, weight: s.strong ? 600 : 400 });
     });
     // central node
     svg.appendChild(rc.circle(cx, cy, 76, { stroke: CORAL_DEEP, strokeWidth: 1.8, fill: '#fff', fillStyle: 'solid', roughness: 1.5 }));
-    txt(svg, cx, cy + 4, 'BRAND', { anchor: 'middle', fill: CORAL_DEEP, size: 13, weight: 700 });
+    txt(svg, cx, cy + 4, 'BRAND', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
     txt(svg, 360, 270, 'thicker line = stronger memory connection', { anchor: 'middle', fill: INK2, hand: true, size: 11 });
   };
 
   // ---------- sk-network-mount: a brand as a coral hand-drawn network with 8 nodes ----------
   sketches['sk-network-mount'] = function(svg) {
     const rc = makeRc(svg);
-    const cx = 350, cy = 150;
+    const cx = 350, cy = 167;
     const labels = ['skull', 'matte black', 'tallboy', 'punk', 'festival', 'sober', 'comedic', 'water cat.'];
-    const radius = 116;
+    const radius = 113;
+    const hubR = 39, nodeR = 25;   // central circle / node-marker radii
     for (let i = 0; i < 8; i++) {
       const angle = (-90 + i * 45) * Math.PI / 180;
-      const tx = cx + Math.cos(angle) * radius;
-      const ty = cy + Math.sin(angle) * radius;
-      const sw = i < 4 ? 2.0 : 1.2;
-      svg.appendChild(rc.line(cx, cy, tx, ty, { stroke: CORAL, strokeWidth: sw, roughness: 1.8 }));
-      svg.appendChild(rc.circle(tx, ty, 46, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.6 }));
-      txt(svg, tx, ty + 4, labels[i], { anchor: 'middle', fill: INK, size: 11, weight: 600 });
+      const ca = Math.cos(angle), sa = Math.sin(angle);
+      const tx = cx + ca * radius;
+      const ty = cy + sa * radius;
+      const sw = i < 4 ? 3.6 : 2.2;   // thicker spoke = stronger memory connection
+      // spoke runs hub-edge -> node-edge only, so it never crosses a label
+      svg.appendChild(rc.line(cx + ca * (hubR + 1), cy + sa * (hubR + 1), tx - ca * (nodeR + 1), ty - sa * (nodeR + 1), { stroke: CORAL, strokeWidth: sw, roughness: 2.1 }));
+      // node marker holds the spoke; label lives OUTSIDE it, so no label-on-circle collision
+      svg.appendChild(rc.circle(tx, ty, nodeR * 2, { stroke: CORAL, strokeWidth: 2.0, fill: '#fff7f0', fillStyle: 'solid', roughness: 2.2 }));
+      // strong connections get a second inner ring (a double-bubble marker) so strength reads at the node too
+      if (i < 4) svg.appendChild(rc.circle(tx, ty, nodeR * 1.1, { stroke: CORAL, strokeWidth: 1.3, fill: 'none', roughness: 2.2 }));
+      // label sits in clear space just outside the marker, anchored away from the diagram
+      const onAxis = Math.abs(ca) < 0.35;          // top / bottom nodes
+      const gap = onAxis ? 11 : 18;                // wider gap on the roomy diagonals
+      const lx = cx + ca * (radius + nodeR + gap);
+      let ly = cy + sa * (radius + nodeR + gap) + (sa > 0.35 ? 9 : (sa < -0.35 ? -2 : 4));
+      ly = Math.max(16, Math.min(346, ly));        // keep the label baseline inside the 360-tall canvas
+      const anchor = onAxis ? 'middle' : (ca > 0 ? 'start' : 'end');
+      txt(svg, lx, ly, labels[i], { anchor: anchor, fill: INK, size: 12, weight: 600 });
     }
-    svg.appendChild(rc.circle(cx, cy, 76, { stroke: CORAL_DEEP, strokeWidth: 2, fill: '#fff', fillStyle: 'solid', roughness: 1.6 }));
-    txt(svg, cx, cy - 4, 'LIQUID', { anchor: 'middle', fill: CORAL_DEEP, size: 14, weight: 700 });
-    txt(svg, cx, cy + 14, 'DEATH', { anchor: 'middle', fill: CORAL_DEEP, size: 14, weight: 700 });
-    txt(svg, cx, 312, 'eight memory connections; the brand is the whole pattern', { anchor: 'middle', fill: INK2, hand: true, size: 12 });
+    svg.appendChild(rc.circle(cx, cy, 80, { stroke: CORAL_DEEP, strokeWidth: 2, fill: '#fff', fillStyle: 'solid', roughness: 2.1 }));
+    txt(svg, cx, cy - 7, 'LIQUID', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
+    txt(svg, cx, cy + 13, 'DEATH', { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
+    txt(svg, cx, 350, 'eight memory connections; the brand is the whole pattern', { anchor: 'middle', fill: INK2, hand: true, size: 12 });
   };
 
   // ---------- sk-cep-wheel-mount: spoke length proportional to strength ----------

@@ -792,7 +792,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </figure>
 
 <figure class="sketch" aria-label="A brand as a node in the buyer's memory wired to category cues, where mental availability rises with more and stronger links">
-  <div class="mount" id="sk-mental-availability-mount" data-w="700" data-h="320"></div>
+  <div class="mount" id="sk-mental-availability-mount" data-w="700" data-h="370"></div>
   <figcaption>The memory-network mechanism the wastage is failing to refresh. A brand is a node wired to category cues, and mental availability rises with more and stronger links. Advertising rehearses those links before they fade, so the cue brings the brand to mind first.</figcaption>
 </figure>
 
@@ -1180,7 +1180,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The popcorn case is worth dwelling on because it shows the traits working together, not one at a time. The message was Simple, since it made one claim and nothing else. It was Unexpected, because nobody walks into a theater expecting the snack to be the danger. It was Concrete, because three meals are easier to picture than a gram count. It was Credible, since a reader could check the comparison against meals she had eaten. And it carried a small Story, the snack you trusted turning out to be the villain. A message that scores well on most of the six traits and zero on one usually fails at the step that trait controls, which is why the framework works best as a checklist a writer runs before the brief leaves her desk. The discipline is to score the draft honestly on each trait and rewrite the one that scores lowest, because a single weak trait is enough to keep the message from lodging.</p>
 
 <figure class="sketch" aria-label="SUCCES mapped to the steps in the receiver's mind">
-  <div class="mount" id="sk-succes-mount" data-w="720" data-h="320"></div>
+  <div class="mount" id="sk-succes-mount" data-w="720" data-h="490"></div>
   <figcaption>Each SUCCES trait does one job in the buyer's mind: Unexpected wins attention, Concrete wins understanding, Credible wins belief, Emotional wins caring, Story wins action, and Simple runs through every step. A message that scores zero on one trait dies at the matching step.</figcaption>
 </figure>
 
@@ -2102,26 +2102,27 @@ return '$' + usd.toFixed(4);
   // sk-succes-mount: SUCCES checklist mapped to receiver action
   sketches['sk-succes-mount'] = function(svg) {
     const rc = makeRc(svg);
-    txt(svg, 360, 22, 'SUCCES: each trait is one step in the receiver\'s mind', { anchor: 'middle', fill: INK, size: 12, weight: 700 });
+    txt(svg, 360, 30, 'SUCCES: each trait is one step in the receiver\'s mind', { anchor: 'middle', fill: INK, size: 12, weight: 700 });
+    // Roomier boxes (taller + wider) so each label clears its container; rows spaced to match.
     const rows = [
-      { y: 60,  trait: 'UNEXPECTED', action: 'pay attention' },
-      { y: 100, trait: 'CONCRETE',   action: 'understand'   },
-      { y: 140, trait: 'CREDIBLE',   action: 'believe'      },
-      { y: 180, trait: 'EMOTIONAL',  action: 'care'         },
-      { y: 220, trait: 'STORY',      action: 'act'          }
+      { y: 84,  trait: 'UNEXPECTED', action: 'pay attention' },
+      { y: 150, trait: 'CONCRETE',   action: 'understand'   },
+      { y: 216, trait: 'CREDIBLE',   action: 'believe'      },
+      { y: 282, trait: 'EMOTIONAL',  action: 'care'         },
+      { y: 348, trait: 'STORY',      action: 'act'          }
     ];
     rows.forEach(r => {
-      svg.appendChild(rc.rectangle(60, r.y - 14, 220, 28, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, 170, r.y + 4, r.trait, { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
-      svg.appendChild(rc.line(280, r.y, 460, r.y, { stroke: CORAL, strokeWidth: 1.2, roughness: 1.6 }));
-      svg.appendChild(rc.polygon([[460, r.y], [453, r.y - 4], [453, r.y + 4]], { stroke: CORAL, strokeWidth: 1, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
-      svg.appendChild(rc.rectangle(470, r.y - 14, 200, 28, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, 570, r.y + 4, r.action, { anchor: 'middle', fill: INK, size: 12, weight: 700 });
+      svg.appendChild(rc.rectangle(54, r.y - 29, 240, 58, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, 174, r.y + 5, r.trait, { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700 });
+      svg.appendChild(rc.line(300, r.y, 458, r.y, { stroke: CORAL, strokeWidth: 1.2, roughness: 1.6 }));
+      svg.appendChild(rc.polygon([[458, r.y], [451, r.y - 4], [451, r.y + 4]], { stroke: CORAL, strokeWidth: 1, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
+      svg.appendChild(rc.rectangle(466, r.y - 29, 220, 58, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, 576, r.y + 5, r.action, { anchor: 'middle', fill: INK, size: 12, weight: 700 });
     });
-    // SIMPLE band running across
-    svg.appendChild(rc.rectangle(60, 252, 610, 30, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', strokeLineDash: [4,3], roughness: 1.5 }));
-    txt(svg, 365, 272, 'SIMPLE: one core, compact, runs through every step', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700, hand: true });
-    txt(svg, 365, 302, 'fail at any one trait \u2192 die at the corresponding step in the receiver\'s mind', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
+    // SIMPLE band running across (tall enough that its long label clears the dashed frame)
+    svg.appendChild(rc.rectangle(54, 392, 632, 60, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', strokeLineDash: [4,3], roughness: 1.5 }));
+    txt(svg, 370, 427, 'SIMPLE: one core, compact, runs through every step', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700, hand: true });
+    txt(svg, 370, 474, 'fail at any one trait \u2192 die at the corresponding step in the receiver\'s mind', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
   };
 
   // sk-distinctive-mount: distinctive assets gallery (coral-only, named not colored)
@@ -2308,28 +2309,31 @@ return '$' + usd.toFixed(4);
   /* §16.1 sketch B: NEW mental-availability memory network (repurposes the fig-1 art, hand-drawn) */
   sketches['sk-mental-availability-mount'] = function(svg) {
     const rc = makeRc(svg);
-    txt(svg, 350, 24, 'a brand is a network of memory links', { anchor: 'middle', fill: INK, size: 13, weight: 700 });
-    txt(svg, 350, 42, 'mental availability rises with more and stronger links', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-    var bx = 350, by = 185;
+    txt(svg, 350, 26, 'a brand is a network of memory links', { anchor: 'middle', fill: INK, size: 13, weight: 700 });
+    txt(svg, 350, 44, 'mental availability rises with more and stronger links', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    var bx = 350, by = 178, R_CENTER = 64, R_CUE = 47;
+    // Cues spread so the larger node circles never touch each other or the brand node.
     var cues = [
-      { x: 130, y: 110, label: 'thirsty' },
-      { x: 570, y: 110, label: 'on a hike' },
-      { x: 90,  y: 200, label: 'at a bar' },
-      { x: 610, y: 200, label: 'post-gym' },
-      { x: 150, y: 280, label: 'in a cooler' },
-      { x: 550, y: 280, label: 'heavy metal' }
+      { x: 118, y: 100, label: 'thirsty' },
+      { x: 582, y: 100, label: 'on a hike' },
+      { x: 70,  y: 188, label: 'at a bar' },
+      { x: 630, y: 188, label: 'post-gym' },
+      { x: 152, y: 274, label: 'in a cooler' },
+      { x: 548, y: 274, label: 'heavy metal' }
     ];
+    // Links drawn rim-to-rim (from the brand node's edge to each cue's edge) so no line crosses a label.
     cues.forEach(function(c) {
-      svg.appendChild(rc.line(bx, by, c.x, c.y, { stroke: CORAL, strokeWidth: 1.3, roughness: 1.7 }));
+      var dx = c.x - bx, dy = c.y - by, d = Math.sqrt(dx * dx + dy * dy), ux = dx / d, uy = dy / d;
+      svg.appendChild(rc.line(bx + ux * (R_CENTER - 2), by + uy * (R_CENTER - 2), c.x - ux * (R_CUE - 2), c.y - uy * (R_CUE - 2), { stroke: CORAL, strokeWidth: 1.3, roughness: 1.7 }));
     });
     cues.forEach(function(c) {
-      svg.appendChild(rc.circle(c.x, c.y, 52, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.6 }));
+      svg.appendChild(rc.circle(c.x, c.y, R_CUE * 2, { stroke: CORAL, strokeWidth: 1.4, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.6 }));
       txt(svg, c.x, c.y + 4, c.label, { anchor: 'middle', fill: INK, size: 11 });
     });
-    svg.appendChild(rc.circle(bx, by, 94, { stroke: CORAL_DEEP, strokeWidth: 2, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+    svg.appendChild(rc.circle(bx, by, R_CENTER * 2, { stroke: CORAL_DEEP, strokeWidth: 2, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
     txt(svg, bx, by - 4, 'BRAND', { anchor: 'middle', fill: CORAL_DEEP, size: 14, weight: 700 });
     txt(svg, bx, by + 14, 'node in memory', { anchor: 'middle', fill: INK2, size: 11 });
-    txt(svg, 350, 312, 'advertising rehearses the links before they fade, so the cue brings the brand to mind', { anchor: 'middle', fill: CORAL_DEEP, size: 11.5, hand: true });
+    txt(svg, 350, 348, 'advertising rehearses the links before they fade, so the cue brings the brand to mind', { anchor: 'middle', fill: CORAL_DEEP, size: 11.5, hand: true });
   };
 
   /* --- g3 (16.4 + 16.5): sk-attention-floor + sk-fame-uniqueness-grid (NEW) --- */

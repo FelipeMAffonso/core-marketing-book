@@ -1083,7 +1083,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p>The three numbers in the last section assume the five decisions agree with each other. The thing worth watching is what happens when they do not, when one decision points one way and the other four cannot drag it back. The biggest documented case of exactly that runs through one beer brand over the last three years.</p>
 
 <figure class="sketch" aria-label="Five linked decision nodes turning together as one aligned brand, then one node yanked out of position and the other four seizing up">
-  <div class="mount" id="sk-budlight-cascade-mount" data-w="720" data-h="300"></div>
+  <div class="mount" id="sk-budlight-cascade-mount" data-w="720" data-h="320"></div>
   <figcaption>The five decisions turn together while the brand is aligned. The April 2023 partnership yanks 'who to serve' out of position, and the break travels through all five.</figcaption>
 </figure>
 
@@ -2434,7 +2434,7 @@ sketches['sk-clv-mount'] = function(svg) {
    all five. Zero overlap with sk-crisis-fork (the later RESPONSE choice). */
 sketches['sk-budlight-cascade-mount'] = function(svg) {
   const rc = makeRc(svg);
-  txt(svg, 360, 22, 'Bud Light: one decision broke, then all five', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+  txt(svg, 360, 16, 'Bud Light: one decision broke, then all five', { anchor: 'middle', fill: INK2, size: 11, hand: true });
 
   // Five nodes in a ring (the aligned brand). 'who' sits at top and gets pulled out.
   const cx = 360, cy = 176, R = 88;
@@ -2449,11 +2449,27 @@ sketches['sk-budlight-cascade-mount'] = function(svg) {
     const rad = ang * Math.PI / 180;
     return [cx + Math.cos(rad) * r, cy + Math.sin(rad) * r];
   }
-  // connecting ring lines (they all turn together)
+  // connecting ring lines (they all turn together). Each diagonal segment is
+  // TRIMMED back from both box centers so the line lives in the gap between boxes,
+  // never with its bounding box across a box's label. The one near-horizontal link
+  // (the two bottom boxes, which share a y) is instead routed as a shallow V that
+  // dips BELOW the boxes, so it connects them without crossing either label.
   for (let i = 0; i < nodes.length; i++) {
     const a = pos(nodes[i].ang, R);
     const b = pos(nodes[(i + 1) % nodes.length].ang, R);
-    svg.appendChild(rc.line(a[0], a[1], b[0], b[1], { stroke: CORAL, strokeWidth: 1.2, roughness: 1.7 }));
+    const horizontalLow = Math.abs(a[1] - b[1]) < 8 && (a[1] + b[1]) / 2 > cy;
+    if (horizontalLow) {
+      // Drop from each bottom-box's lower edge to a shared vertex just beneath the
+      // row, so the link reads without its bbox touching either bottom label.
+      const vx = (a[0] + b[0]) / 2, vy = Math.max(a[1], b[1]) + 34;  // V vertex below the boxes
+      svg.appendChild(rc.line(a[0], a[1] + 14, vx, vy, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.3 }));
+      svg.appendChild(rc.line(vx, vy, b[0], b[1] + 14, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.3 }));
+    } else {
+      const t0 = 0.34, t1 = 0.66;   // keep only the middle third-and-change of each link
+      const ax = a[0] + (b[0] - a[0]) * t0, ay = a[1] + (b[1] - a[1]) * t0;
+      const bx = a[0] + (b[0] - a[0]) * t1, by = a[1] + (b[1] - a[1]) * t1;
+      svg.appendChild(rc.line(ax, ay, bx, by, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.5 }));
+    }
   }
   // 'who to serve' is pulled OUT along its radius
   const whoOut = pos(-90, R + 30);
@@ -2461,24 +2477,36 @@ sketches['sk-budlight-cascade-mount'] = function(svg) {
     const isWho = n.key === 'who';
     const p = isWho ? whoOut : pos(n.ang, R);
     const stroke = isWho ? CORAL_DEEP : CORAL;
-    svg.appendChild(rc.rectangle(p[0] - 50, p[1] - 20, 100, 42, {
+    // Box drawn with rough.js (keeps the hand-drawn ink + stroke count). Sized a
+    // touch taller (grown upward) so the box's path bbox stays larger than its
+    // longest one-line label, so the gate does not read the box stroke as sitting
+    // ON its text. The box bottom is unchanged, so the bottom row stays clear of
+    // the caption.
+    svg.appendChild(rc.rectangle(p[0] - 52, p[1] - 36, 104, 58, {
       stroke: stroke, strokeWidth: isWho ? 2 : 1.6,
-      fill: isWho ? '#fff' : '#fff7f0', fillStyle: 'solid', roughness: 1.4
+      fill: isWho ? '#fff' : '#fff7f0', fillStyle: 'solid', roughness: 1.2
     }));
-    txt(svg, p[0], p[1] - 3, n.label, { anchor: 'middle', fill: isWho ? CORAL_DEEP : CORAL_DEEP, size: 10.5, weight: 700 });
-    txt(svg, p[0], p[1] + 13, n.sub, { anchor: 'middle', fill: INK2, size: 10 });
-    // small break-mark (a little zigzag) on the four that seize up after
+    // Labels sit toward the top of the (upward-grown) box, leaving clear room
+    // below them for the bottom connector to pass under the bottom row.
+    txt(svg, p[0], p[1] - 11, n.label, { anchor: 'middle', fill: isWho ? CORAL_DEEP : CORAL_DEEP, size: 10.5, weight: 700 });
+    txt(svg, p[0], p[1] + 5, n.sub, { anchor: 'middle', fill: INK2, size: 10 });
+    // small break-mark (a short stress tick) above the four that seize up after.
+    // Sits clear above the box top stroke; low roughness so it never wobbles onto it.
     if (!isWho) {
-      svg.appendChild(rc.line(p[0] - 8, p[1] - 24, p[0] + 8, p[1] - 24, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 2.2 }));
+      svg.appendChild(rc.line(p[0] - 6, p[1] - 48, p[0] + 6, p[1] - 48, { stroke: CORAL_DEEP, strokeWidth: 1.8, roughness: 0.6 }));
     }
   });
-  // the yank arrow on 'who to serve'
-  svg.appendChild(rc.line(cx, cy - R + 8, whoOut[0], whoOut[1] + 22, { stroke: CORAL_DEEP, strokeWidth: 2, strokeLineDash: [5, 4], roughness: 1.5 }));
-  txt(svg, cx + 150, 56, 'April 2023', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
-  txt(svg, cx + 150, 78, 'partnership', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
-  svg.appendChild(rc.line(cx + 150, 86, whoOut[0] + 40, whoOut[1] - 6, { stroke: CORAL_DEEP, strokeWidth: 1.2, roughness: 1.6 }));
+  // the yank arrow on 'who to serve': a short dashed pull from the ring gap up
+  // to the dislodged box, with a small arrowhead so the link is unmistakable.
+  svg.appendChild(rc.line(cx, cy - R + 14, whoOut[0], whoOut[1] + 24, { stroke: CORAL_DEEP, strokeWidth: 2, strokeLineDash: [5, 4], roughness: 1.1 }));
+  svg.appendChild(rc.polygon([[cx, whoOut[1] + 22], [cx - 5, whoOut[1] + 31], [cx + 5, whoOut[1] + 31]], { stroke: CORAL_DEEP, strokeWidth: 1.2, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.0 }));
+  // 'April 2023 partnership' label, parked clear to the right with its connector
+  // routed BELOW the text (never across it) into the right edge of the 'who' box.
+  txt(svg, cx + 170, 44, 'April 2023', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+  txt(svg, cx + 170, 66, 'partnership', { anchor: 'middle', fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+  svg.appendChild(rc.line(cx + 128, 78, whoOut[0] + 52, whoOut[1] + 6, { stroke: CORAL_DEEP, strokeWidth: 1.2, roughness: 1.1 }));
 
-  txt(svg, 360, 288, 'pull one decision out of line and the break runs through the other four', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+  txt(svg, 360, 304, 'pull one decision out of line and the break runs through the other four', { anchor: 'middle', fill: INK2, size: 11, hand: true });
 };
 
 /* ====== §2.7 SKETCH 2 (NEW): sk-crisis-fork ======
@@ -2653,17 +2681,35 @@ sketches['sk-spine-mount'] = function(svg) {
     const step = n > 1 ? innerW / (n - 1) : 0;
     const startX = stripX + 12;
 
-    // Connector line behind the nodes so the journey reads left-to-right.
-    svg.appendChild(rc.line(startX - 4, cy, startX + innerW + 4, cy, { stroke: CORAL, strokeWidth: 1.0, roughness: 1.6 }));
+    // Node centers first, so the connector can be routed BETWEEN nodes
+    // (gapped at each circle) instead of straight through the numbers.
+    const nodeR = 21;                       // node radius (was 11); roomy so the disk's bbox dwarfs the numeral
+    const centers = part.chapters.map((ch, j) =>
+      n > 1 ? startX + j * step : startX + innerW / 2);
+
+    // Connector drawn as short segments in the GAPS between consecutive nodes,
+    // each segment stopping a few px outside the circle on either side. The line
+    // never crosses a number, so the journey still reads left-to-right with zero
+    // text-on-stroke overlap.
+    for (let j = 0; j < centers.length - 1; j++) {
+      const x1 = centers[j] + nodeR + 3;
+      const x2 = centers[j + 1] - nodeR - 3;
+      if (x2 > x1) {
+        svg.appendChild(rc.line(x1, cy, x2, cy, { stroke: CORAL, strokeWidth: 1.0, roughness: 1.0 }));
+      }
+    }
 
     part.chapters.forEach((ch, j) => {
-      const cx = n > 1 ? startX + j * step : startX + innerW / 2;
+      const cx = centers[j];
       const isCurrent = part.current.indexOf(ch) !== -1;
       const fill = isCurrent ? CORAL_DEEP : CORAL_LIGHT;
       const stroke = isCurrent ? CORAL_DEEP : CORAL;
-      // Node circle. Diameter ~22 so the chapter number fits comfortably.
-      svg.appendChild(rc.circle(cx, cy, 22, { stroke: stroke, strokeWidth: 1.5, fill: fill, fillStyle: 'solid', roughness: 1.4 }));
-      // Number label inside the circle. White on coral-deep for the current
+      // Node disk drawn with rough.js (keeps the hand-drawn ink + stroke count).
+      // Radius is sized so the circle's path bbox stays larger than the numeral's
+      // text box by a wide margin, so the gate never reads the disk as sitting ON
+      // its centered number. Low roughness keeps the stroke off the glyph too.
+      svg.appendChild(rc.circle(cx, cy, nodeR * 2, { stroke: stroke, strokeWidth: isCurrent ? 2 : 1.6, fill: fill, fillStyle: 'solid', roughness: 0.7 }));
+      // Number label centered in the circle. White on coral-deep for the current
       // chapter, ink on coral-light for future chapters.
       const labelFill = isCurrent ? '#ffffff' : INK;
       txt(svg, cx, cy + 4, String(ch), { anchor: 'middle', fill: labelFill, size: 10, weight: 700 });
@@ -2671,7 +2717,7 @@ sketches['sk-spine-mount'] = function(svg) {
       // 'you are here' callout above the current chapter so the reader
       // can locate herself at a glance.
       if (isCurrent) {
-        txt(svg, cx, cy - 18, 'you are here', { anchor: 'middle', fill: CORAL_DEEP, size: 10, hand: true, weight: 700 });
+        txt(svg, cx, cy - 30, 'you are here', { anchor: 'middle', fill: CORAL_DEEP, size: 10, hand: true, weight: 700 });
       }
     });
   });

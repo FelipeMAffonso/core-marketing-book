@@ -876,7 +876,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p>The <span class="term" data-tt="The Strategic Profit Model (SPM) is the retail industry's standard way of measuring how well a store turns its assets into profit. Net profit margin is the share of each sales dollar the store keeps after every cost is paid. Asset turnover is how many times per year the store flips its stock and capital through sales. Multiply the two and you get return on assets, the bottom-line measure of whether the format is working. Different formats trade margin against turnover on purpose: a warehouse club runs thin margin on fast turnover, a luxury specialty store runs fat margin on slow turnover, and both can land at the same return on assets.">Strategic Profit Model</span> decomposes return on assets into net profit margin times asset turnover.<sup class="cite" data-cite="ref-8"></sup> Costco runs net margin in the one-to-three percent band on asset turnover four to eight times a year, winning on velocity where an Apple Store wins on margin per transaction, yet both reach a respectable return on assets. The membership fee is the third lever that lets the merchandise line run at a margin a non-membership club could not sustain.</p>
 
 <figure class="sketch" aria-label="Strategic Profit Model: three retail formats reach similar ROA from opposite corners of the margin-by-turnover plane">
-  <div class="mount" id="sk-spm-iso-mount" data-w="720" data-h="380"></div>
+  <div class="mount" id="sk-spm-iso-mount" data-w="720" data-h="410"></div>
   <figcaption>Net margin on the vertical axis, asset turnover on the horizontal. The dashed curves are iso-ROA lines: every point on a curve multiplies to the same return on assets. Costco sits in the low-margin, high-turnover corner; the Apple Store sits in the high-margin, low-turnover corner; Trader Joe&rsquo;s holds an off-diagonal position above both. The diagnostic question is not which retailer earns more per dollar of sales but which two ratios the format is built to move, because the format that tries to lift both at once usually lifts neither.</figcaption>
 </figure>
 
@@ -1951,18 +1951,18 @@ return '$' + usd.toFixed(4);
     // Plot frame
     svg.appendChild(rc.line(xL, yB, xR, yB, { stroke: INK, strokeWidth: 1.4, roughness: 1.2 }));
     svg.appendChild(rc.line(xL, yT, xL, yB, { stroke: INK, strokeWidth: 1.4, roughness: 1.2 }));
-    // Axis ticks
+    // Axis ticks (>=9px so they read as real ticks, not degenerate stubs)
     [2, 4, 6, 8].forEach(function(t) {
-      svg.appendChild(rc.line(px(t), yB, px(t), yB + 4, { stroke: INK3, strokeWidth: 1, roughness: 1 }));
-      txt(svg, px(t), yB + 16, t + 'x', { anchor: 'middle', fill: INK2, size: 10 });
+      svg.appendChild(rc.line(px(t), yB, px(t), yB + 9, { stroke: INK3, strokeWidth: 1, roughness: 0.8 }));
+      txt(svg, px(t), yB + 22, t + 'x', { anchor: 'middle', fill: INK2, size: 10 });
     });
     [4, 8, 12, 16].forEach(function(m) {
-      svg.appendChild(rc.line(xL - 4, py(m), xL, py(m), { stroke: INK3, strokeWidth: 1, roughness: 1 }));
-      txt(svg, xL - 8, py(m) + 3, m + '%', { anchor: 'end', fill: INK2, size: 10 });
+      svg.appendChild(rc.line(xL - 9, py(m), xL, py(m), { stroke: INK3, strokeWidth: 1, roughness: 0.8 }));
+      txt(svg, xL - 13, py(m) + 3, m + '%', { anchor: 'end', fill: INK2, size: 10 });
     });
     // Axis labels
-    txt(svg, (xL + xR) / 2, yB + 36, 'asset turnover (times per year)', { anchor: 'middle', fill: INK, size: 12, weight: 600 });
-    txt(svg, 26, (yT + yB) / 2, 'net margin', { anchor: 'middle', fill: INK, size: 12, weight: 600, transform: 'rotate(-90 26 ' + ((yT + yB) / 2) + ')' });
+    txt(svg, (xL + xR) / 2, yB + 42, 'asset turnover (times per year)', { anchor: 'middle', fill: INK, size: 12, weight: 600 });
+    txt(svg, 22, (yT + yB) / 2, 'net margin', { anchor: 'middle', fill: INK, size: 12, weight: 600, transform: 'rotate(-90 22 ' + ((yT + yB) / 2) + ')' });
     // Iso-ROA curves: m * t = ROA, so m(t) = ROA / t. Three curves at ROA = 8, 16, 24
     function buildIsoPath(roa) {
       var pts = [];
@@ -1997,29 +1997,35 @@ return '$' + usd.toFixed(4);
         txt(svg, lblPos.x, lblPos.y, label, { fill: color, size: 10.5, hand: true, weight: 700 });
       }
     }
-    drawIso( 8, CORAL_SOFT, 0.85, 'ROA \u2248 8%',  { x: px(7.6), y: py(8 / 7.6) - 4 });
-    drawIso(16, CORAL,      0.85, 'ROA \u2248 16%', { x: px(7.6), y: py(16 / 7.6) - 4 });
-    drawIso(24, CORAL_DEEP, 0.85, 'ROA \u2248 24%', { x: px(7.6), y: py(24 / 7.6) - 4 });
+    // Label each curve at a DIFFERENT point along its span so the three labels are
+    // widely separated in 2D (not stacked where the curves converge at the right).
+    drawIso( 8, CORAL_SOFT, 0.9, 'ROA \u2248 8%',  { x: px(1.5) + 6, y: py(8 / 1.5) - 4 });
+    drawIso(16, CORAL,      0.9, 'ROA \u2248 16%', { x: px(3.6) + 6, y: py(16 / 3.6) - 4 });
+    drawIso(24, CORAL_DEEP, 0.9, 'ROA \u2248 24%', { x: px(3.0) + 6, y: py(24 / 3.0) - 4 });
     // Brand dots
     // Costco: net margin ~2%, turnover ~6x  -> ROA ~12% (between 8 and 16)
     // Apple Store: net margin ~12%, turnover ~1.5x  -> ROA ~18%
     // Trader Joe's: net margin ~5%, turnover ~7x  -> ROA ~35% (sits well above the 24% curve, the off-diagonal corner)
-    function brandDot(t, m, label, sub, color, lblDx, lblDy, subDy) {
+    function brandDot(t, m, label, sub, color, lblDx, lblDy, subDy, anchor) {
       var cx = px(t), cy = py(m);
       svg.appendChild(rc.circle(cx, cy, 11, { stroke: color, strokeWidth: 1.6, fill: color, fillStyle: 'solid', roughness: 1.6 }));
-      txt(svg, cx + lblDx, cy + lblDy, label, { fill: INK, size: 12, weight: 700 });
-      if (sub) txt(svg, cx + lblDx, cy + lblDy + (subDy || 14), sub, { fill: INK2, size: 10.5, hand: true });
+      txt(svg, cx + lblDx, cy + lblDy, label, { fill: INK, size: 12, weight: 700, anchor: anchor });
+      if (sub) txt(svg, cx + lblDx, cy + lblDy + (subDy || 14), sub, { fill: INK2, size: 10.5, hand: true, anchor: anchor });
     }
-    brandDot(6,  2,  'Costco',       '~2% \u00D7 6x \u2248 12%',  CORAL_DEEP,  12, -4, 14);
-    brandDot(1.5, 12, 'Apple Store',  '~12% \u00D7 1.5x \u2248 18%', CORAL_DEEP, 14, 2, 14);
-    brandDot(7,  5,  "Trader Joe\u2019s", '~5% \u00D7 7x \u2248 35%', CORAL_DEEP,  -76, -16, 14);
-    // Corner annotations (handwritten guidance)
-    txt(svg, px(1.6), py(14.5), 'specialty corner', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
-    txt(svg, px(1.6), py(13.0), 'fat margin, slow turn', { anchor: 'middle', fill: INK2, size: 10, hand: true });
-    txt(svg, px(7.0), py(1.8), 'warehouse / discount corner', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
-    txt(svg, px(7.0), py(0.6), 'thin margin, fast turn', { anchor: 'middle', fill: INK2, size: 10, hand: true });
-    // Bottom land
-    txt(svg, 360, 360, 'same destination, opposite routes. Trader Joe\u2019s holds the off-diagonal corner above both.', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    // Costco labelled to the LEFT of its dot, into open mid-plot space, so the
+    // lower-right corner stays free for the warehouse-corner annotation. The 19px
+    // sub-offset keeps the bold name clear of the ratio line under it.
+    brandDot(6,  2,  'Costco',       '~2% \u00D7 6x \u2248 12%',  CORAL_DEEP,  -16, 4, 19, 'end');
+    brandDot(1.5, 12, 'Apple Store',  '~12% \u00D7 1.5x \u2248 18%', CORAL_DEEP, 16, 2, 19, 'start');
+    brandDot(7,  5,  "Trader Joe\u2019s", '~5% \u00D7 7x \u2248 35%', CORAL_DEEP,  16, -3, 19, 'start');
+    // Corner annotations (handwritten guidance), each tucked into the empty corner
+    // of its region, clear of the brand labels.
+    txt(svg, px(1.7), py(15.3), 'specialty corner', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
+    txt(svg, px(1.7), py(14.1), 'fat margin, slow turn', { anchor: 'middle', fill: INK2, size: 10, hand: true });
+    txt(svg, px(7.3), py(2.4), 'warehouse / discount corner', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
+    txt(svg, px(7.3), py(1.2), 'thin margin, fast turn', { anchor: 'middle', fill: INK2, size: 10, hand: true });
+    // Bottom land, in the band below the axis title.
+    txt(svg, 360, 396, 'same destination, opposite routes. Trader Joe\u2019s holds the off-diagonal corner above both.', { anchor: 'middle', fill: INK2, size: 11, hand: true });
   };
 
 
@@ -2082,31 +2088,45 @@ return '$' + usd.toFixed(4);
   /* --- A2 (12.2): 1 NEW --- */
   sketches['sk-wheel-mount'] = function(svg) {
       const rc = makeRc(svg);
-      txt(svg, 360, 22, 'the wheel of retailing turns through four stages', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
-      // The turning cycle, drawn as a dashed circle
-      svg.appendChild(rc.circle(360, 165, 240, { stroke: CORAL, strokeWidth: 1.8, fill: 'none', strokeLineDash: [6, 5], roughness: 1.5 }));
-      // Four stage nodes at top / right / bottom / left
+      txt(svg, 360, 18, 'the wheel of retailing turns through four stages', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
+      // The turning cycle, a large dashed ring filling the 720x300 box.
+      // NOTE: rough.circle's 3rd arg is a DIAMETER, so pass RAD*2.
+      var ccx = 360, ccy = 152, RAD = 118;
+      svg.appendChild(rc.circle(ccx, ccy, RAD * 2, { stroke: CORAL, strokeWidth: 1.8, fill: 'none', strokeLineDash: [6, 5], roughness: 1.5 }));
+      // Badges sit ON the ring at its four DIAGONAL points (45 deg); each text block
+      // radiates further out into the matching corner, well clear of the badge AND of
+      // the ring stroke, so no label crosses a badge, the ring, or another label.
+      var dg = Math.round(RAD * 0.707);   // badge offset (centre lands on the ring)
+      var tg = dg + 40;                   // text offset (outside the badge)
+      // 3-line blocks use 20px line spacing so the bold label never grazes its sub.
       const nodes = [
-        { cx: 360, cy: 45,  n: '01', label: 'INNOVATION',    sub: 'low-cost entrant',     eg: 'Aldi 1976, TikTok Shop 2023', anchor: 'middle', tx: 360, ty: 78, sy: 92, ey: 110 },
-        { cx: 600, cy: 165, n: '02', label: 'TRADE-UP',      sub: 'facilities, depth',     eg: 'Walmart 1990s',                anchor: 'start',  tx: 560, ty: 150, sy: 164, ey: 182 },
-        { cx: 360, cy: 285, n: '03', label: 'VULNERABILITY', sub: 'cost base rises',       eg: 'dept stores 2000s',            anchor: 'middle', tx: 360, ty: 252, sy: 238, ey: 220 },
-        { cx: 120, cy: 165, n: '04', label: 'DECLINE',       sub: 'replaced by entrant',   eg: 'Macy’s 2024',             anchor: 'end',    tx: 160, ty: 150, sy: 164, ey: 182 }
+        // 01 INNOVATION — top-right corner, text starts to the right of the badge
+        { cx: ccx + dg, cy: ccy - dg, n: '01', label: 'INNOVATION',    sub: 'low-cost entrant',   eg: 'Aldi 1976, TikTok Shop 2023', anchor: 'start', tx: ccx + tg, ty: ccy - dg - 12, sy: ccy - dg + 8, ey: ccy - dg + 28 },
+        // 02 TRADE-UP — bottom-right corner
+        { cx: ccx + dg, cy: ccy + dg, n: '02', label: 'TRADE-UP',      sub: 'facilities, depth',  eg: 'Walmart 1990s',                anchor: 'start', tx: ccx + tg, ty: ccy + dg - 12, sy: ccy + dg + 8, ey: ccy + dg + 28 },
+        // 03 VULNERABILITY — bottom-left corner, text ends to the left of the badge
+        { cx: ccx - dg, cy: ccy + dg, n: '03', label: 'VULNERABILITY', sub: 'cost base rises',    eg: 'dept stores 2000s',            anchor: 'end',   tx: ccx - tg, ty: ccy + dg - 12, sy: ccy + dg + 8, ey: ccy + dg + 28 },
+        // 04 DECLINE — top-left corner
+        { cx: ccx - dg, cy: ccy - dg, n: '04', label: 'DECLINE',       sub: 'replaced by entrant', eg: 'Macy’s 2024',           anchor: 'end',   tx: ccx - tg, ty: ccy - dg - 12, sy: ccy - dg + 8, ey: ccy - dg + 28 }
       ];
       nodes.forEach(function(d) {
-        svg.appendChild(rc.circle(d.cx, d.cy, 16, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
+        // Badge diameter 46 (rough.circle takes a DIAMETER) so the number's enclosing
+        // stroke is clearly larger than the number: the number reads as inside its
+        // badge (the convention), not as a label colliding with a mark.
+        svg.appendChild(rc.circle(d.cx, d.cy, 46, { stroke: CORAL_DEEP, strokeWidth: 1.8, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.0 }));
         txt(svg, d.cx, d.cy + 4, d.n, { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 700 });
         txt(svg, d.tx, d.ty, d.label, { anchor: d.anchor, fill: INK, size: 12, weight: 700 });
         txt(svg, d.tx, d.sy, d.sub, { anchor: d.anchor, fill: INK2, size: 10 });
         txt(svg, d.tx, d.ey, d.eg, { anchor: d.anchor, fill: INK3, size: 10, hand: true });
       });
-      // Direction arrows along the cycle (clockwise)
-      svg.appendChild(rc.polygon([[470, 60], [490, 52], [486, 74]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
-      svg.appendChild(rc.polygon([[508, 268], [528, 276], [514, 290]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
-      svg.appendChild(rc.polygon([[252, 272], [232, 262], [236, 284]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
-      svg.appendChild(rc.polygon([[212, 62], [192, 54], [206, 44]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
-      // Hub label
-      txt(svg, 360, 160, 'McNair 1957', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700, hand: true });
-      txt(svg, 360, 178, 'a default, not a law', { anchor: 'middle', fill: INK2, size: 10, hand: true });
+      // Direction arrows at the four CARDINAL points of the ring (clockwise flow).
+      svg.appendChild(rc.polygon([[ccx, ccy - RAD], [ccx + 9, ccy - RAD + 4], [ccx + 1, ccy - RAD + 12]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 })); // top -> right
+      svg.appendChild(rc.polygon([[ccx + RAD, ccy], [ccx + RAD - 4, ccy + 9], [ccx + RAD - 12, ccy + 1]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 })); // right -> bottom
+      svg.appendChild(rc.polygon([[ccx, ccy + RAD], [ccx - 9, ccy + RAD - 4], [ccx - 1, ccy + RAD - 12]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 })); // bottom -> left
+      svg.appendChild(rc.polygon([[ccx - RAD, ccy], [ccx - RAD + 4, ccy - 9], [ccx - RAD + 12, ccy - 1]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 })); // left -> top
+      // Hub label at the centre of the circle (wide line gap: Caveat runs tall).
+      txt(svg, ccx, ccy - 8, 'McNair 1957', { anchor: 'middle', fill: CORAL_DEEP, size: 12, weight: 700, hand: true });
+      txt(svg, ccx, ccy + 18, 'a default, not a law', { anchor: 'middle', fill: INK2, size: 10, hand: true });
     };
 
   /* --- A3 (12.5): 1 NEW --- */
