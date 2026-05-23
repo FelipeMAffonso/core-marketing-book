@@ -1029,7 +1029,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p>The cohort math is the number every lifecycle program is trying to lift, and one tight walk shows why the function pays for itself. A direct-to-consumer apparel brand has 100,000 active buyers who each place 1.8 orders a year at a 65-dollar average order, which is 11.7 million dollars of revenue and, at a 35-cent contribution margin, about 4.1 million dollars of gross contribution. That is one year of buying, but the program is built to keep the same buyer for many years, so the annual retention rate becomes the lever. Customer lifetime value is the per-buyer annual contribution divided by one minus the retention rate. Here that is 41 dollars a year divided by 0.28, or about 146 dollars per buyer. Lift retention from 72 to 75 percent with a sharper onboarding flow and a working cart sequence, and the same 41 dollars now divides by 0.25, raising lifetime value to about 164 dollars. Three points of retention produce a 12 percent lift on the same buyers with no extra acquisition spend, which compounds across the cohort into roughly 1.8 million dollars of additional lifetime contribution. The platform subscriptions and the analyst&rsquo;s whole salary fit inside that gap, and that is the argument that funds the lifecycle function.</p>
 
 <figure class="sketch" aria-label="Cohort retention heatmap: buyers acquired in each quarter, retained through subsequent quarters">
-  <div class="mount" id="sk-cohort-heatmap-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-cohort-heatmap-mount" data-w="720" data-h="292"></div>
   <figcaption>Four acquisition cohorts walked across eight quarters. Each row is one cohort; each cell is the share of that cohort still active at the end of that quarter, shaded darker where the share is higher. A lifecycle program that lifts retention three percentage points keeps each row darker for longer, which is the visual translation of the $1.8 million compounding lift.</figcaption>
 </figure>
 
@@ -1056,7 +1056,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn"><span class="sn-num">6.</span> The cost climbs gently across the four steps. A one-off chat audit costs whatever the marketer's subscription already covers. A packaged Skill runs a few cents per call, because the cached brand context bills at a fraction of the standard rate. A connected, live-data pull runs around a dollar, and a scheduled agent runs one to five dollars per run. The time saved is hours a week of staring at dashboards, which is the trade that justifies climbing past the free first step.</aside>
 
 <figure class="sketch" aria-label="The four-step AI cadence drawn as a ladder a marketer climbs, each rung removing one piece of clerical labor">
-  <div class="mount" id="sk-ai-tiers-mount" data-w="720" data-h="320"></div>
+  <div class="mount" id="sk-ai-tiers-mount" data-w="720" data-h="332"></div>
   <figcaption>The four-step AI cadence as a ladder a marketer climbs: paste into chat, package as a Skill, connect live data, schedule an agent. Each rung names the one piece of clerical labor it removes, and the marketer still decides what ships at every rung.</figcaption>
 </figure>
 
@@ -1601,8 +1601,8 @@ return '$' + usd.toFixed(4);
   // ---------- Spine: Lifecycle wheel (top of chapter) ----------
   sketches['lifecycle-mount'] = function(svg) {
     const rc = makeRc(svg);
-    txt(svg, 360, 16, 'the lifecycle wheel: each stage gets its own message', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
-    const cx = 360, cy = 178, r = 98;
+    txt(svg, 360, 13, 'the lifecycle wheel: each stage gets its own message', { anchor: 'middle', fill: INK2, size: 10.5, hand: true });
+    const cx = 360, cy = 176, r = 84;
     // Outer ring
     svg.appendChild(rc.circle(cx, cy, r * 2, { stroke: CORAL, strokeWidth: 1.6, fill: 'none', roughness: 1.4 }));
     // 6 stages on the ring
@@ -1618,17 +1618,18 @@ return '$' + usd.toFixed(4);
       const a = s.ang * Math.PI / 180;
       const sx = cx + r * Math.cos(a);
       const sy = cy + r * Math.sin(a);
-      svg.appendChild(rc.circle(sx, sy, 16, { stroke: CORAL_DEEP, strokeWidth: 1.5, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
-      txt(svg, sx, sy + 4, '0' + (i + 1), { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 700 });
-      // Label outside the ring
-      const lx = cx + (r + 38) * Math.cos(a);
-      const ly = cy + (r + 38) * Math.sin(a) + 4;
-      txt(svg, lx, ly, s.label, { anchor: 'middle', fill: INK, size: 10.5, weight: 700 });
-      txt(svg, lx, ly + 14, s.drip, { anchor: 'middle', fill: CORAL_DEEP, size: 10, hand: true });
+      svg.appendChild(rc.circle(sx, sy, 32, { stroke: CORAL_DEEP, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, sx, sy + 4, '0' + (i + 1), { anchor: 'middle', fill: CORAL_DEEP, size: 8, weight: 700 });
+      // Label outside the ring; bottom-half stages put the drip ABOVE the label so it never spills past the frame
+      const lx = cx + (r + 58) * Math.cos(a);
+      const ly = cy + (r + 58) * Math.sin(a) + 3;
+      const dripBelow = Math.sin(a) <= 0.5;
+      txt(svg, lx, ly, s.label, { anchor: 'middle', fill: INK, size: 10, weight: 700 });
+      txt(svg, lx, ly + (dripBelow ? 17 : -16), s.drip, { anchor: 'middle', fill: CORAL_DEEP, size: 9.5, hand: true });
     });
     // Center label
-    txt(svg, cx, cy - 5, 'one buyer', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-    txt(svg, cx, cy + 12, 'six stages', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    txt(svg, cx, cy - 9, 'one buyer', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    txt(svg, cx, cy + 14, 'six stages', { anchor: 'middle', fill: INK2, size: 11, hand: true });
   };
 
   // ---------- Sketch: retention math (compounding bars) ----------
@@ -1822,19 +1823,19 @@ return '$' + usd.toFixed(4);
     svg.appendChild(rc.line(60, 30, 60, 200, { stroke: INK3, strokeWidth: 1, roughness: 1.3 }));
     txt(svg, 360, 224, 'channel breadth \u2192', { anchor: 'middle', fill: INK2, size: 11.5 });
     txt(svg, 36, 115, 'cost', { anchor: 'middle', fill: INK2, size: 11.5, transform: 'rotate(-90 36 115)' });
-    // 4 vendors as labeled boxes
+    // 4 vendors: a name box (kept roomy so the label never crowds it) with the descriptor as plain text below
     const v = [
-      { x: 130, y: 165, name: 'Klaviyo',     sub: 'e-com default, low-cost' },
-      { x: 290, y: 105, name: 'Iterable',    sub: 'mid-market, higher cost' },
-      { x: 470, y: 175, name: 'Postscript',  sub: 'SMS-first, Shopify-native' },
-      { x: 600, y: 80,  name: 'Customer.io', sub: 'event-stream, dev-friendly' },
+      { x: 140, y: 148, name: 'Klaviyo',     sub: 'e-com default, low-cost' },
+      { x: 300, y: 92,  name: 'Iterable',    sub: 'mid-market, higher cost' },
+      { x: 470, y: 158, name: 'Postscript',  sub: 'SMS-first, Shopify-native' },
+      { x: 600, y: 78,  name: 'Customer.io', sub: 'event-stream, dev-friendly' },
     ];
     v.forEach(vv => {
-      svg.appendChild(rc.rectangle(vv.x - 60, vv.y - 22, 130, 44, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
-      txt(svg, vv.x, vv.y - 4, vv.name, { anchor: 'middle', fill: CORAL_DEEP, size: 13, weight: 700 });
-      txt(svg, vv.x, vv.y + 13, vv.sub, { anchor: 'middle', fill: INK, size: 10, hand: true });
+      svg.appendChild(rc.rectangle(vv.x - 72, vv.y - 24, 144, 48, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
+      txt(svg, vv.x, vv.y + 4, vv.name, { anchor: 'middle', fill: CORAL_DEEP, size: 10.5, weight: 700 });
+      txt(svg, vv.x, vv.y + 38, vv.sub, { anchor: 'middle', fill: INK2, size: 9, hand: true });
     });
-    txt(svg, 360, 26, 'four 2026 lifecycle platforms, plotted on cost vs channel breadth', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    txt(svg, 360, 24, 'four 2026 lifecycle platforms, plotted on cost vs channel breadth', { anchor: 'middle', fill: INK2, size: 11, hand: true });
   };
 
   // ---------- Sketch: send-time optimization ----------
@@ -1876,24 +1877,30 @@ return '$' + usd.toFixed(4);
   // ---------- Sketch: AI 4-tier ladder ----------
   sketches['sk-ai-tiers-mount'] = function(svg) {
       const rc = makeRc(svg);
-      svg.appendChild(rc.line(40, 260, 660, 260, { stroke: INK3, strokeWidth: 1, roughness: 1.3 }));
-      svg.appendChild(rc.line(40, 30, 40, 260, { stroke: INK3, strokeWidth: 1, roughness: 1.3 }));
-      txt(svg, 350, 290, 'how little human attention each run needs →', { anchor: 'middle', fill: INK2, size: 11.5 });
-      txt(svg, 25, 145, 'labor removed', { anchor: 'middle', fill: INK2, size: 11.5, transform: 'rotate(-90 25 145)' });
+      svg.appendChild(rc.line(40, 292, 660, 292, { stroke: INK3, strokeWidth: 1, roughness: 1.3 }));
+      svg.appendChild(rc.line(40, 30, 40, 292, { stroke: INK3, strokeWidth: 1, roughness: 1.3 }));
+      txt(svg, 352, 310, 'how little human attention each run needs →', { anchor: 'middle', fill: INK2, size: 11.5 });
+      txt(svg, 25, 150, 'labor removed', { anchor: 'middle', fill: INK2, size: 11.5, transform: 'rotate(-90 25 150)' });
+      const HW = 74, BH = 66;
       const steps = [
-        { x: 90,  y: 55,  label: 'step 1', tool: 'paste into chat',   gone: 'the manual audit' },
-        { x: 240, y: 115, label: 'step 2', tool: 'package a Skill',   gone: 'the repeat paste' },
-        { x: 400, y: 175, label: 'step 3', tool: 'connect live data', gone: 'the copy-paste' },
-        { x: 560, y: 230, label: 'step 4', tool: 'schedule an agent', gone: 'the weekly report' }
+        { x: 98,  y: 56,  label: 'step 1', tool: 'paste into chat',   gone: 'the manual audit' },
+        { x: 252, y: 118, label: 'step 2', tool: 'package a Skill',   gone: 'the repeat paste' },
+        { x: 406, y: 178, label: 'step 3', tool: 'connect live data', gone: 'the copy-paste' },
+        { x: 560, y: 234, label: 'step 4', tool: 'schedule an agent', gone: 'the weekly report' }
       ];
       steps.forEach(function(s, i) {
-        svg.appendChild(rc.rectangle(s.x - 56, s.y - 18, 112, 56, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
-        txt(svg, s.x, s.y - 4, s.label, { anchor: 'middle', fill: CORAL_DEEP, size: 11, weight: 700 });
-        txt(svg, s.x, s.y + 11, s.tool, { anchor: 'middle', fill: INK, size: 11.5, weight: 700 });
-        txt(svg, s.x, s.y + 27, 'removes ' + s.gone, { anchor: 'middle', fill: INK2, size: 9.5, hand: true });
-        if (i < steps.length - 1) svg.appendChild(rc.line(s.x + 56, s.y + 9, steps[i + 1].x - 56, steps[i + 1].y + 9, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.6 }));
+        if (i < steps.length - 1) {
+          var n = steps[i + 1];
+          svg.appendChild(rc.line(s.x + HW, s.y + 4, n.x - HW, n.y + 4, { stroke: CORAL, strokeWidth: 1.5, roughness: 1.1 }));
+        }
       });
-      txt(svg, 660, 40, 'you still decide what ships ↓', { anchor: 'end', fill: CORAL_DEEP, size: 12, hand: true });
+      steps.forEach(function(s) {
+        svg.appendChild(rc.rectangle(s.x - HW, s.y - 22, HW * 2, BH, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.5 }));
+        txt(svg, s.x, s.y - 6, s.label, { anchor: 'middle', fill: CORAL_DEEP, size: 9.5, weight: 700 });
+        txt(svg, s.x, s.y + 13, s.tool, { anchor: 'middle', fill: INK, size: 9, weight: 700 });
+        txt(svg, s.x, s.y + 32, 'removes ' + s.gone, { anchor: 'middle', fill: INK2, size: 8, hand: true });
+      });
+      txt(svg, 660, 40, 'you still decide what ships ↓', { anchor: 'end', fill: CORAL_DEEP, size: 11.5, hand: true });
     };
 
   // ---------- Sketch: list-burn curve ----------
@@ -2030,10 +2037,10 @@ return '$' + usd.toFixed(4);
   // ---------- Sketch: cohort retention heatmap ----------
   sketches['sk-cohort-heatmap-mount'] = function(svg) {
     var rc = makeRc(svg);
-    txt(svg, 20, 22, 'four acquisition cohorts, eight quarters of retention', { fill: INK, size: 12, weight: 700 });
-    txt(svg, 20, 40, 'darker cells = more of the cohort still active that quarter', { fill: INK2, size: 10.5, hand: true });
+    txt(svg, 20, 20, 'four acquisition cohorts, eight quarters of retention', { fill: INK, size: 12, weight: 700 });
+    txt(svg, 20, 42, 'darker cells = more of the cohort still active that quarter', { fill: INK2, size: 10.5, hand: true });
     // Layout: 4 rows (cohorts) x 8 cols (quarters)
-    var x0 = 130, y0 = 70, cw = 60, ch = 38;
+    var x0 = 120, y0 = 68, cw = 64, ch = 42;
     var cohorts = ['Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024'];
     var quarters = ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8'];
     // Retention curves (per cohort, by quarter offset): starts at 100%, decays per cohort
@@ -2047,7 +2054,7 @@ return '$' + usd.toFixed(4);
     // Each cohort starts at a different column offset (since Q1 2024 cohort starts at Q1 col, Q2 cohort at Q2 col, etc.)
     for (var r = 0; r < 4; r++) {
       // Row label
-      txt(svg, x0 - 12, y0 + r * ch + 22, cohorts[r], { anchor: 'end', fill: INK2, size: 11, weight: 600 });
+      txt(svg, x0 - 12, y0 + r * ch + 26, cohorts[r], { anchor: 'end', fill: INK2, size: 10.5, weight: 600 });
       for (var c = 0; c < 8; c++) {
         var cx = x0 + c * cw, cy = y0 + r * ch;
         if (c < r) {
@@ -2064,7 +2071,7 @@ return '$' + usd.toFixed(4);
           else fill = '#fff';
           svg.appendChild(rc.rectangle(cx, cy, cw - 4, ch - 4, { stroke: CORAL, strokeWidth: 1.2, fill: fill, fillStyle: 'solid', roughness: 1.3 }));
           var pctText = Math.round(ret * 100) + '%';
-          txt(svg, cx + (cw - 4) / 2, cy + 22, pctText, { anchor: 'middle', fill: ret > 0.5 ? CORAL_DEEP : INK2, size: 10.5, weight: 700 });
+          txt(svg, cx + (cw - 4) / 2, cy + 25, pctText, { anchor: 'middle', fill: ret > 0.5 ? CORAL_DEEP : INK2, size: 8, weight: 700 });
         }
       }
     }
@@ -2073,11 +2080,11 @@ return '$' + usd.toFixed(4);
       txt(svg, x0 + c2 * cw + (cw - 4) / 2, y0 + 4 * ch + 16, quarters[c2], { anchor: 'middle', fill: INK3, size: 10 });
     }
     // Highlight the Q4 2024 cohort (lifecycle program on)
-    svg.appendChild(rc.rectangle(x0 - 4, y0 + 3 * ch - 4, 8 * cw, ch, { stroke: CORAL_DEEP, strokeWidth: 1.8, fill: 'none', roughness: 1.5 }));
-    txt(svg, x0 + 8 * cw + 8, y0 + 3 * ch + 22, 'lifecycle', { fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
-    txt(svg, x0 + 8 * cw + 8, y0 + 3 * ch + 36, 'program on', { fill: CORAL_DEEP, size: 11, hand: true, weight: 700 });
+    svg.appendChild(rc.rectangle(x0 - 4, y0 + 3 * ch - 3, 8 * cw, ch - 2, { stroke: CORAL_DEEP, strokeWidth: 1.8, fill: 'none', roughness: 1.5 }));
+    txt(svg, x0 + 8 * cw + 8, y0 + 3 * ch + 18, 'lifecycle', { fill: CORAL_DEEP, size: 10.5, hand: true, weight: 700 });
+    txt(svg, x0 + 8 * cw + 8, y0 + 3 * ch + 38, 'program on', { fill: CORAL_DEEP, size: 10.5, hand: true, weight: 700 });
     // Bottom caption
-    txt(svg, 360, 250, 'three retention points kept across eight quarters compound to $1.8M of lift on the 100k cohort', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    txt(svg, 360, 272, 'three retention points kept across eight quarters compound to $1.8M of lift on the 100k cohort', { anchor: 'middle', fill: INK2, size: 11, hand: true });
   };
 
   // ---------- Sketch: win-back funnel narrowed by 2026 filters ----------
