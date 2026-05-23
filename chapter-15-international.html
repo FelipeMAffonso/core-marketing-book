@@ -760,7 +760,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <figure id="fig-process" class="sketch" style="margin: 36px 0 28px 0;">
   <div class="mount" id="process-mount" aria-hidden="true">
-    <svg id="process-svg" viewBox="0 0 720 300" role="img" aria-labelledby="proct" xmlns="http://www.w3.org/2000/svg">
+    <svg id="process-svg" viewBox="0 0 720 320" role="img" aria-labelledby="proct" xmlns="http://www.w3.org/2000/svg">
       <title id="proct">Four-stage internationalization spectrum: domestic, international, multinational, global. Five entry modes climb a commitment-and-control ladder: export, license, franchise, joint venture, wholly-owned subsidiary.</title>
     </svg>
   </div>
@@ -813,7 +813,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p>The top two rungs put your own money on the ground. A <span class="term" data-tt="A joint venture (JV) is a new company that you and a local partner jointly own, so you share the capital risk and gain the partner's local knowledge and regulatory access. The cost is shared control, which strains when the two firms want different things. China still requires JV structures for foreign carmakers and telecom firms.">joint venture</span> pairs you with a local firm in a jointly owned company, which buys you local knowledge and regulatory access at the price of shared control. China still forces this structure on foreign carmakers and telecom firms. A <span class="term" data-tt="A wholly-owned subsidiary means building or buying a complete foreign operation that you alone own and run. You get full control over brand, people, and margin, but you also carry the largest capital exposure to anything that goes wrong in that country.">wholly-owned subsidiary</span> means you own the whole operation outright, the way Toyota runs its U.S. plants and Costco runs its China warehouses. You get full control and full margin, and you carry the full weight of country risk, which is why firms usually reach this rung only after years lower down.<sup class="cite" data-cite="ref-2"></sup></p>
 
 <figure class="sketch" aria-label="The five-mode entry ladder, with commitment rising against speed and overhead">
-  <div class="mount" id="sk-entry-ladder-mount" data-w="720" data-h="300"></div>
+  <div class="mount" id="sk-entry-ladder-mount" data-w="720" data-h="320"></div>
   <figcaption>The five rungs climb from indirect export to a wholly-owned operation. Commitment, risk, control, and profit potential rise together, while speed, capital efficiency, and operating ease fall against them. The right rung is the lowest one that still teaches you enough to climb.</figcaption>
 </figure>
 
@@ -1052,7 +1052,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn"><span class="sn-num">11.</span> The sachet is the visible edge of a <span class="term" data-tt="Bottom of the pyramid (BOP) is the idea that the largest, poorest income tier can be a real market when products are built from the buyer's economics outward. A 2007 critique by Aneel Karnani warned that the headline market size overstates real spending power once subsistence is netted out, and that sourcing from and employing low-income households often does more good than selling more to them.">bottom-of-the-pyramid</span> approach to serving households whose income arrives and is spent on a daily cash cycle: packaging sized to a day's spend, distribution invented for the geography (Project Shakti grew to 200,000-plus village entrepreneurs and roughly 40 percent of Hindustan Unilever revenue by 2025), credit designed for the cash cycle, and product invented from first principles rather than engineered down from a Western model.<sup class="cite" data-cite="ref-31"></sup> Tata Nano failed by treating an emerging-market buyer as a stripped-down Western one, while Reliance Jio passed by inventing free 4G data on daily-recharge plans.</aside>
 
 <figure class="sketch" aria-label="The three product strategies: straight extension keeps the product, product adaptation rebuilds the executional layer, product invention builds a new product">
-  <div class="mount" id="sk-product-strategies-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-product-strategies-mount" data-w="720" data-h="280"></div>
   <figcaption>The three product moves, in rising order of cost and rebuild. Straight extension ships the home product unchanged (a camera, a spreadsheet app). Product adaptation keeps the identity and rebuilds the executional layer (McDonald's keeps the brand, swaps the menu). Product invention builds a new product because the home one is unbuyable in the local context (the one-rupee sachet, not a smaller bottle).</figcaption>
 </figure>
 
@@ -1847,41 +1847,40 @@ return '$' + usd.toFixed(4);
   sketches['process-mount'] = function(svg) {
     const rc = makeRc(svg);
     txt(svg, 360, 22, 'a firm walks two ladders at once', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-    // Top ladder: 4-stage spectrum
+    // Top ladder: 4-stage spectrum (boxes enlarged so labels sit clear of the stroke)
     const stages = [
-      { x: 100, label: 'DOMESTIC',      sub: 'home market only' },
-      { x: 270, label: 'INTERNATIONAL', sub: '1-2 countries' },
-      { x: 440, label: 'MULTINATIONAL', sub: 'many countries' },
-      { x: 610, label: 'GLOBAL',        sub: 'world as one market' }
+      { x: 98,  label: 'DOMESTIC',      sub: 'home market only' },
+      { x: 272, label: 'INTERNATIONAL', sub: '1-2 countries' },
+      { x: 446, label: 'MULTINATIONAL', sub: 'many countries' },
+      { x: 620, label: 'GLOBAL',        sub: 'world as one market' }
     ];
     stages.forEach((s, i) => {
-      svg.appendChild(rc.rectangle(s.x - 70, 50, 140, 60, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
-      txt(svg, s.x, 76, s.label, { weight: 700, anchor: 'middle', fill: INK, size: 12 });
-      txt(svg, s.x, 94, s.sub, { anchor: 'middle', fill: INK2, size: 10.5 });
+      svg.appendChild(rc.rectangle(s.x - 80, 44, 160, 76, { stroke: CORAL, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.3 }));
+      txt(svg, s.x, 78, s.label, { weight: 700, anchor: 'middle', fill: INK, size: 11.5 });
+      txt(svg, s.x, 100, s.sub, { anchor: 'middle', fill: INK2, size: 10 });
       if (i < stages.length - 1) {
-        svg.appendChild(rc.line(s.x + 70, 80, stages[i+1].x - 72, 80, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.5 }));
-        svg.appendChild(rc.polygon([[stages[i+1].x - 72, 80], [stages[i+1].x - 80, 76], [stages[i+1].x - 80, 84]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
+        svg.appendChild(rc.line(s.x + 80, 82, stages[i+1].x - 82, 82, { stroke: CORAL, strokeWidth: 1.4, roughness: 1.5 }));
+        svg.appendChild(rc.polygon([[stages[i+1].x - 82, 82], [stages[i+1].x - 90, 78], [stages[i+1].x - 90, 86]], { stroke: CORAL, strokeWidth: 1.2, fill: CORAL, fillStyle: 'solid', roughness: 1.3 }));
       }
     });
-    // Bottom ladder: 5 entry modes
-    txt(svg, 360, 145, 'entry modes (commitment + control rise to the right)', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    // Bottom ladder: 5 entry modes (boxes enlarged to clear the longest label)
+    txt(svg, 360, 162, 'entry modes (commitment + control rise to the right)', { anchor: 'middle', fill: INK2, size: 11, hand: true });
     const modes = [
-      { x: 90,  label: 'EXPORT' },
+      { x: 88,  label: 'EXPORT' },
       { x: 220, label: 'LICENSE' },
       { x: 360, label: 'FRANCHISE' },
-      { x: 500, label: 'JV' },
-      { x: 630, label: 'WHOLLY-OWNED' }
+      { x: 498, label: 'JV' },
+      { x: 632, label: 'WHOLLY-OWNED' }
     ];
     modes.forEach((m, i) => {
-      const opacity = 0.4 + i * 0.12;
-      svg.appendChild(rc.rectangle(m.x - 50, 165, 100, 36, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
-      txt(svg, m.x, 187, m.label, { weight: 700, anchor: 'middle', fill: CORAL_DEEP, size: 11 });
-      if (i < modes.length - 1) svg.appendChild(rc.line(m.x + 50, 183, modes[i+1].x - 52, 183, { stroke: CORAL_DEEP, strokeWidth: 1.2, roughness: 1.5 }));
+      svg.appendChild(rc.rectangle(m.x - 64, 184, 128, 50, { stroke: CORAL_DEEP, strokeWidth: 1.4, fill: '#fff', fillStyle: 'solid', roughness: 1.4 }));
+      txt(svg, m.x, 214, m.label, { weight: 700, anchor: 'middle', fill: CORAL_DEEP, size: 10.5 });
+      if (i < modes.length - 1) svg.appendChild(rc.line(m.x + 64, 209, modes[i+1].x - 66, 209, { stroke: CORAL_DEEP, strokeWidth: 1.2, roughness: 1.5 }));
     });
-    txt(svg, 360, 232, 'risk + control + capital + profit potential climb together', { anchor: 'middle', fill: INK2, size: 11, hand: true });
-    // Decorative arrow from spectrum (stage) down to entry mode line
-    svg.appendChild(rc.line(360, 115, 360, 138, { stroke: CORAL, strokeWidth: 1, strokeLineDash: [3, 3], roughness: 1.5 }));
-    txt(svg, 360, 270, 'the chapter walks the spectrum, the modes, and the localization principle that ties them.', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
+    txt(svg, 360, 262, 'risk + control + capital + profit potential climb together', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+    // tie the two ladders with a faint dashed link on the far left, clear of all labels
+    svg.appendChild(rc.line(30, 124, 30, 196, { stroke: CORAL_SOFT, strokeWidth: 1, strokeLineDash: [3, 3], roughness: 1.5 }));
+    txt(svg, 360, 296, 'the chapter walks the spectrum, the modes, and the localization principle that ties them.', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
   };
 
   // ---------- Walmart Germany failure ----------
@@ -2067,31 +2066,32 @@ return '$' + usd.toFixed(4);
   sketches['sk-entry-ladder-mount'] = function(svg) {
       const rc = makeRc(svg);
       txt(svg, 360, 22, 'climb the ladder: four things rise, three fall against them', { anchor: 'middle', fill: INK2, size: 11, hand: true });
+      // five wide rungs stacked, each a full-width box (label + plain-English sub on one line)
       const rungs = [
-        { x: 70,  y: 246, label: 'INDIRECT EXPORT', sub: 'sell via a middleman' },
-        { x: 205, y: 208, label: 'DIRECT EXPORT',   sub: 'ship it yourself' },
-        { x: 340, y: 170, label: 'LICENSE / FRANCHISE', sub: 'a partner runs it' },
-        { x: 478, y: 132, label: 'JOINT VENTURE',   sub: 'co-own with a local' },
-        { x: 614, y: 94,  label: 'WHOLLY-OWNED',    sub: 'own it outright' }
+        { y: 252, label: 'INDIRECT EXPORT',     sub: 'sell via a middleman' },
+        { y: 212, label: 'DIRECT EXPORT',       sub: 'ship it yourself' },
+        { y: 172, label: 'LICENSE / FRANCHISE', sub: 'a partner runs it' },
+        { y: 132, label: 'JOINT VENTURE',       sub: 'co-own with a local' },
+        { y: 92,  label: 'WHOLLY-OWNED',        sub: 'own it outright' }
       ];
       rungs.forEach((r, i) => {
         const top = (i === rungs.length - 1);
-        svg.appendChild(rc.rectangle(r.x - 64, r.y, 128, 42, { stroke: top ? CORAL_DEEP : CORAL, strokeWidth: top ? 2 : 1.6, fill: top ? '#fff7f0' : '#fff', fillStyle: 'solid', roughness: 1.35 }));
-        txt(svg, r.x, r.y + 18, r.label, { anchor: 'middle', fill: top ? CORAL_DEEP : INK, size: 10.5, weight: 700 });
-        txt(svg, r.x, r.y + 33, r.sub, { anchor: 'middle', fill: INK2, size: 9.5 });
-        if (i < rungs.length - 1) {
-          svg.appendChild(rc.line(r.x + 64, r.y + 8, rungs[i+1].x - 66, rungs[i+1].y + 34, { stroke: CORAL, strokeWidth: 1.3, strokeLineDash: [3, 3], roughness: 1.5 }));
-        }
+        // a wide indent that grows as commitment rises, so the stack reads as a climb
+        const x0 = 80 + i * 16;
+        const w = 540 - i * 16;
+        svg.appendChild(rc.rectangle(x0, r.y, w, 32, { stroke: top ? CORAL_DEEP : CORAL, strokeWidth: top ? 2 : 1.6, fill: top ? '#fff7f0' : '#fff', fillStyle: 'solid', roughness: 1.35 }));
+        txt(svg, x0 + 14, r.y + 21, r.label, { anchor: 'start', fill: top ? CORAL_DEEP : INK, size: 11, weight: 700 });
+        txt(svg, x0 + w - 14, r.y + 21, r.sub, { anchor: 'end', fill: INK2, size: 10 });
       });
       // up arrow: commitment / risk / control / profit
-      svg.appendChild(rc.line(40, 270, 40, 80, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.4 }));
-      svg.appendChild(rc.polygon([[40, 74], [35, 86], [45, 86]], { stroke: CORAL_DEEP, strokeWidth: 1.2, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.3 }));
-      txt(svg, 32, 175, 'commitment, risk, control, profit ↑', { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 600, transform: 'rotate(-90 32 175)' });
+      svg.appendChild(rc.line(40, 270, 40, 90, { stroke: CORAL_DEEP, strokeWidth: 1.6, roughness: 1.4 }));
+      svg.appendChild(rc.polygon([[40, 84], [35, 96], [45, 96]], { stroke: CORAL_DEEP, strokeWidth: 1.2, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.3 }));
+      txt(svg, 30, 180, 'commitment, risk, control, profit ↑', { anchor: 'middle', fill: CORAL_DEEP, size: 10, weight: 600, transform: 'rotate(-90 30 180)' });
       // down arrow on the right: speed / capital ease / overhead
-      svg.appendChild(rc.line(686, 80, 686, 270, { stroke: INK3, strokeWidth: 1.4, roughness: 1.4 }));
-      svg.appendChild(rc.polygon([[686, 276], [681, 264], [691, 264]], { stroke: INK3, strokeWidth: 1.2, fill: INK3, fillStyle: 'solid', roughness: 1.3 }));
-      txt(svg, 694, 175, 'speed + capital ease ↓', { anchor: 'middle', fill: INK2, size: 10, weight: 600, transform: 'rotate(-90 694 175)' });
-      txt(svg, 360, 292, 'the right rung is the lowest one that learns enough to climb', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
+      svg.appendChild(rc.line(688, 90, 688, 270, { stroke: INK3, strokeWidth: 1.4, roughness: 1.4 }));
+      svg.appendChild(rc.polygon([[688, 276], [683, 264], [693, 264]], { stroke: INK3, strokeWidth: 1.2, fill: INK3, fillStyle: 'solid', roughness: 1.3 }));
+      txt(svg, 700, 180, 'speed + capital ease ↓', { anchor: 'middle', fill: INK2, size: 10, weight: 600, transform: 'rotate(-90 700 180)' });
+      txt(svg, 360, 296, 'the right rung is the lowest one that learns enough to climb', { anchor: 'middle', fill: INK2, size: 11.5, hand: true });
     };
 
     // ---------- §15.2 sk-oli-grid: three Strong/Weak switches -> one mode ----------
@@ -2240,45 +2240,48 @@ return '$' + usd.toFixed(4);
     // ---------- NEW: three product strategies (extension / adaptation / invention) ----------
     sketches['sk-product-strategies-mount'] = function(svg) {
       const rc = makeRc(svg);
-      txt(svg, 20, 26, 'THREE PRODUCT MOVES: rising cost, rising rebuild', { fill: INK, size: 11, weight: 700 });
-      // three stacked rows, each a labeled box + a plain-English what-changes line + a real example
+      txt(svg, 48, 26, 'THREE PRODUCT MOVES: rising cost, rising rebuild', { fill: INK, size: 11, weight: 700 });
+      // three stacked rows; each = an open heading (no tight box), a what-line, an example, a descriptor line
       const rows = [
         {
-          y: 56, label: 'STRAIGHT EXTENSION', accent: CORAL,
+          y: 60, label: 'STRAIGHT EXTENSION', accent: CORAL,
           what: 'ship the home product unchanged',
           ex: 'a camera, a spreadsheet app: the job is the same at the border',
           chips: ['same product', 'same package', 'same creative']
         },
         {
-          y: 128, label: 'PRODUCT ADAPTATION', accent: CORAL,
+          y: 134, label: 'PRODUCT ADAPTATION', accent: CORAL,
           what: 'keep the brand, rebuild execution',
           ex: 'McDonald’s keeps the brand, swaps the menu market by market',
           chips: ['same brand', 'local menu', 'local channel']
         },
         {
-          y: 200, label: 'PRODUCT INVENTION', accent: CORAL_DEEP,
+          y: 208, label: 'PRODUCT INVENTION', accent: CORAL_DEEP,
           what: 'build new, home one is unbuyable',
           ex: 'the one-rupee sachet, not a smaller bottle',
           chips: ['new unit', 'new cost base', 'new distribution']
         }
       ];
-      rows.forEach(r => {
-        // label block on the left
-        svg.appendChild(rc.rectangle(20, r.y, 196, 44, { stroke: r.accent, strokeWidth: 1.6, fill: '#fff7f0', fillStyle: 'solid', roughness: 1.4 }));
-        txt(svg, 118, r.y + 19, r.label, { anchor: 'middle', fill: r.accent, size: 12, weight: 700 });
-        txt(svg, 118, r.y + 35, r.what, { anchor: 'middle', fill: INK2, size: 10 });
-        // example to the right of the label block
-        txt(svg, 236, r.y + 16, r.ex, { anchor: 'start', fill: INK, size: 11.5, hand: true });
-        // three small chips on the right edge
-        r.chips.forEach((c, i) => {
-          const cx = 250 + i * 158;
-          svg.appendChild(rc.rectangle(cx, r.y + 26, 150, 22, { stroke: r.accent, strokeWidth: 1.2, fill: '#fff', fillStyle: 'solid', roughness: 1.5 }));
-          txt(svg, cx + 75, r.y + 40, c, { anchor: 'middle', fill: INK2, size: 10 });
+      rows.forEach((r, i) => {
+        // a wide row container (large enough that no label crowds its stroke)
+        svg.appendChild(rc.rectangle(44, r.y - 22, 660, 60, { stroke: r.accent, strokeWidth: r.accent === CORAL_DEEP ? 1.8 : 1.5, fill: r.accent === CORAL_DEEP ? '#fff7f0' : '#fff', fillStyle: 'solid', roughness: 1.35 }));
+        // heading + what-line on the left
+        txt(svg, 60, r.y, r.label, { anchor: 'start', fill: r.accent, size: 12.5, weight: 700 });
+        txt(svg, 60, r.y + 18, r.what, { anchor: 'start', fill: INK2, size: 10.5 });
+        // example to the right of the heading
+        txt(svg, 312, r.y - 1, r.ex, { anchor: 'start', fill: INK, size: 11, hand: true });
+        // descriptor chips as plain spaced text (no cramped sub-boxes), with thin dot separators between them
+        let dx = 312;
+        r.chips.forEach((c, j) => {
+          if (j > 0) { txt(svg, dx, r.y + 18, '·', { anchor: 'middle', fill: CORAL_SOFT, size: 11 }); dx += 12; }
+          const t = txt(svg, dx, r.y + 18, c, { anchor: 'start', fill: INK3, size: 10 });
+          dx += (t.getComputedTextLength ? t.getComputedTextLength() : c.length * 6.4) + 14;
         });
       });
-      // rising arrow on the far left margin
-      svg.appendChild(rc.line(12, 240, 12, 60, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.5 }));
-      svg.appendChild(rc.polygon([[12, 56], [8, 66], [16, 66]], { stroke: CORAL_DEEP, strokeWidth: 1.2, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.3 }));
+      // rising arrow on the far left margin (cost + rebuild climb downward through the list)
+      svg.appendChild(rc.line(24, 224, 24, 44, { stroke: CORAL_DEEP, strokeWidth: 1.4, roughness: 1.5 }));
+      svg.appendChild(rc.polygon([[24, 224], [19, 212], [29, 212]], { stroke: CORAL_DEEP, strokeWidth: 1.2, fill: CORAL_DEEP, fillStyle: 'solid', roughness: 1.3 }));
+      txt(svg, 24, 250, 'cost + rebuild rise ↓', { anchor: 'start', fill: INK2, size: 9.5, weight: 600 });
     };
 
     // ---------- REUSE: Euro Disney to Disneyland Paris (verbatim from live L2242) ----------
