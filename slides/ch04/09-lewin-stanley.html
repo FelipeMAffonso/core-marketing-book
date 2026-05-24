@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 4 How Buyers Buy · 09 · Lewin and Stanley</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.split{ display:flex; flex-direction:column; }
+  .split .head{ margin-bottom:18px; }
+  .split .cols{ display:grid; grid-template-columns: 1fr 1fr; gap:24px; flex:1; min-height:0; }
+  .split .col{
+    border:1px solid var(--rule); padding:24px 26px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .split .col.after{ background:var(--accent-tint); border:none; border-left:3px solid var(--accent); }
+  .split .col .label{
+    font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:14px;
+  }
+  .split .col.after .label{ color:var(--accent); }
+  .split .col .pct{ font-size:40px; font-weight:600; letter-spacing:-0.02em; line-height:1.05; color:var(--ink); }
+  .split .col.after .pct{ color:var(--accent); }
+  .split .col .formula{ font-size:20px; color:var(--ink-body); margin-top:14px; line-height:1.4; }
+  .split .col .note{ font-size:20px; color:var(--ink-soft); margin-top:10px; line-height:1.4; }
+  .split .col .note strong{ color:var(--ink); font-weight:600; }
+  .split .foot{ margin-top:18px; font-size:21px; line-height:1.45; color:var(--ink-body); max-width:86ch; }
+  .split .foot em{ font-style:normal; color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 09 · TWO-COLUMN · Lewin B=f(P,E). Person side gray (held constant), Environment side coral (where the change happened). ONE coral element = the environment column carrying the $73M to $750M move. -->
+  <section class="slide split">
+    <div class="head">
+      <h1 class="title">Stanley's buyer ran B = f(P, E), and the cup went from $73M to $750M because <em>the environment moved, not the buyer</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <span class="label">Person (P) · held constant</span>
+        <span class="pct">unchanged</span>
+        <p class="formula">motives, identity, attitudes</p>
+        <p class="note">The young professional's motives in 2024 were about what they were in 2019. A brand that models only segments and personas <strong>reads only this side</strong> of the equation.</p>
+      </div>
+      <div class="col after">
+        <span class="label">Environment (E) · where it moved</span>
+        <span class="pct">$73M &rarr; $750M</span>
+        <p class="formula">cues, alternatives, social context</p>
+        <p class="note">TikTok gave the cup social meaning, color-drops turned it into a gift, and its presence at offices and gyms built a <strong>field tension the 2019 environment did not hold</strong>.</p>
+      </div>
+    </div>
+
+    <p class="foot">Nothing about the product changed across those five years. The environment side is where most of the change happens, because <em>that side is the cue layer the buyer's autopilot actually runs on</em>.</p>
+
+    <p class="source">Source: Lewin (1936); Kowitt, CNBC (Dec 23, 2023); Stanley cup-line revenue $73M (2018) to $750M (2023)</p>
+  </section>
+</body>
+</html>

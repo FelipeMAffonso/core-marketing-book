@@ -83,9 +83,30 @@ main a{color:var(--coral-text);font-weight:500;}
 footer{border-top:1px solid var(--border);background:var(--bg-2);padding:28px 0;
   margin-top:60px;}
 footer .inner{max-width:860px;margin:0 auto;padding:0 28px;font-size:12.5px;color:var(--ink-3);}
+/* card grid — chapter decks + materials, echoing the dashboard tiles */
+.ccards{display:grid;grid-template-columns:repeat(auto-fill,minmax(212px,1fr));gap:14px;
+  margin:6px 0 34px;list-style:none;padding:0;}
+.ccard{display:flex;flex-direction:column;gap:7px;padding:15px 16px;min-height:108px;
+  border:1px solid var(--border);border-radius:10px;background:var(--bg);text-decoration:none;
+  transition:border-color 150ms var(--ease-coral,ease),box-shadow 150ms,transform 150ms;}
+a.ccard:hover{border-color:var(--coral);box-shadow:0 6px 20px rgba(218,119,86,0.13);
+  transform:translateY(-2px);text-decoration:none;}
+a.ccard:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;}
+.ccard .ci-num{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.08em;
+  color:var(--coral-text);}
+.ccard .ci-title{font-size:15px;font-weight:650;color:var(--ink);line-height:1.28;}
+.ccard .ci-meta{font-size:12px;color:var(--ink-3);margin-top:auto;}
+.ccard.soon{background:var(--bg-2);border-style:dashed;cursor:default;}
+.ccard.soon .ci-title{color:var(--ink-3);font-weight:600;}
+.ci-pill{align-self:flex-start;font-size:9.5px;font-weight:700;letter-spacing:0.07em;
+  text-transform:uppercase;padding:2px 8px;border-radius:10px;background:var(--coral-tint);
+  color:var(--coral-text);}
+.ccard.soon .ci-pill{background:var(--bg-3);color:var(--ink-3);}
+.group-blurb{font-size:14px;color:var(--ink-3);margin:0 0 14px;}
 @media (max-width:600px){
   main{padding:30px 18px 64px;}
   .topbar-inner{padding:0 18px;}
+  .ccards{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
 }
 </style>
 </head>
@@ -101,67 +122,68 @@ footer .inner{max-width:860px;margin:0 auto;padding:0 28px;font-size:12.5px;colo
 <main id="main">
 <p class="kicker">Instructor materials</p>
 <h1>Course materials</h1>
-<p class="toc-note">Markdown deliverables rendered to clean HTML, grouped by type. Each opens in this same coral reading view.</p>
-<h2 id="test-bank">Test &amp; Quiz Bank</h2>
-<p>Chapter-tagged quiz and exam items, export-ready.</p>
-<ul>
-<li><a href="test-bank/ch01-ai-for-marketers-test-bank.html">Chapter 1 AI for Marketers — Test Bank</a></li>
-<li><a href="test-bank/ch02-what-marketing-is-test-bank.html">Chapter 2 What Marketing Is — Test Bank</a></li>
-<li><a href="test-bank/ch03-marketing-environment-test-bank.html">Chapter 3 — The Marketing Environment Test Bank</a></li>
-<li><a href="test-bank/ch04-how-buyers-buy-test-bank.html">Chapter 4 How Buyers Buy — Test Bank</a></li>
-<li><a href="test-bank/ch05-marketing-research-test-bank.html">Chapter 5 Marketing Research — Test Bank</a></li>
-<li><a href="test-bank/ch06-stp-test-bank.html">Chapter 6 STP — Test Bank</a></li>
-<li><a href="test-bank/ch07-brands-test-bank.html">Chapter 7 Brands — Test Bank</a></li>
-<li><a href="test-bank/ch08-product-management-test-bank.html">Chapter 8 Product Management — Test Bank</a></li>
-<li><a href="test-bank/ch09-services-test-bank.html">Chapter 9 Services Marketing — Test Bank</a></li>
-<li><a href="test-bank/ch10-pricing-test-bank.html">Chapter 10 Pricing — Test Bank</a></li>
-<li><a href="test-bank/ch11-distribution-test-bank.html">Chapter 11 Distribution — Test Bank</a></li>
-<li><a href="test-bank/ch12-retail-test-bank.html">Chapter 12 Retail — Test Bank</a></li>
-<li><a href="test-bank/ch13-dtc-ecommerce-test-bank.html">Chapter 13 DTC and E-Commerce Stack — Test Bank</a></li>
-<li><a href="test-bank/ch14-mobile-app-test-bank.html">Chapter 14 Mobile and App Marketing — Test Bank</a></li>
-<li><a href="test-bank/ch15-international-test-bank.html">Chapter 15 International Marketing — Test Bank</a></li>
-<li><a href="test-bank/ch16-promotions-test-bank.html">Chapter 16 Promotions and Advertising — Test Bank</a></li>
-<li><a href="test-bank/ch17-content-marketing-test-bank.html">Chapter 17 Content Marketing Strategy — Test Bank</a></li>
-<li><a href="test-bank/ch18-digital-marketing-test-bank.html">Chapter 18 Digital Marketing and SEO/GEO — Test Bank</a></li>
-<li><a href="test-bank/ch19-social-media-test-bank.html">Chapter 19 Social Media Marketing — Test Bank</a></li>
-<li><a href="test-bank/ch20-creator-economy-test-bank.html">Chapter 20 Creator Economy — Test Bank</a></li>
-<li><a href="test-bank/ch21-lifecycle-test-bank.html">Chapter 21 Lifecycle, Email, and SMS Marketing / CRM — Test Bank</a></li>
-<li><a href="test-bank/ch22-pr-crisis-test-bank.html">Chapter 22 PR, Crisis Comms, and Earned Media — Test Bank</a></li>
-<li><a href="test-bank/ch23-sales-alignment-test-bank.html">Chapter 23 Sales Force and B2B / Sales-Marketing Alignment — Test Bank</a></li>
-<li><a href="test-bank/ch24-plan-analytics-test-bank.html">Chapter 24 Marketing Plan and Analytics — Test Bank</a></li>
-<li><a href="test-bank/ch25-marketing-finance-test-bank.html">Chapter 25 Marketing Finance and Budget Defense — Test Bank</a></li>
-<li><a href="test-bank/ch26-ethics-ai-test-bank.html">Chapter 26 Ethics and Responsible AI in Marketing — Test Bank</a></li>
-<li><a href="test-bank/ch27-capstone-test-bank.html">Chapter 27 Capstone — Build Your Marketing AI Stack — Test Bank</a></li>
-</ul>
-<h2 id="teaching-notes">Teaching Notes</h2>
-<p>Session-by-session instructor guidance.</p>
-<ul>
-<li><a href="teaching-notes/ch06-stp-teaching-notes.html">Chapter 6: Segmentation, Targeting, Positioning</a></li>
-<li><a href="teaching-notes/ch07-brands-teaching-notes.html">Chapter 7: Brands and Brand Management</a></li>
-<li><a href="teaching-notes/ch10-pricing-teaching-notes.html">Chapter 10: Pricing</a></li>
-</ul>
-<h2 id="assignments">Assignments</h2>
-<p>Graded individual assignments mapped to objectives.</p>
-<ul>
-<li><a href="assignments/ch06-stp-assignment.html">Segment, Target, and Position a Real Brand</a></li>
-<li><a href="assignments/ch10-pricing-assignment.html">Price a Real Product</a></li>
-</ul>
-<h2 id="cases">Cases</h2>
-<p>Teaching cases with discussion questions.</p>
-<ul>
-<li><a href="cases/ch06-stanley-stp-case.html">Stanley&#x27;s Quencher: Cut It, or Re-Aim It?</a></li>
-</ul>
-<h2 id="read-reference">AI Prompt Library</h2>
-<p>Copy-paste prompts that turn each chapter into an AI exercise.</p>
-<ul>
-<li><a href="read-reference/ai-prompt-library.html">AI Prompt Library</a></li>
-</ul>
-<h2 id="adopt-deploy">Adopt &amp; Deploy</h2>
-<p>Syllabus, pacing, and the AACSB outcomes map.</p>
-<ul>
-<li><a href="adopt-deploy/aacsb-outcomes-map.html">AACSB Assurance-of-Learning Outcomes Map</a></li>
-<li><a href="adopt-deploy/syllabus-and-pacing-guide.html">Principles of Marketing: An AI-Integrated Approach</a></li>
-</ul></main>
+<p class="toc-note">Every deliverable rendered to a clean coral reading view, grouped by type. Cards open in place.</p>
+<h2 id="test-bank">Test &amp; Quiz Bank <span class="ci-pill">27</span></h2>
+<p class="group-blurb">Chapter-tagged quiz and exam items, export-ready.</p>
+<div class="ccards">
+<a class="ccard" href="test-bank/ch01-ai-for-marketers-test-bank.html"><span class="ci-num">Ch 01</span><span class="ci-title">AI for Marketers</span></a>
+<a class="ccard" href="test-bank/ch02-what-marketing-is-test-bank.html"><span class="ci-num">Ch 02</span><span class="ci-title">What Marketing Is</span></a>
+<a class="ccard" href="test-bank/ch03-marketing-environment-test-bank.html"><span class="ci-num">Ch 03</span><span class="ci-title">The Marketing Environment</span></a>
+<a class="ccard" href="test-bank/ch04-how-buyers-buy-test-bank.html"><span class="ci-num">Ch 04</span><span class="ci-title">How Buyers Buy</span></a>
+<a class="ccard" href="test-bank/ch05-marketing-research-test-bank.html"><span class="ci-num">Ch 05</span><span class="ci-title">Marketing Research</span></a>
+<a class="ccard" href="test-bank/ch06-stp-test-bank.html"><span class="ci-num">Ch 06</span><span class="ci-title">Segmentation, Targeting &amp; Positioning</span></a>
+<a class="ccard" href="test-bank/ch07-brands-test-bank.html"><span class="ci-num">Ch 07</span><span class="ci-title">Brands &amp; Brand Equity</span></a>
+<a class="ccard" href="test-bank/ch08-product-management-test-bank.html"><span class="ci-num">Ch 08</span><span class="ci-title">Product Management</span></a>
+<a class="ccard" href="test-bank/ch09-services-test-bank.html"><span class="ci-num">Ch 09</span><span class="ci-title">Services Marketing</span></a>
+<a class="ccard" href="test-bank/ch10-pricing-test-bank.html"><span class="ci-num">Ch 10</span><span class="ci-title">Pricing</span></a>
+<a class="ccard" href="test-bank/ch11-distribution-test-bank.html"><span class="ci-num">Ch 11</span><span class="ci-title">Distribution Channels</span></a>
+<a class="ccard" href="test-bank/ch12-retail-test-bank.html"><span class="ci-num">Ch 12</span><span class="ci-title">Retail</span></a>
+<a class="ccard" href="test-bank/ch13-dtc-ecommerce-test-bank.html"><span class="ci-num">Ch 13</span><span class="ci-title">DTC &amp; E-commerce</span></a>
+<a class="ccard" href="test-bank/ch14-mobile-app-test-bank.html"><span class="ci-num">Ch 14</span><span class="ci-title">Mobile &amp; App Marketing</span></a>
+<a class="ccard" href="test-bank/ch15-international-test-bank.html"><span class="ci-num">Ch 15</span><span class="ci-title">International Marketing</span></a>
+<a class="ccard" href="test-bank/ch16-promotions-test-bank.html"><span class="ci-num">Ch 16</span><span class="ci-title">Promotions</span></a>
+<a class="ccard" href="test-bank/ch17-content-marketing-test-bank.html"><span class="ci-num">Ch 17</span><span class="ci-title">Content Marketing</span></a>
+<a class="ccard" href="test-bank/ch18-digital-marketing-test-bank.html"><span class="ci-num">Ch 18</span><span class="ci-title">Digital Marketing</span></a>
+<a class="ccard" href="test-bank/ch19-social-media-test-bank.html"><span class="ci-num">Ch 19</span><span class="ci-title">Social Media</span></a>
+<a class="ccard" href="test-bank/ch20-creator-economy-test-bank.html"><span class="ci-num">Ch 20</span><span class="ci-title">Creator Economy</span></a>
+<a class="ccard" href="test-bank/ch21-lifecycle-test-bank.html"><span class="ci-num">Ch 21</span><span class="ci-title">Customer Lifecycle</span></a>
+<a class="ccard" href="test-bank/ch22-pr-crisis-test-bank.html"><span class="ci-num">Ch 22</span><span class="ci-title">PR &amp; Crisis</span></a>
+<a class="ccard" href="test-bank/ch23-sales-alignment-test-bank.html"><span class="ci-num">Ch 23</span><span class="ci-title">Sales Alignment</span></a>
+<a class="ccard" href="test-bank/ch24-plan-analytics-test-bank.html"><span class="ci-num">Ch 24</span><span class="ci-title">Marketing Plan &amp; Analytics</span></a>
+<a class="ccard" href="test-bank/ch25-marketing-finance-test-bank.html"><span class="ci-num">Ch 25</span><span class="ci-title">Marketing Finance</span></a>
+<a class="ccard" href="test-bank/ch26-ethics-ai-test-bank.html"><span class="ci-num">Ch 26</span><span class="ci-title">Ethics &amp; Responsible AI</span></a>
+<a class="ccard" href="test-bank/ch27-capstone-test-bank.html"><span class="ci-num">Ch 27</span><span class="ci-title">Capstone</span></a>
+</div>
+<h2 id="teaching-notes">Teaching Notes <span class="ci-pill">4</span></h2>
+<p class="group-blurb">Session-by-session instructor guidance.</p>
+<div class="ccards">
+<a class="ccard" href="teaching-notes/ch02-what-marketing-is-teaching-notes.html"><span class="ci-num">Ch 02</span><span class="ci-title">What Marketing Is</span></a>
+<a class="ccard" href="teaching-notes/ch06-stp-teaching-notes.html"><span class="ci-num">Ch 06</span><span class="ci-title">Segmentation, Targeting &amp; Positioning</span></a>
+<a class="ccard" href="teaching-notes/ch07-brands-teaching-notes.html"><span class="ci-num">Ch 07</span><span class="ci-title">Brands &amp; Brand Equity</span></a>
+<a class="ccard" href="teaching-notes/ch10-pricing-teaching-notes.html"><span class="ci-num">Ch 10</span><span class="ci-title">Pricing</span></a>
+</div>
+<h2 id="assignments">Assignments <span class="ci-pill">2</span></h2>
+<p class="group-blurb">Graded individual assignments mapped to objectives.</p>
+<div class="ccards">
+<a class="ccard" href="assignments/ch06-stp-assignment.html"><span class="ci-num">Ch 06</span><span class="ci-title">Segmentation, Targeting &amp; Positioning</span></a>
+<a class="ccard" href="assignments/ch10-pricing-assignment.html"><span class="ci-num">Ch 10</span><span class="ci-title">Pricing</span></a>
+</div>
+<h2 id="cases">Cases <span class="ci-pill">1</span></h2>
+<p class="group-blurb">Teaching cases with discussion questions.</p>
+<div class="ccards">
+<a class="ccard" href="cases/ch06-stanley-stp-case.html"><span class="ci-num">Ch 06</span><span class="ci-title">Segmentation, Targeting &amp; Positioning</span></a>
+</div>
+<h2 id="read-reference">AI Prompt Library <span class="ci-pill">1</span></h2>
+<p class="group-blurb">Copy-paste prompts that turn each chapter into an AI exercise.</p>
+<div class="ccards">
+<a class="ccard" href="read-reference/ai-prompt-library.html"><span class="ci-title">AI Prompt Library</span></a>
+</div>
+<h2 id="adopt-deploy">Adopt &amp; Deploy <span class="ci-pill">2</span></h2>
+<p class="group-blurb">Syllabus, pacing, and the AACSB outcomes map.</p>
+<div class="ccards">
+<a class="ccard" href="adopt-deploy/aacsb-outcomes-map.html"><span class="ci-title">AACSB Assurance-of-Learning Outcomes Map</span></a>
+<a class="ccard" href="adopt-deploy/syllabus-and-pacing-guide.html"><span class="ci-title">Principles of Marketing: An AI-Integrated Approach</span></a>
+</div></main>
 <footer><div class="inner">Principles of Marketing: An AI-Integrated Approach &middot; instructor courseware.</div></footer>
 </body>
 </html>

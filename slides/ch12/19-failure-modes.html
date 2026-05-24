@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 12 Retail · 19 · What goes wrong</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.content{ display:flex; flex-direction:column; }
+  .content .head{ margin-bottom:16px; }
+  .content .grid{ display:grid; grid-template-columns: 1fr 1fr; gap:30px; flex:1; align-content:start; }
+  .content .modes{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px; }
+  .content .modes li{ font-size:20px; color:var(--ink-body); padding-left:24px; position:relative; line-height:1.28; }
+  .content .modes li::before{ content:""; position:absolute; left:0; top:12px; width:14px; height:2px; background:var(--ink-mute); }
+  .content .modes li strong{ color:var(--ink); font-weight:600; }
+  .content .detector{
+    background:var(--accent-tint); border:none; border-left:3px solid var(--accent);
+    padding:22px 24px; display:flex; flex-direction:column;
+  }
+  .content .detector h4{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
+  .content .detector p{ font-size:21px; line-height:1.4; color:var(--ink-body); margin-bottom:14px; }
+  .content .detector p em{ font-style:normal; color:var(--ink); font-weight:600; }
+  .content .detector ol{ margin:0 0 0 22px; padding:0; display:flex; flex-direction:column; gap:9px; }
+  .content .detector ol li{ font-size:20px; color:var(--ink-body); line-height:1.32; }
+</style>
+</head>
+<body>
+  <!-- 19 · CONTENT · five failure modes + the measured-failure-mode detector. ONE coral element = the detector card (the test that separates a pilot from a deployment). -->
+  <section class="slide content">
+    <div class="head">
+      <h1 class="title">Five recurring failure modes share one test. <em>Every AI retail claim needs a measured failure mode.</em></h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="grid">
+      <ul class="modes">
+        <li><strong>Pure-tech, no human fallback.</strong> Just Walk Out at grocery scale routed ~700 of 1,000 baskets to human review.</li>
+        <li><strong>DTC crossover without the unit economics.</strong> Casper and Allbirds opened stores SoHo rent could not carry.</li>
+        <li><strong>Mid-market stagnation.</strong> Macy's is eaten from below and above at once.</li>
+        <li><strong>Generic-format-fit.</strong> JCPenney's switch and Walmart Germany both transplanted a format the buyer did not want.</li>
+        <li><strong>AI with no measured failure mode.</strong> The vendor names no cost when the model is wrong.</li>
+      </ul>
+
+      <div class="detector">
+        <h4>The detector · ask three questions</h4>
+        <p>For any retail-tech or AI claim, the test that <em>separated Just Walk Out at the stadium from Just Walk Out at the supermarket</em>.</p>
+        <ol>
+          <li>What happens the day the model is wrong?</li>
+          <li>What is the human-fallback path?</li>
+          <li>What does a false positive cost at scale?</li>
+        </ol>
+        <p style="margin-top:14px; margin-bottom:0;">When the answer to all three is "the vendor does not say," the claim is still a pilot, whatever the brochure calls it.</p>
+      </div>
+    </div>
+
+    <p class="source">Source: Amazon newsroom (Jan. 2026); NRF shrink survey ($112B 2022, ~$132B 2024); the chapter's standing retail-tech rule</p>
+  </section>
+</body>
+</html>

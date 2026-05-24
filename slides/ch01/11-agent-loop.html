@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 1 AI Foundations · 11 · The agent loop</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; }
+  .exh .head{ margin-bottom:12px; }
+  .exh .frame{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:14px 22px 12px; display:flex; flex-direction:column; flex:1; min-height:0;
+  }
+  .exh .frame .caption{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:4px;
+  }
+  .exh svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+</style>
+</head>
+<body>
+  <!-- 11 · EXHIBIT · the agent loop in five stages (lifted from the chapter sk-agentloop sketch). ONE coral element = the loop-back arrow, the "until the job is done" return that makes it an agent. Stage boxes are gray. -->
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">The agent runs one loop: think, use a tool, read, decide, <em>until the job is done</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Exhibit 1.4 · The agent loop &middot; you set the goal once; the loop repeats; you approve the risky steps</span>
+      <svg viewBox="0 0 660 258" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="You set the goal once. The model thinks, asks for a tool, the app runs the tool and hands back the result, and the model decides the next step. A coral arrow loops back to thinking, and the loop repeats until the job is done.">
+        <g fill="#1a1a1a">
+          <!-- goal set once, far left -->
+          <rect x="20" y="92" width="92" height="56" fill="#FDF6F3" stroke="#BDB7AC" stroke-width="1"/>
+          <text x="66" y="116" text-anchor="middle" font-size="12" font-weight="600">Set goal</text>
+          <text x="66" y="133" text-anchor="middle" font-size="10.5" fill="#7A7A7A">once, in words</text>
+          <line x1="112" y1="120" x2="146" y2="120" stroke="#7A7A7A" stroke-width="1.4"/>
+          <polygon points="146,120 138,116 138,124" fill="#7A7A7A"/>
+
+          <!-- 4 loop stages across the middle, gray -->
+          <!-- think -->
+          <rect x="148" y="92" width="92" height="56" fill="#E8E6E1" stroke="#BDB7AC" stroke-width="1"/>
+          <text x="194" y="124" text-anchor="middle" font-size="12.5" font-weight="600">1 · Think</text>
+          <line x1="240" y1="120" x2="270" y2="120" stroke="#7A7A7A" stroke-width="1.4"/>
+          <polygon points="270,120 262,116 262,124" fill="#7A7A7A"/>
+          <!-- use a tool -->
+          <rect x="272" y="92" width="96" height="56" fill="#E8E6E1" stroke="#BDB7AC" stroke-width="1"/>
+          <text x="320" y="116" text-anchor="middle" font-size="12.5" font-weight="600">2 · Use a tool</text>
+          <text x="320" y="133" text-anchor="middle" font-size="10" fill="#7A7A7A">search, read, post</text>
+          <line x1="368" y1="120" x2="398" y2="120" stroke="#7A7A7A" stroke-width="1.4"/>
+          <polygon points="398,120 390,116 390,124" fill="#7A7A7A"/>
+          <!-- read result -->
+          <rect x="400" y="92" width="96" height="56" fill="#E8E6E1" stroke="#BDB7AC" stroke-width="1"/>
+          <text x="448" y="116" text-anchor="middle" font-size="12.5" font-weight="600">3 · Read it</text>
+          <text x="448" y="133" text-anchor="middle" font-size="10" fill="#7A7A7A">what came back</text>
+          <line x1="496" y1="120" x2="526" y2="120" stroke="#7A7A7A" stroke-width="1.4"/>
+          <polygon points="526,120 518,116 518,124" fill="#7A7A7A"/>
+          <!-- decide -->
+          <rect x="528" y="92" width="96" height="56" fill="#E8E6E1" stroke="#BDB7AC" stroke-width="1"/>
+          <text x="576" y="116" text-anchor="middle" font-size="12.5" font-weight="600">4 · Decide</text>
+          <text x="576" y="133" text-anchor="middle" font-size="10" fill="#7A7A7A">next step</text>
+
+          <!-- the ONE coral element: loop-back arrow from decide (576,148) down and back to think (194,148) -->
+          <path d="M576 148 L576 196 L194 196 L194 150" fill="none" stroke="#DA7756" stroke-width="2.5"/>
+          <polygon points="194,150 189,160 199,160" fill="#DA7756"/>
+          <text x="385" y="214" text-anchor="middle" font-size="12" fill="#B8553A" font-weight="700">repeat until the job is done</text>
+
+          <!-- done arrow out the right -->
+          <line x1="624" y1="120" x2="650" y2="120" stroke="#7A7A7A" stroke-width="1.4"/>
+          <text x="640" y="104" text-anchor="middle" font-size="10.5" fill="#7A7A7A">done</text>
+
+          <text x="340" y="244" text-anchor="middle" font-size="11" fill="#888" font-style="italic">the model never reaches the outside world by itself; the app runs each tool and shows you the risky moves first</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: chapter §1.4; agent framing after Russell &amp; Norvig (sensors, actuators, performance measure, environment)</p>
+  </section>
+</body>
+</html>

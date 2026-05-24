@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 1 AI Foundations · 07 · Hallucination</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.content{ display:flex; flex-direction:column; }
+  .content .head{ margin-bottom:20px; }
+  .content .body-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:32px; flex:1; min-height:0; align-items:center; }
+  .content .prose p{ font-size:22px; line-height:1.48; color:var(--ink-body); margin-bottom:16px; max-width:42ch; }
+  .content .prose p:last-child{ margin-bottom:0; }
+  .content .prose p em{ font-style:normal; color:var(--ink); font-weight:600; }
+  .content .cite-card{
+    border:1px solid var(--rule); padding:24px 26px;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .content .cite-card .stamp{
+    align-self:flex-start; font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--accent); border:1px solid var(--accent); padding:4px 9px; border-radius:2px; margin-bottom:10px;
+  }
+  .content .cite-card .ln{ font-size:20px; color:var(--ink-body); line-height:1.4; }
+  .content .cite-card .ln.journal{ font-style:italic; color:var(--ink); }
+  .content .cite-card .ln.link{ color:var(--ink-mute); text-decoration:line-through; }
+  .content .cite-card .verdict{ font-size:20px; color:var(--ink); font-weight:600; margin-top:12px; padding-top:14px; border-top:1px solid var(--rule); }
+</style>
+</head>
+<body>
+  <!-- 07 · CONTENT · hallucination. ONE coral element = the VERIFY stamp on the fabricated citation (lifted framing from sk-halluc). Correlational/hedged verbs kept ("can be wrong," "slip through"). -->
+  <section class="slide content">
+    <div class="head">
+      <h1 class="title">The model reaches for the most natural-sounding next word, <em>not the most truthful one</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="body-grid">
+      <div class="prose">
+        <p>Most of the time the two are the same word, which is exactly why the model feels trustworthy. When they part ways it states something false in the same calm voice it uses for the truth.</p>
+        <p>Letting it search the web cuts this down without ending it, so the work rule holds: <em>every number, name, and date gets a real source clicked first</em>. The cheapest check is the link itself.</p>
+      </div>
+
+      <div class="cite-card">
+        <span class="stamp">Verify</span>
+        <span class="ln journal">Journal of Consumer Insight, 44(3), 211&ndash;230</span>
+        <span class="ln">"Curviness raises perceived warmth by 31%."</span>
+        <span class="ln link">doi.org/10.1016/j.jconinst.2024.03.018</span>
+        <span class="verdict">The name looks real. The link goes nowhere.</span>
+      </div>
+    </div>
+
+    <p class="source">Source: chapter §1.3, §1.7; an invented DOI either fails to resolve or lands somewhere unrelated, a one-second test</p>
+  </section>
+</body>
+</html>

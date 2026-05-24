@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 4 How Buyers Buy · 08 · GLP-1 cue disruption</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.cmp{ display:flex; flex-direction:column; }
+  .cmp .head{ margin-bottom:14px; }
+  .cmp .body-row{ display:grid; grid-template-columns: 1.6fr 1fr; gap:32px; flex:1; min-height:0; }
+  .cmp .chart{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:18px 22px 14px; display:flex; flex-direction:column; min-height:0;
+  }
+  .cmp .chart .caption{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:4px; }
+  .cmp .chart .headline{ font-size:18px; font-weight:600; color:var(--ink); line-height:1.3; margin-bottom:10px; max-width:52ch; }
+  .cmp svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+  .cmp .side h4{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .cmp .side p{ font-size:21px; line-height:1.4; color:var(--ink-body); margin-bottom:14px; max-width:30ch; }
+  .cmp .side p em{ font-style:normal; color:var(--ink); font-weight:600; }
+  .cmp .side ul{ list-style:none; padding:0; margin:8px 0 0; display:flex; flex-direction:column; gap:8px; }
+  .cmp .side ul li{ font-size:20px; color:var(--ink-body); padding-left:16px; position:relative; line-height:1.35; }
+  .cmp .side ul li::before{ content:""; position:absolute; left:0; top:13px; width:9px; height:1px; background:var(--ink-mute); }
+</style>
+</head>
+<body>
+  <!-- 08 · COMPARISON BARS · GLP-1 grocery-spend declines by category. ONE coral element = savory snacks, the steepest drop and the most cue-built category. Bars descend (declines) so larger negative = taller. -->
+  <section class="slide cmp">
+    <div class="head">
+      <h1 class="title">A drug that damps the appetite cue cut grocery spend most where the category <em>was built on the cue itself</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="body-row">
+      <div class="chart">
+        <span class="caption">Exhibit 4.4 · Grocery-spend change within six months of GLP-1 adoption · by category</span>
+        <p class="headline">Total spend fell 5.3%. Savory snacks and fast-food runs, the categories built on the cue-reward loop, fell hardest, and higher-income households cut more than lower-income did.</p>
+        <svg viewBox="0 0 560 256" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="Three descending bars showing grocery-spend declines after GLP-1 adoption: total spend down 5.3 percent in gray, fast food down 8.0 percent in gray, and savory snacks down 10.1 percent in coral. The savory-snacks bar carries the claim that the most cue-built category took the biggest hit.">
+          <g font-size="12" fill="#1a1a1a">
+            <!-- bars hang DOWN from a top baseline y=56; scale: 12% = 156px so 1% = 13px -->
+            <line x1="64" y1="56" x2="540" y2="56" stroke="#7A7A7A"/>
+            <line x1="64" y1="56" x2="64" y2="220" stroke="#E8E6E1"/>
+            <g font-size="11" fill="#7A7A7A" text-anchor="end">
+              <text x="56" y="60">0</text>
+              <text x="56" y="108">-4</text>
+              <text x="56" y="147">-7</text>
+              <text x="56" y="199">-11</text>
+            </g>
+            <line x1="64" y1="108" x2="540" y2="108" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+            <line x1="64" y1="147" x2="540" y2="147" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+            <line x1="64" y1="199" x2="540" y2="199" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+            <text x="28" y="138" font-size="11" fill="#7A7A7A" text-anchor="middle" font-style="italic" transform="rotate(-90 28 138)">spend change (%)</text>
+
+            <!-- total -5.3%: gray, depth 69, bottom y=125 -->
+            <rect x="110" y="56" width="92" height="69" fill="#BDB7AC"/>
+            <text x="156" y="142" text-anchor="middle" font-size="13" fill="#5C5C5C" font-weight="600">-5.3%</text>
+            <text x="156" y="236" text-anchor="middle" font-size="12" fill="#1a1a1a">total spend</text>
+
+            <!-- fast food -8.0%: gray, depth 104, bottom y=160 -->
+            <rect x="250" y="56" width="92" height="104" fill="#BDB7AC"/>
+            <text x="296" y="177" text-anchor="middle" font-size="13" fill="#5C5C5C" font-weight="600">-8.0%</text>
+            <text x="296" y="236" text-anchor="middle" font-size="12" fill="#1a1a1a">fast food</text>
+
+            <!-- savory snacks -10.1%: coral, depth 131, bottom y=187 -->
+            <rect x="390" y="56" width="92" height="131" fill="#DA7756"/>
+            <text x="436" y="204" text-anchor="middle" font-size="14" fill="#DA7756" font-weight="700">-10.1%</text>
+            <text x="436" y="236" text-anchor="middle" font-size="12" fill="#1a1a1a" font-weight="600">savory snacks</text>
+          </g>
+        </svg>
+      </div>
+
+      <aside class="side">
+        <h4>The mechanism</h4>
+        <p>The cue is still in the store; the signal that <em>used to trigger the buy</em> is damped at the source.</p>
+
+        <h4>Why it generalizes</h4>
+        <ul>
+          <li>About one in four U.S. households now has a member on a prescription.</li>
+          <li>Mondelez North America reported a 4.1% net revenue decline in early 2026.</li>
+          <li>A brand built on a single cue is exposed the moment the cue disappears.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <p class="source">Source: Hristakeva, Liaukonyt&#279; &amp; Feler, "The No-Hunger Games," <em>JMR</em> (Dec 2025); household-panel difference-in-differences</p>
+  </section>
+</body>
+</html>

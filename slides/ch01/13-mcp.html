@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 1 AI Foundations · 13 · MCP, one shared plug</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.cmp{ display:flex; flex-direction:column; }
+  .cmp .head{ margin-bottom:12px; }
+  .cmp .body-row{ display:grid; grid-template-columns: 1.35fr 1fr; gap:30px; flex:1; min-height:0; }
+  .cmp .chart{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:16px 22px 12px; display:flex; flex-direction:column; min-height:0;
+  }
+  .cmp .chart .caption{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:6px; }
+  .cmp svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+  .cmp .side h4{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .cmp .side p{ font-size:21px; line-height:1.42; color:var(--ink-body); margin-bottom:14px; max-width:30ch; }
+  .cmp .side p:last-child{ margin-bottom:0; }
+  .cmp .side p em{ font-style:normal; color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 13 · CONTENT/EXHIBIT · MCP as one shared port (USB-C analogy, lifted from sk-mcp). ONE coral element = the central port the model reaches every tool through. -->
+  <section class="slide cmp">
+    <div class="head">
+      <h1 class="title">One shared plug lets any assistant reach <em>every connected app</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="body-row">
+      <div class="chart">
+        <span class="caption">Exhibit 1.5 · MCP as one shared port &middot; each tool ships one plug, like USB-C</span>
+        <svg viewBox="0 0 520 250" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="The model sits in the center, joined by a coral port. Four tools, a customer database, website analytics, team chat, and Marketo, each connect to it through the same plug.">
+          <g fill="#1a1a1a">
+            <!-- center: the model + the ONE coral port -->
+            <circle cx="260" cy="125" r="46" fill="#fff" stroke="#BDB7AC" stroke-width="1"/>
+            <text x="260" y="121" text-anchor="middle" font-size="13" font-weight="600">Model</text>
+            <text x="260" y="139" text-anchor="middle" font-size="10.5" fill="#7A7A7A">+ MCP port</text>
+            <circle cx="260" cy="125" r="56" fill="none" stroke="#DA7756" stroke-width="2.5"/>
+            <text x="260" y="58" text-anchor="middle" font-size="11.5" fill="#B8553A" font-weight="700">one shared plug</text>
+
+            <!-- four tools, each on a spoke with a small coral plug at the hub end -->
+            <!-- top-left: CRM -->
+            <line x1="214" y1="92" x2="120" y2="56" stroke="#7A7A7A" stroke-width="1.2"/>
+            <rect x="40" y="40" width="80" height="32" fill="#E8E6E1" stroke="#BDB7AC" stroke-width="1"/>
+            <text x="80" y="60" text-anchor="middle" font-size="11">CRM leads</text>
+            <!-- bottom-left: analytics -->
+            <line x1="214" y1="158" x2="120" y2="194" stroke="#7A7A7A" stroke-width="1.2"/>
+            <rect x="36" y="178" width="84" height="32" fill="#E8E6E1" stroke="#BDB7AC" stroke-width="1"/>
+            <text x="78" y="198" text-anchor="middle" font-size="11">Analytics</text>
+            <!-- top-right: chat -->
+            <line x1="306" y1="92" x2="400" y2="56" stroke="#7A7A7A" stroke-width="1.2"/>
+            <rect x="400" y="40" width="84" height="32" fill="#E8E6E1" stroke="#BDB7AC" stroke-width="1"/>
+            <text x="442" y="60" text-anchor="middle" font-size="11">Team chat</text>
+            <!-- bottom-right: Marketo -->
+            <line x1="306" y1="158" x2="400" y2="194" stroke="#7A7A7A" stroke-width="1.2"/>
+            <rect x="400" y="178" width="84" height="32" fill="#E8E6E1" stroke="#BDB7AC" stroke-width="1"/>
+            <text x="442" y="198" text-anchor="middle" font-size="11">Marketo</text>
+
+            <text x="260" y="236" text-anchor="middle" font-size="11" fill="#888" font-style="italic">mention them once; the assistant handles the wiring across all of them</text>
+          </g>
+        </svg>
+      </div>
+
+      <aside class="side">
+        <h4>What it buys a marketer</h4>
+        <p>Say in one sentence: <em>look at this week's leads, score them against last month's traffic, post the top five to our channel.</em> You never see the connecting code.</p>
+
+        <h4>It is reaching marketing software</h4>
+        <p>Adobe shipped an MCP plug for Marketo in 2026, and HubSpot and Salesforce are the natural next vendors.</p>
+      </aside>
+    </div>
+
+    <p class="source">Source: chapter §1.4; Model Context Protocol, donated to the Linux Foundation Dec 2025; Adobe Marketo MCP server, Apr 2026</p>
+  </section>
+</body>
+</html>

@@ -75,7 +75,7 @@
       "blurb": "Lecture decks per chapter, on the book's visual system, ready to present or edit.",
       "status": "wip",
       "href": "slides/index.html",
-      "meta": "9 of 27 (draft)"
+      "meta": "12 of 27 (draft)"
     },
     {
       "id": "teaching-notes",
@@ -84,7 +84,7 @@
       "blurb": "Session-by-session guidance: timing, talking points, discussion prompts, and pitfalls.",
       "status": "wip",
       "href": "materials/index.html#teaching-notes",
-      "meta": "3 of 27 (draft)"
+      "meta": "4 of 27 (draft)"
     },
     {
       "id": "lecture-videos",
@@ -208,9 +208,9 @@
       "group": "adopt-deploy",
       "title": "What's New / Roadmap",
       "blurb": "What just shipped and what's coming next, so you always know the state of the package.",
-      "status": "planned",
-      "href": null,
-      "meta": null
+      "status": "available",
+      "href": "whats-new.html",
+      "meta": "shipped + coming soon"
     },
     {
       "id": "ai-teaching-assistant",

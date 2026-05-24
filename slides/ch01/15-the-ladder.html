@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 1 AI Foundations · 15 · The four-rung ladder</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; }
+  .exh .head{ margin-bottom:12px; }
+  .exh .frame{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:14px 22px 12px; display:flex; flex-direction:column; flex:1; min-height:0;
+  }
+  .exh .frame .caption{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:6px;
+  }
+  .exh svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+</style>
+</head>
+<body>
+  <!-- 15 · EXHIBIT · the four-rung AI ladder (lifted from the chapter's Demo G inline SVG; reveal/JS stripped, recolored to ONE coral element). ONE coral element = the top rung (Tier 4, "schedule"), the rung where the work runs while you sleep and you do least. Lower three rungs are gray/white with hairline borders. The arrow shows the climb. -->
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">Climb the ladder and the same model does more while <em>you do less</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Exhibit 1.6 · The four-rung AI stack &middot; ask &rarr; save &rarr; connect &rarr; schedule</span>
+      <svg viewBox="0 0 680 300" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="A four-rung ladder. Tier 1 ask is a chat plus web search, Tier 2 save is a Skill, Tier 3 connect is an MCP server, and Tier 4 schedule is a scheduled agent that runs unattended on a timer. The top rung is drawn in coral as the rung where you do the least work. An arrow on the left rises from rung one to rung four.">
+        <g fill="#1a1a1a">
+          <!-- climb arrow on the left, gray -->
+          <line x1="26" y1="248" x2="26" y2="40" stroke="#7A7A7A" stroke-width="1.4"/>
+          <polygon points="26,36 21,48 31,48" fill="#7A7A7A"/>
+          <text x="18" y="150" font-size="11" fill="#7A7A7A" text-anchor="middle" font-style="italic" transform="rotate(-90 18 150)">you do less as you climb</text>
+
+          <!-- TIER 4 schedule: the ONE coral element. coral fill, full rung -->
+          <rect x="48" y="36" width="600" height="50" fill="#DA7756"/>
+          <text x="66" y="58" font-size="13" font-weight="700" fill="#fff">TIER 4</text>
+          <text x="150" y="56" font-size="14" fill="#fff" font-weight="600">Schedule &middot; a scheduled agent</text>
+          <text x="150" y="74" font-size="11.5" fill="#fff" opacity="0.92">Runs unattended on a timer. No human types a prompt. Runs per week.</text>
+
+          <!-- TIER 3 connect: white, hairline -->
+          <rect x="48" y="94" width="600" height="50" fill="#fff" stroke="#BDB7AC" stroke-width="1"/>
+          <text x="66" y="116" font-size="13" font-weight="700" fill="#5C5C5C">TIER 3</text>
+          <text x="150" y="114" font-size="14" fill="#1a1a1a" font-weight="600">Connect &middot; an MCP server</text>
+          <text x="150" y="132" font-size="11.5" fill="#6b6b6b">Live data: HubSpot leads, Google Analytics, a Slack channel. Runs per data pull.</text>
+
+          <!-- TIER 2 save: white, hairline -->
+          <rect x="48" y="152" width="600" height="50" fill="#fff" stroke="#BDB7AC" stroke-width="1"/>
+          <text x="66" y="174" font-size="13" font-weight="700" fill="#5C5C5C">TIER 2</text>
+          <text x="150" y="172" font-size="14" fill="#1a1a1a" font-weight="600">Save &middot; a Skill</text>
+          <text x="150" y="190" font-size="11.5" fill="#6b6b6b">Saved instructions plus a few examples. One short command. Runs per task.</text>
+
+          <!-- TIER 1 ask: light gray, hairline -->
+          <rect x="48" y="210" width="600" height="50" fill="#F4EDE6" stroke="#BDB7AC" stroke-width="1"/>
+          <text x="66" y="232" font-size="13" font-weight="700" fill="#5C5C5C">TIER 1</text>
+          <text x="150" y="230" font-size="14" fill="#1a1a1a" font-weight="600">Ask &middot; chat plus web search</text>
+          <text x="150" y="248" font-size="11.5" fill="#6b6b6b">Claude or ChatGPT, web search on. Nothing to set up. Runs per question.</text>
+
+          <text x="348" y="286" text-anchor="middle" font-size="11.5" fill="#888" font-style="italic">the same model runs all four rungs; only the wiring around it changes</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: chapter §1.5, Demo G; the four-tier stack ranks how much human attention a task needs, with the model held constant</p>
+  </section>
+</body>
+</html>

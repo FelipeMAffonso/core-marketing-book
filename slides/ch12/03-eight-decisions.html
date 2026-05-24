@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 12 Retail · 03 · The eight retail decisions</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; }
+  .exh .head{ margin-bottom:12px; }
+  .exh .frame{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:14px 22px 12px; display:flex; flex-direction:column; flex:1; min-height:0;
+  }
+  .exh .frame .caption{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:4px;
+  }
+  .exh svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+</style>
+</head>
+<body>
+  <!-- 03 · EXHIBIT · the eight retail decisions as a dependency chain (chapter sk-eight-decision-stack, redrawn static; ONE coral element = the chain that links them) -->
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">The eight decisions read as a chain. <em>Each one answers a question the one before it raised.</em></h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Exhibit 12.1 · The eight retail decisions · target market through channels</span>
+      <svg viewBox="0 0 720 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The eight retail decisions drawn as a left-to-right dependency chain: target market, assortment, services, atmosphere, pricing, incentives, communications, and channels. A coral line links them in order, showing each decision depends on the one before it.">
+        <g font-family="'Segoe UI', sans-serif" fill="#1a1a1a">
+          <!-- the ONE coral element: the chain linking the eight decisions in order -->
+          <path d="M 70 90 H 650" fill="none" stroke="#DA7756" stroke-width="2.5"/>
+          <!-- eight nodes along the chain -->
+          <!-- row math: 8 nodes, x centers at 70,153,236,319,402,485,568,650 -->
+          <g>
+            <circle cx="70"  cy="90" r="8" fill="#DA7756"/>
+            <circle cx="153" cy="90" r="6" fill="#DA7756"/>
+            <circle cx="236" cy="90" r="6" fill="#DA7756"/>
+            <circle cx="319" cy="90" r="6" fill="#DA7756"/>
+            <circle cx="402" cy="90" r="6" fill="#DA7756"/>
+            <circle cx="485" cy="90" r="6" fill="#DA7756"/>
+            <circle cx="568" cy="90" r="6" fill="#DA7756"/>
+            <circle cx="650" cy="90" r="8" fill="#DA7756"/>
+          </g>
+          <!-- decision labels, alternating above / below the chain to breathe -->
+          <g font-size="13" font-weight="600" text-anchor="middle" fill="#1a1a1a">
+            <text x="70"  y="64">1 · Target market</text>
+            <text x="236" y="64">3 · Services</text>
+            <text x="402" y="64">5 · Pricing</text>
+            <text x="568" y="64">7 · Communications</text>
+            <text x="153" y="128">2 · Assortment</text>
+            <text x="319" y="128">4 · Atmosphere</text>
+            <text x="485" y="128">6 · Incentives</text>
+            <text x="650" y="128">8 · Channels</text>
+          </g>
+          <!-- sub-labels in muted ink -->
+          <g font-size="10.5" text-anchor="middle" fill="#7A7A7A" font-style="italic">
+            <text x="70"  y="48">who the store is for</text>
+            <text x="236" y="48">returns, advisors</text>
+            <text x="402" y="48">EDLP or HiLo</text>
+            <text x="568" y="48">how it speaks</text>
+            <text x="153" y="144">what to stock</text>
+            <text x="319" y="144">where she stops</text>
+            <text x="485" y="144">loyalty, perks</text>
+            <text x="650" y="144">where she meets it</text>
+          </g>
+          <!-- the dependency reading, bottom -->
+          <line x1="70" y1="210" x2="650" y2="210" stroke="#A39E94" stroke-width="0.6"/>
+          <text x="70"  y="234" text-anchor="start" fill="#1a1a1a" font-size="12" font-weight="600">Wrong target market</text>
+          <text x="70"  y="250" text-anchor="start" fill="#7A7A7A" font-size="11">and the assortment cannot be right</text>
+          <text x="360" y="234" text-anchor="middle" fill="#1a1a1a" font-size="12" font-weight="600">Mispriced assortment</text>
+          <text x="360" y="250" text-anchor="middle" fill="#7A7A7A" font-size="11">and atmospherics have nothing to rescue</text>
+          <text x="650" y="234" text-anchor="end" fill="#1a1a1a" font-size="12" font-weight="600">One link wrong</text>
+          <text x="650" y="250" text-anchor="end" fill="#7A7A7A" font-size="11">and the rest lose their hold</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: Kotler, Keller &amp; Chernev, <em>Marketing Management</em> 16e (2022), Ch. 16; Levy, Weitz &amp; Grewal, <em>Retailing Management</em> 11e (2022)</p>
+  </section>
+</body>
+</html>

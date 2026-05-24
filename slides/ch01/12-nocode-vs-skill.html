@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 1 AI Foundations · 12 · No-code specialist vs Skill</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.split{ display:flex; flex-direction:column; }
+  .split .head{ margin-bottom:18px; }
+  .split .cols{ display:grid; grid-template-columns: 1fr 1fr; gap:24px; flex:1; min-height:0; }
+  .split .col{
+    border:1px solid var(--rule); padding:24px 26px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .split .col.after{ background:var(--accent-tint); border:none; border-left:3px solid var(--accent); }
+  .split .col .label{
+    font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:12px;
+  }
+  .split .col.after .label{ color:var(--accent); }
+  .split .col .lead{ font-size:25px; font-weight:600; letter-spacing:-0.01em; line-height:1.18; color:var(--ink); }
+  .split .col.after .lead{ color:var(--accent); }
+  .split .col ul{ list-style:none; padding:0; margin:14px 0 0; display:flex; flex-direction:column; gap:9px; }
+  .split .col li{ font-size:20px; color:var(--ink-body); padding-left:18px; position:relative; line-height:1.36; }
+  .split .col li::before{ content:""; position:absolute; left:0; top:13px; width:10px; height:1px; background:var(--ink-mute); }
+  .split .col.after li::before{ background:var(--accent); }
+  .split .foot{ margin-top:16px; margin-bottom:6px; font-size:20px; line-height:1.4; color:var(--ink-body); max-width:96ch; }
+  .split .foot em{ font-style:normal; color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 12 · TWO-COLUMN · rung 2 has two doors: the no-code specialist vs the Skill. ONE coral element = the Skill column (the more powerful next step). Same rung, two levels of effort. -->
+  <section class="slide split">
+    <div class="head">
+      <h1 class="title">A no-code specialist takes ten minutes; a Skill is the <em>more powerful next step</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <span class="label">Door one · the no-code specialist</span>
+        <span class="lead">Custom GPT, Claude Project, or Gemini Gem</span>
+        <ul>
+          <li>Built inside the chat window, no code and nothing installed.</li>
+          <li>Name it, type standing instructions once, upload your brand guide.</li>
+          <li>Anyone can build it today on the plan they already pay for.</li>
+        </ul>
+      </div>
+      <div class="col after">
+        <span class="label">Door two · the Skill</span>
+        <span class="lead">A saved folder a slash command runs</span>
+        <ul>
+          <li>Carries templates and small helper scripts the task leans on.</li>
+          <li>Runs the same way across many tools, not just one chat app.</li>
+          <li>Worth the extra afternoon once a task earns it.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="foot"><em>Same rung, two levels of effort, and you walk through the easier door first.</em></p>
+
+    <p class="source">Source: chapter §1.4; Anthropic shipped the Skill format Oct 2025 and opened the standard Dec 2025</p>
+  </section>
+</body>
+</html>

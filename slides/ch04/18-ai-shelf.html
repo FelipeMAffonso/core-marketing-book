@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 4 How Buyers Buy · 18 · The AI shelf</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; }
+  .exh .head{ margin-bottom:12px; }
+  .exh .frame{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:14px 22px 12px; display:flex; flex-direction:column; flex:1; min-height:0;
+  }
+  .exh .frame .caption{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:4px;
+  }
+  .exh svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+</style>
+</head>
+<body>
+  <!-- 18 · EXHIBIT · the AI shelf (lifted from chapter sk-ai-shelf-mount; redrawn clean). ONE coral element = the rank-1 pick in the model's ranked answer, the new first-recall slot. Prompt, model node, and lower-ranked picks stay neutral. -->
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">When the buyer asks a model, <em>the answer is the new shelf</em>, and the rank-1 pick is the first-recall slot.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Exhibit 4.10 · The AI shelf &middot; the model writes the consideration set the buyer never assembled</span>
+      <svg viewBox="0 0 720 268" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A flow from left to right. The buyer asks for a 40-ounce tumbler under fifty dollars for hiking. A central model node, trained on the web, reads reviews, schema markup, and structured data. It returns a ranked answer of three brands. The first pick, Stanley, is highlighted in coral as the new first-recall slot, while the lower two are gray.">
+        <g font-family="'Segoe UI', sans-serif" fill="#1a1a1a">
+          <!-- left: the buyer's prompt -->
+          <rect x="20" y="78" width="176" height="104" rx="2" fill="#F8F9FA" stroke="#9A9386" stroke-width="1.4"/>
+          <text x="108" y="104" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1a1a1a">the buyer asks</text>
+          <text x="108" y="128" text-anchor="middle" font-size="12" fill="#333333" font-style="italic">"40-oz tumbler</text>
+          <text x="108" y="146" text-anchor="middle" font-size="12" fill="#333333" font-style="italic">under $50</text>
+          <text x="108" y="164" text-anchor="middle" font-size="12" fill="#333333" font-style="italic">for hiking"</text>
+
+          <!-- arrow to model -->
+          <line x1="196" y1="130" x2="262" y2="130" stroke="#9A9386" stroke-width="1.6"/>
+          <polygon points="262,130 254,126 254,134" fill="#9A9386"/>
+
+          <!-- model node (center, neutral) -->
+          <rect x="266" y="84" width="158" height="92" rx="2" fill="#ffffff" stroke="#9A9386" stroke-width="1.8"/>
+          <text x="345" y="124" text-anchor="middle" font-size="17" font-weight="700" fill="#5C5C5C">LLM</text>
+          <text x="345" y="144" text-anchor="middle" font-size="11" fill="#7A7A7A" font-style="italic">trained on the web</text>
+
+          <!-- feed from below -->
+          <line x1="345" y1="208" x2="345" y2="178" stroke="#C7C1B5" stroke-width="1.1" stroke-dasharray="3,2"/>
+          <text x="345" y="224" text-anchor="middle" font-size="10.5" fill="#7A7A7A" font-style="italic">reads: reviews, schema markup,</text>
+          <text x="345" y="238" text-anchor="middle" font-size="10.5" fill="#7A7A7A" font-style="italic">citation graph, structured data</text>
+
+          <!-- arrow to answer -->
+          <line x1="424" y1="130" x2="490" y2="130" stroke="#9A9386" stroke-width="1.6"/>
+          <polygon points="490,130 482,126 482,134" fill="#9A9386"/>
+
+          <!-- right: ranked answer -->
+          <rect x="494" y="58" width="206" height="150" rx="2" fill="#F8F9FA" stroke="#9A9386" stroke-width="1.4"/>
+          <text x="597" y="80" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a1a">the ranked answer</text>
+
+          <!-- pick 1: coral (the ONE coral element) -->
+          <rect x="510" y="92" width="174" height="30" rx="2" fill="#FDF6F3" stroke="#DA7756" stroke-width="2.4"/>
+          <text x="522" y="112" text-anchor="start" font-size="13" font-weight="700" fill="#B8553A">1. Stanley</text>
+          <!-- pick 2: gray -->
+          <rect x="510" y="128" width="174" height="28" rx="2" fill="#ffffff" stroke="#9A9386" stroke-width="1.2"/>
+          <text x="522" y="147" text-anchor="start" font-size="12.5" font-weight="600" fill="#5C5C5C">2. Hydro Flask</text>
+          <!-- pick 3: gray -->
+          <rect x="510" y="162" width="174" height="28" rx="2" fill="#ffffff" stroke="#9A9386" stroke-width="1.2"/>
+          <text x="522" y="181" text-anchor="start" font-size="12.5" font-weight="600" fill="#5C5C5C">3. Owala</text>
+
+          <text x="360" y="22" text-anchor="middle" font-size="12" fill="#5C5C5C" font-style="italic">she never typed a brand, and the model named three before she saw any options</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: Kaiser &amp; Schulze, <em>Marketing Science</em> (2026); Puntoni et al., <em>J. of Marketing</em> (2021); brands illustrative</p>
+  </section>
+</body>
+</html>

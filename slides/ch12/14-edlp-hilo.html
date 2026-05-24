@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 12 Retail · 14 · EDLP vs HiLo</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.split{ display:flex; flex-direction:column; }
+  .split .head{ margin-bottom:18px; }
+  .split .cols{ display:grid; grid-template-columns: 1fr 1fr; gap:24px; flex:1; min-height:0; }
+  .split .col{
+    border:1px solid var(--rule); padding:22px 24px;
+    display:flex; flex-direction:column;
+  }
+  .split .col.after{ background:var(--accent-tint); border:none; border-left:3px solid var(--accent); }
+  .split .col .label{
+    font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:10px;
+  }
+  .split .col.after .label{ color:var(--accent); }
+  .split .col h3{
+    font-size:24px; font-weight:600; color:var(--ink);
+    margin-bottom:12px; line-height:1.2;
+  }
+  .split .col p{ font-size:20px; line-height:1.45; color:var(--ink-body); }
+  .split .col ul{ list-style:none; padding:0; margin:10px 0 0 0; display:flex; flex-direction:column; gap:8px; }
+  .split .col ul li{
+    font-size:20px; color:var(--ink-body); padding-left:18px; position:relative; line-height:1.35;
+  }
+  .split .col ul li::before{
+    content:""; position:absolute; left:0; top:13px;
+    width:10px; height:1px; background:var(--ink-mute);
+  }
+  .split .col.after ul li::before{ background:var(--accent); height:2px; }
+  .split .foot{ margin-top:18px; font-size:21px; line-height:1.45; color:var(--ink-body); max-width:84ch; }
+  .split .foot em{ font-style:normal; color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 14 · TWO-COLUMN · EDLP vs HiLo train two habits. ONE coral element = the HiLo column (the habit JCPenney broke). -->
+  <section class="slide split">
+    <div class="head">
+      <h1 class="title">EDLP and HiLo train two different shopper habits. <em>JCPenney broke the wrong one and lost about $1 billion.</em></h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <span class="label">EDLP · everyday low price</span>
+        <h3>Trust today's price</h3>
+        <p>A constant low price with little promotional cycling, so the shopper stops comparison-shopping.</p>
+        <ul>
+          <li>Walmart, Costco, and Aldi run it</li>
+          <li>The Costco rotisserie is $4.99 because it always is</li>
+          <li>A margin sacrifice that needs a structural offset</li>
+        </ul>
+      </div>
+      <div class="col after">
+        <span class="label">HiLo · high-low promotions</span>
+        <h3>Wait for the deal</h3>
+        <p>Higher day-to-day prices with frequent promotions, training the shopper to read the circular and time the trip.</p>
+        <ul>
+          <li>Most US supermarkets and department stores run it</li>
+          <li>JCPenney's shoppers were attached to the coupon</li>
+          <li>Removing it removed the trigger that pulled them in</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="foot">A pricing format is an attachment the shopper builds to an interaction pattern, so <em>changing the format breaks the attachment</em>, which is what the 2012 switch from HiLo to EDLP did before the chain reversed.</p>
+
+    <p class="source">Source: Kotler, Keller &amp; Chernev, <em>Marketing Management</em> 16e (2022), Ch. 16; JCPenney (2012)</p>
+  </section>
+</body>
+</html>

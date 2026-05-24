@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 4 How Buyers Buy · 05 · Shape vs color assets</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.cmp{ display:flex; flex-direction:column; }
+  .cmp .head{ margin-bottom:14px; }
+  .cmp .body-row{ display:grid; grid-template-columns: 1.6fr 1fr; gap:32px; flex:1; min-height:0; }
+  .cmp .chart{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:18px 22px 14px; display:flex; flex-direction:column; min-height:0;
+  }
+  .cmp .chart .caption{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:4px; }
+  .cmp .chart .headline{ font-size:18px; font-weight:600; color:var(--ink); line-height:1.3; margin-bottom:10px; max-width:54ch; }
+  .cmp svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+  .cmp .side h4{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .cmp .side p{ font-size:21px; line-height:1.4; color:var(--ink-body); margin-bottom:14px; max-width:30ch; }
+  .cmp .side p em{ font-style:normal; color:var(--ink); font-weight:600; }
+  .cmp .side ul{ list-style:none; padding:0; margin:8px 0 0; display:flex; flex-direction:column; gap:8px; }
+  .cmp .side ul li{ font-size:20px; color:var(--ink-body); padding-left:16px; position:relative; line-height:1.35; }
+  .cmp .side ul li::before{ content:""; position:absolute; left:0; top:13px; width:9px; height:1px; background:var(--ink-mute); }
+</style>
+</head>
+<body>
+  <!-- 05 · COMPARISON BARS · distinctive-asset Uniqueness: shape 71% vs color 39% (Fame shown as the gray context pair). ONE coral element = the shape-Uniqueness bar, the asset that survives the glance. -->
+  <section class="slide cmp">
+    <div class="head">
+      <h1 class="title">Shape-based assets reach 71% uniqueness against color's 39%, so <em>shape survives the glance</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="body-row">
+      <div class="chart">
+        <span class="caption">Exhibit 4.3 · Distinctive-asset uniqueness by type · share of recognizers who name the right brand</span>
+        <p class="headline">Uniqueness is the share of recognizers who attach the asset to the correct brand. Shape holds up where most exposures happen, the thumbnail, the glanced billboard, the motion-blurred package.</p>
+        <svg viewBox="0 0 560 250" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="Two bars comparing brand-asset uniqueness: shape-based assets at 71 percent in coral and color-based assets at 39 percent in gray. The shape bar carries the claim that shape outperforms color under low-resolution viewing.">
+          <g font-size="12" fill="#1a1a1a">
+            <!-- baseline y=196; scale: 100% = 140px so 1% = 1.4px -->
+            <line x1="70" y1="196" x2="540" y2="196" stroke="#7A7A7A"/>
+            <line x1="70" y1="48" x2="70" y2="196" stroke="#E8E6E1"/>
+            <g font-size="11" fill="#7A7A7A" text-anchor="end">
+              <text x="62" y="200">0</text>
+              <text x="62" y="161">25</text>
+              <text x="62" y="126">50</text>
+              <text x="62" y="91">75</text>
+              <text x="62" y="56">100</text>
+            </g>
+            <line x1="70" y1="161" x2="540" y2="161" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+            <line x1="70" y1="126" x2="540" y2="126" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+            <line x1="70" y1="91"  x2="540" y2="91"  stroke="#E8E6E1" stroke-dasharray="2,3"/>
+            <text x="32" y="122" font-size="11" fill="#7A7A7A" text-anchor="middle" font-style="italic" transform="rotate(-90 32 122)">uniqueness (%)</text>
+
+            <!-- shape 71%: coral, height ~99, top 97 -->
+            <rect x="130" y="97" width="110" height="99" fill="#DA7756"/>
+            <text x="185" y="89" text-anchor="middle" font-size="15" fill="#DA7756" font-weight="700">71%</text>
+            <text x="185" y="216" text-anchor="middle" font-size="13" fill="#1a1a1a" font-weight="600">Shape</text>
+            <text x="185" y="232" text-anchor="middle" font-size="11" fill="#7A7A7A" font-style="italic">contour, silhouette</text>
+
+            <!-- color 39%: gray, height ~55, top 141 -->
+            <rect x="350" y="141" width="110" height="55" fill="#BDB7AC"/>
+            <text x="405" y="133" text-anchor="middle" font-size="13" fill="#5C5C5C" font-weight="600">39%</text>
+            <text x="405" y="216" text-anchor="middle" font-size="13" fill="#1a1a1a">Color</text>
+            <text x="405" y="232" text-anchor="middle" font-size="11" fill="#7A7A7A" font-style="italic">a single hue</text>
+          </g>
+        </svg>
+      </div>
+
+      <aside class="side">
+        <h4>Why shape wins</h4>
+        <p>Color bleeds across a category and ends up <em>subsidizing rivals</em>.</p>
+
+        <h4>The asset rule</h4>
+        <ul>
+          <li>Weight shape first, with color in a supporting role.</li>
+          <li>The Coca-Cola contour bottle and the Stanley tapered cylinder read at the second frame.</li>
+          <li>A 2026 benchmark coded 1,162 assets across 21 categories and 4 countries.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <p class="source">Source: "Shape-based Assets are Strongest," <em>Intl. J. of Advertising</em> (2026); 1,162 assets, 21 categories, 4 countries</p>
+  </section>
+</body>
+</html>

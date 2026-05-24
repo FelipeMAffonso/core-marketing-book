@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 4 How Buyers Buy · 11 · The MAO triad</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; }
+  .exh .head{ margin-bottom:12px; }
+  .exh .frame{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:14px 22px 12px; display:flex; flex-direction:column; flex:1; min-height:0;
+  }
+  .exh .frame .caption{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:4px;
+  }
+  .exh svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+</style>
+</head>
+<body>
+  <!-- 11 · EXHIBIT · the MAO triad (lifted from chapter sk-mao-mount; redrawn clean as three overlapping circles). ONE coral element = the central three-way overlap, the only state where deliberation runs. Rings drawn in gray; the shaded center is the single coral region. -->
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">Deliberation runs only when motivation, ability, and opportunity <em>all open at once</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Exhibit 4.5 · The MAO triad · the three gates of deliberation</span>
+      <svg viewBox="0 0 720 392" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Three overlapping circles for motivation, ability, and opportunity, drawn in gray. The central region where all three overlap is shaded coral and labeled central route, deliberation, because deliberation runs only when all three gates open. If any one gate stays shut, the buyer falls back on a shortcut.">
+        <g font-family="'Segoe UI', sans-serif" fill="#1a1a1a">
+          <!-- center of the figure ~ (360,210). three circles r=120, centers form a triangle. -->
+          <!-- M top-left (300,170), A top-right (420,170), O bottom (360,260) -->
+          <!-- coral center fill behind, clipped visually by the rings -->
+          <circle cx="300" cy="170" r="120" fill="none" stroke="#9A938657" stroke-width="0"/>
+          <!-- shaded central overlap region: the ONE coral element -->
+          <path d="M 360 150
+                   A 120 120 0 0 1 397 232
+                   A 120 120 0 0 1 323 232
+                   A 120 120 0 0 1 360 150 Z"
+                fill="#FDF6F3" stroke="#DA7756" stroke-width="2.4"/>
+
+          <!-- the three rings in gray -->
+          <circle cx="300" cy="170" r="120" fill="none" stroke="#9A9386" stroke-width="1.8"/>
+          <circle cx="420" cy="170" r="120" fill="none" stroke="#9A9386" stroke-width="1.8"/>
+          <circle cx="360" cy="260" r="120" fill="none" stroke="#9A9386" stroke-width="1.8"/>
+
+          <!-- gate labels outside each circle -->
+          <g text-anchor="middle">
+            <text x="150" y="120" font-size="15" font-weight="700" fill="#1a1a1a">MOTIVATION</text>
+            <text x="150" y="140" font-size="12" fill="#5C5C5C" font-style="italic">do I care?</text>
+            <text x="572" y="120" font-size="15" font-weight="700" fill="#1a1a1a">ABILITY</text>
+            <text x="572" y="140" font-size="12" fill="#5C5C5C" font-style="italic">can I process?</text>
+            <text x="360" y="368" font-size="15" font-weight="700" fill="#1a1a1a">OPPORTUNITY</text>
+            <text x="360" y="386" font-size="12" fill="#5C5C5C" font-style="italic">is now the time?</text>
+          </g>
+          <!-- short leaders -->
+          <line x1="198" y1="128" x2="245" y2="150" stroke="#9A9386" stroke-width="1"/>
+          <line x1="524" y1="128" x2="477" y2="150" stroke="#9A9386" stroke-width="1"/>
+          <line x1="360" y1="350" x2="360" y2="330" stroke="#9A9386" stroke-width="1"/>
+
+          <!-- center label -->
+          <text x="360" y="200" text-anchor="middle" font-size="13" font-weight="700" fill="#B8553A">central route</text>
+          <text x="360" y="217" text-anchor="middle" font-size="11" fill="#B8553A" font-style="italic">deliberation</text>
+
+          <text x="360" y="30" text-anchor="middle" font-size="12" fill="#5C5C5C" font-style="italic">close any one gate and the buyer falls back on a shortcut, even when she would rather not</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: Hoyer, MacInnis &amp; Pieters, <em>Consumer Behavior</em> 7e (2018); the motivation-ability-opportunity framework</p>
+  </section>
+</body>
+</html>
