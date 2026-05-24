@@ -908,6 +908,24 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   #widget-17-4 .wv-col .wv-cost.wv-cost { color: #6b6b6b !important; }
   #widget-17-4 .wv-col.sharp .wv-ct.wv-ct { color: #a8472a !important; }
   #widget-17-4 .wv-ans .ph.ph { color: #6b6b6b !important; }
+
+  /* 4. Content-quality grid (widget 17.3, #cq-grid). Cells render at 10px = SMALL text,
+        so they need >=4.5:1. Two of the three cell types fail (pa11y/HTML_CodeSniffer,
+        the stricter second engine; axe marked these "incomplete"):
+          .cq-cell.repurpose  coral-deep #B8553A text on light-coral #ffd9c5 fill = 3.63:1 FAIL
+          .cq-cell.pillar     white text on bright coral #DA7756 fill           = 3.11:1 FAIL
+        Fixes keep each cell's identity (the grid still reads as 3 distinct types):
+          repurpose -> darken the TEXT to #a04226 on the SAME #ffd9c5 fill   = 4.84:1 PASS
+          pillar    -> darken the FILL to #a8472a, keep white text           = 5.83:1 PASS
+        (#a8472a text on #ffd9c5 measures only 4.44:1 in HTML_CodeSniffer, so the repurpose
+        TEXT uses the slightly darker #a04226 for a comfortable margin; both stay dark-coral.)
+        After this, the cells run light-coral fill (repurpose) / coral-soft #E8A488 (cluster,
+        already passing, untouched) / dark-coral #a8472a (pillar) — still three clear tiers.
+        Bright coral #DA7756 stays everywhere it is a heading / marker / rule / border / SVG
+        stroke (those are large or non-text and meet 3:1); only this small grid TEXT/FILL darkens.
+        Doubled-class + #id specificity beats the chapter's `#w173 .cq-grid .cq-cell.*` rules. */
+  #cq-grid .cq-cell.repurpose.repurpose { color: #a04226 !important; }
+  #cq-grid .cq-cell.pillar.pillar { background: #a8472a !important; color: #ffffff !important; }
 </style>
 </head>
 <body data-chapter-num="17">

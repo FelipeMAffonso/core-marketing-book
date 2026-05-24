@@ -544,6 +544,12 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
        coral inline code) -> darken to #a8472a (~5:1). Headings/markers/strokes untouched. --- */
 .kq-grid.kq-grid .kq strong span { color: #a8472a !important; }
 strong code, ol.num-steps strong code { color: #a8472a !important; }
+
+/* --- .mcp-icon "M" model badge: white 18px-bold on bright coral (#DA7756) = 3.11:1, fails 1.4.3.
+       Darken ONLY the coral model disc to #a8472a so white-on-#a8472a = 5.83:1. Scoped to
+       .mcp-model so the dark "S" server badge (.mcp-srv .mcp-icon, #1a1a1a bg with #E8A488 soft-
+       coral text) keeps its original passing contrast — a blanket .mcp-icon rule broke it. --- */
+.mcp-model.mcp-model .mcp-icon { background:#a8472a !important; }
 </style>
 </head>
 <body data-chapter-num="27">
@@ -978,7 +984,7 @@ def last_three_critiques():
 
 <div class="grader" id="grader-box">
   <p class="grader-title">live llm-as-judge: grade your agent's first 3 outputs</p>
-  <textarea class="grader-ta" id="grader-input" placeholder="Paste your agent's first 3 outputs, blank-line separated. Example:
+  <textarea class="grader-ta" id="grader-input" aria-label="Paste your work to be graded" placeholder="Paste your agent's first 3 outputs, blank-line separated. Example:
 
 OUTPUT 1: weekly competitor digest
 top 3 brands by mention velocity:
@@ -1218,7 +1224,7 @@ OUTPUT 3: ..."></textarea>
 
 <div class="cmp-box" id="cmp-asset">
   <p class="cmp-title">same prompt, two models</p>
-  <textarea class="cmp-prompt" id="cmp-asset-prompt" rows="3" placeholder="suggest 3 distinctive assets a craft soda brand should defend">suggest 3 distinctive assets a craft soda brand should defend</textarea>
+  <textarea class="cmp-prompt" id="cmp-asset-prompt" aria-label="Creative brief to send to both model tiers" rows="3" placeholder="suggest 3 distinctive assets a craft soda brand should defend">suggest 3 distinctive assets a craft soda brand should defend</textarea>
   <button class="cmp-go" id="cmp-asset-go">run on both</button>
   <div class="cmp-grid">
     <div class="cmp-pane"><span class="cmp-label">claude-haiku-4-5  ($1/M in)</span><div class="cmp-out demo-stream" id="cmp-asset-haiku" aria-live="polite" aria-atomic="false"></div></div>
@@ -1441,7 +1447,7 @@ OUTPUT 3: ..."></textarea>
   <p class="rc-title">live rung classifier: which tier does your P2 task want?</p>
   <p class="rc-sub">Live AI: one Haiku 4.5 call per click. Returns the recommended rung plus the artifact it produces.</p>
   <div class="rc-controls">
-    <textarea class="rc-prompt" id="rc-prompt" rows="2" placeholder="describe the marketing task you want done. example: 'find five new TikTok creators in the canned-water space and rank them by audience overlap with our buyer'">find five new TikTok creators in the canned-water space and rank them by audience overlap with our buyer</textarea>
+    <textarea class="rc-prompt" id="rc-prompt" aria-label="Describe the marketing task for the AI agent to run" rows="2" placeholder="describe the marketing task you want done. example: 'find five new TikTok creators in the canned-water space and rank them by audience overlap with our buyer'">find five new TikTok creators in the canned-water space and rank them by audience overlap with our buyer</textarea>
     <button class="rc-go" id="rc-go">classify the task</button>
   </div>
   <div class="rc-ladder" id="rc-ladder">
@@ -1492,7 +1498,7 @@ OUTPUT 3: ..."></textarea>
     <input type="file" accept=".csv,.txt,.md,.tsv" id="upload-brief-file" hidden>
     <span>drop a CSV / TXT here, or click to pick</span>
   </label>
-  <textarea class="up-text" id="upload-brief-text" placeholder="...or paste text here (last week's competitor mentions, a survey export, a brand-tracker pull)" rows="4"></textarea>
+  <textarea class="up-text" id="upload-brief-text" aria-label="Paste source text to analyze" placeholder="...or paste text here (last week's competitor mentions, a survey export, a brand-tracker pull)" rows="4"></textarea>
   <button class="up-go" id="upload-brief-go">generate brief</button>
   <div class="up-out demo-stream" id="upload-brief-out" aria-live="polite" aria-atomic="false"></div>
 </div>

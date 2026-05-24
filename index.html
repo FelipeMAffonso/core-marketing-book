@@ -692,6 +692,9 @@
        light coral (high contrast on the dark fill) while keeping the coral identity. */
     html:not([data-mode="light"]) .sb-item.active,
     html:not([data-mode="light"]) .sb-item.active .num { color: #f0a98f; }
+    /* the decorative disclosure chevron is bright coral at 9px (~3.1:1); darken in light mode so
+       it clears AA as small text (it is also aria-hidden, since aria-expanded conveys the state). */
+    html[data-mode="light"] .sb-part .chevron { color: #a8472a; }
 
     /* "Coming soon" tag for rows whose file does not exist yet */
     .sb-soon {
@@ -1735,6 +1738,15 @@
         var df = document.getElementById('content-frame');
         if (df && df.contentWindow) setTimeout(function () {
           try { if (typeof df.contentWindow.__reannotate__ === 'function') df.contentWindow.__reannotate__(); } catch (e) {}
+          // Sidenotes appear/vanish with depth, so re-place the floating chapter-TOC (and refresh
+          // its list to the now-visible sections) for the new depth; preserve an open panel.
+          try {
+            var ifd = df.contentDocument;
+            var navEl = ifd && ifd.querySelector('nav.chapter-toc');
+            var wasOpen = !!(navEl && navEl.classList.contains('cc-open'));
+            if (ifd) applyChapterToc(ifd, readerState.chtoc);
+            if (wasOpen) { var n2 = ifd.querySelector('nav.chapter-toc'); if (n2) n2.classList.add('cc-open'); }
+          } catch (e) {}
         }, 280);
       } catch (e) {}
     }
@@ -2454,12 +2466,29 @@
           // (same x + width as the margin notes — sitting at the top of that column, not the
           // far-right edge). Re-measure after a frame + a tick since float layout settles late.
           var posFn = function () {
-            var sn = doc.querySelector('.sn, aside.sn');
-            if (sn) { var r = sn.getBoundingClientRect(); if (r.width > 40) {
-              var L = Math.round(r.left), Wd = Math.round(r.width);
+            // Comprehensive: align to the actual margin sidenote column (exact). Concise has no
+            // sidenotes (hidden -> width 0), so fall back to the reading column's right edge — the
+            // sidenote margin sits there in BOTH depths — instead of letting the CSS default fling
+            // the panel to right:20px (the "thrown to the right" bug).
+            var L = null, Wd = 266;
+            var sn = doc.querySelector('aside.sn, .sn');
+            if (sn && sn.getClientRects().length) {
+              var r = sn.getBoundingClientRect();
+              if (r.width > 40) { L = Math.round(r.left); Wd = Math.round(r.width); }
+            }
+            if (L === null) {
+              var col = doc.querySelector('#main') || doc.querySelector('.col');
+              if (col) {
+                var cr = col.getBoundingClientRect();
+                var vw = (doc.defaultView && doc.defaultView.innerWidth) || 1280;
+                L = Math.round(cr.right + 28);
+                if (L + Wd > vw - 16) L = Math.max(16, vw - Wd - 16);   // keep fully on-screen
+              }
+            }
+            if (L !== null) {
               nav.style.left = L + 'px'; nav.style.width = Wd + 'px'; nav.style.right = 'auto';
               var f = doc.getElementById('cc-chtoc-fab'); if (f) { var fw = f.getBoundingClientRect().width || 110; f.style.left = Math.round(L + (Wd - fw) / 2) + 'px'; f.style.right = 'auto'; }
-            } }
+            }
           };
           posFn();
           if (doc.defaultView) { doc.defaultView.requestAnimationFrame(posFn); setTimeout(posFn, 260); }
@@ -2995,6 +3024,7 @@
       part.setAttribute('tabindex', '0');
       part.setAttribute('role', 'button');
       part.setAttribute('aria-expanded', part.classList.contains('closed') ? 'false' : 'true');
+      var _chev = part.querySelector('.chevron'); if (_chev) _chev.setAttribute('aria-hidden', 'true');
       part.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); part.click(); }
       });

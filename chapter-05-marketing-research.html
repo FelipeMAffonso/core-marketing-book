@@ -823,6 +823,24 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<!-- ============================================================
+     A11Y CONTRAST PATCH (additive, last in <head>) — 2026-05-23
+     pa11y (HTML_CodeSniffer) flagged 1 real WCAG 1.4.3 (G18) failure
+     that axe-core marked only "incomplete":
+       .k-picker .kp-btn.active  =  white #fff on coral #DA7756  = 3.11:1  (FAIL, need 4.5:1)
+       (small text: 14px / weight 600, so the 4.5:1 small-text threshold applies)
+     Fix: white-on-coral BACKGROUND -> darken the FILL to #a8472a, keep the
+     white text. #fff on #a8472a = 5.83:1 (PASS). The bright coral #DA7756
+     is intentionally retained everywhere it is a border / rule / focus
+     outline (border:1.5px solid var(--coral); outline:2px solid var(--coral)),
+     which is exempt from small-text contrast. Doubled class + !important so
+     this overrides the in-chapter rule and the shell's theme-var injection
+     without touching the original CSS. No prose / cites / depth tags / widget
+     JS / SVG changed; Comprehensive stays byte-identical.
+     ============================================================ -->
+<style>
+.k-picker .kp-btn.kp-btn.active { background: #a8472a !important; color: #fff !important; }
+</style>
 </head>
 <body data-chapter-num="5">
 <!-- === CHAPTER-TOC INJECTED === -->

@@ -263,11 +263,18 @@ h2 .sec-num {
 <!-- ============================================================
      A11Y CONTRAST FIX (WCAG 2.1 AA, additive / surgical).
      Appended LAST in <head> so it wins over the page's own rules.
-     Only the two SMALL coral text labels that axe flagged below 4.5:1
-     on white (#DA7756 @ 11px = 3.1:1) are darkened to #a8472a (5.83:1).
-     Bright coral #DA7756 is intentionally KEPT on every LARGE/UI/marker
-     use (the hero rule, h2 .sec-num, the .ax leading rule, jump-letter
-     borders) which meet 3:1. Doubled-class specificity + !important.
+     SMALL coral text below 4.5:1 on white (#DA7756 = 3.11:1) is darkened
+     to #a8472a (5.83:1 on white). This covers:
+       - the "Back Matter" hero eyebrow (.eyebrow, 11px),
+       - the per-letter atlas markers (.ax / .ax.in, 11px),
+       - the A-Z section letters (h2 .sec-num, 20px / weight 500).
+     NOTE on .sec-num: at 20px / weight 500 it is NOT WCAG "large text"
+     (large = >=24px, or >=18.66px AND bold/>=700), so it needs 4.5:1, not 3:1.
+     A stricter second engine (pa11y / HTML_CodeSniffer 1.4.3 G18) flags the
+     26 letters that axe marked only "incomplete"; #a8472a clears them.
+     Bright coral #DA7756 is still KEPT on every genuinely-large / UI / marker
+     use that already meets 3:1 (the hero rule, the .ax::before leading rule,
+     jump-letter borders). Doubled-class specificity + !important.
      ============================================================ -->
 <style>
   /* "Back Matter" hero eyebrow: small coral text -> #a8472a (5.83:1 on white). */
@@ -275,6 +282,9 @@ h2 .sec-num {
   /* Per-letter atlas marker ("01 // a", .ax / .ax.in): small coral text -> #a8472a.
      The decorative leading rule (.ax::before) keeps bright coral as a >=3:1 UI mark. */
   .ax.ax { color: #a8472a !important; }
+  /* A-Z section letters (h2 .sec-num): 20px / weight 500 = NOT large text,
+     so 3.11:1 fails; darken the coral TEXT to #a8472a (5.83:1 on white). */
+  .sec-num.sec-num { color: #a8472a !important; }
 </style>
 </head>
 <body>

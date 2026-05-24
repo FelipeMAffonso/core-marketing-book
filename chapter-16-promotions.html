@@ -713,6 +713,13 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 }
 .w161-chip.on.on { border-color: #a8472a !important; }
 #distinctive-auditor .da-go.da-go { border-color: #a8472a !important; }
+/* A) White-on-coral .da-q result chip (16 distinctive-auditor): the JS writes an
+   inline style="background:#DA7756" on the BUILD cell, and white 10.5px bold text on
+   it is only 3.11:1 (pa11y/HTML_CodeSniffer 1_4_3 fail that axe missed). A doubled
+   class + !important beats the inline non-!important background. White on #a8472a = 5.83:1.
+   Only the coral BUILD chip is recolored; the INVEST/DECIDE/KILL chips keep their own
+   already-passing backgrounds (#B8553A / #555 / #888). */
+#da-rows .da-q.da-q { background: #a8472a !important; }
 .w161-btn.solid.solid:hover, #w161-fire.w161-btn:hover,
 .stepps-scorer .ss-btn.ss-btn:hover, #stepps-score-btn.ss-btn:hover,
 #distinctive-auditor .da-go.da-go:hover,
