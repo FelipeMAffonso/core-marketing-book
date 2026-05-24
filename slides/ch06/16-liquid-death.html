@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 6 STP · 16 · Liquid Death · the value of meaning</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.cmp{ display:flex; flex-direction:column; }
+  .cmp .head{ margin-bottom:14px; }
+  .cmp .body-row{ display:grid; grid-template-columns: 1.6fr 1fr; gap:32px; flex:1; min-height:0; }
+  .cmp .chart{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:18px 22px 14px; display:flex; flex-direction:column; min-height:0;
+  }
+  .cmp .chart .caption{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:4px; }
+  .cmp .chart .headline{ font-size:18px; font-weight:600; color:var(--ink); line-height:1.3; margin-bottom:12px; max-width:50ch; }
+  .cmp svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+  .cmp .side h4{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .cmp .side p{ font-size:21px; line-height:1.4; color:var(--ink-body); margin-bottom:14px; max-width:30ch; }
+  .cmp .side p em{ font-style:normal; color:var(--ink); font-weight:600; }
+  .cmp .side ul{ list-style:none; padding:0; margin:8px 0 0; display:flex; flex-direction:column; gap:8px; }
+  .cmp .side ul li{ font-size:20px; color:var(--ink-body); padding-left:16px; position:relative; line-height:1.35; }
+  .cmp .side ul li::before{ content:""; position:absolute; left:0; top:13px; width:9px; height:1px; background:var(--ink-mute); }
+</style>
+</head>
+<body>
+  <!-- 16 · COMPARISON · Liquid Death +27% (cash value of the position) -->
+  <section class="slide cmp">
+    <div class="head">
+      <h1 class="title">Same water, same shelf price. The label alone earned <em>27% more revenue per unit</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="body-row">
+      <div class="chart">
+        <span class="caption">Exhibit 6.6 · 2025 price test · identical Alpine water, with and without the Liquid Death label</span>
+        <p class="headline">The product never changed. The brand identity did all the competitive work.</p>
+        <svg viewBox="0 0 560 300" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif">
+          <!-- Scale: index 0 at y=250, 1.6 px per index point. 100 -> y=90, 127 -> y=47 -->
+          <!-- Y axis -->
+          <line x1="92" y1="40" x2="92" y2="250" stroke="#E8E6E1"/>
+          <line x1="92" y1="250" x2="540" y2="250" stroke="#7A7A7A"/>
+          <!-- Y ticks 0,50,100,127 (index) -->
+          <g font-size="11" fill="#7A7A7A" text-anchor="end">
+            <text x="84" y="254">0</text>
+            <text x="84" y="174">50</text>
+            <text x="84" y="94">100</text>
+            <text x="84" y="51">127</text>
+          </g>
+          <line x1="92" y1="170" x2="540" y2="170" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+          <line x1="92" y1="90" x2="540" y2="90" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+          <!-- Y axis label -->
+          <text x="34" y="145" font-size="11" fill="#7A7A7A" text-anchor="middle" font-style="italic"
+                transform="rotate(-90 34 145)">Revenue per unit (indexed, unbranded = 100)</text>
+
+          <!-- Bar 1: unbranded = 100 (gray). top at y=90, height 160 -->
+          <rect x="160" y="90" width="92" height="160" fill="#BDB7AC"/>
+          <text x="206" y="82" text-anchor="middle" font-size="14" fill="#5C5C5C" font-weight="600">100</text>
+
+          <!-- Bar 2: labeled = 127 (coral). top at y=47, height 203 -->
+          <rect x="360" y="47" width="92" height="203" fill="#DA7756"/>
+          <text x="406" y="39" text-anchor="middle" font-size="14" fill="#DA7756" font-weight="700">127</text>
+
+          <!-- Delta annotation: from the unbranded bar top, across the gap, down onto the coral bar top center -->
+          <path d="M 252 90 L 320 90 L 320 70 L 406 70 L 406 51"
+                fill="none" stroke="#DA7756" stroke-width="1.5" stroke-dasharray="3,3"/>
+          <path d="M 402 57 L 406 49 L 410 57" fill="none" stroke="#DA7756" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="290" y="60" width="60" height="20" fill="#FDF6F3" stroke="#DA7756" stroke-width="1"/>
+          <text x="320" y="74" text-anchor="middle" font-size="13" fill="#DA7756" font-weight="700">+27%</text>
+
+          <!-- X labels -->
+          <text x="206" y="272" text-anchor="middle" font-size="12" fill="#1A1A1A">Unbranded water</text>
+          <text x="406" y="272" text-anchor="middle" font-size="12" fill="#1A1A1A" font-weight="600">Labeled can</text>
+        </svg>
+      </div>
+
+      <aside class="side">
+        <h4>What moved</h4>
+        <p>Liquid Death changed the comparison the buyer was making, <em>from purity to punk identity</em>.</p>
+
+        <h4>The position</h4>
+        <ul>
+          <li>Real Alpine water in a heavy-metal tallboy can.</li>
+          <li>Target: buyers tired of the wellness look of bottled water.</li>
+          <li>The meaning travels across categories, water or caffeine.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <p class="source">Source: 2025 controlled price test, equal shelf price; Liquid Death case (chapter §6.8)</p>
+  </section>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 8 Product Management · 17 · Gourville's 9x rule</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.kpi-slide{ display:flex; flex-direction:column; }
+  .kpi-slide .head{ margin-bottom:20px; }
+  .kpi-slide .row{
+    display:grid; grid-template-columns: 1fr 36px 1fr 36px 1fr; gap:14px; flex:1; min-height:0; align-items:stretch;
+  }
+  .kpi-slide .k{
+    border:1px solid var(--rule); padding:22px 22px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .kpi-slide .k.featured{ background:var(--accent-tint); border:none; border-left:3px solid var(--accent); }
+  .kpi-slide .op{ display:flex; align-items:center; justify-content:center; font-size:40px; font-weight:300; color:var(--ink-mute); }
+  .kpi-slide .k .brand{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:12px; }
+  .kpi-slide .k.featured .brand{ color:var(--accent); }
+  .kpi-slide .k .n{ font-size:54px; font-weight:600; letter-spacing:-0.02em; line-height:1; color:var(--ink); }
+  .kpi-slide .k.featured .n{ color:var(--accent); }
+  .kpi-slide .k .l{ font-size:19px; color:var(--ink-body); margin-top:14px; line-height:1.38; }
+  .kpi-slide .k .l strong{ color:var(--ink); font-weight:600; }
+  .kpi-slide .foot{
+    margin-top:20px; font-size:21px; line-height:1.45; color:var(--ink-body); max-width:88ch;
+  }
+  .kpi-slide .foot em{ font-style:normal; color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 17 · KPI ROW · Gourville's 9x rule, 3x x 3x = 9x. ONE coral element = the 9x result card. -->
+  <section class="slide kpi-slide">
+    <div class="head">
+      <h1 class="title">Two biases compound, so a new product faces a roughly <em>nine-times barrier before buyers switch</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="row">
+      <div class="k">
+        <span class="brand">Buyers overvalue what they have</span>
+        <span class="n">3&times;</span>
+        <span class="l"><strong>Loss aversion plus the endowment effect.</strong> The thing already owned feels worth more than an equal new gain.</span>
+      </div>
+      <div class="op">&times;</div>
+      <div class="k">
+        <span class="brand">Sellers overvalue what they built</span>
+        <span class="n">3&times;</span>
+        <span class="l"><strong>The innovator's blind spot.</strong> The team reads its product as far better than the market will.</span>
+      </div>
+      <div class="op">=</div>
+      <div class="k featured">
+        <span class="brand">The adoption barrier</span>
+        <span class="n">9&times;</span>
+        <span class="l"><strong>The mismatch buyers feel.</strong> A product has to be far better, not a little better, before they move.</span>
+      </div>
+    </div>
+
+    <p class="foot">The two fixes the chapter's cases show: cut the loss, so the new product behaves like the old one, or aim at non-owners who have nothing to give up, which is <em>why the AirPods hearing-aid feature was almost pure gain</em>.</p>
+
+    <p class="source">Source: Gourville, &ldquo;Eager Sellers and Stony Buyers,&rdquo; <em>Harvard Business Review</em>, June 2006 (the 9x mismatch)</p>
+  </section>
+</body>
+</html>

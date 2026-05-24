@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 11 Distribution · 06 · Channel length</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; }
+  .exh .head{ margin-bottom:12px; }
+  .exh .frame{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:14px 22px 12px; display:flex; flex-direction:column; flex:1; min-height:0;
+  }
+  .exh .frame .caption{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:4px;
+  }
+  .exh svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+</style>
+</head>
+<body>
+  <!-- 06 · EXHIBIT · channel-length spectrum lifted from chapter fig-1; reveal/script stripped, recolored to ONE coral element = the zero-tier row, the shortest channel that keeps full margin and control. Every other tier is gray. -->
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">Channel length runs from zero to three tiers, and the zero-tier row <em>keeps the full margin and the customer</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Exhibit 11.2 · Channel-length spectrum &middot; each added tier reaches deeper and shaves a slice of margin</span>
+      <svg viewBox="0 0 700 320" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Four channel lengths drawn as rows. The zero-tier row, manufacturer straight to consumer, is drawn in coral as the shortest channel that keeps the full margin and the customer relationship. The one-tier row inserts a retailer, the two-tier row adds a wholesaler, and the three-tier row adds a jobber, all in gray. A longer channel means wider reach and less control; a shorter channel means more control and less reach.">
+        <g font-family="'Segoe UI', sans-serif" font-size="13" fill="#1a1a1a">
+          <defs>
+            <marker id="arrC" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#DA7756"/></marker>
+            <marker id="arrG" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#A39E94"/></marker>
+          </defs>
+
+          <!-- ZERO-TIER: the ONE coral element -->
+          <text x="36" y="44" font-size="11" fill="#B8553A" font-weight="700" letter-spacing="1.2">ZERO-TIER</text>
+          <rect x="176" y="22" width="104" height="42" fill="#FDF6F3" stroke="#DA7756" stroke-width="2" rx="2"/>
+          <text x="228" y="42" text-anchor="middle" font-weight="600" font-size="12">manufacturer</text>
+          <text x="228" y="57" text-anchor="middle" font-size="10.5" fill="#B8553A" font-style="italic">Apple, Tesla, Patagonia</text>
+          <line x1="280" y1="43" x2="486" y2="43" stroke="#DA7756" stroke-width="2" marker-end="url(#arrC)"/>
+          <rect x="486" y="22" width="104" height="42" fill="#DA7756" rx="2"/>
+          <text x="538" y="48" text-anchor="middle" font-weight="700" font-size="12" fill="#ffffff">consumer</text>
+
+          <!-- ONE-TIER -->
+          <text x="36" y="116" font-size="11" fill="#7A7A7A" font-weight="700" letter-spacing="1.2">ONE-TIER</text>
+          <rect x="176" y="94" width="84" height="42" fill="#fff" stroke="#A39E94" stroke-width="1.4" rx="2"/>
+          <text x="218" y="119" text-anchor="middle" font-weight="600" font-size="11">manufacturer</text>
+          <line x1="260" y1="115" x2="333" y2="115" stroke="#A39E94" stroke-width="1.4" marker-end="url(#arrG)"/>
+          <rect x="333" y="94" width="84" height="42" fill="#F4F2EE" stroke="#A39E94" stroke-width="1.4" rx="2"/>
+          <text x="375" y="112" text-anchor="middle" font-weight="600" font-size="11">retailer</text>
+          <text x="375" y="127" text-anchor="middle" font-size="10" fill="#5C5C5C" font-style="italic">Target, Macy's</text>
+          <line x1="417" y1="115" x2="486" y2="115" stroke="#A39E94" stroke-width="1.4" marker-end="url(#arrG)"/>
+          <rect x="486" y="94" width="84" height="42" fill="#F4F2EE" stroke="#A39E94" stroke-width="1.4" rx="2"/>
+          <text x="528" y="119" text-anchor="middle" font-weight="600" font-size="11">consumer</text>
+
+          <!-- TWO-TIER -->
+          <text x="36" y="188" font-size="11" fill="#7A7A7A" font-weight="700" letter-spacing="1.2">TWO-TIER</text>
+          <rect x="150" y="166" width="74" height="42" fill="#fff" stroke="#A39E94" stroke-width="1.4" rx="2"/>
+          <text x="187" y="191" text-anchor="middle" font-weight="600" font-size="10.5">manufacturer</text>
+          <line x1="224" y1="187" x2="262" y2="187" stroke="#A39E94" stroke-width="1.4" marker-end="url(#arrG)"/>
+          <rect x="262" y="166" width="74" height="42" fill="#F4F2EE" stroke="#A39E94" stroke-width="1.4" rx="2"/>
+          <text x="299" y="191" text-anchor="middle" font-weight="600" font-size="10.5">wholesaler</text>
+          <line x1="336" y1="187" x2="374" y2="187" stroke="#A39E94" stroke-width="1.4" marker-end="url(#arrG)"/>
+          <rect x="374" y="166" width="74" height="42" fill="#F4F2EE" stroke="#A39E94" stroke-width="1.4" rx="2"/>
+          <text x="411" y="191" text-anchor="middle" font-weight="600" font-size="10.5">retailer</text>
+          <line x1="448" y1="187" x2="486" y2="187" stroke="#A39E94" stroke-width="1.4" marker-end="url(#arrG)"/>
+          <rect x="486" y="166" width="74" height="42" fill="#F4F2EE" stroke="#A39E94" stroke-width="1.4" rx="2"/>
+          <text x="523" y="191" text-anchor="middle" font-weight="600" font-size="10.5">consumer</text>
+
+          <!-- THREE-TIER -->
+          <text x="36" y="260" font-size="11" fill="#7A7A7A" font-weight="700" letter-spacing="1.2">THREE-TIER</text>
+          <rect x="120" y="238" width="78" height="42" fill="#fff" stroke="#A39E94" stroke-width="1.4" rx="2"/>
+          <text x="159" y="263" text-anchor="middle" font-weight="600" font-size="10">manufacturer</text>
+          <line x1="198" y1="259" x2="218" y2="259" stroke="#A39E94" stroke-width="1.4" marker-end="url(#arrG)"/>
+          <rect x="218" y="238" width="58" height="42" fill="#F4F2EE" stroke="#A39E94" stroke-width="1.4" rx="2"/>
+          <text x="247" y="263" text-anchor="middle" font-weight="600" font-size="10">wholesaler</text>
+          <line x1="276" y1="259" x2="296" y2="259" stroke="#A39E94" stroke-width="1.4" marker-end="url(#arrG)"/>
+          <rect x="296" y="238" width="58" height="42" fill="#F4F2EE" stroke="#A39E94" stroke-width="1.4" rx="2"/>
+          <text x="325" y="263" text-anchor="middle" font-weight="600" font-size="10">jobber</text>
+          <line x1="354" y1="259" x2="374" y2="259" stroke="#A39E94" stroke-width="1.4" marker-end="url(#arrG)"/>
+          <rect x="374" y="238" width="58" height="42" fill="#F4F2EE" stroke="#A39E94" stroke-width="1.4" rx="2"/>
+          <text x="403" y="263" text-anchor="middle" font-weight="600" font-size="10">retailer</text>
+          <line x1="432" y1="259" x2="486" y2="259" stroke="#A39E94" stroke-width="1.4" marker-end="url(#arrG)"/>
+          <rect x="486" y="238" width="58" height="42" fill="#F4F2EE" stroke="#A39E94" stroke-width="1.4" rx="2"/>
+          <text x="515" y="263" text-anchor="middle" font-weight="600" font-size="10">consumer</text>
+
+          <text x="350" y="304" text-anchor="middle" fill="#888" font-size="12" font-style="italic">longer channel = wider reach, less control &middot; shorter channel = more control, less reach</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: Kotler, Keller &amp; Chernev, <em>Marketing Management</em> 16e (2022), distribution chapter; Apple Stores reached 500-plus locations</p>
+  </section>
+</body>
+</html>

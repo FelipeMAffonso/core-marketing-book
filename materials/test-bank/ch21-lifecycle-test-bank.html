@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Chapter 21 Lifecycle, Email, and SMS Marketing / CRM — Test Bank — instructor courseware for Principles of Marketing.">
+<title>Chapter 21 Lifecycle, Email, and SMS Marketing / CRM — Test Bank · Principles of Marketing</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23DA7756' width='100' height='100' rx='12'/><text x='50' y='68' font-family='system-ui' font-size='36' font-weight='bold' fill='white' text-anchor='middle'>PM</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --coral:#DA7756; --coral-deep:#B8553A; --coral-soft:#E8A488;
+  --coral-text:#a8472a; --coral-tint:#fdf3ee;
+  --ink:#1a1a1a; --ink-2:#43474f; --ink-3:#5a5f67;
+  --bg:#ffffff; --bg-2:#f7f8fa; --bg-3:#f1f2f5;
+  --border:#e6e6ea; --border-strong:#d7dae0;
+  --font:'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif;
+  --font-serif:'EB Garamond',Georgia,serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Consolas,monospace;
+}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.62;
+  -webkit-font-smoothing:antialiased;}
+a{color:var(--coral-text);text-decoration:none;}
+a:hover{text-decoration:underline;text-underline-offset:3px;}
+a:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;border-radius:4px;}
+.skip-link{position:absolute;left:-999px;top:0;z-index:2000;background:var(--ink);
+  color:#fff;padding:10px 16px;border-radius:0 0 6px 0;font-size:14px;font-weight:600;}
+.skip-link:focus{left:0;text-decoration:none;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.9);
+  backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);}
+.topbar-inner{max-width:860px;margin:0 auto;padding:0 28px;height:58px;display:flex;
+  align-items:center;gap:14px;}
+.topbar .mark{width:28px;height:28px;border-radius:7px;flex-shrink:0;background:var(--coral-deep);
+  color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;
+  letter-spacing:-0.5px;}
+.topbar .doc-title{font-size:14.5px;font-weight:600;color:var(--ink);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.topbar .back{margin-left:auto;font-size:13.5px;font-weight:600;color:var(--coral-text);
+  padding:7px 13px;border-radius:7px;border:1px solid var(--border);white-space:nowrap;}
+.topbar .back:hover{background:var(--bg-2);text-decoration:none;}
+main{max-width:860px;margin:0 auto;padding:44px 28px 96px;}
+.kicker{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--coral-text);margin-bottom:10px;}
+main h1{font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-0.02em;
+  line-height:1.12;color:var(--ink);margin:0 0 8px;}
+main h2{font-size:clamp(21px,2.8vw,26px);font-weight:700;letter-spacing:-0.015em;color:var(--ink);
+  margin:42px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+main h3{font-size:19px;font-weight:650;color:var(--ink);margin:30px 0 10px;}
+main h4{font-size:16px;font-weight:650;color:var(--ink-2);margin:24px 0 8px;}
+main h5,main h6{font-size:14px;font-weight:650;color:var(--ink-2);margin:20px 0 6px;
+  text-transform:uppercase;letter-spacing:0.04em;}
+main p{margin:0 0 16px;color:var(--ink);font-size:17px;}
+main ul,main ol{margin:0 0 18px;padding-left:26px;}
+main li{margin:0 0 7px;color:var(--ink);font-size:17px;}
+main li>ul,main li>ol{margin:7px 0 0;}
+main blockquote{margin:0 0 18px;padding:4px 18px;border-left:3px solid var(--coral);
+  background:var(--coral-tint);color:var(--ink-2);border-radius:0 6px 6px 0;}
+main blockquote p{margin:8px 0;}
+main hr{border:0;border-top:1px solid var(--border);margin:34px 0;}
+main strong{font-weight:700;color:var(--ink);}
+main em{font-style:italic;}
+main code{font-family:var(--font-mono);font-size:0.88em;background:var(--bg-3);
+  padding:2px 6px;border-radius:4px;color:var(--coral-text);border:1px solid var(--border);}
+main pre{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;
+  padding:16px 18px;overflow-x:auto;margin:0 0 18px;}
+main pre code{background:none;border:0;padding:0;color:var(--ink);font-size:13.5px;
+  line-height:1.55;}
+main table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:15px;
+  display:block;overflow-x:auto;}
+main thead th{background:var(--bg-2);text-align:left;font-weight:650;color:var(--ink);
+  padding:9px 13px;border:1px solid var(--border-strong);white-space:nowrap;}
+main tbody td{padding:9px 13px;border:1px solid var(--border);color:var(--ink-2);
+  vertical-align:top;}
+main tbody tr:nth-child(even){background:var(--bg-2);}
+main a{color:var(--coral-text);font-weight:500;}
+.toc-note{font-size:14px;color:var(--ink-3);margin-bottom:30px;}
+footer{border-top:1px solid var(--border);background:var(--bg-2);padding:28px 0;
+  margin-top:60px;}
+footer .inner{max-width:860px;margin:0 auto;padding:0 28px;font-size:12.5px;color:var(--ink-3);}
+@media (max-width:600px){
+  main{padding:30px 18px 64px;}
+  .topbar-inner{padding:0 18px;}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="mark" aria-hidden="true">PM</span>
+    <span class="doc-title">Chapter 21 Lifecycle, Email, and SMS Marketing / CRM — Test Bank</span>
+    <a class="back" href="../../index.html">&larr; Back to courseware</a>
+  </div>
+</header>
+<main id="main">
+<h1>Chapter 21 Lifecycle, Email, and SMS Marketing / CRM — Test Bank</h1>
+<p><strong>Chapter:</strong> 21 — Lifecycle, Email, and SMS Marketing / CRM <strong>Source note:</strong> Adapted from Kotler MM16 Test Bank Chapter 19 (Kotler/Keller/Chernev, <em>Marketing Management</em> 16e, &quot;Building Customer Loyalty&quot;) as a structural seed, plus original items authored against OUR chapter (v7 ground truth). Kotler seed items have been rewritten into this course&#x27;s voice, updated to 2026 context, and re-tagged to our learning objectives. Original items cover email deliverability, the five drips, SMS/TCPA, RFM, contractual vs non-contractual distinction, customer-base audit, customer equity, and the four-step AI agent ladder — none of which appear in the Kotler bank. No item is a verbatim lift. <strong>Export format:</strong> Mirrors Kotler markdown schema (stem, A...E options, Answer, Diff, Objective, Tags) for QTI / Canvas Common Cartridge conversion.</p>
+<hr>
+<h2>Learning Objectives (Ch21, Our Chapter)</h2>
+<ul>
+<li><strong>LO 21.1</strong> Explain why retaining a buyer costs far less than acquiring one, name the four mechanisms that make retention pay, and compute the basic CLV formula for a subscription and a non-contractual brand.</li>
+<li><strong>LO 21.2</strong> Distinguish contractual from non-contractual brands and explain how the contractual/non-contractual distinction changes how &quot;retention rate&quot; is measured and what it means.</li>
+<li><strong>LO 21.3</strong> Describe how the three email authentication protocols (SPF, DKIM, DMARC) work together to determine inbox placement, and explain the 2024 Gmail bulk-sender rule that made them non-optional.</li>
+<li><strong>LO 21.4</strong> Name the five drip patterns that cover the lifecycle wheel, match each to its trigger and the buyer&#x27;s silent question, and explain why cadence is set by the trigger, not the brand&#x27;s preference.</li>
+<li><strong>LO 21.5</strong> Explain the TCPA&#x27;s prior-express-written-consent requirement for SMS, describe the penalty structure, and apply the opt-in compliance rules to a real program design.</li>
+<li><strong>LO 21.6</strong> Describe how RFM scoring segments a customer list into named cohorts, match each cohort to the appropriate drip, and explain the purpose of send-time optimization and the frequency cap.</li>
+<li><strong>LO 21.7</strong> Explain the customer-base audit&#x27;s decile-decomposition approach, interpret the whale curve, and use the vital-few/useful-many finding to prioritize lifecycle investment.</li>
+<li><strong>LO 21.8</strong> Define customer equity as the sum of CLV across the customer base and connect a retention lift to its effect on the firm&#x27;s underlying value and the handoff to customer-based corporate valuation (CBCV).</li>
+<li><strong>LO 21.9</strong> Describe the four-step AI agent ladder (chat, Skill, connected, scheduled) and distinguish the clerical work the agent handles from the editorial work the marketer keeps.</li>
+</ul>
+<hr>
+<h2>Section I — Multiple-Choice Items (22 items)</h2>
+<hr>
+<p><strong>Item 1</strong></p>
+<p>A direct-to-consumer apparel brand spends 60 dollars in social-media ads to win one new customer&#x27;s first order. That order returns 35 dollars of contribution margin. On the first transaction the channel _______.</p>
+<p>A) breaks even, because the 35-dollar margin is close enough to the 60-dollar spend B) loses money, but the investment makes sense only if the buyer comes back for repeat orders C) profits immediately, because the contribution margin is the revenue the brand keeps D) profits immediately, because paid social has no variable cost per click E) loses money and can never recover it once the first transaction closes</p>
+<p>Answer: B</p>
+<p>Diff: 1</p>
+<p>Objective: LO 21.1 — The brand spends 60 to earn 35, a 25-dollar loss on the first order. The investment pays back only through repeat purchases that carry no fresh acquisition cost.</p>
+<p>Tags: CAC; lifecycle economics; CLV; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 2</strong></p>
+<p>The 1990 <em>Harvard Business Review</em> study on retention and lifetime profit, conducted across credit cards, life insurance, auto service, and enterprise software, found that a five-percentage-point lift in retention rate produced customer-lifetime profit gains of _______.</p>
+<p>A) exactly 5 percent in every industry studied B) between 2 and 8 percent, depending on price sensitivity C) between 25 and 95 percent, depending on the industry D) between 100 and 200 percent, because retention compounds exponentially E) no measurable gain; the study found acquisition was more valuable</p>
+<p>Answer: C</p>
+<p>Diff: 1</p>
+<p>Objective: LO 21.1 — The Bain/HBR study found a 25-to-95 percent lift in customer-lifetime profit from a five-point retention improvement, with a wide range because the four retention mechanisms differ in strength by category.</p>
+<p>Tags: retention math; CLV; Bain/HBR; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 3</strong></p>
+<p>A Patagonia buyer who has purchased seven times needs no comparison shopping on her eighth visit because her brand consideration set has narrowed. This best illustrates which of the four retention mechanisms?</p>
+<p>A) Cheaper to serve, because repeat buyers know where the support page is B) More likely to refer, because loyal buyers are the primary source of free word-of-mouth C) Less price-sensitive, because loyalty narrows the buyer&#x27;s consideration set D) Amortization, because the acquisition cost spreads across more orders E) Higher contribution margin, because the buyer upgrades to higher-priced SKUs</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.1 — A narrowed consideration set is the mechanism the chapter names: a retained buyer stops comparing alternatives. This is what allows Patagonia to hold list price through promotional seasons that force competitors to discount.</p>
+<p>Tags: retention mechanisms; consideration set; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 4</strong></p>
+<p>A Warby Parker customer who cost 60 dollars to acquire and has now placed six orders at 35 dollars of contribution each has generated 210 dollars of total contribution. The 60-dollar acquisition cost is being _______ across the six orders.</p>
+<p>A) discounted B) amortized C) depreciated on a straight-line schedule D) recovered through price increases on later orders E) transferred to the affiliate channel that referred the buyer</p>
+<p>Answer: B</p>
+<p>Diff: 1</p>
+<p>Objective: LO 21.1 — Amortization is the accounting concept the chapter names: a single up-front cost spread across many transactions. At six orders the 60-dollar spend becomes 10 dollars per order, and every order after the third is pure contribution.</p>
+<p>Tags: amortization; CAC; lifecycle economics; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 5</strong></p>
+<p>A Netflix subscriber cancels her plan in the app. Netflix sees the exact moment she leaves and subtracts her from the active-subscriber count immediately. An Etsy candle shop has no equivalent moment because a buyer never declares she has left; she simply stops ordering. The chapter uses this distinction to make which critical point?</p>
+<p>A) Subscription brands are more valuable than non-subscription brands because churn is measurable. B) For non-subscription (non-contractual) brands, &quot;retention rate&quot; is a stand-in for repeat-purchase rate, not a fact the brand can observe directly. C) Non-contractual brands should convert buyers to subscriptions to make retention data clean. D) The CLV formula applies only to subscription brands and is meaningless for transactional brands. E) Contractual brands should not use drip campaigns because their churn is already tracked.</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.2 — The contractual/non-contractual distinction is the v7 FIX the chapter introduces. In a contractual setting the brand sees departure; in a non-contractual setting &quot;retention rate&quot; is really the share of buyers who came back, a softer estimate that the brand computes from repeat-purchase data.</p>
+<p>Tags: contractual vs non-contractual; CLV formula; retention rate; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 6</strong></p>
+<p>A direct-to-consumer apparel brand reports a 72-percent &quot;retention rate.&quot; Because the brand sells with no subscription, that 72 percent is properly understood as _______.</p>
+<p>A) the share of subscribers who did not cancel their plan this year B) the share of last year&#x27;s buyers who placed another order this year — a repeat-purchase reading, not a contractual churn figure C) the share of active buyers who opened at least one marketing email in the past 90 days D) the share of the company&#x27;s revenue earned from returning vs new customers E) the brand&#x27;s Net Promoter Score converted to a retention proxy</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.2 — For a non-contractual brand the &quot;retention rate&quot; is not a cancellation figure; it is the share who came back. The chapter flags this as the most common CLV error and ties the lapsed-buyer cutoff rules to it.</p>
+<p>Tags: contractual vs non-contractual; repeat-purchase rate; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 7</strong></p>
+<p>A brand&#x27;s email platform reports a 25-percent open rate on a recent campaign. An analyst then discovers that only 70 percent of messages were actually delivered to inboxes, not the 92 percent the team expected. What does the 25-percent open rate actually mean in this situation?</p>
+<p>A) Twenty-five percent of all 50,000 sent messages were opened, giving 12,500 opens. B) Twenty-five percent of the 35,000 that arrived were opened, giving about 8,750 opens, which is fewer than the expected 11,500 — a gap the platform&#x27;s report never shows. C) Twenty-five percent of sent messages hit the spam folder and were reported as opens by mistake. D) The open rate is meaningless when deliverability is below 80 percent. E) The open rate and the deliverability rate together prove the list is healthy.</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.3 — The chapter explains that platforms report opens as a share of delivered messages, so a deliverability problem hides behind a stable open rate. The 2,750-open gap in the scenario is the point the chapter makes about the brand not being able to see what it cannot see.</p>
+<p>Tags: email deliverability; open rate; inbox placement; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 8</strong></p>
+<p>SPF, DKIM, and DMARC are three email authentication protocols that work as a sequence. In the chapter&#x27;s hotel-security analogy, DMARC is the _______.</p>
+<p>A) check that verifies which mail servers are authorized to send on behalf of the domain B) cryptographic signature that proves the message was not altered in transit C) instruction that tells the receiving server what to do when the first two checks fail D) carrier-registration format required before bulk SMS can be sent E) suppression list that prevents unsubscribed addresses from receiving the next campaign</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.3 — DMARC is the policy layer: it tells the receiving server whether to quarantine or reject messages that fail SPF or DKIM. SPF verifies the sending server; DKIM verifies message integrity. DMARC closes the loop on failure handling.</p>
+<p>Tags: SPF; DKIM; DMARC; email authentication; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 9</strong></p>
+<p>In February 2024 Google changed its rules for bulk senders, defined as anyone pushing more than 5,000 messages per day to Gmail addresses. Under the new rule, a bulk sender without a published _______ record has its mail rejected at the gateway.</p>
+<p>A) SPF B) DKIM C) DMARC D) CAN-SPAM unsubscribe link E) A2P-10DLC carrier registration</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.3 — The chapter names this as the trigger that ended the &quot;tolerant decade&quot; in email authentication. Google required a published DMARC record from all bulk senders, with Yahoo and Outlook following within months.</p>
+<p>Tags: DMARC; Gmail bulk-sender rule; email deliverability; 2024; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 10</strong></p>
+<p>A buyer at an Etsy candle shop signs up for the email list on a Thursday. She receives a welcome message on Thursday, a note about wax sourcing on Sunday, and a review request the following Thursday. A buyer who signs up the next Saturday receives the same three messages on the same relative delays from her Saturday start. This is the defining characteristic of a _______.</p>
+<p>A) one-time calendar campaign, where the brand picks a universal send date B) drip campaign, where the sequence starts on the buyer&#x27;s trigger date and delivers on fixed delays from that date C) frequency-capped broadcast, where the platform limits how many messages the buyer can receive D) re-engagement sequence, because the campaign is designed for buyers who have gone quiet E) transactional email, because it confirms an action the buyer took</p>
+<p>Answer: B</p>
+<p>Diff: 1</p>
+<p>Objective: LO 21.4 — The trigger-relative delay is what distinguishes a drip from a blast: each buyer gets the same sequence, but it starts on her own clock rather than the brand&#x27;s calendar.</p>
+<p>Tags: drip campaign; trigger event; lifecycle automation; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 11</strong></p>
+<p>The five drip patterns that cover the lifecycle wheel, as named in our chapter, are _______.</p>
+<p>A) welcome, newsletter, promotional, seasonal, and re-subscription B) onboarding, activation, re-engagement, win-back, and abandoned-cart C) awareness, consideration, purchase, loyalty, and advocacy D) prospect, first-purchase, upsell, cross-sell, and lapsed E) SPF-welcome, DKIM-verify, DMARC-confirm, opt-in, and opt-out</p>
+<p>Answer: B</p>
+<p>Diff: 1</p>
+<p>Objective: LO 21.4 — The five named drip patterns from the chapter are onboarding, activation, re-engagement, win-back, and abandoned-cart. Each matches one stage on the lifecycle wheel and answers a buyer&#x27;s silent question at that stage.</p>
+<p>Tags: five drip patterns; lifecycle wheel; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 12</strong></p>
+<p>Duolingo sends a push notification to a user who downloaded the app but has not returned within 48 hours, nudging them back to a lesson they started. This message is best described as an _______ drip, because the buyer&#x27;s silent question is &quot;did I make the right start?&quot;</p>
+<p>A) onboarding B) activation C) re-engagement D) win-back E) abandoned-cart</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.4 — Activation is triggered when a buyer has signed up or made a first purchase but has not yet repeated the behavior that makes them stick. The chapter&#x27;s exact example is Duolingo&#x27;s 12-percent vs 38-percent streak probability depending on whether the user returns within 48 hours.</p>
+<p>Tags: activation drip; Duolingo; lifecycle stages; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 13</strong></p>
+<p>The abandoned-cart drip is the single highest-converting lifecycle drip in e-commerce. Klaviyo&#x27;s benchmark across more than 100,000 brands reports a median abandoned-cart recovery rate of 3 to 10 percent, against a no-drip baseline of roughly 0.5 percent. The reason the drip converts so well is that _______.</p>
+<p>A) it arrives before the buyer has had a chance to compare competitors B) it typically includes a promotional discount that matches the competitor&#x27;s listed price C) the buyer has already declared intent by placing items in the cart, so no persuasion is required D) it reaches the buyer through SMS, which has a 90-to-98 percent open rate E) it is the only drip that the TCPA exempts from prior express written consent</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.4 — The chapter names pre-declared intent as the reason: the buyer has already told the brand what she wants. The drip recovers a decision she was close to making rather than persuading a cold prospect.</p>
+<p>Tags: abandoned-cart drip; recovery rate; buyer intent; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 14</strong></p>
+<p>The chapter argues that in a win-back campaign, the copy that works depends on why the buyer left. Which type of lapsed buyer does the chapter identify as the one the brand should not try to win back at all?</p>
+<p>A) Dissatisfied switcher, because the complaint is too expensive to resolve B) Deliberative switcher, because they will always leave again for a better price C) Lifestyle switcher, because her needs have changed and the category no longer fits her D) Price switcher, because she is unlikely to respond to a re-engagement discount E) Ghost buyer, because she never completed a first purchase</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.4 — The chapter names three defection types: dissatisfied (something broke), deliberative (a considered reason like price), and lifestyle (needs changed). The lifestyle switcher is the one buyer not worth winning back; spending on her only wastes budget and risks deliverability.</p>
+<p>Tags: win-back drip; defection taxonomy; lifestyle switcher; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 15</strong></p>
+<p>Under the Telephone Consumer Protection Act (TCPA), a brand sends 10,000 marketing text messages after an opt-in flow that was inadvertently broken for 30 days. At the floor statutory-damages rate, the brand&#x27;s potential legal exposure is _______.</p>
+<p>A) $0, because the TCPA exempts automated marketing texts when the platform records the send B) $5,000, because the penalty applies only to the brand&#x27;s total revenue, not per message C) $50,000, because class-action settlements cap individual recoveries at five dollars per message D) $5,000,000, because the TCPA statute carries damages of $500 per violation and every text is its own violation E) $500, because the FTC&#x27;s Junk Fees Rule limits SMS damages to one dollar per recipient</p>
+<p>Answer: D</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.5 — The chapter states that statutory damages run $500 to $1,500 per message, and every unauthorized text is a separate violation. At the $500 floor on 10,000 texts the exposure is $5 million. This arithmetic is the reason the chapter calls TCPA compliance non-negotiable.</p>
+<p>Tags: TCPA; SMS compliance; statutory damages; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 16</strong></p>
+<p>Under TCPA&#x27;s opt-in compliance rules, which of the following is the correct description of what &quot;prior express written consent&quot; requires?</p>
+<p>A) The buyer can be opted in automatically at checkout unless they uncheck a pre-checked box. B) The buyer must actively check an unchecked box or type &quot;YES&quot; to confirm, and the brand must keep a record of when and how they opted in. C) The brand must send a consent request to every phone number purchased from a third-party list before the first marketing text. D) Consent is implied when a buyer provides a phone number during account creation, regardless of whether a checkbox was displayed. E) Consent is valid for two years from the date of opt-in, after which the brand must request renewal.</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.5 — TCPA requires affirmative opt-in: an unchecked-by-default checkbox or a reply-YES confirmation, with the brand keeping a timestamped record. Implicit consent from a phone-number field does not meet the standard.</p>
+<p>Tags: TCPA; prior express written consent; opt-in compliance; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 17</strong></p>
+<p>A direct-to-consumer apparel brand scores its buyers on recency, frequency, and monetary value. A buyer who purchased seven times in the past 12 months, spent $640, and placed her last order 12 days ago earns the brand&#x27;s highest R, F, and M scores. According to the RFM grid in our chapter, this buyer falls into the _______ segment.</p>
+<p>A) At Risk B) Hibernating C) Lost D) Champions E) Need Attention</p>
+<p>Answer: D</p>
+<p>Diff: 1</p>
+<p>Objective: LO 21.6 — Champions are the R5/F5/M5 cell: high recency, high frequency, high value. The chapter pairs them with retention messages and brand-community invitations, not re-engagement.</p>
+<p>Tags: RFM segmentation; Champions segment; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 18</strong></p>
+<p>A brand runs ten drip flows simultaneously. A single buyer qualifies for six at the same time because she abandoned a cart Monday, went quiet Tuesday, opened a re-engagement email Wednesday, and clicked a new-category welcome Thursday. Without a _______, she receives six emails in one week, likely unsubscribes, and the brand loses her from every list at once.</p>
+<p>A) DMARC record B) frequency cap C) send-time optimization setting D) TCPA opt-in confirmation E) customer-base audit</p>
+<p>Answer: B</p>
+<p>Diff: 1</p>
+<p>Objective: LO 21.6 — The frequency cap is the hard ceiling on messages per buyer per window, regardless of how many flows qualify the buyer. The chapter names the standard cap as four marketing emails per week, two SMS per week, and one push per day.</p>
+<p>Tags: frequency cap; list burn; flow-stacking; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 19</strong></p>
+<p>A brand&#x27;s customer-base audit sorts all buyers by the profit each produced over the past 12 months. The analysis shows that the top 10 percent of buyers generated 41 percent of total profit, the top 20 percent generated 59 percent, and the bottom 30 percent operated at a net loss to serve. The two-term principle this pattern illustrates is _______.</p>
+<p>A) the price-quality inference, where high-value buyers pay a premium for quality signals B) the RFM ladder, showing that recency is the strongest predictor of future value C) the vital few and the useful many: a small share generates most of the profit while a long tail contributes little or loses money D) LTV-to-CAC, showing that top-decile buyers have the lowest acquisition cost E) the retention-amortization trade-off, where high-value buyers pay back the acquisition cost sooner</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.7 — The customer-base audit, from Fader, Hardie, and Ross, surfaces this pattern in almost every customer base. The chapter names it the &quot;vital few and the useful many&quot; and ties the whale curve to it.</p>
+<p>Tags: customer-base audit; vital few and useful many; decile decomposition; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 20</strong></p>
+<p>The whale curve in our chapter is a graph of _______.</p>
+<p>A) total revenue plotted against the number of marketing emails sent per week B) cumulative profit plotted against customers ranked from most to least profitable, peaking above 100 percent of total profit before the unprofitable tail bends it back down C) churn rate plotted against retention rate for a cohort of buyers followed over 12 months D) acquisition cost per buyer plotted against the number of repeat purchases E) email open rate plotted against the size of the email list</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.7 — The whale curve shows cumulative profit on the y-axis and customers ranked best to worst on the x-axis. The peak exceeds 100 percent of total profit because the unprofitable tail subtracts from the total; the shape reveals the vital-few structure directly.</p>
+<p>Tags: whale curve; customer-base audit; cumulative profit; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 21</strong></p>
+<p>A direct-to-consumer apparel brand with 100,000 active buyers lifts retention from 72 to 75 percent through a sharper onboarding flow and a working cart sequence. Each buyer contributes about 41 dollars per year. Under the CLV formula the chapter uses, lifetime value per buyer rises from about 146 dollars to about 164 dollars. Adding the 18-dollar lift across the whole cohort produces roughly 1.8 million dollars of additional lifetime contribution. Viewing this result through the customer-equity lens, the retention lift is best understood as _______.</p>
+<p>A) a one-quarter revenue event that finance will reverse out in the following period B) a reduction in CAC that makes paid-social campaigns more efficient C) an increase in the firm&#x27;s underlying value, because customer equity is the sum of every buyer&#x27;s CLV and serves as a marketing-side proxy for what the whole company is worth D) a compliance achievement, because the FTC defines customer equity as the regulated lifetime value cap E) a DMARC alignment improvement that raises inbox placement and indirectly lifts revenue</p>
+<p>Answer: C</p>
+<p>Diff: 3</p>
+<p>Objective: LO 21.8 — Customer equity is the sum of CLV across the whole customer base, a proxy for firm value. The chapter names this the bridge to Chapter 25 (customer-based corporate valuation): a retention lift is not just a campaign result, it moves the firm&#x27;s valuation, which is why the CFO cares.</p>
+<p>Tags: customer equity; CLV; firm value; CBCV; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 22</strong></p>
+<p>A marketer who types a lifecycle goal into a chat assistant, receives a draft flow in response, reviews it before anything goes live, and approves the launch is at which step of the four-step AI agent ladder the chapter describes?</p>
+<p>A) Step 1 — paste into chat (manual, no installation, the clerical audit or draft) B) Step 2 — package as a Skill (recurring task turned into a one-line command) C) Step 3 — connect live data via MCP (audit pulls current segment counts, no copy-paste) D) Step 4 — schedule an agent (the whole audit runs every week with no human to start it) E) Step 0 — the brand has not yet adopted AI tools and all work is manual</p>
+<p>Answer: A</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.9 — Step 1 is the chat-and-paste rung: nothing is installed, the marketer types the goal and reads the output. The chapter notes that this first rung covers 60-to-80 percent of AI-touching tasks in a normal week.</p>
+<p>Tags: four-step AI ladder; lifecycle AI; clerical vs editorial; AACSB: Application of knowledge</p>
+<hr>
+<h2>Section II — Scenario / Short-Answer Items (4 items)</h2>
+<hr>
+<p><strong>SA-1</strong></p>
+<p>A graduate who just joined a small DTC coffee-subscription brand as a lifecycle coordinator tells her manager that she wants to set up a &quot;retention rate&quot; dashboard using the same formula the chapter teaches. Her manager asks: &quot;Does our subscription model or our DTC-subscription model change what that number actually means?&quot; Using the chapter&#x27;s contractual-vs-non-contractual distinction, explain how the coordinator should answer. Define both terms, identify which applies to a coffee subscription, and explain what the formula&#x27;s retention-rate term measures in each setting.</p>
+<p><strong>Sample answer:</strong> A contractual brand has a subscription a buyer can cancel at any moment; the moment of cancellation is a fact the brand observes, so the retention rate is a clean count: the share of subscribers who renewed. The CLV formula&#x27;s retention-rate term is a real number. A non-contractual brand has no subscription to cancel; a buyer who stops ordering never sends a departure signal, so &quot;retention rate&quot; is an estimate of the share who came back, derived from repeat-purchase history rather than cancellation records. For a coffee subscription — where the buyer actively cancels and the platform records it — the coordinator&#x27;s formula is valid and the retention rate is the share who stayed on the plan. The chapter&#x27;s caution applies to the other brands on her future resume: a DTC candle shop, an apparel label, an Amazon seller. There, &quot;72 percent retention&quot; is a repeat-purchase reading, not a contractual fact, and the lapsed-buyer cutoff rules (lapsed at 180 or 365 days of silence) are the workaround for a brand the buyer never tells she has left.</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.2</p>
+<p>Tags: contractual vs non-contractual; retention rate; CLV formula; AACSB: Reflective thinking; Application of knowledge</p>
+<hr>
+<p><strong>SA-2</strong></p>
+<p>A small outdoor-apparel brand is about to run its first email campaign to a purchased list of 15,000 addresses it has never mailed before. The founder says: &quot;We have SPF and DKIM set up — that&#x27;s all we need.&quot; Using the chapter&#x27;s inbox-placement framework, explain what is missing and why the gap matters. Name the three authentication protocols, identify which one the founder is missing, and explain what will happen to bulk sends without it after February 2024.</p>
+<p><strong>Sample answer:</strong> The founder has SPF (which verifies the authorized sending server) and DKIM (which cryptographically signs the message to prove it was not altered in transit), but is missing DMARC. SPF and DKIM each close one hole; DMARC is the policy layer that tells the receiving server what to do when either check fails: reject the message, quarantine it, or let it through while reporting the failure. Without DMARC, the receiving mail server has no clear instruction on failure, and mailbox providers fill that silence with their own defaults, which almost always route the message to spam or block it. After February 2024, Google&#x27;s rule for bulk senders — anyone sending more than 5,000 messages per day to Gmail addresses — explicitly requires a published DMARC record or the mail is rejected at the gateway. A purchased, unwarmed list of 15,000 addresses is exactly the scenario that triggers this rule, and Yahoo and Outlook followed Google&#x27;s lead within months of the February announcement. The founder&#x27;s brand will have its first campaign blocked or bulk-spammed before a single creative decision matters, and the platform&#x27;s dashboard will report a stable &quot;open rate&quot; on the delivered fraction without showing the founder how few messages actually arrived.</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.3</p>
+<p>Tags: SPF; DKIM; DMARC; deliverability; Gmail bulk-sender rule; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>SA-3</strong></p>
+<p>A Stanley-scale DTC brand runs a popular SMS list through Postscript for drop launches on new colorways. The brand&#x27;s head of growth argues that because their opt-in rate is strong — 18 percent of online buyers check the SMS checkbox at checkout — TCPA compliance is handled and there is nothing else to worry about. A new marketing director disagrees. Using the chapter&#x27;s TCPA framework, identify two specific risks the head of growth is overlooking and explain what the brand should do to reduce each one.</p>
+<p><strong>Sample answer:</strong> Risk 1 — Broken opt-in flow: even if the checkbox is correctly configured today, a platform update, A/B test, or developer push could accidentally pre-check the box or remove the consent language, quietly making every opt-in collected after that moment non-compliant. The fix is to audit the opt-in flow at every checkout-page change and keep timestamped records of each confirmed opt-in event inside Postscript. Risk 2 — The private right of action: the TCPA allows individual buyers, or a class of buyers, to sue the brand directly for $500 to $1,500 per unauthorized message without waiting for a regulator. At 10,000 non-compliant texts the floor exposure is $5 million. A brand running a large list at Stanley&#x27;s scale is precisely the type of defendant TCPA class-action litigators target. The opt-in box alone does not protect against this if any batch is sent to a number collected before proper consent was recorded. The defense is: (a) route all sends through a platform that records consent automatically; (b) use a double opt-in (a reply-YES confirmation text) as industry-standard risk reduction; (c) honor STOP requests within 24 hours, the standard the carriers enforce; and (d) never send to a purchased or imported list without verifying each number&#x27;s consent record.</p>
+<p>Diff: 3</p>
+<p>Objective: LO 21.5</p>
+<p>Tags: TCPA; prior express written consent; statutory damages; opt-in compliance; AACSB: Application of knowledge; Ethical understanding</p>
+<hr>
+<p><strong>SA-4</strong></p>
+<p>A local meal-prep subscription service has 8,000 subscribers and a 68-percent annual retention rate. A junior analyst proposes three ideas to grow revenue: (1) run more paid-social ads to add 500 new subscribers per month, (2) improve the onboarding drip to raise retention to 72 percent, and (3) add a frequency cap and a send-time optimization setting to protect deliverability. Using the CLV formula and the customer-equity logic from our chapter, explain which of the three proposals produces the largest long-run lift in the brand&#x27;s underlying value, and show the arithmetic behind your answer.</p>
+<p><strong>Sample answer:</strong> The meal-prep service is a contractual brand (a subscription buyers can cancel), so the CLV formula applies directly. Assume each subscriber contributes $22 per month in gross margin, or $264 per year, and use a 1 percent monthly discount rate for simplicity. At 68 percent annual retention the CLV formula gives $264 / (1 - 0.68) = approximately $825 per subscriber. Lifting retention to 72 percent gives $264 / (1 - 0.72) = approximately $943 per subscriber, a $118 increase. Across 8,000 current subscribers the 4-point retention lift adds roughly $944,000 to the customer equity total — the combined lifetime value of the whole base — with no new acquisition spending. Proposal 1 adds 500 subscribers per month at a CAC the analyst does not specify, but at $825 each that is $412,500 of new CLV, less the acquisition spend. The retention improvement (Proposal 2) lifts the value of 8,000 existing subscribers immediately and persistently; the acquisition campaign must fund each new buyer before a net gain appears. Proposal 3 protects deliverability (the frequency cap prevents list burn, and send-time optimization improves click-through), which supports the retention lift but does not by itself change the CLV figure. The chapter&#x27;s framework shows that lifting the retention side of the CLV formula compounds across the entire existing base, which is why Proposal 2 almost always has the highest long-run lift per dollar spent.</p>
+<p>Diff: 3</p>
+<p>Objective: LO 21.1, LO 21.8</p>
+<p>Tags: CLV formula; customer equity; retention lift; CBCV; AACSB: Analytical thinking; Application of knowledge</p>
+<hr>
+<h2>Section III — AI-Integration Items (4 items)</h2>
+<p><em>These items are original to this course and do not appear in the Kotler bank. They test students&#x27; ability to apply the chapter&#x27;s frameworks to AI-era lifecycle tools, the four-step agent ladder, and the customer-base audit&#x27;s AI workflow.</em></p>
+<hr>
+<p><strong>AI-1 — Four-Step AI Agent Ladder</strong></p>
+<p>A lifecycle marketer&#x27;s current workflow: every Monday morning she opens Klaviyo, exports last week&#x27;s flow metrics to a spreadsheet, computes the change in click-through rate for each drip, copies the numbers into a chat assistant, types &quot;here are our metrics — flag anything unusual,&quot; and reads the reply before writing a summary email to her team. On a good morning this takes 90 minutes.</p>
+<p>According to the chapter&#x27;s four-step AI agent ladder, this marketer is at Step 1 (paste into chat). Which of the following changes would move her to Step 4 (scheduled agent), and what single piece of clerical work does Step 4 remove?</p>
+<p>A) She switches from Claude to GPT-4o, which processes spreadsheets faster. B) She connects Klaviyo to her AI assistant via an MCP connector, schedules the audit to run every Monday at 7 a.m., and configures the agent to post the diff directly to the team channel — removing the need for a human to remember to start the task. C) She hires an analyst to run the export while she focuses on writing the diff. D) She packages the Monday audit as a Skill so it runs in one command instead of a paste. E) She sets up a frequency cap and send-time optimization inside Klaviyo, which automates the metrics collection side of the task.</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.9 — Step 4 is the scheduled agent: the tool pulls live data (Step 3&#x27;s MCP connector), runs the audit, and posts the diff on a cron schedule with no human trigger. The clerical task removed is &quot;remembering to start it,&quot; which the chapter names explicitly.</p>
+<p>Tags: four-step AI ladder; scheduled agent; MCP; lifecycle automation; AACSB: Application of knowledge; Reflective thinking</p>
+<hr>
+<p><strong>AI-2 — Critique an AI-Drafted Lifecycle Audit</strong></p>
+<p>A marketing student uses an AI assistant to audit a win-back email draft. She gives the assistant this prompt: &quot;Make this email better.&quot; The assistant replies with three suggestions: (1) use a stronger call to action, (2) shorten the subject line, and (3) add social proof. The student accepts all three and sends the campaign. Response rates are lower than the brand&#x27;s prior win-back average.</p>
+<p>Using the chapter&#x27;s framework for AI-assisted lifecycle work and the lesson from the widget comparison, identify the primary failure in how the student used the assistant, and rewrite the prompt in a way that would have produced a more useful audit.</p>
+<p><strong>Sample answer and rubric:</strong></p>
+<p>Primary failure — Vague prompt: the student asked a general copywriting question with no context about the buyer&#x27;s lifecycle stage, the brand&#x27;s no-discount rule, the subject-line character limit, or the re-engagement goal. The chapter makes this distinction explicit with its widget comparison: a vague prompt (&quot;make this email better&quot;) returns generic advice the student could have guessed; a sharp prompt that names the buyer&#x27;s stage and the constraints returns a rewrite that can go directly into the platform.</p>
+<p>Rewrite: &quot;This is a win-back email going to buyers who have not purchased in 180 days. The brand does not use discounts in win-back campaigns. The goal is a soft reintroduction, not a hard sell. The subject line must fit under 80 characters to survive AI inbox summary previews. The buyer&#x27;s silent question at this stage is &#x27;is there a reason to come back that has nothing to do with a sale?&#x27; Review the draft against those constraints and rewrite the subject line and opening sentence.&quot;</p>
+<p>What the rewrite produces that the original could not: a response matched to the win-back stage&#x27;s specific constraints, a subject line designed to survive Gmail&#x27;s AI summary feature (which the chapter names as the reason to front-load the value reason in the first 80 characters), and copy that avoids the discount that the chapter says trains the wrong behavior in a lapsed buyer.</p>
+<p>Diff: 3</p>
+<p>Objective: LO 21.9, LO 21.4</p>
+<p>Tags: AI lifecycle audit; vague vs specific prompt; win-back drip; AACSB: Written communication; Application of knowledge</p>
+<hr>
+<p><strong>AI-3 — Customer-Base Audit Decile Decomposition</strong></p>
+<p>A student downloads a synthetic transaction log from her firm&#x27;s Shopify account and asks a spreadsheet-enabled AI assistant to run a customer-base audit. The assistant returns the following summary:</p>
+<blockquote><p>&quot;The top 10 percent of buyers (by annual profit) generated 38 percent of total profit. The top 20 percent generated 57 percent. The bottom 25 percent operated at a loss to serve. Decomposing top-decile vs bottom-decile buyers: the top group beats the bottom on all three levers — average order frequency (6.8 vs 1.1 orders per year), average order value ($94 vs $41), and gross margin per order (37% vs 31%). The single largest gap is in order frequency.&quot;</p></blockquote>
+<p>Using the chapter&#x27;s customer-base audit and vital-few/useful-many framework, answer: (1) Is this pattern unusual or normal? (2) What does the decomposition tell the brand about which lever to prioritize in its lifecycle program? (3) What does the whale curve for this brand look like, and what does it reveal that the average-customer metric hides?</p>
+<p>A) The pattern is unusual; the brand should investigate whether its top decile is gaming a loyalty program. The decomposition says to prioritize margins. The whale curve slopes downward from the start. B) The pattern is normal; the vital-few/useful-many principle appears in almost every customer base. The decomposition says to prioritize order frequency (the biggest gap), with lifecycle drips designed to trigger a second and third order. The whale curve climbs steeply on the vital few, crosses 100 percent of total profit before the last buyer is added, and bends back down as the unprofitable tail subtracts from the total — revealing that the average-customer figure is a blend of radically different groups that treating everyone equally ignores. C) The pattern is normal, but the action is to cut the bottom 25 percent from all lists immediately, which will raise average profitability automatically. D) The decomposition says to prioritize average order value because it is the most controllable lever in email marketing. E) The whale curve shows that the brand&#x27;s customer base is healthy and no lifecycle changes are needed until the bottom-25-percent segment turns profitable.</p>
+<p>Answer: B</p>
+<p>Diff: 3</p>
+<p>Objective: LO 21.7 — The vital-few/useful-many pattern is described as near-universal in the chapter. The decomposition points to frequency as the largest gap, which maps to activation and re-engagement drips. The whale curve visual is explained in detail in the chapter, and the &quot;average customer&quot; problem is named as the reason flat-average metrics hide this shape.</p>
+<p>Tags: customer-base audit; decile decomposition; whale curve; vital few and useful many; AACSB: Analytical thinking; Application of knowledge</p>
+<hr>
+<p><strong>AI-4 — The AI Lifecycle Agent Loop</strong></p>
+<p>A brand&#x27;s lifecycle team is evaluating whether to build a scheduled AI agent that runs every Monday and produces a weekly diff for the team. The team&#x27;s current manual process takes one analyst 90 minutes every Monday. The agent would use an MCP connector to pull live Klaviyo segment and flow data, a packaged Skill (the /lifecycle-audit skill the team wrote) to run the audit, and a cron trigger to post the diff to Slack at 7 a.m. The agent&#x27;s estimated running cost is $3 per week. The analyst&#x27;s loaded hourly cost is $55.</p>
+<p>Which of the following correctly describes the editorial work the agent cannot do — and therefore the work the team still needs the analyst to perform?</p>
+<p>A) The agent cannot pull data from Klaviyo because MCP connectors require a developer to maintain them, so the analyst still runs the export manually. B) The agent handles the clerical audit reliably but cannot review the draft before it goes live, approve a campaign launch, or catch the moment when a segment definition produces a result the brand can see is wrong. Those editorial judgments stay with the analyst. C) The agent can do everything described and the analyst&#x27;s role in lifecycle marketing is eliminated entirely once the agent is running. D) The agent cannot produce a diff because it lacks natural-language reasoning, so the analyst still writes the Monday summary. E) The agent cannot audit the TCPA consent records because that requires human legal review, so the analyst still checks the opt-in list manually.</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 21.9 — The chapter&#x27;s central AI distinction is between the clerical half (which the agent handles: draft copy, build segments, pick send times, post the diff) and the editorial half (which the marketer keeps: review the draft before it ships, approve the launch, catch the quietly wrong segment). The work was relocated, not eliminated.</p>
+<p>Tags: four-step AI ladder; clerical vs editorial; lifecycle agent; MCP; Skill; AACSB: Reflective thinking; Application of knowledge</p>
+<hr>
+<h2>Answer Key</h2>
+<table><thead><tr><th>Item</th><th>Answer</th><th>One-line rationale</th></tr></thead><tbody><tr><td>1</td><td>B</td><td>Channel loses $25 on the first order; the investment pays only if repeat orders follow.</td></tr><tr><td>2</td><td>C</td><td>Bain/HBR 1990: 5-point retention lift = 25–95% lifetime profit gain depending on industry.</td></tr><tr><td>3</td><td>C</td><td>Narrowed consideration set = the loyalty mechanism that blocks comparison shopping.</td></tr><tr><td>4</td><td>B</td><td>Amortize: a single acquisition cost spread across multiple orders.</td></tr><tr><td>5</td><td>B</td><td>Non-contractual brands cannot observe when a buyer leaves; &quot;retention&quot; is repeat-purchase rate.</td></tr><tr><td>6</td><td>B</td><td>72% for non-contractual = share who came back, not a cancellation figure.</td></tr><tr><td>7</td><td>B</td><td>Platforms report opens on delivered messages; a delivery problem hides behind a stable rate.</td></tr><tr><td>8</td><td>C</td><td>DMARC is the failure-handling instruction: quarantine or reject when SPF/DKIM fails.</td></tr><tr><td>9</td><td>C</td><td>Google&#x27;s Feb 2024 rule: no published DMARC record = mail rejected at the gateway.</td></tr><tr><td>10</td><td>B</td><td>Trigger-relative delay, not a calendar date, is what makes a message a drip.</td></tr><tr><td>11</td><td>B</td><td>The five drips: onboarding, activation, re-engagement, win-back, abandoned-cart.</td></tr><tr><td>12</td><td>B</td><td>Activation: first action taken but habit not yet formed; Duolingo 12% vs 38% streak odds.</td></tr><tr><td>13</td><td>C</td><td>Abandoned cart converts because the buyer has already declared intent by adding to cart.</td></tr><tr><td>14</td><td>C</td><td>Lifestyle switchers no longer need the category; spending on them wastes budget and deliverability.</td></tr><tr><td>15</td><td>D</td><td>TCPA: $500 per message, every text is a separate violation; 10,000 texts = $5M floor exposure.</td></tr><tr><td>16</td><td>B</td><td>Prior express written consent = unchecked-by-default box + timestamped brand record.</td></tr><tr><td>17</td><td>D</td><td>R5/F5/M5 = Champions: highest recency, frequency, and value on the RFM grid.</td></tr><tr><td>18</td><td>B</td><td>Frequency cap: hard ceiling on messages per buyer per window regardless of drips qualifying.</td></tr><tr><td>19</td><td>C</td><td>Vital few and the useful many: a small share generates most profit, tail can lose money.</td></tr><tr><td>20</td><td>B</td><td>Whale curve: cumulative profit vs customers ranked best to worst; peaks above 100% then bends down.</td></tr><tr><td>21</td><td>C</td><td>Customer equity = sum of all CLV; a retention lift is a move in firm valuation, not just a campaign result.</td></tr><tr><td>22</td><td>A</td><td>Step 1 is paste-into-chat: no installation, 60–80% of weekly AI tasks, manual trigger.</td></tr><tr><td>SA-1</td><td>See rubric</td><td>Contractual = clean cancellation fact; non-contractual = repeat-purchase estimate; coffee subscription = contractual.</td></tr><tr><td>SA-2</td><td>See rubric</td><td>DMARC missing; after Feb 2024 Google bulk-sender rule, no DMARC = mail rejected. SPF+DKIM alone is not enough.</td></tr><tr><td>SA-3</td><td>See rubric</td><td>Risks: broken opt-in flow (any platform change) + private right of action ($5M floor at 10,000 texts).</td></tr><tr><td>SA-4</td><td>See rubric</td><td>Retention lift (Proposal 2) compounds across all 8,000 existing subscribers; acquisition (Proposal 1) requires paying CAC first.</td></tr><tr><td>AI-1</td><td>B</td><td>Step 4 = MCP connector + cron schedule + auto-post; removes the human trigger each week.</td></tr><tr><td>AI-2</td><td>See rubric</td><td>Vague prompt → generic advice; specific prompt naming stage, constraints, and goal → shippable rewrite.</td></tr><tr><td>AI-3</td><td>B</td><td>Pattern is normal; frequency is the biggest gap; whale curve reveals vital-few structure the average hides.</td></tr><tr><td>AI-4</td><td>B</td><td>Agent handles clerical half; editorial half (review before launch, catch wrong segment) stays with marketer.</td></tr></tbody></table>
+<hr>
+<h2>Item Counts Summary</h2>
+<table><thead><tr><th>Category</th><th>Diff 1</th><th>Diff 2</th><th>Diff 3</th><th>Total</th></tr></thead><tbody><tr><td>MCQ</td><td>4</td><td>14</td><td>4</td><td>22</td></tr><tr><td>Scenario / Short-Answer</td><td>0</td><td>2</td><td>2</td><td>4</td></tr><tr><td>AI-Integration</td><td>0</td><td>2</td><td>2</td><td>4</td></tr><tr><td><strong>Total</strong></td><td><strong>4</strong></td><td><strong>18</strong></td><td><strong>8</strong></td><td><strong>30</strong></td></tr></tbody></table>
+<hr>
+<h2>Objectives Coverage</h2>
+<table><thead><tr><th>Objective</th><th>MCQ items</th><th>SA items</th><th>AI items</th></tr></thead><tbody><tr><td>LO 21.1 — Retention math + four mechanisms</td><td>1, 2, 3, 4</td><td>SA-4</td><td></td></tr><tr><td>LO 21.2 — Contractual vs non-contractual</td><td>5, 6</td><td>SA-1</td><td></td></tr><tr><td>LO 21.3 — SPF/DKIM/DMARC + Gmail 2024</td><td>7, 8, 9</td><td>SA-2</td><td></td></tr><tr><td>LO 21.4 — Five drip patterns + triggers</td><td>10, 11, 12, 13, 14</td><td></td><td>AI-2</td></tr><tr><td>LO 21.5 — TCPA + SMS opt-in</td><td>15, 16</td><td>SA-3</td><td></td></tr><tr><td>LO 21.6 — RFM + frequency cap + send-time opt</td><td>17, 18</td><td></td><td></td></tr><tr><td>LO 21.7 — Customer-base audit + whale curve</td><td>19, 20</td><td></td><td>AI-3</td></tr><tr><td>LO 21.8 — Customer equity + CBCV handoff</td><td>21</td><td>SA-4</td><td></td></tr><tr><td>LO 21.9 — Four-step AI agent ladder</td><td>22</td><td></td><td>AI-1, AI-2, AI-4</td></tr></tbody></table>
+<hr>
+<p><em>Export-ready for QTI / Canvas Common Cartridge. Short-answer and AI items with rubric notation are suitable for AI-assisted grading via the course proxy (port 8787). All items are answerable from Our Ch21 (v7). No item is a verbatim lift from Kotler MM16 tb-19. Kotler tb-19 provided structural seeds for items 2, 3, 5, 17, and the SA-1/SA-3 scenario shape; every seed was rewritten into our voice, re-tagged to our objectives, and updated to 2026 context. The email deliverability (items 7–9), TCPA (items 15–16, SA-3), five-drips (items 10–14), RFM (items 17–18), customer-base audit (items 19–20, AI-3), customer equity (item 21, SA-4), and all four AI-integration items are original to this course with no Kotler parent.</em></p></main>
+<footer><div class="inner">Principles of Marketing: An AI-Integrated Approach &middot; instructor courseware.</div></footer>
+</body>
+</html>

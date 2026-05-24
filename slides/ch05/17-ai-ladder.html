@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 5 Marketing Research · 17 · Four-tier AI ladder</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; }
+  .exh .head{ margin-bottom:12px; }
+  .exh .frame{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:14px 22px 12px; display:flex; flex-direction:column; flex:1; min-height:0;
+  }
+  .exh .frame .caption{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:4px;
+  }
+  .exh svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+</style>
+</head>
+<body>
+  <!-- 17 · EXHIBIT · the four-tier AI ladder (lifted from chapter sk-ai-tiers). ONE coral element = the attention gauge that empties as you climb, the single quantity the figure is arguing about. -->
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">AI work climbs four tiers, and <em>each rung needs less of your attention</em> than the one below.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Exhibit 5.10 · The four-tier AI workflow &middot; the human-attention gauge empties as you climb</span>
+      <svg viewBox="0 0 720 280" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Four tiers of AI work drawn as rising rungs, each a labeled box. Tier 1 is a one-off ask in a chat window. Tier 2 is a saved Skill you reuse. Tier 3 connects the assistant to your own live data through an MCP server. Tier 4 schedules the whole sequence to run on its own. A coral attention gauge runs up the right edge, its bar shrinking from full beside the bottom rung to nearly empty beside the top, because each rung needs less attention.">
+        <g font-family="'Segoe UI', sans-serif" fill="#1a1a1a">
+          <!-- rising guide connecting the rungs -->
+          <line x1="60" y1="236" x2="430" y2="56" stroke="#E8E6E1" stroke-width="1.4" stroke-dasharray="4,4"/>
+
+          <!-- four rung boxes, left of the gauge column (gauge lives x 560..650, boxes end by x 470) -->
+          <!-- Tier 1 (bottom) -->
+          <rect x="40" y="212" width="250" height="44" fill="none" stroke="#7A7A7A" stroke-width="1.5"/>
+          <text x="54" y="232" font-size="13" font-weight="700" fill="#5C5C5C">TIER 1 &middot; one-off ask</text>
+          <text x="54" y="250" font-size="12" fill="#4A4A4A">type the question, read it</text>
+          <!-- Tier 2 -->
+          <rect x="100" y="152" width="250" height="44" fill="none" stroke="#7A7A7A" stroke-width="1.5"/>
+          <text x="114" y="172" font-size="13" font-weight="700" fill="#5C5C5C">TIER 2 &middot; saved Skill</text>
+          <text x="114" y="190" font-size="12" fill="#4A4A4A">the ask you run every week</text>
+          <!-- Tier 3 -->
+          <rect x="160" y="92" width="250" height="44" fill="none" stroke="#7A7A7A" stroke-width="1.5"/>
+          <text x="174" y="112" font-size="13" font-weight="700" fill="#5C5C5C">TIER 3 &middot; MCP server</text>
+          <text x="174" y="130" font-size="12" fill="#4A4A4A">your own live data, connected</text>
+          <!-- Tier 4 (top) -->
+          <rect x="220" y="32" width="250" height="44" fill="none" stroke="#7A7A7A" stroke-width="1.5"/>
+          <text x="234" y="52" font-size="13" font-weight="700" fill="#5C5C5C">TIER 4 &middot; scheduled run</text>
+          <text x="234" y="70" font-size="12" fill="#4A4A4A">the Monday diff, waiting</text>
+
+          <!-- the attention gauge: the ONE coral element. A right-edge column whose bar empties as you climb. -->
+          <text x="605" y="24" font-size="11" fill="#B8553A" font-weight="700" text-anchor="middle">human attention</text>
+          <line x1="540" y1="32" x2="540" y2="256" stroke="#E8E6E1" stroke-width="1.4"/>
+          <!-- bars grow rightward from the x=540 spine; full at the bottom rung, shrinking up -->
+          <rect x="540" y="222" width="120" height="24" fill="#DA7756"/>
+          <text x="666" y="239" font-size="11" fill="#B8553A" font-weight="600">all of it</text>
+          <rect x="540" y="162" width="84"  height="24" fill="#DA7756" fill-opacity="0.78"/>
+          <rect x="540" y="102" width="48"  height="24" fill="#DA7756" fill-opacity="0.55"/>
+          <rect x="540" y="42"  width="20"  height="24" fill="#DA7756" fill-opacity="0.38"/>
+          <text x="566" y="59" font-size="11" fill="#B8553A" font-weight="600">almost none</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: chapter §5.6 AI workflow; every tier still owes a disclosure of the model, the prompt, and the human check (AAPOR, 2025)</p>
+  </section>
+</body>
+</html>

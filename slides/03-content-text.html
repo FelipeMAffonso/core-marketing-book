@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Template · Content (text)</title>
+<link rel="stylesheet" href="_tokens.css"/>
+<style>
+  .slide.content{ display:flex; flex-direction:column; }
+  .content .head{ margin-bottom:22px; }
+  .content .grid{ display:grid; grid-template-columns: 1fr 1fr; gap:28px; flex:1; align-content:start; }
+  .content p.lead{
+    font-size:24px; line-height:1.4; color:var(--ink-body);
+    max-width:44ch; text-wrap:pretty;
+  }
+  .content p.lead strong{ color:var(--ink); font-weight:600; }
+  .content p.lead em{ font-style:italic; color:var(--accent); font-weight:500; }
+</style>
+</head>
+<body>
+  <!-- 03 · CONTENT (HEADLINE + TEXT) -->
+  <section class="slide content">
+    <div class="head">
+      <h1 class="title">Audiences read charts, not tables. Your job is to <em>make the answer visible</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="grid">
+      <p class="lead">
+        A finding exists, practically, once your audience <strong>sees it in under ten seconds</strong>.
+        Everything else on the slide (axes, gridlines, borders, legends) should earn its place
+        or get deleted.
+      </p>
+      <ul class="check">
+        <li>Delete 3-D, heavy gridlines, borders, legends</li>
+        <li>Every pixel should encode data, or be cut</li>
+        <li>Whitespace is structure, not emptiness</li>
+        <li>If the title isn't a sentence, the slide isn't ready</li>
+      </ul>
+    </div>
+
+    <p class="source">Source: Tufte, <em>Visual Display of Quantitative Information</em> (1983) · Knaflic (2015)</p>
+  </section>
+</body>
+</html>

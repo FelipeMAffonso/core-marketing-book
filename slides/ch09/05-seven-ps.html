@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 9 Services · 05 · The seven Ps</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.split{ display:flex; flex-direction:column; }
+  .split .head{ margin-bottom:20px; }
+  .split .cols{ display:grid; grid-template-columns: 1fr 1.05fr; gap:24px; flex:1; min-height:0; }
+  .split .col{
+    border:1px solid var(--rule); padding:22px 24px;
+    display:flex; flex-direction:column;
+  }
+  .split .col.after{ background:var(--accent-tint); border:none; border-left:3px solid var(--accent); }
+  .split .col .label{
+    font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:10px;
+  }
+  .split .col.after .label{ color:var(--accent); }
+  .split .col h3{
+    font-size:24px; font-weight:600; color:var(--ink);
+    margin-bottom:12px; line-height:1.2;
+  }
+  .split .col p{ font-size:20px; line-height:1.4; color:var(--ink-body); }
+  .split .col ul{ list-style:none; padding:0; margin:10px 0 0 0; display:flex; flex-direction:column; gap:9px; }
+  .split .col ul li{
+    font-size:20px; color:var(--ink-body); padding-left:18px; position:relative; line-height:1.35;
+  }
+  .split .col ul li::before{
+    content:""; position:absolute; left:0; top:13px;
+    width:10px; height:1px; background:var(--ink-mute);
+  }
+  .split .col.after ul li::before{ background:var(--accent); height:2px; }
+  .split .col ul li strong{ color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 05 · TWO-COLUMN · the 4Ps assume a finished product; services add three Ps. ONE coral element = the three-additions column. -->
+  <section class="slide split">
+    <div class="head">
+      <h1 class="title">The 4Ps assume the product is finished before the buyer arrives, so services <em>add three Ps once the buyer is in the room</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <span class="label">The original four</span>
+        <h3>Built for a finished product</h3>
+        <p>The buyer arrives after the product is made, and the job is to persuade them to buy it.</p>
+        <ul>
+          <li>Product, price, place, promotion</li>
+          <li>McCarthy, 1960, the foundational mix</li>
+          <li>The quiet assumption breaks when the buyer is present</li>
+        </ul>
+      </div>
+      <div class="col after">
+        <span class="label">The three additions · Booms &amp; Bitner 1981</span>
+        <h3>Built for production in real time</h3>
+        <p>The buyer arrives before the product is finished, so the firm manages the encounter as it happens.</p>
+        <ul>
+          <li><strong>People</strong>: the employee is part of the product</li>
+          <li><strong>Process</strong>: the journey is a designed system</li>
+          <li><strong>Physical evidence</strong>: the room read as proof</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="source">Source: Booms &amp; Bitner (1981); the service-marketing triangle, Lovelock &amp; Wirtz</p>
+  </section>
+</body>
+</html>

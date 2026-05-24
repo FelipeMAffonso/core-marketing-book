@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 8 Product Management · 19 · The AI move</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.split{ display:flex; flex-direction:column; }
+  .split .head{ margin-bottom:16px; }
+  .split .cols{ display:grid; grid-template-columns: 1fr 1fr; gap:24px; flex:1; min-height:0; }
+  .split .col{
+    border:1px solid var(--rule); padding:22px 26px;
+    display:flex; flex-direction:column;
+  }
+  .split .col.after{ background:var(--accent-tint); border:none; border-left:3px solid var(--accent); }
+  .split .col .label{
+    font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:12px;
+  }
+  .split .col.after .label{ color:var(--accent); }
+  .split .col .ask{ font-size:20px; font-style:italic; color:var(--ink); line-height:1.35; padding-bottom:14px; border-bottom:1px solid var(--rule); margin-bottom:14px; }
+  .split .col.after .ask{ border-color:#EAD3C8; }
+  .split .col .out{ font-size:20px; color:var(--ink-body); line-height:1.42; }
+  .split .col .out strong{ color:var(--ink); font-weight:600; }
+  .split .col.after .out strong{ color:var(--accent); }
+  .split .foot{ margin-top:18px; font-size:21px; line-height:1.45; color:var(--ink-body); max-width:90ch; }
+  .split .foot em{ font-style:normal; color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 19 · TWO-COLUMN · the AI move from the live-web PLC widget (8.4b): vague vs sharp ask, same model, same cost.
+       ONE coral element = the sharp column (the ask that reads the curve from evidence). -->
+  <section class="slide split">
+    <div class="head">
+      <h1 class="title">Hand a product to an assistant that searches the live web, and <em>the sharp ask is the one that earns a verdict</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <span class="label">Vague request</span>
+        <p class="ask">&ldquo;What life-cycle stage is this product in?&rdquo;</p>
+        <p class="out">Returns <strong>a stage with no evidence behind it</strong>. You already knew that much, and you cannot check it or act on it.</p>
+      </div>
+      <div class="col after">
+        <span class="label">Sharp request</span>
+        <p class="ask">&ldquo;Search the last 3 years of sales trend, saturation, and competitor count. Return the stage, the one job it hands the marketer, and the single piece of evidence that would change your answer.&rdquo;</p>
+        <p class="out">Returns <strong>a stage, a job, and what would change it</strong>: a dated hypothesis you can check, which is exactly what the curve is meant to be.</p>
+      </div>
+    </div>
+
+    <p class="foot">Same model, same cost, only the question changed. The lesson the whole chapter keeps returning to is that <em>a vague brief invents a verdict and a sharp one earns it</em>.</p>
+
+    <p class="source">Source: Chapter 8 Widget 8.4b (live-web PLC diagnostic); model reads current signals, not an audited report</p>
+  </section>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Chapter 6: Segmentation, Targeting, Positioning — instructor courseware for Principles of Marketing.">
+<title>Chapter 6: Segmentation, Targeting, Positioning · Principles of Marketing</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23DA7756' width='100' height='100' rx='12'/><text x='50' y='68' font-family='system-ui' font-size='36' font-weight='bold' fill='white' text-anchor='middle'>PM</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --coral:#DA7756; --coral-deep:#B8553A; --coral-soft:#E8A488;
+  --coral-text:#a8472a; --coral-tint:#fdf3ee;
+  --ink:#1a1a1a; --ink-2:#43474f; --ink-3:#5a5f67;
+  --bg:#ffffff; --bg-2:#f7f8fa; --bg-3:#f1f2f5;
+  --border:#e6e6ea; --border-strong:#d7dae0;
+  --font:'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif;
+  --font-serif:'EB Garamond',Georgia,serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Consolas,monospace;
+}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.62;
+  -webkit-font-smoothing:antialiased;}
+a{color:var(--coral-text);text-decoration:none;}
+a:hover{text-decoration:underline;text-underline-offset:3px;}
+a:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;border-radius:4px;}
+.skip-link{position:absolute;left:-999px;top:0;z-index:2000;background:var(--ink);
+  color:#fff;padding:10px 16px;border-radius:0 0 6px 0;font-size:14px;font-weight:600;}
+.skip-link:focus{left:0;text-decoration:none;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.9);
+  backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);}
+.topbar-inner{max-width:860px;margin:0 auto;padding:0 28px;height:58px;display:flex;
+  align-items:center;gap:14px;}
+.topbar .mark{width:28px;height:28px;border-radius:7px;flex-shrink:0;background:var(--coral-deep);
+  color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;
+  letter-spacing:-0.5px;}
+.topbar .doc-title{font-size:14.5px;font-weight:600;color:var(--ink);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.topbar .back{margin-left:auto;font-size:13.5px;font-weight:600;color:var(--coral-text);
+  padding:7px 13px;border-radius:7px;border:1px solid var(--border);white-space:nowrap;}
+.topbar .back:hover{background:var(--bg-2);text-decoration:none;}
+main{max-width:860px;margin:0 auto;padding:44px 28px 96px;}
+.kicker{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--coral-text);margin-bottom:10px;}
+main h1{font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-0.02em;
+  line-height:1.12;color:var(--ink);margin:0 0 8px;}
+main h2{font-size:clamp(21px,2.8vw,26px);font-weight:700;letter-spacing:-0.015em;color:var(--ink);
+  margin:42px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+main h3{font-size:19px;font-weight:650;color:var(--ink);margin:30px 0 10px;}
+main h4{font-size:16px;font-weight:650;color:var(--ink-2);margin:24px 0 8px;}
+main h5,main h6{font-size:14px;font-weight:650;color:var(--ink-2);margin:20px 0 6px;
+  text-transform:uppercase;letter-spacing:0.04em;}
+main p{margin:0 0 16px;color:var(--ink);font-size:17px;}
+main ul,main ol{margin:0 0 18px;padding-left:26px;}
+main li{margin:0 0 7px;color:var(--ink);font-size:17px;}
+main li>ul,main li>ol{margin:7px 0 0;}
+main blockquote{margin:0 0 18px;padding:4px 18px;border-left:3px solid var(--coral);
+  background:var(--coral-tint);color:var(--ink-2);border-radius:0 6px 6px 0;}
+main blockquote p{margin:8px 0;}
+main hr{border:0;border-top:1px solid var(--border);margin:34px 0;}
+main strong{font-weight:700;color:var(--ink);}
+main em{font-style:italic;}
+main code{font-family:var(--font-mono);font-size:0.88em;background:var(--bg-3);
+  padding:2px 6px;border-radius:4px;color:var(--coral-text);border:1px solid var(--border);}
+main pre{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;
+  padding:16px 18px;overflow-x:auto;margin:0 0 18px;}
+main pre code{background:none;border:0;padding:0;color:var(--ink);font-size:13.5px;
+  line-height:1.55;}
+main table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:15px;
+  display:block;overflow-x:auto;}
+main thead th{background:var(--bg-2);text-align:left;font-weight:650;color:var(--ink);
+  padding:9px 13px;border:1px solid var(--border-strong);white-space:nowrap;}
+main tbody td{padding:9px 13px;border:1px solid var(--border);color:var(--ink-2);
+  vertical-align:top;}
+main tbody tr:nth-child(even){background:var(--bg-2);}
+main a{color:var(--coral-text);font-weight:500;}
+.toc-note{font-size:14px;color:var(--ink-3);margin-bottom:30px;}
+footer{border-top:1px solid var(--border);background:var(--bg-2);padding:28px 0;
+  margin-top:60px;}
+footer .inner{max-width:860px;margin:0 auto;padding:0 28px;font-size:12.5px;color:var(--ink-3);}
+@media (max-width:600px){
+  main{padding:30px 18px 64px;}
+  .topbar-inner{padding:0 18px;}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="mark" aria-hidden="true">PM</span>
+    <span class="doc-title">Chapter 6: Segmentation, Targeting, Positioning</span>
+    <a class="back" href="../../index.html">&larr; Back to courseware</a>
+  </div>
+</header>
+<main id="main">
+<h1>Chapter 6: Segmentation, Targeting, Positioning</h1>
+<h2>Instructor Teaching Notes</h2>
+<p><em>A session-by-session guide for teaching Chapter 6. It ties the Ch6 bundle together (textbook chapter, lecture video, slide deck, test bank) into one plan you can walk into class with. This is the pilot teaching-notes guide; it sets the pattern for the other chapters.</em></p>
+<p><strong>Where this sits:</strong> Week 4 of the 15-week pacing guide, taught as a single-chapter week. STP is the spine of Project 2, so the chapter gets a full week to itself rather than being paired. The AI rung that advances this week is <strong>rung 2, &quot;Use real capabilities&quot;</strong>: students hand a live model real cluster data and a real positioning brief and check what comes back. P1 (the brand-and-environment audit) is due at the start of this week and P2 (Strategy, STP, and the mix) kicks off from it.</p>
+<hr>
+<h2>1. At a glance</h2>
+<p><strong>The big idea, in one sentence.</strong> A market is a scattered population of buyers who want different things, and STP is the three-stage discipline for cutting that population into groups, choosing the one group you can actually win, and claiming a position in those buyers&#x27; heads, after which the brand grows by reaching more of the category, not fewer.</p>
+<p><strong>The chapter&#x27;s running brand.</strong> Stanley insulated drinkware carries the whole chapter, opened in the video and closed in the textbook&#x27;s Apply box. In 2018 Stanley&#x27;s dashboard read low Quencher tumbler sales as a weak product and the firm nearly discontinued it. The real buyer, a woman drinking from her desk all day, never appeared in the dashboard&#x27;s question list. Stanley re-pointed the same 1913 product at the buyer it had found, and revenue moved from roughly $73 million to past $750 million. Three supporting cases recur and are worth keeping straight: <strong>Knorr India</strong> (demand-space reframe, soup sales up 127 percent), <strong>Avis</strong> (&quot;We try harder,&quot; claiming the rung the buyer already assigned), <strong>Liquid Death</strong> (the empty-quadrant / different-frame play), and <strong>Coca-Cola vs Dr Pepper</strong> (the double-jeopardy law).</p>
+<p><strong>Learning objectives (from the test bank, nine LOs).</strong> A student who finishes this chapter can:</p>
+<ul>
+<li><strong>LO 6.1</strong> Explain why customer heterogeneity makes segmentation necessary, and name the three responses to it (mass, segment-based, one-to-one).</li>
+<li><strong>LO 6.2</strong> Apply the four segmentation bases (geographic, demographic, psychographic, behavioral) and identify the demand space as the most actionable behavioral cut.</li>
+<li><strong>LO 6.3</strong> Evaluate candidate segments with the five-criteria usability filter (measurable, accessible, substantial, differentiable, actionable).</li>
+<li><strong>LO 6.4</strong> Distinguish target compatibility from target attractiveness and explain why compatibility is scored first.</li>
+<li><strong>LO 6.5</strong> Describe positioning as work done in the buyer&#x27;s mind, use the mental-ladder metaphor, and apply the three positioning moves (claim the rung, find the creneau, reposition the competition).</li>
+<li><strong>LO 6.6</strong> Define points of parity and points of difference, apply the three POD tests (desirable, deliverable, differentiating), and distinguish the three POP types (category, correlational, competitive).</li>
+<li><strong>LO 6.7</strong> Build and read a perceptual map, apply the empty-quadrant rule, and explain why an empty quadrant needs buyer ideal-point confirmation.</li>
+<li><strong>LO 6.8</strong> Explain the double-jeopardy and duplication-of-purchase laws and reconcile narrow targeting with broad penetration.</li>
+<li><strong>LO 6.9</strong> Define mental availability and physical availability, and connect them to the Distinctiveness Grid and the 7W category-entry-point audit.</li>
+</ul>
+<p><strong>Prerequisites.</strong> Sophomore standing; no prior marketing or computing background assumed. Students should arrive having read Chapter 5 (Marketing Research), because the segmentation methods lean on survey logic, and the targeting step uses the same holdout-validation idea. They should also have a working AI assistant account for the in-class AI moment. If you taught Chapter 4 (How Buyers Buy), the mental-ladder section will land faster because students already have the consideration-set idea.</p>
+<p><strong>The bundle, and how each piece is used.</strong></p>
+<table><thead><tr><th>Material</th><th>What it is</th><th>How you use it this week</th></tr></thead><tbody><tr><td><strong>Textbook chapter</strong> (<code>book/v7/chapter-06-stp.html</code>)</td><td>The dual-depth interactive chapter: nine sections (§6.1–6.9), six interactive widgets, coral SVG sketches, a glossary of tooltips, and the Apply / Key Takeaways / Check Your Understanding apparatus. Reads two ways: <strong>Comprehensive</strong> (full) and <strong>Concise</strong> (a shorter self-contained edition of the same chapter).</td><td>The assigned read. Assign <strong>Comprehensive</strong> as the baseline here, since STP is central to P2; Concise is the option for students who want the lean pass. The four widgets are the chapter&#x27;s hands-on AI moments; demo at least one live (see §6).</td></tr><tr><td><strong>Lecture video</strong> (<code>videos/ch06-stp-explainer</code>, script <code>…/scripts/ch06-stp-lecture-v1.plain.txt</code>)</td><td>A short animated lecture that runs the whole STP funnel once on the insulated-cup market, opening on the Stanley near-miss and closing on a four-step client diagnostic.</td><td>Assign before class as the pre-read companion, or play the opening 90 seconds (the Stanley story) as your in-class hook. The video&#x27;s diagnostic is the same one in the textbook&#x27;s Apply box, so it primes the in-class activity.</td></tr><tr><td><strong>Slide deck</strong> (<code>coral-design-system/slides/ch06/index.html</code>, 20 slides, 960×540)</td><td>A coral-design-system teaching deck, one claim per slide, that mirrors the video and the chapter section order.</td><td>Your in-class projection. The timing plan below names the exact slide to show at each beat. Slides are numbered 01–20 with one claim each; you do not need all 20 in a 75-minute block, but they map cleanly onto the funnel.</td></tr><tr><td><strong>Test bank</strong> (<code>test-bank/ch06-stp-test-bank.md</code>, 30 items)</td><td>22 multiple-choice, 4 scenario/short-answer, 4 AI-integration items, each tagged to an LO, a difficulty (1–3), and an AACSB category, with an answer key and an objectives-coverage table.</td><td>Pull a low-stakes quiz from it after this week, and the clustered items for Midterm 1. The assessment pointers in §8 name which items map to which objective.</td></tr></tbody></table>
+<hr>
+<h2>2. Timing plan: a 75-minute block</h2>
+<p>This maps the chapter to one 75-minute session. The chapter is large (nine frameworks), so the plan keeps each framework to its one essential point and pushes practice into the in-class activity rather than lecturing all nine in full. If you have two 75-minute sessions for this chapter, split at the 40-minute mark (end of positioning) and open the second session with the perceptual-map activity expanded to 30 minutes.</p>
+<p>A realistic single-block version runs lean on the back third (Sharp&#x27;s penetration laws and availability) and protects the in-class activity, because students learn STP by doing it once, not by hearing all nine pieces.</p>
+<table><thead><tr><th>Time</th><th>Block</th><th>What happens</th><th>Slide / widget / sketch</th></tr></thead><tbody><tr><td>0:00–0:06</td><td><strong>Opening hook</strong></td><td>Tell the Stanley near-miss: the firm almost cut the Quencher because the dashboard read it as weak, while the real buyer sat somewhere the dashboard never looked. Ask the room: &quot;Whose fault was the bad read, the product or the question?&quot; Do not resolve it; that is the chapter.</td><td>Slide 01 (title); or play the video&#x27;s first 90 seconds.</td></tr><tr><td>0:06–0:12</td><td><strong>Frame the whole funnel</strong></td><td>Build STP once as a funnel: whole market → a few segments → one position in the chosen group&#x27;s head. Tell them not to memorize the three words; you will run the cup market through each stage.</td><td>Slides 02–03 (the funnel); chapter §6.1 STP-funnel sketch.</td></tr><tr><td>0:12–0:18</td><td><strong>Why STP exists</strong></td><td>Customer heterogeneity: two people reach for the same cup for different reasons. The everybody trap: a brand that means something to everyone means something specific to no one, because the buyer&#x27;s head holds three to seven brands per category.</td><td>Slide 04; chapter §6.1 &quot;everybody trap&quot; slider (demo the two extremes if time).</td></tr><tr><td>0:18–0:26</td><td><strong>Segmentation: how to cut</strong></td><td>The four bases (where / who / what they value / what they do), then the deeper point: cut on the benefit, because the benefit is the cause of the choice (1968 toothpaste study). Name the demand space as the most actionable behavioral cut (Knorr, +127 percent).</td><td>Slides 05–06; chapter four-bases and toothpaste sketches.</td></tr><tr><td>0:26–0:30</td><td><strong>The five-criteria filter</strong></td><td>A slice is only a usable segment when it is measurable, accessible, substantial, differentiable, and actionable. Fail one and it is research, not a target.</td><td>Slide 07; chapter five-criteria checklist sketch.</td></tr><tr><td>0:30–0:38</td><td><strong>Targeting: which segment to win</strong></td><td>The trap: a big, growing, profitable segment can still be the wrong target if a stronger rival serves it better. Compatibility before attractiveness. Then the bridge: the strategic sentence is not a media buy; you translate it into a customer profile a platform can buy.</td><td>Slides 08–10; chapter compatibility-by-attractiveness sketch.</td></tr><tr><td>0:38–0:42</td><td><strong>Targeting crosses a line</strong></td><td>One honest beat on ethics: the Target pregnancy-prediction case. The model was right; acting on it was the violation. Run the three-question check (protected trait, children, &quot;would the buyer feel watched&quot;).</td><td>Slide 11 (the pull quote); chapter §6.3 ethics sketch + callout.</td></tr><tr><td>0:42–0:52</td><td><strong>Positioning: work in the head</strong></td><td>Positioning is not what you do to a product, it is what you do to the buyer&#x27;s mind. The mental ladder, one per category, top rung wins by default. Avis claimed the second rung out loud. Then POP/POD: parity earns a place, difference wins the choice; run a POD through the three tests.</td><td>Slides 12–14; chapter mental-ladder and POP/POD overlapping-circles sketches.</td></tr><tr><td>0:52–1:08</td><td><strong>In-class activity</strong></td><td>The segment-and-position sprint on a live brand (see §7). This is the heart of the session; protect it. Build the perceptual map live and apply the empty-quadrant rule here.</td><td>Slide 15 (perceptual map); chapter §6.6 drag-to-place map fitter widget, projected.</td></tr><tr><td>1:08–1:13</td><td><strong>The tension that costs money</strong></td><td>Quick: everything so far said target narrow; forty years of panel data says brands grow by reaching more buyers (double jeopardy: Coke vs Dr Pepper). They reconcile because STP picks the category and the penetration laws govern growth inside it.</td><td>Slides 16–18 (Liquid Death, double jeopardy, availability).</td></tr><tr><td>1:13–1:15</td><td><strong>Wrap</strong></td><td>The four-step diagnostic students will carry into P2: name the segment in one sentence, score it on five criteria, write the position, place it on a map and ask whether buyers want the empty quadrant. Point them at the Apply box and the AI widgets.</td><td>Slides 19–20 (the diagnostic and the close).</td></tr></tbody></table>
+<hr>
+<h2>3. Per-section teaching guidance</h2>
+<p>For each framework: the talking points, the one thing students must leave with, the concrete example to use, and the slide/sketch/widget to demo.</p>
+<h3>§6.1 Why STP exists (LO 6.1)</h3>
+<ul>
+<li><strong>Talking points.</strong> A market is variation, not a typical buyer with noise around them. Three responses: mass (Ford&#x27;s Model T), segment-based (the 2026 default), one-to-one (Stitch Fix, usually a retention tactic). The everybody trap is mechanical, not moral: the head holds three to seven brands per category, so a brand with no claim never makes the list.</li>
+<li><strong>The one thing to leave with.</strong> The average buyer is a customer who exists nowhere; ignoring the differences is the failure, not the starting point.</li>
+<li><strong>Example.</strong> Two people reaching for the same 40-ounce cup, one for a worksite and one because it matches her car.</li>
+<li><strong>Demo.</strong> Slide 04. If you want the interaction, the chapter&#x27;s §6.1 &quot;everybody trap&quot; slider (client-side, no AI) drags from one offer for everyone to one offer per niche and shows how many buyers can say what the brand stands for.</li>
+</ul>
+<h3>§6.2 Segmentation: how to cut (LO 6.2)</h3>
+<ul>
+<li><strong>Talking points.</strong> Four bases, each answering a different question; most real segmentations combine two or three. Underneath them sits benefit segmentation, because the benefit is the cause of the choice. The demand space (the occasion that triggers the need) is the most actionable behavioral cut, and it is the bridge to Jobs-to-be-Done.</li>
+<li><strong>The one thing to leave with.</strong> Cut on the benefit, not just the label: two buyers with the same age and income can want four different toothpastes.</li>
+<li><strong>Example.</strong> The 1968 toothpaste study (Worriers, Sociables, Sensories, Independents). Knorr India for the demand space (+127 percent on a product never reformulated).</li>
+<li><strong>Demo.</strong> Slides 05–06. Chapter four-bases quadrant sketch and the toothpaste-segments sketch.</li>
+</ul>
+<h3>§6.2 (cont.) The five-criteria filter (LO 6.3)</h3>
+<ul>
+<li><strong>Talking points.</strong> Measurable, accessible, substantial, differentiable, actionable. A slice that fails any one is research, not a target. Substantial is relative (&quot;2,000 households is substantial for Wagner Custom Skis, not for a national brand&quot;). The honesty check: if a team cannot describe a segment in one plain English sentence, it is probably a statistical artifact.</li>
+<li><strong>The one thing to leave with.</strong> A list of slices is not a list of segments; the filter is what promotes a slice to a usable segment.</li>
+<li><strong>Example.</strong> The startup eyeing a global luxury-watch segment that fails actionable (no distribution, no budget). This is test-bank Item 8, so it doubles as quiz prep.</li>
+<li><strong>Demo.</strong> Slide 07; chapter five-criteria checklist sketch.</li>
+</ul>
+<h3>§6.3 Targeting: which segment to win (LO 6.4)</h3>
+<ul>
+<li><strong>Talking points.</strong> Of all the slices, which one will you go after? The trap: size is what makes losing the big fight expensive. Two steps in sequence: strategic (compatibility and attractiveness) then tactical (can you find them where you buy ads, at a price their spending covers). The bridge is the customer profile, which translates a strategy sentence into buyable descriptors. Effectiveness vs cost efficiency: a profile can catch everyone you want plus three times as many you do not.</li>
+<li><strong>The one thing to leave with.</strong> Targeting hunts for the segment you can win, not the biggest one; compatibility is scored before attractiveness.</li>
+<li><strong>Example.</strong> A small water brand eyeing the mass bottled-water market: enormous, but compatibility against Coca-Cola&#x27;s distribution is hopeless. &quot;Women 25–44 who treat hydration as identity&quot; is the strategy sentence no ad platform sells.</li>
+<li><strong>Demo.</strong> Slides 08–10; compatibility-by-attractiveness sketch. The §6.3 &quot;Draft a persona from the segment&quot; live-AI widget turns a one-line segment into a persona and a buyable profile (vague vs sharp ask), a strong demo for the AI moment (see §6).</li>
+</ul>
+<h3>§6.3 (cont.) When targeting crosses a line (LO 6.4)</h3>
+<ul>
+<li><strong>Talking points.</strong> The same machinery that finds the buyer you want can find buyers you have no right to single out. Three recurring risks: targeting on proxies for a protected class (lawful variables combine into an unlawful inference), targeting children (COPPA), and price-steering off a behavioral read (Orbitz). Since 2018, GDPR and US state laws fence this.</li>
+<li><strong>The one thing to leave with.</strong> &quot;Each variable is lawful&quot; is not a defense; the combination reconstructs the protected trait, and the model being accurate is exactly what makes acting on it a violation.</li>
+<li><strong>Example.</strong> Target mailing baby coupons to a teenager before she had told her family; Orbitz steering Mac users to pricier hotels.</li>
+<li><strong>Demo.</strong> Slide 11 (the pull quote); the chapter&#x27;s three-lawful-variables-into-one-protected-inference sketch and the three-question ethics callout.</li>
+</ul>
+<h3>§6.4 Positioning: the work in the head (LO 6.5)</h3>
+<ul>
+<li><strong>Talking points.</strong> Positioning is not what you do to a product, it is what you do to the buyer&#x27;s mind. The mental ladder: one per category, top rung is the default answer, three rungs normal, seven the ceiling. Three moves: claim the rung the buyer already handed you (cheapest), find the creneau / empty frame, reposition the competition (hardest). The Bernbach rule: open by naming the awkward fact the buyer is already thinking.</li>
+<li><strong>The one thing to leave with.</strong> You can change the position without touching the product. Avis changed how buyers ranked it without changing the fleet, the prices, or the staff.</li>
+<li><strong>Example.</strong> Avis (&quot;We try harder,&quot; claiming the second rung); Volkswagen&#x27;s &quot;Think small&quot; (67 percent of the imported-car market by 1965); Tylenol repositioning aspirin (test-bank Item 13).</li>
+<li><strong>Demo.</strong> Slides 12–13; chapter mental-ladder sketch. The §6.4 &quot;Write and audit a positioning statement&quot; live-AI widget writes a statement in the standard template and audits each clause, and it pairs perfectly with the activity (see §6).</li>
+</ul>
+<h3>§6.5 Points of parity, points of difference (LO 6.6)</h3>
+<ul>
+<li><strong>Talking points.</strong> Two questions: what must every brand in the category deliver (POP), and what does this one offer that no rival matches (POD). Two overlapping circles: the overlap is what you need to belong, the part that sticks out is the only thing buyers choose you for. Three POD tests: desirable (buyers name it unprompted), deliverable (you can prove it and keep proving it), differentiating (no rival can already credibly say it). Three POP types: category (price of admission), correlational (defend against a bad inference your own strength triggers, e.g. Trader Joe&#x27;s quality-at-low-price), competitive (neutralize a rival&#x27;s POD).</li>
+<li><strong>The one thing to leave with.</strong> Parity earns the brand a place; difference wins the choice. A manager who audits only PODs learns about a missing POP after the campaign is live, because the buyer quietly disqualified the brand at the door.</li>
+<li><strong>Example.</strong> A coffee shop must serve coffee (category POP). Trader Joe&#x27;s quality claim (correlational POP). Liquid Death&#x27;s punk identity run through the three tests (test-bank SA-3).</li>
+<li><strong>Demo.</strong> Slide 14; chapter POP/POD overlapping-circles sketch and the brand-positioning bull&#x27;s-eye sketch. The §6.5 panel is the <strong>client-side</strong> POP/POD worked-example assembler (it runs in the browser, no live model); use it to show a scored POD set without an internet call.</li>
+</ul>
+<h3>§6.6 Perceptual maps (LO 6.7)</h3>
+<ul>
+<li><strong>Talking points.</strong> The ladder ranks on one line but hides which yardstick the buyer uses. A perceptual map shows several brands on two attributes at once. You do not declare the axes; you recover them from buyer data, and the map is only worth using if its two dimensions predict real choices on a holdout sample. The move that matters most: add the buyers. An empty quadrant is an opening only when buyer ideal points cluster in it. Not every empty quadrant is equal. One inside the dominant frame is dead air the incumbents priced in; one in a different frame is open because no one has named that frame yet.</li>
+<li><strong>The one thing to leave with.</strong> Without the buyers on the map, dead air and real demand look identical. The empty-quadrant rule is the single most important move on the map.</li>
+<li><strong>Example.</strong> The streaming-music map (Spotify, Apple Music, YouTube Music) with three buyer clusters laid on top. Liquid Death as the different-frame opening (a punk frame in a category every analyst read as covered).</li>
+<li><strong>Demo.</strong> Slide 15; the chapter&#x27;s §6.6 drag-to-place map fitter widget is excellent live. Switch axis pairs, drag brand chips, click &quot;show competitor consensus,&quot; and switch the drinkware/coffee preset to watch the empty quadrant jump as the category changes. This is the centerpiece of the in-class activity.</li>
+</ul>
+<h3>§6.7 Narrow targeting vs broad penetration (LO 6.8, LO 6.9)</h3>
+<ul>
+<li><strong>Talking points.</strong> Everything so far said target narrow; forty years of household-panel data says brands grow by reaching more buyers. Double jeopardy: a smaller brand reaches fewer buyers and the ones it keeps buy slightly less often, and the two penalties stack (Coke ~45 percent vs Dr Pepper ~7 percent). Duplication of purchase: no brand tribes, one shared pool every brand fishes. They reconcile because STP picks the category and what a brand means inside it; the penetration laws govern growth once that choice is locked. The two growth assets: mental availability (easy to bring to mind) and physical availability (easy to find and buy), with the Distinctiveness Grid and the 7W category-entry-point audit as the tools.</li>
+<li><strong>The one thing to leave with.</strong> STP picks the category; the penetration laws govern growth inside it. A small brand is small for the reason double jeopardy names, not because it neglected a loyal core.</li>
+<li><strong>Example.</strong> Coke vs Dr Pepper (double jeopardy); Yorkie&#x27;s &quot;It&#x27;s not for girls,&quot; which cut off half the buyer pool and watched sales fall (test-bank Item 19); Toyota launching Lexus (the STP move) then adding dealers and occasions (the penetration move).</li>
+<li><strong>Demo.</strong> Slides 16–18; chapter double-jeopardy buckets sketch and the Distinctiveness Grid sketch.</li>
+</ul>
+<hr>
+<h2>4. Discussion prompts</h2>
+<p>Use four to six of these to drive the chapter&#x27;s real debates. They work as cold-call, think-pair-share, or small-group prompts. The first two are the chapter&#x27;s central tensions.</p>
+<ol>
+<li><strong>Narrow vs broad.</strong> &quot;Half the chapter says find the smallest group you can own and serve it deeply. The other half says brands grow by reaching more buyers, not fewer. Which is right?&quot; (Target answer: both, because they answer different questions. STP picks the category and the meaning; the penetration laws govern growth inside it. Lexus is the worked case.)</li>
+</ol>
+<ol>
+<li><strong>When is an empty quadrant an opening?</strong> &quot;You find an empty corner on a perceptual map. Is that an opportunity?&quot; (Target: only when buyer ideal points cluster in it. A corner empty inside the dominant frame is dead air the incumbents already tested and priced in; a corner empty because no one has named that frame is the real opening, the Liquid Death move.)</li>
+</ol>
+<ol>
+<li><strong>The Stanley question.</strong> &quot;Stanley&#x27;s data was accurate; the Quencher really was selling poorly to its target. So how did the firm almost make a $700-million mistake?&quot; (Target: the dashboard measured the segment Stanley had chosen and never asked whether a different segment existed. A data system can miss a segment entirely when the segment was never in the dashboard&#x27;s question list.)</li>
+</ol>
+<ol>
+<li><strong>The ethics line.</strong> &quot;Target&#x27;s pregnancy model was right. Is being right a defense?&quot; (Target: no. Acting on an accurate inference about a protected trait is the violation, and the accuracy is what makes it one. Run the three-question check.)</li>
+</ol>
+<ol>
+<li><strong>Loyalty vs reach.</strong> &quot;A brand has a small but intensely loyal base. Should it spend to make those buyers buy more often, or to reach new buyers?&quot; (Target: reach. Double jeopardy says the loyalty gap is too small to close the penetration gap; the problem is reaching the buyers who do not buy at all. This is test-bank SA-4.)</li>
+</ol>
+<ol>
+<li><strong>Does AI kill segmentation?</strong> &quot;If AI can now personalize for every individual buyer, do companies still need segments?&quot; (Target: yes. The segment is the model&#x27;s starting prior, the rough first guess; the per-person tailoring is the correction once individual data flows in. Skip the segment and the model relearns the whole category from scratch on every buyer. This is test-bank AI-4, with Klaviyo and Sephora as the 2026 cases.)</li>
+</ol>
+<hr>
+<h2>5. Common misconceptions and pitfalls</h2>
+<p>The specific places sophomores get STP wrong, and how to correct each on the spot.</p>
+<ul>
+<li><strong>Confusing the position with the product.</strong> Students hear &quot;positioning&quot; and reach for product features. Correct it with Avis: the position changed, the fleet did not. Positioning lives on the mental ladder, not on the lot. Keep saying &quot;in the buyer&#x27;s head.&quot;</li>
+</ul>
+<ul>
+<li><strong>Treating any empty quadrant as an opening.</strong> The single most common map error. Students see white space and call it opportunity. Correct it by asking, every time, &quot;where are the buyers on this map?&quot; No ideal points in the quadrant means no demand to chase.</li>
+</ul>
+<ul>
+<li><strong>Picking the biggest segment.</strong> Students default to size. Correct it with the compatibility-before-attractiveness rule: a big segment a stronger rival already owns is the most expensive fight you can pick.</li>
+</ul>
+<ul>
+<li><strong>Auditing only points of difference.</strong> Students get excited about what makes the brand special and forget the price of admission. Correct it: a missing POP loses the buyer before the comparison even starts. The buyer disqualifies you at the door.</li>
+</ul>
+<ul>
+<li><strong>Confusing a strategy sentence with a media buy.</strong> Students write &quot;women who value sustainability&quot; and think they are done. Correct it: no ad platform sells a &quot;values sustainability&quot; checkbox. The customer profile is the translation into buyable descriptors, and that translation is the job.</li>
+</ul>
+<ul>
+<li><strong>Confusing the four bases with benefit segmentation.</strong> Students treat demographic and benefit cuts as interchangeable. Correct it with the toothpaste study: four buyers, same age and income, four different brands. Demographics describe the buyer after the fact; the benefit is the cause of the choice.</li>
+</ul>
+<ul>
+<li><strong>Assuming &quot;the model was right&quot; settles the ethics question.</strong> Students assume accuracy equals permission. Correct it with Target: accuracy is what made it a violation. Reconstructing a protected trait from lawful variables is still targeting on that trait.</li>
+</ul>
+<ul>
+<li><strong>Reading double jeopardy as a loyalty problem.</strong> Students think a small brand needs more loyal customers. Correct it: the small brand is small because few people buy it at all, and the loyalty gap is far too small to rescue it. Growth comes from reach.</li>
+</ul>
+<hr>
+<h2>6. The hands-on AI moment</h2>
+<p><strong>The chapter&#x27;s AI move (rung 2, &quot;Use real capabilities&quot;).</strong> The week&#x27;s rung is using a live model&#x27;s real capability and checking what it returns. Chapter 6 carries four interactive AI widgets; three call a live model through the course proxy and one runs in the browser. For a 75-minute block, run <strong>one</strong> live in class and assign one as homework. The strongest in-class choice is the §6.4 positioning widget, because it ties directly to the in-class activity and to P2.</p>
+<p><strong>The four widgets, by name (use what exists; do not invent):</strong></p>
+<ul>
+<li><strong>§6.1 &quot;The everybody trap&quot;</strong> (client-side, no AI). A slider from one-offer-for-everyone to one-offer-per-niche. Good as a 30-second illustration, not the AI moment.</li>
+<li><strong>§6.2 &quot;Name the segments&quot;</strong> (live model, Claude Haiku 4.5). Holds raw cluster rows (descriptor, count, mean lifetime value, retention). Asked the <strong>loose</strong> way it invents labels with nothing to anchor them; asked the <strong>sharp</strong> way it names each cluster from the columns only, cites row IDs, and scores the five criteria. This is the best demo of &quot;the instruction changed, not the model.&quot;</li>
+<li><strong>§6.3 &quot;Draft a persona from the segment&quot;</strong> (live model). Turns a one-line strategic segment into a buyer persona (readout A), a buyable media profile (readout B), and a where-it-spills flag (readout C, effectiveness vs cost efficiency), with a vague/sharp toggle.</li>
+<li><strong>§6.4 &quot;Write and audit a positioning statement&quot;</strong> (live model). Fill four blanks (brand, target, the one thing it does best, one rival), and the model writes a statement in the standard template and audits each clause for vague, unprovable, or copy-able claims. Vague/sharp toggle.</li>
+<li><strong>§6.5 POP/POD worked example</strong> (client-side, no AI). Assembles a statement, three category POPs, and three candidate PODs each scored on the three tests, in the browser.</li>
+</ul>
+<p><strong>How to run it live (about 8 minutes, inside the positioning block).</strong></p>
+<ol>
+<li>Project the §6.4 widget. Load the Liquid Death preset.</li>
+<li>First press the <strong>vague</strong> toggle (&quot;write a tagline&quot;) and read what comes back. Ask the room: &quot;Could a rival say this word for word?&quot; They will see the slogan is undisprovable.</li>
+<li>Switch to the <strong>sharp</strong> toggle (&quot;write the statement, then flag every weak clause&quot;) and run it again. Walk the clause audit out loud: which blank got flagged as vague, which as unprovable, which as something a rival could copy.</li>
+<li>Make the teaching point: the model did not get smarter between the two runs; the request did. A vague brief produces a slogan no one can disprove; a sharp brief produces a statement you can defend.</li>
+</ol>
+<p><strong>What students produce.</strong> Each student (or pair) runs the §6.4 widget on the brand from their own life that they used in the Apply box, then writes two or three sentences: what the vague ask returned, what the sharp ask returned, and one clause the audit flagged that they would fix. This is the rung-2 deliverable and doubles as their AI-use disclosure for the week.</p>
+<p><strong>How to debrief it.</strong> Pull two or three student outputs onto the screen. Ask: &quot;Where was the model right, and where did it miss?&quot; Drive the chapter&#x27;s standard: the model is a fast first draft, not the answer. Connect forward. The §6.3 persona widget and the §6.2 segment-naming widget do the same vague-vs-sharp move on targeting and segmentation, and the synthetic-respondent caution (simulated buyers drift from real ones in five ways no prompt rewording fixes) is why you pre-test with the model and validate with real people. That caution is the spine of test-bank item AI-3.</p>
+<hr>
+<h2>7. In-class activity: the segment-and-position sprint</h2>
+<p><strong>Goal.</strong> Students run the chapter&#x27;s four-step diagnostic on one real brand, in teams, in about 16 minutes, and leave having done STP once rather than only heard it.</p>
+<p><strong>Setup.</strong> Pick one brand the whole room knows and project the §6.6 drag-to-place map fitter so the perceptual-map step is live. Good choices: a campus coffee shop, a hydration brand, or a streaming service. Use the brand the slide deck and chapter already work (drinkware) only if the class needs the scaffolding; a fresh brand forces real thinking.</p>
+<p><strong>Instructions (give these as four timed steps).</strong></p>
+<ol>
+<li><strong>Name the segment (3 min).</strong> In one plain English sentence, who does this brand serve? &quot;If you cannot say it in a sentence, the brand is chasing nobody in particular.&quot; Each team writes one sentence.</li>
+<li><strong>Score it on the five criteria (3 min).</strong> Measurable, accessible, substantial, differentiable, actionable. Which one is shakiest for this brand?</li>
+<li><strong>Write the position (4 min).</strong> Fill the template out loud: &quot;For [target] who [need], [brand] is the [category] that [biggest difference] because [reason to believe].&quot; Then run the biggest difference through the three POD tests and cut any clause a rival could say word for word.</li>
+<li><strong>Place it on the map (6 min).</strong> On the projected fitter, pick the two axes the buyer actually uses (not the ones the firm likes). Drag the brand and two rivals onto the canvas. Find the empty quadrant, then ask the harder question: do any buyers want to live there, or is it dead air the incumbents already priced in? Switch the preset to show the empty quadrant move when the category changes.</li>
+</ol>
+<p><strong>What good looks like.</strong> A strong team produces a one-sentence segment a stranger could act on, names a genuinely shaky criterion rather than waving all five through, writes a point of difference that survives all three tests (not &quot;high quality&quot; or &quot;great value,&quot; which any rival claims), and, the real tell, when they find an empty quadrant they ask where the buyers are before calling it an opportunity. A weak team writes &quot;everyone who likes coffee,&quot; passes all five criteria without friction, claims a generic POD, and treats the first empty corner as a gold mine. Use the gap between the two to re-teach the empty-quadrant rule and the everybody trap in the wrap.</p>
+<p><strong>Tie to the project.</strong> This activity is a dry run of the first half of Project 2. Tell students that: the segment sentence, the five-criteria score, the positioning statement, and the perceptual map are all P2 deliverables. The brand they do here is practice; the brand they carry from P1 is the real thing.</p>
+<hr>
+<h2>8. Assessment pointers</h2>
+<p><strong>For a chapter quiz (low-stakes, after this week).</strong> Pull 8–10 multiple-choice items spread across the objectives. A balanced quick quiz: Items 1–2 (LO 6.1), Item 6 or 7 (LO 6.2, demand space / benefit segmentation), Item 8 or 9 (LO 6.3, the five-criteria filter), Item 10 (LO 6.4, compatibility before attractiveness), Item 11 or 12 (LO 6.5, the ladder / Avis), Item 14 or 16 (LO 6.6, POP/POD), Item 17 (LO 6.7, the empty-quadrant rule), Item 18 (LO 6.8, double jeopardy), Item 20 (LO 6.9, the two availabilities). All are answerable from the chapter; difficulty is tagged per item (six are Diff 1, most are Diff 2).</p>
+<p><strong>For a midterm (Midterm 1 covers Ch1–Ch9).</strong> Use the chapter&#x27;s harder items as the STP block. The four scenario/short-answer items are built for this: <strong>SA-1</strong> (walk a segment through all five criteria), <strong>SA-2</strong> (the Stanley targeting failure, the highest-value integration item, Diff 3), <strong>SA-3</strong> (Liquid Death&#x27;s POPs/PODs through the three tests), <strong>SA-4</strong> (the double-jeopardy argument). The four AI-integration items (<strong>AI-1</strong> through <strong>AI-4</strong>) test whether students can critique AI-generated segmentation and positioning output and recognize when it is well-specified versus vague; they pair naturally with the rung-2 AI moment and are suitable for AI-assisted grading via the course proxy.</p>
+<p><strong>Objectives coverage (from the test bank&#x27;s own map), so you can target gaps.</strong></p>
+<table><thead><tr><th>Objective</th><th>MCQ</th><th>SA</th><th>AI</th></tr></thead><tbody><tr><td>LO 6.1</td><td>1, 2, 3</td><td>none</td><td>AI-4</td></tr><tr><td>LO 6.2</td><td>4, 5, 6, 7</td><td>none</td><td>AI-1, AI-4</td></tr><tr><td>LO 6.3</td><td>8, 9</td><td>SA-1, SA-2</td><td>AI-1</td></tr><tr><td>LO 6.4</td><td>10</td><td>SA-2</td><td>AI-3</td></tr><tr><td>LO 6.5</td><td>11, 12, 13</td><td>SA-3</td><td>AI-2</td></tr><tr><td>LO 6.6</td><td>14, 15, 16</td><td>SA-3</td><td>AI-2</td></tr><tr><td>LO 6.7</td><td>17</td><td>SA-3</td><td>none</td></tr><tr><td>LO 6.8</td><td>18, 19</td><td>SA-4</td><td>none</td></tr><tr><td>LO 6.9</td><td>20, 21, 22</td><td>SA-4</td><td>none</td></tr></tbody></table>
+<p><strong>Tie to the project milestone (P1 / P2).</strong> Per the pacing guide, Week 4 is <strong>P1 due / P2 kickoff</strong>. P1 (Research and the brand audit, the 5C/PESTEL/Five-Forces/SWOT read plus a first read of who the brand&#x27;s customers are) lands at the start of this week, and that customer read is the raw material for P2&#x27;s segmentation. <strong>Project 2 (Strategy, STP, and the mix) is this chapter, made real:</strong> the team segments the market, chooses a target, writes a positioning statement, and makes the core mix decisions, producing a strategy deck they could present to the brand&#x27;s marketing lead. Set the expectation now that the in-class four-step diagnostic and the §6.4 widget output are the seeds of the P2 deck, and that AI use on P2 must be disclosed and critiqued (what the model got right, what it missed, what the team changed), per the course AI policy. P2 is due Week 8, at the P3 kickoff.</p>
+<hr>
+<p><em>Grounded in the real Ch6 materials: the textbook chapter (<code>book/v7/chapter-06-stp.html</code>, §6.1–6.9, six named widgets, coral sketches), the lecture-video script (<code>videos/ch06-stp-explainer/production/scripts/ch06-stp-lecture-v1.plain.txt</code>), the slide deck (<code>coral-design-system/slides/ch06/index.html</code>, 20 slides), the test bank (<code>test-bank/ch06-stp-test-bank.md</code>, 9 LOs, 30 items), and the pacing guide (<code>adopt-deploy/syllabus-and-pacing-guide.md</code>, Week 4). Every widget, slide, sketch, and test item named here exists in those files.</em></p></main>
+<footer><div class="inner">Principles of Marketing: An AI-Integrated Approach &middot; instructor courseware.</div></footer>
+</body>
+</html>

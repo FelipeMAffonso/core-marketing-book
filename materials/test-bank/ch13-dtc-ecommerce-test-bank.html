@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Chapter 13 DTC and E-Commerce Stack — Test Bank — instructor courseware for Principles of Marketing.">
+<title>Chapter 13 DTC and E-Commerce Stack — Test Bank · Principles of Marketing</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23DA7756' width='100' height='100' rx='12'/><text x='50' y='68' font-family='system-ui' font-size='36' font-weight='bold' fill='white' text-anchor='middle'>PM</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --coral:#DA7756; --coral-deep:#B8553A; --coral-soft:#E8A488;
+  --coral-text:#a8472a; --coral-tint:#fdf3ee;
+  --ink:#1a1a1a; --ink-2:#43474f; --ink-3:#5a5f67;
+  --bg:#ffffff; --bg-2:#f7f8fa; --bg-3:#f1f2f5;
+  --border:#e6e6ea; --border-strong:#d7dae0;
+  --font:'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif;
+  --font-serif:'EB Garamond',Georgia,serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Consolas,monospace;
+}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.62;
+  -webkit-font-smoothing:antialiased;}
+a{color:var(--coral-text);text-decoration:none;}
+a:hover{text-decoration:underline;text-underline-offset:3px;}
+a:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;border-radius:4px;}
+.skip-link{position:absolute;left:-999px;top:0;z-index:2000;background:var(--ink);
+  color:#fff;padding:10px 16px;border-radius:0 0 6px 0;font-size:14px;font-weight:600;}
+.skip-link:focus{left:0;text-decoration:none;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.9);
+  backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);}
+.topbar-inner{max-width:860px;margin:0 auto;padding:0 28px;height:58px;display:flex;
+  align-items:center;gap:14px;}
+.topbar .mark{width:28px;height:28px;border-radius:7px;flex-shrink:0;background:var(--coral-deep);
+  color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;
+  letter-spacing:-0.5px;}
+.topbar .doc-title{font-size:14.5px;font-weight:600;color:var(--ink);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.topbar .back{margin-left:auto;font-size:13.5px;font-weight:600;color:var(--coral-text);
+  padding:7px 13px;border-radius:7px;border:1px solid var(--border);white-space:nowrap;}
+.topbar .back:hover{background:var(--bg-2);text-decoration:none;}
+main{max-width:860px;margin:0 auto;padding:44px 28px 96px;}
+.kicker{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--coral-text);margin-bottom:10px;}
+main h1{font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-0.02em;
+  line-height:1.12;color:var(--ink);margin:0 0 8px;}
+main h2{font-size:clamp(21px,2.8vw,26px);font-weight:700;letter-spacing:-0.015em;color:var(--ink);
+  margin:42px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+main h3{font-size:19px;font-weight:650;color:var(--ink);margin:30px 0 10px;}
+main h4{font-size:16px;font-weight:650;color:var(--ink-2);margin:24px 0 8px;}
+main h5,main h6{font-size:14px;font-weight:650;color:var(--ink-2);margin:20px 0 6px;
+  text-transform:uppercase;letter-spacing:0.04em;}
+main p{margin:0 0 16px;color:var(--ink);font-size:17px;}
+main ul,main ol{margin:0 0 18px;padding-left:26px;}
+main li{margin:0 0 7px;color:var(--ink);font-size:17px;}
+main li>ul,main li>ol{margin:7px 0 0;}
+main blockquote{margin:0 0 18px;padding:4px 18px;border-left:3px solid var(--coral);
+  background:var(--coral-tint);color:var(--ink-2);border-radius:0 6px 6px 0;}
+main blockquote p{margin:8px 0;}
+main hr{border:0;border-top:1px solid var(--border);margin:34px 0;}
+main strong{font-weight:700;color:var(--ink);}
+main em{font-style:italic;}
+main code{font-family:var(--font-mono);font-size:0.88em;background:var(--bg-3);
+  padding:2px 6px;border-radius:4px;color:var(--coral-text);border:1px solid var(--border);}
+main pre{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;
+  padding:16px 18px;overflow-x:auto;margin:0 0 18px;}
+main pre code{background:none;border:0;padding:0;color:var(--ink);font-size:13.5px;
+  line-height:1.55;}
+main table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:15px;
+  display:block;overflow-x:auto;}
+main thead th{background:var(--bg-2);text-align:left;font-weight:650;color:var(--ink);
+  padding:9px 13px;border:1px solid var(--border-strong);white-space:nowrap;}
+main tbody td{padding:9px 13px;border:1px solid var(--border);color:var(--ink-2);
+  vertical-align:top;}
+main tbody tr:nth-child(even){background:var(--bg-2);}
+main a{color:var(--coral-text);font-weight:500;}
+.toc-note{font-size:14px;color:var(--ink-3);margin-bottom:30px;}
+footer{border-top:1px solid var(--border);background:var(--bg-2);padding:28px 0;
+  margin-top:60px;}
+footer .inner{max-width:860px;margin:0 auto;padding:0 28px;font-size:12.5px;color:var(--ink-3);}
+@media (max-width:600px){
+  main{padding:30px 18px 64px;}
+  .topbar-inner{padding:0 18px;}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="mark" aria-hidden="true">PM</span>
+    <span class="doc-title">Chapter 13 DTC and E-Commerce Stack — Test Bank</span>
+    <a class="back" href="../../index.html">&larr; Back to courseware</a>
+  </div>
+</header>
+<main id="main">
+<h1>Chapter 13 DTC and E-Commerce Stack — Test Bank</h1>
+<p><strong>Chapter:</strong> 13 — DTC and the E-Commerce Stack <strong>Source note:</strong> Original authoring. No Kotler MM16 parent exists for this chapter. Every item is authored from scratch against the ground-truth chapter (<code>book/v7/chapter-13-dtc-ecommerce.html</code>). Item content, examples, brand cases, and framework names derive entirely from OUR chapter. Kotler TB-13 and TB-16 were consulted for item-format style only, not for content. <strong>Export format:</strong> Mirrors Kotler markdown schema (stem, A...E options, Answer, Diff, Objective, Tags) for QTI / Canvas Common Cartridge conversion.</p>
+<hr>
+<h2>Learning Objectives (Ch13, Our Chapter)</h2>
+<ul>
+<li><strong>LO 13.1</strong> Explain the three claims that priced the 2014-2020 DTC cycle and name the three events that broke each between 2021 and 2024.</li>
+<li><strong>LO 13.2</strong> Identify the seven layers of the modern DTC stack and the primary vendor and job associated with each layer.</li>
+<li><strong>LO 13.3</strong> Apply the four-question conversion-rate audit to a product page and identify which buyer question a drop-off answers.</li>
+<li><strong>LO 13.4</strong> Describe the abandoned-cart recovery playbook, explain the three-message timing, and explain why the discount belongs in message three.</li>
+<li><strong>LO 13.5</strong> Compute subscription lifetime value using the churn-rate identity and explain why churn is the most leveraged metric in a subscription business.</li>
+<li><strong>LO 13.6</strong> Calculate the four unit-economics numbers (CAC, AOV, contribution margin, LTV), compute payback period and LTV-to-CAC ratio, and interpret the result.</li>
+<li><strong>LO 13.7</strong> Audit a product page against the five-job framework (hero, USP, social proof, urgency, objection handler) and identify the weakest element.</li>
+<li><strong>LO 13.8</strong> Compare the six marketplace axes (CAC, take-rate, brand control, fulfillment burden, contribution margin, scale ceiling) to select a channel mix.</li>
+<li><strong>LO 13.9</strong> Describe how the agent-shopping frontier changes who the operator is selling to and list the five checks that make a storefront agent-readable.</li>
+</ul>
+<hr>
+<h2>Section I — Multiple-Choice Items (22 items)</h2>
+<hr>
+<p><strong>Item 1</strong></p>
+<p>Casper went public at $12 a share in February 2020, reported roughly a dollar of marketing spend for every dollar of 2019 revenue, and was taken private in November 2021 at $6.90 a share. According to the chapter, the root cause of Casper&#x27;s failure was _______.</p>
+<p>A) poor product design that buyers rejected after the 100-night trial ended B) a retail partner that stocked competitor mattresses on the same shelf C) the cost of acquiring each new customer through paid social and search outrunning the lifetime spend that customer produced D) Apple&#x27;s App Tracking Transparency update, which shut off all Facebook advertising for the mattress category E) an SEC accounting disclosure that revealed fabricated revenue figures</p>
+<p>Answer: C</p>
+<p>Diff: 1</p>
+<p>Objective: LO 13.1 — The chapter&#x27;s opening diagnostic is explicit: Casper spent roughly $423 million in marketing to produce $439 million in 2019 revenue and still lost $89 million, because customer-acquisition cost outran lifetime customer value. The product and the category were real; the math was broken.</p>
+<p>Tags: DTC reckoning; Casper; unit economics; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 2</strong></p>
+<p>The first claim that priced the 2014-2020 direct-to-consumer cycle was that paid social on Facebook and Instagram could acquire a customer for $20 to $40 in most consumer categories. The mechanism that made the cost that low was _______.</p>
+<p>A) a federal subsidy program that reimbursed small-business digital advertising costs B) the IDFA, a device-level identifier Apple attached to every iPhone that let Meta recognize a prior-site visitor and show her a retargeted ad when she was most likely to buy C) Shopify&#x27;s built-in audience-matching tool that placed ads automatically on the seller&#x27;s behalf D) a Meta policy that capped ad prices for brands under a certain revenue threshold E) influencer marketing on Instagram, which cost the brand only product samples rather than cash</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.1 — The chapter identifies the Identifier for Advertisers (IDFA) as the mechanism that made cheap retargeting work. An iOS user who had visited a store&#x27;s site and then opened Instagram could be shown a retargeted ad because both reads the same IDFA. Retargeted ads convert at multiples of cold-audience ads, keeping acquisition cost low.</p>
+<p>Tags: IDFA; ATT; DTC first claim; paid acquisition; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 3</strong></p>
+<p>Apple introduced App Tracking Transparency (ATT) in April 2021. According to the chapter, what happened to direct-to-consumer brands&#x27; customer-acquisition costs on Meta within eighteen months of the ATT launch?</p>
+<p>A) Costs fell by roughly half because iOS 14.5 also included a new ad format that improved click-through rates. B) Costs were unaffected because most DTC buyers used Android devices where the IDFA equivalent remained active. C) Costs rose two to three times because Meta could no longer reach the high-intent retargeting pool on about two thirds of iPhones. D) Costs rose by about 10 percent, roughly in line with general inflation in the media market. E) Costs fell initially as Meta discounted inventory to retain advertisers, then stabilized at pre-ATT levels.</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.1 — The chapter states that US opt-in under ATT settled at 25 to 33 percent, making the IDFA invisible on about two thirds of iPhones. Meta attributed roughly $10 billion of 2022 revenue impact to the change, and the same campaign that acquired a customer for $25 in early 2021 was paying two to three times that by late 2022.</p>
+<p>Tags: App Tracking Transparency; ATT; DTC reckoning; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 4</strong></p>
+<p>The second event that broke the 2014-2020 DTC cycle arrived in October 2022, when the Federal Reserve raised the federal funds rate to 4.5 percent on its way to a 5.5 percent peak. According to the chapter, the specific mechanism by which the rate cycle hurt DTC brands was _______.</p>
+<p>A) higher rates reduced consumer spending on discretionary items, cutting repeat-purchase rates across all DTC categories B) higher rates made it more expensive for Shopify to maintain its servers, forcing platform fee increases that squeezed merchant margins C) the working-capital cost of bridging between acquiring a customer and recovering that cost from her roughly tripled, making long paybacks structurally unprofitable D) the Federal Reserve&#x27;s rate actions triggered an SEC review of DTC S-1 filings, which revealed inflated lifetime-value projections E) higher rates caused Meta&#x27;s ad auction prices to rise because large financial advertisers outbid consumer brands for inventory</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.1 — The chapter explains that zero-interest-rate borrowing had allowed DTC brands to finance long customer paybacks cheaply. When rates reached 4.5 to 5.5 percent, the cost of carrying a customer from acquisition to repayment roughly tripled, turning previously tolerable unit economics into structural losses.</p>
+<p>Tags: rate cycle; DTC reckoning; working capital; payback period; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 5</strong></p>
+<p>The modern DTC stack described in the chapter is built around seven specialist vendor layers. According to the chapter, the vendor that sits at the center of the stack and acts as the order-of-record is _______.</p>
+<p>A) Klaviyo, because email is the brand&#x27;s primary customer-relationship channel B) Shopify, because it holds the storefront, the product catalog, and the checkout and every other layer subscribes to its order data C) Triple Whale, because it aggregates data from all other layers into a single dashboard D) Recharge, because subscription billing is the revenue model that makes the economics work E) Stripe, because the payment processor is the party that actually moves money</p>
+<p>Answer: B</p>
+<p>Diff: 1</p>
+<p>Objective: LO 13.2 — The chapter states that Shopify sits at the center as the storefront and order-of-record and every other layer subscribes to its data through standard APIs. The detail to hold onto is not which vendor wins each layer but that the same seven-layer architecture scales from a $1,800-a-month candle store to a $100-million brand.</p>
+<p>Tags: DTC stack; Shopify; seven layers; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 6</strong></p>
+<p>The chapter identifies five automated flows every DTC brand runs from day one on Klaviyo. A student running a candle store deploys the welcome series, the browse-abandon and cart-abandon sequences, the post-purchase flow, and the win-back campaign. The candle store earns roughly what share of its total email revenue from these flows versus from one-off broadcast campaigns?</p>
+<p>A) 70 to 80 percent from flows; the remaining 20 to 30 percent from broadcasts B) 50 percent from flows and 50 percent from broadcasts, roughly equal C) 25 to 35 percent from flows; the remaining 65 to 75 percent from broadcasts D) 10 to 15 percent from flows; most email revenue comes from broadcast campaigns E) 100 percent from flows; broadcasts are not used until the brand passes $1 million in revenue</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.2 — The chapter states that brands earn roughly a quarter to a third of their email revenue from the automated flows and the rest from one-off broadcasts. The flows are the constant and the segment count is the variable that scales with volume.</p>
+<p>Tags: Klaviyo; email flows; abandoned-cart; DTC stack; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 7</strong></p>
+<p>A Shopify store brings 100,000 visitors a month and converts 1.5 percent of them, shipping 1,500 orders. A copy test lifts conversion to 2.0 percent on the same traffic. According to the chapter&#x27;s conversion-leverage arithmetic, what happens to monthly order volume?</p>
+<p>A) Orders rise to 2,000, a 33 percent increase on the same media budget B) Orders rise to 1,600, a 7 percent increase because half a percentage point is a small change C) Orders rise to 2,050, a 37 percent increase because the post-purchase flows multiply the lift D) Orders stay near 1,500 because most of the lift is absorbed by increased returns E) Orders rise only if the average order value rises at the same time, which a copy test cannot guarantee</p>
+<p>Answer: A</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.3 — The chapter makes the arithmetic explicit: 1.5 percent of 100,000 is 1,500 orders; 2.0 percent of 100,000 is 2,000 orders, a 33 percent revenue increase against a fixed media budget. Conversion work is the cheapest leverage in the stack because the brand already paid to bring the traffic.</p>
+<p>Tags: conversion-rate optimization; CRO; conversion arithmetic; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 8</strong></p>
+<p>According to the chapter&#x27;s four-question landing-page framework, a buyer who adds a product to the cart but never starts the checkout is most likely failing on which buyer question?</p>
+<p>A) Am I in the right place (relevance) B) Is this worth my attention (value) C) What does this cost me to find out (friction) D) What could go wrong if I act (anxiety) E) What do other buyers think of this (social proof)</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.3 — The chapter maps each drop-off in the funnel to one of the four buyer questions. A buyer who added to cart but never started checkout has already decided the product is worth her attention, so the relevance and value questions are passing. The failure is the cost of proceeding, which is the friction question: visible price, a size selector that works, an add-to-cart that does not demand an account first.</p>
+<p>Tags: conversion funnel; four-question audit; CRO; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 9</strong></p>
+<p>The Baymard Institute&#x27;s 2024 meta-analysis of 49 studies found that roughly what share of all cart sessions end with the buyer leaving without ordering?</p>
+<p>A) 30 percent B) 45 percent C) 60 percent D) 70 percent E) 85 percent</p>
+<p>Answer: D</p>
+<p>Diff: 1</p>
+<p>Objective: LO 13.4 — The chapter cites Baymard&#x27;s 2024 meta-analysis finding that roughly 70 percent of all cart sessions end in abandonment, a rate so steady across categories and price points that brands plan around it rather than try to drive it down.</p>
+<p>Tags: cart abandonment; Baymard; recovery economics; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 10</strong></p>
+<p>A candle store draws 10,000 visitors a month, converts 1.5 percent, and has a $50 average order value. The 70 percent abandonment rate leaves roughly 350 abandoned carts a month. A three-message recovery sequence recovers 25 percent of those carts. According to the chapter&#x27;s recovery-economics identity, how much additional monthly revenue does the sequence generate?</p>
+<p>A) About $875 B) About $1,750 C) About $4,400 D) About $8,750 E) About $17,500</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.4 — 25 percent of 350 abandoned carts is 87.5 recovered orders, approximately 88. At $50 average order value, recovered revenue equals 88 x $50 = $4,400. The chapter works this exact calculation and calls it a 59 percent lift on monthly revenue with no added acquisition spend.</p>
+<p>Tags: recovery economics; abandoned cart; Klaviyo; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 11</strong></p>
+<p>The chapter describes a three-message abandoned-cart sequence timed so each message does a different job. According to the chapter, when is the correct time to offer a discount?</p>
+<p>A) In the first message, sent about an hour after abandonment, while the buyer is still warm B) In the second message, at 24 hours, alongside the social-proof block C) Only in the third message, at 72 hours, when the buyer has likely moved on, and not before D) In all three messages at increasing discount levels to create urgency E) Discounts should never be used in recovery sequences because they train abandonment behavior</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.4 — The chapter states explicitly that the discount belongs in message three only. A brand that leads with a 15 percent discount in message one trains the buyer to abandon every future cart waiting for it and permanently erodes margin. Reserving the discount for message three, after the reminder and the social-proof play have failed, keeps 8 to 14 percentage points more contribution margin per recovered customer with no drop in total recovery rate.</p>
+<p>Tags: abandoned-cart sequence; discount ladder; recovery playbook; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 12</strong></p>
+<p>A quarterly candle subscription contributes $30 of margin per shipment and loses 6 percent of its subscribers each month. According to the chapter&#x27;s churn-versus-LTV identity, what is the lifetime value of one subscriber?</p>
+<p>A) $180 B) $250 C) $300 D) $500 E) $720</p>
+<p>Answer: D</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.5 — The chapter states the identity explicitly: lifetime value equals one shipment&#x27;s contribution margin divided by the monthly cancellation rate expressed as a decimal. $30 divided by 0.06 equals $500. The chapter works this example to show that the churn rate is the single most leveraged number in the subscription model.</p>
+<p>Tags: LTV; churn rate; subscription economics; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 13</strong></p>
+<p>The chapter argues that churn is the most leveraged metric in a subscription business. According to the churn-versus-LTV identity, if the candle subscription&#x27;s monthly churn doubles from 6 percent to 12 percent while the $30 per-shipment margin holds constant, what happens to lifetime value?</p>
+<p>A) It falls from $500 to $400, a 20 percent decline B) It falls from $500 to $375, a 25 percent decline C) It falls from $500 to $250, a 50 percent decline D) It falls from $500 to $150, a 70 percent decline E) It is unchanged because the per-shipment margin is the primary driver, not churn</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.5 — At 12 percent churn: $30 / 0.12 = $250. Doubling churn halves lifetime value. The chapter uses this asymmetry to justify pulling the churn lever first, because a 10 percent lift in order value or purchase frequency moves lifetime value only 10 percent, while halving churn doubles it.</p>
+<p>Tags: churn rate; LTV identity; subscription leverage; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 14</strong></p>
+<p>A direct-to-consumer student spent $45 to acquire a candle buyer. The buyer&#x27;s first $28 single-candle order contributes $11.40 in margin after supplier cost, shipping subsidy, and processing. Repeat orders at months three, six, and nine each add the same $11.40. At which point does the buyer cross the payback threshold?</p>
+<p>A) After the first order at month 1, because the $11.40 margin represents a positive return B) After the second order at month 3, when cumulative margin reaches $22.80 C) After the third order at month 6, when cumulative margin reaches $34.20 D) After the fourth order at month 9, when cumulative margin reaches $45.60, just above the $45 acquisition cost E) After the fifth order, because the chapter states payback takes more than 12 months in the candle category</p>
+<p>Answer: D</p>
+<p>Diff: 3</p>
+<p>Objective: LO 13.6 — The chapter works this exact calculation: the buyer starts $33.60 underwater after the first order ($45 CAC minus $11.40), then climbs at each repeat order. After the fourth order her cumulative margin reaches $45.60, just passing the $45 acquisition cost. Every order after that is pure margin. This is a 9-month payback, within the 12-month venture rule.</p>
+<p>Tags: payback period; unit economics; CAC; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 15</strong></p>
+<p>Patagonia reports paid-acquisition spend at roughly 8 percent of revenue against a 22 to 28 percent DTC median. According to the chapter, the reason Patagonia&#x27;s paid-acquisition rate is low is _______.</p>
+<p>A) Patagonia spends heavily on organic search engine optimization, which replaces the need for paid social entirely B) Patagonia has a government contract that allows it to access discounted advertising inventory C) Patagonia&#x27;s acquisition cost is low not because it buys cheap clicks but because unusually high lifetime value, driven by repeat purchase and the Worn Wear resale program, means the brand does not need to buy many clicks D) Patagonia runs no paid advertising at all, relying entirely on word of mouth and its 1% for the Planet pledge E) Patagonia&#x27;s products have a long sales cycle that is not well served by paid social, so it routes its acquisition budget to trade shows instead</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.6 — The chapter explicitly states that Patagonia&#x27;s 8 percent acquisition spend is low because the mechanism is retention-led, not because clicks are cheap. A first jacket is followed by a second within about 14 months, and word of mouth brings others at no paid cost. Patagonia is the retention-led contrast to Casper&#x27;s acquisition-led model.</p>
+<p>Tags: Patagonia; retention-led; LTV; CAC; unit economics; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 16</strong></p>
+<p>The chapter identifies the five jobs every product page does in a fixed order, because each answers the buyer question asked next. Which of the following correctly lists the five jobs in the order the buyer reads them, from the top of the page to the bottom?</p>
+<p>A) Social proof, hero, urgency, unique selling proposition, objection handler B) Hero, unique selling proposition, social proof, urgency, objection handler C) Unique selling proposition, hero, urgency, social proof, objection handler D) Hero, urgency, unique selling proposition, social proof, objection handler E) Social proof, hero, unique selling proposition, urgency, objection handler</p>
+<p>Answer: B</p>
+<p>Diff: 1</p>
+<p>Objective: LO 13.7 — The chapter states the order explicitly and ties each element to the buyer question it answers. Hero answers &quot;am I in the right place.&quot; Unique selling proposition answers &quot;is this worth my attention.&quot; Social proof lowers &quot;what could go wrong.&quot; Urgency addresses &quot;what do I lose by waiting.&quot; Objection handler addresses the brand&#x27;s own buyers&#x27; specific reasons for walking away.</p>
+<p>Tags: five-job product page; product-page audit; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 17</strong></p>
+<p>Allbirds read its 2018-2020 data and found its top three abandonment reasons were sizing uncertainty, return-shipping-cost concern, and durability skepticism. The brand gave each a dedicated section on the product page. According to the chapter, what happened to per-product conversion?</p>
+<p>A) Conversion rose by about 8 percent, a result consistent with typical copy improvements B) Conversion rose by 24 percent, because the objection handler section addressed the brand&#x27;s own buyers&#x27; actual objections rather than guesses C) Conversion did not change measurably because the page changes occurred during a period of declining site traffic D) Conversion rose by 50 percent, establishing Allbirds as the highest-performing DTC product page benchmark E) Conversion declined initially because the additional content lengthened the page and increased buyer decision fatigue</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.7 — The chapter cites the Allbirds redesign explicitly and attributes the 24 percent conversion lift to writing the objection handler from the brand&#x27;s own voice-of-customer data rather than guessing. The chapter notes this is where most operators leave money on the table.</p>
+<p>Tags: product-page audit; objection handler; Allbirds; voice-of-customer; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 18</strong></p>
+<p>According to the chapter&#x27;s six-axis marketplace comparison, which marketplace charges the lowest take-rate and why?</p>
+<p>A) TikTok Shop, because it subsidizes sellers to build its merchant base B) Faire, because it charges zero percent on all orders regardless of source C) Shopify, because it charges card processing only and delivers zero pre-existing demand, leaving the brand to pay its own customer-acquisition cost D) Etsy, because its handmade focus attracts buyers who pay full price and rarely request refunds E) Amazon, because FBA&#x27;s efficiency produces the lowest net cost per sale after fulfillment is counted</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.8 — The chapter explicitly explains that Shopify&#x27;s take-rate is the lowest of the six platforms because the platform delivers zero pre-existing demand. The brand pays its own acquisition cost in exchange for full ownership of the customer relationship. All other platforms charge higher take-rates because they each deliver pre-existing demand.</p>
+<p>Tags: marketplace comparison; Shopify; take-rate; channel mix; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 19</strong></p>
+<p>A brand whose products are exclusively in the handmade category is choosing its first marketplace. According to the chapter, which marketplace is pre-selected for the handmade buyer and delivers the right demand pool for this brand?</p>
+<p>A) Amazon, because its 380 million Prime members represent the broadest possible demand B) TikTok Shop, because creator-driven discovery surfaces products the buyer has never searched for C) Faire, because its wholesale buyers are specifically seeking artisan goods for retail D) Etsy, which at an all-in 10 to 13 percent take-rate delivers a buyer pre-selected for the handmade category E) Shopify, because owning the customer relationship is always the priority for handmade brands</p>
+<p>Answer: D</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.8 — The chapter states that Etsy delivers &quot;a buyer pre-selected for the handmade kind of product an undergraduate candle store actually makes.&quot; The demand pool Etsy provides is category-matched in a way Amazon&#x27;s and TikTok Shop&#x27;s broader audiences are not.</p>
+<p>Tags: Etsy; marketplace fit; channel selection; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 20</strong></p>
+<p>Shopify&#x27;s Winter 2026 Edition introduced Agentic Storefronts. According to the chapter, what does this feature do?</p>
+<p>A) It automatically creates AI-generated product descriptions for every SKU in the merchant&#x27;s catalog B) It lets AI agents such as ChatGPT, Perplexity, and Microsoft Copilot read a store&#x27;s catalog through structured-data APIs and complete a purchase inside the chat, configured once per store C) It provides merchants with a synthetic competitor analysis that shows how their pricing compares to nearby stores D) It integrates the merchant&#x27;s Shopify store with third-party fulfillment centers automatically, without requiring the merchant to sign up separately E) It runs automated email campaigns on the merchant&#x27;s behalf by reading purchase data and generating copy without human input</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.9 — The chapter explains that Agentic Storefronts exposes every Shopify store to AI agents through a structured-data layer the merchant toggles on with one switch. ChatGPT, Perplexity, and Microsoft Copilot can then read the catalog, complete the cart, and execute checkout inside the chat without the buyer ever visiting the merchant&#x27;s website.</p>
+<p>Tags: Agentic Storefronts; agent-shopping frontier; Shopify Winter 2026; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 21</strong></p>
+<p>According to the chapter, a shopping agent reading a product page behaves very differently from a human buyer. Which of the following statements correctly describes the difference?</p>
+<p>A) Agents take more time than humans because they must parse every pixel of the page B) Agents prioritize lifestyle photography and brand-voice copy because they optimize for social sharing C) Agents read structured data, the spec table, and the express-checkout surface quickly while ignoring the lifestyle photography and brand-voice copy a human responds to D) Agents behave identically to humans because they use the same rendering engine as a web browser E) Agents ignore pricing and focus on product imagery to classify goods by visual similarity</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.9 — The chapter states that an agent reads structured data, the spec table, and the reliability of one-click checkout faster than a person reads any of them, while it ignores the lifestyle photography and brand-voice copy a human responds to. The operator&#x27;s job is to design the page for both populations at once.</p>
+<p>Tags: agent-shopping frontier; two-reader problem; product-page design; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 22</strong></p>
+<p>The chapter describes Liquid Death as the contrast to Casper&#x27;s failure. Liquid Death generates most of its reported revenue not through its own DTC storefront but through wholesale retail channels including Whole Foods, 7-Eleven, and Target. The chapter names the term for this deliberate move back onto the wholesale shelf by a brand that originally argued for cutting out the middlemen. That term is _______.</p>
+<p>A) disintermediation, the same move that started the DTC thesis B) channel cannibalization, because the retail sales compete with the website C) reintermediation, the partial reversal of disintermediation, where a brand adds intermediaries back into the channel once direct-only acquisition stops paying D) omnichannel integration, a neutral term for selling through multiple channels at once E) showrooming, where buyers inspect the product in one channel and buy it in another</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.8 / LO 13.1 — The chapter introduces disintermediation in Section 13.1 as the core DTC move, then uses Liquid Death&#x27;s retail-led model in the closing to illustrate reintermediation, the partial undo. The chapter explicitly states that Liquid Death&#x27;s move back onto the wholesale shelf is reintermediation.</p>
+<p>Tags: reintermediation; disintermediation; Liquid Death; channel mix; AACSB: Reflective thinking</p>
+<hr>
+<h2>Section II — Scenario / Short-Answer Items (4 items)</h2>
+<hr>
+<p><strong>SA-1</strong></p>
+<p>A student is launching a small-batch soy candle store on Shopify. In week one, 500 people visit the store and 8 complete a purchase. The average order value is $28. The student spent $60 on Meta ads that week.</p>
+<p>(a) Calculate the student&#x27;s conversion rate. (b) Calculate the blended customer-acquisition cost. (c) If the student&#x27;s contribution margin is 40 percent of revenue per order, compute the contribution margin per order and determine whether the student is above or below the break-even on this week&#x27;s ad spend alone. (d) Using the chapter&#x27;s two-ratio test, what does this result suggest about the business at this stage, and what is the one lever the chapter identifies as the highest-return next move?</p>
+<p><strong>Sample answer:</strong></p>
+<p>(a) Conversion rate = 8 completed purchases / 500 visitors = 1.6 percent.</p>
+<p>(b) Blended CAC = $60 ad spend / 8 orders = $7.50 per acquired customer. (Note: in the real chapter model, not all 8 visitors came from paid ads, but when all spend is attributed to paid acquisition in week one this is the blended CAC.)</p>
+<p>(c) Contribution margin per order = 40 percent of $28 = $11.20. Eight orders produce $89.60 in total contribution against $60 in ad spend, so the week is above break-even on ad spend alone. The LTV-to-CAC ratio at first-order margin only is $11.20 / $7.50 = roughly 1.5 to 1, below the 3-to-1 health bar but above break-even, consistent with the chapter&#x27;s candle-store baseline.</p>
+<p>(d) At 1.5 to 1, the business needs repeat purchases to cross the 3-to-1 health bar. The chapter identifies deploying the three-message abandoned-cart recovery sequence in Klaviyo as the highest-return first deployment, because it pulls back roughly 25 percent of the abandoned-cart pool on traffic the brand already paid to acquire, lifting effective conversion and generating additional contribution margin against the same ad spend.</p>
+<p>Diff: 3</p>
+<p>Objective: LO 13.3, LO 13.4, LO 13.6</p>
+<p>Tags: unit economics; CAC; CRO; abandoned-cart; AACSB: Analytical thinking; Application of knowledge</p>
+<hr>
+<p><strong>SA-2</strong></p>
+<p>A brand runs a quarterly subscription box for premium dog treats. Each shipment contributes $22 of margin after product, shipping, and processing costs. The brand currently loses 8 percent of its subscribers every month.</p>
+<p>(a) Calculate the current subscription lifetime value using the chapter&#x27;s churn-versus-LTV identity. (b) The brand adds a pause-and-skip flow through Recharge&#x27;s standard portal, and a post-shipment Klaviyo sequence, and reduces monthly churn to 5 percent. Recalculate lifetime value at the new churn rate. (c) The chapter argues that pulling the churn lever first pays back harder than any other lever. Demonstrate this claim by computing how much a 10 percent lift in average order value (from $22 to $24.20 margin per shipment at unchanged churn of 8 percent) changes lifetime value compared to the churn reduction in part (b). (d) What does this comparison reveal about the operator&#x27;s priority order?</p>
+<p><strong>Sample answer:</strong></p>
+<p>(a) LTV at 8 percent churn = $22 / 0.08 = $275.</p>
+<p>(b) LTV at 5 percent churn = $22 / 0.05 = $440. The churn reduction lifts lifetime value by $165, a 60 percent improvement.</p>
+<p>(c) A 10 percent AOV lift raises the per-shipment margin from $22 to $24.20 at the original 8 percent churn. New LTV = $24.20 / 0.08 = $302.50. The AOV lift adds $27.50 to lifetime value, a 10 percent improvement.</p>
+<p>(d) The comparison is decisive. A 3-percentage-point churn reduction adds $165 to lifetime value (a 60 percent gain); a 10 percent order-value lift adds only $27.50 (a 10 percent gain). The chapter&#x27;s statement that &quot;halving churn doubles lifetime value while every other lever moves it only linearly&quot; is confirmed by the arithmetic. The operator should pull the churn lever first, then revisit order value and frequency as separate projects.</p>
+<p>Diff: 3</p>
+<p>Objective: LO 13.5, LO 13.6</p>
+<p>Tags: LTV identity; churn; subscription; lever priority; AACSB: Analytical thinking; Application of knowledge</p>
+<hr>
+<p><strong>SA-3</strong></p>
+<p>A junior brand manager audits a direct-to-consumer hiking-boot store&#x27;s product page. She finds the following: a stunning lifestyle hero image of boots on a mountain trail; a unique selling proposition that reads &quot;Built for the Trail. Priced for Everyone.&quot;; a five-star average from 12 reviews; a countdown timer showing &quot;Only 3 left in stock!&quot; that resets to the same number every time she refreshes the page; and a return policy buried in the FAQ five clicks away.</p>
+<p>Using the chapter&#x27;s five-job product-page framework, (a) evaluate each of the five elements against the buyer question it is supposed to answer, (b) identify the weakest element and explain why, and (c) propose one specific, shippable fix for the weakest element.</p>
+<p><strong>Sample answer:</strong></p>
+<p>(a) Hero: Strong. A mountain-trail lifestyle shot correctly answers &quot;am I in the right place&quot; for a hiking-boot buyer in about three seconds. USP: Weak. &quot;Built for the Trail. Priced for Everyone.&quot; makes no claim a competitor could not copy. &quot;Built for the trail&quot; is tautological for a hiking boot. The value question goes unanswered. Social proof: Marginal. A 5-star average from only 12 reviews is thin; buyers typically look for 100 or more verified reviews before treating the average as a reliable signal. Social proof is present but underpowered. Urgency: Failing. A countdown that resets on page refresh is theater. The chapter states that honest urgency is used sparingly and only when the underlying claim is true. A timer that resets reads as theater and damages trust rather than creating urgency. Objection handler: Absent or buried. A return policy five clicks away in an FAQ fails to address the buyer&#x27;s anxiety at the moment she is weighing the purchase. The return policy is the objection handler&#x27;s primary content for a high-consideration, fit-sensitive product like hiking boots.</p>
+<p>(b) The weakest elements are the fraudulent urgency and the missing objection handler, but the most urgent fix is the urgency element because it actively damages trust rather than merely failing to help. A buyer who refreshes and sees the &quot;3 left&quot; counter reset to &quot;3 left&quot; concludes the brand is dishonest and is unlikely to convert even if the other elements were perfect.</p>
+<p>(c) Remove the countdown timer entirely unless the low-stock claim is drawn from live inventory data. If live inventory is below a real threshold (say, 5 units), display a plain in-line message: &quot;Only 4 remaining in this size.&quot; If inventory is normal, remove the urgency element. Then, as the second shippable fix, move the return policy above the add-to-cart button with a single visible line: &quot;Free 60-day returns. No questions.&quot; This is the objection handler addressing the primary anxiety a first-time buyer of a fit-sensitive product has.</p>
+<p>Diff: 3</p>
+<p>Objective: LO 13.7</p>
+<p>Tags: product-page audit; five-job framework; urgency; objection handler; AACSB: Application of knowledge; Written communication</p>
+<hr>
+<p><strong>SA-4</strong></p>
+<p>A student starting a personalized stationery business is choosing her first marketplace. She has the following information: her products are handmade and photo-heavy, her average order value is $45, her contribution margin after product, processing, and shipping is 38 percent, and she has a $200 monthly marketing budget. She is considering four options: Shopify, Etsy, Amazon, and TikTok Shop.</p>
+<p>Using the chapter&#x27;s six-axis comparison (customer-acquisition cost, take-rate, brand control, fulfillment burden, contribution margin left after platform fees, and scale ceiling), (a) apply each axis to help her evaluate each of the four platforms, and (b) recommend the channel-mix pattern the chapter suggests for a brand in her situation, stating which channel to launch first and when to add a second.</p>
+<p><strong>Sample answer:</strong></p>
+<p>(a) Customer-acquisition cost: Shopify delivers zero pre-existing demand, so she must spend her $200 budget entirely on ads. Etsy delivers a pre-existing buyer searching for handmade stationery, reducing her own acquisition cost. Amazon delivers broad demand but not the craft-buyer cohort pre-selected for handmade goods. TikTok Shop delivers discovery-driven demand but is creator-driven rather than search-driven, making demand less predictable. Take-rate: Shopify charges card processing only (roughly 2.9 percent plus $0.30). Etsy all-in 10 to 13 percent. Amazon 8 to 15 percent referral fee plus fulfillment. TikTok Shop roughly 7 percent before creator commissions, which can add 10 to 30 percent. Brand control: Shopify is total; the brand speaks in its own voice. Etsy is moderate. Amazon is low; the Buy Box and Amazon Basics risk undermine brand control. TikTok Shop is low; the algorithm controls which creator features the product and on what terms. Fulfillment burden: Shopify and Etsy require the brand to ship each order. Amazon FBA removes the burden but requires pre-shipping to Amazon warehouses. TikTok Shop requires Fulfilled by TikTok after March 2026. Contribution margin left after fees: At a $45 AOV and 38 percent contribution, gross margin is $17.10 per order. Shopify keeps nearly all of it minus card processing (~$1.61 per order). Etsy takes 10 to 13 percent of $45 ($4.50 to $5.85), leaving $11.25 to $12.60. Amazon takes more and adds fulfillment costs. Scale ceiling: Shopify has no ceiling but requires building all its own demand. Etsy serves handmade well at modest scale but the search algorithm becomes more competitive above certain revenue thresholds.</p>
+<p>(b) The chapter&#x27;s recommendation for a handmade, photo-heavy brand with a small budget is to launch on Etsy first. The platform delivers a buyer pre-selected for the handmade category at a modest take-rate, without requiring the student to spend her entire $200 budget on cold-audience acquisition. Once Etsy produces predictable revenue, the chapter recommends adding Shopify as the second channel to capture returning buyers in a brand-owned relationship at lower fees, consistent with the Etsy-or-Faire-primary-with-Shopify-for-retention pattern the chapter describes. Amazon and TikTok Shop are better fits after the brand has reviews, inventory depth, and a cash cushion to absorb the higher take-rate and lower brand control.</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.8</p>
+<p>Tags: marketplace fit; channel mix; six axes; Etsy; Shopify; AACSB: Application of knowledge; Analytical thinking</p>
+<hr>
+<h2>Section III — AI-Integration Items (4 items)</h2>
+<p><em>These items are original to this course and do not appear in any Kotler bank. They test students&#x27; ability to apply the chapter&#x27;s frameworks to AI-era DTC operations, evaluate AI-generated outputs against our chapter&#x27;s standards, and engage with the agent-shopping frontier that the chapter identifies as the 2026 operating reality.</em></p>
+<hr>
+<p><strong>AI-1 — Product-Page Audit Skill: Evaluate a Vague vs. Specific Query</strong></p>
+<p>A student asks an AI assistant to audit a competing candle store&#x27;s product page. In version A she types: &quot;Is this a good product page?&quot; In version B she types: &quot;Score this page on hero, unique selling proposition, social proof, urgency, and objection handler. Name the weakest element and give me one fix I can ship this week.&quot;</p>
+<p>Both queries go to the same model at the same cost. According to the chapter, which version produces an actionable output and why?</p>
+<p>A) Version A, because a simple question allows the model to use its full reasoning capacity without being constrained by a prescribed framework B) Version A, because the model surfaces issues the five-element framework would miss C) Version B, because naming the specific framework gives the model a structured lens, which produces a concrete five-element scorecard the student can act on rather than generic feedback D) Both versions produce the same output; the model applies the five-element framework by default regardless of how the question is worded E) Neither version is appropriate; the student should run a live A/B test on real traffic rather than asking an AI</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 13.7, LO 13.9 — The chapter&#x27;s Apply box explicitly works this contrast, stating that the vague version returns generic advice the student could have guessed while the sharp version returns an audit the student can act on, from the same assistant at the same cost. The lesson is that learning what to ask is most of the skill.</p>
+<p>Tags: product-page audit; AI prompt quality; five-job framework; AACSB: Reflective thinking; Application of knowledge</p>
+<hr>
+<p><strong>AI-2 — Abandoned-Cart Sequence: Evaluate an AI-Drafted Message One</strong></p>
+<p>A student asks an AI to draft message one of her abandoned-cart sequence for a soy candle store. The AI produces the following:</p>
+<blockquote><p>&quot;Hi [first name], you left something in your cart! We know quality matters to you, so we&#x27;re offering 15% off your order today only — use code COMEBACK15 at checkout. This offer expires in 24 hours. Don&#x27;t miss out!&quot;</p></blockquote>
+<p>Using the chapter&#x27;s abandoned-cart recovery playbook, identify the specific error in this AI-generated message and explain what the correct message-one behavior should be. Then state what long-run economic harm the AI&#x27;s version causes if the student deploys it unchanged.</p>
+<p><strong>Sample answer and rubric:</strong></p>
+<p>The AI has placed a 15 percent discount in message one, sent roughly one hour after abandonment. The chapter explicitly identifies this as the error the discount ladder is designed to prevent. Message one&#x27;s only job is to remind the buyer of the cart she left, because the buyer is still warm and most first-message recovers (15 to 25 percent of opens) happen without any incentive at all. The correct message one is a plain reminder with no coupon, no urgency language about expiration, and no scarcity claim.</p>
+<p>The long-run economic harm is training. A buyer who receives a discount in message one learns that abandoning the cart produces a discount. On every future visit she adds to cart, navigates away deliberately, and waits for the coupon. The chapter states this erodes margin permanently and cites an 8 to 14 percentage point contribution-margin penalty per recovered customer compared to a brand that holds the discount for message three. At scale, a message-one discount policy converts a recovery tool into a margin-destruction mechanism that grows larger as the customer base grows.</p>
+<p>Corrected message one: &quot;Hi [first name], you left something behind. Your [product name] is still in your cart — here&#x27;s a quick link back.&quot; No incentive. No expiration language. The buyer decides on the product&#x27;s merits or returns after the brand earns the next step.</p>
+<p>Diff: 3</p>
+<p>Objective: LO 13.4 — The item requires the student to identify a specific rule violation in an AI-generated marketing artifact and articulate the downstream economic consequence, both of which the chapter teaches explicitly.</p>
+<p>Tags: abandoned-cart sequence; discount ladder; AI-generated content; AACSB: Application of knowledge; Ethical understanding; Written communication</p>
+<hr>
+<p><strong>AI-3 — Agent-Readiness Audit: Identify the Missing Checks</strong></p>
+<p>A student&#x27;s candle store is set up as follows: the product page has a beautiful hero image and 200 five-star reviews, the Shopify store runs a Dawn theme with a standard checkout that requires account creation before payment, there is no Product or Offer schema markup, the spec table sits below the brand-story section, and Shop Pay is disabled because the student prefers to route all payments through PayPal only.</p>
+<p>A shopping agent (ChatGPT Shopping or a Perplexity agent) attempts to complete a purchase for a buyer who is on a phone call. According to the chapter&#x27;s five-check agent-readiness framework, how many of the five checks does this store pass, and which specific checks fail? For each failure, state the one fix the student should implement.</p>
+<p><strong>Sample answer:</strong></p>
+<p>The agent-readiness framework has five checks. Evaluating each against the described store:</p>
+<p>Check 1, Product and Offer schema: FAIL. The store has no Product or Offer structured-data markup. An agent reads those fields before it reads the rendered page; without them, the agent cannot reliably extract the product name, price, SKU, and availability. Fix: add a valid JSON-LD Product and Offer schema block to the product page template in Shopify&#x27;s theme code or via a schema app.</p>
+<p>Check 2, Machine-readable spec table above the marketing copy: FAIL. The spec table sits below the brand-story section. Agents extract fields from the spec table and compare them across competitors; placing the spec below the brand copy means the agent may never reach it or may misattribute it. Fix: move the spec table (material, dimensions, weight, country of origin, returns window) above the marketing copy in the page template.</p>
+<p>Check 3, Express checkout: FAIL. Shop Pay is disabled and the only path is PayPal. An agentic purchase completes reliably only when at least one one-click surface (Shop Pay, PayPal express, or Apple Pay) is exposed at the product or cart page level. PayPal alone may work if the buyer has a saved PayPal account the agent can access, but Shop Pay on Shopify is the most reliable agent-compatible express path. Fix: re-enable Shop Pay via Shopify Payments settings.</p>
+<p>Check 4, Price and stock truthfulness: PASS (assumed). No information in the prompt indicates a mismatch between listed and actual price or stock.</p>
+<p>Check 5, Guest checkout: FAIL. The store requires account creation before payment. An agent cannot create an account on behalf of the buyer, so it will abandon the purchase at that gate. Fix: enable guest checkout in Shopify settings (Checkout and accounts: &quot;Allow customers to check out without creating an account&quot;).</p>
+<p>The store passes 1 of 5 checks. Three of the four failures require a one-time settings or code change, not ongoing maintenance.</p>
+<p>Diff: 3</p>
+<p>Objective: LO 13.9 — The item requires the student to apply the five-check checklist to a described store, identify specific failures, and propose concrete fixes. It tests whether the student can translate the chapter&#x27;s abstract agent-readiness framework into diagnostic practice.</p>
+<p>Tags: agent-readiness; Agentic Storefronts; structured data; guest checkout; AACSB: Application of knowledge; Analytical thinking</p>
+<hr>
+<p><strong>AI-4 — Sidekick as DTC Operator: Evaluate an AI-Generated Unit-Economics Report</strong></p>
+<p>A student connects her Shopify and Klaviyo accounts to Shopify&#x27;s Sidekick AI (described in the chapter as the operator the merchant talks to in plain language). She asks: &quot;Run the unit-economics check and tell me if I can fund my own growth.&quot;</p>
+<p>Sidekick returns the following output:</p>
+<blockquote><p>&quot;Your last 30 days: 142 orders, $6,390 in revenue, $1,800 in Meta ad spend. Average order value: $45. Contribution margin: approximately 38 percent, or $17.10 per order. Estimated CAC: $12.68. First-order LTV: $17.10. LTV-to-CAC ratio: 1.35 to 1. Payback period: approximately 1 month at this purchase frequency. Your ratio is below 3 to 1 and you are not yet funding growth from current margin alone. Recommend: focus retention — your 30-day repeat-purchase rate is 11 percent. Doubling it to 22 percent would move your effective LTV to roughly $34.20 and the ratio to approximately 2.7 to 1, near the health bar.&quot;</p></blockquote>
+<p>Using the chapter&#x27;s four-number test and the LTV-to-CAC health standard, (a) verify that Sidekick&#x27;s arithmetic is correct, (b) evaluate the accuracy and usefulness of its recommendation, and (c) identify one limitation of treating Sidekick&#x27;s output as definitive for a business decision.</p>
+<p><strong>Sample answer:</strong></p>
+<p>(a) Arithmetic verification: CAC = $1,800 ad spend / 142 orders = $12.68. Correct. Contribution margin = 38 percent of $45 = $17.10. Correct. LTV-to-CAC on first order only = $17.10 / $12.68 = 1.35 to 1. Correct. Sidekick&#x27;s payback period claim of &quot;approximately 1 month&quot; is accurate only in the narrow sense that one order&#x27;s margin ($17.10) exceeds one order&#x27;s acquisition cost ($12.68) — but the chapter&#x27;s payback period is computed on how many months until cumulative margin covers the acquisition cost, including the timing of repeat orders. At 11 percent 30-day repeat rate the typical second order does not arrive in month one, so the payback is not literally one month for most buyers. Sidekick&#x27;s framing is slightly misleading here. The projected repeat-purchase LTV at 22 percent: $17.10 x 2 purchases = $34.20. The ratio $34.20 / $12.68 = 2.70 to 1. Correct.</p>
+<p>(b) The recommendation is well-targeted and consistent with the chapter. The chapter identifies the LTV-to-CAC ratio below 3 to 1 as the primary diagnostic failure and argues that repeat purchase is the lever that moves the ratio toward the health bar when the first-order margin alone cannot clear it. Sidekick&#x27;s identification of the 11 percent repeat rate as the constraint and its suggestion to double it are consistent with the chapter&#x27;s lesson that lifting repeat purchase frequency moves the ratio more effectively than cutting a CAC that already has a floor. The recommendation is useful as a first-pass read.</p>
+<p>(c) One important limitation: Sidekick&#x27;s LTV estimate uses a 30-day window, which is too short to capture the full lifetime value of customers who may make their second purchase at month 3, 6, or 9, as the chapter&#x27;s candle-store model shows. Using first-order margin as a proxy for LTV understates the true economics in any category with a multi-month repurchase cycle. Before making a capital-allocation or ad-spend decision based on this output, the student should verify the repeat-purchase timeline on a cohort basis (not just 30-day repeat rate) and reconcile the attributed revenue with the Shopify order-level data her own warehouse holds, as the chapter recommends treating the brand&#x27;s warehouse as the canonical truth every platform&#x27;s numbers reconcile against.</p>
+<p>Diff: 3</p>
+<p>Objective: LO 13.6, LO 13.9 — The item requires the student to verify AI-generated arithmetic, evaluate the quality of a recommendation against the chapter&#x27;s standards, and identify a limitation of taking AI output at face value — all competencies the chapter&#x27;s Apply box explicitly calls for.</p>
+<p>Tags: Sidekick; AI DTC operations; unit economics; LTV-to-CAC; AACSB: Analytical thinking; Reflective thinking; Application of knowledge</p>
+<hr>
+<h2>Answer Key</h2>
+<table><thead><tr><th>Item</th><th>Answer</th><th>One-line rationale</th></tr></thead><tbody><tr><td>1</td><td>C</td><td>CAC outran LTV; Casper spent a dollar of marketing for every dollar of revenue.</td></tr><tr><td>2</td><td>B</td><td>The IDFA let Meta retarget prior-site visitors at low cost; ATT made it unreadable.</td></tr><tr><td>3</td><td>C</td><td>ATT opt-in settled at 25-33%; IDFA invisible on ~two thirds of iPhones; CAC rose 2-3x.</td></tr><tr><td>4</td><td>C</td><td>Rate cycle tripled the working-capital cost of bridging acquisition to payback.</td></tr><tr><td>5</td><td>B</td><td>Shopify is the storefront and order-of-record; every other layer subscribes to its data.</td></tr><tr><td>6</td><td>C</td><td>Flows earn 25-35% of email revenue; broadcasts earn the remaining 65-75%.</td></tr><tr><td>7</td><td>A</td><td>2.0% of 100,000 = 2,000 orders vs. 1,500; same traffic and budget, 33% revenue lift.</td></tr><tr><td>8</td><td>C</td><td>Added to cart but not started checkout = friction question failing (cost of proceeding).</td></tr><tr><td>9</td><td>D</td><td>Baymard 2024 meta-analysis: ~70% of cart sessions end in abandonment.</td></tr><tr><td>10</td><td>C</td><td>25% of 350 carts = 88 orders x $50 AOV = $4,400 additional monthly revenue.</td></tr><tr><td>11</td><td>C</td><td>Discount belongs only in message three; message one is a plain reminder only.</td></tr><tr><td>12</td><td>D</td><td>$30 / 0.06 = $500 LTV per subscriber.</td></tr><tr><td>13</td><td>C</td><td>$30 / 0.12 = $250; doubling churn halves lifetime value.</td></tr><tr><td>14</td><td>D</td><td>Four orders x $11.40 = $45.60, crossing the $45 CAC threshold at month 9.</td></tr><tr><td>15</td><td>C</td><td>Patagonia&#x27;s low acquisition rate reflects retention-led economics, not cheap clicks.</td></tr><tr><td>16</td><td>B</td><td>Hero, USP, social proof, urgency, objection handler — the empirically validated order.</td></tr><tr><td>17</td><td>B</td><td>Allbirds&#x27; 24% conversion lift came from voice-of-customer objection handler, not guessing.</td></tr><tr><td>18</td><td>C</td><td>Shopify charges card processing only; it delivers zero pre-existing demand.</td></tr><tr><td>19</td><td>D</td><td>Etsy delivers a buyer pre-selected for the handmade category at 10-13% all-in.</td></tr><tr><td>20</td><td>B</td><td>Agentic Storefronts exposes Shopify catalogs to AI agents that complete checkout in chat.</td></tr><tr><td>21</td><td>C</td><td>Agents read structured data and spec tables; they skip lifestyle photography.</td></tr><tr><td>22</td><td>C</td><td>Reintermediation is the partial reversal of disintermediation; Liquid Death went back to retail.</td></tr><tr><td>SA-1</td><td>See rubric</td><td>Conversion 1.6%; CAC $7.50; margin $11.20/order; above break-even; recovery flow is highest-return next move.</td></tr><tr><td>SA-2</td><td>See rubric</td><td>LTV at 8%: $275; at 5%: $440 (+60%); AOV 10% lift: $302.50 (+10%); pull churn lever first.</td></tr><tr><td>SA-3</td><td>See rubric</td><td>Hero passes; USP fails (generic); social proof marginal; urgency fails (fraudulent timer); objection handler absent. Remove fake countdown; add return policy above add-to-cart.</td></tr><tr><td>SA-4</td><td>See rubric</td><td>Launch Etsy first (pre-selected demand, handmade fit); add Shopify once Etsy is predictable; defer Amazon and TikTok Shop.</td></tr><tr><td>AI-1</td><td>C</td><td>Specific framework query produces a five-element scorecard; vague query produces generic feedback.</td></tr><tr><td>AI-2</td><td>See rubric</td><td>Discount in message one trains abandonment; correct message one is a plain reminder only; long-run harm is margin erosion at scale.</td></tr><tr><td>AI-3</td><td>See rubric</td><td>1 of 5 checks pass; failures: schema, spec placement, guest checkout, express checkout; one-time fixes for each.</td></tr><tr><td>AI-4</td><td>See rubric</td><td>Arithmetic correct (except payback framing); recommendation valid per chapter; key limitation is 30-day LTV window understates multi-month repurchase cycle.</td></tr></tbody></table>
+<hr>
+<h2>Item Counts Summary</h2>
+<table><thead><tr><th>Category</th><th>Diff 1</th><th>Diff 2</th><th>Diff 3</th><th>Total</th></tr></thead><tbody><tr><td>MCQ</td><td>3</td><td>14</td><td>5</td><td>22</td></tr><tr><td>Scenario / Short-Answer</td><td>0</td><td>1</td><td>3</td><td>4</td></tr><tr><td>AI-Integration</td><td>0</td><td>2</td><td>2</td><td>4</td></tr><tr><td><strong>Total</strong></td><td><strong>3</strong></td><td><strong>17</strong></td><td><strong>10</strong></td><td><strong>30</strong></td></tr></tbody></table>
+<hr>
+<h2>Objectives Coverage</h2>
+<table><thead><tr><th>Objective</th><th>MCQ items</th><th>SA items</th><th>AI items</th></tr></thead><tbody><tr><td>LO 13.1 — DTC cycle claims + three-wave reckoning</td><td>1, 2, 3, 4</td><td></td><td></td></tr><tr><td>LO 13.2 — Seven-layer stack + email flows</td><td>5, 6</td><td></td><td></td></tr><tr><td>LO 13.3 — Four-question CRO audit</td><td>7, 8</td><td>SA-1</td><td>AI-1</td></tr><tr><td>LO 13.4 — Abandoned-cart recovery + discount ladder</td><td>9, 10, 11</td><td>SA-1</td><td>AI-2</td></tr><tr><td>LO 13.5 — Churn-rate identity + subscription leverage</td><td>12, 13</td><td>SA-2</td><td></td></tr><tr><td>LO 13.6 — Four unit-economics numbers + payback + LTV/CAC</td><td>14, 15</td><td>SA-1, SA-2</td><td>AI-4</td></tr><tr><td>LO 13.7 — Five-job product-page audit</td><td>16, 17</td><td>SA-3</td><td>AI-1</td></tr><tr><td>LO 13.8 — Marketplace fit + six axes + channel mix</td><td>18, 19, 22</td><td>SA-4</td><td></td></tr><tr><td>LO 13.9 — Agent-shopping frontier + agent-readiness</td><td>20, 21</td><td></td><td>AI-3, AI-4</td></tr></tbody></table>
+<hr>
+<p><em>Export-ready for QTI / Canvas Common Cartridge. Short-answer and AI items with rubric notation are suitable for AI-assisted grading via the course proxy (port 8787). All items answered from Our Ch13 chapter. No item borrows content from Kotler MM16 or any Kotler test-bank file; original authoring throughout. Running example: Shopify candle store, Casper, Allbirds, Patagonia, Costco, Liquid Death — all from our chapter.</em></p></main>
+<footer><div class="inner">Principles of Marketing: An AI-Integrated Approach &middot; instructor courseware.</div></footer>
+</body>
+</html>

@@ -1,0 +1,225 @@
+{
+  "course": {
+    "title": "Principles of Marketing: An AI-Integrated Approach",
+    "tagline": "Everything you need to teach Principles of Marketing — with AI, hands-on.",
+    "subtitle": "A complete, instructor-ready courseware package: a dual-depth interactive textbook, slides, teaching notes, projects, an AI-graded test bank, and a deploy kit — built for the AI era and held to WCAG 2.2 AA."
+  },
+  "groups": [
+    {
+      "id": "read-reference",
+      "title": "Read & Reference",
+      "blurb": "The ground-truth text students read, plus the reference layer built on top of it."
+    },
+    {
+      "id": "teach",
+      "title": "Teach",
+      "blurb": "What you bring to the room: slides, notes, videos, cases, and live activities."
+    },
+    {
+      "id": "assess",
+      "title": "Assess",
+      "blurb": "Graded work, hands-on projects, and the question banks behind them."
+    },
+    {
+      "id": "adopt-deploy",
+      "title": "Adopt & Deploy",
+      "blurb": "Drop the course into your term and your LMS with the paperwork done."
+    },
+    {
+      "id": "build",
+      "title": "Build",
+      "blurb": "Go further: stand up your own AI teaching assistant on the course corpus."
+    }
+  ],
+  "components": [
+    {
+      "id": "textbook",
+      "group": "read-reference",
+      "title": "Textbook",
+      "blurb": "27 chapters, each readable two ways — Comprehensive or Concise — with interactive AI widgets.",
+      "status": "available",
+      "href": "textbook/index.html",
+      "meta": "27 chapters"
+    },
+    {
+      "id": "glossary",
+      "group": "read-reference",
+      "title": "Glossary",
+      "blurb": "Every key term defined in plain language and cross-linked back to its chapter.",
+      "status": "available",
+      "href": "textbook/back-glossary.html",
+      "meta": "A–Z"
+    },
+    {
+      "id": "ai-prompt-library",
+      "group": "read-reference",
+      "title": "AI Prompt Library",
+      "blurb": "Copy-paste prompts that turn each chapter's framework into a hands-on AI exercise.",
+      "status": "wip",
+      "href": "materials/read-reference/ai-prompt-library.html",
+      "meta": "27 chapters (draft)"
+    },
+    {
+      "id": "datasets",
+      "group": "read-reference",
+      "title": "Datasets",
+      "blurb": "Clean, classroom-ready datasets behind the projects and in-chapter analyses.",
+      "status": "planned",
+      "href": null,
+      "meta": null
+    },
+    {
+      "id": "slides",
+      "group": "teach",
+      "title": "Slides",
+      "blurb": "Lecture decks per chapter, on the book's visual system, ready to present or edit.",
+      "status": "wip",
+      "href": "slides/index.html",
+      "meta": "9 of 27 (draft)"
+    },
+    {
+      "id": "teaching-notes",
+      "group": "teach",
+      "title": "Teaching Notes / Instructor Guide",
+      "blurb": "Session-by-session guidance: timing, talking points, discussion prompts, and pitfalls.",
+      "status": "wip",
+      "href": "materials/index.html#teaching-notes",
+      "meta": "3 of 27 (draft)"
+    },
+    {
+      "id": "lecture-videos",
+      "group": "teach",
+      "title": "Lecture Videos",
+      "blurb": "Short, animated lecture videos — the first chapter is recorded, the rest are in production.",
+      "status": "wip",
+      "href": null,
+      "meta": "1 of ~27: Pricing (in production)"
+    },
+    {
+      "id": "cases",
+      "group": "teach",
+      "title": "Cases",
+      "blurb": "Teaching cases with discussion questions, tied to the chapters' running brand examples.",
+      "status": "wip",
+      "href": "materials/index.html#cases",
+      "meta": "1 of 27 (draft)"
+    },
+    {
+      "id": "in-class-kit",
+      "group": "teach",
+      "title": "In-class Kit",
+      "blurb": "Live polls, think-pair-share prompts, and quick activities to run the room.",
+      "status": "planned",
+      "href": null,
+      "meta": "polls + activities"
+    },
+    {
+      "id": "assignments",
+      "group": "assess",
+      "title": "Assignments",
+      "blurb": "Graded individual assignments mapped to each chapter's learning objectives.",
+      "status": "wip",
+      "href": "materials/index.html#assignments",
+      "meta": "2 of 27 (draft)"
+    },
+    {
+      "id": "projects",
+      "group": "assess",
+      "title": "Projects P1–P3",
+      "blurb": "Three scaffolded team projects that take a real brand from research to a marketing plan.",
+      "status": "planned",
+      "href": null,
+      "meta": "3 projects"
+    },
+    {
+      "id": "test-quiz-bank",
+      "group": "assess",
+      "title": "Test & Quiz Bank",
+      "blurb": "A large bank of quiz and exam items, tagged by chapter and objective, export-ready.",
+      "status": "wip",
+      "href": "materials/index.html#test-bank",
+      "meta": "27 of 27 (draft)"
+    },
+    {
+      "id": "rubrics",
+      "group": "assess",
+      "title": "Rubrics",
+      "blurb": "Transparent grading rubrics for every project and major assignment.",
+      "status": "planned",
+      "href": null,
+      "meta": null
+    },
+    {
+      "id": "answer-keys",
+      "group": "assess",
+      "title": "Answer Keys",
+      "blurb": "Worked solutions and model answers for assignments and the test bank.",
+      "status": "planned",
+      "href": null,
+      "meta": null
+    },
+    {
+      "id": "syllabus-pacing",
+      "group": "adopt-deploy",
+      "title": "Syllabus + Pacing Guide",
+      "blurb": "An editable syllabus and a week-by-week pacing guide you can adapt to your term.",
+      "status": "wip",
+      "href": "materials/adopt-deploy/syllabus-and-pacing-guide.html",
+      "meta": "draft"
+    },
+    {
+      "id": "lms-cartridge",
+      "group": "adopt-deploy",
+      "title": "Canvas / LMS Cartridge",
+      "blurb": "A Common Cartridge import that drops modules, assignments, and the test bank into your LMS.",
+      "status": "wip",
+      "href": "cartridge/index.html",
+      "meta": "test bank · draft"
+    },
+    {
+      "id": "aacsb-map",
+      "group": "adopt-deploy",
+      "title": "AACSB Outcomes Map",
+      "blurb": "A mapping of chapters and assessments to AACSB assurance-of-learning outcomes.",
+      "status": "wip",
+      "href": "materials/adopt-deploy/aacsb-outcomes-map.html",
+      "meta": "draft"
+    },
+    {
+      "id": "accessibility-vpat",
+      "group": "adopt-deploy",
+      "title": "Accessibility / VPAT",
+      "blurb": "The courseware ships compliant by default; this documents how and where it conforms.",
+      "status": "available",
+      "href": "#accessibility",
+      "meta": "WCAG 2.2 AA"
+    },
+    {
+      "id": "get-started",
+      "group": "adopt-deploy",
+      "title": "Get Started / Adopt",
+      "blurb": "A short path from curious to teaching: what's ready now and how to put it to work.",
+      "status": "available",
+      "href": "#get-started",
+      "meta": null
+    },
+    {
+      "id": "whats-new",
+      "group": "adopt-deploy",
+      "title": "What's New / Roadmap",
+      "blurb": "What just shipped and what's coming next, so you always know the state of the package.",
+      "status": "planned",
+      "href": null,
+      "meta": null
+    },
+    {
+      "id": "ai-teaching-assistant",
+      "group": "build",
+      "title": "Build an AI Teaching Assistant",
+      "blurb": "A guided track to stand up your own AI assistant grounded in this course's materials.",
+      "status": "planned",
+      "href": null,
+      "meta": null
+    }
+  ]
+}

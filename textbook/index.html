@@ -1,0 +1,3506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Principles of Marketing: An AI-Integrated Approach. Twenty-seven chapters across seven parts.">
+  <title>Principles of Marketing: An AI-Integrated Approach</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23DA7756' width='100' height='100' rx='12'/><text x='50' y='68' font-family='system-ui' font-size='36' font-weight='bold' fill='white' text-anchor='middle'>PM</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="_accessibility.css">
+  <script src="_accessibility.js" defer></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ── Base CSS variables. applyTheme() overwrites these on <html> at runtime. ──
+       Defaults = warm LIGHT mode + Coral accent (the Core's native aesthetic). */
+    :root {
+      --sidebar-w: 300px;
+      --header-h: 48px;
+      /* accent family (driven by ACCENT picker) */
+      --coral: #DA7756;
+      --coral-deep: #B8553A;
+      --coral-soft: #E8A488;
+      --coral-light: rgba(218,119,86,0.08);
+      /* neutrals (driven by MODE: light/dark) */
+      --text: #1a1a1a;
+      --text-secondary: #555555;
+      --text-muted: #6b6b6b;
+      --bg: #ffffff;
+      --bg-alt: #f4f4f6;
+      --border: #e6e6ea;
+      /* fonts */
+      --font: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* Reading progress bar */
+    .reading-progress {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      z-index: 999;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .reading-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--coral);
+      transition: width 120ms ease;
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      z-index: 100;
+      gap: 12px;
+    }
+
+    .header-toggle {
+      width: 32px; height: 32px;
+      background: none; border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 4px;
+      color: var(--text-secondary);
+    }
+
+    .header-toggle:hover { background: var(--bg-alt); }
+
+    .header-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .header-title:hover { color: var(--coral); }
+    .header-title span { color: var(--coral); font-weight: 500; }
+
+    .header-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .header-btn {
+      width: 32px; height: 32px;
+      background: none; border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 4px;
+      color: var(--text-muted);
+    }
+
+    .header-btn:hover { background: var(--bg-alt); color: var(--text); }
+    .header-btn.active { color: var(--coral); }
+
+    /* Depth toggle (Complete / Focused) */
+    .depth-wrap { position: relative; }
+
+    .depth-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      padding: 0 10px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .depth-btn:hover { background: var(--bg-alt); color: var(--text); }
+    .depth-btn .depth-caret { font-size: 9px; color: var(--text-muted); }
+
+    .depth-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+      width: 280px;
+      z-index: 200;
+      padding: 6px;
+      font-size: 13px;
+    }
+
+    .depth-dropdown.open { display: block; }
+
+    .depth-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 10px 10px;
+      border-radius: 7px;
+      cursor: pointer;
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      font-family: var(--font);
+      color: var(--text);
+    }
+
+    .depth-option:hover { background: var(--bg-alt); }
+    .depth-option .depth-check { width: 14px; color: var(--coral); flex-shrink: 0; font-weight: 700; }
+    .depth-option .depth-opt-title { font-size: 13px; font-weight: 600; color: var(--text); }
+    .depth-option .depth-opt-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+    /* Reader settings panel */
+    .rs-wrap { position: relative; }
+
+    .rs-panel {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+      width: 340px;
+      z-index: 200;
+      padding: 16px;
+      font-size: 13px;
+      max-height: calc(100vh - 70px);
+      overflow-y: auto;
+    }
+
+    .rs-panel.open { display: block; }
+
+    .rs-section { margin-bottom: 20px; }
+    .rs-section:last-child { margin-bottom: 0; }
+
+    .rs-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    /* Mode (light/dark) segmented toggle */
+    .rs-mode-toggle {
+      display: flex;
+      gap: 4px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 3px;
+    }
+
+    .rs-mode-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 8px;
+      border: none;
+      border-radius: 6px;
+      background: none;
+      cursor: pointer;
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .rs-mode-btn.active { background: var(--bg); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+    .rs-mode-btn svg { width: 15px; height: 15px; }
+
+    /* Accent swatch presets */
+    .rs-accents {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+    }
+
+    .rs-accent-btn {
+      width: 100%;
+      aspect-ratio: 1;
+      border: 2px solid transparent;
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 0;
+      position: relative;
+      transition: transform 0.12s;
+    }
+
+    .rs-accent-btn:hover { transform: scale(1.1); }
+    .rs-accent-btn.active { border-color: var(--text); }
+    .rs-accent-btn.active::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    }
+
+    /* Custom main-color picker row */
+    .rs-custom {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .rs-custom label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .rs-custom .rs-custom-help {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .rs-custom input[type="color"] {
+      width: 40px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: none;
+      cursor: pointer;
+      padding: 2px;
+    }
+
+    /* Font size stepper */
+    .rs-fontsize {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rs-fs-btn {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .rs-fs-btn:hover { background: var(--bg-alt); }
+    .rs-fs-val { flex: 1; text-align: center; font-size: 13px; font-weight: 600; color: var(--text); }
+
+    /* Font family buttons */
+    .rs-fonts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    .rs-font-btn {
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--bg);
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text);
+      text-align: left;
+    }
+
+    .rs-font-btn:hover { background: var(--bg-alt); }
+    .rs-font-btn.active { border-color: var(--coral); color: var(--coral); font-weight: 600; }
+
+    /* TTS controls */
+    .rs-tts-controls { display: flex; gap: 6px; margin-bottom: 10px; }
+
+    .rs-tts-btn {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--bg);
+      cursor: pointer;
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .rs-tts-btn:hover { background: var(--bg-alt); }
+    .rs-tts-btn svg { width: 14px; height: 14px; }
+    .rs-tts-label { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+
+    .rs-select, .rs-text-input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 13px;
+    }
+
+    .rs-range { width: 100%; accent-color: var(--coral); }
+    .rs-range-row { display: flex; align-items: center; gap: 10px; }
+    .rs-range-val { font-size: 12px; font-weight: 600; color: var(--text); min-width: 36px; text-align: right; }
+
+    .rs-hint { font-size: 11px; color: var(--text-muted); margin-top: 6px; line-height: 1.45; }
+
+    /* Accessibility checkbox rows */
+    .rs-a11y-list { display: flex; flex-direction: column; gap: 4px; }
+
+    .rs-a11y-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 150ms ease;
+    }
+
+    .rs-a11y-row:hover { background: var(--bg-alt); }
+
+    .rs-a11y-row input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--coral);
+      border-radius: 3px;
+      background: var(--bg);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+      position: relative;
+      transition: background 150ms ease;
+    }
+
+    .rs-a11y-row input[type="checkbox"]:checked { background: var(--coral); }
+
+    .rs-a11y-row input[type="checkbox"]:checked::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 1px;
+      width: 5px;
+      height: 10px;
+      border: solid #ffffff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .rs-a11y-row input[type="checkbox"]:focus-visible {
+      outline: 2px solid var(--coral);
+      outline-offset: 2px;
+    }
+
+    .rs-a11y-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .rs-a11y-label { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; }
+    .rs-a11y-help { font-size: 11px; color: var(--text-muted); line-height: 1.45; }
+
+    .rs-divider { height: 1px; background: var(--border); margin: 16px 0; }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: var(--header-h);
+      left: 0;
+      bottom: 0;
+      width: var(--sidebar-w);
+      background: var(--bg);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 90;
+      transition: transform 0.25s ease;
+      padding: 16px 0 32px;
+    }
+
+    .sidebar.collapsed { transform: translateX(calc(-1 * var(--sidebar-w))); }
+
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .sb-brand {
+      padding: 8px 20px 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 4px;
+      cursor: pointer;
+    }
+
+    .sb-brand:hover .sb-brand-title { color: var(--coral); }
+
+    .sb-brand-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--coral);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .sb-brand-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      margin-top: 6px;
+      transition: color 0.15s;
+    }
+
+    .sb-brand-author {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Sidebar search */
+    .sb-search { padding: 10px 16px 6px; }
+
+    .sb-search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0 10px;
+      height: 36px;
+    }
+
+    .sb-search-box:focus-within { border-color: var(--coral); }
+    .sb-search-icon { color: var(--text-muted); flex-shrink: 0; }
+
+    .sb-search-input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      background: none;
+      outline: none;
+      font-family: var(--font);
+      font-size: 13px;
+      color: var(--text);
+      height: 100%;
+    }
+
+    .sb-search-input::placeholder { color: var(--text-muted); }
+    .sb-search-input::-webkit-search-cancel-button { display: none; }
+
+    .sb-search-clear {
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 18px;
+      line-height: 1;
+      padding: 0 2px;
+      flex-shrink: 0;
+    }
+    .sb-search-clear:hover { color: var(--text); }
+
+    .sb-search-results {
+      margin-top: 8px;
+      border-top: 1px solid var(--border);
+      padding-top: 6px;
+    }
+
+    .sb-sr-empty, .sb-sr-status {
+      font-size: 12px;
+      color: var(--text-muted);
+      padding: 8px 8px 10px;
+      line-height: 1.5;
+    }
+
+    .sb-sr-group { margin-bottom: 6px; }
+
+    .sb-sr-chapter {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 7px 8px 4px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    .sb-sr-chapter:hover { background: var(--bg-alt); color: var(--coral); }
+    .sb-sr-chapter .sb-sr-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--coral);
+      flex-shrink: 0;
+    }
+
+    .sb-sr-section {
+      display: block;
+      padding: 6px 8px 6px 22px;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-radius: 6px;
+      border-left: 2px solid transparent;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .sb-sr-section:hover { background: var(--bg-alt); color: var(--text); border-left-color: var(--coral); }
+    .sb-sr-section mark {
+      background: var(--coral-soft);
+      color: inherit;
+      border-radius: 2px;
+      padding: 0 1px;
+    }
+
+    /* Part headers */
+    .sb-part {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px 6px 20px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      user-select: none;
+      margin-top: 4px;
+    }
+
+    .sb-part:hover { color: var(--text-secondary); }
+
+    .sb-part .chevron {
+      font-size: 9px;
+      transition: transform 0.2s;
+      color: var(--coral);
+    }
+
+    .sb-part.closed .chevron { transform: rotate(-90deg); }
+
+    .sb-part-title {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      text-transform: none;
+      letter-spacing: 0;
+      margin-left: 2px;
+    }
+
+    .sb-part:hover .sb-part-title { color: var(--coral); }
+
+    .sb-group { overflow: hidden; max-height: 480px; transition: max-height 0.25s ease; }
+    .sb-group.closed { max-height: 0 !important; }
+
+    /* Sidebar chapter items */
+    .sb-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 20px 7px 24px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .sb-item:hover { background: var(--bg-alt); color: var(--text); }
+
+    .sb-item.active {
+      color: var(--coral);
+      border-left-color: var(--coral);
+      background: var(--coral-light);
+      font-weight: 500;
+    }
+
+    .sb-item .num {
+      width: 22px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .sb-item.active .num { color: var(--coral); }
+
+    /* A11Y: the active row's bright-coral text/number on the pale coral-light fill is only
+       ~2.9:1; use a darker coral in LIGHT mode (the coral left-border + tint + bold still cue
+       "active"). Dark modes keep bright coral, which passes as light-on-dark. */
+    html[data-mode="light"] .sb-item.active,
+    html[data-mode="light"] .sb-item.active .num { color: #a8472a; }
+    /* dark themes: bright coral on the dark coral tint is only ~3.9:1, so the active row uses a
+       light coral (high contrast on the dark fill) while keeping the coral identity. */
+    html:not([data-mode="light"]) .sb-item.active,
+    html:not([data-mode="light"]) .sb-item.active .num { color: #f0a98f; }
+    /* the decorative disclosure chevron is bright coral at 9px (~3.1:1); darken in light mode so
+       it clears AA as small text (it is also aria-hidden, since aria-expanded conveys the state). */
+    html[data-mode="light"] .sb-part .chevron { color: #a8472a; }
+
+    /* "Coming soon" tag for rows whose file does not exist yet */
+    .sb-soon {
+      margin-left: auto;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 5px;
+      flex-shrink: 0;
+    }
+    .sb-item[data-disabled="1"]:hover { background: none; color: var(--text-secondary); }
+
+    .sb-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 12px 20px;
+    }
+
+    /* Main content area */
+    .main {
+      position: fixed;
+      top: var(--header-h);
+      left: var(--sidebar-w);
+      right: 0;
+      bottom: 0;
+      transition: left 0.25s ease;
+      background: var(--bg-alt);
+      overflow: hidden;
+    }
+
+    .main.expanded { left: 0; }
+
+    .main iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: var(--bg);
+    }
+
+    /* ── Table-of-contents layout modes (data-toc on <html>; default = sidebar) ── */
+    :root { --topbar-h: 46px; }
+    /* nav text selectable in every mode (part headers had user-select:none) */
+    .sb-part { -webkit-user-select: text; user-select: text; }
+    /* OFF — hide the rail, full-width reading */
+    html[data-toc="off"] .sidebar,
+    html[data-toc="inline"] .sidebar { display: none; }
+    /* desktop reserves --sidebar-w for the rail; with no rail, pull main back to full width.
+       (the .main `left` property is locked by the layout; margin-left is the working lever.) */
+    @media (min-width: 769px) {
+      html[data-toc="off"] .main,
+      html[data-toc="inline"] .main,
+      html[data-toc="floating"] .main,
+      html[data-toc="topbar"] .main { margin-left: calc(-1 * var(--sidebar-w)) !important; }
+    }
+    /* TOP BAR — horizontal chapter strip pinned under the header */
+    html[data-toc="topbar"] .sidebar {
+      top: var(--header-h); left: 0; right: 0; bottom: auto;
+      width: auto; height: var(--topbar-h);
+      display: flex; align-items: center; gap: 0;
+      padding: 0 14px; overflow-x: auto; overflow-y: hidden; white-space: nowrap;
+      border-right: none; border-bottom: 1px solid var(--border); transform: none;
+    }
+    html[data-toc="topbar"] .sb-brand,
+    html[data-toc="topbar"] .sb-search,
+    html[data-toc="topbar"] .sb-part .chevron { display: none; }
+    html[data-toc="topbar"] .sb-part {
+      display: inline-flex; align-items: center; flex: 0 0 auto;
+      border: none; padding: 0 4px 0 12px; margin: 0;
+      font-size: 10px; letter-spacing: 0.12em; color: var(--text-muted);
+    }
+    html[data-toc="topbar"] .sb-group { display: inline-flex !important; align-items: center; height: 100%; }
+    html[data-toc="topbar"] .sb-item {
+      display: inline-flex; align-items: center; height: 100%;
+      padding: 0 10px; border-left: none; flex: 0 0 auto;
+    }
+    html[data-toc="topbar"] .sb-item .num { display: none; }
+    html[data-toc="topbar"] .main { top: calc(var(--header-h) + var(--topbar-h)) !important; }
+    /* topbar must never clip chapters: a collapsed/animated group's max-height/overflow
+       would hide them, so force every group fully open + visible (the strip scrolls horizontally). */
+    html[data-toc="topbar"] .sb-group,
+    html[data-toc="topbar"] .sb-group.closed { max-height: none !important; overflow: visible !important; }
+    /* FLOATING — rail hidden as a right-side overlay drawer; a top-right button opens it */
+    html[data-toc="floating"] .sidebar {
+      left: auto; right: 0; transform: translateX(100%);
+      border-right: none; border-left: 1px solid var(--border); z-index: 95;
+    }
+    html[data-toc="floating"] .sidebar.open { transform: translateX(0); box-shadow: -4px 0 28px rgba(0,0,0,0.16); }
+    html[data-toc="floating"] .sidebar-backdrop.visible { display: block; }
+    .toc-fab { display: none; }
+    html[data-toc="floating"] .toc-fab {
+      display: inline-flex; align-items: center; gap: 7px;
+      position: fixed; top: calc(var(--header-h) + 16px); right: 20px; z-index: 94;
+      padding: 9px 15px; border: 1px solid var(--border); border-radius: 999px;
+      background: var(--bg); color: var(--text-secondary);
+      font-family: var(--font); font-size: 12.5px; font-weight: 600; letter-spacing: 0.01em;
+      cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.08);
+      transition: color 0.15s, border-color 0.15s;
+    }
+    html[data-toc="floating"] .toc-fab:hover { color: var(--coral); border-color: var(--coral); }
+    .toc-fab svg { width: 15px; height: 15px; flex-shrink: 0; }
+    /* Settings control */
+    .rs-toc-modes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .rs-toc-btn {
+      padding: 8px 6px; border: 1px solid var(--border); border-radius: 7px;
+      background: transparent; color: var(--text-secondary); font-size: 12px;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .rs-toc-btn:hover { border-color: var(--coral); }
+    .rs-toc-btn.active { border-color: var(--coral); color: var(--coral); font-weight: 600; }
+    .rs-toc-btn[disabled] { opacity: 0.4; cursor: not-allowed; }
+
+    /* Welcome page */
+    .welcome {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 32px 96px;
+      height: 100%;
+      overflow-y: auto;
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .welcome .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin: 0 0 24px;
+    }
+
+    .welcome .eyebrow::before,
+    .welcome .eyebrow::after {
+      content: "";
+      display: inline-block;
+      width: 18px;
+      height: 1px;
+      background: var(--coral);
+      vertical-align: middle;
+      opacity: 0.7;
+    }
+    .welcome .eyebrow::before { margin-right: 10px; }
+    .welcome .eyebrow::after { margin-left: 10px; }
+
+    .welcome h1 {
+      font-family: var(--font);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin: 0 0 20px;
+      color: var(--text);
+    }
+
+    .welcome .byline {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin: 0 0 6px;
+    }
+
+    .welcome .byline strong { color: var(--text); font-weight: 600; }
+
+    .welcome .institution {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0 0 40px;
+    }
+
+    .welcome-rule {
+      width: 80px;
+      height: 2px;
+      background: var(--coral);
+      margin: 0 auto 32px;
+      border: 0;
+    }
+
+    .welcome .lede {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      max-width: 620px;
+      margin: 0 auto 48px;
+    }
+
+    .welcome .lede em { font-style: italic; color: var(--text); }
+
+    .welcome h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 48px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .welcome p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      line-height: 1.65;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 32px 0 0;
+    }
+
+    .stat {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--coral);
+      letter-spacing: -0.01em;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* ── Welcome title page: book cover + centered layout ── */
+    .welcome-sr-title { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+    .book-cover {
+      position: relative;
+      width: 340px; height: 480px;
+      margin: 4px auto 38px;
+      border-radius: 3px;
+      background: linear-gradient(158deg, #2e2e2e 0%, #1c1c1c 55%, #111111 100%);
+      box-shadow: 8px 8px 30px rgba(0,0,0,0.30), 2px 2px 8px rgba(0,0,0,0.15);
+      border: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+    .book-cover canvas { position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; }
+    .cover-content { position:relative; z-index:2; display:flex; flex-direction:column; height:100%; padding:0 32px 32px; text-align:left; }
+    .cover-title { font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:32px; font-weight:300; color:#fff; line-height:1.25; letter-spacing:-0.3px; margin-top:auto; }
+    .cover-title em { font-style:italic; font-weight:300; }
+    .cover-subtitle { font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-top:12px; }
+    .cover-divider { width:32px; height:1px; background:rgba(255,255,255,0.25); margin:16px 0 0; }
+    /* LIGHT mode: a light/white cover with the accent ("blue") title. Gray + Night keep the dark charcoal cover above. */
+    html[data-mode="light"] .book-cover { background: linear-gradient(158deg, #ffffff 0%, #f3f3f6 100%); border-color: var(--border); box-shadow: 0 16px 44px rgba(0,0,0,0.13), 0 3px 10px rgba(0,0,0,0.07); }
+    html[data-mode="light"] .cover-title, html[data-mode="light"] .cover-title em { color: var(--text); }
+    html[data-mode="light"] .cover-subtitle { color: var(--text-muted); }
+    html[data-mode="light"] .cover-divider { background: var(--coral); opacity: 0.55; }
+
+    .welcome-stats { display:flex; justify-content:center; gap:44px; margin:0 0 4px; }
+    .wstat-num { font-family:var(--font); font-size:34px; font-weight:700; color:var(--coral); line-height:1; letter-spacing:-0.01em; }
+    .wstat-label { font-family:var(--font-mono); font-size:10px; color:var(--text-muted); margin-top:8px; text-transform:uppercase; letter-spacing:0.12em; }
+
+    .welcome-hint { font-family:var(--font-mono); font-size:12px; color:var(--text-muted); letter-spacing:0.04em; margin-top:36px; }
+
+    /* Mobile overlay backdrop */
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      top: var(--header-h);
+      left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: 80;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-title { font-size: 13px; max-width: 40vw; }
+      .depth-btn .depth-label-text { display: none; }
+      .sidebar { transform: translateX(calc(-1 * var(--sidebar-w))); }
+      .sidebar.open { transform: translateX(0); }
+      .main { left: 0; }
+      .main.expanded { left: 0; }
+      .sidebar-backdrop.visible { display: block; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .welcome { padding: 40px 24px 64px; }
+      .welcome h1 { font-size: 36px; }
+      .welcome .lede { font-size: 18px; }
+      .book-cover { width: 280px; height: 396px; }
+      .cover-title { font-size: 26px; }
+      .welcome-stats { gap: 28px; }
+      .rs-panel { width: calc(100vw - 32px); right: -8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    Marker for _accessibility.js: presence of `.a11y-panel` suppresses the floating
+    FAB on this page, since the rs-panel below already exposes all four toggles.
+  -->
+  <div class="a11y-panel" hidden aria-hidden="true" style="display:none"></div>
+
+  <!-- Reading progress bar -->
+  <div class="reading-progress" id="reading-progress"><div class="reading-progress-fill" id="reading-progress-fill"></div></div>
+
+  <!-- Header -->
+  <header class="header">
+    <button class="header-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="4" x2="15" y2="4"/><line x1="3" y1="9" x2="15" y2="9"/><line x1="3" y1="14" x2="15" y2="14"/></svg>
+    </button>
+    <div class="header-title" id="header-title">Principles of <span>Marketing</span></div>
+    <div class="header-right">
+
+      <!-- Depth toggle (Complete / Focused) -->
+      <div class="depth-wrap" id="depth-wrap">
+        <button class="depth-btn" id="depth-btn" aria-label="Reading depth" aria-expanded="false" title="Reading depth">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          <span class="depth-label-text" id="depth-label">Complete</span>
+          <span class="depth-caret">&#9660;</span>
+        </button>
+        <div class="depth-dropdown" id="depth-dropdown" role="menu">
+          <button class="depth-option" data-density="complete" role="menuitem">
+            <span class="depth-check" id="depth-check-complete">&#10003;</span>
+            <span>
+              <span class="depth-opt-title">Complete</span>
+              <span class="depth-opt-desc">All content, examples, and context.</span>
+            </span>
+          </button>
+          <button class="depth-option" data-density="focused" role="menuitem">
+            <span class="depth-check" id="depth-check-focused">&nbsp;</span>
+            <span>
+              <span class="depth-opt-title">Focused</span>
+              <span class="depth-opt-desc">Core concepts only. Lean reading path.</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Reader settings gear -->
+      <div class="rs-wrap" id="rs-wrap">
+        <button class="header-btn" id="rs-btn" aria-label="Reader settings" aria-expanded="false" title="Reader settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+        <div class="rs-panel" id="rs-panel" role="dialog" aria-label="Reader settings">
+
+          <!-- MODE -->
+          <div class="rs-section">
+            <div class="rs-label">Mode</div>
+            <div class="rs-mode-toggle">
+              <button class="rs-mode-btn" id="mode-light" data-mode="light">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                Light
+              </button>
+              <button class="rs-mode-btn" id="mode-gray" data-mode="gray">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+                Gray
+              </button>
+              <button class="rs-mode-btn" id="mode-night" data-mode="night">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                Night
+              </button>
+            </div>
+          </div>
+
+          <!-- ACCENT -->
+          <div class="rs-section">
+            <div class="rs-label">Main color</div>
+            <div class="rs-accents" id="rs-accents">
+              <button class="rs-accent-btn" data-accent="#DA7756" style="background:#DA7756;" title="Coral"></button>
+              <button class="rs-accent-btn" data-accent="#3B7DD8" style="background:#3B7DD8;" title="Blue"></button>
+              <button class="rs-accent-btn" data-accent="#3FA66A" style="background:#3FA66A;" title="Green"></button>
+              <button class="rs-accent-btn" data-accent="#8B5CC7" style="background:#8B5CC7;" title="Purple"></button>
+              <button class="rs-accent-btn" data-accent="#D9A23B" style="background:#D9A23B;" title="Amber"></button>
+              <button class="rs-accent-btn" data-accent="#2FA6A0" style="background:#2FA6A0;" title="Teal"></button>
+              <button class="rs-accent-btn" data-accent="#D85C8A" style="background:#D85C8A;" title="Rose"></button>
+            </div>
+            <div class="rs-custom">
+              <label for="rs-custom-color">
+                Custom main color
+                <span class="rs-custom-help">Pick any color. Deep and soft shades derive automatically.</span>
+              </label>
+              <input type="color" id="rs-custom-color" value="#DA7756" aria-label="Custom main color">
+            </div>
+          </div>
+
+          <div class="rs-divider"></div>
+
+          <!-- TABLE OF CONTENTS -->
+          <div class="rs-section">
+            <div class="rs-label">Chapter contents</div>
+            <div class="rs-toc-modes" id="rs-toc-modes">
+              <button class="rs-toc-btn" data-cctoc="floating">Floating</button>
+              <button class="rs-toc-btn" data-cctoc="intext">In text</button>
+              <button class="rs-toc-btn" data-cctoc="topbar">Top bar</button>
+              <button class="rs-toc-btn" data-cctoc="off">Off</button>
+            </div>
+            <div class="rs-hint">Where the chapter list sits. Sidebar pins it left; Top bar pins it above the page; Off hides it. (In text scrolls with the chapter, coming soon.)</div>
+          </div>
+
+          <div class="rs-divider"></div>
+
+          <!-- FONT SIZE -->
+          <div class="rs-section">
+            <div class="rs-label">Text size</div>
+            <div class="rs-fontsize">
+              <button class="rs-fs-btn" id="rs-fs-down" aria-label="Decrease text size">&minus;</button>
+              <span class="rs-fs-val" id="rs-fs-val">100%</span>
+              <button class="rs-fs-btn" id="rs-fs-up" aria-label="Increase text size">+</button>
+            </div>
+          </div>
+
+          <!-- FONT FAMILY -->
+          <div class="rs-section">
+            <div class="rs-label">Typeface</div>
+            <div class="rs-fonts" id="rs-fonts">
+              <button class="rs-font-btn" data-font="system">System</button>
+              <button class="rs-font-btn" data-font="inter" style="font-family:'Inter',sans-serif;">Inter</button>
+              <button class="rs-font-btn" data-font="garamond" style="font-family:'EB Garamond',serif;">Garamond</button>
+              <button class="rs-font-btn" data-font="georgia" style="font-family:Georgia,serif;">Georgia</button>
+              <button class="rs-font-btn" data-font="literata" style="font-family:'Literata',serif;">Literata</button>
+              <button class="rs-font-btn" data-font="jetbrains" style="font-family:'JetBrains Mono',monospace;">Mono</button>
+            </div>
+          </div>
+
+          <!-- READ ALOUD -->
+          <div class="rs-section">
+            <div class="rs-label">Read aloud</div>
+            <div class="rs-tts-controls">
+              <button class="rs-tts-btn" id="rs-tts-play">
+                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+                Play
+              </button>
+              <button class="rs-tts-btn" id="rs-tts-pause">
+                <svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                Pause
+              </button>
+              <button class="rs-tts-btn" id="rs-tts-stop">
+                <svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="5" width="14" height="14"/></svg>
+                Stop
+              </button>
+            </div>
+            <div class="rs-tts-label" id="rs-tts-label">Reads the open chapter aloud.</div>
+            <select class="rs-select" id="rs-voice-select" aria-label="Voice"></select>
+            <div class="rs-hint" id="rs-voice-hint">Voices are provided by your browser.</div>
+            <div class="rs-range-row" style="margin-top:10px;">
+              <input type="range" class="rs-range" id="rs-speed-slider" min="0.5" max="2" step="0.1" value="1" aria-label="Reading speed">
+              <span class="rs-range-val" id="rs-speed-val">1.0&times;</span>
+            </div>
+          </div>
+
+          <div class="rs-divider"></div>
+
+          <!-- ACCESSIBILITY -->
+          <div class="rs-section">
+            <div class="rs-label">Accessibility</div>
+            <div class="rs-a11y-list">
+              <label class="rs-a11y-row">
+                <input type="checkbox" data-a11y-toggle="contrast">
+                <span class="rs-a11y-text">
+                  <span class="rs-a11y-label">High contrast text</span>
+                  <span class="rs-a11y-help">Darker neutrals on body text and secondary copy so they meet WCAG AA 4.5 to 1.</span>
+                </span>
+              </label>
+              <label class="rs-a11y-row">
+                <input type="checkbox" data-a11y-toggle="text">
+                <span class="rs-a11y-text">
+                  <span class="rs-a11y-label">Large text</span>
+                  <span class="rs-a11y-help">Body text scales from 19 to 22 pixels. Sidenotes scale from 13 to 17.</span>
+                </span>
+              </label>
+              <label class="rs-a11y-row">
+                <input type="checkbox" data-a11y-toggle="motion">
+                <span class="rs-a11y-text">
+                  <span class="rs-a11y-label">Reduced motion</span>
+                  <span class="rs-a11y-help">Turns off scroll fade-ins, sidenote reveals, and sketch draw-in animations.</span>
+                </span>
+              </label>
+              <label class="rs-a11y-row">
+                <input type="checkbox" data-a11y-toggle="font">
+                <span class="rs-a11y-text">
+                  <span class="rs-a11y-label">Dyslexia-friendly font</span>
+                  <span class="rs-a11y-help">Swaps the body serif for Atkinson Hyperlegible, which has heavier letter differentiation.</span>
+                </span>
+              </label>
+            </div>
+            <button type="button" class="rs-reset-btn" id="rs-reset-defaults">Reset to accessible defaults</button>
+            <div class="rs-hint">This book ships WCAG 2.1 AA-compliant. Reset restores the default theme, color, typeface, size, and toggles.</div>
+          </div>
+
+          <div class="rs-divider"></div>
+
+          <!-- API KEY (stub) -->
+          <div class="rs-section">
+            <div class="rs-label">API key</div>
+            <input type="password" class="rs-text-input" id="rs-api-key" placeholder="sk-ant-..." autocomplete="off" spellcheck="false" aria-label="Anthropic API key">
+            <div class="rs-hint">Optional. Used later so the in-chapter AI tools run on your own key. Stored only in this browser, never sent anywhere yet.</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sb-brand" id="sb-brand" role="button" tabindex="0" aria-label="Return to welcome page">
+      <div class="sb-brand-label">Principles of Marketing</div>
+      <div class="sb-brand-title">An AI-Integrated Approach</div>
+      
+    </div>
+
+    <!-- Sidebar search: indexes chapter titles + section headings -->
+    <div class="sb-search">
+      <div class="sb-search-box">
+        <svg class="sb-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" id="sb-search-input" class="sb-search-input" placeholder="Search the book" autocomplete="off" spellcheck="false" aria-label="Search chapters and sections">
+        <button type="button" id="sb-search-clear" class="sb-search-clear" aria-label="Clear search" hidden>&times;</button>
+      </div>
+      <div class="sb-search-results" id="sb-search-results" hidden></div>
+    </div>
+
+    <div class="sb-item active" data-page="welcome"><span class="num">&nbsp;</span> Welcome</div>
+
+    <!-- Front Matter -->
+    <div class="sb-part" data-group="frontmatter">
+      <span>Front Matter</span>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="sb-group" data-group="frontmatter">
+      <div class="sb-item" data-href="front-preface.html"><span class="num">&nbsp;</span> Preface</div>
+      <div class="sb-item" data-href="front-how-to-use.html"><span class="num">&nbsp;</span> How to Use This Book</div>
+      <div class="sb-item" data-href="front-instructor-notes.html"><span class="num">&nbsp;</span> Instructor's Notes</div>
+    </div>
+
+    <!-- Part I: Foundations -->
+    <div class="sb-part" data-group="part1">
+      <span>Part I <span class="sb-part-title">Foundations</span></span>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="sb-group" data-group="part1">
+      <div class="sb-item" data-href="chapter-01-ai-for-marketers.html"><span class="num">1</span> AI for Marketers</div>
+      <div class="sb-item" data-href="chapter-02-what-marketing-is.html"><span class="num">2</span> What Marketing Is</div>
+      <div class="sb-item" data-href="chapter-03-marketing-environment.html"><span class="num">3</span> The Marketing Environment</div>
+      <div class="sb-item" data-href="chapter-04-how-buyers-buy.html"><span class="num">4</span> How Buyers Actually Buy</div>
+      <div class="sb-item" data-href="chapter-05-marketing-research.html"><span class="num">5</span> Marketing Research</div>
+    </div>
+
+    <!-- Part II: Strategy -->
+    <div class="sb-part" data-group="part2">
+      <span>Part II <span class="sb-part-title">Strategy</span></span>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="sb-group" data-group="part2">
+      <div class="sb-item" data-href="chapter-06-stp.html"><span class="num">6</span> Segmentation, Targeting, Positioning</div>
+      <div class="sb-item" data-href="chapter-07-brands.html"><span class="num">7</span> Brands and Brand Management</div>
+    </div>
+
+    <!-- Part III: Offer Design -->
+    <div class="sb-part" data-group="part3">
+      <span>Part III <span class="sb-part-title">Offer Design</span></span>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="sb-group" data-group="part3">
+      <div class="sb-item" data-href="chapter-08-product-management.html"><span class="num">8</span> Product Management</div>
+      <div class="sb-item" data-href="chapter-09-services.html"><span class="num">9</span> Services Marketing</div>
+      <div class="sb-item" data-href="chapter-10-pricing.html"><span class="num">10</span> Pricing</div>
+    </div>
+
+    <!-- Part IV: Place + Channels -->
+    <div class="sb-part" data-group="part4">
+      <span>Part IV <span class="sb-part-title">Place + Channels</span></span>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="sb-group" data-group="part4">
+      <div class="sb-item" data-href="chapter-11-distribution.html"><span class="num">11</span> Distribution Strategy</div>
+      <div class="sb-item" data-href="chapter-12-retail.html"><span class="num">12</span> Retail</div>
+      <div class="sb-item" data-href="chapter-13-dtc-ecommerce.html"><span class="num">13</span> DTC and E-Commerce</div>
+      <div class="sb-item" data-href="chapter-14-mobile-app.html"><span class="num">14</span> Mobile and App Marketing</div>
+      <div class="sb-item" data-href="chapter-15-international.html"><span class="num">15</span> International Marketing</div>
+    </div>
+
+    <!-- Part V: Demand Generation -->
+    <div class="sb-part" data-group="part5">
+      <span>Part V <span class="sb-part-title">Demand Generation</span></span>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="sb-group" data-group="part5">
+      <div class="sb-item" data-href="chapter-16-promotions.html"><span class="num">16</span> Promotions and Advertising</div>
+      <div class="sb-item" data-href="chapter-17-content-marketing.html"><span class="num">17</span> Content Marketing</div>
+      <div class="sb-item" data-href="chapter-18-digital-marketing.html"><span class="num">18</span> Digital Marketing</div>
+      <div class="sb-item" data-href="chapter-19-social-media.html"><span class="num">19</span> Social Media Marketing</div>
+      <div class="sb-item" data-href="chapter-20-creator-economy.html"><span class="num">20</span> The Creator Economy</div>
+      <div class="sb-item" data-href="chapter-21-lifecycle.html"><span class="num">21</span> Lifecycle, Email, SMS</div>
+      <div class="sb-item" data-href="chapter-22-pr-crisis.html"><span class="num">22</span> PR and Crisis Comms</div>
+    </div>
+
+    <!-- Part VI: Performance + Operations -->
+    <div class="sb-part" data-group="part6">
+      <span>Part VI <span class="sb-part-title">Performance + Operations</span></span>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="sb-group" data-group="part6">
+      <div class="sb-item" data-href="chapter-23-sales-alignment.html"><span class="num">23</span> Sales and Marketing Alignment</div>
+      <div class="sb-item" data-href="chapter-24-plan-analytics.html"><span class="num">24</span> Marketing Plan and Analytics</div>
+      <div class="sb-item" data-href="chapter-25-marketing-finance.html"><span class="num">25</span> Marketing Finance</div>
+    </div>
+
+    <!-- Part VII: Governance and Synthesis -->
+    <div class="sb-part" data-group="part7">
+      <span>Part VII <span class="sb-part-title">Governance and Synthesis</span></span>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="sb-group" data-group="part7">
+      <div class="sb-item" data-href="chapter-26-ethics-ai.html"><span class="num">26</span> Ethics, Privacy, AI Governance</div>
+      <div class="sb-item" data-href="chapter-27-capstone.html"><span class="num">27</span> Build Your Marketing AI Stack</div>
+    </div>
+
+    <!-- Appendices -->
+    <div class="sb-divider"></div>
+    <div class="sb-part" data-group="appendices">
+      <span>Appendices</span>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="sb-group" data-group="appendices">
+      <div class="sb-item" data-href="appendix-A-canonical-readings.html"><span class="num">A</span> Canonical Readings</div>
+      <div class="sb-item" data-href="appendix-B-extended-cases.html"><span class="num">B</span> Extended Cases</div>
+      <div class="sb-item" data-href="appendix-C-monday-morning-recipes.html"><span class="num">C</span> Monday Morning Recipes</div>
+    </div>
+
+    <!-- Back Matter -->
+    <div class="sb-divider"></div>
+    <div class="sb-part" data-group="backmatter">
+      <span>Back Matter</span>
+      <span class="chevron">&#9660;</span>
+    </div>
+    <div class="sb-group" data-group="backmatter">
+      <div class="sb-item" data-href="back-glossary.html"><span class="num">G</span> Glossary</div>
+    </div>
+  </nav>
+
+  <!-- Mobile backdrop -->
+  <div class="sidebar-backdrop" id="backdrop"></div>
+
+  <!-- Main content -->
+  <main class="main" id="main">
+    <div id="welcome" class="welcome" tabindex="0" aria-label="Welcome">
+      <h1 class="welcome-sr-title">Principles of Marketing: An AI-Integrated Approach</h1>
+      <p class="eyebrow">An Interactive Textbook</p>
+
+      <div class="book-cover" id="book-cover" aria-hidden="true">
+        <canvas id="cover-particles"></canvas>
+        <div class="cover-content">
+          <div class="cover-title">Principles of<br><em>Marketing</em></div>
+          <div class="cover-subtitle">An AI-Integrated Approach</div>
+          <div class="cover-divider"></div>
+        </div>
+      </div>
+
+      <hr class="welcome-rule">
+      <p class="lede">An interactive introduction to marketing for the AI era. Twenty-seven chapters, each readable two ways: Comprehensive or Concise.</p>
+
+      <div class="welcome-stats">
+        <div class="wstat"><div class="wstat-num">27</div><div class="wstat-label">Chapters</div></div>
+        <div class="wstat"><div class="wstat-num">7</div><div class="wstat-label">Parts</div></div>
+        <div class="wstat"><div class="wstat-num">2</div><div class="wstat-label">Reading depths</div></div>
+      </div>
+
+      <p class="welcome-hint">Select a chapter from the menu to begin.</p>
+    </div>
+
+    <iframe id="content-frame" style="display:none;" title="Chapter content"></iframe>
+  </main>
+
+  <script>
+  (function() {
+    'use strict';
+
+    // Config-driven (NOT hard-coded): a deployment or platform can set window.CC_CONFIG
+    // before this script loads to override the defaults + which options readers are offered.
+    window.CC_CONFIG = window.CC_CONFIG || {};
+    CC_CONFIG.toc = CC_CONFIG.toc || { default: 'sidebar', allowed: ['sidebar', 'topbar', 'floating', 'inline', 'off'] };
+    CC_CONFIG.depth = CC_CONFIG.depth || { default: 'complete', allowed: ['complete', 'focused'] };
+
+    // ── DOM refs ──
+    var sidebar = document.getElementById('sidebar');
+    var main = document.getElementById('main');
+    var welcome = document.getElementById('welcome');
+    var frame = document.getElementById('content-frame');
+    var backdrop = document.getElementById('backdrop');
+    var toggle = document.getElementById('sidebar-toggle');
+    var headerTitle = document.getElementById('header-title');
+    var brand = document.getElementById('sb-brand');
+    var rsBtn = document.getElementById('rs-btn');
+    var rsPanel = document.getElementById('rs-panel');
+    var rsWrap = document.getElementById('rs-wrap');
+    var progressFill = document.getElementById('reading-progress-fill');
+
+    var isMobile = function() { return window.innerWidth <= 768; };
+    var isFloating = function() { return document.documentElement.getAttribute('data-toc') === 'floating'; };
+
+    // ════════════════════════════════════════════════════════════════════
+    //  ACCESSIBILITY BRIDGE — shell drives the chapter content
+    //  The shared _accessibility.js already (a) writes the cm_a11y_v1 JSON to
+    //  localStorage and (b) sets data-a11y-* on the SHELL's <html> + syncs the
+    //  shell checkboxes. What it does NOT do is reach into the chapter iframe.
+    //  These helpers mirror the persisted state onto the iframe's <html> so the
+    //  chapter's already-loaded _accessibility.css activates, and re-apply on
+    //  every chapter load + inside the theming entry point so it survives nav.
+    // ════════════════════════════════════════════════════════════════════
+    var A11Y_KEY = 'cm_a11y_v1';
+    var A11Y_TOGGLES = [
+      { id: 'contrast', attr: 'data-a11y-contrast', on: 'high' },
+      { id: 'text',     attr: 'data-a11y-text',     on: 'large' },
+      { id: 'motion',   attr: 'data-a11y-motion',   on: 'reduced' },
+      { id: 'font',     attr: 'data-a11y-font',     on: 'dyslexia' }
+    ];
+
+    function readA11yState() {
+      var s = { contrast: false, text: false, motion: false, font: false };
+      try {
+        var raw = localStorage.getItem(A11Y_KEY);
+        if (!raw) return s;
+        var parsed = JSON.parse(raw);
+        A11Y_TOGGLES.forEach(function(t) {
+          if (typeof parsed[t.id] === 'boolean') s[t.id] = parsed[t.id];
+        });
+      } catch (e) {}
+      return s;
+    }
+
+    // Reflect the persisted a11y state onto the chapter iframe's <html>.
+    function applyA11yToFrame() {
+      try {
+        var doc = frame.contentDocument;
+        if (!doc || !doc.documentElement) return;
+        var html = doc.documentElement;
+        var state = readA11yState();
+        A11Y_TOGGLES.forEach(function(t) {
+          if (state[t.id]) html.setAttribute(t.attr, t.on);
+          else html.removeAttribute(t.attr);
+        });
+      } catch (e) {}
+    }
+
+    // Mirror persisted state into the shell checkboxes (defensive: _accessibility.js
+    // also does this, but load-order can vary, and we want the shell UI correct
+    // even if that script is delayed).
+    function syncA11yShellCheckboxes() {
+      var state = readA11yState();
+      A11Y_TOGGLES.forEach(function(t) {
+        var els = document.querySelectorAll('input[type="checkbox"][data-a11y-toggle="' + t.id + '"]');
+        for (var i = 0; i < els.length; i++) els[i].checked = !!state[t.id];
+      });
+    }
+
+    // Add our OWN change listeners to the shell a11y checkboxes. These are
+    // additive to whatever _accessibility.js attaches: that script persists the
+    // JSON + themes the SHELL; ours propagates the change into the iframe. We
+    // also write the JSON ourselves so the iframe stays correct even if the
+    // shared script has not loaded yet.
+    function wireA11yShellControls() {
+      A11Y_TOGGLES.forEach(function(t) {
+        var els = document.querySelectorAll('input[type="checkbox"][data-a11y-toggle="' + t.id + '"]');
+        for (var i = 0; i < els.length; i++) {
+          (function(el) {
+            el.addEventListener('change', function() {
+              var state = readA11yState();
+              state[t.id] = !!el.checked;
+              try { localStorage.setItem(A11Y_KEY, JSON.stringify(state)); } catch (e) {}
+              // Reflect on the shell <html> too (so the shell itself honors it).
+              try {
+                if (state[t.id]) document.documentElement.setAttribute(t.attr, t.on);
+                else document.documentElement.removeAttribute(t.attr);
+              } catch (e) {}
+              applyA11yToFrame();
+            });
+          })(els[i]);
+        }
+      });
+      // Cross-tab / shared-script writes: keep the iframe + shell checkboxes in sync.
+      window.addEventListener('storage', function(e) {
+        if (e.key !== A11Y_KEY) return;
+        syncA11yShellCheckboxes();
+        applyA11yToFrame();
+      });
+    }
+
+    // ════════════════════════════════════════════════════════════════════
+    //  THEME MODEL — decoupled ACCENT x MODE
+    //  MODE (light|dark) sets the neutral base; ACCENT sets the coral family.
+    //  applyTheme(mode, accent) composes the full palette, writes :root vars,
+    //  persists to localStorage, and re-themes the chapter iframe.
+    // ════════════════════════════════════════════════════════════════════
+
+    // Warm-tuned base palettes per mode (neutrals only; accent merged in later)
+    var MODES = {
+      light: {
+        bg: '#ffffff', bgAlt: '#f4f4f6', text: '#1a1a1a',
+        textSec: '#555555', textMuted: '#6b6b6b', border: '#e6e6ea', dark: false
+      },
+      gray: {
+        bg: '#2d3138', bgAlt: '#363b44', text: '#e8eaee',
+        textSec: '#b0b6bf', textMuted: '#a8aeb8', border: '#444a55', dark: true
+      },
+      night: {
+        bg: '#0e1014', bgAlt: '#161a20', text: '#e9ebee',
+        textSec: '#a6abb3', textMuted: '#9298a2', border: '#242931', dark: true
+      }
+    };
+
+    var ACCENT_PRESETS = ['#DA7756', '#3B7DD8', '#3FA66A', '#8B5CC7', '#D9A23B', '#2FA6A0', '#D85C8A'];
+
+    // Fonts
+    var FONTS = {
+      'system': '',
+      'inter': "'Inter', sans-serif",
+      'garamond': "'EB Garamond', Georgia, serif",
+      'georgia': "Georgia, 'Times New Roman', serif",
+      'literata': "'Literata', serif",
+      'jetbrains': "'JetBrains Mono', monospace"
+    };
+    var FONT_IMPORTS = {
+      'inter': 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
+      'garamond': 'https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap',
+      'literata': 'https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,600;0,700;1,400&display=swap',
+      'jetbrains': 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap'
+    };
+
+    // Accept only a valid #rrggbb / #rgb hex; otherwise fall back to coral. This
+    // guards the persisted accent so a corrupted value never silently reverts.
+    function sanitizeAccent(hex) {
+      return /^#[0-9a-f]{3}([0-9a-f]{3})?$/i.test(String(hex)) ? String(hex) : '#DA7756';
+    }
+
+    // State. mode + accent are the persisted theme identity (a preset hex OR a
+    // custom-picker hex — both live in cc-accent). The whole palette is always
+    // re-derived from these two, so zoom/font/density/nav never lose the color.
+    var readerState = {
+      mode: (function (m) { return (m === 'gray' || m === 'night') ? m : (m === 'dark' ? 'night' : 'light'); })(localStorage.getItem('cc-mode')),
+      accent: sanitizeAccent(localStorage.getItem('cc-accent') || '#DA7756'),
+      fontSize: parseInt(localStorage.getItem('cc-fontSize') || '100', 10),
+      font: localStorage.getItem('cc-font') || 'system',
+      density: localStorage.getItem('cc-density') || 'complete',
+      speed: parseFloat(localStorage.getItem('cc-speed') || '1'),
+      voice: localStorage.getItem('cc-voice') || '',
+      toc: localStorage.getItem('cc-toc') || CC_CONFIG.toc.default,
+      chtoc: localStorage.getItem('cc-chtoc') || 'floating'
+    };
+
+    // ── color math: hex <-> rgb <-> hsl, lighten/darken ──
+    function hexToRgb(hex) {
+      hex = String(hex).replace('#', '');
+      if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+      return {
+        r: parseInt(hex.substring(0,2), 16) || 0,
+        g: parseInt(hex.substring(2,4), 16) || 0,
+        b: parseInt(hex.substring(4,6), 16) || 0
+      };
+    }
+    function rgbToHex(r, g, b) {
+      r = Math.max(0, Math.min(255, Math.round(r)));
+      g = Math.max(0, Math.min(255, Math.round(g)));
+      b = Math.max(0, Math.min(255, Math.round(b)));
+      return '#' + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
+    }
+    function rgbToHsl(r, g, b) {
+      r /= 255; g /= 255; b /= 255;
+      var max = Math.max(r, g, b), min = Math.min(r, g, b);
+      var h, s, l = (max + min) / 2;
+      if (max === min) { h = s = 0; }
+      else {
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          default: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+      }
+      return { h: h * 360, s: s * 100, l: l * 100 };
+    }
+    function hslToHex(h, s, l) {
+      h = ((h % 360) + 360) % 360; s = Math.max(0, Math.min(100, s)) / 100; l = Math.max(0, Math.min(100, l)) / 100;
+      var c = (1 - Math.abs(2 * l - 1)) * s;
+      var x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+      var m = l - c / 2;
+      var r = 0, g = 0, b = 0;
+      if (h < 60) { r = c; g = x; }
+      else if (h < 120) { r = x; g = c; }
+      else if (h < 180) { g = c; b = x; }
+      else if (h < 240) { g = x; b = c; }
+      else if (h < 300) { r = x; b = c; }
+      else { r = c; b = x; }
+      return rgbToHex((r + m) * 255, (g + m) * 255, (b + m) * 255);
+    }
+    function darken(hex, amt) { var c = hexToRgb(hex); var h = rgbToHsl(c.r, c.g, c.b); return hslToHex(h.h, h.s, h.l - amt); }
+    function lighten(hex, amt) { var c = hexToRgb(hex); var h = rgbToHsl(c.r, c.g, c.b); return hslToHex(h.h, h.s, h.l + amt); }
+
+    // Compose the full active palette from mode + accent.
+    function composePalette(mode, accent) {
+      var base = MODES[mode] || MODES.light;
+      var ac = hexToRgb(accent);
+      var accentDeep = darken(accent, 15);
+      // soft: in light mode a pale tint; in dark mode a translucent accent so it reads on dark bg
+      var accentSoft = base.dark ? 'rgba(' + ac.r + ',' + ac.g + ',' + ac.b + ',0.22)' : lighten(accent, 28);
+      var accentLight = 'rgba(' + ac.r + ',' + ac.g + ',' + ac.b + ',' + (base.dark ? 0.16 : 0.08) + ')';
+      return {
+        bg: base.bg, bgAlt: base.bgAlt, text: base.text, textSec: base.textSec,
+        textMuted: base.textMuted, border: base.border, dark: base.dark,
+        accent: accent, accentDeep: accentDeep, accentSoft: accentSoft, accentLight: accentLight
+      };
+    }
+
+    // Currently-applied palette (kept in sync by applyTheme; used by the recolor engine).
+    var palette = composePalette(readerState.mode, readerState.accent);
+
+    function applyTheme(mode, accent) {
+      readerState.mode = (mode === 'gray' || mode === 'night' || mode === 'light') ? mode : (mode === 'dark' ? 'night' : 'light');
+      document.documentElement.setAttribute('data-mode', readerState.mode);
+      readerState.accent = sanitizeAccent(accent || readerState.accent || '#DA7756');
+      localStorage.setItem('cc-mode', readerState.mode);
+      localStorage.setItem('cc-accent', readerState.accent);
+
+      palette = composePalette(readerState.mode, readerState.accent);
+
+      // Write shell :root vars — chrome recolors instantly.
+      var root = document.documentElement;
+      root.style.setProperty('--bg', palette.bg);
+      root.style.setProperty('--bg-alt', palette.bgAlt);
+      root.style.setProperty('--text', palette.text);
+      root.style.setProperty('--text-secondary', palette.textSec);
+      root.style.setProperty('--text-muted', palette.textMuted);
+      root.style.setProperty('--border', palette.border);
+      root.style.setProperty('--coral', palette.accent);
+      root.style.setProperty('--coral-deep', palette.accentDeep);
+      root.style.setProperty('--coral-soft', palette.accentSoft);
+      root.style.setProperty('--coral-light', palette.accentLight);
+
+      // Update mode + accent button active states + custom picker value
+      document.querySelectorAll('.rs-mode-btn').forEach(function(b) {
+        b.classList.toggle('active', b.dataset.mode === readerState.mode);
+      });
+      document.querySelectorAll('.rs-accent-btn').forEach(function(b) {
+        b.classList.toggle('active', b.dataset.accent.toLowerCase() === readerState.accent.toLowerCase());
+      });
+      var customPicker = document.getElementById('rs-custom-color');
+      if (customPicker && /^#[0-9a-f]{6}$/i.test(readerState.accent)) customPicker.value = readerState.accent;
+
+      // Re-theme chapter iframe (chrome vars + sketch luminance remap).
+      injectIframeStyles();
+    }
+
+    // ── Mode toggle wiring ──
+    document.querySelectorAll('.rs-mode-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() { applyTheme(btn.dataset.mode, readerState.accent); });
+    });
+
+    // ── Accent preset + custom picker wiring ──
+    document.querySelectorAll('.rs-accent-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() { applyTheme(readerState.mode, btn.dataset.accent); });
+    });
+    var customPicker = document.getElementById('rs-custom-color');
+    if (customPicker) {
+      customPicker.addEventListener('input', function() { applyTheme(readerState.mode, customPicker.value); });
+    }
+
+    // ════════════════════════════════════════════════════════════════════
+    //  FONT SIZE + FONT FAMILY
+    // ════════════════════════════════════════════════════════════════════
+    var rsFsVal = document.getElementById('rs-fs-val');
+    function applyFontSize(pct) {
+      readerState.fontSize = Math.max(80, Math.min(150, pct));
+      localStorage.setItem('cc-fontSize', readerState.fontSize);
+      rsFsVal.textContent = readerState.fontSize + '%';
+      injectIframeStyles();
+    }
+    document.getElementById('rs-fs-down').addEventListener('click', function() { applyFontSize(readerState.fontSize - 10); });
+    document.getElementById('rs-fs-up').addEventListener('click', function() { applyFontSize(readerState.fontSize + 10); });
+
+    function applyFont(font) {
+      readerState.font = font;
+      localStorage.setItem('cc-font', font);
+      document.querySelectorAll('.rs-font-btn').forEach(function(b) {
+        b.classList.toggle('active', b.dataset.font === font);
+      });
+      var ff = FONTS[font];
+      if (ff) {
+        var shellUrl = FONT_IMPORTS[font];
+        if (shellUrl) {
+          var ex = document.getElementById('cc-shell-font');
+          if (ex) ex.remove();
+          var link = document.createElement('link');
+          link.id = 'cc-shell-font';
+          link.rel = 'stylesheet';
+          link.href = shellUrl;
+          document.head.appendChild(link);
+        }
+        document.documentElement.style.setProperty('--font', ff);
+      } else {
+        document.documentElement.style.setProperty('--font', "'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif");
+        var ex2 = document.getElementById('cc-shell-font');
+        if (ex2) ex2.remove();
+      }
+      injectIframeStyles();
+    }
+    document.querySelectorAll('.rs-font-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() { applyFont(btn.dataset.font); });
+    });
+
+    // ════════════════════════════════════════════════════════════════════
+    //  DEPTH TOGGLE (Complete / Focused) — degrades gracefully on untagged chapters
+    // ════════════════════════════════════════════════════════════════════
+    var depthBtn = document.getElementById('depth-btn');
+    var depthDropdown = document.getElementById('depth-dropdown');
+    var depthLabel = document.getElementById('depth-label');
+    var depthCheckComplete = document.getElementById('depth-check-complete');
+    var depthCheckFocused = document.getElementById('depth-check-focused');
+
+    function applyDensity(mode) {
+      readerState.density = (mode === 'focused') ? 'focused' : 'complete';
+      localStorage.setItem('cc-density', readerState.density);
+      depthLabel.textContent = readerState.density === 'complete' ? 'Complete' : 'Focused';
+      depthCheckComplete.innerHTML = readerState.density === 'complete' ? '&#10003;' : '&nbsp;';
+      depthCheckFocused.innerHTML = readerState.density === 'focused' ? '&#10003;' : '&nbsp;';
+      injectIframeStyles();
+      postDepthToFrame();
+      // The depth toggle reflows the chapter inside the frame (blocks hide/show),
+      // so rough-notation marks on still-visible text drift. Re-fit them AFTER the
+      // frame has processed the postMessage and relaid out (hence the small delay).
+      try {
+        var df = document.getElementById('content-frame');
+        if (df && df.contentWindow) setTimeout(function () {
+          try { if (typeof df.contentWindow.__reannotate__ === 'function') df.contentWindow.__reannotate__(); } catch (e) {}
+          // Sidenotes appear/vanish with depth, so re-place the floating chapter-TOC (and refresh
+          // its list to the now-visible sections) for the new depth; preserve an open panel.
+          try {
+            var ifd = df.contentDocument;
+            var navEl = ifd && ifd.querySelector('nav.chapter-toc');
+            var wasOpen = !!(navEl && navEl.classList.contains('cc-open'));
+            if (ifd) applyChapterToc(ifd, readerState.chtoc);
+            if (wasOpen) { var n2 = ifd.querySelector('nav.chapter-toc'); if (n2) n2.classList.add('cc-open'); }
+          } catch (e) {}
+        }, 280);
+      } catch (e) {}
+    }
+    // Tell the chapter to apply the depth ITSELF (the depth engine runs inside the
+    // frame on its own document). This is the file://-robust path: postMessage works
+    // cross-origin even when index.html is double-clicked, where the shell cannot
+    // script into the iframe. On a server it is simply belt-and-suspenders.
+    function postDepthToFrame() {
+      try {
+        var f = document.getElementById('content-frame');
+        if (f && f.contentWindow) f.contentWindow.postMessage({ ccDepth: readerState.density }, '*');
+      } catch (e) {}
+    }
+    depthBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var open = depthDropdown.classList.toggle('open');
+      depthBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      rsPanel.classList.remove('open');
+      rsBtn.setAttribute('aria-expanded', 'false');
+      rsBtn.classList.remove('active');
+    });
+    document.querySelectorAll('.depth-option').forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        applyDensity(opt.dataset.density);
+        depthDropdown.classList.remove('open');
+        depthBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ════════════════════════════════════════════════════════════════════
+    //  CROSS-IFRAME RECOLOR ENGINE  (ported from MRV book/index.html)
+    //  Two mechanisms:
+    //   1. Chrome via CSS-var override  — inject <style id="cc-theme-vars">
+    //      overriding the chapter's own --coral/--ink/--cream/... vars.
+    //   2. Sketches via luminance remapper — rewrite inline-SVG fill/stroke
+    //      attributes + inline styles + <style> blocks in the chapter doc
+    //      AND in any nested same-origin exhibit iframes. A MutationObserver
+    //      catches lazily-drawn (IntersectionObserver) rough.js SVGs.
+    // ════════════════════════════════════════════════════════════════════
+
+    // Build the CSS-var override block for the chapter iframe :root.
+    // Maps the Core chapter's palette vars onto the active theme.
+    function buildThemeVarsCSS() {
+      var p = palette;
+      var css = ':root {\n';
+      css += '  --coral: ' + p.accent + ' !important;\n';
+      css += '  --coral-deep: ' + p.accentDeep + ' !important;\n';
+      css += '  --coral-soft: ' + p.accentSoft + ' !important;\n';
+      css += '  --ink: ' + p.text + ' !important;\n';
+      css += '  --ink-2: ' + p.textSec + ' !important;\n';
+      css += '  --ink-3: ' + p.textMuted + ' !important;\n';
+      css += '  --line: ' + p.border + ' !important;\n';
+      css += '  --cream: ' + p.bgAlt + ' !important;\n';
+      css += '  --bg: ' + p.bg + ' !important;\n';
+      css += '  --paper: ' + p.bg + ' !important;\n';
+      css += '}\n';
+      // Belt-and-suspenders: ensure the document surface flips even if a chapter
+      // hardcodes html/body colors instead of reading the vars.
+      css += 'html, body { background: ' + p.bg + ' !important; color: ' + p.text + ' !important; }\n';
+      return css;
+    }
+
+    // PRE-EMPTIVE sketch CSS (fix #2 / #3). rough.js draws sketches lazily on
+    // scroll with the hardcoded Core palette baked into fill=/stroke= attributes,
+    // and rough-notation appends <svg class="rough-annotation"> with the accent on
+    // its <path> strokes. Both paint BEFORE our JS observer can react, so without
+    // this they flash coral. These attribute selectors (mirroring MRV's
+    // buildExhibitCSS) map the known palette the instant any SVG renders — no
+    // flash, no JS needed. Covers fill AND stroke, upper- and lower-case hex.
+    function buildPreemptiveSketchCSS(p) {
+      function rule(hexes, prop, val) {
+        var sels = [];
+        for (var i = 0; i < hexes.length; i++) {
+          sels.push('svg [' + prop + '="' + hexes[i] + '"]');
+          sels.push('svg[' + prop + '="' + hexes[i] + '"]');
+        }
+        return sels.join(',') + ' { ' + prop + ': ' + val + ' !important; }\n';
+      }
+      // accent family
+      var accentHex = ['#DA7756', '#da7756', '#C45D3E', '#c45d3e'];
+      var deepHex   = ['#B8553A', '#b8553a'];
+      var softHex   = ['#E8A488', '#e8a488', '#fff7f0', '#FFF7F0'];
+      // ink family
+      var inkHex    = ['#1a1a1a', '#1A1A1A', '#000000', '#000'];
+      var ink2Hex   = ['#555555', '#555', '#444444', '#444'];
+      var ink3Hex   = ['#888888', '#888', '#999999', '#999'];
+      // surfaces
+      var bgHex     = ['#ffffff', '#fff', '#FFFFFF', '#FFF'];
+      var bgAltHex  = ['#f5f0e8', '#F5F0E8', '#fbf8f5', '#FBF8F5', '#fcfaf6', '#FCFAF6', '#fafaf8', '#FAFAF8'];
+      var borderHex = ['#e6dfd2', '#E6DFD2'];
+      var css = '';
+      // fills
+      css += rule(accentHex, 'fill', p.accent);
+      css += rule(deepHex,   'fill', p.accentDeep);
+      css += rule(softHex,   'fill', p.accentSoft);
+      css += rule(inkHex,    'fill', p.text);
+      css += rule(ink2Hex,   'fill', p.textSec);
+      css += rule(ink3Hex,   'fill', p.textMuted);
+      css += rule(bgHex,     'fill', p.bg);
+      css += rule(bgAltHex,  'fill', p.bgAlt);
+      css += rule(borderHex, 'fill', p.border);
+      // strokes
+      css += rule(accentHex, 'stroke', p.accent);
+      css += rule(deepHex,   'stroke', p.accentDeep);
+      css += rule(softHex,   'stroke', p.accentSoft);
+      css += rule(inkHex,    'stroke', p.text);
+      css += rule(ink2Hex,   'stroke', p.textSec);
+      css += rule(ink3Hex,   'stroke', p.textMuted);
+      css += rule(borderHex, 'stroke', p.border);
+      // rough-notation hand-drawn annotations bake the colour into <path> strokes.
+      // Map each Core annotation colour to its theme counterpart, preserving the
+      // deep/soft variants (e.g. highlights stay the soft tint, not the saturated
+      // accent). Scoped to .rough-annotation so specificity wins cleanly.
+      css += 'svg.rough-annotation path[stroke="#DA7756"], svg.rough-annotation path[stroke="#da7756"] { stroke: ' + p.accent + ' !important; }\n';
+      css += 'svg.rough-annotation path[stroke="#B8553A"], svg.rough-annotation path[stroke="#b8553a"] { stroke: ' + p.accentDeep + ' !important; }\n';
+      css += 'svg.rough-annotation path[stroke="#E8A488"], svg.rough-annotation path[stroke="#e8a488"] { stroke: ' + p.accentSoft + ' !important; }\n';
+      return css;
+    }
+
+    // ── luminance + accent classification ──
+    function hexLum(hex) {
+      hex = String(hex).replace('#', '');
+      if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+      if (hex.length > 6) hex = hex.substring(0, 6);
+      var r = parseInt(hex.substring(0,2), 16) || 0;
+      var g = parseInt(hex.substring(2,4), 16) || 0;
+      var b = parseInt(hex.substring(4,6), 16) || 0;
+      return (r * 299 + g * 587 + b * 114) / 1000;
+    }
+
+    function normHex(hex) {
+      var h = String(hex).toLowerCase().replace('#', '');
+      if (h.length === 3) h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+      return h.substring(0, 6);
+    }
+
+    // The Core sketch accent family — three DISTINCT buckets.
+    //   #da7756 -> accent, #b8553a -> accentDeep, #e8a488 -> accentSoft
+    // Returns the mapped theme color, or null if not an accent-family hex.
+    function mapAccentFamily(hex) {
+      var h = normHex(hex);
+      if (h === 'da7756' || h === 'c45d3e') return palette.accent;
+      if (h === 'b8553a') return palette.accentDeep;
+      if (h === 'e8a488') return palette.accentSoft;
+      return null;
+    }
+    function isAccentColor(hex) { return mapAccentFamily(hex) !== null; }
+
+    function hexToRgbComponents(hex) { return hexToRgb(hex); }
+
+    // Map background/fill colors by luminance (chapter docs are authored light → isDark=false).
+    function mapBg(hex, rt, isDark) {
+      var acc = mapAccentFamily(hex);
+      if (acc !== null) return acc;
+      var lum = hexLum(hex);
+      if (!isDark) {
+        if (lum >= 245) return rt.bg;
+        if (lum >= 220) return rt.bgAlt;
+        if (lum >= 160) return rt.border;
+        return rt.bgAlt;
+      } else {
+        if (lum <= 15) return rt.bg;
+        if (lum <= 50) return rt.bgAlt;
+        if (lum <= 100) return rt.border;
+        return rt.bgAlt;
+      }
+    }
+    // Map text/color: dark ink -> text, mid -> textSec/textMuted (mirrored for dark exhibits).
+    function mapText(hex, rt, isDark) {
+      var acc = mapAccentFamily(hex);
+      if (acc !== null) return acc;
+      var lum = hexLum(hex);
+      if (!isDark) {
+        if (lum <= 60) return rt.text;
+        if (lum <= 95) return rt.textSec;
+        if (lum <= 165) return rt.textMuted;
+        return rt.text;
+      } else {
+        if (lum >= 210) return rt.text;
+        if (lum >= 165) return rt.textSec;
+        if (lum >= 95) return rt.textMuted;
+        return rt.text;
+      }
+    }
+    function mapBorder(hex, rt) {
+      var acc = mapAccentFamily(hex);
+      if (acc !== null) return acc;
+      return rt.border;
+    }
+
+    // ── contrast guard (fix #4) ──────────────────────────────────────────────
+    // The text mappers above flip a bright/white color to dark theme-ink by
+    // luminance. That is correct for body text on a paper background, but it
+    // DESTROYS contrast when the same element's background is the accent (e.g. a
+    // green ".chip.on{background:var(--coral);color:#fff}" toggle), turning white
+    // text dark on a saturated fill. These helpers detect an accent/saturated
+    // background so we can keep the foreground light there.
+    function hexSat(hex) {
+      var c = hexToRgb(hex); return rgbToHsl(c.r, c.g, c.b).s; // 0..100
+    }
+    // A fill on which light text must stay light: an accent-family hex, OR any
+    // reasonably saturated colour that is not a near-white neutral.
+    function isSaturatedFill(hex) {
+      if (mapAccentFamily(hex) !== null) return true;
+      var h = normHex(hex);
+      // pure black/white and warm paper neutrals are not "saturated fills"
+      if (hexSat(hex) >= 30 && hexLum('#' + h) < 200) return true;
+      return false;
+    }
+    // Does a CSS declaration block paint its background with the active accent?
+    // Covers both the var() form (the chapter's --coral is overridden onto the
+    // accent) and a literal accent-family hex.
+    function blockBgIsAccent(blockText) {
+      if (!blockText) return false;
+      var m = blockText.match(/background(?:-color)?\s*:\s*([^;]+)/i);
+      if (!m) return false;
+      var v = m[1];
+      if (/var\(\s*--(coral|coral-deep|coral-soft)\b/i.test(v)) return true;
+      var hexes = v.match(/#[0-9a-fA-F]{3,8}/g);
+      if (hexes) { for (var i = 0; i < hexes.length; i++) { if (isSaturatedFill(hexes[i])) return true; } }
+      return false;
+    }
+    // The readable foreground for an accent/saturated background: white on a dark
+    // or vivid accent, dark ink on a pale accent (e.g. accentSoft tint).
+    function contrastTextOnAccent(rt) {
+      return hexLum(rt.accent) < 150 ? '#ffffff' : rt.text;
+    }
+    // Was the original text colour intentionally light (white-ish)? Only those get
+    // the contrast guard — a dark label on an accent bg was already low-contrast in
+    // the source and is left to the normal mapper.
+    function isLightText(hex) {
+      if (hex === 'white' || hex === 'White') return true;
+      if (hex && hex.charAt(0) === '#') return hexLum(hex) >= 170;
+      return false;
+    }
+
+    function isDocDark(edoc) {
+      try {
+        var cs = edoc.defaultView.getComputedStyle(edoc.body);
+        var bg = cs.backgroundColor;
+        var m = bg.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+        if (m) {
+          var lum = (parseInt(m[1]) * 299 + parseInt(m[2]) * 587 + parseInt(m[3]) * 114) / 1000;
+          return lum < 80;
+        }
+      } catch (e) {}
+      return false;
+    }
+
+    var SVG_TEXT_TAGS = { text: 1, tspan: 1, textpath: 1, textPath: 1 };
+
+    // ── Layer 1: SVG fill/stroke attributes (rough.js sets these) ──
+    function rewriteSVGAttributes(edoc, rt, isDark) {
+      var els = edoc.querySelectorAll('[fill], [stroke]');
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        var tag = el.tagName.toLowerCase();
+        var isText = SVG_TEXT_TAGS[tag];
+        if (el.hasAttribute('fill')) {
+          if (!el.hasAttribute('data-rs-orig-fill')) el.setAttribute('data-rs-orig-fill', el.getAttribute('fill'));
+          var of = el.getAttribute('data-rs-orig-fill');
+          if (of === 'none' || of === 'transparent' || of.indexOf('url') === 0) { /* skip */ }
+          else if (of && of.charAt(0) === '#') el.setAttribute('fill', isText ? mapText(of, rt, isDark) : mapBg(of, rt, isDark));
+          else if (of === 'white' || of === 'White') el.setAttribute('fill', isText ? mapText('#ffffff', rt, isDark) : mapBg('#ffffff', rt, isDark));
+          else if (of === 'black' || of === 'Black') el.setAttribute('fill', isText ? mapText('#000000', rt, isDark) : mapBg('#000000', rt, isDark));
+        }
+        if (el.hasAttribute('stroke')) {
+          if (!el.hasAttribute('data-rs-orig-stroke')) el.setAttribute('data-rs-orig-stroke', el.getAttribute('stroke'));
+          var os = el.getAttribute('data-rs-orig-stroke');
+          if (os === 'none' || os === 'transparent' || os.indexOf('url') === 0) { /* skip */ }
+          else if (os && os.charAt(0) === '#') el.setAttribute('stroke', mapBorder(os, rt));
+          else if (os === 'white' || os === 'White') el.setAttribute('stroke', mapBorder('#ffffff', rt));
+          else if (os === 'black' || os === 'Black') el.setAttribute('stroke', mapBorder('#000000', rt));
+        }
+      }
+    }
+    function restoreSVGAttributes(edoc) {
+      var fills = edoc.querySelectorAll('[data-rs-orig-fill]');
+      for (var i = 0; i < fills.length; i++) { fills[i].setAttribute('fill', fills[i].getAttribute('data-rs-orig-fill')); fills[i].removeAttribute('data-rs-orig-fill'); }
+      var strokes = edoc.querySelectorAll('[data-rs-orig-stroke]');
+      for (var j = 0; j < strokes.length; j++) { strokes[j].setAttribute('stroke', strokes[j].getAttribute('data-rs-orig-stroke')); strokes[j].removeAttribute('data-rs-orig-stroke'); }
+    }
+
+    // ── Layer 2: HTML inline style="" ──
+    function rewriteInlineStyles(edoc, rt, isDark) {
+      var els = edoc.querySelectorAll('[style]');
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        var style = el.getAttribute('style');
+        if (!style) continue;
+        if (style.indexOf('#') === -1 && style.indexOf('white') === -1 && style.indexOf('black') === -1 && style.indexOf('rgb') === -1) continue;
+        if (!el.hasAttribute('data-rs-orig-style')) el.setAttribute('data-rs-orig-style', style);
+        var orig = el.getAttribute('data-rs-orig-style');
+        var keepLightInline = blockBgIsAccent(orig);
+        var newStyle = orig.replace(/([\w-]+)\s*:\s*([^;]*(?:#[0-9a-fA-F]{3,8}|\bwhite\b|\bblack\b|\brgba?\s*\()[^;]*)/gi, function(full, prop, value) {
+          var p = prop.toLowerCase(), fn = null;
+          if (p === 'background' || p === 'background-color') fn = mapBg;
+          else if (p === 'color') fn = mapText;
+          else if (p.indexOf('border') === 0 || p === 'outline' || p === 'outline-color') fn = mapBorder;
+          else if (p === 'fill') fn = mapBg;
+          else if (p === 'stroke') fn = mapBorder;
+          else if (p === 'box-shadow' || p === 'text-shadow' || p === 'filter') return full;
+          else return full;
+          if (fn === mapText && keepLightInline && isLightText(value.trim())) {
+            return prop + ': ' + contrastTextOnAccent(rt);
+          }
+          var nv = value.replace(/#([0-9a-fA-F]{3,8})\b/g, function(hx) { return fn(hx, rt, isDark); });
+          nv = nv.replace(/\bwhite\b(?![-\w])/g, function() { return fn('#ffffff', rt, isDark); });
+          nv = nv.replace(/\bblack\b(?![-\w])/g, function() { return fn('#000000', rt, isDark); });
+          nv = nv.replace(/rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*([\d.]+))?\s*\)/g, function(m, r, g, b, a) {
+            var mapped = fn(rgbToHex(parseInt(r), parseInt(g), parseInt(b)), rt, isDark);
+            if (a !== undefined) { var mc = hexToRgbComponents(mapped); return 'rgba(' + mc.r + ',' + mc.g + ',' + mc.b + ',' + a + ')'; }
+            return mapped;
+          });
+          return prop + ': ' + nv;
+        });
+        el.setAttribute('style', newStyle);
+      }
+    }
+    function restoreInlineStyles(edoc) {
+      var els = edoc.querySelectorAll('[data-rs-orig-style]');
+      for (var i = 0; i < els.length; i++) { els[i].setAttribute('style', els[i].getAttribute('data-rs-orig-style')); els[i].removeAttribute('data-rs-orig-style'); }
+    }
+
+    // Remap the color-bearing declarations inside ONE CSS declaration block (the
+    // text between a `{` and its `}`). `keepLightText` preserves an intentionally
+    // light foreground when the block's own background is the accent (fix #4).
+    function remapDeclList(declText, rt, isDark, keepLightText) {
+      return declText.replace(/([\w-]+)\s*:\s*([^;{}]*(?:#[0-9a-fA-F]{3,8}|\bwhite\b|\bblack\b|\brgba?\s*\()[^;{}]*)/gi, function(full, prop, value) {
+        var p = prop.toLowerCase(), fn = null;
+        if (p === 'background' || p === 'background-color') fn = mapBg;
+        else if (p === 'color') fn = mapText;
+        else if (p.indexOf('border') === 0 || p === 'outline' || p === 'outline-color') fn = mapBorder;
+        else if (p === 'fill') fn = mapBg;
+        else if (p === 'stroke') fn = mapBorder;
+        else if (p === 'box-shadow' || p === 'text-shadow' || p === 'filter') return full;
+        else if (p.substring(0, 2) === '--') return full;
+        else return full;
+        // Contrast guard: a light text colour on an accent-bg block stays readable.
+        if (fn === mapText && keepLightText && isLightText(value.trim().replace(/!important/i, '').trim())) {
+          var keep = contrastTextOnAccent(rt);
+          return prop + ': ' + keep + ' !important';
+        }
+        var nv = value.replace(/#([0-9a-fA-F]{3,8})\b/g, function(hx) { return fn(hx, rt, isDark); });
+        nv = nv.replace(/\bwhite\b(?![-\w])/g, function() { return fn('#ffffff', rt, isDark); });
+        nv = nv.replace(/\bblack\b(?![-\w])/g, function() { return fn('#000000', rt, isDark); });
+        nv = nv.replace(/rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*([\d.]+))?\s*\)/g, function(m, r, g, b, a) {
+          var mapped = fn(rgbToHex(parseInt(r), parseInt(g), parseInt(b)), rt, isDark);
+          if (a !== undefined) { var mc = hexToRgbComponents(mapped); return 'rgba(' + mc.r + ',' + mc.g + ',' + mc.b + ',' + a + ')'; }
+          return mapped;
+        });
+        // Do NOT force !important here: the chapter's <style> block is rewritten IN PLACE, so its
+        // own cascade must be preserved. Forcing !important made a hardcoded base colour (e.g.
+        // .file-btn{background:#fff}) override an .active/state variant that uses var(--coral)
+        // (which is left untouched, so it had no !important) -> white-on-white widgets book-wide.
+        return prop + ': ' + nv.trim();
+      });
+    }
+
+    // ── Layer 3: CSS inside exhibit <style> blocks ──
+    function rewriteStyleBlocks(edoc, rt, isDark) {
+      var styles = edoc.querySelectorAll('style');
+      for (var i = 0; i < styles.length; i++) {
+        var s = styles[i];
+        if (s.id === 'cc-exhibit-theme' || s.id === 'cc-theme-vars' || s.id === 'cc-injected-style') continue;
+        if (!s.hasAttribute('data-rs-original')) s.setAttribute('data-rs-original', s.textContent);
+        var text = s.getAttribute('data-rs-original');
+        // Process rule-by-rule so the text remapper knows each block's background.
+        // Splitting on `}` yields chunks whose declarations follow the last `{`;
+        // a chunk that paints an accent background keeps its light text light.
+        text = text.replace(/\{([^{}]*)\}/g, function(full, decls) {
+          var keepLight = blockBgIsAccent(decls);
+          return '{' + remapDeclList(decls, rt, isDark, keepLight) + '}';
+        });
+        s.textContent = text;
+      }
+    }
+    function restoreStyleBlocks(edoc) {
+      var styles = edoc.querySelectorAll('style[data-rs-original]');
+      for (var i = 0; i < styles.length; i++) styles[i].textContent = styles[i].getAttribute('data-rs-original');
+    }
+
+    // Blanket safety-net CSS for an exhibit doc (nested iframes).
+    function buildExhibitCSS(rt, isDark) {
+      var css = '';
+      css += 'html, body { background: ' + rt.bg + ' !important; color: ' + rt.text + ' !important; }\n';
+      css += 'div, span, p, li, td, th, label, summary { color: ' + rt.text + ' !important; }\n';
+      css += 'h1, h2, h3, h4, h5, h6 { color: ' + rt.text + ' !important; }\n';
+      css += 'a { color: ' + rt.accent + ' !important; }\n';
+      css += '[style*="border"], table, tr, td, th, details { border-color: ' + rt.border + ' !important; }\n';
+      css += 'th { background: ' + rt.bgAlt + ' !important; }\n';
+      css += 'button, select, input { background: ' + rt.bgAlt + ' !important; color: ' + rt.text + ' !important; border-color: ' + rt.border + ' !important; }\n';
+      css += 'svg text { fill: ' + rt.text + ' !important; }\n';
+      if (rt.dark) css += 'img { filter: brightness(0.85) !important; }\n';
+      return css;
+    }
+
+    // Re-theme one nested exhibit iframe (same-origin) + observe for dynamic nodes.
+    function injectIntoExhibit(exFrame, rt) {
+      try {
+        var edoc = exFrame.contentDocument;
+        if (!edoc || !edoc.head) return;
+        var isDark = isDocDark(edoc);
+        var existing = edoc.getElementById('cc-exhibit-theme');
+        if (existing) existing.remove();
+        restoreStyleBlocks(edoc); restoreSVGAttributes(edoc); restoreInlineStyles(edoc);
+        rewriteStyleBlocks(edoc, rt, isDark);
+        rewriteSVGAttributes(edoc, rt, isDark);
+        rewriteInlineStyles(edoc, rt, isDark);
+        var css = buildExhibitCSS(rt, isDark);
+        var style = edoc.createElement('style');
+        style.id = 'cc-exhibit-theme';
+        style.textContent = css;
+        edoc.head.appendChild(style);
+        if (edoc._ccObserver) { edoc._ccObserver.disconnect(); edoc._ccObserver = null; }
+        var target = edoc.body || edoc.documentElement;
+        if (target) {
+          var obs = new MutationObserver(function() {
+            if (edoc._ccDebounce) clearTimeout(edoc._ccDebounce);
+            edoc._ccDebounce = setTimeout(function() {
+              try { rewriteSVGAttributes(edoc, rt, isDark); rewriteInlineStyles(edoc, rt, isDark); } catch (e) {}
+            }, 150);
+          });
+          obs.observe(target, { childList: true, subtree: true });
+          edoc._ccObserver = obs;
+        }
+      } catch (e) {}
+    }
+
+    function injectExhibitThemes(chapterDoc, rt) {
+      try {
+        var exhibits = chapterDoc.querySelectorAll('iframe');
+        for (var i = 0; i < exhibits.length; i++) {
+          (function(exFrame) {
+            try { if (exFrame.contentDocument && exFrame.contentDocument.head) injectIntoExhibit(exFrame, rt); } catch (e) {}
+            exFrame.addEventListener('load', function() { try { injectIntoExhibit(exFrame, rt); } catch (e) {} });
+          })(exhibits[i]);
+        }
+      } catch (e) {}
+    }
+
+    function cleanupExhibitThemes(chapterDoc) {
+      try {
+        var exhibits = chapterDoc.querySelectorAll('iframe');
+        for (var i = 0; i < exhibits.length; i++) {
+          try {
+            var edoc = exhibits[i].contentDocument;
+            if (!edoc || !edoc.head) continue;
+            if (edoc._ccObserver) { edoc._ccObserver.disconnect(); edoc._ccObserver = null; }
+            var injected = edoc.getElementById('cc-exhibit-theme');
+            if (injected) injected.remove();
+            restoreStyleBlocks(edoc); restoreSVGAttributes(edoc); restoreInlineStyles(edoc);
+          } catch (e) {}
+        }
+      } catch (e) {}
+    }
+
+    // Recolor a SINGLE freshly-drawn <svg> subtree IN PLACE, synchronously, so it
+    // never paints in the source coral (fix #2/#3). Remaps fill/stroke attributes
+    // and inline-style fill/stroke on every node in the subtree, plus the special
+    // rough-notation case where the accent lives on <path> strokes (attribute OR
+    // inline style="stroke:..."). Idempotent: re-runs are harmless.
+    function recolorSvgNode(svg, rt, isDark) {
+      try {
+        var nodes = [svg];
+        var inner = svg.querySelectorAll ? svg.querySelectorAll('*') : [];
+        for (var q = 0; q < inner.length; q++) nodes.push(inner[q]);
+        for (var i = 0; i < nodes.length; i++) {
+          var el = nodes[i];
+          var tag = (el.tagName || '').toLowerCase();
+          var isText = SVG_TEXT_TAGS[tag];
+          // fill attribute
+          if (el.hasAttribute && el.hasAttribute('fill')) {
+            if (!el.hasAttribute('data-rs-orig-fill')) el.setAttribute('data-rs-orig-fill', el.getAttribute('fill'));
+            var of = el.getAttribute('data-rs-orig-fill');
+            if (!(of === 'none' || of === 'transparent' || of.indexOf('url') === 0)) {
+              if (of && of.charAt(0) === '#') el.setAttribute('fill', isText ? mapText(of, rt, isDark) : mapBg(of, rt, isDark));
+              else if (of === 'white' || of === 'White') el.setAttribute('fill', isText ? mapText('#ffffff', rt, isDark) : mapBg('#ffffff', rt, isDark));
+              else if (of === 'black' || of === 'Black') el.setAttribute('fill', isText ? mapText('#000000', rt, isDark) : mapBg('#000000', rt, isDark));
+            }
+          }
+          // stroke attribute
+          if (el.hasAttribute && el.hasAttribute('stroke')) {
+            if (!el.hasAttribute('data-rs-orig-stroke')) el.setAttribute('data-rs-orig-stroke', el.getAttribute('stroke'));
+            var os = el.getAttribute('data-rs-orig-stroke');
+            if (!(os === 'none' || os === 'transparent' || os.indexOf('url') === 0)) {
+              if (os && os.charAt(0) === '#') el.setAttribute('stroke', mapBorder(os, rt));
+              else if (os === 'white' || os === 'White') el.setAttribute('stroke', mapBorder('#ffffff', rt));
+              else if (os === 'black' || os === 'Black') el.setAttribute('stroke', mapBorder('#000000', rt));
+            }
+          }
+          // inline style fill/stroke (rough-notation sometimes sets these inline)
+          if (el.getAttribute) {
+            var st = el.getAttribute('style');
+            if (st && (st.indexOf('#') !== -1 || st.indexOf('rgb') !== -1)) {
+              var nst = st.replace(/(fill|stroke)\s*:\s*([^;]+)/gi, function(full, prop, val) {
+                var fn = prop.toLowerCase() === 'stroke' ? mapBorder : (isText ? mapText : mapBg);
+                var nv = val.replace(/#([0-9a-fA-F]{3,8})\b/g, function(hx) { return fn(hx, rt, isDark); });
+                return prop + ':' + nv;
+              });
+              if (nst !== st) el.setAttribute('style', nst);
+            }
+          }
+        }
+      } catch (e) {}
+    }
+
+    // Chapter-body MutationObserver — lazily-drawn rough.js sketches appear on scroll.
+    function observeChapterBody(doc, rt, isDark) {
+      try {
+        if (doc._ccBodyObserver) { doc._ccBodyObserver.disconnect(); doc._ccBodyObserver = null; }
+        var target = doc.body || doc.documentElement;
+        if (!target) return;
+        var obs = new MutationObserver(function(records) {
+          // Only react when a genuinely NEW, un-themed <svg> appears (a lazily-drawn
+          // rough.js sketch or a rough-notation annotation entering view). Ignore the
+          // constant childList churn from animations (the tegaki hero handwriting,
+          // live widgets) — otherwise we re-run a full-document recolor every frame
+          // and peg the CPU, which also starves the chapter's own lazy renderer.
+          var fresh = [];
+          for (var r = 0; r < records.length; r++) {
+            var added = records[r].addedNodes;
+            for (var a = 0; a < added.length; a++) {
+              var n = added[a];
+              if (!n || n.nodeType !== 1) continue;
+              var found = [];
+              if (n.tagName && n.tagName.toLowerCase() === 'svg') found.push(n);
+              if (n.querySelectorAll) {
+                var nested = n.querySelectorAll('svg:not([data-cc-themed])');
+                for (var x = 0; x < nested.length; x++) found.push(nested[x]);
+              }
+              for (var f = 0; f < found.length; f++) {
+                var svg = found[f];
+                if (svg.getAttribute && svg.getAttribute('data-cc-themed') === '1') continue; // already themed: no re-flash on re-scroll
+                if (svg.closest && svg.closest('#tegaki-mount')) continue;                    // skip the hero handwriting animation
+                fresh.push(svg);
+              }
+            }
+          }
+          if (!fresh.length) return;
+          // IMMEDIATE, synchronous recolor of each new svg BEFORE the browser paints
+          // it, so there is no coral->theme flash. Mark themed so re-scrolling never
+          // re-touches it.
+          for (var s = 0; s < fresh.length; s++) {
+            recolorSvgNode(fresh[s], rt, isDark);
+            if (fresh[s].setAttribute) fresh[s].setAttribute('data-cc-themed', '1');
+          }
+          // A tiny debounced full sweep batches any inline-style/nested-node cases
+          // the per-node pass cannot see (e.g. annotation paths appended a tick
+          // later). This is belt-and-suspenders; the visible flash is already gone.
+          if (doc._ccBodyDebounce) clearTimeout(doc._ccBodyDebounce);
+          doc._ccBodyDebounce = setTimeout(function() {
+            try {
+              rewriteSVGAttributes(doc, rt, isDark);
+              rewriteInlineStyles(doc, rt, isDark);
+            } catch (e) {}
+          }, 60);
+        });
+        obs.observe(target, { childList: true, subtree: true });
+        doc._ccBodyObserver = obs;
+      } catch (e) {}
+    }
+
+    // ── The single entry point: re-theme the chapter iframe end to end ──
+    // Inline "On this page" TOC: when toc=inline, inject a section list into the
+    // chapter frame so it scrolls WITH the prose. Same-origin only (server / Pages);
+    // under file:// the cross-frame access throws and is swallowed (graceful no-op).
+    function applyInlineToc(doc) {
+      try {
+        var old = doc.getElementById('cc-inline-toc'); if (old) old.remove();
+        if (readerState.toc !== 'inline') return;
+        var mainEl = doc.querySelector('main'); if (!mainEl) return;
+        var hs = mainEl.querySelectorAll('h2[id]'); if (hs.length < 2) return;
+        var nav = doc.createElement('nav');
+        nav.id = 'cc-inline-toc';
+        nav.setAttribute('aria-label', 'On this page');
+        nav.style.cssText = 'margin:24px 0 36px;padding:16px 20px;border:1px solid var(--line,#e6dfd2);border-radius:10px;background:var(--cream,#f5f0e8);font-family:var(--sans,system-ui,sans-serif);';
+        var lbl = doc.createElement('div');
+        lbl.textContent = 'On this page';
+        lbl.style.cssText = 'font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-3,#888);margin-bottom:10px;';
+        nav.appendChild(lbl);
+        hs.forEach(function(h) {
+          var a = doc.createElement('a');
+          a.href = '#' + h.id;
+          a.textContent = (h.textContent || '').replace(/\s+/g, ' ').trim();
+          a.style.cssText = 'display:block;color:var(--coral,#DA7756);text-decoration:none;font-size:14px;line-height:1.5;padding:2px 0;';
+          nav.appendChild(a);
+        });
+        var h1 = mainEl.querySelector('h1');
+        if (h1 && h1.parentNode) { h1.parentNode.insertBefore(nav, h1.nextSibling); }
+        else { mainEl.insertBefore(nav, mainEl.firstChild); }
+      } catch (e) {}
+    }
+
+    // ── CHAPTER TOC (the current chapter's section headings) — gear-controlled,
+    //    injected into the chapter iframe. Reuses the chapter's own nav.chapter-toc.
+    function buildChapterTocCSS(rt) {
+      var ac = rt.accent, line = rt.border, bg = rt.bg, bgAlt = rt.bgAlt, ink2 = rt.textSec, ink3 = rt.textMuted;
+      var F = "var(--sans, system-ui, -apple-system, sans-serif)";
+      var c = '';
+      c += 'nav.chapter-toc { display:none; }\n';
+      c += 'nav.chapter-toc .toc-header { font-family:' + F + '; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; color:' + ink3 + '; margin:0 0 10px; }\n';
+      c += 'nav.chapter-toc .toc-list { list-style:none; margin:0; padding:0; }\n';
+      c += 'nav.chapter-toc .toc-list li { margin:0; }\n';
+      c += 'nav.chapter-toc .toc-list a { display:block; color:' + ink2 + '; text-decoration:none; font-family:' + F + '; font-size:13px; line-height:1.45; padding:5px 0 5px 12px; border-left:2px solid transparent; transition:color .12s, border-color .12s; }\n';
+      c += 'nav.chapter-toc .toc-list a:hover { color:' + ac + '; }\n';
+      c += 'nav.chapter-toc .toc-list a.cc-active { color:' + ac + '; border-left-color:' + ac + '; font-weight:600; }\n';
+      c += '#cc-chtoc-fab { display:none; position:fixed; top:16px; right:20px; z-index:120; align-items:center; gap:7px; padding:8px 14px; border:1px solid ' + line + '; border-radius:999px; background:' + bg + '; color:' + ink2 + '; font-family:' + F + '; font-size:12.5px; font-weight:600; cursor:pointer; box-shadow:0 6px 20px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.08); }\n';
+      c += '#cc-chtoc-fab svg { width:15px; height:15px; flex-shrink:0; }\n';
+      c += '#cc-chtoc-fab:hover { color:' + ac + '; border-color:' + ac + '; }\n';
+      // fade the button toward transparent when it overlaps a sidenote (so the note stays
+      // readable); hovering brings it back to full so it is always usable.
+      c += '#cc-chtoc-fab { transition: opacity 0.16s ease, color 0.15s, border-color 0.15s; }\n';
+      c += '#cc-chtoc-fab:hover { opacity: 1 !important; }\n';
+      c += 'html[data-cctoc="intext"] nav.chapter-toc { display:block !important; position:static; width:auto !important; max-width:680px; margin:28px auto 8px; padding:18px 22px; border:1px solid ' + line + '; border-radius:12px; background:' + bgAlt + '; }\n';
+      c += 'html[data-cctoc="floating"] #cc-chtoc-fab { display:inline-flex !important; }\n';
+      c += 'html[data-cctoc="floating"] nav.chapter-toc { display:block !important; position:fixed; top:60px; right:20px; width:266px; max-height:74vh; overflow-y:auto; padding:18px 20px; background:' + bg + '; border:1px solid ' + line + '; border-radius:14px; box-shadow:0 18px 50px rgba(0,0,0,0.20); z-index:119; opacity:0; visibility:hidden; transform:translateY(-8px); transition:opacity .18s, transform .18s, visibility .18s; }\n';
+      c += 'html[data-cctoc="floating"] nav.chapter-toc.cc-open { opacity:1; visibility:visible; transform:translateY(0); }\n';
+      c += 'html[data-cctoc="topbar"] nav.chapter-toc { display:flex !important; align-items:center; gap:16px; position:fixed; top:0; left:0; right:0; width:auto !important; height:46px; padding:0 20px; background:' + bg + '; border-bottom:1px solid ' + line + '; overflow-x:auto; overflow-y:hidden; white-space:nowrap; z-index:115; }\n';
+      c += 'html[data-cctoc="topbar"] nav.chapter-toc .toc-header { margin:0; flex:0 0 auto; }\n';
+      c += 'html[data-cctoc="topbar"] nav.chapter-toc .toc-list { display:flex; flex-wrap:nowrap; align-items:center; gap:2px; flex:0 0 auto; }\n';
+      c += 'html[data-cctoc="topbar"] nav.chapter-toc .toc-list li { flex:0 0 auto; }\n';
+      c += 'html[data-cctoc="topbar"] nav.chapter-toc .toc-list a { white-space:nowrap; padding:6px 12px; border-left:none; border-bottom:2px solid transparent; flex:0 0 auto; }\n';
+      c += 'html[data-cctoc="topbar"] nav.chapter-toc .toc-list a.cc-active { border-left:none; border-bottom-color:' + ac + '; color:' + ac + '; }\n';
+      c += 'html[data-cctoc="topbar"] .page { padding-top:70px !important; }\n';
+      return c;
+    }
+
+    function setupChapterTocSpy(doc, nav) {
+      try {
+        var win = doc.defaultView; if (!win) return;
+        if (doc._ccSpy) { win.removeEventListener('scroll', doc._ccSpy); doc._ccSpy = null; }
+        var links = nav.querySelectorAll('.toc-list a[href^="#"]');
+        var targets = [];
+        for (var i = 0; i < links.length; i++) {
+          var id = decodeURIComponent(links[i].getAttribute('href').slice(1));
+          var el = id && doc.getElementById(id);
+          if (el) targets.push({ a: links[i], el: el });
+        }
+        if (!targets.length) return;
+        var ticking = false;
+        function update() {
+          ticking = false;
+          var best = null, bestTop = -1e9;
+          for (var j = 0; j < targets.length; j++) {
+            var top = targets[j].el.getBoundingClientRect().top;
+            if (top <= 130 && top > bestTop) { bestTop = top; best = targets[j]; }
+          }
+          if (!best) best = targets[0];
+          for (var k = 0; k < targets.length; k++) targets[k].a.classList.toggle('cc-active', targets[k] === best);
+          // top-bar follows the page: auto-scroll the strip so the active heading stays in view
+          if (best && nav.scrollWidth > nav.clientWidth + 4) {
+            try { best.a.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' }); } catch (_) {}
+          }
+          // Fade the floating "Contents" button toward transparent when it overlaps a sidenote,
+          // so the note underneath stays readable; fades back when clear (any layout/scroll position).
+          var ff = doc.getElementById('cc-chtoc-fab');
+          if (ff) {
+            var fr = ff.getBoundingClientRect(), vh = win.innerHeight || 800, ratio = 0, sns = doc.querySelectorAll('.sn, aside.sn');
+            for (var z = 0; z < sns.length; z++) { var nr = sns[z].getBoundingClientRect();
+              if (nr.bottom < -16 || nr.top > vh || fr.right < nr.left || fr.left > nr.right) continue;
+              var vo = Math.max(0, Math.min(fr.bottom, nr.bottom) - Math.max(fr.top, nr.top)), r2 = vo / Math.max(1, fr.height);
+              if (r2 > ratio) ratio = r2;
+            }
+            // continuous transparency: fully over a note -> ~0.16, partially -> mid, clear -> 1
+            ff.style.opacity = (1 - Math.min(1, ratio) * 0.84).toFixed(3);
+          }
+        }
+        doc._ccSpy = function () { if (!ticking) { ticking = true; win.requestAnimationFrame(update); } };
+        win.addEventListener('scroll', doc._ccSpy, { passive: true });
+        update();
+      } catch (e) {}
+    }
+
+    function applyChapterToc(doc, mode) {
+      try {
+        mode = mode || 'floating';
+        doc.documentElement.setAttribute('data-cctoc', mode);
+        var nav = doc.querySelector('nav.chapter-toc');
+        if (!nav) return;
+        // Position the nav in the DOM by mode: In-text reads AFTER the opening lede; fixed
+        // modes (floating / top-bar) must be a DIRECT body child so position:fixed is
+        // viewport-relative and spans full width (inside .col it gets clipped to the column).
+        if (mode === 'intext') {
+          var anchor = doc.querySelector('#main .lede') || doc.querySelector('#main header.hero') || doc.querySelector('#main header');
+          if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(nav, anchor.nextSibling);
+        } else if (nav.parentNode !== doc.body) {
+          doc.body.appendChild(nav);
+        }
+        var list = nav.querySelector('.toc-list');
+        // (re)build the list from the chapter's visible section headings, so links + scrollspy are reliable
+        if (list) {
+          list.innerHTML = '';
+          var hs = doc.querySelectorAll('#main h2[id], main h2[id]');
+          for (var i = 0; i < hs.length; i++) {
+            if (hs[i].getClientRects().length === 0) continue;
+            var li = doc.createElement('li'), a = doc.createElement('a');
+            a.setAttribute('href', '#' + hs[i].id);
+            a.textContent = (hs[i].textContent || '').replace(/\s+/g, ' ').trim();
+            li.appendChild(a); list.appendChild(li);
+          }
+        }
+        // reset any inline positioning from a prior mode (floating sets left/width) so the
+        // top-bar/in-text CSS widths are not clipped by a leftover inline width.
+        nav.style.left = ''; nav.style.right = ''; nav.style.width = '';
+        var fab = doc.getElementById('cc-chtoc-fab');
+        if (mode === 'floating') {
+          if (!fab) {
+            fab = doc.createElement('button');
+            fab.id = 'cc-chtoc-fab'; fab.type = 'button'; fab.setAttribute('aria-label', 'Chapter contents');
+            fab.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>Contents';
+            fab.addEventListener('click', function () { nav.classList.toggle('cc-open'); });
+            doc.body.appendChild(fab);
+          }
+          nav.classList.remove('cc-open');
+          // Align BOTH the floating "Contents" button and its panel to the sidenote column
+          // (same x + width as the margin notes — sitting at the top of that column, not the
+          // far-right edge). Re-measure after a frame + a tick since float layout settles late.
+          var posFn = function () {
+            // Comprehensive: align to the actual margin sidenote column (exact). Concise has no
+            // sidenotes (hidden -> width 0), so fall back to the reading column's right edge — the
+            // sidenote margin sits there in BOTH depths — instead of letting the CSS default fling
+            // the panel to right:20px (the "thrown to the right" bug).
+            var L = null, Wd = 266;
+            var sn = doc.querySelector('aside.sn, .sn');
+            if (sn && sn.getClientRects().length) {
+              var r = sn.getBoundingClientRect();
+              if (r.width > 40) { L = Math.round(r.left); Wd = Math.round(r.width); }
+            }
+            if (L === null) {
+              var col = doc.querySelector('#main') || doc.querySelector('.col');
+              if (col) {
+                var cr = col.getBoundingClientRect();
+                var vw = (doc.defaultView && doc.defaultView.innerWidth) || 1280;
+                L = Math.round(cr.right + 28);
+                if (L + Wd > vw - 16) L = Math.max(16, vw - Wd - 16);   // keep fully on-screen
+              }
+            }
+            if (L !== null) {
+              nav.style.left = L + 'px'; nav.style.width = Wd + 'px'; nav.style.right = 'auto';
+              var f = doc.getElementById('cc-chtoc-fab'); if (f) { var fw = f.getBoundingClientRect().width || 110; f.style.left = Math.round(L + (Wd - fw) / 2) + 'px'; f.style.right = 'auto'; }
+            }
+          };
+          posFn();
+          if (doc.defaultView) { doc.defaultView.requestAnimationFrame(posFn); setTimeout(posFn, 260); }
+        } else {
+          if (fab && fab.parentNode) fab.parentNode.removeChild(fab);
+          nav.classList.remove('cc-open');
+          nav.style.left = ''; nav.style.width = ''; nav.style.right = '';
+        }
+        if (!nav._ccWired) {
+          nav.addEventListener('click', function (e) {
+            var t = e.target; while (t && t !== nav && t.tagName !== 'A') t = t.parentNode;
+            if (t && t.tagName === 'A') nav.classList.remove('cc-open');
+          });
+          nav._ccWired = true;
+        }
+        setupChapterTocSpy(doc, nav);
+      } catch (e) {}
+    }
+
+    // Draw an animated rough-notation BRACKET on each margin sidenote (the Attio GTM-Atlas
+    // recipe: rough-notation brackets + IntersectionObserver to trigger on view). The
+    // hand-drawn text uses the Caveat face; rough-notation handles the animated bracket.
+    // Reveal a sidenote's text character-by-character, as if being written (the Caveat
+    // handwriting face + this progressive reveal reads like tegaki). Preserves inline markup.
+    function writeOnSidenote(doc, el) {
+      try {
+        if (el._ccWritten) return; el._ccWritten = true;
+        var chars = [];
+        (function walk(node) {
+          var kids = Array.prototype.slice.call(node.childNodes);
+          for (var i = 0; i < kids.length; i++) {
+            var c = kids[i];
+            if (c.nodeType === 3 && c.nodeValue) {
+              var txt = c.nodeValue, frag = doc.createDocumentFragment();
+              for (var k = 0; k < txt.length; k++) { var s = doc.createElement('span'); s.textContent = txt[k]; s.style.opacity = '0'; s.style.transition = 'opacity 120ms ease'; frag.appendChild(s); chars.push(s); }
+              c.parentNode.replaceChild(frag, c);
+            } else if (c.nodeType === 1 && c.nodeName.toLowerCase() !== 'svg' && c.tagName !== 'SCRIPT' && c.tagName !== 'STYLE') {
+              walk(c);
+            }
+          }
+        })(el);
+        var i = 0;
+        (function step() { for (var b = 0; b < 2 && i < chars.length; b++) { chars[i].style.opacity = '1'; i++; } if (i < chars.length) setTimeout(step, 16); })();
+      } catch (e) {}
+    }
+
+    function setupSidenoteAnnotations(doc, accent) {
+      try {
+        var win = doc.defaultView; if (!win) return;
+        var RN = win.RoughNotation;
+        var notes = doc.querySelectorAll('.sn, aside.sn');
+        for (var i = 0; i < notes.length; i++) {
+          var n = notes[i];
+          if (n._ccSetup) continue;
+          n._ccSetup = true;
+          (function (note) {
+            var ann = null;
+            if (RN) { try { ann = RN.annotate(note, { type: 'bracket', edges: ['left'], color: accent, strokeWidth: 2.5, padding: 6, animationDuration: 700 }); } catch (e) {} }
+            var io = new win.IntersectionObserver(function (es) {
+              es.forEach(function (e) {
+                if (e.isIntersecting) {
+                  if (ann) { try { ann.show(); } catch (_) {} }
+                  // "write" the text ONLY in the narrow MARGIN form (float:right); skip the char
+                  // animation for the full-width / mid-text box form (Felipe).
+                  var fl = win.getComputedStyle(note).cssFloat || win.getComputedStyle(note).float || '';
+                  if (fl === 'right') writeOnSidenote(doc, note);
+                  io.unobserve(e.target);
+                }
+              });
+            }, { threshold: 0.12 });
+            io.observe(note);
+          })(n);
+        }
+      } catch (e) {}
+    }
+
+    // Shell-side title swap: chapters were authored with "Core Marketing" in their hero
+    // eyebrow/front-matter. The book is now "Principles of Marketing" — replace the visible
+    // text in the chapter iframe (the chapter files stay frozen). Idempotent.
+    function swapBookTitle(doc) {
+      try {
+        if (!doc.body) return;
+        var walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null);
+        var hits = [], n;
+        while ((n = walker.nextNode())) {
+          if (n.nodeValue && n.nodeValue.indexOf('Core Marketing') !== -1) {
+            var tag = n.parentNode && n.parentNode.tagName;
+            if (tag !== 'SCRIPT' && tag !== 'STYLE') hits.push(n);
+          }
+        }
+        hits.forEach(function (t) { t.nodeValue = t.nodeValue.replace(/Core Marketing/g, 'Principles of Marketing'); });
+      } catch (e) {}
+    }
+
+    function injectIframeStyles() {
+      try {
+        var doc = frame.contentDocument;
+        if (!doc || !doc.head) return;
+        swapBookTitle(doc);
+
+        // ALWAYS re-derive the active palette from the persisted mode + accent.
+        // injectIframeStyles is the shared re-theme path for zoom, font, density,
+        // accessibility, and chapter navigation — none of which pass an accent.
+        // Re-composing here means the chosen color (preset OR custom hex) can never
+        // be lost by a font-size change or a nav, even if the module palette drifted.
+        readerState.accent = sanitizeAccent(readerState.accent);
+        palette = composePalette(readerState.mode, readerState.accent);
+
+        // Always disconnect any prior chapter-body observer before re-theming.
+        if (doc._ccBodyObserver) { doc._ccBodyObserver.disconnect(); doc._ccBodyObserver = null; }
+
+        // Clear prior injected nodes.
+        var oldVars = doc.getElementById('cc-theme-vars'); if (oldVars) oldVars.remove();
+        var oldInj = doc.getElementById('cc-injected-style'); if (oldInj) oldInj.remove();
+        var oldFont = doc.getElementById('cc-font-link'); if (oldFont) oldFont.remove();
+        var standalone = doc.getElementById('cc-standalone-density'); if (standalone) standalone.remove();
+
+        // (1) CHROME: override the chapter's CSS vars onto the active theme.
+        var varStyle = doc.createElement('style');
+        varStyle.id = 'cc-theme-vars';
+        varStyle.textContent = buildThemeVarsCSS();
+        doc.head.appendChild(varStyle);
+
+        // inline TOC mode: inject/remove the in-chapter "On this page" list
+        // chapter TOC is applied AFTER the injected CSS + content rewrites (see below), so the
+        // floating panel can measure the sidenote column at its final post-layout position.
+
+        // (2) font import + (3) zoom/font-family/density CSS.
+        var rt = palette;
+        var isDark = rt.dark;
+        var scale = readerState.fontSize / 100;
+        var ff = FONTS[readerState.font];
+
+        var fontUrl = FONT_IMPORTS[readerState.font];
+        if (fontUrl) {
+          var link = doc.createElement('link');
+          link.id = 'cc-font-link';
+          link.rel = 'stylesheet';
+          link.href = fontUrl;
+          doc.head.appendChild(link);
+        }
+        // Handwriting font for the numbered margin sidenotes (loaded once per chapter).
+        if (!doc.getElementById('cc-hand-font')) {
+          var hl = doc.createElement('link');
+          hl.id = 'cc-hand-font'; hl.rel = 'stylesheet';
+          hl.href = 'https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap';
+          doc.head.appendChild(hl);
+        }
+
+        var css = 'html { overflow-y: scroll; overflow-x: hidden; scrollbar-gutter: stable; }\n';
+        if (scale !== 1) css += 'html { zoom: ' + scale + ' !important; }\n';
+        if (ff) {
+          css += 'body, p, li, td, th, span, div, summary { font-family: ' + ff + ' !important; }\n';
+          css += 'h1, h2, h3, h4, h5, h6 { font-family: ' + ff + ' !important; }\n';
+        }
+        // TTS highlight (accent-tinted)
+        var ac = hexToRgb(rt.accent);
+        css += '.cc-tts-highlight { background: rgba(' + ac.r + ',' + ac.g + ',' + ac.b + ',0.20) !important; outline: 2px solid rgba(' + ac.r + ',' + ac.g + ',' + ac.b + ',0.4); outline-offset: 2px; border-radius: 3px; }\n';
+        // Accessibility is driven from the SHELL, so hide the chapter's own floating
+        // FAB + popover when the chapter is shown inside the reader. (Standalone
+        // chapters opened directly keep their own button — we only inject here.)
+        css += '.a11y-fab, .a11y-popover { display: none !important; }\n';
+        // Mobile responsive net
+        // Overflow guard for in-flow content, but NOT positioned popups: term/citation
+        // tooltips are body>div[role="tooltip"].tt-pop and must stay popup-sized, never
+        // forced to full page width (Felipe: tooltips should be adaptable popups).
+        css += 'html { overflow-x: hidden !important; }\n';
+        css += 'body > div:not([role="tooltip"]):not(.tt-pop):not(.page) { max-width: 100% !important; overflow-x: hidden !important; }\n';
+        css += 'body > div[role="tooltip"], body > .tt-pop { max-width: min(360px, 90vw) !important; width: auto !important; overflow-x: visible !important; }\n';
+        // Keep the chapter's Tufte layout (text column + right-margin float sidenotes) —
+        // do NOT centre the column, that hides the numbered margin notes. Instead, render
+        // the sidenotes in a HANDWRITING face, like hand-written marginalia (Felipe).
+        css += '.sn, .sn .sn-num, aside.sn { font-family: "Caveat", "Bradley Hand", "Segoe Print", cursive !important; }\n';
+        css += '.sn, aside.sn { font-size: 18px !important; line-height: 1.5 !important; }\n';
+        css += '.sn .sn-num { font-size: 19px !important; font-weight: 700 !important; }\n';
+        css += '.sn, aside.sn { position: relative !important; padding-left: 18px !important; }\n';
+        // hide the chapter's plain coral tick — a rough-notation bracket is drawn on scroll instead (setupSidenoteAnnotations)
+        css += '.sn::before, aside.sn::before { display: none !important; }\n';
+        // left-align the reading column (NOT centred — that hides the margin sidenotes) with comfortable left padding (Felipe)
+        css += '.page { margin: 0 !important; max-width: 1056px !important; padding: 64px 24px 120px 56px !important; }\n';
+        // SYSTEM-LEVEL legibility guard: sketch/diagram labels with NO explicit fill inherit the
+        // coral group colour and wash out on a light background. Force inheriting <text> to the
+        // theme ink so every label stays readable in any mode/accent (Felipe). Explicitly-coloured
+        // text (fill="...") is left alone so intentional emphasis survives.
+        css += 'figure svg text:not([fill]):not([fill="none"]), .mount svg text:not([fill]), svg[role="img"] text:not([fill]) { fill: ' + rt.text + ' !important; }\n';
+        // and any element that explicitly paints text in the accent on the page surface keeps the
+        // accent only if it is large; small accent text on the surface is darkened for contrast.
+        css += 'figure svg text[fill="#DA7756"], figure svg text[fill="#da7756"], .mount svg text[fill="#DA7756"], .mount svg text[fill="#da7756"] { fill: ' + rt.accentDeep + ' !important; }\n';
+        // The gear-controlled "Chapter contents" is the single chapter TOC — hide any author-placed
+        // in-chapter TOC callout so there is never a duplicate TOC (Felipe: "why an extra TOC").
+        css += '.callout:has(> .ic-toc), .ic-toc { display: none !important; }\n';
+        css += '@media (max-width: 768px) {\n';
+        css += '  table { display: block !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }\n';
+        css += '  img, svg, canvas { max-width: 100% !important; height: auto !important; }\n';
+        css += '  figure, details { max-width: 100% !important; overflow: hidden !important; }\n';
+        css += '}\n';
+        // Depth: focused mode hides apparatus, reveals bridge content.
+        if (readerState.density === 'focused') {
+          css += '[data-verbose] { display: none !important; }\n';
+          css += '[data-complete] { display: none !important; }\n';
+          css += '[data-focused] { display: block !important; }\n';
+        }
+        // Pre-emptive sketch/annotation recolor (fix #2/#3): themes any SVG the
+        // instant it lazy-draws, before the JS observer runs — kills the coral flash.
+        css += buildPreemptiveSketchCSS(rt);
+        css += buildChapterTocCSS(rt);
+
+        var inj = doc.createElement('style');
+        inj.id = 'cc-injected-style';
+        inj.textContent = css;
+        doc.head.appendChild(inj);
+
+        // (4) CONTENT: luminance-remap the chapter's OWN <style> class rules
+        //     (widget/.demo/.callout backgrounds are hardcoded hex in CSS classes,
+        //     NOT var(--…), so the var-override alone leaves them white in dark mode),
+        //     plus its inline SVG attributes + inline styles. Restore-then-rewrite is
+        //     reversible, so switching themes (incl. back to light) does not compound.
+        var docIsDark = isDocDark(doc);
+        restoreStyleBlocks(doc);
+        restoreSVGAttributes(doc);
+        restoreInlineStyles(doc);
+        rewriteStyleBlocks(doc, rt, docIsDark);
+        rewriteSVGAttributes(doc, rt, docIsDark);
+        rewriteInlineStyles(doc, rt, docIsDark);
+
+        // (5) Nested same-origin exhibit iframes (interactive labs).
+        injectExhibitThemes(doc, rt);
+
+        // (6) Keep recoloring lazily-drawn sketches as they appear on scroll.
+        observeChapterBody(doc, rt, docIsDark);
+
+        // (6b) Chapter TOC — applied here so the injected CSS (.page left-align) is in effect
+        // and the floating panel measures the sidenote column at its final position.
+        applyChapterToc(doc, readerState.chtoc);
+        // (6c) Animated rough-notation bracket on every margin sidenote, drawn on scroll-in.
+        setupSidenoteAnnotations(doc, rt.accent);
+
+        // (7) ACCESSIBILITY: mirror the shell-driven a11y state onto the chapter
+        //     <html> so its already-loaded _accessibility.css activates. Done here
+        //     (the theming entry point) so it re-applies on every theme/nav pass.
+        applyA11yToFrame();
+      } catch (e) {}
+    }
+
+    // ════════════════════════════════════════════════════════════════════
+    //  READ ALOUD (TTS) — Web Speech speechSynthesis over chapter paragraphs
+    // ════════════════════════════════════════════════════════════════════
+    var ttsPlay = document.getElementById('rs-tts-play');
+    var ttsPause = document.getElementById('rs-tts-pause');
+    var ttsStop = document.getElementById('rs-tts-stop');
+    var ttsLabel = document.getElementById('rs-tts-label');
+    var speedSlider = document.getElementById('rs-speed-slider');
+    var speedVal = document.getElementById('rs-speed-val');
+    var voiceSelect = document.getElementById('rs-voice-select');
+    var voiceHint = document.getElementById('rs-voice-hint');
+
+    var synth = window.speechSynthesis || null;
+    var ttsState = { paras: [], idx: 0, playing: false, voices: [], keepAlive: null };
+
+    function loadVoices() {
+      if (!synth) return;
+      ttsState.voices = synth.getVoices() || [];
+      if (!voiceSelect) return;
+      voiceSelect.innerHTML = '';
+      if (!ttsState.voices.length) {
+        var o = document.createElement('option'); o.textContent = 'Default voice'; o.value = '';
+        voiceSelect.appendChild(o);
+        return;
+      }
+      ttsState.voices.forEach(function(v, i) {
+        var o = document.createElement('option');
+        o.value = String(i);
+        o.textContent = v.name + (v.lang ? ' (' + v.lang + ')' : '');
+        if (v.name === readerState.voice) o.selected = true;
+        voiceSelect.appendChild(o);
+      });
+    }
+    if (synth) {
+      loadVoices();
+      synth.onvoiceschanged = loadVoices;
+    } else if (voiceHint) {
+      voiceHint.textContent = 'Read aloud is not supported in this browser.';
+    }
+
+    if (voiceSelect) voiceSelect.addEventListener('change', function() {
+      var v = ttsState.voices[parseInt(voiceSelect.value, 10)];
+      readerState.voice = v ? v.name : '';
+      localStorage.setItem('cc-voice', readerState.voice);
+    });
+
+    function applySpeed(val) {
+      readerState.speed = Math.max(0.5, Math.min(2, val));
+      localStorage.setItem('cc-speed', readerState.speed);
+      if (speedVal) speedVal.innerHTML = readerState.speed.toFixed(1) + '&times;';
+      if (speedSlider) speedSlider.value = readerState.speed;
+    }
+    if (speedSlider) speedSlider.addEventListener('input', function() { applySpeed(parseFloat(speedSlider.value)); });
+
+    function collectParagraphs() {
+      ttsState.paras = [];
+      try {
+        var doc = frame.contentDocument;
+        if (!doc) return;
+        var nodes = doc.querySelectorAll('p, li, h1, h2, h3, blockquote');
+        for (var i = 0; i < nodes.length; i++) {
+          var el = nodes[i];
+          // skip hidden (focused-mode) blocks
+          if (el.offsetParent === null && el.getClientRects().length === 0) continue;
+          var txt = (el.textContent || '').trim();
+          if (txt.length > 1) ttsState.paras.push({ el: el, text: txt });
+        }
+      } catch (e) {}
+    }
+
+    function clearHighlight() {
+      try {
+        var doc = frame.contentDocument;
+        if (!doc) return;
+        doc.querySelectorAll('.cc-tts-highlight').forEach(function(el) { el.classList.remove('cc-tts-highlight'); });
+      } catch (e) {}
+    }
+
+    function ttsSpeakFrom(idx) {
+      if (!synth) return;
+      if (idx >= ttsState.paras.length) { ttsStopFn(); return; }
+      ttsState.idx = idx;
+      var item = ttsState.paras[idx];
+      clearHighlight();
+      try { item.el.classList.add('cc-tts-highlight'); item.el.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+      var u = new SpeechSynthesisUtterance(item.text);
+      u.rate = readerState.speed;
+      var v = ttsState.voices[parseInt(voiceSelect && voiceSelect.value || '-1', 10)];
+      if (v) u.voice = v;
+      u.onend = function() { if (ttsState.playing) ttsSpeakFrom(ttsState.idx + 1); };
+      synth.speak(u);
+    }
+
+    function ttsStartFn() {
+      if (!synth) { if (ttsLabel) ttsLabel.textContent = 'Read aloud is not supported here.'; return; }
+      if (frame.style.display === 'none') { if (ttsLabel) ttsLabel.textContent = 'Open a chapter first.'; return; }
+      if (synth.paused && ttsState.playing) { synth.resume(); return; }
+      synth.cancel();
+      collectParagraphs();
+      if (!ttsState.paras.length) { if (ttsLabel) ttsLabel.textContent = 'Nothing to read on this page.'; return; }
+      ttsState.playing = true;
+      if (ttsLabel) ttsLabel.textContent = 'Reading aloud...';
+      // Chrome keep-alive: pause/resume so long reads do not stall.
+      if (ttsState.keepAlive) clearInterval(ttsState.keepAlive);
+      ttsState.keepAlive = setInterval(function() {
+        if (ttsState.playing && synth.speaking && !synth.paused) { synth.pause(); synth.resume(); }
+      }, 10000);
+      ttsSpeakFrom(0);
+    }
+    function ttsPauseFn() { if (synth && synth.speaking) { synth.pause(); if (ttsLabel) ttsLabel.textContent = 'Paused.'; } }
+    function ttsStopFn() {
+      ttsState.playing = false;
+      if (ttsState.keepAlive) { clearInterval(ttsState.keepAlive); ttsState.keepAlive = null; }
+      if (synth) synth.cancel();
+      clearHighlight();
+      if (ttsLabel) ttsLabel.textContent = 'Reads the open chapter aloud.';
+    }
+    if (ttsPlay) ttsPlay.addEventListener('click', ttsStartFn);
+    if (ttsPause) ttsPause.addEventListener('click', ttsPauseFn);
+    if (ttsStop) ttsStop.addEventListener('click', ttsStopFn);
+
+    // ════════════════════════════════════════════════════════════════════
+    //  API KEY STUB — saved to localStorage only; never logged or transmitted.
+    // ════════════════════════════════════════════════════════════════════
+    var apiKeyInput = document.getElementById('rs-api-key');
+    if (apiKeyInput) {
+      apiKeyInput.value = localStorage.getItem('cc-api-key') || '';
+      apiKeyInput.addEventListener('change', function() {
+        localStorage.setItem('cc-api-key', apiKeyInput.value);
+      });
+    }
+
+    // ════════════════════════════════════════════════════════════════════
+    //  PANELS open/close (mutually exclusive)
+    // ════════════════════════════════════════════════════════════════════
+    rsBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var open = rsPanel.classList.toggle('open');
+      rsBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      rsBtn.classList.toggle('active', open);
+      depthDropdown.classList.remove('open');
+      depthBtn.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('click', function(e) {
+      if (!rsWrap.contains(e.target)) {
+        rsPanel.classList.remove('open');
+        rsBtn.setAttribute('aria-expanded', 'false');
+        rsBtn.classList.remove('active');
+      }
+      if (!document.getElementById('depth-wrap').contains(e.target)) {
+        depthDropdown.classList.remove('open');
+        depthBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        rsPanel.classList.remove('open');
+        rsBtn.setAttribute('aria-expanded', 'false');
+        rsBtn.classList.remove('active');
+        depthDropdown.classList.remove('open');
+        depthBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // ════════════════════════════════════════════════════════════════════
+    //  SIDEBAR + NAVIGATION
+    // ════════════════════════════════════════════════════════════════════
+    var chapterList = [];
+    document.querySelectorAll('.sb-item[data-href]').forEach(function(el) {
+      var numSpan = el.querySelector('.num');
+      var num = numSpan ? numSpan.textContent.trim() : '';
+      var title = el.textContent.trim().replace(/^\S+\s*/, '');
+      chapterList.push({ href: el.dataset.href, num: num, title: title });
+    });
+
+    toggle.addEventListener('click', function() {
+      if (isMobile() || isFloating()) {
+        sidebar.classList.toggle('open');
+        backdrop.classList.toggle('visible');
+      } else {
+        sidebar.classList.toggle('collapsed');
+        main.classList.toggle('expanded');
+      }
+    });
+
+    backdrop.addEventListener('click', function() {
+      sidebar.classList.remove('open');
+      backdrop.classList.remove('visible');
+    });
+
+    var tocFab = document.getElementById('toc-fab');
+    if (tocFab) tocFab.addEventListener('click', function() {
+      sidebar.classList.toggle('open');
+      backdrop.classList.toggle('visible');
+    });
+
+    function goHome() {
+      navigateTo(null);
+      if (isMobile() || isFloating()) { sidebar.classList.remove('open'); backdrop.classList.remove('visible'); }
+    }
+    brand.addEventListener('click', goHome);
+    brand.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goHome(); }
+    });
+    headerTitle.addEventListener('click', goHome);
+
+    document.querySelectorAll('.sb-part').forEach(function(part) {
+      part.addEventListener('click', function() {
+        var group = part.dataset.group;
+        var el = document.querySelector('.sb-group[data-group="' + group + '"]');
+        if (!el) return;
+        part.classList.toggle('closed');
+        el.classList.toggle('closed');
+        part.setAttribute('aria-expanded', part.classList.contains('closed') ? 'false' : 'true');
+      });
+    });
+    // group open-height is CSS-driven now (.sb-group max-height:480px, .closed:0); no per-mode
+    // JS measuring — that baked a wrong scrollHeight when the page loaded in topbar and clipped
+    // chapters after switching modes.
+
+    function escapeHtml(str) {
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+    function setActive(href) {
+      document.querySelectorAll('.sb-item').forEach(function(el) {
+        el.classList.remove('active');
+        if (href && el.dataset.href === href) el.classList.add('active');
+        if (!href && el.dataset.page === 'welcome') el.classList.add('active');
+      });
+    }
+    function findChapter(href) {
+      for (var i = 0; i < chapterList.length; i++) if (chapterList[i].href === href) return chapterList[i];
+      return null;
+    }
+    function navigateTo(href) {
+      ttsStopFn();
+      if (!href || href === 'welcome') {
+        welcome.style.display = '';
+        frame.style.display = 'none';
+        frame.src = 'about:blank';
+        headerTitle.innerHTML = 'Core <span>Marketing</span>';
+        history.replaceState(null, '', window.location.pathname);
+        setActive(null);
+        progressFill.style.width = '0%';
+        return;
+      }
+      // Never navigate to a row that the dead-link guard disabled.
+      var rowForHref = document.querySelector('.sb-item[data-href="' + href + '"]');
+      if (rowForHref && rowForHref.getAttribute('data-disabled') === '1') return;
+      welcome.style.display = 'none';
+      frame.style.display = 'block';
+      // cache-bust per shell-load so edited chapters/front-matter never serve stale from browser cache.
+      // Skip on file:// — local file URLs choke on a query string and would fail to load.
+      frame.src = (location.protocol === 'file:')
+        ? href
+        : href + (href.indexOf('?') < 0 ? '?' : '&') + 'v=' + (window.__CC_V || (window.__CC_V = Date.now()));
+      setActive(href);
+      var ch = findChapter(href);
+      if (ch) {
+        if (ch.num) headerTitle.innerHTML = '<span>' + escapeHtml(ch.num) + '</span> ' + escapeHtml(ch.title);
+        else headerTitle.textContent = ch.title;
+      }
+      if (isMobile() || isFloating()) { sidebar.classList.remove('open'); backdrop.classList.remove('visible'); }
+    }
+
+    document.querySelectorAll('.sb-item').forEach(function(el) {
+      el.addEventListener('click', function() {
+        // Disabled "coming soon" rows (file does not exist) never navigate.
+        if (el.getAttribute('data-disabled') === '1') return;
+        var href = el.dataset.href || el.dataset.page;
+        if (href === 'welcome') navigateTo(null);
+        else if (href) { navigateTo(href); history.replaceState(null, '', '#' + encodeURIComponent(href)); }
+      });
+    });
+
+    // ── Keyboard access for the click-to-navigate sidebar. The items + collapsible part
+    //    headers are <div>s; make each focusable + operable via Enter/Space (mirrors the
+    //    brand handler above). This also gives the scrollable <nav id="sidebar"> the
+    //    focusable content that WCAG 2.1.1 / axe scrollable-region-focusable require.
+    document.querySelectorAll('#sidebar .sb-item').forEach(function(el) {
+      if (el.getAttribute('data-disabled') === '1') return;
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('role', 'link');
+      el.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+      });
+    });
+    document.querySelectorAll('#sidebar .sb-part').forEach(function(part) {
+      part.setAttribute('tabindex', '0');
+      part.setAttribute('role', 'button');
+      part.setAttribute('aria-expanded', part.classList.contains('closed') ? 'false' : 'true');
+      var _chev = part.querySelector('.chevron'); if (_chev) _chev.setAttribute('aria-hidden', 'true');
+      part.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); part.click(); }
+      });
+    });
+
+    // ════════════════════════════════════════════════════════════════════
+    //  DEAD-LINK GUARD — every sidebar data-href row is probed once (same
+    //  origin HEAD). Rows whose file does not exist degrade to a non-clickable
+    //  "coming soon" item instead of a dead link. Real chapter-NN-*.html rows
+    //  resolve and stay clickable. Runs async so it never blocks first paint.
+    // ════════════════════════════════════════════════════════════════════
+    function markComingSoon(el) {
+      el.setAttribute('data-disabled', '1');
+      el.style.opacity = '0.5';
+      el.style.cursor = 'default';
+      el.setAttribute('aria-disabled', 'true');
+      el.setAttribute('tabindex', '-1');
+      el.removeAttribute('role');
+      el.setAttribute('title', 'Coming soon');
+      // Append a subtle "Soon" tag if not already present.
+      if (!el.querySelector('.sb-soon')) {
+        var tag = document.createElement('span');
+        tag.className = 'sb-soon';
+        tag.textContent = 'Soon';
+        el.appendChild(tag);
+      }
+    }
+    function probeSidebarLinks() {
+      var rows = document.querySelectorAll('.sb-item[data-href]');
+      rows.forEach(function(el) {
+        var href = el.dataset.href;
+        if (!href) return;
+        // Only degrade to "coming soon" on a DEFINITIVE 404. A fetch error
+        // (file:// open, CORS, offline, HEAD unsupported) is ambiguous and must
+        // NOT disable a real chapter — otherwise the whole book reads as "Soon".
+        if (location.protocol === 'file:') return; // can't probe local files; assume present
+        fetch(href, { method: 'HEAD' }).then(function(resp) {
+          if (resp.status === 404) markComingSoon(el);
+        }).catch(function() {
+          fetch(href, { method: 'GET', headers: { Range: 'bytes=0-0' } }).then(function(r2) {
+            if (r2.status === 404) markComingSoon(el);
+          }).catch(function() { /* ambiguous — leave enabled */ });
+        });
+      });
+    }
+    probeSidebarLinks();
+
+    document.addEventListener('keydown', function(e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      var active = document.querySelector('.sb-item.active[data-href]');
+      if (!active) return;
+      var idx = -1;
+      for (var i = 0; i < chapterList.length; i++) { if (chapterList[i].href === active.dataset.href) { idx = i; break; } }
+      if (idx === -1) return;
+      var newIdx = e.key === 'ArrowLeft' ? idx - 1 : idx + 1;
+      if (newIdx >= 0 && newIdx < chapterList.length) {
+        e.preventDefault();
+        var target = chapterList[newIdx].href;
+        navigateTo(target);
+        history.replaceState(null, '', '#' + encodeURIComponent(target));
+      }
+    });
+
+    // ════════════════════════════════════════════════════════════════════
+    //  SCROLL-TO-SECTION (used by search results + hash deep links)
+    // ════════════════════════════════════════════════════════════════════
+    var pendingScrollId = null;
+
+    function scrollFrameToId(id) {
+      try {
+        var doc = frame.contentDocument;
+        if (!doc) return;
+        var el = doc.getElementById(id);
+        if (!el) return;
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } catch (e) {}
+    }
+
+    // Navigate to a chapter and scroll to a section id. Handles both the
+    // "chapter not yet loaded" path (load handler drains pendingScrollId) and
+    // the "already on this chapter" path (scroll immediately).
+    function navigateToSection(href, id) {
+      var alreadyHere = (frame.style.display !== 'none') &&
+                        frame.src && frame.src.indexOf(href) !== -1;
+      if (alreadyHere) {
+        if (id) scrollFrameToId(id);
+      } else {
+        pendingScrollId = id || null;
+        navigateTo(href);
+        history.replaceState(null, '', '#' + encodeURIComponent(href));
+      }
+      if (isMobile() || isFloating()) { sidebar.classList.remove('open'); backdrop.classList.remove('visible'); }
+    }
+
+    // ════════════════════════════════════════════════════════════════════
+    //  SIDEBAR SEARCH — lazily index each existing chapter (same-origin
+    //  fetch, parsed once and cached), then match titles + section headings.
+    //  Results are grouped Chapter → matching sections; a click loads the
+    //  chapter into #content-frame and scrolls to the heading id. Fully
+    //  self-contained — no external libraries.
+    // ════════════════════════════════════════════════════════════════════
+    var searchInput = document.getElementById('sb-search-input');
+    var searchResults = document.getElementById('sb-search-results');
+    var searchClear = document.getElementById('sb-search-clear');
+
+    // index entries: { href, num, title, sections: [{id, text}] }
+    var searchIndex = null;       // null until first build; then an array
+    var searchIndexBuilding = false;
+
+    function escForRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+    // Parse one chapter's HTML string into an index entry.
+    function parseChapter(meta, htmlText) {
+      var sections = [];
+      try {
+        var pdoc = new DOMParser().parseFromString(htmlText, 'text/html');
+        var docTitle = '';
+        var titleEl = pdoc.querySelector('title');
+        if (titleEl) docTitle = (titleEl.textContent || '').trim();
+        var h1 = pdoc.querySelector('h1');
+        var h1Text = h1 ? (h1.textContent || '').trim() : '';
+        // Section headings that can be deep-linked (must carry an id).
+        var heads = pdoc.querySelectorAll('h2[id], h3[id]');
+        for (var i = 0; i < heads.length; i++) {
+          var h = heads[i];
+          var id = h.getAttribute('id');
+          var text = (h.textContent || '').replace(/\s+/g, ' ').trim();
+          if (id && text) sections.push({ id: id, text: text });
+        }
+        // Prefer the chapter's own <h1>/<title> over the sidebar label if present.
+        var bestTitle = meta.title || h1Text || docTitle;
+        return { href: meta.href, num: meta.num, title: bestTitle, sections: sections };
+      } catch (e) {
+        return { href: meta.href, num: meta.num, title: meta.title, sections: sections };
+      }
+    }
+
+    // Build the index once: fetch every clickable chapter row in parallel.
+    function buildSearchIndex() {
+      if (searchIndex || searchIndexBuilding) return Promise.resolve(searchIndex);
+      searchIndexBuilding = true;
+      var rows = [];
+      document.querySelectorAll('.sb-item[data-href]').forEach(function(el) {
+        if (el.getAttribute('data-disabled') === '1') return; // skip coming-soon
+        var numSpan = el.querySelector('.num');
+        var num = numSpan ? numSpan.textContent.trim() : '';
+        if (num === ' ' || num === '&nbsp;') num = '';
+        var title = el.textContent.replace(/\bSoon\b\s*$/, '').trim().replace(/^\S+\s*/, '');
+        rows.push({ href: el.dataset.href, num: num, title: title });
+      });
+      var jobs = rows.map(function(meta) {
+        return fetch(meta.href).then(function(r) {
+          if (!r.ok) throw new Error('bad');
+          return r.text();
+        }).then(function(txt) {
+          return parseChapter(meta, txt);
+        }).catch(function() {
+          // Unreachable chapter: index its title only so it is still findable.
+          return { href: meta.href, num: meta.num, title: meta.title, sections: [] };
+        });
+      });
+      return Promise.all(jobs).then(function(entries) {
+        searchIndex = entries;
+        searchIndexBuilding = false;
+        return searchIndex;
+      });
+    }
+
+    function highlight(text, q) {
+      var safe = escapeHtml(text);
+      if (!q) return safe;
+      try {
+        var re = new RegExp('(' + escForRegex(q) + ')', 'ig');
+        return safe.replace(re, '<mark>$1</mark>');
+      } catch (e) { return safe; }
+    }
+
+    function renderResults(q) {
+      var query = q.trim().toLowerCase();
+      if (!query) { searchResults.hidden = true; searchResults.innerHTML = ''; return; }
+      searchResults.hidden = false;
+
+      if (!searchIndex) {
+        searchResults.innerHTML = '<div class="sb-sr-status">Indexing the book…</div>';
+        return;
+      }
+
+      var groups = [];
+      for (var i = 0; i < searchIndex.length; i++) {
+        var ch = searchIndex[i];
+        var titleHit = (ch.title || '').toLowerCase().indexOf(query) !== -1 ||
+                       (ch.num || '').toLowerCase() === query;
+        var secHits = [];
+        for (var s = 0; s < ch.sections.length; s++) {
+          if (ch.sections[s].text.toLowerCase().indexOf(query) !== -1) secHits.push(ch.sections[s]);
+        }
+        if (titleHit || secHits.length) groups.push({ ch: ch, sections: secHits, titleHit: titleHit });
+      }
+
+      if (!groups.length) {
+        searchResults.innerHTML = '<div class="sb-sr-empty">No results for “' + escapeHtml(q.trim()) + '”.</div>';
+        return;
+      }
+
+      var html = '';
+      groups.forEach(function(g) {
+        var ch = g.ch;
+        var numLabel = ch.num ? '<span class="sb-sr-num">' + escapeHtml(ch.num) + '</span>' : '';
+        html += '<div class="sb-sr-group">';
+        html += '<div class="sb-sr-chapter" data-href="' + escapeHtml(ch.href) + '">' +
+                  numLabel + '<span>' + highlight(ch.title || ch.href, q.trim()) + '</span></div>';
+        // Cap sections per chapter so the panel stays readable.
+        var shown = g.sections.slice(0, 8);
+        shown.forEach(function(sec) {
+          html += '<div class="sb-sr-section" data-href="' + escapeHtml(ch.href) + '" data-id="' +
+                  escapeHtml(sec.id) + '">' + highlight(sec.text, q.trim()) + '</div>';
+        });
+        if (g.sections.length > shown.length) {
+          html += '<div class="sb-sr-status">+' + (g.sections.length - shown.length) + ' more sections</div>';
+        }
+        html += '</div>';
+      });
+      searchResults.innerHTML = html;
+    }
+
+    // Event delegation for result clicks.
+    searchResults.addEventListener('click', function(e) {
+      var sec = e.target.closest('.sb-sr-section');
+      if (sec) { navigateToSection(sec.dataset.href, sec.dataset.id); return; }
+      var chap = e.target.closest('.sb-sr-chapter');
+      if (chap) { navigateToSection(chap.dataset.href, null); return; }
+    });
+
+    var searchDebounce = null;
+    function onSearchInput() {
+      var val = searchInput.value;
+      searchClear.hidden = !val;
+      if (searchDebounce) clearTimeout(searchDebounce);
+      searchDebounce = setTimeout(function() {
+        // Kick off (or reuse) the index, then render. renderResults shows an
+        // "Indexing…" status until the cache is ready.
+        if (!searchIndex && !searchIndexBuilding && val.trim()) {
+          buildSearchIndex().then(function() { renderResults(searchInput.value); });
+        }
+        renderResults(val);
+      }, 180);
+    }
+    if (searchInput) {
+      // Warm the index on first focus so the first query is instant.
+      searchInput.addEventListener('focus', function() { buildSearchIndex(); }, { once: true });
+      searchInput.addEventListener('input', onSearchInput);
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') { searchInput.value = ''; searchClear.hidden = true; renderResults(''); searchInput.blur(); }
+      });
+    }
+    if (searchClear) {
+      searchClear.addEventListener('click', function() {
+        searchInput.value = '';
+        searchClear.hidden = true;
+        renderResults('');
+        searchInput.focus();
+      });
+    }
+
+    // ════════════════════════════════════════════════════════════════════
+    //  READING PROGRESS BAR (same-origin scroll polling)
+    // ════════════════════════════════════════════════════════════════════
+    function updateProgress() {
+      if (frame.style.display === 'none') { progressFill.style.width = '0%'; return; }
+      try {
+        var doc = frame.contentDocument;
+        var win = frame.contentWindow;
+        if (!doc || !win) return;
+        var scrolled = win.scrollY || doc.documentElement.scrollTop || doc.body.scrollTop || 0;
+        var total = (doc.documentElement.scrollHeight || doc.body.scrollHeight) - win.innerHeight;
+        var pct = total > 0 ? (scrolled / total) * 100 : 0;
+        progressFill.style.width = Math.min(100, Math.max(0, pct)) + '%';
+      } catch (err) {}
+    }
+
+    // ════════════════════════════════════════════════════════════════════
+    //  IFRAME LOAD — apply theme + depth + font once the chapter is ready
+    // ════════════════════════════════════════════════════════════════════
+    frame.addEventListener('load', function() {
+      // Re-theme the freshly-loaded chapter (chrome vars + sketches), and
+      // re-apply depth + font/zoom in one pass.
+      injectIframeStyles();
+      postDepthToFrame();  // tell the freshly-loaded chapter which depth to render
+      // Re-apply the shell-driven accessibility state on every chapter load so
+      // it persists across navigation (injectIframeStyles also does this; this
+      // is the explicit guard for the load lifecycle).
+      applyA11yToFrame();
+      // If a search result requested a section, scroll to it now that the
+      // chapter DOM exists.
+      if (pendingScrollId) { scrollFrameToId(pendingScrollId); pendingScrollId = null; }
+      try {
+        var win = frame.contentWindow;
+        if (win) {
+          win.addEventListener('scroll', updateProgress, { passive: true });
+          win.addEventListener('resize', updateProgress, { passive: true });
+          updateProgress();
+        }
+      } catch (err) {}
+    });
+
+    // ════════════════════════════════════════════════════════════════════
+    //  INITIAL STATE
+    // ════════════════════════════════════════════════════════════════════
+    // Hydrate UI controls from persisted state, then apply.
+    applySpeed(readerState.speed);
+    applyFontSize(readerState.fontSize);          // sets the value label (no iframe yet)
+    document.querySelectorAll('.rs-font-btn').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.font === readerState.font);
+    });
+    if (readerState.font && FONTS[readerState.font]) applyFont(readerState.font);
+    // depth label/checks
+    depthLabel.textContent = readerState.density === 'complete' ? 'Complete' : 'Focused';
+    depthCheckComplete.innerHTML = readerState.density === 'complete' ? '&#10003;' : '&nbsp;';
+    depthCheckFocused.innerHTML = readerState.density === 'focused' ? '&#10003;' : '&nbsp;';
+    // Apply the composed theme to the shell chrome (iframe re-themes on load).
+    applyTheme(readerState.mode, readerState.accent);
+
+    // ── BOOK TOC is ALWAYS the left sidebar (the hamburger hides/shows it). The gear's
+    //    "Chapter contents" control drives the CHAPTER TOC — the current chapter's
+    //    section headings — injected into the chapter iframe (data-cctoc + cc-chtoc).
+    document.documentElement.setAttribute('data-toc', 'sidebar');
+
+    function setChapterTocMode(mode) {
+      var allowed = ['floating', 'intext', 'topbar', 'off'];
+      if (allowed.indexOf(mode) < 0) mode = 'floating';
+      readerState.chtoc = mode;
+      localStorage.setItem('cc-chtoc', mode);
+      document.querySelectorAll('.rs-toc-btn').forEach(function(b) {
+        b.classList.toggle('active', b.dataset.cctoc === mode);
+      });
+      // re-inject into the current chapter (applyChapterToc styles + positions its
+      // headings) and re-fit annotation marks after the layout shift.
+      try { injectIframeStyles(); } catch (e) {}
+      try {
+        var f = document.querySelector('.main iframe');
+        if (f && f.contentWindow && typeof f.contentWindow.__reannotate__ === 'function') f.contentWindow.__reannotate__();
+      } catch (e) {}
+    }
+    document.querySelectorAll('.rs-toc-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.cctoc === readerState.chtoc);
+      btn.addEventListener('click', function() { setChapterTocMode(btn.dataset.cctoc); });
+    });
+
+    // Accessibility: reflect persisted cm_a11y_v1 into the shell checkboxes and
+    // wire our iframe-propagating change handlers (additive to _accessibility.js).
+    syncA11yShellCheckboxes();
+    wireA11yShellControls();
+
+    function initFromHash() {
+      var hash = window.location.hash;
+      if (!hash || hash.length < 2) return;
+      var href = decodeURIComponent(hash.slice(1));
+      if (findChapter(href)) navigateTo(href);
+    }
+    initFromHash();
+    window.addEventListener('hashchange', initFromHash);
+  })();
+  </script>
+
+  <!-- Book-cover background: 6 D3-style patterns. Click the cover to cycle; colour is pulled
+       live from the palette accent (--coral) so it always matches the theme. -->
+  <script>
+  (function () {
+    var canvas = document.getElementById('cover-particles');
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var cover = document.getElementById('book-cover');
+    var W = 0, H = 0, t = 0, P = {};
+    var PATTERNS = ['network', 'flow', 'mesh', 'rings', 'grid', 'constellation'];
+    var idx = (function () { var s = parseInt(localStorage.getItem('cc-cover-pattern'), 10); return (s >= 0 && s < PATTERNS.length) ? s : 0; })();
+    function accent() {
+      var c = (getComputedStyle(document.documentElement).getPropertyValue('--coral') || '#DA7756').trim().replace('#', '');
+      if (c.length === 3) c = c[0] + c[0] + c[1] + c[1] + c[2] + c[2];
+      return [parseInt(c.substr(0, 2), 16) || 218, parseInt(c.substr(2, 2), 16) || 119, parseInt(c.substr(4, 2), 16) || 86];
+    }
+    function rgba(a) { var c = accent(); if (document.documentElement.getAttribute('data-mode') === 'light') a = Math.min(1, a * 1.55); return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+    function rnd(n) { return Math.random() * n; }
+    function initPattern() {
+      P = {}; var kind = PATTERNS[idx], i;
+      if (kind === 'network' || kind === 'constellation') {
+        var n = kind === 'network' ? 58 : 30; P.pts = [];
+        for (i = 0; i < n; i++) P.pts.push({ x: rnd(W), y: rnd(H), vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25, r: rnd(2) + 1, w: kind === 'constellation' && i % 3 === 0 });
+      } else if (kind === 'flow') {
+        P.pts = []; for (i = 0; i < 95; i++) P.pts.push({ x: rnd(W), y: rnd(H), px: 0, py: 0 });
+      } else if (kind === 'mesh') {
+        P.pts = []; for (i = 0; i < 38; i++) P.pts.push({ x: rnd(W), y: rnd(H), vx: (Math.random() - 0.5) * 0.2, vy: (Math.random() - 0.5) * 0.2 });
+      } else if (kind === 'grid') { P.gap = Math.max(28, W / 8); }
+      else if (kind === 'rings') { P.cx = W * 0.82; P.cy = H * 0.05; }
+    }
+    function resize() {
+      var r = canvas.parentElement.getBoundingClientRect();
+      if (r.width < 2 || r.height < 2) return;
+      canvas.width = W = r.width; canvas.height = H = r.height;
+      initPattern();
+    }
+    function draw() {
+      requestAnimationFrame(draw);
+      if (W < 2) return;
+      t += 1; ctx.clearRect(0, 0, W, H);
+      var kind = PATTERNS[idx], i, j, p;
+      if (kind === 'network' || kind === 'constellation') {
+        var maxD = kind === 'network' ? 108 : 150;
+        for (i = 0; i < P.pts.length; i++) { p = P.pts[i]; p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; }
+        for (i = 0; i < P.pts.length; i++) for (j = i + 1; j < P.pts.length; j++) { var a = P.pts[i], b = P.pts[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx * dx + dy * dy);
+          if (d < maxD) { ctx.strokeStyle = rgba(0.22 * (1 - d / maxD)); ctx.lineWidth = 0.8; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); } }
+        P.pts.forEach(function (q) { ctx.fillStyle = q.w ? 'rgba(255,255,255,0.55)' : rgba(0.5); ctx.beginPath(); ctx.arc(q.x, q.y, q.r, 0, 6.3); ctx.fill(); });
+      } else if (kind === 'flow') {
+        P.pts.forEach(function (q) { var ang = Math.sin(q.x * 0.006 + t * 0.004) + Math.cos(q.y * 0.006 - t * 0.003); q.px = q.x; q.py = q.y; q.x += Math.cos(ang) * 1.3; q.y += Math.sin(ang) * 1.3;
+          if (q.x < 0 || q.x > W || q.y < 0 || q.y > H) { q.x = rnd(W); q.y = rnd(H); q.px = q.x; q.py = q.y; }
+          ctx.strokeStyle = rgba(0.16); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(q.px, q.py); ctx.lineTo(q.x, q.y); ctx.stroke(); });
+      } else if (kind === 'mesh') {
+        for (i = 0; i < P.pts.length; i++) { p = P.pts[i]; p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; }
+        P.pts.forEach(function (q) { var near = P.pts.map(function (r2) { return { q: r2, d: Math.hypot(q.x - r2.x, q.y - r2.y) }; }).sort(function (m, n) { return m.d - n.d; }).slice(1, 4);
+          near.forEach(function (o) { ctx.strokeStyle = rgba(0.15); ctx.lineWidth = 0.8; ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(o.q.x, o.q.y); ctx.stroke(); }); });
+        P.pts.forEach(function (q) { ctx.fillStyle = rgba(0.5); ctx.beginPath(); ctx.arc(q.x, q.y, 2, 0, 6.3); ctx.fill(); });
+      } else if (kind === 'rings') {
+        var phase = (t * 0.45) % 46;
+        for (var r = phase; r < W * 1.5; r += 46) { ctx.strokeStyle = rgba(0.3 * (1 - r / (W * 1.5))); ctx.lineWidth = 1.3; ctx.beginPath(); ctx.arc(P.cx, P.cy, r, 0, 6.3); ctx.stroke(); }
+      } else if (kind === 'grid') {
+        for (var gx = P.gap; gx < W; gx += P.gap) for (var gy = P.gap; gy < H; gy += P.gap) { var w = Math.sin(gx * 0.02 + gy * 0.02 - t * 0.03) * 0.5 + 0.5; ctx.fillStyle = rgba(0.15 + w * 0.5); ctx.beginPath(); ctx.arc(gx, gy, 1.4 + w * 3, 0, 6.3); ctx.fill(); }
+      }
+    }
+    if (cover) {
+      cover.style.cursor = 'pointer';
+      cover.setAttribute('title', 'Click to change the pattern');
+      cover.addEventListener('click', function () { idx = (idx + 1) % PATTERNS.length; try { localStorage.setItem('cc-cover-pattern', idx); } catch (e) {} initPattern(); });
+      if (window.ResizeObserver) new ResizeObserver(resize).observe(cover);
+    }
+    window.addEventListener('resize', resize);
+    window.addEventListener('load', resize);
+    resize();
+    draw();
+  })();
+  </script>
+<script>
+/* Accessibility change-popup + reset (added 2026-05-23). The book ships WCAG 2.1 AA by
+   default; warn when a setting that can reduce accessibility changes, and offer a reset. */
+(function () {
+  var KEYS = ['cc-mode', 'cc-accent', 'cc-fontSize', 'cc-font', 'cm_a11y_v1', 'cc-cctoc'];
+  var last = 0;
+  function toast() {
+    var now = Date.now(); if (now - last < 6000) return; last = now;
+    var t = document.getElementById('cc-a11y-toast');
+    if (!t) {
+      t = document.createElement('div'); t.id = 'cc-a11y-toast'; t.className = 'cc-a11y-toast';
+      t.setAttribute('role', 'status');
+      t.innerHTML = 'This book ships ADA-compliant by default. This change can reduce accessibility. ' +
+        '<button type="button" class="cc-a11y-toast-reset">Reset</button>' +
+        '<button type="button" class="cc-a11y-toast-x" aria-label="Dismiss">&times;</button>';
+      document.body.appendChild(t);
+    }
+    t.setAttribute('data-show', '1');
+    clearTimeout(t._to); t._to = setTimeout(function () { t.removeAttribute('data-show'); }, 7000);
+  }
+  function reset() {
+    KEYS.forEach(function (k) { try { localStorage.removeItem(k); } catch (e) {} });
+    location.reload();
+  }
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest ? e.target.closest(
+      '.rs-mode-btn, .rs-accent-btn, .rs-font-btn, .rs-fs-btn, #rs-reset-defaults, .cc-a11y-toast-reset, .cc-a11y-toast-x') : null;
+    if (!el) return;
+    if (el.id === 'rs-reset-defaults' || el.className === 'cc-a11y-toast-reset') { reset(); return; }
+    if (el.className === 'cc-a11y-toast-x') { var t = document.getElementById('cc-a11y-toast'); if (t) t.removeAttribute('data-show'); return; }
+    toast();
+  });
+  document.addEventListener('change', function (e) {
+    if (e.target.matches && e.target.matches('[data-a11y-toggle], #rs-custom-color')) toast();
+  });
+})();
+</script>
+</body>
+</html>

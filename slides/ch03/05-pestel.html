@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 3 Marketing environment · 05 · PESTEL exhibit</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; }
+  .exh .head{ margin-bottom:12px; }
+  .exh .frame{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:14px 22px 12px; display:flex; flex-direction:column; flex:1; min-height:0;
+  }
+  .exh .frame .caption{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:4px;
+  }
+  .exh svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+</style>
+</head>
+<body>
+  <!-- 05 · EXHIBIT · PESTEL six forces (lifted from chapter sk-pestel; reveal/term stripped, recolored). ONE coral element = the fastest-moving force this quarter (the arrow the chapter says is your job to name). -->
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">PESTEL walks six macro forces on a clock, <em>so none becomes the blind spot that catches you flat</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Exhibit 3.2 · The six macro forces pointing inward, each on its own clock</span>
+      <svg viewBox="0 0 720 330" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="Six macro forces point inward at a brand at the center: Political, Economic, Sociocultural, Technological, Environmental, and Legal. Five arrows are gray; one arrow, the force moving fastest this quarter, is coral. The job is to name which arrow moves fastest.">
+        <g font-size="13" fill="#1a1a1a">
+          <!-- Center: the brand -->
+          <circle cx="360" cy="165" r="56" fill="#FAFAF8" stroke="#BDB7AC" stroke-width="1.5"/>
+          <text x="360" y="160" text-anchor="middle" font-weight="700" font-size="15">Your</text>
+          <text x="360" y="180" text-anchor="middle" font-weight="700" font-size="15">brand</text>
+
+          <!-- Six force chips around the circle, with arrows pointing inward.
+               Layout: 3 on the left, 3 on the right. Coral = Sociocultural (the chapter's hardest-to-read, fastest force). -->
+
+          <!-- Political (top-left), gray -->
+          <rect x="40" y="34" width="178" height="46" rx="3" fill="#FFFFFF" stroke="#BDB7AC" stroke-width="1.2"/>
+          <text x="56" y="56" font-weight="700" font-size="13">Political</text>
+          <text x="56" y="72" font-size="11" fill="#7A7A7A">tariffs, elections, agencies</text>
+          <line x1="218" y1="62" x2="305" y2="128" stroke="#A39E94" stroke-width="1.6" marker-end="url(#a-gray)"/>
+
+          <!-- Economic (mid-left), gray -->
+          <rect x="40" y="142" width="178" height="46" rx="3" fill="#FFFFFF" stroke="#BDB7AC" stroke-width="1.2"/>
+          <text x="56" y="164" font-weight="700" font-size="13">Economic</text>
+          <text x="56" y="180" font-size="11" fill="#7A7A7A">rates, inflation, currency</text>
+          <line x1="218" y1="165" x2="300" y2="165" stroke="#A39E94" stroke-width="1.6" marker-end="url(#a-gray)"/>
+
+          <!-- Sociocultural (bottom-left): the ONE coral element, fastest force -->
+          <rect x="40" y="250" width="178" height="46" rx="3" fill="#FDF6F3" stroke="#DA7756" stroke-width="2"/>
+          <text x="56" y="272" font-weight="700" font-size="13" fill="#1a1a1a">Sociocultural</text>
+          <text x="56" y="288" font-size="11" fill="#B8553A">values, identity, demographics</text>
+          <line x1="218" y1="268" x2="305" y2="202" stroke="#DA7756" stroke-width="2.6" marker-end="url(#a-coral)"/>
+          <text x="232" y="248" font-size="11" fill="#DA7756" font-weight="700">fastest this quarter</text>
+
+          <!-- Technological (top-right), gray -->
+          <rect x="502" y="34" width="178" height="46" rx="3" fill="#FFFFFF" stroke="#BDB7AC" stroke-width="1.2"/>
+          <text x="518" y="56" font-weight="700" font-size="13">Technological</text>
+          <text x="518" y="72" font-size="11" fill="#7A7A7A">unit cost of the work, AI tools</text>
+          <line x1="502" y1="62" x2="415" y2="128" stroke="#A39E94" stroke-width="1.6" marker-end="url(#a-gray)"/>
+
+          <!-- Environmental (mid-right), gray -->
+          <rect x="502" y="142" width="178" height="46" rx="3" fill="#FFFFFF" stroke="#BDB7AC" stroke-width="1.2"/>
+          <text x="518" y="164" font-weight="700" font-size="13">Environmental</text>
+          <text x="518" y="180" font-size="11" fill="#7A7A7A">climate, resources, weather</text>
+          <line x1="502" y1="165" x2="420" y2="165" stroke="#A39E94" stroke-width="1.6" marker-end="url(#a-gray)"/>
+
+          <!-- Legal (bottom-right), gray -->
+          <rect x="502" y="250" width="178" height="46" rx="3" fill="#FFFFFF" stroke="#BDB7AC" stroke-width="1.2"/>
+          <text x="518" y="272" font-weight="700" font-size="13">Legal</text>
+          <text x="518" y="288" font-size="11" fill="#7A7A7A">regulation, IP, antitrust</text>
+          <line x1="502" y1="268" x2="415" y2="202" stroke="#A39E94" stroke-width="1.6" marker-end="url(#a-gray)"/>
+
+          <!-- markers -->
+          <defs>
+            <marker id="a-gray" markerWidth="11" markerHeight="11" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+              <path d="M0,0 L8,4 L0,8" fill="none" stroke="#A39E94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+            <marker id="a-coral" markerWidth="12" markerHeight="12" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+              <path d="M0,0 L9,4 L0,8" fill="none" stroke="#DA7756" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: Aguilar, <em>Scanning the Business Environment</em> (1967); Ferrell, Hartline &amp; Hochstein, <em>Marketing Strategy</em> 8e (2022), Ch. 3</p>
+  </section>
+</body>
+</html>

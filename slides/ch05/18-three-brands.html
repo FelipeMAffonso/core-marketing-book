@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 5 Marketing Research · 18 · Three brands, three spends</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.kpi-slide{ display:flex; flex-direction:column; }
+  .kpi-slide .head{ margin-bottom:22px; }
+  .kpi-slide .row{
+    display:grid; grid-template-columns: 1fr 1fr 1fr; gap:20px; flex:1; min-height:0; align-items:stretch;
+  }
+  .kpi-slide .k{
+    border:1px solid var(--rule); padding:22px 24px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .kpi-slide .k.featured{ background:var(--accent-tint); border:none; border-left:3px solid var(--accent); }
+  .kpi-slide .k .brand{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:12px; }
+  .kpi-slide .k.featured .brand{ color:var(--accent); }
+  .kpi-slide .k .n{ font-size:42px; font-weight:600; letter-spacing:-0.02em; line-height:1; color:var(--ink); }
+  .kpi-slide .k.featured .n{ color:var(--accent); }
+  .kpi-slide .k .l{ font-size:20px; color:var(--ink-body); margin-top:14px; line-height:1.4; max-width:32ch; }
+  .kpi-slide .k .l strong{ color:var(--ink); font-weight:600; }
+  .kpi-slide .foot{
+    margin-top:20px; font-size:21px; line-height:1.45; color:var(--ink-body); max-width:88ch;
+  }
+  .kpi-slide .foot em{ font-style:normal; color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 18 · KPI ROW · three brands, three research spends, all doing the same arithmetic (condensed from chapter fig-4 calibration map). ONE coral element = Stanley featured card, the under-spend that left $700M on the table. -->
+  <section class="slide kpi-slide">
+    <div class="head">
+      <h1 class="title">The right research spend is the cost of being wrong: <em>sometimes large, sometimes a side door, sometimes zero</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="row">
+      <div class="k featured">
+        <span class="brand">Stanley · under-spent</span>
+        <span class="n">~$700M</span>
+        <span class="l"><strong>Left on the table, 2019&ndash;2023,</strong> on $0 of research. Twenty interviews for about $8,000 would have found the women buyers.</span>
+      </div>
+      <div class="k">
+        <span class="brand">Patagonia · side door</span>
+        <span class="n">~92,000</span>
+        <span class="l"><strong>Worn Wear repairs a year</strong> in North America, each a ticket on its heaviest users, paid out of the repair budget.</span>
+      </div>
+      <div class="k">
+        <span class="brand">Trader Joe's · on purpose</span>
+        <span class="n">$0</span>
+        <span class="l"><strong>No loyalty program, app, or account.</strong> Fast rotation and aisle staff read the market, and it ranks near the top of dunnhumby 2025.</span>
+      </div>
+    </div>
+
+    <p class="foot">All three sit in different cells of the calibration map, and all three are doing the same arithmetic correctly. What drives the budget is <em>the cost of being wrong on the decision in front of you, never last year's number</em>.</p>
+
+    <p class="source">Source: CNBC (2023) on Stanley; Patagonia Worn Wear FY25; dunnhumby Retailer Preference Index 2025</p>
+  </section>
+</body>
+</html>

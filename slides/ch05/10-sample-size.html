@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 5 Marketing Research · 10 · Sample size</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; }
+  .exh .head{ margin-bottom:12px; }
+  .exh .frame{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:14px 22px 12px; display:flex; flex-direction:column; flex:1; min-height:0;
+  }
+  .exh .frame .caption{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:4px;
+  }
+  .exh svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+</style>
+</head>
+<body>
+  <!-- 10 · EXHIBIT (Trend) · margin of error vs sample size, the square-root law. ONE coral element = the 384-respondent point where the curve crosses the 5-point target and flattens. -->
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">384 respondents buy a 5-point margin at 95% confidence, <em>and the payoff flattens fast after that</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Exhibit 5.6 · Margin of error vs sample size &middot; worst-case 50-50 split, 95% confidence</span>
+      <svg viewBox="0 0 700 296" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Margin of error falls as sample size grows, following a square-root curve. Going from 50 to 200 respondents tightens the read sharply; going from 1,000 to 1,200 barely moves it. At 384 respondents the curve crosses the 5-percentage-point target, marked in coral, then flattens.">
+        <g font-family="'Segoe UI', sans-serif" font-size="12" fill="#5C5C5C">
+          <!-- axes. plot x 70..650 (n: 0..1500), y 40..232 (MoE: 14%..0%) -->
+          <line x1="70" y1="232" x2="650" y2="232" stroke="#7A7A7A" stroke-width="1.2"/>
+          <line x1="70" y1="40" x2="70" y2="232" stroke="#E8E6E1" stroke-width="1.2"/>
+          <!-- Y ticks: MoE. y = 232 - MoE*13.7 (so 14% -> 40) -->
+          <g font-size="11" fill="#7A7A7A" text-anchor="end">
+            <text x="62" y="236">0</text>
+            <text x="62" y="194">3</text>
+            <text x="62" y="153">6</text>
+            <text x="62" y="98">10</text>
+          </g>
+          <text x="30" y="136" font-size="11" fill="#7A7A7A" text-anchor="middle" font-style="italic" transform="rotate(-90 30 136)">margin of error (&plusmn; points)</text>
+          <!-- X ticks: n -->
+          <g font-size="11" fill="#7A7A7A" text-anchor="middle">
+            <text x="70" y="252">0</text>
+            <text x="147" y="252">200</text>
+            <text x="218" y="252">384</text>
+            <text x="380" y="252">800</text>
+            <text x="612" y="252">1,400</text>
+          </g>
+          <text x="360" y="280" text-anchor="middle" fill="#1a1a1a" font-size="12" font-weight="600">sample size (respondents)</text>
+
+          <!-- 5-point target: dashed benchmark line. MoE 5 -> y = 232 - 5*13.7 = 163.5 -->
+          <line x1="70" y1="164" x2="650" y2="164" stroke="#7A7A7A" stroke-dasharray="5,4" stroke-width="1.3"/>
+          <text x="646" y="159" text-anchor="end" font-size="11" fill="#5C5C5C" font-weight="600">5-point margin target</text>
+
+          <!-- the curve (gray context): MoE = 98/sqrt(n) approx. plotted points -->
+          <path d="M78,52 Q110,96 147,108 Q190,128 218,164 Q300,196 380,205 Q500,214 650,222"
+                fill="none" stroke="#7A7A7A" stroke-width="2"/>
+          <!-- annotate the steep part -->
+          <text x="150" y="92" font-size="11" fill="#7A7A7A">50&rarr;200: tightens sharply</text>
+          <text x="500" y="200" text-anchor="middle" font-size="11" fill="#7A7A7A">1,000&rarr;1,200: barely moves</text>
+
+          <!-- the 384 point: the ONE coral element, where curve meets the target -->
+          <circle cx="218" cy="164" r="6.5" fill="#DA7756"/>
+          <line x1="218" y1="164" x2="218" y2="232" stroke="#DA7756" stroke-width="1.3" stroke-dasharray="3,3"/>
+          <text x="232" y="150" font-size="13" fill="#DA7756" font-weight="700">n = 384</text>
+          <text x="232" y="136" font-size="11" fill="#B8553A">5-point margin, the Cochran figure</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: Cochran, <em>Sampling Techniques</em> (1977); the square-root law (Central Limit Theorem); 50-50 split at 95% confidence</p>
+  </section>
+</body>
+</html>

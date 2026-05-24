@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 8 Product Management · 08 · Extensions and brand-fit</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.split{ display:flex; flex-direction:column; }
+  .split .head{ margin-bottom:18px; }
+  .split .cols{ display:grid; grid-template-columns: 1fr 1fr; gap:24px; flex:1; min-height:0; }
+  .split .col{
+    border:1px solid var(--rule); padding:22px 26px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .split .col.after{ background:var(--accent-tint); border:none; border-left:3px solid var(--accent); }
+  .split .col .label{
+    font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:14px;
+  }
+  .split .col.after .label{ color:var(--accent); }
+  .split .col .lead{ font-size:23px; font-weight:600; letter-spacing:-0.01em; line-height:1.18; color:var(--ink); }
+  .split .col.after .lead{ color:var(--accent); }
+  .split .col .note{ font-size:20px; color:var(--ink-body); margin-top:12px; line-height:1.4; }
+  .split .col .note strong{ color:var(--ink); font-weight:600; }
+  .split .foot{ margin-top:18px; font-size:21px; line-height:1.45; color:var(--ink-body); max-width:90ch; }
+  .split .foot em{ font-style:normal; color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 08 · TWO-COLUMN · line vs brand extension; the brand-fit test, Bic perfume as the dilution case.
+       ONE coral element = the brand-extension column (the higher-risk move that broke on a meaning conflict). -->
+  <section class="slide split">
+    <div class="head">
+      <h1 class="title">Most new products are extensions, and the binding question is <em>whether the parent's meaning fits the category</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <span class="label">Line extension · lower risk</span>
+        <span class="lead">A new variant inside a category the brand already serves.</span>
+        <p class="note">A new Quencher colorway, Tide Pods beside Tide Liquid. Buyers already grant the brand credibility here, so the upside is bounded by what the category can absorb.</p>
+      </div>
+      <div class="col after">
+        <span class="label">Brand extension · higher risk</span>
+        <span class="lead">A new category, where the parent's meaning can dilute it.</span>
+        <p class="note">Bic carried cheap, functional, throwaway into a $5 perfume. Buyers wanted lasting and premium, the opposite, and the line <strong>died within two years</strong>.</p>
+      </div>
+    </div>
+
+    <p class="foot">Run the brand-fit test before any prototype budget: name what the parent means, name what the category requires, and <em>where they conflict the extension dilutes, because no media spend dissolves a conflict the parent already carries</em>.</p>
+
+    <p class="source">Source: Kotler, Keller &amp; Chernev 16e (2022); line- vs. brand-extension framework, brand-dilution principle, Bic perfume failure</p>
+  </section>
+</body>
+</html>

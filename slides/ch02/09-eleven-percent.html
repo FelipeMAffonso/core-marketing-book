@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 2 What marketing is · 09 · Only 11% see it as different</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.cmp{ display:flex; flex-direction:column; }
+  .cmp .head{ margin-bottom:14px; }
+  .cmp .body-row{ display:grid; grid-template-columns: 1.6fr 1fr; gap:32px; flex:1; min-height:0; }
+  .cmp .chart{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:18px 22px 14px; display:flex; flex-direction:column; min-height:0;
+  }
+  .cmp .chart .caption{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:4px; }
+  .cmp .chart .headline{ font-size:18px; font-weight:600; color:var(--ink); line-height:1.3; margin-bottom:12px; max-width:52ch; }
+  .cmp svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+  .cmp .side h4{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .cmp .side p{ font-size:21px; line-height:1.4; color:var(--ink-body); margin-bottom:14px; max-width:30ch; }
+  .cmp .side p em{ font-style:normal; color:var(--ink); font-weight:600; }
+  .cmp .side ul{ list-style:none; padding:0; margin:8px 0 0; display:flex; flex-direction:column; gap:8px; }
+  .cmp .side ul li{ font-size:20px; color:var(--ink-body); padding-left:16px; position:relative; line-height:1.35; }
+  .cmp .side ul li::before{ content:""; position:absolute; left:0; top:13px; width:9px; height:1px; background:var(--ink-mute); }
+</style>
+</head>
+<body>
+  <!-- 09 · PART-TO-WHOLE · only 11% of a brand's own buyers see it as different. ONE coral element = the 11% slice of the single 100% bar (one buyer base, split by reason for choosing). -->
+  <section class="slide cmp">
+    <div class="head">
+      <h1 class="title">Across fifteen categories, only <em>11% of a brand's own buyers</em> see it as different from the rest.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="body-row">
+      <div class="chart">
+        <span class="caption">Exhibit 2.4 · A brand's own buyers, split by why they choose it &middot; Ehrenberg-Bass 15-category audit</span>
+        <p class="headline">The other 89% bought it because it was familiar, in stock, and thought of first. A brand competes on being easy to think of and easy to find, not on a difference buyers do not feel.</p>
+        <svg viewBox="0 0 560 280" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="A single horizontal bar representing all of a brand's own buyers, 100 percent. An 11 percent coral segment marks the buyers who see the brand as different; the remaining 89 percent gray segment marks buyers who chose it because it was familiar, in stock, and thought of first.">
+          <g font-size="12" fill="#1a1a1a">
+            <!-- axis scale 0..100% across x: 70..530 (460px wide) -->
+            <line x1="70" y1="158" x2="530" y2="158" stroke="#7A7A7A"/>
+            <g font-size="11" fill="#7A7A7A" text-anchor="middle">
+              <text x="70"  y="178">0</text>
+              <text x="185" y="178">25</text>
+              <text x="300" y="178">50</text>
+              <text x="415" y="178">75</text>
+              <text x="530" y="178">100</text>
+            </g>
+            <text x="300" y="200" font-size="11" fill="#7A7A7A" text-anchor="middle" font-style="italic">share of the brand's own buyers (%)</text>
+
+            <!-- the single 100% bar. 1% = 4.6px. -->
+            <!-- coral slice: 11% -> 50.6px, x 70..120.6 -->
+            <rect x="70" y="92" width="50.6" height="56" fill="#DA7756"/>
+            <!-- gray slice: 89% -> 409.4px, x 120.6..530 -->
+            <rect x="120.6" y="92" width="409.4" height="56" fill="#BDB7AC"/>
+            <!-- bar outline -->
+            <rect x="70" y="92" width="460" height="56" fill="none" stroke="#7A7A7A" stroke-width="0.8"/>
+
+            <!-- direct labels -->
+            <text x="95.3" y="124" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="700">11%</text>
+            <text x="325" y="124" text-anchor="middle" font-size="14" fill="#5C5C5C" font-weight="600">89%</text>
+
+            <!-- segment captions above -->
+            <text x="95.3" y="80" text-anchor="middle" font-size="11.5" fill="#DA7756" font-weight="700">see it as different</text>
+            <text x="325" y="80" text-anchor="middle" font-size="11.5" fill="#5C5C5C">familiar, in stock, thought of first</text>
+
+            <!-- range note (the mean runs 4% to 20% across categories) -->
+            <text x="300" y="238" text-anchor="middle" font-size="11" fill="#888" font-style="italic">the 11% mean runs from electronics at 4% up to spirits at 20%</text>
+          </g>
+        </svg>
+      </div>
+
+      <aside class="side">
+        <h4>So what</h4>
+        <p>The two assets that move sales are <em>mental and physical availability</em>.</p>
+
+        <h4>The two market-based assets</h4>
+        <ul>
+          <li>Mental: easy to think of when the need shows up.</li>
+          <li>Physical: easy to find on the shelf or in search.</li>
+          <li>A buyer who can think of it but not find it does not buy.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <p class="source">Source: Sharp, <em>How Brands Grow</em> (2010); Ehrenberg-Bass 15-category audit; mean across categories, share varies by category</p>
+  </section>
+</body>
+</html>

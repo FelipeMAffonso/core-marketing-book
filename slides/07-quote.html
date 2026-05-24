@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Template · Pull Quote</title>
+<link rel="stylesheet" href="_tokens.css"/>
+<style>
+  .slide.quote{ display:flex; flex-direction:column; justify-content:center; padding:48px 80px; }
+  .quote .mark{
+    font-size:120px; line-height:.6; color:var(--accent); font-weight:400;
+    font-family: Georgia, 'Times New Roman', serif;
+    margin-bottom:8px;
+  }
+  .quote blockquote{
+    font-size:40px; font-weight:400; line-height:1.25;
+    color:var(--ink); letter-spacing:-0.01em;
+    max-width: 26ch; text-wrap:balance;
+  }
+  .quote blockquote em{ font-style:italic; color:var(--accent); }
+  .quote .attr{
+    margin-top:28px; display:flex; align-items:center; gap:14px;
+  }
+  .quote .attr .bar{ width:28px; height:1px; background:var(--ink-mute); }
+  .quote .attr .who{
+    font-size:16px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--ink-label); font-weight:600;
+  }
+  .quote .attr .book{
+    font-size:14px; letter-spacing:0.04em; color:var(--ink-mute); font-style:italic;
+    margin-left:12px;
+  }
+</style>
+</head>
+<body>
+  <!-- 07 · PULL QUOTE -->
+  <section class="slide quote">
+    <div class="mark">&ldquo;</div>
+    <blockquote>
+      Above all else, show the <em>data</em>.
+    </blockquote>
+    <div class="attr">
+      <span class="bar"></span>
+      <span class="who">Edward R. Tufte</span>
+      <span class="book">Visual Display of Quantitative Information, 1983</span>
+    </div>
+
+    <p class="source">Source: Tufte (1983), p. 92</p>
+  </section>
+</body>
+</html>

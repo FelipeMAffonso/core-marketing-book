@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 6 STP · 07 · Five-criteria filter</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.filter{ display:flex; flex-direction:column; }
+  .filter .head{ margin-bottom:20px; }
+  .filter .grid{ display:grid; grid-template-columns: 1fr 1fr; gap:14px 32px; flex:1; align-content:center; }
+  .filter .c{
+    display:grid; grid-template-columns: 34px 1fr; gap:14px; align-items:baseline;
+    padding:12px 0; border-bottom:1px solid var(--rule);
+  }
+  .filter .c .n{ font-size:22px; font-weight:600; color:var(--ink-mute); letter-spacing:-0.01em; }
+  .filter .c h3{ font-size:21px; font-weight:600; color:var(--ink); margin-bottom:2px; }
+  .filter .c p{ font-size:20px; line-height:1.35; color:var(--ink-body); }
+  .filter .foot{
+    margin-top:18px; font-size:22px; line-height:1.4; color:var(--ink-body); max-width:64ch;
+  }
+  .filter .foot em{ font-style:normal; color:var(--accent); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 07 · CONTENT · the five-criteria usability filter -->
+  <section class="slide filter">
+    <div class="head">
+      <h1 class="title">A slice is only a usable segment when it passes five tests. <em>Fail one, and it is research.</em></h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="grid">
+      <div class="c"><span class="n">1</span><div><h3>Measurable</h3><p>You can size it from data you can actually get.</p></div></div>
+      <div class="c"><span class="n">2</span><div><h3>Accessible</h3><p>You can reach it with a marketing program.</p></div></div>
+      <div class="c"><span class="n">3</span><div><h3>Substantial</h3><p>It is large and profitable enough to repay serving it.</p></div></div>
+      <div class="c"><span class="n">4</span><div><h3>Differentiable</h3><p>It responds differently than other segments do.</p></div></div>
+      <div class="c"><span class="n">5</span><div><h3>Actionable</h3><p>The firm has the resources to run a program for it.</p></div></div>
+      <div class="c" style="border-bottom:none;"><span class="n">&rarr;</span><div><h3>The honesty check</h3><p>If you cannot describe it in one plain sentence, it is a statistical artifact.</p></div></div>
+    </div>
+
+    <p class="source">Source: Wedel &amp; Kamakura (2000); Day, <em>Strategic Mgmt. J.</em> (1981); Wind, <em>JMR</em> (1978)</p>
+  </section>
+</body>
+</html>

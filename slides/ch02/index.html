@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>MKTG 4333 · Chapter 2 · What marketing is deck</title>
+<style>
+  :root{
+    --bg:#f5f2ec; --ink:#1a1a1a; --ink-soft:#4A4A4A; --ink-mute:#7A7A7A;
+    --rule:#E8E6E1; --accent:#DA7756; --accent-tint:#FDF6F3;
+    --font:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ background:var(--bg); font-family:var(--font); color:var(--ink); }
+  body{ padding:64px 72px 96px; }
+  header{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    border-bottom:1px solid var(--rule); padding-bottom:20px; margin-bottom:36px;
+  }
+  header .dot{ display:inline-block; width:10px; height:10px; background:var(--accent); border-radius:50%; margin-right:10px; vertical-align:middle; }
+  header h1{ font-size:32px; font-weight:600; letter-spacing:-0.01em; }
+  header h1 em{ font-style:italic; color:var(--accent); font-weight:500; }
+  header .meta{
+    font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ink-mute); font-weight:600;
+  }
+  .intro{
+    max-width:70ch; font-size:18px; line-height:1.55; color:var(--ink-soft);
+    margin-bottom:44px;
+  }
+  .intro a{ color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); }
+  .grid{
+    display:grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap:28px;
+  }
+  .card{
+    background:#fff; border:1px solid var(--rule);
+    display:flex; flex-direction:column; overflow:hidden;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .card:hover{ transform:translateY(-2px); box-shadow: 0 8px 24px -10px rgba(0,0,0,.15); }
+  .card .frame{
+    position:relative; aspect-ratio: 16 / 9; overflow:hidden; background:#ffffff;
+    border-bottom:1px solid var(--rule);
+  }
+  .card .frame .scaler{
+    position:absolute; top:0; left:0;
+    width:960px; height:540px;
+    transform-origin: top left;
+  }
+  .card .frame iframe{
+    width:960px; height:540px; border:0; display:block; pointer-events:none;
+    background:#ffffff;
+  }
+  .card .info{ padding:16px 22px; display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+  .card .info h3{ font-size:16px; font-weight:600; line-height:1.3; }
+  .card .info .n{
+    font-size:11px; font-weight:600; letter-spacing:0.14em; color:var(--ink-mute);
+    text-transform:uppercase; white-space:nowrap;
+  }
+  .card .info .tmpl{ display:block; font-size:12px; color:var(--ink-soft); margin-top:3px; font-style:italic; }
+  .card a.open{
+    display:block; text-align:right; font-size:11px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--accent); font-weight:600;
+    padding:0 22px 16px; text-decoration:none;
+  }
+  footer{
+    margin-top:64px; padding-top:20px; border-top:1px solid var(--rule);
+    font-size:13px; color:var(--ink-mute); display:flex; justify-content:space-between;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1><span class="dot"></span>Chapter 2 · <em>What marketing is</em>.</h1>
+    <span class="meta">MKTG 4333 · 20 slides · 960 × 540</span>
+  </header>
+
+  <p class="intro">
+    A teaching deck on marketing as five coordinated decisions, built on the coral design system. One claim per slide,
+    white backgrounds, one coral element per slide, Segoe UI throughout. It pairs with the Chapter 2 lecture video and
+    runs the same arc: the Patagonia-versus-Bud-Light puzzle, the five-decision model, the exchange, why the decisions
+    are multiplicative, the frameworks (4 Ps into 7 Ts, the 4Cs, value types, marketing myopia), what pays and what
+    breaks, and the diagnostic. Read the system rules in
+    <a href="../DESIGN-SYSTEM.md">DESIGN-SYSTEM.md</a> and
+    <a href="../CHART-PRINCIPLES.md">CHART-PRINCIPLES.md</a>.
+  </p>
+
+  <div class="grid" id="grid"></div>
+
+<script>
+(() => {
+  const slides = [
+    ["01-title.html",              "01", "What marketing is", "Title / cover"],
+    ["02-divider-puzzle.html",     "02", "One brand gave itself away and kept selling", "Section divider"],
+    ["03-patagonia-budlight.html", "03", "One survived a $3B giveaway; the other could not survive a single can", "Two-column"],
+    ["04-divider-model.html",      "04", "Marketing is five decisions, not the ad at the end", "Section divider"],
+    ["05-five-decisions.html",     "05", "A firm decides five things, and a tug on one pulls the other four", "Exhibit · five-decision system"],
+    ["06-exchange.html",           "06", "An exchange completes only when both sides feel they won", "Exhibit · the exchange"],
+    ["07-five-cs.html",            "07", "The five Cs are the analysis; the five decisions are the output", "Exhibit · five Cs"],
+    ["08-divider-hard.html",       "08", "The math is not what students expect", "Section divider"],
+    ["09-eleven-percent.html",     "09", "Only 11% of a brand's own buyers see it as different", "Part-to-whole bar"],
+    ["10-stanley.html",            "10", "Stanley ran from $73M to $750M in three years", "Trend line"],
+    ["11-multiplicative.html",     "11", "Four good decisions and one broken one do not average into a pass", "Comparison · multiplicative"],
+    ["12-divider-frameworks.html", "12", "The same five decisions, seen from different seats", "Section divider"],
+    ["13-fourps-sevents.html",     "13", "The four Ps split into seven because two of them hid decisions", "Exhibit · 4Ps to 7Ts"],
+    ["14-value-types.html",        "14", "Value comes in four kinds, and naming the kind matters", "Exhibit · four value types"],
+    ["15-myopia.html",             "15", "Marketing myopia: name the job, not the product", "Exhibit · myopia / JTBD"],
+    ["16-divider-pays.html",       "16", "The five decisions have to pay, on repeat", "Section divider"],
+    ["17-costco-economics.html",   "17", "Costco's 92% renewal funds a near-zero ad budget", "KPI row"],
+    ["18-budlight-response.html",  "18", "The partnership was not the lasting damage; the response was", "Pull quote"],
+    ["19-three-disciplines.html",  "19", "A firm leads on one discipline and the five fall in behind it", "Exhibit · three disciplines"],
+    ["20-closing.html",            "20", "Run the four-step read on a brand you actually buy", "Closing / takeaways"]
+  ];
+  const grid = document.getElementById('grid');
+  slides.forEach(([href, n, claim, tmpl]) => {
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.innerHTML =
+      '<div class="frame"><div class="scaler"><iframe src="' + href + '?thumb=1" title="' + claim + '"></iframe></div></div>' +
+      '<div class="info"><div><h3>' + claim + '</h3><span class="tmpl">' + tmpl + '</span></div><span class="n">' + n + '</span></div>' +
+      '<a class="open" href="' + href + '" target="_blank">Open &rarr;</a>';
+    grid.appendChild(card);
+  });
+
+  function fitCards(){
+    document.querySelectorAll('.card .frame').forEach(frame => {
+      const scaler = frame.querySelector('.scaler');
+      if (!scaler) return;
+      const w = frame.clientWidth;
+      const s = w / 960;
+      scaler.style.transform = 'scale(' + s + ')';
+      scaler.style.width  = '960px';
+      scaler.style.height = '540px';
+      frame.style.height = (540 * s) + 'px';
+    });
+  }
+  document.querySelectorAll('iframe').forEach(f => {
+    f.addEventListener('load', () => {
+      try { f.contentDocument.documentElement.classList.add('is-thumb'); } catch(_){}
+    });
+  });
+  window.addEventListener('resize', fitCards);
+  window.addEventListener('load', fitCards);
+  fitCards();
+})();
+</script>
+
+  <footer>
+    <span>MKTG 4333 · Prof. Felipe M. Affonso · Spears School of Business</span>
+    <span>White bg · Segoe UI · one coral accent · pairs with the Ch 2 video</span>
+  </footer>
+</body>
+</html>

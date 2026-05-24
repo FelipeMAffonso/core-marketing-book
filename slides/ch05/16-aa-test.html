@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 5 Marketing Research · 16 · A/A test</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; }
+  .exh .head{ margin-bottom:12px; }
+  .exh .frame{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:14px 22px 12px; display:flex; flex-direction:column; flex:1; min-height:0;
+  }
+  .exh .frame .caption{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:4px;
+  }
+  .exh svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+</style>
+</head>
+<body>
+  <!-- 16 · EXHIBIT (Distribution) · A/A test p-value histogram (lifted from chapter aa-explorer concept). Uniform distribution; ONE coral element = the leftmost bin, the ~5% of comparisons that cross p<0.05 on noise alone. -->
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">Run an A/A test with no real difference, and <em>about 5% of comparisons still cross the line</em> on noise alone.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Exhibit 5.9 · A/A test &middot; distribution of p-values when both groups get the identical page, 1,000 runs</span>
+      <svg viewBox="0 0 700 290" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A histogram of p-values from 1,000 A/A tests where both groups got the identical page. The bars are roughly flat across the zero-to-one range, because under no true effect the p-value is uniform. The leftmost bin, p below 0.05, is shaded coral: those runs are false positives by construction, about 5 percent of all comparisons.">
+        <g font-family="'Segoe UI', sans-serif" font-size="12" fill="#5C5C5C">
+          <!-- axes. plot x 70..650 (p: 0..1, 20 bins of 29px), y 44..234 (count) -->
+          <line x1="70" y1="234" x2="650" y2="234" stroke="#7A7A7A" stroke-width="1.2"/>
+          <line x1="70" y1="44" x2="70" y2="234" stroke="#E8E6E1" stroke-width="1.2"/>
+          <g font-size="11" fill="#7A7A7A" text-anchor="end">
+            <text x="62" y="238">0</text>
+            <text x="62" y="184">25</text>
+            <text x="62" y="130">50</text>
+          </g>
+          <text x="30" y="140" font-size="11" fill="#7A7A7A" text-anchor="middle" font-style="italic" transform="rotate(-90 30 140)">number of A/A runs</text>
+          <!-- X ticks p -->
+          <g font-size="11" fill="#7A7A7A" text-anchor="middle">
+            <text x="70" y="254">0</text>
+            <text x="215" y="254">0.25</text>
+            <text x="360" y="254">0.50</text>
+            <text x="505" y="254">0.75</text>
+            <text x="650" y="254">1.00</text>
+          </g>
+          <text x="360" y="280" text-anchor="middle" fill="#1a1a1a" font-size="12" font-weight="600">p-value of the A/A comparison</text>
+
+          <!-- the leftmost bin (p<0.05): the ONE coral element -->
+          <rect x="71" y="128" width="27" height="106" fill="#DA7756"/>
+          <text x="84" y="120" text-anchor="middle" font-size="11.5" fill="#DA7756" font-weight="700">~5%</text>
+          <line x1="99" y1="44" x2="99" y2="234" stroke="#7A7A7A" stroke-dasharray="4,3" stroke-width="1.2"/>
+          <text x="108" y="58" font-size="11" fill="#5C5C5C" font-weight="600">p = 0.05 cutoff (&alpha;)</text>
+          <text x="108" y="74" font-size="10.5" fill="#7A7A7A" font-style="italic">false positives by construction</text>
+
+          <!-- the rest of the bins (gray, roughly flat/uniform) -->
+          <g fill="#BDB7AC">
+            <rect x="100" y="130" width="27" height="104"/>
+            <rect x="129" y="126" width="27" height="108"/>
+            <rect x="158" y="132" width="27" height="102"/>
+            <rect x="187" y="128" width="27" height="106"/>
+            <rect x="216" y="134" width="27" height="100"/>
+            <rect x="245" y="129" width="27" height="105"/>
+            <rect x="274" y="131" width="27" height="103"/>
+            <rect x="303" y="127" width="27" height="107"/>
+            <rect x="332" y="133" width="27" height="101"/>
+            <rect x="361" y="130" width="27" height="104"/>
+            <rect x="390" y="128" width="27" height="106"/>
+            <rect x="419" y="132" width="27" height="102"/>
+            <rect x="448" y="129" width="27" height="105"/>
+            <rect x="477" y="131" width="27" height="103"/>
+            <rect x="506" y="127" width="27" height="107"/>
+            <rect x="535" y="133" width="27" height="101"/>
+            <rect x="564" y="130" width="27" height="104"/>
+            <rect x="593" y="128" width="27" height="106"/>
+            <rect x="622" y="132" width="27" height="102"/>
+          </g>
+          <text x="430" y="110" font-size="11.5" fill="#7A7A7A" font-style="italic">no true effect makes the p-value uniform</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: chapter §5.5 A/A test; &alpha; = 0.05 is a 1925 Fisher convention, not a fact about the world</p>
+  </section>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 5 Marketing Research · 06 · Value-of-information curve</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; }
+  .exh .head{ margin-bottom:12px; }
+  .exh .frame{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:14px 22px 12px; display:flex; flex-direction:column; flex:1; min-height:0;
+  }
+  .exh .frame .caption{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:4px;
+  }
+  .exh svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+</style>
+</head>
+<body>
+  <!-- 06 · EXHIBIT (Trend) · value-of-information curve (lifted from chapter fig-1; gradient/reveal stripped). The ONE coral element = the curve + its 2-10% spend band. The late-data point is gray so a single coral region carries the claim. -->
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">The first cheap data point is worth enormous amounts. <em>The 1,201st response is worth almost nothing.</em></h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Exhibit 5.3 · The value-of-information curve &middot; value to the decision vs cost of the next data point</span>
+      <svg viewBox="0 0 700 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The value-of-information curve. Value to the decision rises steeply for the first cheap data, peaks early, then falls as later data gets expensive and stops changing the decision. A coral band marks the 2 to 10 percent of EVPI where a study should spend. The first cheap data point sits high on the curve; the 1,201st survey response sits low.">
+        <defs>
+          <linearGradient id="voi-fill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#DA7756" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#DA7756" stop-opacity="0.02"/>
+          </linearGradient>
+        </defs>
+        <g font-family="'Segoe UI', sans-serif" font-size="12" fill="#5C5C5C">
+          <line x1="70" y1="232" x2="660" y2="232" stroke="#7A7A7A" stroke-width="1.2"/>
+          <line x1="70" y1="36" x2="70" y2="232" stroke="#E8E6E1" stroke-width="1.2"/>
+          <g fill="#7A7A7A" font-size="11">
+            <line x1="70" y1="232" x2="70" y2="238" stroke="#7A7A7A"/><text x="70" y="252" text-anchor="middle">$0</text>
+            <line x1="218" y1="232" x2="218" y2="238" stroke="#7A7A7A"/><text x="218" y="252" text-anchor="middle">$5K</text>
+            <line x1="365" y1="232" x2="365" y2="238" stroke="#7A7A7A"/><text x="365" y="252" text-anchor="middle">$20K</text>
+            <line x1="513" y1="232" x2="513" y2="238" stroke="#7A7A7A"/><text x="513" y="252" text-anchor="middle">$80K</text>
+            <line x1="660" y1="232" x2="660" y2="238" stroke="#7A7A7A"/><text x="660" y="252" text-anchor="middle">$200K+</text>
+          </g>
+          <text x="365" y="280" text-anchor="middle" fill="#1a1a1a" font-size="12" font-weight="600">cost of the next data point</text>
+          <text x="30" y="134" text-anchor="middle" transform="rotate(-90 30 134)" fill="#1a1a1a" font-size="12" font-weight="600">value to the decision</text>
+
+          <!-- 2-10% band, light, sits under the curve peak -->
+          <rect x="135" y="36" width="220" height="196" fill="#DA7756" opacity="0.06"/>
+          <text x="245" y="52" text-anchor="middle" fill="#B8553A" font-size="11" font-weight="700">2&ndash;10% OF EVPI</text>
+          <text x="245" y="66" text-anchor="middle" fill="#7A7A7A" font-size="10.5" font-style="italic">spend here</text>
+
+          <!-- the curve + fill: the ONE coral element -->
+          <path d="M70,224 Q140,48 305,72 Q480,98 655,228 L655,232 L70,232 Z" fill="url(#voi-fill)"/>
+          <path d="M70,224 Q140,48 305,72 Q480,98 655,228" fill="none" stroke="#DA7756" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="160" cy="84" r="5" fill="#DA7756"/>
+          <text x="176" y="78" fill="#1a1a1a" font-weight="600" font-size="12">audit data already in the building</text>
+          <text x="176" y="94" fill="#5C5C5C" font-size="11">cheap, changes the decision</text>
+
+          <!-- late-data point: GRAY so only one coral region carries the claim -->
+          <circle cx="555" cy="190" r="5" fill="#7A7A7A"/>
+          <text x="548" y="182" text-anchor="end" fill="#1a1a1a" font-weight="600" font-size="12">1,201st survey response</text>
+          <text x="548" y="198" text-anchor="end" fill="#5C5C5C" font-size="11">expensive, no longer changes anything</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: Hubbard, <em>How to Measure Anything</em> 3e (2014); EVPI = cost of being wrong &times; chance the lean is wrong</p>
+  </section>
+</body>
+</html>

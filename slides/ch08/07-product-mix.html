@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 8 Product Management · 07 · The product mix</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.dials{ display:flex; flex-direction:column; }
+  .dials .head{ margin-bottom:16px; }
+  .dials .body-row{ display:grid; grid-template-columns: 1.5fr 1fr; gap:32px; flex:1; min-height:0; }
+  .dials .chart{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:18px 24px 16px; display:flex; flex-direction:column; justify-content:center; min-height:0;
+  }
+  .dials .chart .caption{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:16px; }
+  .dials svg{ width:100%; height:auto; display:block; }
+  .dials .side h4{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .dials .side p{ font-size:21px; line-height:1.42; color:var(--ink-body); margin-bottom:14px; max-width:32ch; }
+  .dials .side p em{ font-style:normal; color:var(--ink); font-weight:600; }
+  .dials .side ul{ list-style:none; padding:0; margin:8px 0 0; display:flex; flex-direction:column; gap:8px; }
+  .dials .side ul li{ font-size:20px; color:var(--ink-body); padding-left:16px; position:relative; line-height:1.35; }
+  .dials .side ul li::before{ content:""; position:absolute; left:0; top:13px; width:9px; height:1px; background:var(--ink-mute); }
+</style>
+</head>
+<body>
+  <!-- 07 · COMPARISON (sliders) · the four portfolio dials, with Stanley's depth dial pulled hard.
+       ONE coral element = the depth slider, the only dial Stanley moved 2018-2024. -->
+  <section class="slide dials">
+    <div class="head">
+      <h1 class="title">A portfolio runs on four dials, and Stanley grew tenfold <em>by pulling only depth</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="body-row">
+      <div class="chart">
+        <span class="caption">Exhibit 8.4 · The four portfolio dials · Stanley, 2018 to 2024</span>
+        <svg viewBox="0 0 480 220" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif">
+          <!-- four slider tracks; Width/Length/Consistency near the start (gray), Depth pulled far (coral) -->
+          <!-- Width -->
+          <text x="0" y="30" font-size="13" font-weight="600" fill="#1a1a1a">Width</text>
+          <text x="0" y="46" font-size="11" fill="#7A7A7A" font-style="italic">number of lines</text>
+          <line x1="150" y1="30" x2="460" y2="30" stroke="#E8E6E1" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="178" cy="30" r="8" fill="#BDB7AC"/>
+          <!-- Length -->
+          <text x="0" y="83" font-size="13" font-weight="600" fill="#1a1a1a">Length</text>
+          <text x="0" y="99" font-size="11" fill="#7A7A7A" font-style="italic">items per line</text>
+          <line x1="150" y1="83" x2="460" y2="83" stroke="#E8E6E1" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="192" cy="83" r="8" fill="#BDB7AC"/>
+          <!-- Depth: the coral claim, pulled far right -->
+          <text x="0" y="136" font-size="13" font-weight="700" fill="#B8553A">Depth</text>
+          <text x="0" y="152" font-size="11" fill="#B8553A" font-style="italic">variants per item</text>
+          <line x1="150" y1="136" x2="460" y2="136" stroke="#E8E6E1" stroke-width="4" stroke-linecap="round"/>
+          <line x1="150" y1="136" x2="432" y2="136" stroke="#DA7756" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="432" cy="136" r="9" fill="#DA7756"/>
+          <text x="432" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#B8553A">~30 colorways</text>
+          <!-- Consistency -->
+          <text x="0" y="189" font-size="13" font-weight="600" fill="#1a1a1a">Consistency</text>
+          <text x="0" y="205" font-size="11" fill="#7A7A7A" font-style="italic">how related the lines are</text>
+          <line x1="150" y1="189" x2="460" y2="189" stroke="#E8E6E1" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="404" cy="189" r="8" fill="#BDB7AC"/>
+        </svg>
+      </div>
+
+      <aside class="side">
+        <h4>So what</h4>
+        <p>The vocabulary lets a manager name the move precisely as <em>a depth play, not getting bigger</em>.</p>
+
+        <h4>The Stanley arc</h4>
+        <ul>
+          <li>The Quencher stretched into ~30 colorways and four capacities.</li>
+          <li>Width, length, and consistency all held.</li>
+          <li>Variety is never free: each variant costs a slot and a planogram.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <p class="source">Source: Kotler, Keller &amp; Chernev 16e (2022), product-mix dimensions; Stanley-PMI revenue commentary 2018&ndash;2024</p>
+  </section>
+</body>
+</html>

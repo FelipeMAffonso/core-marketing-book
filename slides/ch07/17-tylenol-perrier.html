@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 7 Brands · 17 · Tylenol vs Perrier</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.split{ display:flex; flex-direction:column; }
+  .split .head{ margin-bottom:22px; }
+  .split .cols{ display:grid; grid-template-columns: 1fr 1fr; gap:24px; flex:1; }
+  .split .col{
+    border:1px solid var(--rule); padding:22px 24px;
+    display:flex; flex-direction:column;
+  }
+  .split .col.after{ background:var(--accent-tint); border:none; border-left:3px solid var(--accent); }
+  .split .col .label{
+    font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:10px;
+  }
+  .split .col.after .label{ color:var(--accent); }
+  .split .col h3{
+    font-size:24px; font-weight:600; color:var(--ink);
+    margin-bottom:6px; line-height:1.2;
+  }
+  .split .col .verdict{ font-size:20px; color:var(--ink-soft); font-style:italic; margin-bottom:12px; }
+  .split .col ul{ list-style:none; padding:0; margin:6px 0 0 0; display:flex; flex-direction:column; gap:8px; }
+  .split .col ul li{
+    font-size:20px; color:var(--ink-body); padding-left:18px; position:relative; line-height:1.35;
+  }
+  .split .col ul li::before{
+    content:""; position:absolute; left:0; top:13px;
+    width:10px; height:1px; background:var(--ink-mute);
+  }
+  .split .col.after ul li::before{ background:var(--accent); height:2px; }
+</style>
+</head>
+<body>
+  <!-- 17 · TWO-COLUMN · Tylenol vs Perrier resolves the opening puzzle. ONE coral element = the Tylenol "after" column (the survivor, deep network). -->
+  <section class="slide split">
+    <div class="head">
+      <h1 class="title">Both brands faced a contamination crisis and both responded fast. <em>Same response speed, opposite outcomes.</em></h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <span class="label">Perrier · 1990</span>
+        <h3>A transactional connection</h3>
+        <p class="verdict">A green bottle and a French-water story, with no layer underneath.</p>
+        <ul>
+          <li>Benzene contamination, fast recall</li>
+          <li>A year later, share at less than half</li>
+          <li>Sold itself to Nestle in 1992</li>
+        </ul>
+      </div>
+      <div class="col after">
+        <span class="label">Tylenol · 1982 · the survivor</span>
+        <h3>Two decades of banked memory</h3>
+        <p class="verdict">Doctor recommendation, packaging, and shelf presence, layered for years.</p>
+        <ul>
+          <li>The network bent under the shock and re-formed</li>
+          <li>Back near 30% within a year</li>
+          <li>The depth was banked before it had to be spent</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="source">Source: Tylenol (1982&ndash;83) and Perrier (1990&ndash;92) crisis cases; chapter 7</p>
+  </section>
+</body>
+</html>

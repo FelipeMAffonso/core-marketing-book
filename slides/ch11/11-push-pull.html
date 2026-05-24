@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 11 Distribution · 11 · Push and pull</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.split{ display:flex; flex-direction:column; }
+  .split .head{ margin-bottom:18px; }
+  .split .cols{ display:grid; grid-template-columns: 1fr 1fr; gap:24px; flex:1; min-height:0; }
+  .split .col{
+    border:1px solid var(--rule); padding:22px 24px;
+    display:flex; flex-direction:column;
+  }
+  .split .col.after{ background:var(--accent-tint); border:none; border-left:3px solid var(--accent); }
+  .split .col .label{
+    font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:10px;
+  }
+  .split .col.after .label{ color:var(--accent); }
+  .split .col h3{
+    font-size:23px; font-weight:600; color:var(--ink);
+    margin-bottom:12px; line-height:1.2;
+  }
+  .split .col p{ font-size:20px; line-height:1.4; color:var(--ink-body); }
+  .split .col ul{ list-style:none; padding:0; margin:10px 0 0 0; display:flex; flex-direction:column; gap:8px; }
+  .split .col ul li{
+    font-size:20px; color:var(--ink-body); padding-left:18px; position:relative; line-height:1.35;
+  }
+  .split .col ul li::before{
+    content:""; position:absolute; left:0; top:13px;
+    width:10px; height:1px; background:var(--ink-mute);
+  }
+  .split .col.after ul li::before{ background:var(--accent); height:2px; }
+  .split .foot{ margin-top:16px; font-size:20px; line-height:1.4; color:var(--ink-body); max-width:88ch; }
+  .split .foot em{ font-style:normal; color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 11 · TWO-COLUMN · push vs pull, who creates demand. ONE coral element = the PULL column, the mental-availability work from Ch6 that primes the buyer to ask for the product. Push is gray. -->
+  <section class="slide split">
+    <div class="head">
+      <h1 class="title">Push spends on the channel and pull spends on the buyer, so <em>most brands run both and the proportions are the decision</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <span class="label">Push · spend on the channel</span>
+        <h3>The paid retailer pushes it to the buyer</h3>
+        <p>Trade promotion, slotting fees, and co-op allowances buy the shelf.</p>
+        <ul>
+          <li>Slotting fees can run tens of thousands per item per chain</li>
+          <li>Supermarket buyers reject 70%-plus of new items offered weekly</li>
+        </ul>
+      </div>
+      <div class="col after">
+        <span class="label">Pull · spend on the buyer</span>
+        <h3>The primed buyer asks the shelf for it</h3>
+        <p>Advertising, content, social, and search build the mental availability from Chapter 6.</p>
+        <ul>
+          <li>The buyer asks for the brand and the retailer stocks it to meet demand</li>
+          <li>Pull is the work that makes the brand come to mind at the cue</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="foot">Outside the top three brands, CPG trade-marketing budgets <em>regularly exceed advertising budgets</em>, because the push side pays for shelf access the pull side cannot win on its own.</p>
+
+    <p class="source">Source: Kotler, Keller &amp; Chernev, <em>Marketing Management</em> 16e (2022); U.S. CPG trade promotion runs roughly 20% of category revenue</p>
+  </section>
+</body>
+</html>

@@ -1,0 +1,414 @@
+/* =============================================================================
+   _v7review.css  —  v7 inline-redline CHANGE REVIEW layer (shared across chapters)
+   -----------------------------------------------------------------------------
+   Felipe's reversibility model (COURSEWARE-PROGRAM.md "VERSIONING & CHANGE REVIEW"):
+   v6 is frozen; every source-driven improvement lands in v7 as an INLINE REDLINE
+   so the actual reading experience is comparable and "go back to v6" is one move.
+
+   This stylesheet styles three change roles, all GATED on `html.cc-review`:
+
+     ins.cc-chg.cc-add    additive text new in v7   (green: bg #e3f3e3, underline #2f7d32)
+     del.cc-chg.cc-del    text removed from v6      (red:   bg #f7dede, line-through #9a2b2b)
+     span.cc-chg.cc-mod   reworded / reframed v6 text(amber: bg #fbeccd, dashed underline #9a6b00)
+
+   THE GATE (the whole point):
+     - REVIEW OFF (default reading; <html> has NO .cc-review class):
+         * ins.cc-chg renders as ordinary body text (no bg, no underline) -> a v7
+           reader sees the improved book cleanly, as if it had always read this way.
+         * del.cc-chg is display:none -> deleted v6 text simply isn't there.
+         * span.cc-chg.cc-mod shows its (v7) content with zero highlight.
+         * the [N] markers and the "Changes in this chapter" panel are hidden.
+       => Clean reading == the finished v7 book.
+     - REVIEW ON (<html class="cc-review">):
+         * the redline coloring + the clickable [N] markers + the rationale panel
+           all appear, so Felipe can visually scan exactly what changed and why.
+
+   WCAG: the three ink colors clear AA (4.5:1) on white AND on their own tints,
+   which are very light (so text contrast ~= contrast-on-white). Bright accents
+   are reserved for >=18px / decorative roles. Honors prefers-reduced-motion.
+
+   DEPTH ENGINE: cc-chg are INLINE wrappers that carry NO data-complete/data-focused
+   themselves; the depth tag lives on the parent block. depth-engine.js isDepthHidden()
+   only inspects data-complete/data-verbose ancestors, so these wrappers are
+   transparent to the depth engine and to ccAutoCitations() (a <sup class="cite">
+   placed inside an ins.cc-chg still numbers by normal DOM order).
+
+   ONE-LINE WIRE-IN PATTERN for any chapter (add to <head>, after _accessibility.css):
+     <link rel="stylesheet" href="_v7review.css">
+     <script src="_v7review.js" defer></script>
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   0. DEFAULT (review OFF) — clean reading. These rules run with NO .cc-review.
+   ins shows as normal text; del is removed; mod shows content unstyled; the
+   change apparatus (markers + panel + toggle's "on" state) is hidden.
+   --------------------------------------------------------------------------- */
+ins.cc-chg,
+ins.cc-chg.cc-add {
+  text-decoration: none;
+  background: none;
+  color: inherit;          /* inherit the surrounding prose ink */
+  padding: 0;
+  border-radius: 0;
+}
+/* An <ins class="cc-chg"> may wrap a whole new BLOCK (a passage + its figure).
+   ins is inline by default, so opt block wrappers into block flow. Inline-text
+   inserts (the common case) keep display:inline via .cc-chg-inline. */
+ins.cc-chg.cc-block { display: block; }
+del.cc-chg,
+del.cc-chg.cc-del {
+  display: none;           /* removed v6 text is gone in clean reading */
+}
+span.cc-chg,
+span.cc-chg.cc-mod {
+  background: none;
+  border-bottom: none;
+  color: inherit;
+  padding: 0;
+}
+/* The [N] change marker the JS injects after each change. Hidden unless review. */
+.cc-chg-marker {
+  display: none;
+}
+/* The summary panel + its launcher button. Hidden unless review. */
+.cc-review-panel,
+.cc-review-panel-toggle {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------
+   1. REVIEW ON — html.cc-review reveals the redline.
+   Colors chosen to meet WCAG AA as small text; the tints are intentionally pale.
+   --------------------------------------------------------------------------- */
+html.cc-review ins.cc-chg,
+html.cc-review ins.cc-chg.cc-add {
+  background: #e3f3e3;
+  color: #1f5121;                 /* darker than the underline so dense text passes AAA-ish */
+  text-decoration: none;
+  border-bottom: 2px solid #2f7d32;
+  padding: 0 1px;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+html.cc-review del.cc-chg,
+html.cc-review del.cc-chg.cc-del {
+  display: inline;
+  background: #f7dede;
+  color: #9a2b2b;
+  text-decoration: line-through;
+  text-decoration-color: #9a2b2b;
+  padding: 0 1px;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+html.cc-review span.cc-chg.cc-mod {
+  background: #fbeccd;
+  color: #6f5000;                 /* darker than #9a6b00 for small-text AA on the tint */
+  border-bottom: 2px dashed #9a6b00;
+  padding: 0 1px;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+/* WCAG: a citation/inline link that happens to sit INSIDE a redline highlight gets
+   measured against the tint, not white. The chapter renders cite links in coral-deep
+   (#c2410c ~4.48:1 on the green add-tint — a hair under AA). Inside any highlight,
+   route links to the darker terracotta (#9a3d1f) which clears 4.5:1 on all three tints. */
+html.cc-review ins.cc-chg a,
+html.cc-review del.cc-chg a,
+html.cc-review span.cc-chg.cc-mod a,
+html.cc-review ins.cc-chg sup.cite a,
+html.cc-review del.cc-chg sup.cite a,
+html.cc-review span.cc-chg.cc-mod sup.cite a {
+  color: #7a2e12 !important;     /* ~7.8:1 on white, ~6.5:1 on the palest tint */
+}
+/* WCAG: a chapter's coral-deep heading ink (#B8553A ~4.13:1 on the green add-tint) sits
+   under 4.5:1 when a whole table/block is wrapped in an ins.cc-chg highlight (Ch5's
+   survey-types table headers are the case). Route any coral-deep table header or def-term
+   landing inside a redline highlight to the darker terracotta, which clears 4.5:1 on all
+   three tints. Only bites in review-ON; the chapter's default white rendering is untouched. */
+html.cc-review ins.cc-chg table.simple th,
+html.cc-review del.cc-chg table.simple th,
+html.cc-review span.cc-chg.cc-mod table.simple th,
+html.cc-review ins.cc-chg .def .def-term,
+html.cc-review del.cc-chg .def .def-term,
+html.cc-review span.cc-chg.cc-mod .def .def-term {
+  color: #7a2e12 !important;
+}
+
+/* The clickable [N] marker after each change, linking to its panel entry. */
+html.cc-review .cc-chg-marker {
+  display: inline;
+  font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  font-size: 0.66em;
+  font-weight: 600;
+  line-height: 0;
+  vertical-align: super;
+  margin-left: 1px;
+  padding: 0 3px;
+  border-radius: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+html.cc-review .cc-chg-marker.cc-m-add { color: #1f5121; background: #d4ecd4; }
+html.cc-review .cc-chg-marker.cc-m-del { color: #9a2b2b; background: #f3d4d4; }
+html.cc-review .cc-chg-marker.cc-m-mod { color: #6f5000; background: #f6e3bd; }
+html.cc-review .cc-chg-marker:hover,
+html.cc-review .cc-chg-marker:focus { outline: 2px solid currentColor; outline-offset: 1px; }
+/* brief flash when a panel entry is jumped to from its marker, and vice-versa */
+.cc-chg-flash { animation: ccChgFlash 1100ms ease; }
+@keyframes ccChgFlash {
+  0%   { background: #fff3c4; }
+  100% { background: transparent; }
+}
+
+/* ---------------------------------------------------------------------------
+   2. THE TOGGLE BUTTON (fixed, bottom-left so it never collides with the
+   accessibility FAB at bottom-right). Injected by _v7review.js; styled here.
+   Visible in BOTH states (it is how you turn review on/off); its label + dot
+   reflect state. Uses the book's coral + neutral tokens.
+   --------------------------------------------------------------------------- */
+.cc-review-toggle {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 9992;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 13px;
+  background: #ffffff;
+  border: 1.5px solid var(--coral, #DA7756);
+  border-radius: 20px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #5a3a2c;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
+  transition: background 150ms cubic-bezier(0.16, 1, 0.3, 1),
+              color 150ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cc-review-toggle:hover { background: #fff7f0; }
+.cc-review-toggle:focus-visible { outline: 2px solid var(--coral, #DA7756); outline-offset: 2px; }
+.cc-review-toggle .cc-rt-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #b9b3a8;            /* OFF = grey */
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(47, 125, 50, 0.0);
+}
+.cc-review-toggle .cc-rt-state { font-variant-numeric: tabular-nums; }
+.cc-review-toggle .cc-rt-count {
+  font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  font-size: 11px;
+  color: #8a6a58;
+}
+/* ON state: deep-coral fill (#a8472a clears 4.5:1 with white text, where bright
+   #DA7756 was only 3.1:1) + green dot. */
+html.cc-review .cc-review-toggle {
+  background: #a8472a;
+  border-color: #8f3b22;
+  color: #ffffff;
+}
+html.cc-review .cc-review-toggle:hover { background: #8f3b22; }
+html.cc-review .cc-review-toggle .cc-rt-dot { background: #2f7d32; }
+html.cc-review .cc-review-toggle .cc-rt-count { color: #fbe6da; }
+
+/* ---------------------------------------------------------------------------
+   3. THE "CHANGES IN THIS CHAPTER" PANEL — a slide-in summary built from every
+   [data-chg] element. Each entry: number badge, the change role, the rationale
+   (data-why), the depth tag (data-depth), and the source (data-src).
+   Only shown when review is ON (gate in section 0/1) AND the panel is opened.
+   --------------------------------------------------------------------------- */
+html.cc-review .cc-review-panel-toggle {
+  position: fixed;
+  left: 16px;
+  bottom: 58px;
+  z-index: 9992;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  background: #ffffff;
+  border: 1px solid var(--line, #e6dfd2);
+  border-left: 3px solid var(--coral, #DA7756);
+  border-radius: 4px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #5a3a2c;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+html.cc-review .cc-review-panel-toggle:hover { background: #fff7f0; }
+html.cc-review .cc-review-panel-toggle:focus-visible { outline: 2px solid var(--coral, #DA7756); outline-offset: 2px; }
+
+html.cc-review .cc-review-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  max-width: 92vw;
+  height: 100%;
+  z-index: 9995;
+  background: #ffffff;
+  border-left: 1px solid var(--line, #e6dfd2);
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  transform: translateX(100%);
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+html.cc-review .cc-review-panel[data-open="true"] { transform: translateX(0); }
+.cc-review-panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px 12px 20px;
+  border-bottom: 1.5px solid var(--coral, #DA7756);
+}
+.cc-review-panel-head h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #a8472a;              /* small coral text -> AA per _accessibility.css */
+}
+.cc-review-panel-head .cc-rp-sub {
+  font-size: 11px;
+  color: #6b6b6b;
+  font-weight: 500;
+}
+.cc-review-panel-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  color: #6b6b6b;
+  cursor: pointer;
+  padding: 0 4px;
+  min-width: 24px;
+  min-height: 24px;
+}
+.cc-review-panel-close:hover { color: #1a1a1a; }
+.cc-review-panel-close:focus-visible { outline: 2px solid var(--coral, #DA7756); outline-offset: 2px; }
+
+.cc-review-panel-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  padding: 11px 20px;
+  border-bottom: 1px solid var(--line, #e6dfd2);
+  font-size: 11px;
+  color: #444;
+}
+.cc-review-panel-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.cc-review-panel-legend i {
+  width: 14px; height: 14px; border-radius: 3px; display: inline-block;
+}
+.cc-rl-add { background: #e3f3e3; border: 1px solid #2f7d32; }
+.cc-rl-del { background: #f7dede; border: 1px solid #9a2b2b; }
+.cc-rl-mod { background: #fbeccd; border: 1px solid #9a6b00; }
+
+.cc-review-panel-list {
+  list-style: none;
+  margin: 0;
+  padding: 6px 0 28px 0;
+  overflow-y: auto;
+  flex: 1;
+}
+.cc-review-panel-list li {
+  padding: 14px 20px;
+  border-bottom: 1px solid #f0eadf;
+}
+.cc-review-panel-list li:target,
+.cc-review-panel-list li.cc-chg-flash { background: #fff8e6; }
+.cc-rp-entry-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 6px;
+}
+.cc-rp-num {
+  font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  /* WCAG: white on bright coral #DA7756 is only 3.1:1 (this is a small-BOLD 11px badge → needs 4.5:1).
+     Use the deep coral #a8472a (white = 5.83:1) so the panel number badge clears AA. Bright #DA7756 was
+     fine for axe on single-digit badges (Ch10) but a 2-glyph badge like "2a" trips the contrast rule;
+     this fix is correct for all badges and is scoped to the review panel chrome only. */
+  background: #a8472a;
+  border-radius: 4px;
+  padding: 2px 7px;
+  cursor: pointer;
+}
+.cc-rp-num:hover { background: #8f3b22; }
+.cc-rp-num:focus-visible { outline: 2px solid var(--coral, #DA7756); outline-offset: 2px; }
+.cc-rp-role {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+.cc-rp-role.cc-role-add { color: #1f5121; background: #d4ecd4; }
+.cc-rp-role.cc-role-del { color: #9a2b2b; background: #f3d4d4; }
+.cc-rp-role.cc-role-mod { color: #6f5000; background: #f6e3bd; }
+.cc-rp-depth {
+  margin-left: auto;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+  border: 1px solid #d8d0c2;
+  border-radius: 3px;
+  padding: 1px 6px;
+}
+.cc-rp-why {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #2a2a2a;
+  margin: 0 0 7px 0;
+}
+.cc-rp-src {
+  font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  font-size: 10.5px;
+  color: #7a5a48;
+}
+.cc-rp-src::before { content: "source: "; color: #a09a8e; }
+
+/* Small screens: panel becomes full-bleed; toggle/panel-toggle stack tighter. */
+@media (max-width: 600px) {
+  html.cc-review .cc-review-panel { width: 100%; }
+  .cc-review-toggle { font-size: 11px; padding: 7px 11px; }
+}
+
+/* Reduced motion: no slide / flash animations. */
+@media (prefers-reduced-motion: reduce) {
+  html.cc-review .cc-review-panel { transition: none; }
+  .cc-chg-flash { animation: none; }
+  .cc-review-toggle { transition: none; }
+}
+
+/* Print: never print the review chrome; show the clean (v7) reading by default. */
+@media print {
+  .cc-review-toggle,
+  .cc-review-panel,
+  .cc-review-panel-toggle,
+  .cc-chg-marker { display: none !important; }
+  ins.cc-chg { background: none !important; border-bottom: none !important; color: inherit !important; }
+  del.cc-chg { display: none !important; }
+  span.cc-chg.cc-mod { background: none !important; border-bottom: none !important; color: inherit !important; }
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 6 STP · 05 · Four segmentation bases</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.bases{ display:flex; flex-direction:column; }
+  .bases .head{ margin-bottom:14px; }
+  .bases .grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap:12px; align-content:start;
+  }
+  .bases .b{
+    border:1px solid var(--rule); padding:13px 18px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .bases .b .q{
+    font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:5px;
+  }
+  .bases .b h3{ font-size:21px; font-weight:600; color:var(--ink); margin-bottom:3px; }
+  .bases .b p{ font-size:20px; line-height:1.3; color:var(--ink-body); }
+  /* The one coral element: the benefit-segmentation root strip */
+  .bases .root{
+    margin-top:12px; background:var(--accent-tint); border-left:3px solid var(--accent);
+    padding:12px 18px;
+  }
+  .bases .root .q{ color:var(--accent); }
+  .bases .root p{ font-size:20px; line-height:1.35; color:var(--ink-body); }
+  .bases .root p strong{ color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 05 · CONTENT · the four segmentation bases + benefit at the root -->
+  <section class="slide bases">
+    <div class="head">
+      <h1 class="title">Four bases describe a segment, but <em>the benefit a buyer wants is the cause of the choice</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="grid">
+      <div class="b">
+        <span class="q">Where the buyer is</span>
+        <h3>Geographic</h3>
+        <p>Country to ZIP to block. Tells you how to reach a buyer, not which one.</p>
+      </div>
+      <div class="b">
+        <span class="q">Who the buyer is</span>
+        <h3>Demographic</h3>
+        <p>Age, income, life stage. The most legible base, but it says who, not why.</p>
+      </div>
+      <div class="b">
+        <span class="q">What the buyer values</span>
+        <h3>Psychographic</h3>
+        <p>Attitudes and lifestyle. Sorts a retiree and a young climber together.</p>
+      </div>
+      <div class="b">
+        <span class="q">What the buyer does</span>
+        <h3>Behavioral</h3>
+        <p>Usage, occasion, loyalty. The most predictive, because it reads behavior.</p>
+      </div>
+    </div>
+
+    <div class="root">
+      <span class="q">Underneath all four · benefit segmentation</span>
+      <p>A 1968 study cut toothpaste into <strong>Worriers, Sociables, Sensories, and Independents</strong>: same age and income, four different brand choices.</p>
+    </div>
+
+    <p class="source">Source: Haley, <em>J. of Marketing</em> (1968); Kotler, Keller &amp; Chernev, <em>Marketing Management</em> 16e (2022), Ch. 6</p>
+  </section>
+</body>
+</html>

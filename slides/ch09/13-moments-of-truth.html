@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 9 Services · 13 · Moments of truth</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.mot{ display:flex; flex-direction:column; }
+  .mot .head{ margin-bottom:14px; }
+  .mot .lead{ font-size:20px; line-height:1.4; color:var(--ink-body); max-width:92ch; margin-bottom:16px; }
+  .mot .lead strong{ color:var(--ink); font-weight:600; }
+  /* the arithmetic chain: three gray factors -> one coral product */
+  .mot .calc{ display:grid; grid-template-columns: 1fr 1fr 1fr 1.3fr; gap:14px; align-items:stretch; }
+  .mot .f{
+    border:1px solid var(--rule); padding:16px 18px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .mot .f .n{ font-size:30px; font-weight:600; color:var(--ink); letter-spacing:-0.01em; line-height:1; }
+  .mot .f .l{ font-size:20px; color:var(--ink-body); margin-top:10px; line-height:1.28; }
+  .mot .f.product{ background:var(--accent-tint); border:none; border-left:3px solid var(--accent); }
+  .mot .f.product .n{ color:var(--accent); font-size:34px; }
+  .mot .f.product .l strong{ color:var(--ink); font-weight:600; }
+  .mot .foot{ margin-top:16px; font-size:20px; line-height:1.4; color:var(--ink-body); max-width:92ch; }
+  .mot .foot em{ font-style:normal; color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 13 · CONTENT · the SAS moments-of-truth arithmetic. ONE coral element = the 50M-moments product card (the result the chain builds to). -->
+  <section class="slide mot">
+    <div class="head">
+      <h1 class="title">The few high-attention encounters carry the brand, so SAS <em>funded the front line ahead of the assets the buyer never sees</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <p class="lead">A moment of truth is any short encounter where the buyer is watching closely enough to judge the brand from that moment alone. Most firms staff the front line as the cheapest delivery layer. <strong>SAS reversed the order</strong>, authorizing staff to solve problems without manager approval and following them with the training budget.</p>
+
+    <div class="calc">
+      <div class="f">
+        <span class="n">10M</span>
+        <span class="l">customers a year</span>
+      </div>
+      <div class="f">
+        <span class="n">&times; 5</span>
+        <span class="l">employees met each</span>
+      </div>
+      <div class="f">
+        <span class="n">&times; 15s</span>
+        <span class="l">per encounter</span>
+      </div>
+      <div class="f product">
+        <span class="n">&#8776; 50M</span>
+        <span class="l"><strong>fifteen-second moments of truth a year</strong>, more brand exposure than any TV budget</span>
+      </div>
+    </div>
+
+    <p class="foot">SAS turned a $17 million loss into a $54 million profit in the first year, because <em>the encounter is where the promise gets kept or broken</em>.</p>
+
+    <p class="source">Source: Carlzon, <em>Moments of Truth</em> (1987); Normann, SAS Service Management System</p>
+  </section>
+</body>
+</html>

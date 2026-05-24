@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Segment, Target, and Position a Real Brand — instructor courseware for Principles of Marketing.">
+<title>Segment, Target, and Position a Real Brand · Principles of Marketing</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23DA7756' width='100' height='100' rx='12'/><text x='50' y='68' font-family='system-ui' font-size='36' font-weight='bold' fill='white' text-anchor='middle'>PM</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --coral:#DA7756; --coral-deep:#B8553A; --coral-soft:#E8A488;
+  --coral-text:#a8472a; --coral-tint:#fdf3ee;
+  --ink:#1a1a1a; --ink-2:#43474f; --ink-3:#5a5f67;
+  --bg:#ffffff; --bg-2:#f7f8fa; --bg-3:#f1f2f5;
+  --border:#e6e6ea; --border-strong:#d7dae0;
+  --font:'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif;
+  --font-serif:'EB Garamond',Georgia,serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Consolas,monospace;
+}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.62;
+  -webkit-font-smoothing:antialiased;}
+a{color:var(--coral-text);text-decoration:none;}
+a:hover{text-decoration:underline;text-underline-offset:3px;}
+a:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;border-radius:4px;}
+.skip-link{position:absolute;left:-999px;top:0;z-index:2000;background:var(--ink);
+  color:#fff;padding:10px 16px;border-radius:0 0 6px 0;font-size:14px;font-weight:600;}
+.skip-link:focus{left:0;text-decoration:none;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.9);
+  backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);}
+.topbar-inner{max-width:860px;margin:0 auto;padding:0 28px;height:58px;display:flex;
+  align-items:center;gap:14px;}
+.topbar .mark{width:28px;height:28px;border-radius:7px;flex-shrink:0;background:var(--coral-deep);
+  color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;
+  letter-spacing:-0.5px;}
+.topbar .doc-title{font-size:14.5px;font-weight:600;color:var(--ink);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.topbar .back{margin-left:auto;font-size:13.5px;font-weight:600;color:var(--coral-text);
+  padding:7px 13px;border-radius:7px;border:1px solid var(--border);white-space:nowrap;}
+.topbar .back:hover{background:var(--bg-2);text-decoration:none;}
+main{max-width:860px;margin:0 auto;padding:44px 28px 96px;}
+.kicker{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--coral-text);margin-bottom:10px;}
+main h1{font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-0.02em;
+  line-height:1.12;color:var(--ink);margin:0 0 8px;}
+main h2{font-size:clamp(21px,2.8vw,26px);font-weight:700;letter-spacing:-0.015em;color:var(--ink);
+  margin:42px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+main h3{font-size:19px;font-weight:650;color:var(--ink);margin:30px 0 10px;}
+main h4{font-size:16px;font-weight:650;color:var(--ink-2);margin:24px 0 8px;}
+main h5,main h6{font-size:14px;font-weight:650;color:var(--ink-2);margin:20px 0 6px;
+  text-transform:uppercase;letter-spacing:0.04em;}
+main p{margin:0 0 16px;color:var(--ink);font-size:17px;}
+main ul,main ol{margin:0 0 18px;padding-left:26px;}
+main li{margin:0 0 7px;color:var(--ink);font-size:17px;}
+main li>ul,main li>ol{margin:7px 0 0;}
+main blockquote{margin:0 0 18px;padding:4px 18px;border-left:3px solid var(--coral);
+  background:var(--coral-tint);color:var(--ink-2);border-radius:0 6px 6px 0;}
+main blockquote p{margin:8px 0;}
+main hr{border:0;border-top:1px solid var(--border);margin:34px 0;}
+main strong{font-weight:700;color:var(--ink);}
+main em{font-style:italic;}
+main code{font-family:var(--font-mono);font-size:0.88em;background:var(--bg-3);
+  padding:2px 6px;border-radius:4px;color:var(--coral-text);border:1px solid var(--border);}
+main pre{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;
+  padding:16px 18px;overflow-x:auto;margin:0 0 18px;}
+main pre code{background:none;border:0;padding:0;color:var(--ink);font-size:13.5px;
+  line-height:1.55;}
+main table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:15px;
+  display:block;overflow-x:auto;}
+main thead th{background:var(--bg-2);text-align:left;font-weight:650;color:var(--ink);
+  padding:9px 13px;border:1px solid var(--border-strong);white-space:nowrap;}
+main tbody td{padding:9px 13px;border:1px solid var(--border);color:var(--ink-2);
+  vertical-align:top;}
+main tbody tr:nth-child(even){background:var(--bg-2);}
+main a{color:var(--coral-text);font-weight:500;}
+.toc-note{font-size:14px;color:var(--ink-3);margin-bottom:30px;}
+footer{border-top:1px solid var(--border);background:var(--bg-2);padding:28px 0;
+  margin-top:60px;}
+footer .inner{max-width:860px;margin:0 auto;padding:0 28px;font-size:12.5px;color:var(--ink-3);}
+@media (max-width:600px){
+  main{padding:30px 18px 64px;}
+  .topbar-inner{padding:0 18px;}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="mark" aria-hidden="true">PM</span>
+    <span class="doc-title">Segment, Target, and Position a Real Brand</span>
+    <a class="back" href="../../index.html">&larr; Back to courseware</a>
+  </div>
+</header>
+<main id="main">
+<h1>Segment, Target, and Position a Real Brand</h1>
+<p><em>Chapter 6 individual assignment. You will run the full STP discipline (segmentation, then targeting, then positioning) on one real brand you choose, and hand in a positioning statement, a perceptual map, and a one-paragraph defense. You will use AI the way Chapter 6 teaches it: as a critic of your positioning statement, not as the author of it. This is an individual assignment, done alone, and it is a dry run of the first half of Project 2.</em></p>
+<p><strong>Chapter:</strong> 6 — Segmentation, Targeting, Positioning <strong>Type:</strong> Individual assignment (graded; done alone, not with your project team) <strong>Where it sits:</strong> Week 4 of the pacing guide, the single-chapter STP week, around the P1-due / P2-kickoff handoff. Your team&#x27;s Project 2 takes the brand you have carried since P1 through STP together. This assignment is the solo version on a brand you pick yourself, so you practice the whole funnel once with your own hands before the team does it for real. <strong>Estimated time:</strong> About 3 to 4 hours: roughly an hour to choose the brand and cut segments, an hour on targeting and the positioning statement, an hour on the map and the AI critique, and a final pass to write the defense and the disclosure.</p>
+<hr>
+<h3>What you will do (the short version)</h3>
+<p>Pick one real, public brand. Cut its market into segments, choose the one segment the brand can actually win, and write a positioning statement for it. Draw a perceptual map that places the brand against two rivals and shows where the buyers sit. Then ask an AI assistant to critique your positioning statement, judge the critique against the chapter, and revise. Hand in the statement, the map, a one-paragraph defense of your position, and a short note on what the AI got right and wrong.</p>
+<hr>
+<h3>Learning objectives this assignment assesses</h3>
+<p>These are the Chapter 6 objectives the deliverable exercises. The rubric scores against them.</p>
+<ul>
+<li><strong>LO 6.2</strong> Apply the four segmentation bases (geographic, demographic, psychographic, behavioral) and use the demand space, the occasion that triggers the need, as the most actionable behavioral cut.</li>
+<li><strong>LO 6.3</strong> Evaluate a candidate segment with the five-criteria usability filter: measurable, accessible, substantial, differentiable, actionable.</li>
+<li><strong>LO 6.4</strong> Distinguish target compatibility (can you create more value for these buyers than rivals can) from target attractiveness (is the segment big and growing), and choose compatibility first.</li>
+<li><strong>LO 6.5</strong> Treat positioning as work done in the buyer&#x27;s mind; use the mental-ladder idea and at least one of the three positioning moves (claim the rung, find the creneau, reposition the competition).</li>
+<li><strong>LO 6.6</strong> Write a positioning statement with a clear point of difference (POD) and the points of parity (POP) the category requires, and run the POD through the three tests: desirable, deliverable, differentiating.</li>
+<li><strong>LO 6.7</strong> Build and read a perceptual map, and apply the empty-quadrant rule: an empty quadrant is an opening only when buyer ideal points cluster in it.</li>
+</ul>
+<hr>
+<h3>The scenario and the brand</h3>
+<p>You are the first marketing hire at a brand that has been getting by on instinct. The founder can tell you what the product is, but not who it is for in a way a media buyer could act on, and not what it stands for in a sentence. Your job this week is to give the brand an STP backbone: a segment it can win, a position in those buyers&#x27; heads, and a map that shows the opening is real.</p>
+<p><strong>Choose a real, public brand or product.</strong> Use public information only, the way the projects and the course AI-use policy require. Pick something specific enough to reason about in a few hours:</p>
+<ul>
+<li><strong>Good choices:</strong> a single product line with visible competitors and a clear category. A regional or challenger brand in food, drink, apparel, beauty, fitness, a campus business, an app, or a direct-to-consumer product. You want a brand with two or three nameable rivals and a category a buyer would recognize.</li>
+<li><strong>Harder than it looks:</strong> a giant multi-category brand (an Amazon, an Apple, a Coca-Cola the company) turns this into a book report. If you love a big brand, scope down to one product line (not &quot;Nike,&quot; but &quot;the Nike Run Club app&quot;; not &quot;Coca-Cola,&quot; but &quot;Coke Zero Sugar&quot;).</li>
+<li><strong>Do not</strong> use a brand where you would need private sales data to say anything real. Everything you need should be visible from the shelf, the website, and reviews.</li>
+</ul>
+<p><strong>The chapter&#x27;s running brand is your worked model, not your answer.</strong> Chapter 6 runs the whole funnel on <strong>Stanley</strong> insulated drinkware: in 2018 Stanley&#x27;s dashboard read the Quencher tumbler as a weak product and the firm nearly cut it, because the real buyer (a woman drinking from her desk all day) sat in a segment the dashboard never asked about. Stanley re-pointed the same 1913 product at the buyer it found, and revenue moved from roughly $73 million to past $750 million. The chapter&#x27;s supporting cases are worth keeping in view as patterns: <strong>Knorr India</strong> (a demand-space reframe, soup recast as a kids&#x27; pre-dinner snack, sales up 127 percent on a product never reformulated), <strong>Avis</strong> (&quot;We try harder,&quot; claiming the second rung the buyer had already handed it), <strong>Liquid Death</strong> (a punk, anti-wellness frame in a category every analyst read as covered, an empty-quadrant move), and <strong>Coca-Cola versus Dr Pepper</strong> (the double-jeopardy law). Use these as the shape of good work. Do not analyze Stanley itself; pick your own brand.</p>
+<hr>
+<h3>The deliverable, format, and length</h3>
+<p>Hand in one document with four parts plus the AI-use note. Keep it tight; this is a few hours of focused work, not a term paper.</p>
+<p><strong>Format:</strong> One PDF (or one shared doc with view access). The perceptual map can be drawn by hand and photographed, built in slides or a drawing tool, or made with the chapter&#x27;s §6.6 drag-to-place map fitter and screenshotted, your choice, as long as it is legible and labeled.</p>
+<p><strong>Length:</strong> Two to three pages of prose is the ceiling, plus the map and the AI-use note. If you are over three pages, you are padding; cut.</p>
+<p><strong>The parts to hand in:</strong></p>
+<ol>
+<li><strong>Segmentation (about half a page).</strong> Name the brand and its category in one line. Then cut the category into three or four segments. Say which of the four bases you used for each cut (geographic, demographic, psychographic, behavioral), and name at least one demand space, the occasion that triggers the need, because the occasion is usually the most actionable cut. One plain sentence per segment: if you cannot describe a segment in a sentence a stranger could act on, it is a statistical artifact, not a segment.</li>
+</ol>
+<ol>
+<li><strong>Targeting (about half a page).</strong> Choose one segment to target. Run your chosen segment through the <strong>five-criteria filter</strong> (measurable, accessible, substantial, differentiable, actionable) and name the one criterion that is shakiest, do not wave all five through. Then make the chapter&#x27;s key call out loud: explain why this segment is <strong>compatible</strong> (can your brand create more value for these buyers than rivals can?) before you argue it is <strong>attractive</strong> (is it big and growing?). Compatibility is scored first; a big segment a stronger rival already owns is the most expensive fight you can pick.</li>
+</ol>
+<ol>
+<li><strong>The positioning statement (a few sentences plus the defense).</strong> Write the statement in the chapter&#x27;s template:</li>
+</ol>
+<blockquote><p>For <strong>[target]</strong> who <strong>[need]</strong>, <strong>[brand]</strong> is the <strong>[category]</strong> that <strong>[the one biggest difference]</strong> because <strong>[reason to believe]</strong>.</p></blockquote>
+<p>Name the <strong>points of parity</strong> the category requires (the price of admission, for example a coffee shop must serve coffee) and your one <strong>point of difference</strong>. Run the POD through the <strong>three tests</strong> and say how it does on each: <strong>desirable</strong> (do buyers want it and name it unprompted?), <strong>deliverable</strong> (can you prove it and keep proving it?), <strong>differentiating</strong> (could a rival say the exact same thing word for word? if yes, it is not a POD). Name which of the three <strong>positioning moves</strong> you are making: claiming a rung the buyer already hands you, finding an empty frame (a creneau), or repositioning a competitor.</p>
+<ol>
+<li><strong>The perceptual map (one labeled figure).</strong> Plot your brand and at least two real rivals on two axes that are the attributes <strong>the buyer actually uses to choose</strong>, not the ones the brand wishes mattered. Then do the move that matters most: <strong>add the buyers.</strong> Mark roughly where buyer ideal points cluster (you are estimating from public reviews and common sense, not running a survey). Find an empty quadrant and then answer the <strong>empty-quadrant question</strong> in one line: do buyers want to live there, or is it dead air the incumbents already priced in? Without the buyers on the map, dead air and real demand look identical.</li>
+</ol>
+<ol>
+<li><strong>The one-paragraph defense (about 150 words).</strong> In one paragraph, defend your position to the founder. Why this segment, why this difference, why a buyer in the target would pick this brand over the two rivals on your map. This is where you connect the segment, the statement, and the map into a single argument someone could act on.</li>
+</ol>
+<ol>
+<li><strong>The AI-use note</strong> (one paragraph; see the block at the end).</li>
+</ol>
+<hr>
+<h3>The AI-integration requirement</h3>
+<p>Chapter 6 advances <strong>rung 2 of the AI ladder, &quot;use real capabilities.&quot;</strong> The chapter&#x27;s AI move is to hand a live model a real positioning task and check what comes back, and the chapter teaches it with the <strong>§6.4 &quot;Write and audit a positioning statement&quot; widget</strong>, which writes a statement in the standard template and then audits each clause for claims that are vague, unprovable, or copy-able by a rival. The point the chapter drives home is that the model does not get smarter between a vague ask and a sharp ask; the request changes, and the quality follows.</p>
+<p><strong>What AI use is expected.</strong> After you have written your own positioning statement (part 3), use an AI assistant, the chapter&#x27;s §6.4 widget if you have it, or any general assistant, to <strong>critique</strong> it. Run the move the chapter demonstrates:</p>
+<ol>
+<li>First ask the <strong>vague</strong> way: paste your statement and ask the model to &quot;make it sound better&quot; or &quot;write me a tagline.&quot; Notice that what comes back is usually a slogan no rival could disprove and no buyer could check.</li>
+<li>Then ask the <strong>sharp</strong> way: &quot;Audit this positioning statement clause by clause. For the point of difference, tell me whether it is desirable, deliverable, and differentiating, and flag any clause a competitor could say word for word.&quot; This is the ask that produces a real critique.</li>
+<li>You may also use AI earlier as an <strong>assistant</strong>, for example to brainstorm candidate segments or to suggest two axes for your map, as long as you decide which to keep.</li>
+</ol>
+<p><strong>Use AI as a critic, not an oracle.</strong> The course rewards the student who asks the model to find the weaknesses in their own work, then checks the critique against the chapter and decides what to act on. Take the model&#x27;s audit and judge it: which flags are right, which missed something the chapter would catch (for example, a POD that fails the differentiating test because every rival could claim it, or an empty quadrant the model called an opportunity without asking where the buyers are). Then <strong>revise your statement</strong> and keep both versions. The model can be confidently wrong and can invent facts, brand details, and competitor claims, so verify anything it asserts about your brand or its rivals before it goes in. The final positioning statement and the judgment behind it are yours.</p>
+<p>A useful caution from the chapter: if you are tempted to &quot;ask the AI what my customers think,&quot; remember the chapter&#x27;s warning that simulated buyers drift from real ones in ways no rewording fixes (they stereotype a whole demographic into one uniform answer, among other failures). Use the model to sharpen your own reasoning, not to stand in for the buyers on your map.</p>
+<p><strong>What you must disclose.</strong> Paste the prompts and the model&#x27;s output for the vague ask and the sharp ask into your AI-use note, or summarize them in the one-paragraph note below. The paste doubles as your disclosure. Public information only; do not paste anyone&#x27;s personal or proprietary data into a public AI tool. The disclosure is graded.</p>
+<hr>
+<h3>Grading rubric</h3>
+<p>100 points. Each criterion ties to the listed objectives. Levels describe observable work, not effort.</p>
+<table><thead><tr><th>Criterion (LOs)</th><th>Excellent (full)</th><th>Proficient</th><th>Developing</th><th>Not yet</th><th>Pts</th></tr></thead><tbody><tr><td><strong>Segmentation</strong> (LO 6.2)</td><td>Three or four clear segments, each cut on a named base, with at least one real demand space; every segment is a sentence a stranger could act on</td><td>Segments are clear and use the bases, but the demand space is thin or one segment is a descriptor, not a cut</td><td>Segments named but bases unclear, or cuts are demographic-only with no benefit or occasion behind them</td><td>Vague groups (&quot;people who like coffee&quot;); no usable cut</td><td>18</td></tr><tr><td><strong>Targeting and the five-criteria filter</strong> (LO 6.3, LO 6.4)</td><td>Runs the chosen segment through all five criteria, names the genuinely shakiest one, and argues compatibility before attractiveness with a real reason the brand can out-serve rivals</td><td>Applies the filter and addresses compatibility, but waves a criterion through or treats attractiveness as the main reason</td><td>Picks a segment with only partial filter use, or chooses the biggest segment without a compatibility argument</td><td>No filter applied; segment chosen by gut</td><td>18</td></tr><tr><td><strong>Positioning statement, POP/POD, three tests</strong> (LO 6.5, LO 6.6)</td><td>Statement fits the template; POPs named; one POD that passes all three tests; the right positioning move named; nothing a rival could copy verbatim</td><td>Statement complete with a POD, but one test is weak (for example, the POD is desirable and deliverable but not clearly differentiating)</td><td>Statement present but the POD is generic (&quot;high quality,&quot; &quot;great value&quot;) or a POP is missing</td><td>No usable statement, or it is a slogan with no defensible difference</td><td>22</td></tr><tr><td><strong>Perceptual map and the empty-quadrant rule</strong> (LO 6.7)</td><td>Two buyer-relevant axes, brand and two rivals placed, buyer ideal points added, and the empty-quadrant question answered (real demand vs dead air)</td><td>Map is correct and labeled with brand and rivals, but buyer ideal points are missing or the empty-quadrant question is asserted, not reasoned</td><td>Map present but axes are firm-flattering not buyer-relevant, or rivals/labels are unclear</td><td>No map, or a map with no rivals and no buyers</td><td>16</td></tr><tr><td><strong>AI use and critique</strong> (AI-use policy)</td><td>Discloses the tool and the vague-vs-sharp runs clearly; shows specifically what the AI critique got right, what it missed against the chapter, and how the statement was revised; claims verified</td><td>Discloses use and shows the AI critiqued the statement, with some judgment of the output</td><td>Discloses use but takes the AI critique mostly at face value, or only used AI to generate, not to critique</td><td>No disclosure, or AI output submitted as the student&#x27;s own unedited work</td><td>16</td></tr><tr><td><strong>Defense and writing</strong> (Written communication)</td><td>The one-paragraph defense ties segment, statement, and map into one argument a founder could act on; plain, correct use of the chapter&#x27;s terms</td><td>Defense is clear and mostly connects the parts; minor term slips</td><td>Defense restates the parts without connecting them; loose use of terms</td><td>Unclear or missing defense</td><td>10</td></tr><tr><td><strong>Total</strong></td><td></td><td></td><td></td><td></td><td><strong>100</strong></td></tr></tbody></table>
+<p>A note on the AI row, for you: a clear, honest account of how you used AI and what you did with it scores well. A hidden use that is discovered is an integrity violation, not a grading deduction. Disclose, and show your judgment.</p>
+<hr>
+<h3>Submission notes</h3>
+<ul>
+<li><strong>Submit</strong> to the course LMS dropbox as one PDF (or one shared doc with view access) by the due date. <strong>[ADAPT: due date / time for your section.]</strong></li>
+<li><strong>One file:</strong> the four written parts, the labeled perceptual map, the one-paragraph defense, and the AI-use note, all together.</li>
+<li><strong>Cite your sources,</strong> including any AI use, the way you would cite any source. Public information only; if you cannot verify a claim about your brand or a rival, leave it out.</li>
+<li><strong>Academic integrity.</strong> This is an individual assignment: the analysis, the statement, the map, and the writing are your own. Using AI as a critic and assistant is expected and disclosed; passing off AI output as your own unedited work, or another person&#x27;s work as yours, is a violation. <strong>[ADAPT: late-work and resubmission policy, and your institution&#x27;s academic-integrity code, reconciled in favor of the stricter institutional rule.]</strong></li>
+</ul>
+<hr>
+<blockquote><p><strong>AI-Use Note (required, graded).</strong> In one short paragraph at the end of your submission, tell us: which AI tools you used and for what; what the model got right and what it missed when it critiqued your positioning statement; and what you changed as a result. Pasting your vague-ask prompt, your sharp-ask prompt, and the model&#x27;s output satisfies this. One honest paragraph is enough. Reminder: you are responsible for every claim you submit, so verify anything the model gives you before it goes in, and never paste personal, confidential, or proprietary data into a public AI tool.</p></blockquote>
+<hr>
+<p><em>Grounded in the real Chapter 6 (<code>book/v7/chapter-06-stp.html</code>): the four segmentation bases and the demand space (§6.2), the five-criteria usability filter (§6.3), compatibility before attractiveness (§6.3), the mental ladder and three positioning moves (§6.4), POP/POD and the three POD tests (§6.5), the perceptual map and the empty-quadrant rule (§6.6), and the chapter&#x27;s running Stanley example with the Knorr, Avis, and Liquid Death cases. The AI requirement uses the chapter&#x27;s rung-2 AI move and the §6.4 &quot;Write and audit a positioning statement&quot; widget, and the disclosure follows the course AI-use policy in the syllabus and pacing guide. Learning objectives are quoted from <code>test-bank/ch06-stp-test-bank.md</code>.</em></p></main>
+<footer><div class="inner">Principles of Marketing: An AI-Integrated Approach &middot; instructor courseware.</div></footer>
+</body>
+</html>

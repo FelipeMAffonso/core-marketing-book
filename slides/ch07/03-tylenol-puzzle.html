@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 7 Brands · 03 · The Tylenol puzzle</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.cmp{ display:flex; flex-direction:column; }
+  .cmp .head{ margin-bottom:14px; }
+  .cmp .body-row{ display:grid; grid-template-columns: 1.6fr 1fr; gap:32px; flex:1; min-height:0; }
+  .cmp .chart{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:18px 22px 14px; display:flex; flex-direction:column; min-height:0;
+  }
+  .cmp .chart .caption{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:4px; }
+  .cmp .chart .headline{ font-size:18px; font-weight:600; color:var(--ink); line-height:1.3; margin-bottom:10px; max-width:52ch; }
+  .cmp svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+  .cmp .side h4{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .cmp .side p{ font-size:21px; line-height:1.4; color:var(--ink-body); margin-bottom:14px; max-width:30ch; }
+  .cmp .side p em{ font-style:normal; color:var(--ink); font-weight:600; }
+  .cmp .side ul{ list-style:none; padding:0; margin:8px 0 0; display:flex; flex-direction:column; gap:8px; }
+  .cmp .side ul li{ font-size:20px; color:var(--ink-body); padding-left:16px; position:relative; line-height:1.35; }
+  .cmp .side ul li::before{ content:""; position:absolute; left:0; top:13px; width:9px; height:1px; background:var(--ink-mute); }
+</style>
+</head>
+<body>
+  <!-- 03 · TREND · the Tylenol crisis-and-recovery curve (chapter sk-tylenol-hook lifted as a clean line; ONE coral element = the recovery line) -->
+  <section class="slide cmp">
+    <div class="head">
+      <h1 class="title">Tylenol fell to a 7% share after the 1982 crisis and <em>was back near 30% within a year</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="body-row">
+      <div class="chart">
+        <span class="caption">Exhibit 7.1 · Tylenol US category share · 1982 cyanide crisis through end of 1983</span>
+        <p class="headline">A 37% leader that recovers from a 30-point fall in a year. The puzzle the chapter answers: what must a brand be for that to happen?</p>
+        <svg viewBox="0 0 560 300" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="Tylenol's US category share over the 1982 crisis: a 37 percent leader falls to about 7 percent during the cyanide scare, recovers to roughly 30 percent within a year, and reaches near 37 percent by the end of 1983. The recovery line is drawn in coral.">
+          <!-- Y axis -->
+          <line x1="64" y1="20" x2="64" y2="250" stroke="#7A7A7A"/>
+          <line x1="64" y1="250" x2="540" y2="250" stroke="#7A7A7A"/>
+          <!-- Y gridlines + ticks: 0,10,20,30,40 -->
+          <g font-size="11" fill="#7A7A7A" text-anchor="end">
+            <text x="56" y="254">0</text>
+            <text x="56" y="204">10</text>
+            <text x="56" y="157">20</text>
+            <text x="56" y="110">30</text>
+            <text x="56" y="63">40</text>
+          </g>
+          <line x1="64" y1="200" x2="540" y2="200" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+          <line x1="64" y1="153" x2="540" y2="153" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+          <line x1="64" y1="106" x2="540" y2="106" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+          <line x1="64" y1="59" x2="540" y2="59" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+          <!-- Y axis label -->
+          <text x="22" y="135" font-size="11" fill="#7A7A7A" text-anchor="middle" font-style="italic"
+                transform="rotate(-90 22 135)">US category share (%)</text>
+
+          <!-- the recovery line: the ONE coral element. Points: pre-crisis 37 (x100,y59+...), crisis 7, +1yr 30, end-83 37 -->
+          <!-- y for v: 250 - v*4.7 ; 37->75.9, 7->217.1, 30->109, 37->75.9 -->
+          <polyline points="110,76 215,217 360,109 505,76" fill="none" stroke="#DA7756" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="110" cy="76" r="5.5" fill="#DA7756"/>
+          <circle cx="215" cy="217" r="5.5" fill="#DA7756"/>
+          <circle cx="360" cy="109" r="5.5" fill="#DA7756"/>
+          <circle cx="505" cy="76" r="5.5" fill="#DA7756"/>
+          <!-- value labels -->
+          <text x="110" y="64" text-anchor="middle" font-size="13" fill="#DA7756" font-weight="700">37%</text>
+          <text x="215" y="237" text-anchor="middle" font-size="13" fill="#DA7756" font-weight="700">~7%</text>
+          <text x="360" y="97" text-anchor="middle" font-size="13" fill="#DA7756" font-weight="700">~30%</text>
+          <text x="505" y="64" text-anchor="middle" font-size="13" fill="#DA7756" font-weight="700">~37%</text>
+
+          <!-- X labels -->
+          <text x="110" y="270" text-anchor="middle" font-size="11.5" fill="#1A1A1A">Pre-crisis</text>
+          <text x="215" y="270" text-anchor="middle" font-size="11.5" fill="#1A1A1A">Crisis</text>
+          <text x="215" y="285" text-anchor="middle" font-size="10" fill="#7A7A7A" font-style="italic">Oct 1982</text>
+          <text x="360" y="270" text-anchor="middle" font-size="11.5" fill="#1A1A1A">+1 year</text>
+          <text x="505" y="270" text-anchor="middle" font-size="11.5" fill="#1A1A1A">End 1983</text>
+        </svg>
+      </div>
+
+      <aside class="side">
+        <h4>The puzzle</h4>
+        <p>Johnson &amp; Johnson pulled 31 million capsules in eight days, at a cost above <em>$100 million</em>.</p>
+
+        <h4>What we have to explain</h4>
+        <ul>
+          <li>What must a brand be for a 30-point drop to reverse?</li>
+          <li>Why does a rival with the same fast response never come back?</li>
+          <li>Perrier faced the same shock in 1990 and sold itself to Nestle.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <p class="source">Source: Johnson &amp; Johnson Tylenol case, 1982&ndash;1983; Kotler, Keller &amp; Chernev 16e (2022), Ch. 10</p>
+  </section>
+</body>
+</html>

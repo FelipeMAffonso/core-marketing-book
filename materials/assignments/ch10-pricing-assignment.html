@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Price a Real Product — instructor courseware for Principles of Marketing.">
+<title>Price a Real Product · Principles of Marketing</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23DA7756' width='100' height='100' rx='12'/><text x='50' y='68' font-family='system-ui' font-size='36' font-weight='bold' fill='white' text-anchor='middle'>PM</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --coral:#DA7756; --coral-deep:#B8553A; --coral-soft:#E8A488;
+  --coral-text:#a8472a; --coral-tint:#fdf3ee;
+  --ink:#1a1a1a; --ink-2:#43474f; --ink-3:#5a5f67;
+  --bg:#ffffff; --bg-2:#f7f8fa; --bg-3:#f1f2f5;
+  --border:#e6e6ea; --border-strong:#d7dae0;
+  --font:'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif;
+  --font-serif:'EB Garamond',Georgia,serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Consolas,monospace;
+}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.62;
+  -webkit-font-smoothing:antialiased;}
+a{color:var(--coral-text);text-decoration:none;}
+a:hover{text-decoration:underline;text-underline-offset:3px;}
+a:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;border-radius:4px;}
+.skip-link{position:absolute;left:-999px;top:0;z-index:2000;background:var(--ink);
+  color:#fff;padding:10px 16px;border-radius:0 0 6px 0;font-size:14px;font-weight:600;}
+.skip-link:focus{left:0;text-decoration:none;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.9);
+  backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);}
+.topbar-inner{max-width:860px;margin:0 auto;padding:0 28px;height:58px;display:flex;
+  align-items:center;gap:14px;}
+.topbar .mark{width:28px;height:28px;border-radius:7px;flex-shrink:0;background:var(--coral-deep);
+  color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;
+  letter-spacing:-0.5px;}
+.topbar .doc-title{font-size:14.5px;font-weight:600;color:var(--ink);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.topbar .back{margin-left:auto;font-size:13.5px;font-weight:600;color:var(--coral-text);
+  padding:7px 13px;border-radius:7px;border:1px solid var(--border);white-space:nowrap;}
+.topbar .back:hover{background:var(--bg-2);text-decoration:none;}
+main{max-width:860px;margin:0 auto;padding:44px 28px 96px;}
+.kicker{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--coral-text);margin-bottom:10px;}
+main h1{font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-0.02em;
+  line-height:1.12;color:var(--ink);margin:0 0 8px;}
+main h2{font-size:clamp(21px,2.8vw,26px);font-weight:700;letter-spacing:-0.015em;color:var(--ink);
+  margin:42px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+main h3{font-size:19px;font-weight:650;color:var(--ink);margin:30px 0 10px;}
+main h4{font-size:16px;font-weight:650;color:var(--ink-2);margin:24px 0 8px;}
+main h5,main h6{font-size:14px;font-weight:650;color:var(--ink-2);margin:20px 0 6px;
+  text-transform:uppercase;letter-spacing:0.04em;}
+main p{margin:0 0 16px;color:var(--ink);font-size:17px;}
+main ul,main ol{margin:0 0 18px;padding-left:26px;}
+main li{margin:0 0 7px;color:var(--ink);font-size:17px;}
+main li>ul,main li>ol{margin:7px 0 0;}
+main blockquote{margin:0 0 18px;padding:4px 18px;border-left:3px solid var(--coral);
+  background:var(--coral-tint);color:var(--ink-2);border-radius:0 6px 6px 0;}
+main blockquote p{margin:8px 0;}
+main hr{border:0;border-top:1px solid var(--border);margin:34px 0;}
+main strong{font-weight:700;color:var(--ink);}
+main em{font-style:italic;}
+main code{font-family:var(--font-mono);font-size:0.88em;background:var(--bg-3);
+  padding:2px 6px;border-radius:4px;color:var(--coral-text);border:1px solid var(--border);}
+main pre{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;
+  padding:16px 18px;overflow-x:auto;margin:0 0 18px;}
+main pre code{background:none;border:0;padding:0;color:var(--ink);font-size:13.5px;
+  line-height:1.55;}
+main table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:15px;
+  display:block;overflow-x:auto;}
+main thead th{background:var(--bg-2);text-align:left;font-weight:650;color:var(--ink);
+  padding:9px 13px;border:1px solid var(--border-strong);white-space:nowrap;}
+main tbody td{padding:9px 13px;border:1px solid var(--border);color:var(--ink-2);
+  vertical-align:top;}
+main tbody tr:nth-child(even){background:var(--bg-2);}
+main a{color:var(--coral-text);font-weight:500;}
+.toc-note{font-size:14px;color:var(--ink-3);margin-bottom:30px;}
+footer{border-top:1px solid var(--border);background:var(--bg-2);padding:28px 0;
+  margin-top:60px;}
+footer .inner{max-width:860px;margin:0 auto;padding:0 28px;font-size:12.5px;color:var(--ink-3);}
+@media (max-width:600px){
+  main{padding:30px 18px 64px;}
+  .topbar-inner{padding:0 18px;}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="mark" aria-hidden="true">PM</span>
+    <span class="doc-title">Price a Real Product</span>
+    <a class="back" href="../../index.html">&larr; Back to courseware</a>
+  </div>
+</header>
+<main id="main">
+<h1>Price a Real Product</h1>
+<p><em>Chapter 10 individual assignment. You will set a defensible price for one real product you choose: build the value stick, estimate willingness to pay with Van Westendorp&#x27;s four questions, pick a pricing approach and run the arithmetic, then run a fairness check before you commit. You will use AI the way Chapter 10 teaches it: to audit your price against real competitors, then judge where the model was right on the numbers but silent on the structure. This is an individual assignment, done alone, and it is a dry run of the price decision in Project 2.</em></p>
+<p><strong>Chapter:</strong> 10 — Pricing <strong>Type:</strong> Individual assignment (graded; done alone, not with your project team) <strong>Where it sits:</strong> Week 6 of the pacing guide, the &quot;Services and pricing&quot; week, while your team is deep in Project 2 (strategy, STP, and the mix). Pricing is the second of the three mix decisions P2 makes real. This assignment is the solo version on a product you pick yourself, so you practice the full pricing sequence with your own hands before the team prices its running brand. <strong>Estimated time:</strong> About 3 to 4 hours: roughly 45 minutes to choose the product and build the value stick, an hour on the approach choice and the arithmetic, 45 minutes to write and field the Van Westendorp questions on a handful of people, 45 minutes on the AI competitor audit and the fairness check, and a final pass to write the defense and the disclosure. This chapter does the most arithmetic in the course, so budget time for the numbers.</p>
+<hr>
+<h3>What you will do (the short version)</h3>
+<p>Pick one real product (yours to launch, or one you buy). Build its value stick: the cost floor, the competitor frame, and the willingness-to-pay ceiling. Estimate the ceiling with Van Westendorp&#x27;s four questions, asked of five or so real people. Choose one of the four pricing approaches, set a price, and check the arithmetic (contribution margin, breakeven, and markup-versus-margin). Run a fairness check on your price using the dual-entitlement principle. Then ask an AI assistant to audit your price against real competitors, judge its answer, and revise. Hand in the value stick, the price and its arithmetic, the WTP read, the fairness check, a one-paragraph defense, and a short AI-use note.</p>
+<hr>
+<h3>Learning objectives this assignment assesses</h3>
+<p>These are the Chapter 10 objectives the deliverable exercises. The rubric scores against them.</p>
+<ul>
+<li><strong>LO 10.2</strong> Describe the four pricing approaches (cost-based, competitor-based, value-based, customer-determined) and choose the right one for your product.</li>
+<li><strong>LO 10.3</strong> Distinguish markup from margin and apply breakeven and contribution-margin arithmetic to your price.</li>
+<li><strong>LO 10.4</strong> Estimate willingness to pay; use Van Westendorp&#x27;s price-sensitivity meter, the launch-stage default when you have no sales history.</li>
+<li><strong>LO 10.6</strong> Understand how dynamic pricing and price discrimination work well enough to know whether your pricing raises a fairness question.</li>
+<li><strong>LO 10.8</strong> Analyze pricing fairness with the dual-entitlement principle, and recognize when a price change reads as fair (a cost story) versus as gouging (a demand windfall).</li>
+</ul>
+<p>(The asymmetric-leverage idea from LO 10.1 and the value-stick map are the spine you build on; LO 10.5&#x27;s reference points and the decoy effect are useful background if your product sits in a lineup, but the rubric scores the five objectives above.)</p>
+<hr>
+<h3>The scenario and the brand</h3>
+<p>You are setting the price for one real product, and you have to defend the number, not just name it. Either you are launching something (a campus side business, an Etsy-style item you would actually sell, an app idea) and need a first price with no sales history, or you are the new pricing analyst for a product you know well and have to justify what it charges today. Your job is to read all three references the chapter names (cost, competitor, willingness to pay), pick an approach, set a price, and check that the price clears the fairness ceiling.</p>
+<p><strong>Choose a real, public product.</strong> Public information only, the way the projects and the course AI-use policy require. Pick something specific:</p>
+<ul>
+<li><strong>Good choices:</strong> a single product with two or three nameable competitors you can look up. A physical good with a knowable rough cost, a subscription or app, a campus or small business offering, a direct-to-consumer item. You want a product where you can estimate a cost floor, find competitor prices on the shelf or the web, and ask a few real people what they would pay.</li>
+<li><strong>Harder than it looks:</strong> a product whose cost you would have to guess wildly (heavily engineered hardware, anything where the real cost is a trade secret). And a product with no comparable rivals gives you no competitor frame to read.</li>
+<li><strong>Do not</strong> use confidential cost or pricing data from an employer or a project partner. Estimate the floor from public information and say it is an estimate.</li>
+</ul>
+<p><strong>The chapter&#x27;s running examples are your worked models, not your answer.</strong> Chapter 10 opens and closes on the <strong>EpiPen</strong>: a two-pack climbed from about $100 in 2007 to $608 by 2016 in roughly fifteen steps each too small to notice, and the climb only broke at a 2016 Senate hearing when the cumulative line became visible and the fairness story collapsed. The price came down because the fairness ceiling caught up, not because the cost moved. The chapter&#x27;s three worked brands each commit to one approach as a structure: <strong>Costco</strong> (competitor-based, a 14 percent markup cap keeps the shelf visibly cheap while the membership fee carries about 70 percent of profit), <strong>Patagonia</strong> (value-based defended by purpose, a $279 Down Sweater held up by a lifetime repair guarantee, the 1% for the Planet pledge, and Worn Wear resale), and <strong>Liquid Death</strong> (value-based defended by identity, $2.49 for canned water that costs under $0.30 to make). The chapter&#x27;s worked value-based case is <strong>Caterpillar&#x27;s</strong> EVC walk: a $90,000 competitor base plus four verifiable premiums (longer component life, fewer breakdowns, same-day parts, warranty) climbs to a $110,000 ceiling, and a $10,000 discount closes at $100,000, which is how a value-based price is constructed rather than guessed. Use these as the shape of good work. Do not analyze these brands; price your own product.</p>
+<hr>
+<h3>The deliverable, format, and length</h3>
+<p>Hand in one document with five parts plus the AI-use note. Keep it tight; this is a few hours of focused work.</p>
+<p><strong>Format:</strong> One PDF (or one shared doc with view access). The value stick can be a simple labeled drawing (floor, frame, ceiling, your price), drawn by hand and photographed or built in slides. Show your arithmetic; a few lines of clearly labeled numbers is all it takes.</p>
+<p><strong>Length:</strong> Two to three pages of prose is the ceiling, plus the value-stick figure, the arithmetic, and the AI-use note. If you are over three pages, cut.</p>
+<p><strong>The parts to hand in:</strong></p>
+<ol>
+<li><strong>The value stick (one labeled figure plus a few sentences).</strong> Name the product and its category in one line. Then build the value stick, the chapter&#x27;s central map:</li>
+<ul>
+<li><strong>The floor:</strong> the unit cost (your best public estimate; say it is an estimate and how you got it).</li>
+<li><strong>The frame:</strong> what the nearest two or three real rivals charge.</li>
+<li><strong>The ceiling:</strong> the most a buyer who would otherwise buy a rival would pay for yours, the willingness to pay.</li>
+</ul>
+</ol>
+<p>The price lives between the floor and the ceiling. The gap below your price is your margin; the gap above it is the buyer&#x27;s consumer surplus, which is what keeps them buying. One line: &quot;If you cannot name a buyer who would pay the ceiling, you do not have a ceiling yet.&quot;</p>
+<ol>
+<li><strong>The pricing approach and the arithmetic (about half a page).</strong> Choose one of the <strong>four approaches</strong> (cost-based, competitor-based, value-based, customer-determined) and say in two or three sentences why it fits this product. Only value-based pricing is tied to the buyer&#x27;s wallet; the other three are tied to your cost, a rival&#x27;s sticker, or a mechanism, so if you pick one of those, say why it is right here anyway. Then set a price and run the numbers:</li>
+<ul>
+<li><strong>Contribution margin</strong> per unit (price minus unit variable cost).</li>
+<li><strong>Breakeven</strong> units against a fixed cost you estimate (fixed cost divided by contribution margin).</li>
+<li><strong>Markup versus margin:</strong> state both for your price and confirm they are not the same number. Markup uses cost as the base and can pass 100 percent; margin uses price as the base and never can. (A $60 cost sold at $90 is a 50 percent markup but a 33 percent margin.) Getting this distinction right is the single most common place this chapter trips students.</li>
+</ul>
+</ol>
+<ol>
+<li><strong>The willingness-to-pay read (about half a page plus your data).</strong> You have no sales history, so use the launch-stage default: <strong>Van Westendorp&#x27;s price-sensitivity meter.</strong> Write the four questions and ask <strong>at least five real people</strong> (classmates, friends, family; public, no personal data recorded):</li>
+<ol>
+<li>At what price is it so cheap you would doubt its quality? (too cheap)</li>
+<li>At what price is it a bargain, a good deal? (bargain)</li>
+<li>At what price is it getting expensive but you might still consider it? (expensive)</li>
+<li>At what price is it so expensive you would not consider it? (too expensive)</li>
+</ol>
+</ol>
+<p>Report the answers and read a rough <strong>acceptable band</strong> off where the responses cluster: the <strong>optimal price point</strong> sits where &quot;too cheap&quot; meets &quot;too expensive,&quot; and the <strong>band edges</strong> are where the &quot;bargain&quot; answers cross on either side. Five answers give a rough band, not a precise one; say so. Then state in one line whether your price from part 2 sits inside that band, and what you would do if it did not.</p>
+<ol>
+<li><strong>The fairness check (about a third of a page).</strong> Ask whether your price, or any change to it you are imagining, raises a fairness question. Apply the <strong>dual-entitlement principle:</strong> buyers grant a firm the right to defend its profit against rising costs (a cost story reads as fair) but not to capture a windfall from a demand spike (the same increase after a demand surge reads as gouging). If your product has any time-varying or demand-driven pricing (a surge, a peak rate, a launch premium you would later raise), say which story a buyer would read and whether it clears the ceiling. If your price is flat, say what increase would cross the line and why, using the chapter&#x27;s standard (the same dollar reads as fair after a cost rise and as gouging after a demand spike). One sentence on whether your category tolerates price variation at all: a familiar, frequently bought product with a tight reference price (a pint, a fast-food combo) has almost no tolerance; a perishable or occasional purchase has more.</li>
+</ol>
+<ol>
+<li><strong>The one-paragraph defense (about 150 words).</strong> Defend your price to the founder or the finance lead. Tie it together: which approach, why the number sits where it does on the value stick, what the WTP read says, and why a buyer would accept it as fair. This is the argument someone could act on.</li>
+</ol>
+<ol>
+<li><strong>The AI-use note</strong> (one paragraph; see the block at the end).</li>
+</ol>
+<hr>
+<h3>The AI-integration requirement</h3>
+<p>Chapter 10 advances <strong>rungs 3 to 4 of the AI ladder, &quot;connect and build.&quot;</strong> The chapter&#x27;s flagship AI move is the <strong>two-tier competitor-price audit:</strong> the chapter sends one pricing prompt to a fast model and a deep model in parallel, both searching the live web for current shelf prices, and shows the two audits side by side. The teaching point is that the fast tier returns a price band and a one-line rationale (correct on the numbers, silent on the structure), while the deep tier pulls the levers into one recommendation, and the cost gap between the tiers is the inverse of the use-case gap: route routine checks to the cheap model, and the reasoning that changes your strategy to the deep one.</p>
+<p><strong>What AI use is expected.</strong> After you have set your price and built the value stick (parts 1 and 2), use an AI assistant, the chapter&#x27;s §10 competitor-audit widget if you have it, or any general assistant that can search the web, to <strong>audit your price against real competitors.</strong> Run the move the chapter demonstrates:</p>
+<ol>
+<li>First ask the <strong>lazy</strong> way: &quot;Is my price of $X good?&quot; Notice that what comes back is a generic verdict that takes your framing for granted.</li>
+<li>Then ask the <strong>sharp</strong> way: &quot;Audit my $X for [product] against [these two or three named rivals] using current prices. Name the two or three levers the recommendation rests on (for example value versus cost, an anchor, the fairness ceiling, elasticity), and give the price to hold next quarter.&quot; This is the ask that produces a real audit.</li>
+<li>You may also use AI earlier as an <strong>assistant</strong>, for example to estimate a rough unit cost from public teardown information, or to sanity-check your breakeven arithmetic, as long as you verify the numbers yourself.</li>
+</ol>
+<p><strong>Use AI as a critic, not an oracle.</strong> The chapter&#x27;s standard is that the model is a fast first draft, and even when it searches the live web, <strong>every figure, name, and date has to be verified before you act.</strong> Take the model&#x27;s audit and judge it: where was it right on the numbers but silent on the structure (the value story, the fairness ceiling, the competitor&#x27;s positioning)? Where did a competitor price it quoted turn out to be stale or wrong when you checked? Models invent prices, product names, and &quot;facts&quot; with confidence, so confirm anything load-bearing against the actual shelf or website. Then <strong>revise your price or your defense</strong> if the audit changed your mind, and keep both the lazy and the sharp output. The final price and the reasoning are yours.</p>
+<p><strong>What you must disclose.</strong> Paste the lazy-ask prompt, the sharp-ask prompt, and the model&#x27;s output into your AI-use note, or summarize them in the one-paragraph note below, and name at least one figure you verified or corrected. The paste doubles as your disclosure. Public information only; do not paste confidential cost or pricing data into a public AI tool, and never paste personal data. The disclosure is graded.</p>
+<hr>
+<h3>Grading rubric</h3>
+<p>100 points. Each criterion ties to the listed objectives. Levels describe observable work, not effort.</p>
+<table><thead><tr><th>Criterion (LOs)</th><th>Excellent (full)</th><th>Proficient</th><th>Developing</th><th>Not yet</th><th>Pts</th></tr></thead><tbody><tr><td><strong>The value stick</strong> (LO 10.2)</td><td>Floor, frame, and ceiling all named with real public evidence; the ceiling is tied to a named buyer who would otherwise buy a rival; the price is placed and the margin and surplus gaps are explained</td><td>Three references named and the price placed, but the ceiling is asserted rather than tied to a buyer, or the frame uses only one rival</td><td>Some references named but the stick is incomplete (for example, no real ceiling), or floor and ceiling are confused</td><td>No value stick, or cost-plus reasoning with no buyer or competitor read</td><td>18</td></tr><tr><td><strong>Approach choice and arithmetic</strong> (LO 10.2, LO 10.3)</td><td>Approach fits the product with a real reason; contribution margin, breakeven, and both markup and margin are correct, and markup is not reported as margin</td><td>Approach justified and arithmetic mostly correct, but one number is off or the markup-margin distinction is shaky</td><td>Approach picked by reflex (cost-plus by default) or arithmetic has a clear error (markup reported as margin)</td><td>No approach reasoning; arithmetic missing or wrong throughout</td><td>22</td></tr><tr><td><strong>Willingness to pay (Van Westendorp)</strong> (LO 10.4)</td><td>Four questions written correctly, asked of five or more real people, a rough band read off the crossings, and the price checked against the band with a stated next step</td><td>Questions asked and a band reported, but the optimal point or the band edges are read loosely, or fewer than five responses</td><td>Questions present but the band is not read from the data, or WTP is asserted with no respondents</td><td>No WTP method used; price set with no ceiling evidence</td><td>18</td></tr><tr><td><strong>Fairness check (dual entitlement)</strong> (LO 10.6, LO 10.8)</td><td>Applies dual entitlement correctly (cost story fair, demand windfall gouging) to this product, judges category tolerance, and says clearly whether the price or an imagined change clears the ceiling</td><td>Applies dual entitlement and reaches a defensible read, but the category-tolerance point or the cost-versus-demand story is thin</td><td>Mentions fairness but does not apply dual entitlement, or treats any price change as automatically fair or unfair</td><td>No fairness check</td><td>14</td></tr><tr><td><strong>AI use and critique</strong> (AI-use policy)</td><td>Discloses the tool and the lazy-vs-sharp runs clearly; shows where the AI was right on numbers but silent on structure, names at least one figure verified or corrected, and revises if warranted</td><td>Discloses use and shows the AI audited the price, with some judgment and at least one verification</td><td>Discloses use but takes the AI output at face value, or used AI only to generate, not to audit and verify</td><td>No disclosure, or AI output (including unverified prices) submitted as the student&#x27;s own</td><td>18</td></tr><tr><td><strong>Defense and writing</strong> (Written communication)</td><td>The one-paragraph defense ties approach, value stick, WTP, and fairness into one argument finance could act on; plain, correct use of the chapter&#x27;s terms</td><td>Defense is clear and mostly connects the parts; minor term slips</td><td>Defense restates the parts without connecting them; loose use of terms</td><td>Unclear or missing defense</td><td>10</td></tr><tr><td><strong>Total</strong></td><td></td><td></td><td></td><td></td><td><strong>100</strong></td></tr></tbody></table>
+<p>A note on the AI row, for you: a clear, honest account of how you used AI and what you verified scores well. Submitting an AI-quoted competitor price you never checked is exactly the failure the chapter warns about. A hidden use that is discovered is an integrity violation, not a grading deduction. Disclose, verify, and show your judgment.</p>
+<hr>
+<h3>Submission notes</h3>
+<ul>
+<li><strong>Submit</strong> to the course LMS dropbox as one PDF (or one shared doc with view access) by the due date. <strong>[ADAPT: due date / time for your section.]</strong></li>
+<li><strong>One file:</strong> the value stick, the approach and arithmetic, the WTP read with your respondents, the fairness check, the one-paragraph defense, and the AI-use note, all together.</li>
+<li><strong>Cite your sources,</strong> including any AI use, the way you would cite any source. Public information only; if you cannot verify a cost or a competitor price, say it is an estimate or leave it out.</li>
+<li><strong>Academic integrity.</strong> This is an individual assignment: the analysis, the arithmetic, the WTP read, and the writing are your own. Using AI as an auditor and assistant is expected and disclosed; passing off AI output (including unverified prices) as your own unedited work, or another person&#x27;s work as yours, is a violation. <strong>[ADAPT: late-work and resubmission policy, and your institution&#x27;s academic-integrity code, reconciled in favor of the stricter institutional rule.]</strong></li>
+</ul>
+<hr>
+<blockquote><p><strong>AI-Use Note (required, graded).</strong> In one short paragraph at the end of your submission, tell us: which AI tools you used and for what; what the model got right on the numbers and where it was silent on the structure when it audited your price; at least one figure you verified or corrected; and what you changed as a result. Pasting your lazy-ask prompt, your sharp-ask prompt, and the model&#x27;s output satisfies this. One honest paragraph is enough. Reminder: you are responsible for every claim you submit, so verify anything the model gives you (especially a competitor price) before it goes in, and never paste confidential or personal data into a public AI tool.</p></blockquote>
+<hr>
+<p><em>Grounded in the real Chapter 10 (<code>book/v7/chapter-10-pricing.html</code>): the value stick / price-ladder map of cost as floor, competitor as frame, willingness to pay (EVC) as ceiling (§10.2, fig-1); the four pricing approaches and the Caterpillar EVC walk (§10.2); breakeven, contribution margin, and markup-versus-margin arithmetic (§10.2); Van Westendorp&#x27;s four-question price-sensitivity meter (§10.3); the dual-entitlement principle and the six-principle fairness audit (§10.5, §10.7); and the chapter&#x27;s running EpiPen, Costco, Patagonia, and Liquid Death examples. The AI requirement uses the chapter&#x27;s rungs-3-to-4 flagship two-tier competitor-price-audit move and its &quot;verify every figure&quot; standard, and the disclosure follows the course AI-use policy in the syllabus and pacing guide. Learning objectives are quoted from <code>test-bank/ch10-pricing-test-bank.md</code>.</em></p></main>
+<footer><div class="inner">Principles of Marketing: An AI-Integrated Approach &middot; instructor courseware.</div></footer>
+</body>
+</html>

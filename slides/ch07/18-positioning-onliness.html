@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 7 Brands · 18 · Positioning · the onliness statement</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.pos{ display:flex; flex-direction:column; }
+  .pos .head{ margin-bottom:16px; }
+  .pos .body-row{ display:grid; grid-template-columns: 1.25fr 1fr; gap:26px; flex:1; min-height:0; }
+  /* left: the four-blank statement + POP/POD */
+  .pos .stmt{
+    border:1px solid var(--rule); padding:20px 24px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .pos .stmt .cap{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:12px; }
+  .pos .stmt .four{ font-size:23px; line-height:1.5; color:var(--ink-body); }
+  .pos .stmt .four b{ color:var(--ink); font-weight:600; }
+  .pos .stmt .threecs{ font-size:20px; line-height:1.4; color:var(--ink-body); margin-top:16px; padding-top:14px; border-top:1px solid var(--rule); }
+  .pos .stmt .threecs strong{ color:var(--ink); font-weight:600; }
+  /* right column */
+  .pos .side{ display:flex; flex-direction:column; gap:14px; }
+  .pos .popod h4{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:6px; }
+  .pos .popod p{ font-size:20px; line-height:1.4; color:var(--ink-body); }
+  .pos .popod p strong{ color:var(--ink); font-weight:600; }
+  /* the ONE coral element: the swap-test box */
+  .pos .swap{
+    background:var(--accent-tint); border-left:3px solid var(--accent);
+    padding:16px 20px; margin-top:auto;
+  }
+  .pos .swap h4{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+  .pos .swap p{ font-size:20px; line-height:1.4; color:var(--ink-body); }
+  .pos .swap p em{ font-style:normal; color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 18 · CONTENT · positioning: the four-blank statement, Three-Cs, POP/POD, swap test. ONE coral element = the swap-test box. -->
+  <section class="slide pos">
+    <div class="head">
+      <h1 class="title">A position survives only when <em>a rival's name breaks the sentence</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="body-row">
+      <div class="stmt">
+        <span class="cap">The four-blank positioning statement</span>
+        <p class="four">For <b>[this target]</b>, the brand is the only <b>[frame of reference]</b> that <b>[value claim]</b>, because of <b>[reasons to believe]</b>.</p>
+        <p class="threecs">Fill the blanks with the <strong>three Cs</strong>: what the <strong>consumer</strong> wants, what the <strong>competition</strong> already owns, and what the <strong>company</strong> can truthfully back.</p>
+      </div>
+
+      <div class="side">
+        <div class="popod">
+          <h4>Parity vs difference</h4>
+          <p><strong>Points of parity</strong> are the category must-haves: clean, cold, safe. Skip one and the brand is cut before its difference is heard. <strong>The point of difference</strong> is the one ownable thing that wins the choice.</p>
+        </div>
+
+        <div class="swap">
+          <h4>The swap test</h4>
+          <p>Drop a competitor's name into your sentence. A claim that <em>still reads true with a rival's name in it</em> is generic and has to be tightened until only your brand fits.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="source">Source: Neumeier onliness / swap test; Keller POP-POD; the perceptual map finds the open quadrant the statement claims</p>
+  </section>
+</body>
+</html>

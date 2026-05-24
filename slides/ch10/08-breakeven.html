@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 10 Pricing · 08 · Breakeven</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.cmp{ display:flex; flex-direction:column; }
+  .cmp .head{ margin-bottom:14px; }
+  .cmp .body-row{ display:grid; grid-template-columns: 1.6fr 1fr; gap:32px; flex:1; min-height:0; }
+  .cmp .chart{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:18px 22px 14px; display:flex; flex-direction:column; min-height:0;
+  }
+  .cmp .chart .caption{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:6px; }
+  .cmp svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+  .cmp .side h4{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .cmp .side p{ font-size:21px; line-height:1.4; color:var(--ink-body); margin-bottom:14px; max-width:30ch; }
+  .cmp .side p em{ font-style:normal; color:var(--ink); font-weight:600; }
+  .cmp .side ul{ list-style:none; padding:0; margin:8px 0 0; display:flex; flex-direction:column; gap:8px; }
+  .cmp .side ul li{ font-size:20px; color:var(--ink-body); padding-left:16px; position:relative; line-height:1.35; }
+  .cmp .side ul li::before{ content:""; position:absolute; left:0; top:13px; width:9px; height:1px; background:var(--ink-mute); }
+</style>
+</head>
+<body>
+  <!-- 08 · EXHIBIT · breakeven chart (lifted from the chapter breakeven SVG). ONE coral element = the breakeven point where revenue crosses total cost. The campus drink: $5 price, $1.50 variable, $7,000 fixed -> 2,000 cups. -->
+  <section class="slide cmp">
+    <div class="head">
+      <h1 class="title">A $5 drink that costs $1.50 breaks even at 2,000 cups, because <em>the contribution margin sets the target</em>, not the sticker.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="body-row">
+      <div class="chart">
+        <span class="caption">Exhibit 10.5 · Breakeven for a campus drink &middot; $5 price, $1.50 variable cost, $7,000 fixed cost</span>
+        <svg viewBox="0 0 560 282" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="A breakeven chart. A flat fixed-cost line at 7,000 dollars, a total-cost line rising by 1.50 dollars per cup, and a steeper total-revenue line rising by 5 dollars per cup. Revenue crosses total cost at 2,000 cups, the breakeven point, marked in coral. To the right of the crossing the gap between the lines is profit.">
+          <g font-size="12" fill="#1a1a1a">
+            <!-- plot area x 64..520, y 30..236. x: cups 0..3000 over 64..520 (456px). y: dollars 0..18000 over 236..30 (206px) -->
+            <!-- y scale: $ -> 236 - v*0.01144 ; x scale: cups -> 64 + c*0.152 -->
+            <line x1="64" y1="30" x2="64" y2="236" stroke="#E8E6E1"/>
+            <line x1="64" y1="236" x2="520" y2="236" stroke="#7A7A7A"/>
+            <!-- Y ticks 0,7000,14000 -->
+            <g font-size="10.5" fill="#7A7A7A" text-anchor="end">
+              <text x="58" y="240">$0</text>
+              <text x="58" y="160">$7k</text>
+              <text x="58" y="80">$14k</text>
+            </g>
+            <text x="24" y="133" font-size="11" fill="#7A7A7A" text-anchor="middle" font-style="italic" transform="rotate(-90 24 133)">dollars</text>
+
+            <!-- fixed cost line: flat at $7,000 -> y=156 -->
+            <line x1="64" y1="156" x2="520" y2="156" stroke="#A39E94" stroke-width="1.6" stroke-dasharray="5,4"/>
+            <text x="516" y="150" text-anchor="end" font-size="11" fill="#7A7A7A">fixed cost $7,000</text>
+
+            <!-- total cost line: starts at $7,000 (y156), rises $1.50/cup. at 3000 cups: 7000+4500=11500 -> y=104.4 -->
+            <line x1="64" y1="156" x2="520" y2="104" stroke="#5C5C5C" stroke-width="2"/>
+            <text x="430" y="120" font-size="11" fill="#5C5C5C" font-weight="600">total cost</text>
+
+            <!-- total revenue line: from origin (y236), rises $5/cup. at 3000 cups: 15000 -> y=64.4 -->
+            <line x1="64" y1="236" x2="520" y2="64" stroke="#1a1a1a" stroke-width="2"/>
+            <text x="486" y="74" text-anchor="end" font-size="11" fill="#1a1a1a" font-weight="600">total revenue</text>
+
+            <!-- breakeven point at 2,000 cups: x=64+2000*0.152=368 ; revenue=10000 -> y=236-114.4=121.6 -->
+            <!-- the ONE coral element: the breakeven crossing + its drop line -->
+            <line x1="368" y1="122" x2="368" y2="236" stroke="#DA7756" stroke-width="1.4" stroke-dasharray="3,3"/>
+            <circle cx="368" cy="122" r="6" fill="#DA7756"/>
+            <text x="368" y="252" text-anchor="middle" font-size="12" fill="#DA7756" font-weight="700">2,000 cups</text>
+            <text x="378" y="112" font-size="11.5" fill="#DA7756" font-weight="700">breakeven</text>
+
+            <!-- profit wedge label, right of crossing -->
+            <text x="452" y="96" text-anchor="middle" font-size="10.5" fill="#888" font-style="italic">profit</text>
+
+            <!-- X axis label -->
+            <text x="292" y="274" text-anchor="middle" font-size="11" fill="#7A7A7A" font-style="italic">cups sold &mdash; $3.50 contribution per cup ($5 price minus $1.50 cost)</text>
+          </g>
+        </svg>
+      </div>
+
+      <aside class="side">
+        <h4>Move the price, move the target</h4>
+        <p>A wider margin pulls breakeven <em>left</em>; a thinner one pushes it right.</p>
+
+        <h4>The same drink, three prices</h4>
+        <ul>
+          <li>$6 price &rarr; $4.50 margin &rarr; about 1,556 cups.</li>
+          <li>$5 price &rarr; $3.50 margin &rarr; 2,000 cups.</li>
+          <li>$4 price &rarr; $2.50 margin &rarr; 2,800 cups.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <p class="source">Source: Kotler, Keller &amp; Chernev, <em>Marketing Management</em> 16e (2022); illustrative campus-drink figures</p>
+  </section>
+</body>
+</html>

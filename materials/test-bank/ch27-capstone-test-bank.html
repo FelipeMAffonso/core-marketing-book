@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Chapter 27 Capstone — Build Your Marketing AI Stack — Test Bank — instructor courseware for Principles of Marketing.">
+<title>Chapter 27 Capstone — Build Your Marketing AI Stack — Test Bank · Principles of Marketing</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23DA7756' width='100' height='100' rx='12'/><text x='50' y='68' font-family='system-ui' font-size='36' font-weight='bold' fill='white' text-anchor='middle'>PM</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --coral:#DA7756; --coral-deep:#B8553A; --coral-soft:#E8A488;
+  --coral-text:#a8472a; --coral-tint:#fdf3ee;
+  --ink:#1a1a1a; --ink-2:#43474f; --ink-3:#5a5f67;
+  --bg:#ffffff; --bg-2:#f7f8fa; --bg-3:#f1f2f5;
+  --border:#e6e6ea; --border-strong:#d7dae0;
+  --font:'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif;
+  --font-serif:'EB Garamond',Georgia,serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Consolas,monospace;
+}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.62;
+  -webkit-font-smoothing:antialiased;}
+a{color:var(--coral-text);text-decoration:none;}
+a:hover{text-decoration:underline;text-underline-offset:3px;}
+a:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;border-radius:4px;}
+.skip-link{position:absolute;left:-999px;top:0;z-index:2000;background:var(--ink);
+  color:#fff;padding:10px 16px;border-radius:0 0 6px 0;font-size:14px;font-weight:600;}
+.skip-link:focus{left:0;text-decoration:none;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.9);
+  backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);}
+.topbar-inner{max-width:860px;margin:0 auto;padding:0 28px;height:58px;display:flex;
+  align-items:center;gap:14px;}
+.topbar .mark{width:28px;height:28px;border-radius:7px;flex-shrink:0;background:var(--coral-deep);
+  color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;
+  letter-spacing:-0.5px;}
+.topbar .doc-title{font-size:14.5px;font-weight:600;color:var(--ink);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.topbar .back{margin-left:auto;font-size:13.5px;font-weight:600;color:var(--coral-text);
+  padding:7px 13px;border-radius:7px;border:1px solid var(--border);white-space:nowrap;}
+.topbar .back:hover{background:var(--bg-2);text-decoration:none;}
+main{max-width:860px;margin:0 auto;padding:44px 28px 96px;}
+.kicker{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--coral-text);margin-bottom:10px;}
+main h1{font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-0.02em;
+  line-height:1.12;color:var(--ink);margin:0 0 8px;}
+main h2{font-size:clamp(21px,2.8vw,26px);font-weight:700;letter-spacing:-0.015em;color:var(--ink);
+  margin:42px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+main h3{font-size:19px;font-weight:650;color:var(--ink);margin:30px 0 10px;}
+main h4{font-size:16px;font-weight:650;color:var(--ink-2);margin:24px 0 8px;}
+main h5,main h6{font-size:14px;font-weight:650;color:var(--ink-2);margin:20px 0 6px;
+  text-transform:uppercase;letter-spacing:0.04em;}
+main p{margin:0 0 16px;color:var(--ink);font-size:17px;}
+main ul,main ol{margin:0 0 18px;padding-left:26px;}
+main li{margin:0 0 7px;color:var(--ink);font-size:17px;}
+main li>ul,main li>ol{margin:7px 0 0;}
+main blockquote{margin:0 0 18px;padding:4px 18px;border-left:3px solid var(--coral);
+  background:var(--coral-tint);color:var(--ink-2);border-radius:0 6px 6px 0;}
+main blockquote p{margin:8px 0;}
+main hr{border:0;border-top:1px solid var(--border);margin:34px 0;}
+main strong{font-weight:700;color:var(--ink);}
+main em{font-style:italic;}
+main code{font-family:var(--font-mono);font-size:0.88em;background:var(--bg-3);
+  padding:2px 6px;border-radius:4px;color:var(--coral-text);border:1px solid var(--border);}
+main pre{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;
+  padding:16px 18px;overflow-x:auto;margin:0 0 18px;}
+main pre code{background:none;border:0;padding:0;color:var(--ink);font-size:13.5px;
+  line-height:1.55;}
+main table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:15px;
+  display:block;overflow-x:auto;}
+main thead th{background:var(--bg-2);text-align:left;font-weight:650;color:var(--ink);
+  padding:9px 13px;border:1px solid var(--border-strong);white-space:nowrap;}
+main tbody td{padding:9px 13px;border:1px solid var(--border);color:var(--ink-2);
+  vertical-align:top;}
+main tbody tr:nth-child(even){background:var(--bg-2);}
+main a{color:var(--coral-text);font-weight:500;}
+.toc-note{font-size:14px;color:var(--ink-3);margin-bottom:30px;}
+footer{border-top:1px solid var(--border);background:var(--bg-2);padding:28px 0;
+  margin-top:60px;}
+footer .inner{max-width:860px;margin:0 auto;padding:0 28px;font-size:12.5px;color:var(--ink-3);}
+@media (max-width:600px){
+  main{padding:30px 18px 64px;}
+  .topbar-inner{padding:0 18px;}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="mark" aria-hidden="true">PM</span>
+    <span class="doc-title">Chapter 27 Capstone — Build Your Marketing AI Stack — Test Bank</span>
+    <a class="back" href="../../index.html">&larr; Back to courseware</a>
+  </div>
+</header>
+<main id="main">
+<h1>Chapter 27 Capstone — Build Your Marketing AI Stack — Test Bank</h1>
+<p><strong>Chapter:</strong> 27 — Capstone: Build Your Marketing AI Stack <strong>Source note:</strong> Original authoring. No Kotler parent chapter exists. All items are authored from scratch against our Chapter 27 ground truth. Frameworks, examples, and vocabulary are those of our chapter: the five agent primitives (prompt, tools, memory, planning, reflection), the three-layer eval harness (golden set, LLM-as-judge, human spot-check), the 10-waypoint staged build, the &quot;when NOT to build an agent&quot; maturity section, the connect-the-Skills synthesis, the four-tier deployment ladder (ask/use/connect/build/publish), and the running example brands (Liquid Death, Patagonia, Costco). No item is adapted from or dependent on any Kotler test-bank chapter. <strong>Export format:</strong> Mirrors the course test-bank schema (stem, A...E options, Answer, Diff, Objective, Tags) for QTI / Canvas Common Cartridge conversion.</p>
+<hr>
+<h2>Learning Objectives (Ch27, Our Chapter)</h2>
+<ul>
+<li><strong>LO 27.1</strong> Decompose an AI agent into its five components (prompt, tools, memory, planning, reflection) and explain what each one is responsible for.</li>
+<li><strong>LO 27.2</strong> Distinguish an agent from a workflow, and apply the rule that most marketing AI work is workflows.</li>
+<li><strong>LO 27.3</strong> Describe the Model Context Protocol (MCP), explain the M-by-N argument that drove its adoption, and identify the three flavors of tool available to a marketing agent.</li>
+<li><strong>LO 27.4</strong> Describe the three-layer eval harness (golden set, LLM-as-judge, human spot-check), explain why pass^k matters more than pass@1, and apply the Reflexion architecture to a failing run.</li>
+<li><strong>LO 27.5</strong> Name and apply the five canonical agentic patterns from Anthropic&#x27;s December 2024 post: prompt chaining, routing, parallelization, orchestrator-workers, and evaluator-optimizer.</li>
+<li><strong>LO 27.6</strong> Apply the four-tier deployment ladder (Tier 1 chat, Tier 2 Skill, Tier 3 MCP, Tier 4 scheduled agent) to classify a marketing task and select the correct rung.</li>
+<li><strong>LO 27.7</strong> Follow the 10-waypoint staged build to plan, execute, and document a marketing AI agent, naming the deliverable at each waypoint.</li>
+<li><strong>LO 27.8</strong> Apply the six &quot;when NOT to build an agent&quot; cases to evaluate whether a proposed agent is the right solution, and identify the five failure modes in the production failure taxonomy.</li>
+<li><strong>LO 27.9</strong> Explain the connect-the-Skills synthesis: how each prior chapter packages into one installable Skill, and how the capstone assembles those Skills into a single agent stack.</li>
+</ul>
+<hr>
+<h2>Section I — Multiple-Choice Items (22 items)</h2>
+<hr>
+<p><strong>Item 1</strong></p>
+<p>According to our chapter, an AI agent is best defined as _______.</p>
+<p>A) a language model that generates long-form content in response to a single prompt B) a model in a loop with tools, decomposing a goal into steps and calling the right function at each step C) a fine-tuned model trained on a company&#x27;s proprietary data D) a chatbot with access to a company&#x27;s CRM records E) any AI software that requires less than ten minutes of human setup</p>
+<p>Answer: B</p>
+<p>Diff: 1</p>
+<p>Objective: LO 27.1 — The chapter defines an agent as a model in a loop with tools. The marketer states a goal once, and the model decides on its next step, calls the right tool, reads the result, and keeps going until the goal is met.</p>
+<p>Tags: agent definition; five components; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 2</strong></p>
+<p>A brand manager at Liquid Death sets up a script that always runs in this exact order every Monday: pull competitor mentions, count them, sort by volume, and email the summary. Nothing the model decides changes the order. This is best described as _______.</p>
+<p>A) a Tier 4 scheduled agent B) a parallelization pattern with an orchestrator-workers layer C) a workflow, because the code decides the order, not the model D) an evaluator-optimizer running three passes before shipping E) a Tier 2 Skill triggering on a slash command</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.2 — Our chapter draws a hard line: a workflow is a hard-coded sequence where the code decides the order; an agent decides its own order at runtime. Because the brand manager&#x27;s script always runs the same steps in the same sequence, it is a workflow. The chapter also states that most marketing AI work is workflows and most teams should not build an agent at all.</p>
+<p>Tags: agent vs workflow; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 3</strong></p>
+<p>The Model Context Protocol (MCP) solves what the chapter calls the M-by-N problem. If a marketing team uses 8 AI apps and 40 tools, how many custom integration pieces does MCP reduce the problem to compared to a world with no shared standard?</p>
+<p>A) From 320 pieces of glue to 48 (M plus N) B) From 320 pieces of glue to 16 (M times N minus N squared) C) From 320 pieces of glue to 80 (twice M plus twice N) D) From 40 pieces to 8 (N divided by M) E) There is no reduction; MCP adds server overhead that cancels the savings</p>
+<p>Answer: A</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.3 — Without MCP, M apps times N tools = 320 custom connectors. After MCP, each app and each tool speaks the protocol once: 8 + 40 = 48 pieces. The chapter states this collapse from M*N to M+N as the primary justification for the standard.</p>
+<p>Tags: MCP; M-by-N problem; tool architecture; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 4</strong></p>
+<p>A marketing team has built a sentiment classifier that runs on reviews stored in its own database, using a Python function the team wrote. No external vendor needs to reach the same data. According to the chapter&#x27;s tool decision rule, which flavor of tool should this classifier be?</p>
+<p>A) A built-in tool, because built-ins are always the cheapest path B) A custom function tool, because the work is local and the auth is the team&#x27;s own C) An MCP tool, because all classifiers should be exposed as MCP servers for portability D) An MCP tool, because the Batch API discount only applies to MCP-wrapped calls E) A Tier 4 scheduled agent, because sentiment classification runs overnight</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.3 — The chapter&#x27;s decision rule is mechanical: built-ins first, custom function tools when the work is local and the auth is the team&#x27;s own, MCP when more than one AI app or teammate will reach the same data. This team&#x27;s data is local and the function is theirs, so custom function tool is the correct choice.</p>
+<p>Tags: tool flavors; MCP; custom function tools; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 5</strong></p>
+<p>The system prompt in an agent has two slots. The chapter identifies the _______ as the part that caches at roughly 90 percent off because it does not change between turns.</p>
+<p>A) user prompt B) tool spec C) memory tier D) system prompt E) reflection rubric</p>
+<p>Answer: D</p>
+<p>Diff: 1</p>
+<p>Objective: LO 27.1 — The chapter distinguishes the system prompt (stable: brand voice, persona, banned words) from the user prompt (run-specific: this Monday&#x27;s list, this draft to lint). Because the system prompt does not change between turns, the API caches it server-side at 90 percent off, making it effectively free after the first call.</p>
+<p>Tags: system prompt; prompt caching; agent components; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 6</strong></p>
+<p>An agent is given a task: produce a weekly competitor digest for Liquid Death. During the run, it calls <code>search_competitors</code>, reads the results, decides to also call <code>fetch_brand_mentions</code>, then synthesizes both into a draft. The component responsible for deciding which tools to call and in what sequence is _______.</p>
+<p>A) memory B) reflection C) the system prompt D) planning E) the tool spec</p>
+<p>Answer: D</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.1 — Planning is the component where the model takes a goal and breaks it into the tool calls that satisfy it. For a short task like the digest, planning happens inline; for longer tasks it gets a dedicated orchestrator call. The decision to call <code>search_competitors</code> then <code>fetch_brand_mentions</code> is the model&#x27;s planning step in action.</p>
+<p>Tags: planning component; agent primitives; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 7</strong></p>
+<p>An agent drafts a campaign brief, then a second model call reads the draft against a rubric and returns a score of 2 out of 5 with a one-sentence critique. The agent then revises and re-submits. The chapter names this second call the _____<strong> component, and the pattern is called the </strong>_____ by Anthropic.</p>
+<p>A) memory; retrieval-augmented generation B) reflection; evaluator-optimizer C) planning; orchestrator-workers D) tools; LLM-as-judge E) prompt; prompt chaining</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.1 / LO 27.5 — Reflection critiques the agent&#x27;s output and decides whether to ship or revise. The chapter names Anthropic&#x27;s term for this the evaluator-optimizer pattern, one of five canonical patterns from the December 2024 engineering post. The minimum reflector is a second model call with a different system prompt.</p>
+<p>Tags: reflection; evaluator-optimizer; five patterns; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 8</strong></p>
+<p>Patagonia&#x27;s marketing team wants to build an agent that checks Worn Wear repair-and-resale signals each week from its own database, then sends a summary to Slack. The data lives in Snowflake; two other internal apps also need it. Which memory tier does the chapter recommend for brand voice and cohort definitions that the agent needs on every run?</p>
+<p>A) A knowledge-graph MCP server, because the agent accumulates new brand facts weekly B) A CLAUDE.md file, because brand voice and cohort definitions are stable and load at session start with no extra cost C) RAG against a pinned folder, because Snowflake data requires vector retrieval D) Conversation history, because the prior week&#x27;s summary is already in context E) An external SQL database queried via a custom function tool</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.1 / LO 27.7 — The chapter identifies the cheapest memory tier as a single text file (CLAUDE.md) the runtime reads at session start, covering brand voice, customer-cohort definitions, MCP-server names. It is part of the system prompt and caches at no extra cost. Stable definitions belong here before resorting to RAG or a knowledge graph.</p>
+<p>Tags: memory tiers; CLAUDE.md; agent components; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 9</strong></p>
+<p>A golden set is a required component of the three-layer eval harness. The chapter says a team that cannot write five concrete golden-set cases _______.</p>
+<p>A) should use LLM-as-judge without golden cases until the agent ships enough output to sample B) has not yet decided what the agent does C) can substitute user-satisfaction ratings collected after the first three live runs D) should rely on the pass^k metric instead, which does not require hand-written cases E) is working in a category where evaluation is not appropriate</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.4 — The chapter states explicitly: &quot;Writing the cases is itself the work of deciding what the agent is for, since a team that cannot write five concrete cases has not yet decided what the agent does.&quot; Writing a golden set forces the team to define the agent&#x27;s purpose concretely.</p>
+<p>Tags: golden set; eval harness; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 10</strong></p>
+<p>Sierra Research&#x27;s tau-bench study found that agents scoring 86 percent on single-attempt tasks cleared pass^8 (eight successes in a row) below 25 percent. The chapter uses this finding to make what argument?</p>
+<p>A) Single-attempt accuracy is a sufficient bar for most marketing tasks because customers only interact once B) Reliability, measured by pass^k, does not equal capability; an agent can be individually impressive but serially unreliable C) Marketing agents should not be scheduled unattended until they reach 86 percent single-attempt accuracy D) The Batch API should be used to send the same task to eight agents in parallel and take the majority answer E) Human spot-checks are redundant once pass^8 exceeds 50 percent</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.4 — The chapter cites tau-bench to make the point that reliability does not equal capability. An agent clearing 86 percent on single attempts has a pass^8 below 25 percent, meaning it fails more than it succeeds when asked to run eight consecutive times correctly. The chapter uses this to justify the three-layer eval harness.</p>
+<p>Tags: pass^k; eval harness; tau-bench; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 11</strong></p>
+<p>A marketing team receives a weekly CMO question stream. The team wants simple copy-editing questions to go to a cheap model, data-analysis questions to a mid-range model, and pricing-strategy questions to the most capable model. The Anthropic pattern that best matches this architecture is _______.</p>
+<p>A) prompt chaining B) parallelization C) evaluator-optimizer D) routing E) orchestrator-workers</p>
+<p>Answer: D</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.5 — Routing sends different inputs to different prompts or models based on input class. A small router model reads the question type and dispatches to the specialist, reserving the expensive model for the 10 percent that needs it. The chapter names routing as Pattern 2 in the five canonical patterns.</p>
+<p>Tags: routing pattern; five agentic patterns; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 12</strong></p>
+<p>A team needs to classify 50,000 product reviews for sentiment, using the same prompt on every review. The reviews have no dependencies on each other. The Anthropic pattern that best fits this task is _____<strong>, and the chapter notes that this pattern costs </strong>_____ compared to running the same calls serially.</p>
+<p>A) orchestrator-workers; twice as much because the fan-out adds coordination overhead B) parallelization; the same amount, because the API charges by token rather than by call C) prompt chaining; half as much, because the batch discount applies automatically D) evaluator-optimizer; three times as much, because the judge call adds overhead per item E) routing; less, because reviews are routed to the cheapest model tier</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.5 — Parallelization fans the same task out across many independent inputs. Because the API charges by token rather than by call, parallel costs the same as serial while running 50 to 100 times faster. The chapter cites the Batch API as what parallel classification is built on.</p>
+<p>Tags: parallelization pattern; cost; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 13</strong></p>
+<p>A student wants to use Claude.ai with web search on to answer a one-time question about which of her client&#x27;s competitors just launched a new product. According to the four-tier ladder in our chapter, this task belongs on _______.</p>
+<p>A) Tier 4, because competitor research should run on a schedule B) Tier 3, because competitor data requires a live MCP server connection C) Tier 2, because the task should be packaged as a Skill for future reuse D) Tier 1, because it is a single question asked once with no need for live data pipelines or scheduling E) Tier 1 only if the question is asked fewer than three times; Tier 2 otherwise</p>
+<p>Answer: D</p>
+<p>Diff: 1</p>
+<p>Objective: LO 27.6 — The chapter defines Tier 1 as a chat session with web search on, no code required, per-question at $0 to $20 per month. The break-even on packaging a prompt as a Skill is around the third repetition; below that, a Skill is overhead. A one-time question stays at Tier 1.</p>
+<p>Tags: four-tier ladder; Tier 1; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 14</strong></p>
+<p>A marketing team packages a brand-voice lint prompt as a folder with a SKILL.md file, a references/styleguide.md, and an evals/voice-pass.json. They trigger it with <code>/brand-voice-lint</code>. According to the chapter, this artifact is a _____<strong> and lives on </strong>_____.</p>
+<p>A) Tier 3 MCP server; the agent&#x27;s Tier 4 scheduler B) Tier 2 Skill; the deployment ladder&#x27;s second rung C) eval harness; an external golden-set repository D) Tier 4 scheduled agent; a cron job E) prompt-chaining workflow; the Anthropic Console&#x27;s Evaluations tab</p>
+<p>Answer: B</p>
+<p>Diff: 1</p>
+<p>Objective: LO 27.6 — The chapter defines a Skill as a folder the runtime loads on trigger: SKILL.md instructions, a references/ folder, optional scripts/, and an evals/ set. Open-sourced by Anthropic in December 2025. The Skill is the Tier 2 unit a capstone ships. The slash command is its trigger.</p>
+<p>Tags: Skills; four-tier ladder; Tier 2; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 15</strong></p>
+<p>According to our chapter, Waypoint 0 requires the student to write down four sentences before building anything. Those four sentences cover _______.</p>
+<p>A) the model vendor, the API key location, the tool flavor, and the eval metric B) the target segment, the positioning statement, the single mix lever the agent touches, and the one metric it moves C) the agentic pattern, the number of tool calls, the memory tier, and the reflection rubric D) the Tier selection, the CLAUDE.md draft, the first tool, and the cost-per-run estimate E) the team names, the brand name, the task description, and the README opening line</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.7 — Waypoint 0 requires writing the marketing decision before the first build step. Four sentences: (1) the target segment, (2) the positioning statement in four-element form, (3) the single mix lever the agent touches, and (4) the one metric it moves. The chapter says an agent whose task does not move the named metric is the wrong agent.</p>
+<p>Tags: Waypoint 0; marketing decision; 10-waypoint path; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 16</strong></p>
+<p>A team&#x27;s agent has already passed Waypoints 1 through 6 (rung, system prompt, tool, memory, planning, reflection). The chapter says the agent should skip Waypoint 7 (schedule it) and write one sentence explaining why if _______.</p>
+<p>A) the agent&#x27;s model tier is Haiku rather than Sonnet or Opus B) the task did not earn Tier 4 in Waypoint 1 C) the team has not yet written at least twenty golden-set cases D) the agent&#x27;s pass^k score is below 50 percent E) the task runs longer than two and a half hours</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.7 — Waypoint 7 (schedule it) applies only if the task earned Tier 4 in Waypoint 1. A Tier 1, 2, or 3 team skips Waypoint 7 entirely and writes one sentence explaining why scheduling would be wrong. The rung decision in Waypoint 1 drives all downstream waypoints.</p>
+<p>Tags: 10-waypoint path; Waypoint 7; scheduling; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 17</strong></p>
+<p>Waypoint 9 in the 10-waypoint path covers guardrails. The chapter&#x27;s hard default for every capstone agent is _____<strong>, because </strong>_____.</p>
+<p>A) write-enabled by default; an agent that cannot write cannot deliver business value B) read-only by default; an agent that only reads cannot break anything, and write-enabled agents require a named human checkpoint for every write C) restricted to three tool calls per run; more than three increases blast radius exponentially D) require human approval at every step; the autonomous task horizon is too short to trust unattended writes E) read-only for Tier 2 and write-enabled for Tier 4; the rung determines the blast radius</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.7 / LO 27.8 — The chapter states: &quot;The hard default for every capstone agent is read-only. An agent that only reads cannot break anything, while one that writes can ship a wrong answer to a real human before the team notices.&quot; If an agent writes anywhere, the README must name the human-in-the-loop checkpoint and the Waypoint 8 rubric must include a write-path case.</p>
+<p>Tags: guardrails; Waypoint 9; read-only default; AACSB: Ethical understanding</p>
+<hr>
+<p><strong>Item 18</strong></p>
+<p>A student proposes building an agent that automatically emails personalized offers to contacts in her client&#x27;s HubSpot CRM. She plans to use a web-search tool that fetches public pages. Our chapter&#x27;s &quot;when NOT to build an agent&quot; section identifies which of the following as the clearest reason this design needs rethinking?</p>
+<p>A) The task is a single shot and the break-even on a Skill has not been reached B) The platform (HubSpot) is sunsetting in 2026 and should not be built on C) A write-enabled agent sending emails to real contacts carries prompt-injection risk and a large blast radius; a human checkpoint on every outbound email removes the autonomy that makes it an agent D) Parallelization rather than orchestrator-workers should be used for email sends E) Anyword&#x27;s Predictive Performance Score must be integrated before any outbound campaign agent ships</p>
+<p>Answer: C</p>
+<p>Diff: 3</p>
+<p>Objective: LO 27.8 — Case 2 (low-trust domain, write-enabled) and Case 3 (blast radius too large) both apply. A write-enabled CRM agent that sends real emails to real contacts is one bad page or one prompt injection away from a mass-outbound incident. The chapter states: once human-in-the-loop approval is required for every write, the agent is no longer autonomous and a workflow is the better answer.</p>
+<p>Tags: when not to build; prompt injection; blast radius; AACSB: Ethical understanding</p>
+<hr>
+<p><strong>Item 19</strong></p>
+<p>The Reflexion architecture (Shinn et al., 2023) is described in our chapter as a way for a failing agent to improve across runs. The three components are _______.</p>
+<p>A) the golden set, the LLM-as-judge, and the human spot-check B) the orchestrator, the workers, and the synthesizer C) the Actor (the agent doing the work), the Evaluator (a judge call returning a rubric score), and the Self-Reflection model (a separate call that writes a 150-200 word critique) D) the system prompt, the user prompt, and the tool spec E) the generator, the critic, and the compiler</p>
+<p>Answer: C</p>
+<p>Diff: 3</p>
+<p>Objective: LO 27.4 — The chapter describes the Reflexion architecture as three components: the Actor, the Evaluator (the LLM-as-judge call), and the Self-Reflection model (a separate call that reads the failing trace, writes a 150-200 word critique tagged with one of five failure modes, and appends it to <code>.evals/reflections.jsonl</code>). The weights never update; the verbal critique is the entire learning signal.</p>
+<p>Tags: Reflexion; eval harness; self-improvement; AACSB: Analytical thinking</p>
+<hr>
+<p><strong>Item 20</strong></p>
+<p>The chapter&#x27;s five production marketing agent examples include the GEO citation tracker. According to the chapter, the citation tracker belongs on which rung and uses which Anthropic agentic pattern?</p>
+<p>A) Tier 2; prompt chaining B) Tier 3; routing C) Tier 4; parallelization D) Tier 3; orchestrator-workers E) Tier 2; evaluator-optimizer</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.5 / LO 27.6 — The chapter describes the GEO citation-share tracker as a weekly scheduled agent that probes 25 queries across 4 engines. Its planning layer is &quot;a linear loop with parallelization layered on so all four probes fire in one turn.&quot; It runs unattended on a Monday morning schedule, which is Tier 4. The chapter explicitly says: &quot;The five cover distinct rung-plus-pattern combinations: the GEO tracker is parallelization at Tier 4.&quot;</p>
+<p>Tags: GEO citation tracker; parallelization; Tier 4; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>Item 21</strong></p>
+<p>The connect-the-Skills synthesis in our chapter argues that every prior chapter maps onto one installable Skill. According to the figure, which chapter maps to the guardrail gate that every other Skill passes through rather than a Skill itself?</p>
+<p>A) Chapter 5 (Marketing Research), because surveys produce the data every agent reads B) Chapter 6 (STP), because segmentation is the prerequisite for every targeted output C) Chapter 26 (Ethics and Responsible AI), because ethics is the gate every Skill passes through, not a task to automate D) Chapter 24 (Plan and Analytics), because the marketing plan is the highest-level framing E) Chapter 1 (AI for Marketers), because the ladder described there is the foundation the Skills sit on</p>
+<p>Answer: C</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.9 — The chapter&#x27;s connect-the-Skills figure and supporting text state: &quot;Chapter 26 ethics is not a Skill at all but the guardrail gate every other Skill passes through.&quot; Chapter 6 becomes /rfm-segmenter, Chapter 7 /distinctive-asset-audit, Chapter 10 /pricing-psm, Chapter 17 /stepps-scorer, Chapter 5 /survey-draft-audit, Chapter 21 /cohort-clv. Chapter 26 is the exception that is structurally different.</p>
+<p>Tags: connect-the-Skills; Ch26 ethics; capstone synthesis; AACSB: Reflective thinking</p>
+<hr>
+<p><strong>Item 22</strong></p>
+<p>Klarna&#x27;s 2025 service-agent case serves as a failure mode in our chapter. The chapter identifies the root cause as _______.</p>
+<p>A) a prompt-injection attack that redirected the agent to close tickets marked as resolved B) cost being the predominant evaluation factor while quality fell, with deflection holding near two-thirds C) an insufficiently large golden set that failed to catch category-tolerance violations D) building on the OpenAI Assistants API, which was scheduled for shutdown E) using parallel tool calling when serial was more appropriate for customer service</p>
+<p>Answer: B</p>
+<p>Diff: 3</p>
+<p>Objective: LO 27.4 / LO 27.8 — The chapter cites Klarna&#x27;s May 2025 walkback as the evaluator-optimizer failure mode: &quot;cost was the predominant evaluation factor and quality fell, with deflection holding near two-thirds.&quot; The agent optimized against the short-horizon reward (deflect tickets, reduce cost) while damaging customer trust. The chapter uses this to illustrate why the rubric must include a long-horizon signal a human reviews before redeployment.</p>
+<p>Tags: Klarna; failure taxonomy; reward hacking; AACSB: Reflective thinking; Application of knowledge</p>
+<hr>
+<h2>Section II — Scenario / Short-Answer Items (4 items)</h2>
+<hr>
+<p><strong>SA-1</strong></p>
+<p>A senior marketing manager at an outdoor apparel company is planning a capstone agent. She describes her plan: &quot;I want the agent to monitor social media mentions, classify them by sentiment, draft weekly reports, send those reports to the CMO&#x27;s Slack, update HubSpot contact records for anyone who posted a negative review, and delete the contact if they mention a competitor twice.&quot; Her colleague says the plan needs a Waypoint 0 step and a Waypoint 9 review before a single line of code is written.</p>
+<p>Using our chapter&#x27;s frameworks, (a) apply Waypoint 0 to identify the most likely gap in her plan as described, and (b) apply the &quot;when NOT to build an agent&quot; section to identify the two clearest cases that make her agent the wrong design and propose a safer alternative architecture.</p>
+<p><strong>Sample answer:</strong> (a) Waypoint 0 requires four sentences before building: target segment, positioning statement, mix lever, and single metric the agent moves. As described, the manager has named several tasks but has not named the marketing decision any of them serve. A weekly social-monitoring report is only worth automating if it advances a specific decision — for example, a positioning defense against competitor attacks, measurable by citation share in negative-review posts. Without naming the decision, the agent is automating activity rather than serving strategy. This is the gap her colleague is flagging.</p>
+<p>(b) Two &quot;when NOT to build an agent&quot; cases apply clearly. Case 2 (low-trust domain, write-enabled): updating HubSpot contact records and deleting contacts based on mention behavior is write-enabled work on a live CRM. A prompt injection in one fetched social post could tell the agent to delete contact records it should not touch. The chapter states that once human approval is required on every write, the agent is no longer autonomous and a workflow is the better answer. Case 3 (blast radius too large): deleting a contact who mentions a competitor twice has no obvious recovery path if the classifier is wrong. The chapter requires a named human-in-the-loop checkpoint for every destructive action; as planned, there is none. A safer architecture: read-only monitoring agent that drafts the weekly report (Tier 3 or 4, parallelization pattern, all tools read-only); human-gated workflow for any CRM write; contact deletion removed entirely pending a policy decision above the agent&#x27;s scope.</p>
+<p>Diff: 3</p>
+<p>Objective: LO 27.7, LO 27.8</p>
+<p>Tags: Waypoint 0; when not to build; guardrails; AACSB: Application of knowledge; Ethical understanding</p>
+<hr>
+<p><strong>SA-2</strong></p>
+<p>A capstone team has finished Waypoints 1 through 6 and now needs to instrument the eval harness (Waypoint 8). They have an agent that lints marketing copy for banned words and rewrites violating sentences. They plan to write five golden-set cases, a run_evals.py script, and an LLM-as-judge step.</p>
+<p>(a) Describe what belongs in one golden-set JSON case file for this agent, including the three required fields the chapter names. (b) Explain what the LLM-as-judge step is and why a second model call is needed rather than asking the first model to grade its own output. (c) Name the metric the chapter says the eval harness should report, and explain why pass@1 is insufficient for a weekly scheduled agent.</p>
+<p><strong>Sample answer:</strong> (a) Each golden-set case is a JSON object with three fields: <code>input</code> (a sample piece of copy the agent will lint), <code>expected_contains</code> (the specific violations the ideal lint should flag — for example, banned words present in the input), and <code>pass_criteria</code> (a plain-language statement of what the output must do to count as passing — for example, &quot;Output must flag all three banned words and rewrite without them&quot;). The team writes five real cases the agent will face on Mondays, not invented edge cases, and pairs each with the ideal output the team would produce without the agent.</p>
+<p>(b) LLM-as-judge is a second model call with a different system prompt that reads the agent&#x27;s output and scores it against the pass criteria. It is a separate call from the generating model because the generating model reads its own output as a writer, not a grader; it is prone to over-rating its own work and misses the confident-but-wrong failures that a grader with a strict rubric catches. The chapter says cost for a judge call runs a few cents per run and catches high-confidence-but-wrong failures the first model cannot catch itself.</p>
+<p>(c) The chapter says the eval harness should report pass^k, not pass@1. Pass@1 measures whether the agent succeeds on a single attempt; pass^k measures whether it succeeds on k consecutive attempts — the actual reliability a weekly scheduled agent needs. The tau-bench finding cited in the chapter shows that agents clearing 86 percent on single attempts fall below 25 percent on pass^8. For a weekly digest agent that runs 52 Mondays a year, failing once every eight runs is materially worse than pass@1 suggests.</p>
+<p>Diff: 3</p>
+<p>Objective: LO 27.4, LO 27.7</p>
+<p>Tags: eval harness; golden set; LLM-as-judge; pass^k; AACSB: Application of knowledge; Analytical thinking</p>
+<hr>
+<p><strong>SA-3</strong></p>
+<p>A student is designing a capstone agent for her P2 client, a local coffee chain. She wants the agent to post one Instagram caption per day, varying tone by day of week. She plans to connect it to a Tier 4 schedule. Her instructor says Tier 4 might not be the right starting rung.</p>
+<p>Using the chapter&#x27;s four-tier ladder and its &quot;single-shot&quot; and &quot;rung-selection&quot; guidance, (a) explain what question the student must answer before deciding whether Tier 4 is appropriate, and (b) describe what a correctly scoped Tier 2 version of this agent would look like, including what artifact it produces and how the student would trigger it.</p>
+<p><strong>Sample answer:</strong> (a) The chapter&#x27;s rung-selection rule asks four mechanical questions in order: Is it a one-time lookup? (Tier 1.) Does the same task repeat three or more times? (Tier 2 Skill.) Does it need live data the model cannot copy-paste? (Tier 3 MCP server.) Does it run while the marketer is asleep, without a human in the loop? (Tier 4.) The instructor&#x27;s concern is that the student has jumped to Tier 4 without asking whether Tier 4 adds something Tier 2 cannot. The key question is: does posting a daily Instagram caption require the agent to run unattended, or can a human trigger it each morning and still get the value? If the student or a team member types a slash command each morning, Tier 2 covers the task. Scheduling unattended posting to a client&#x27;s live Instagram before the agent&#x27;s pass^k is established is also a guardrails risk, since a wrong post reaches a public audience before anyone can stop it.</p>
+<p>(b) A correctly scoped Tier 2 version is a Skill folder with four files: SKILL.md (the entrypoint, defining the caption-generation procedure including day-of-week tone rules, banned phrases, and the reflection guard), references/styleguide.md (the coffee brand&#x27;s voice attributes, exemplar captions, banned words), evals/caption-pass.json (five golden cases, one per weekday tone, the agent must pass before any caption ships externally), and an optional scripts/lint.py. The student triggers it each morning by typing <code>/instagram-caption monday</code> in Claude Code or Claude Desktop. The artifact it produces is one reviewed caption the student or account manager approves before posting. Tier 2 is the right starting rung; the team climbs to Tier 3 or Tier 4 only after three to four weeks of clean Tier 2 runs establish that the captions meet the brand voice standard.</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.6, LO 27.7</p>
+<p>Tags: four-tier ladder; Skills; rung selection; AACSB: Application of knowledge</p>
+<hr>
+<p><strong>SA-4</strong></p>
+<p>The chapter closes by calling Chapter 27 one of the book&#x27;s two capstones and naming the other. Explain the paired-capstone logic: what does Chapter 24 ask the student to produce, what does Chapter 27 ask the student to produce, and how does the chapter say they relate to each other? Then name three chapters from the connect-the-Skills synthesis and identify the Skill each one produces, as shown in the chapter&#x27;s figure.</p>
+<p><strong>Sample answer:</strong> Chapter 24 asks the student to produce the written marketing plan itself, carrying the goal-strategy-tactics-implementation-control loop end to end on a real brand. Chapter 27 asks the student to build the AI agent that serves one specific decision inside that plan. The chapter states: &quot;Chapter 24 asks you to write the plan; this chapter asks you to build the agent that serves one decision inside it. Do both and the picture closes — the plan names the decision and the agent does the work the decision needs done.&quot; The two capstones are paired by design: one produces the strategic artifact (the plan), the other produces the operational artifact (the agent). Neither is complete without the other.</p>
+<p>For the connect-the-Skills synthesis (any three of the following are acceptable, sourced verbatim from the chapter&#x27;s figure and supporting text): Chapter 5 (Marketing Research) packages into /survey-draft-audit. Chapter 6 (STP) packages into /rfm-segmenter. Chapter 7 (Brands and Distinctive Assets) packages into /distinctive-asset-audit. Chapter 10 (Pricing) packages into /pricing-psm. Chapter 17 (Content Marketing) packages into /stepps-scorer. Chapter 21 (Lifecycle and Retention) packages into /cohort-clv. Chapter 26 (Ethics and Responsible AI) is the guardrail gate every Skill passes through rather than a Skill itself.</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.9</p>
+<p>Tags: connect-the-Skills; two capstones; Ch24 cross-reference; AACSB: Reflective thinking; Application of knowledge</p>
+<hr>
+<h2>Section III — AI-Integration Items (4 items)</h2>
+<p><em>These items are original to this course and do not appear in any Kotler bank. They test students&#x27; ability to design, evaluate, and critique AI-agent architectures using the frameworks this chapter teaches.</em></p>
+<hr>
+<p><strong>AI-1 — Design the Eval Harness</strong></p>
+<p>A teammate has just shipped the first version of a weekly GEO citation tracker for the Stanley brand. The agent probes four AI engines (ChatGPT, Gemini, Perplexity, Claude) in parallel, each with the same query. After three Monday runs, the team is celebrating a high citation rate for Stanley. You notice, however, that the team has (a) no written golden-set cases, (b) no LLM-as-judge rubric, and (c) no human spot-check process.</p>
+<p>Which of the following best describes the risk the chapter names for this situation, and what is the minimum the team must add before trusting the weekly results?</p>
+<p>A) There is no significant risk; if the citation rate is rising, the agent is working. B) Without the three-layer eval harness, the agent may produce confident-but-wrong outputs the team has no systematic way to catch; the minimum is five golden cases, an LLM-as-judge call scoring each run on correctness and completeness, and a human review of 100 percent of outputs in the first month. C) The risk is cost overrun; the missing evals folder means the agent reruns unnecessarily. D) The risk is prompt injection from public web pages; the eval harness is the defense against adversarial inputs. E) The risk is rung mismatch; without evals the agent cannot be classified as Tier 4.</p>
+<p>Answer: B</p>
+<p>Diff: 3</p>
+<p>Objective: LO 27.4 — An agent without reflection produces confident garbage when something subtle is wrong. The chapter requires three layers: a golden set the team writes by hand (five cases to start, naming what the ideal output looks like for each query), an LLM-as-judge rubric pass scoring each run against dimensions like citation accuracy and query completeness, and a human spot-check (100 percent for the first month, dropping to 10 percent once pass rate is steady). None of the three layers alone is sufficient. A rising citation rate without a rubric can mean the agent is inflating its own citation counts rather than accurately reporting them.</p>
+<p>Tags: eval harness; GEO citation tracker; AACSB: Application of knowledge; Reflective thinking</p>
+<hr>
+<p><strong>AI-2 — Pick the Right Waypoint</strong></p>
+<p>A team has an agent that drafts Liquid Death Instagram captions. Waypoints 1 through 5 are complete. The system prompt is tight (Waypoint 2), one tool is wired (Waypoint 3), memory is in CLAUDE.md (Waypoint 4), and planning is implicit because the task is two steps (Waypoint 5). The team now wants to skip Waypoint 6 (reflection) and go straight to Waypoint 7 (schedule it). The team argues: &quot;The captions are already good; a second model call adds cost with no clear return.&quot;</p>
+<p>Using the chapter&#x27;s argument for the reflection component, critique the team&#x27;s decision and explain what specific failure the missing reflection step leaves undetected.</p>
+<p><strong>Sample answer and rubric:</strong> The chapter&#x27;s argument against skipping reflection is that a generator cannot grade its own output with a grader&#x27;s mindset. The system prompt that makes the agent produce captions is the same one that makes it evaluate them; without a separate judge call with a different system prompt, the agent ships whatever it produces, including drafts that violate the brand voice, contain banned words, or make factual claims that need a human catch. The specific failure left undetected is a high-confidence-but-wrong caption: one that reads fluent and on-topic but uses a word on the banned list (leverage, synergy), or references a product detail incorrectly, or uses a tone the brand has explicitly rejected. Without the judge call, the only way to catch it is a human reading every output before posting, which defeats the purpose of the schedule. The minimum reflection step costs a few cents per run on Haiku 4.5 and produces a 1-5 score with a one-sentence justification. At a score below 4, the agent re-prompts and tries again up to three times. The team&#x27;s cost argument is correct in absolute terms but wrong in relative terms: the cost of one publicly posted wrong caption to a live brand account exceeds the cost of every judge call the team will make in a semester.</p>
+<p>Diff: 3</p>
+<p>Objective: LO 27.1, LO 27.7 — The reflection component&#x27;s purpose is to catch the confident-but-wrong outputs the generating model cannot see. Skipping it and scheduling the agent unattended creates a pipeline with no internal quality gate.</p>
+<p>Tags: reflection; Waypoint 6; eval harness; AACSB: Application of knowledge; Written communication</p>
+<hr>
+<p><strong>AI-3 — When NOT to Build an Agent: Maturity Judgment</strong></p>
+<p>A student has found an article describing a 2024 AI startup that built an AI Sales Development Representative (AI-SDR) platform for outbound email. The article reports 500 percent month-over-month growth in 2024. The student wants to replicate the model for her P2 client&#x27;s B2B lead generation.</p>
+<p>Using the chapter&#x27;s &quot;when NOT to build an agent&quot; section, identify two cases that most clearly apply to this proposal, explain why each applies, and propose what a lower-rung alternative would look like.</p>
+<p><strong>Sample answer:</strong> Two cases from the chapter apply clearly.</p>
+<p>Case 5 (the AI-SDR cautionary tale): The chapter names AI-SDR platforms directly as the 2024-2025 cautionary tale. The boom produced a deliverability collapse as Gmail and Outlook tightened sender reputation rules and volume-without-quality machines burned the sending domains. The chapter states that the class of agent that automates outreach to people who did not ask hits the inbox-reputation wall first and should not be a P2 capstone. The 2024 growth figure in the article reflects the early phase before the deliverability wall collapsed the model.</p>
+<p>Case 3 (blast radius too large): An agent that sends personalized emails to real prospects at scale has a blast radius that includes the client&#x27;s domain reputation, deliverability rate, and relationship with every prospect on the list. A single prompt-injection in a scraped data source, or a model that writes an off-brand or factually wrong outreach email at scale, damages relationships that the client cannot easily recover.</p>
+<p>Lower-rung alternative: A Tier 2 Skill that drafts one personalized email at a time, triggered manually for each prospect, with the human reading and approving before sending. The Skill lints the draft for brand voice, suggests personalization points, and flags any factual claims the sender should verify. The human makes the send decision. This approach captures the drafting-efficiency benefit of AI without the inbox-reputation and blast-radius risks of a fully automated outbound agent.</p>
+<p>Diff: 3</p>
+<p>Objective: LO 27.8 — The AI-SDR cautionary tale and the blast-radius case from the chapter&#x27;s six &quot;when NOT to build&quot; cases both apply to mass automated outbound email, and the chapter names the category explicitly.</p>
+<p>Tags: when not to build; AI-SDR; blast radius; AACSB: Ethical understanding; Application of knowledge</p>
+<hr>
+<p><strong>AI-4 — Connect the Skills: Stack Assembly</strong></p>
+<p>A junior marketer at Liquid Death has been asked to assemble an agent stack for the brand using the connect-the-Skills synthesis from our chapter. She identifies the following six chapters as relevant to Liquid Death&#x27;s marketing decisions and wants to know which Skill each one produces for the stack.</p>
+<p>Chapters she lists: 5 (Marketing Research), 6 (STP), 7 (Brands / Distinctive Assets), 10 (Pricing), 17 (Content Marketing), 26 (Ethics and Responsible AI).</p>
+<p>Which of the following correctly maps all six chapters to their stack roles according to our chapter&#x27;s connect-the-Skills figure?</p>
+<p>A) Ch5 = /rfm-segmenter; Ch6 = /survey-draft-audit; Ch7 = /stepps-scorer; Ch10 = /cohort-clv; Ch17 = /pricing-psm; Ch26 = guardrail gate B) Ch5 = /survey-draft-audit; Ch6 = /rfm-segmenter; Ch7 = /distinctive-asset-audit; Ch10 = /pricing-psm; Ch17 = /stepps-scorer; Ch26 = guardrail gate C) Ch5 = /pricing-psm; Ch6 = /survey-draft-audit; Ch7 = /rfm-segmenter; Ch10 = /stepps-scorer; Ch17 = /distinctive-asset-audit; Ch26 = /ethics-audit D) Ch5 = /rfm-segmenter; Ch6 = /distinctive-asset-audit; Ch7 = /pricing-psm; Ch10 = /survey-draft-audit; Ch17 = /cohort-clv; Ch26 = guardrail gate E) Ch5 = /cohort-clv; Ch6 = /rfm-segmenter; Ch7 = /stepps-scorer; Ch10 = /pricing-psm; Ch17 = /survey-draft-audit; Ch26 = guardrail gate</p>
+<p>Answer: B</p>
+<p>Diff: 2</p>
+<p>Objective: LO 27.9 — The chapter&#x27;s connect-the-Skills figure and supporting text state explicitly: Ch5 Marketing Research packages into /survey-draft-audit; Ch6 STP packages into /rfm-segmenter; Ch7 Brands/Distinctive Assets packages into /distinctive-asset-audit; Ch10 Pricing packages into /pricing-psm; Ch17 Content Marketing packages into /stepps-scorer; Ch26 Ethics is the guardrail gate every Skill passes through, not a Skill itself. Option B is the only mapping that matches all six roles exactly as described in the chapter.</p>
+<p>Tags: connect-the-Skills; stack assembly; capstone synthesis; AACSB: Application of knowledge; Reflective thinking</p>
+<hr>
+<h2>Answer Key</h2>
+<table><thead><tr><th>Item</th><th>Answer</th><th>One-line rationale</th></tr></thead><tbody><tr><td>1</td><td>B</td><td>An agent is a model in a loop with tools decomposing a goal into steps.</td></tr><tr><td>2</td><td>C</td><td>A fixed code-decided sequence is a workflow; the model decides order at runtime in an agent.</td></tr><tr><td>3</td><td>A</td><td>MCP collapses M*N (320) to M+N (48) custom integration pieces.</td></tr><tr><td>4</td><td>B</td><td>Local work with the team&#x27;s own auth = custom function tool; MCP is for shared multi-app access.</td></tr><tr><td>5</td><td>D</td><td>The system prompt is stable and caches at 90 percent off; the user prompt is run-specific.</td></tr><tr><td>6</td><td>D</td><td>Planning is the component that decomposes the goal into the tool-call sequence.</td></tr><tr><td>7</td><td>B</td><td>The second model call that grades output is reflection; the pattern name is evaluator-optimizer.</td></tr><tr><td>8</td><td>B</td><td>Stable brand voice and cohort definitions belong in CLAUDE.md, the cheapest memory tier.</td></tr><tr><td>9</td><td>B</td><td>A team that cannot write five concrete golden-set cases has not yet decided what the agent does.</td></tr><tr><td>10</td><td>B</td><td>Reliability (pass^k) does not equal capability; tau-bench shows the gap at 86% vs. &lt;25%.</td></tr><tr><td>11</td><td>D</td><td>Dispatching different input classes to different model tiers is the routing pattern.</td></tr><tr><td>12</td><td>B</td><td>Parallelization costs the same as serial (API charges by token), running 50-100x faster.</td></tr><tr><td>13</td><td>D</td><td>A one-time single question stays at Tier 1; below three repetitions a Skill is overhead.</td></tr><tr><td>14</td><td>B</td><td>A SKILL.md folder triggered by a slash command is a Tier 2 Skill on the second ladder rung.</td></tr><tr><td>15</td><td>B</td><td>Waypoint 0 = four sentences: segment, positioning statement, mix lever, metric.</td></tr><tr><td>16</td><td>B</td><td>Waypoint 7 (schedule) applies only if the task earned Tier 4 in Waypoint 1.</td></tr><tr><td>17</td><td>B</td><td>Hard default: read-only. Write-enabled agents need a named human checkpoint for every write.</td></tr><tr><td>18</td><td>C</td><td>Write-enabled CRM agent with email sends = prompt-injection risk + large blast radius.</td></tr><tr><td>19</td><td>C</td><td>Reflexion = Actor + Evaluator (judge call) + Self-Reflection model (150-200 word critique).</td></tr><tr><td>20</td><td>C</td><td>GEO citation tracker = parallelization (four parallel engine probes) at Tier 4 (weekly schedule).</td></tr><tr><td>21</td><td>C</td><td>Ch26 Ethics is the guardrail gate every Skill passes through, not a Skill itself.</td></tr><tr><td>22</td><td>B</td><td>Klarna: cost was the dominant eval factor; quality fell; deflection stayed high.</td></tr><tr><td>SA-1</td><td>See rubric</td><td>Waypoint 0 gap: no marketing decision named. Two cases: write-enabled CRM (Case 2) + blast radius (Case 3). Safer: read-only monitoring + human-gated workflow.</td></tr><tr><td>SA-2</td><td>See rubric</td><td>Golden case = input/expected_contains/pass_criteria. Judge = separate model call, grader mindset. Harness should report pass^k not pass@1; tau-bench shows the gap.</td></tr><tr><td>SA-3</td><td>See rubric</td><td>Rung question: does this need to run unattended? Tier 2 = SKILL.md folder, /instagram-caption trigger, human approves before posting.</td></tr><tr><td>SA-4</td><td>See rubric</td><td>Ch24 = written marketing plan (G-STIC loop). Ch27 = agent serving one decision inside that plan. Three Skills: any three from Ch5/6/7/10/17/21 with correct Skill names. Ch26 = guardrail gate.</td></tr><tr><td>AI-1</td><td>B</td><td>Without the three-layer harness a rising citation rate can hide confident-but-wrong outputs.</td></tr><tr><td>AI-2</td><td>See rubric</td><td>Missing reflection = confident-but-wrong captions ship undetected; judge call costs cents vs. cost of one public mistake.</td></tr><tr><td>AI-3</td><td>See rubric</td><td>Cases 5 (AI-SDR deliverability wall) + 3 (domain/relationship blast radius). Alternative: Tier 2 Skill, human approves each send.</td></tr><tr><td>AI-4</td><td>B</td><td>Ch5=/survey-draft-audit; Ch6=/rfm-segmenter; Ch7=/distinctive-asset-audit; Ch10=/pricing-psm; Ch17=/stepps-scorer; Ch26=guardrail gate.</td></tr></tbody></table>
+<hr>
+<h2>Item Counts Summary</h2>
+<table><thead><tr><th>Category</th><th>Diff 1</th><th>Diff 2</th><th>Diff 3</th><th>Total</th></tr></thead><tbody><tr><td>MCQ</td><td>3</td><td>14</td><td>5</td><td>22</td></tr><tr><td>Scenario / Short-Answer</td><td>0</td><td>2</td><td>2</td><td>4</td></tr><tr><td>AI-Integration</td><td>0</td><td>2</td><td>2</td><td>4</td></tr><tr><td><strong>Total</strong></td><td><strong>3</strong></td><td><strong>18</strong></td><td><strong>9</strong></td><td><strong>30</strong></td></tr></tbody></table>
+<hr>
+<h2>Objectives Coverage</h2>
+<table><thead><tr><th>Objective</th><th>MCQ items</th><th>SA items</th><th>AI items</th></tr></thead><tbody><tr><td>LO 27.1 — Five agent components (prompt, tools, memory, planning, reflection)</td><td>1, 5, 6, 7, 8</td><td></td><td>AI-2</td></tr><tr><td>LO 27.2 — Agent vs workflow</td><td>2</td><td></td><td></td></tr><tr><td>LO 27.3 — MCP; M-by-N argument; three tool flavors</td><td>3, 4</td><td></td><td></td></tr><tr><td>LO 27.4 — Three-layer eval harness; pass^k; Reflexion</td><td>9, 10, 19</td><td>SA-2</td><td>AI-1</td></tr><tr><td>LO 27.5 — Five canonical agentic patterns</td><td>7, 11, 12, 20</td><td></td><td></td></tr><tr><td>LO 27.6 — Four-tier deployment ladder</td><td>13, 14, 20</td><td>SA-3</td><td></td></tr><tr><td>LO 27.7 — 10-waypoint staged build</td><td>15, 16, 17</td><td>SA-1, SA-3</td><td>AI-2</td></tr><tr><td>LO 27.8 — When NOT to build; failure taxonomy</td><td>17, 18, 22</td><td>SA-1</td><td>AI-3</td></tr><tr><td>LO 27.9 — Connect-the-Skills synthesis</td><td>21</td><td>SA-4</td><td>AI-4</td></tr></tbody></table>
+<hr>
+<p><em>Export-ready for QTI / Canvas Common Cartridge. Short-answer and AI items with rubric notation are suitable for AI-assisted grading via the course proxy (port 8787). All items answered from Our Ch27 ground truth (book/v7/chapter-27-capstone.html). No Kotler parent chapter; all authoring is original. This file completes the 27/27 test-bank track.</em></p></main>
+<footer><div class="inner">Principles of Marketing: An AI-Integrated Approach &middot; instructor courseware.</div></footer>
+</body>
+</html>

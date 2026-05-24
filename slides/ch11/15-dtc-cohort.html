@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 11 Distribution · 15 · The DTC cohort</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.cmp{ display:flex; flex-direction:column; }
+  .cmp .head{ margin-bottom:14px; }
+  .cmp .body-row{ display:grid; grid-template-columns: 1.6fr 1fr; gap:32px; flex:1; min-height:0; }
+  .cmp .chart{
+    background:var(--bg); border:1px solid var(--rule);
+    padding:18px 22px 14px; display:flex; flex-direction:column; min-height:0;
+  }
+  .cmp .chart .caption{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:6px; }
+  .cmp svg{ width:100%; height:100%; flex:1; min-height:0; display:block; }
+  .cmp .side h4{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .cmp .side p{ font-size:21px; line-height:1.4; color:var(--ink-body); margin-bottom:14px; max-width:30ch; }
+  .cmp .side p em{ font-style:normal; color:var(--ink); font-weight:600; }
+  .cmp .side ul{ list-style:none; padding:0; margin:8px 0 0; display:flex; flex-direction:column; gap:8px; }
+  .cmp .side ul li{ font-size:20px; color:var(--ink-body); padding-left:16px; position:relative; line-height:1.35; }
+  .cmp .side ul li::before{ content:""; position:absolute; left:0; top:13px; width:9px; height:1px; background:var(--ink-mute); }
+</style>
+</head>
+<body>
+  <!-- 15 · COMPARISON BARS · the DTC cohort ranked by the share of revenue that does NOT ride on per-buyer paid acquisition (owned stores + wholesale buffer). ONE coral element = the Warby Parker bar, the clearest survivor that built the buffer early. Casper, Allbirds, Glossier are gray context. -->
+  <section class="slide cmp">
+    <div class="head">
+      <h1 class="title">The DTC math has to pencil before launch, because <em>a wholesale buffer absorbs the acquisition-cost shock</em> that broke the cohort.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="body-row">
+      <div class="chart">
+        <span class="caption">Exhibit 11.6 · Share of revenue not riding on per-buyer paid acquisition &middot; owned stores plus wholesale, 2024&ndash;2025</span>
+        <svg viewBox="0 0 560 250" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="Four DTC brands ranked by the share of revenue that does not ride on per-buyer paid acquisition. Warby Parker leads at about 67 percent through its owned-store network, drawn in coral. Glossier follows at about 45 percent after its Sephora wholesale reset, then Casper at about 30 percent and Allbirds near 10 percent before it delisted, all in gray. The brands that built the wholesale buffer survived; the ones that did not, did not.">
+          <g font-size="12" fill="#1a1a1a">
+            <!-- x axis 0..80%, plot x 210..520 (310px for 80% -> 3.875px/%) ; bars at y rows -->
+            <line x1="210" y1="40" x2="210" y2="208" stroke="#E8E6E1"/>
+            <g font-size="10.5" fill="#7A7A7A" text-anchor="middle">
+              <text x="210" y="226">0</text>
+              <text x="307" y="226">25</text>
+              <text x="404" y="226">50</text>
+              <text x="501" y="226">75</text>
+            </g>
+            <text x="365" y="242" text-anchor="middle" font-size="11" fill="#7A7A7A" font-style="italic">% of revenue not on paid acquisition</text>
+            <line x1="307" y1="40" x2="307" y2="208" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+            <line x1="404" y1="40" x2="404" y2="208" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+            <line x1="501" y1="40" x2="501" y2="208" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+
+            <!-- Warby Parker 67% -> width 260, coral -->
+            <text x="200" y="58" text-anchor="end" font-size="12" font-weight="600">Warby Parker</text>
+            <rect x="210" y="46" width="260" height="26" fill="#DA7756"/>
+            <text x="478" y="64" font-size="13" fill="#B8553A" font-weight="700">~67%</text>
+            <text x="210" y="84" font-size="10.5" fill="#7A7A7A">270-plus owned stores, built over 13 years</text>
+
+            <!-- Glossier 45% -> width 174, gray -->
+            <text x="200" y="108" text-anchor="end" font-size="12" font-weight="600">Glossier</text>
+            <rect x="210" y="96" width="174" height="26" fill="#BDB7AC"/>
+            <text x="392" y="114" font-size="12" fill="#5C5C5C" font-weight="600">~45%</text>
+            <text x="210" y="134" font-size="10.5" fill="#7A7A7A">Sephora reset across ~650 doors, 2023</text>
+
+            <!-- Casper 30% -> width 116, gray -->
+            <text x="200" y="158" text-anchor="end" font-size="12" font-weight="600">Casper</text>
+            <rect x="210" y="146" width="116" height="26" fill="#BDB7AC"/>
+            <text x="334" y="164" font-size="12" fill="#5C5C5C" font-weight="600">~30%</text>
+            <text x="210" y="184" font-size="10.5" fill="#7A7A7A">opened stores, shipped to Target late</text>
+
+            <!-- Allbirds 10% -> width 39, gray -->
+            <text x="200" y="200" text-anchor="end" font-size="12" font-weight="600">Allbirds</text>
+            <rect x="210" y="188" width="39" height="20" fill="#BDB7AC"/>
+            <text x="257" y="203" font-size="12" fill="#5C5C5C" font-weight="600">~10%</text>
+          </g>
+        </svg>
+      </div>
+
+      <aside class="side">
+        <h4>The arithmetic that broke them</h4>
+        <p>Each failed when the cost to acquire one buyer <em>crossed the gross margin</em> on the first order.</p>
+
+        <h4>The three shifts, 2021&ndash;2023</h4>
+        <ul>
+          <li>Apple's tracking change raised paid-social CAC 30 to 60%.</li>
+          <li>The rate cycle cut DTC valuations 40 to 60%.</li>
+          <li>Trial-driven buyers drifted back to stores.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <p class="source">Source: company filings and reporting, 2021&ndash;2026; Allbirds delisted in 2024; shares are approximate, illustrating the buffer's effect</p>
+  </section>
+</body>
+</html>

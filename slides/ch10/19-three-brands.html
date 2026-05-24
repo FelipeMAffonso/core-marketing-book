@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 10 Pricing · 19 · Three brands, three anchors</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.kpi-slide{ display:flex; flex-direction:column; }
+  .kpi-slide .head{ margin-bottom:22px; }
+  .kpi-slide .row{
+    display:grid; grid-template-columns: 1fr 1fr 1fr; gap:20px; flex:1; min-height:0; align-items:stretch;
+  }
+  .kpi-slide .k{
+    border:1px solid var(--rule); padding:22px 24px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .kpi-slide .k.featured{ background:var(--accent-tint); border:none; border-left:3px solid var(--accent); }
+  .kpi-slide .k .brand{ font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:12px; }
+  .kpi-slide .k.featured .brand{ color:var(--accent); }
+  .kpi-slide .k .n{ font-size:46px; font-weight:600; letter-spacing:-0.02em; line-height:1; color:var(--ink); }
+  .kpi-slide .k.featured .n{ color:var(--accent); }
+  .kpi-slide .k .l{ font-size:20px; color:var(--ink-body); margin-top:14px; line-height:1.4; max-width:32ch; }
+  .kpi-slide .k .l strong{ color:var(--ink); font-weight:600; }
+  .kpi-slide .foot{
+    margin-top:20px; font-size:21px; line-height:1.45; color:var(--ink-body); max-width:86ch;
+  }
+  .kpi-slide .foot em{ font-style:normal; color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+  <!-- 19 · KPI ROW · three brands commit to one anchor each (condensed from chapter fig-4). ONE coral element = the Liquid Death featured card, the clearest case that the buyer is purchasing identity, not the product. -->
+  <section class="slide kpi-slide">
+    <div class="head">
+      <h1 class="title">Each brand commits to one anchor, so Liquid Death charges <em>5 to 8 times the price of commodity water</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="row">
+      <div class="k">
+        <span class="brand">Costco · competitor-based</span>
+        <span class="n">14%</span>
+        <span class="l"><strong>Markup ceiling per SKU.</strong> The shelf stays visibly cheap, and the membership fee carries about 70% of the profit.</span>
+      </div>
+      <div class="k">
+        <span class="brand">Patagonia · value-based</span>
+        <span class="n">$279</span>
+        <span class="l"><strong>Down Sweater, vs $89&ndash;149 mass-market.</strong> A repair guarantee and resale defend the premium, not advertising.</span>
+      </div>
+      <div class="k featured">
+        <span class="brand">Liquid Death · value-based</span>
+        <span class="n">$2.49</span>
+        <span class="l"><strong>For a 16-oz can, input cost under $0.30.</strong> The buyer pays for identity, not hydration, and reached a $1.4B valuation.</span>
+      </div>
+    </div>
+
+    <p class="foot">The three sit cleanly on the same cascade, and a premium without the structure underneath it (the membership, the durability, the distinctive can and voice) <em>is just an expensive bottle of water nobody wants</em>.</p>
+
+    <p class="source">Source: Costco annual reports 2022&ndash;2024; Patagonia Worn Wear FY25; Liquid Death Series E filings, 2024</p>
+  </section>
+</body>
+</html>
