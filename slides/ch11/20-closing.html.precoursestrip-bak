@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 11 Distribution · 20 · Closing · The audit</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.closing{ display:flex; flex-direction:column; }
+  .closing .head{ margin-bottom:20px; }
+  .closing .grid{
+    display:grid; grid-template-columns: 1.1fr 1fr;
+    gap:34px; flex:1; min-height:0; align-items:start;
+  }
+  .closing .takeaways{ display:flex; flex-direction:column; gap:6px; }
+  .closing .t{
+    display:grid; grid-template-columns: 32px 1fr; gap:14px; align-items:baseline;
+    padding:11px 0; border-bottom:1px solid var(--rule);
+  }
+  .closing .t:last-child{ border-bottom:none; }
+  .closing .t .n{
+    font-size:22px; font-weight:600; color:var(--accent); letter-spacing:-0.01em;
+  }
+  .closing .t .txt{ font-size:20px; line-height:1.34; color:var(--ink-body); }
+  .closing .t .txt strong{ color:var(--ink); font-weight:600; }
+
+  .closing .aside{
+    background:var(--bg-soft);
+    padding:24px 26px; display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .closing .aside h4{
+    font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-mute); margin-bottom:14px;
+  }
+  .closing .aside .preview{
+    font-size:25px; font-weight:500; line-height:1.25; color:var(--ink);
+  }
+  .closing .aside .preview em{ font-style:italic; color:var(--accent); font-weight:500; }
+  .closing .aside .when{
+    font-size:13px; color:var(--ink-label); letter-spacing:0.04em;
+    margin-top:22px; padding-top:14px; border-top:1px solid var(--rule);
+  }
+</style>
+</head>
+<body>
+  <!-- 20 · CLOSING / TAKEAWAYS · the one-page channel audit (the chapter's Apply sequence). ONE coral element = the step numbers. -->
+  <section class="slide closing">
+    <div class="head">
+      <h1 class="title">Run the one-page channel audit on <em>a brand you actually shop</em>.</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="grid">
+      <div class="takeaways">
+        <div class="t">
+          <span class="n">01</span>
+          <span class="txt"><strong>Name its channels and place it on the ladder.</strong> List where it sells, then decide whether it is exclusive, selective, or intensive, and the one pressure pushing it toward more outlets.</span>
+        </div>
+        <div class="t">
+          <span class="n">02</span>
+          <span class="txt"><strong>Score the six omni-channel components.</strong> Rate each retail partner zero to two on single inventory, pickup, ship-from-store, returns parity, one record, and one price ladder per SKU.</span>
+        </div>
+        <div class="t">
+          <span class="n">03</span>
+          <span class="txt"><strong>Price it backward through the channel.</strong> Feed each tier its margin down from the shelf price, keeping markup and margin straight, then show what selling direct would leave you.</span>
+        </div>
+        <div class="t">
+          <span class="n">04</span>
+          <span class="txt"><strong>Flag one conflict and write each channel's role.</strong> Name one move to add or cut, then hand it to an assistant that searches the live web and read the sharp answer against the vague one.</span>
+        </div>
+      </div>
+
+      <div class="aside">
+        <div>
+          <h4>Next chapter</h4>
+          <p class="preview">Ch. 12 &mdash; <em>Retail</em>: the channel decision moves from how the product travels to what the buyer sees on the shelf, and the eight decisions on the floor.</p>
+        </div>
+        <p class="when">Costco builds the channel into the strategy, Trader Joe's makes a narrow assortment the moat, and Stanley fed a channel it never commissioned. A buyer who cannot find you cannot buy you, so design the system before the launch.</p>
+      </div>
+    </div>
+
+    <p class="source">MKTG 4333 · Chapter 11 · Distribution</p>
+  </section>
+</body>
+</html>

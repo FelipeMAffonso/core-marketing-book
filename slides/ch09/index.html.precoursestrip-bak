@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>MKTG 4333 · Chapter 9 · Services deck</title>
+<style>
+  :root{
+    --bg:#f5f2ec; --ink:#1a1a1a; --ink-soft:#4A4A4A; --ink-mute:#7A7A7A;
+    --rule:#E8E6E1; --accent:#DA7756; --accent-tint:#FDF6F3;
+    --font:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ background:var(--bg); font-family:var(--font); color:var(--ink); }
+  body{ padding:64px 72px 96px; }
+  header{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    border-bottom:1px solid var(--rule); padding-bottom:20px; margin-bottom:36px;
+  }
+  header .dot{ display:inline-block; width:10px; height:10px; background:var(--accent); border-radius:50%; margin-right:10px; vertical-align:middle; }
+  header h1{ font-size:32px; font-weight:600; letter-spacing:-0.01em; }
+  header h1 em{ font-style:italic; color:var(--accent); font-weight:500; }
+  header .meta{
+    font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ink-mute); font-weight:600;
+  }
+  .intro{
+    max-width:70ch; font-size:18px; line-height:1.55; color:var(--ink-soft);
+    margin-bottom:44px;
+  }
+  .intro a{ color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); }
+  .grid{
+    display:grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap:28px;
+  }
+  .card{
+    background:#fff; border:1px solid var(--rule);
+    display:flex; flex-direction:column; overflow:hidden;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .card:hover{ transform:translateY(-2px); box-shadow: 0 8px 24px -10px rgba(0,0,0,.15); }
+  .card .frame{
+    position:relative; aspect-ratio: 16 / 9; overflow:hidden; background:#ffffff;
+    border-bottom:1px solid var(--rule);
+  }
+  .card .frame .scaler{
+    position:absolute; top:0; left:0;
+    width:960px; height:540px;
+    transform-origin: top left;
+  }
+  .card .frame iframe{
+    width:960px; height:540px; border:0; display:block; pointer-events:none;
+    background:#ffffff;
+  }
+  .card .info{ padding:16px 22px; display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+  .card .info h3{ font-size:16px; font-weight:600; line-height:1.3; }
+  .card .info .n{
+    font-size:11px; font-weight:600; letter-spacing:0.14em; color:var(--ink-mute);
+    text-transform:uppercase; white-space:nowrap;
+  }
+  .card .info .tmpl{ display:block; font-size:12px; color:var(--ink-soft); margin-top:3px; font-style:italic; }
+  .card a.open{
+    display:block; text-align:right; font-size:11px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--accent); font-weight:600;
+    padding:0 22px 16px; text-decoration:none;
+  }
+  footer{
+    margin-top:64px; padding-top:20px; border-top:1px solid var(--rule);
+    font-size:13px; color:var(--ink-mute); display:flex; justify-content:space-between;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1><span class="dot"></span>Chapter 9 · <em>Services marketing</em>.</h1>
+    <span class="meta">MKTG 4333 · 20 slides · 960 × 540</span>
+  </header>
+
+  <p class="intro">
+    A teaching deck on services marketing, built on the coral design system. One claim per slide, white backgrounds,
+    one coral element per slide, Segoe UI throughout. It runs the same arc as the Chapter 9 chapter: the buyer is inside
+    the production, the four IIVP characteristics and the disciplines they force, the search-experience-credence spectrum,
+    the seven Ps, the five SERVQUAL gaps and the RATER hierarchy, the service blueprint and its line of visibility, the
+    moments of truth, and service recovery (the recovery effect, the three justices, the Ritz-Carlton cap), closing on
+    four brand anchors (Singapore Airlines, Costco, Patagonia, Mayo Clinic). Read the system rules in
+    <a href="../DESIGN-SYSTEM.md">DESIGN-SYSTEM.md</a> and
+    <a href="../CHART-PRINCIPLES.md">CHART-PRINCIPLES.md</a>.
+  </p>
+
+  <div class="grid" id="grid"></div>
+
+<script>
+(() => {
+  const slides = [
+    ["01-title.html",               "01", "Services marketing", "Title / cover"],
+    ["02-divider-buyer-inside.html","02", "The buyer is on the factory floor", "Section divider"],
+    ["03-iivp.html",                "03", "Each of the four IIVP traits forces one discipline", "Content · four traits"],
+    ["04-search-credence.html",     "04", "The further right a purchase sits, the more the buyer leans on cues", "Exhibit · chapter spectrum"],
+    ["05-seven-ps.html",            "05", "Services add three Ps once the buyer is in the room", "Two-column"],
+    ["06-divider-gaps.html",        "06", "The buyer feels only one of five gaps", "Section divider"],
+    ["07-gaps-model.html",          "07", "The firm closes the four it cannot see to close the one the buyer feels", "Exhibit · chapter SERVQUAL"],
+    ["08-rater.html",               "08", "Firms spend most on the dimension that moves judgment least", "Comparison bars"],
+    ["09-klarna-amazon.html",       "09", "An AI front door could not safely own the recovery encounter", "Two-column"],
+    ["10-divider-blueprint.html",   "10", "An invisible service cannot be fixed", "Section divider"],
+    ["11-blueprint.html",           "11", "The five swimlanes split at the line of visibility", "Exhibit · service blueprint"],
+    ["12-journey-vs-blueprint.html","12", "The blueprint is the journey map plus the backstage", "Two-column"],
+    ["13-moments-of-truth.html",    "13", "SAS funded the front line ahead of assets the buyer never sees", "Content · the arithmetic"],
+    ["14-divider-recovery.html",    "14", "A good recovery can beat no failure at all", "Section divider"],
+    ["15-recovery-effect.html",     "15", "A well-resolved failure is associated with more loyalty than no problem", "Comparison bars"],
+    ["16-three-justices.html",      "16", "The conversation outweighs the compensation amount", "Content · three justices"],
+    ["17-ritz-carnival.html",       "17", "A recovery has to match the shape of the failure", "Two-column"],
+    ["18-recovery-quote.html",      "18", "Compensation buys the resolution; the conversation buys the relationship", "Pull quote"],
+    ["19-four-brands.html",         "19", "Four brands, each through the discipline a different trait forces", "KPI row"],
+    ["20-closing.html",             "20", "Run the chapter's four moves on a real service you use", "Closing / takeaways"]
+  ];
+  const grid = document.getElementById('grid');
+  slides.forEach(([href, n, claim, tmpl]) => {
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.innerHTML =
+      '<div class="frame"><div class="scaler"><iframe src="' + href + '?thumb=1" title="' + claim + '"></iframe></div></div>' +
+      '<div class="info"><div><h3>' + claim + '</h3><span class="tmpl">' + tmpl + '</span></div><span class="n">' + n + '</span></div>' +
+      '<a class="open" href="' + href + '" target="_blank">Open &rarr;</a>';
+    grid.appendChild(card);
+  });
+
+  function fitCards(){
+    document.querySelectorAll('.card .frame').forEach(frame => {
+      const scaler = frame.querySelector('.scaler');
+      if (!scaler) return;
+      const w = frame.clientWidth;
+      const s = w / 960;
+      scaler.style.transform = 'scale(' + s + ')';
+      scaler.style.width  = '960px';
+      scaler.style.height = '540px';
+      frame.style.height = (540 * s) + 'px';
+    });
+  }
+  document.querySelectorAll('iframe').forEach(f => {
+    f.addEventListener('load', () => {
+      try { f.contentDocument.documentElement.classList.add('is-thumb'); } catch(_){}
+    });
+  });
+  window.addEventListener('resize', fitCards);
+  window.addEventListener('load', fitCards);
+  fitCards();
+})();
+</script>
+
+  <footer>
+    <span>MKTG 4333 · Prof. Felipe M. Affonso · Spears School of Business</span>
+    <span>White bg · Segoe UI · one coral accent · pairs with the Ch 9 chapter</span>
+  </footer>
+</body>
+</html>
