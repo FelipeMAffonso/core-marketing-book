@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="A breakeven chart for a campus drink: a flat fixed-cost line at $7,000, a total-cost line rising by $1.50 per cup, and a steeper total-revenue line rising by $5 per cup. Revenue crosses total cost at 2,000 cups, the breakeven point, marked in coral.">
+  <g font-size="12" fill="#1a1a1a">
+    <line x1="68" y1="32" x2="68" y2="250" stroke="#E8E6E1"/>
+    <line x1="68" y1="250" x2="560" y2="250" stroke="#7A7A7A"/>
+    <g font-size="11" fill="#7A7A7A" text-anchor="end">
+      <text x="60" y="254">$0</text>
+      <text x="60" y="170">$7k</text>
+      <text x="60" y="86">$14k</text>
+    </g>
+    <text x="28" y="141" font-size="11" fill="#7A7A7A" text-anchor="middle" font-style="italic" transform="rotate(-90 28 141)">dollars</text>
+
+    <line x1="68" y1="166" x2="560" y2="166" stroke="#A39E94" stroke-width="1.6" stroke-dasharray="5,4"/>
+    <text x="556" y="160" text-anchor="end" font-size="11" fill="#7A7A7A">fixed cost $7,000</text>
+
+    <line x1="68" y1="166" x2="560" y2="111" stroke="#5C5C5C" stroke-width="2"/>
+    <text x="470" y="128" font-size="12" fill="#5C5C5C" font-weight="600">total cost</text>
+
+    <line x1="68" y1="250" x2="560" y2="68" stroke="#1a1a1a" stroke-width="2"/>
+    <text x="525" y="80" text-anchor="end" font-size="12" font-weight="600">total revenue</text>
+
+    <line x1="396" y1="131" x2="396" y2="250" stroke="#DA7756" stroke-width="1.4" stroke-dasharray="3,3"/>
+    <circle cx="396" cy="131" r="7" fill="#DA7756"/>
+    <text x="396" y="268" text-anchor="middle" font-size="13" fill="#DA7756" font-weight="700">2,000 cups</text>
+    <text x="406" y="120" font-size="12" fill="#DA7756" font-weight="700">breakeven</text>
+
+    <text x="478" y="100" text-anchor="middle" font-size="11" fill="#888" font-style="italic">profit</text>
+
+    <text x="314" y="290" text-anchor="middle" font-size="11" fill="#7A7A7A" font-style="italic">$5 price minus $1.50 variable cost = $3.50 contribution per cup; $7,000 fixed</text>
+  </g>
+</svg>

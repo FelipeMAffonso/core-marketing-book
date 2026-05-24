@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="The Caterpillar value walk: a 90,000-dollar competitor base, plus four gray premiums for life, uptime, parts, and warranty, climbing to a 110,000-dollar economic-value-to-customer ceiling shown in coral. A 10,000-dollar discount then closes the sale at 100,000 dollars.">
+  <g font-size="12" fill="#1a1a1a">
+    <line x1="56" y1="230" x2="616" y2="230" stroke="#7A7A7A"/>
+    <line x1="56" y1="26" x2="56" y2="230" stroke="#E8E6E1"/>
+    <g font-size="11" fill="#7A7A7A" text-anchor="end">
+      <text x="48" y="234">$80k</text>
+      <text x="48" y="190">$90k</text>
+      <text x="48" y="146">$100k</text>
+      <text x="48" y="102">$110k</text>
+    </g>
+    <line x1="56" y1="186" x2="616" y2="186" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+    <line x1="56" y1="142" x2="616" y2="142" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+    <line x1="56" y1="98"  x2="616" y2="98"  stroke="#E8E6E1" stroke-dasharray="2,3"/>
+
+    <rect x="76"  y="186" width="56" height="44" fill="#BDB7AC"/>
+    <text x="104" y="180" text-anchor="middle" font-size="11" fill="#5C5C5C" font-weight="600">$90k</text>
+    <text x="104" y="248" text-anchor="middle" font-size="11">base</text>
+
+    <rect x="154" y="156" width="56" height="30" fill="#D8D2C7"/>
+    <text x="182" y="150" text-anchor="middle" font-size="11" fill="#5C5C5C">+$7k</text>
+    <text x="182" y="248" text-anchor="middle" font-size="11">life</text>
+
+    <rect x="232" y="130" width="56" height="26" fill="#D8D2C7"/>
+    <text x="260" y="124" text-anchor="middle" font-size="11" fill="#5C5C5C">+$6k</text>
+    <text x="260" y="248" text-anchor="middle" font-size="11">uptime</text>
+
+    <rect x="310" y="108" width="56" height="22" fill="#D8D2C7"/>
+    <text x="338" y="102" text-anchor="middle" font-size="11" fill="#5C5C5C">+$5k</text>
+    <text x="338" y="248" text-anchor="middle" font-size="11">parts</text>
+
+    <rect x="388" y="98" width="56" height="10" fill="#D8D2C7"/>
+    <text x="416" y="92" text-anchor="middle" font-size="11" fill="#5C5C5C">+$2k</text>
+    <text x="416" y="248" text-anchor="middle" font-size="11">warranty</text>
+
+    <rect x="466" y="98" width="56" height="132" fill="#DA7756"/>
+    <text x="494" y="92" text-anchor="middle" font-size="13" fill="#DA7756" font-weight="700">$110k</text>
+    <text x="494" y="248" text-anchor="middle" font-size="11" font-weight="600">EVC</text>
+
+    <line x1="522" y1="108" x2="554" y2="130" stroke="#7A7A7A" stroke-width="1" stroke-dasharray="3,3"/>
+    <text x="556" y="116" font-size="10" fill="#888">-$10k</text>
+
+    <rect x="544" y="142" width="56" height="88" fill="#BDB7AC"/>
+    <text x="572" y="136" text-anchor="middle" font-size="12" fill="#5C5C5C" font-weight="600">$100k</text>
+    <text x="572" y="248" text-anchor="middle" font-size="11">close</text>
+
+    <text x="320" y="280" text-anchor="middle" font-size="11" fill="#888" font-style="italic">each premium is a number the buyer verifies against their own downtime and replacement logs</text>
+  </g>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 282" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="Three one-percent moves at a 3 percent net margin and their profit lift: a 1 percent price move lifts profit about 33 percent in coral, a 1 percent cost cut about 33 percent in gray, and a 1 percent volume move only about 10 percent in gray.">
+  <g font-size="12" fill="#1a1a1a">
+    <line x1="60" y1="210" x2="540" y2="210" stroke="#7A7A7A"/>
+    <line x1="60" y1="48" x2="60" y2="210" stroke="#E8E6E1"/>
+    <g font-size="11" fill="#7A7A7A" text-anchor="end">
+      <text x="52" y="214">0</text>
+      <text x="52" y="170">10</text>
+      <text x="52" y="130">20</text>
+      <text x="52" y="90">30</text>
+    </g>
+    <line x1="60" y1="166" x2="540" y2="166" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+    <line x1="60" y1="126" x2="540" y2="126" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+    <line x1="60" y1="86"  x2="540" y2="86"  stroke="#E8E6E1" stroke-dasharray="2,3"/>
+    <text x="26" y="132" font-size="11" fill="#7A7A7A" text-anchor="middle" font-style="italic" transform="rotate(-90 26 132)">profit lift (%)</text>
+
+    <rect x="110" y="74" width="88" height="136" fill="#DA7756"/>
+    <text x="154" y="66" text-anchor="middle" font-size="15" fill="#DA7756" font-weight="700">+33%</text>
+    <text x="154" y="232" text-anchor="middle" font-size="13" font-weight="600">1% price move</text>
+
+    <rect x="248" y="74" width="88" height="136" fill="#BDB7AC"/>
+    <text x="292" y="66" text-anchor="middle" font-size="13" fill="#5C5C5C" font-weight="600">+33%</text>
+    <text x="292" y="232" text-anchor="middle" font-size="13">1% cost cut</text>
+
+    <rect x="386" y="166" width="88" height="44" fill="#BDB7AC"/>
+    <text x="430" y="158" text-anchor="middle" font-size="13" fill="#5C5C5C" font-weight="600">+10%</text>
+    <text x="430" y="232" text-anchor="middle" font-size="13">1% volume move</text>
+
+    <text x="300" y="260" text-anchor="middle" font-size="11" fill="#888" font-style="italic">$100 revenue, $97 cost. Profit moves from $3 to $4 on the 1% price move.</text>
+  </g>
+</svg>

@@ -646,6 +646,514 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 .cc-pa-presets{display:flex;gap:8px;padding:10px 14px;border-top:1px solid #2a2a2a;flex-wrap:wrap;background:#0a0a0a;}
 .cc-pa-preset{background:transparent;color:#9aa0a6;border:1px solid #2a2a2a;padding:5px 10px;font-family:inherit;font-size:11.5px;cursor:pointer;border-radius:3px;transition:border-color 150ms cubic-bezier(.16,1,.3,1),color 150ms cubic-bezier(.16,1,.3,1);}
 .cc-pa-preset:hover{border-color:#DA7756;color:#DA7756;}
+
+/* ===== INLINE WIDGETS 4.1-4.6 (replacing the broken iframes) ===== */
+/* Shared chrome */
+.mlw, .hdl, .des, .hcs, .asal {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--coral);
+  background: #fcfaf6;
+  padding: 22px;
+  margin: 24px 0;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink);
+  border-radius: 3px;
+}
+.mlw-head, .hdl-head, .des-head, .hcs-head, .asal-head {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.mlw-cap, .hdl-cap, .des-cap, .hcs-cap, .asal-cap {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--coral-deep);
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.mlw-sub, .hdl-sub, .des-sub, .hcs-sub, .asal-sub {
+  display: block;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  font-style: italic;
+}
+.mlw-frame, .hdl-frame, .des-frame, .hcs-frame, .asal-frame {
+  margin: 0 0 16px 0;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* ===== 4.1 MEMORY LINK WORKBENCH ===== */
+.mlw-brands {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin: 14px 0;
+}
+.mlw-brand-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  transition: opacity 250ms cubic-bezier(.16,1,.3,1), border-color 250ms;
+}
+.mlw-brand-row.surfaced {
+  border-color: var(--coral);
+  box-shadow: 0 0 0 1px var(--coral) inset;
+}
+.mlw-brand-row.dim { opacity: 0.55; }
+.mlw-brand-name {
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--ink);
+}
+.mlw-brand-name .mlw-status {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--ink-3);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 400;
+}
+.mlw-brand-row.surfaced .mlw-status { color: var(--coral-deep); }
+.mlw-meter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--ink-2);
+}
+.mlw-meter-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--cream);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.mlw-meter-fill {
+  height: 100%;
+  background: var(--ink-3);
+  width: 0;
+  transition: width 600ms cubic-bezier(.16,1,.3,1), background 250ms;
+}
+.mlw-meter.fame .mlw-meter-fill { background: var(--ink-3); }
+.mlw-meter.link .mlw-meter-fill { background: var(--coral); }
+.mlw-meter-val {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-2);
+  min-width: 32px;
+  text-align: right;
+}
+.mlw-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0;
+}
+.mlw-fire, .mlw-boost, .mlw-reset, .mlw-ask-go,
+.hdl-ask-go, .des-ask-go, .hcs-go, .asal-go {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 1.5px solid var(--coral);
+  transition: background 150ms cubic-bezier(.16,1,.3,1), color 150ms;
+}
+.mlw-fire, .mlw-ask-go, .hdl-ask-go, .des-ask-go, .hcs-go, .asal-go {
+  background: var(--coral);
+  color: #fff;
+}
+.mlw-fire:hover, .mlw-ask-go:hover, .hdl-ask-go:hover, .des-ask-go:hover,
+.hcs-go:hover, .asal-go:hover { background: var(--coral-deep); border-color: var(--coral-deep); }
+.mlw-boost {
+  background: #fff;
+  color: var(--coral-deep);
+}
+.mlw-boost:hover { background: var(--cream); }
+.mlw-boost.active { background: var(--coral-deep); color: #fff; border-color: var(--coral-deep); }
+.mlw-reset {
+  background: #fff;
+  color: var(--ink-2);
+  border-color: var(--line);
+}
+.mlw-reset:hover { background: var(--cream); border-color: var(--ink-3); }
+.mlw-fire:disabled, .mlw-ask-go:disabled, .hdl-ask-go:disabled,
+.des-ask-go:disabled, .hcs-go:disabled, .asal-go:disabled {
+  background: var(--ink-3); border-color: var(--ink-3); cursor: wait;
+}
+.mlw-verdict, .hdl-verdict, .des-verdict, .asal-verdict {
+  margin: 14px 0;
+  padding: 12px 14px;
+  background: #fff;
+  border-left: 2px solid var(--coral);
+  font-size: 13.5px;
+  color: var(--ink);
+  line-height: 1.55;
+}
+.mlw-ask, .hdl-ask, .des-ask {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.mlw-ask-lbl, .hdl-ask-lbl, .des-ask-lbl {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-2);
+  margin-bottom: 8px;
+}
+#mlw-ask-in, #hdl-ask-in, #des-ask-in {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: #fff;
+  color: var(--ink);
+  margin-bottom: 8px;
+  box-sizing: border-box;
+}
+#mlw-ask-in:focus, #hdl-ask-in:focus, #des-ask-in:focus {
+  outline: 2px solid var(--coral);
+  outline-offset: 1px;
+  border-color: var(--coral);
+}
+
+/* ===== 4.2 HABIT DISRUPTION LAB ===== */
+.hdl-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+@media (max-width: 720px) { .hdl-grid { grid-template-columns: 1fr; } }
+.hdl-cap2, .des-cap2 {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-2);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.hdl-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.hdl-chip {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  padding: 6px 11px;
+  background: #fff;
+  border: 1.5px solid var(--line);
+  color: var(--ink);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: border-color 150ms cubic-bezier(.16,1,.3,1), background 150ms, color 150ms;
+}
+.hdl-chip:hover { border-color: var(--coral); }
+.hdl-chip.active {
+  background: var(--coral);
+  color: #fff;
+  border-color: var(--coral);
+}
+.hdl-chart {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 14px;
+  margin: 14px 0;
+}
+.hdl-chart svg { width: 100%; height: auto; display: block; }
+#hdl-curve { transition: d 500ms cubic-bezier(.16,1,.3,1); }
+#hdl-fill { transition: d 500ms cubic-bezier(.16,1,.3,1); }
+#hdl-promo { transition: cx 400ms cubic-bezier(.16,1,.3,1), cy 400ms cubic-bezier(.16,1,.3,1), fill 250ms; }
+#hdl-window { transition: opacity 250ms; }
+
+/* ===== 4.3 DECISION EFFORT SWITCHBOARD ===== */
+.des-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin: 14px 0;
+}
+@media (max-width: 720px) { .des-cols { grid-template-columns: 1fr; } }
+.des-col {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 12px;
+  min-height: 180px;
+}
+.des-col-head {
+  font-size: 12px;
+  color: var(--ink-2);
+  text-align: center;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dotted var(--line);
+  line-height: 1.4;
+}
+.des-col-head strong {
+  color: var(--coral-deep);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+.des-col-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.des-chip {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  padding: 8px 10px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  border-radius: 2px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 150ms cubic-bezier(.16,1,.3,1), border-color 150ms;
+}
+.des-chip:hover { background: #fff; border-color: var(--coral); }
+.des-chip.shocked { border-left: 3px solid var(--coral-deep); padding-left: 8px; }
+.des-toggle {
+  margin: 14px 0;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+.des-shock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.des-shock input { accent-color: var(--coral); }
+.des-mao {
+  margin: 14px 0;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+.des-mao-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.des-mao-row:last-child { margin-bottom: 0; }
+.des-mao-lbl {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.des-mao-bar {
+  height: 10px;
+  background: var(--cream);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.des-mao-bar span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--coral);
+  transition: width 400ms cubic-bezier(.16,1,.3,1);
+}
+
+/* ===== 4.4 HEURISTIC CHOICE STUDIO ===== */
+.hcs-input { margin: 14px 0; }
+.hcs-input-lbl {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-2);
+  margin-bottom: 8px;
+}
+#hcs-text {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: #fff;
+  color: var(--ink);
+  resize: vertical;
+  box-sizing: border-box;
+  line-height: 1.55;
+}
+#hcs-text:focus {
+  outline: 2px solid var(--coral);
+  outline-offset: 1px;
+  border-color: var(--coral);
+}
+.hcs-go { margin-top: 10px; }
+.hcs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+}
+@media (max-width: 720px) { .hcs-grid { grid-template-columns: 1fr; } }
+.hcs-pane {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 12px 14px;
+}
+.hcs-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-2);
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+  line-height: 1.5;
+}
+.hcs-label em { font-style: normal; color: var(--ink); }
+.hcs-label.hcs-sharp { color: var(--coral-deep); }
+.hcs-label.hcs-sharp em { color: var(--coral-deep); }
+.hcs-out { min-height: 100px; }
+
+/* ===== 4.5 CEP AUDIT ADDON ===== */
+.cep-audit {
+  margin: 14px 0 0 0;
+  padding: 18px;
+  background: #fcfaf6;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--coral);
+  border-radius: 3px;
+}
+.cep-audit-head { margin-bottom: 12px; }
+.cep-audit-cap {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--coral-deep);
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.cep-audit-sub {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-2);
+  font-style: italic;
+}
+.cep-audit-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 10px;
+  margin: 12px 0;
+}
+@media (max-width: 720px) { .cep-audit-controls { grid-template-columns: 1fr; } }
+.cep-audit-controls input {
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: #fff;
+  color: var(--ink);
+  box-sizing: border-box;
+}
+.cep-audit-controls input:focus {
+  outline: 2px solid var(--coral);
+  outline-offset: 1px;
+  border-color: var(--coral);
+}
+.demo-button {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 14px;
+  background: var(--coral);
+  color: #fff;
+  border: 1.5px solid var(--coral);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 150ms cubic-bezier(.16,1,.3,1);
+}
+.demo-button:hover { background: var(--coral-deep); border-color: var(--coral-deep); }
+.demo-button:disabled { background: var(--ink-3); border-color: var(--ink-3); cursor: wait; }
+
+/* ===== 4.6 AI SHOPPING AGENT LAB ===== */
+.asal-input { margin: 14px 0; }
+.asal-row { margin-bottom: 10px; }
+.asal-lbl {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+.asal-lbl.asal-sharp-lbl { color: var(--coral-deep); font-weight: 600; }
+#asal-vague, #asal-sharp {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: #fff;
+  color: var(--ink);
+  box-sizing: border-box;
+}
+#asal-vague:focus, #asal-sharp:focus {
+  outline: 2px solid var(--coral);
+  outline-offset: 1px;
+  border-color: var(--coral);
+}
+.asal-go { margin-top: 8px; }
+.asal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+}
+@media (max-width: 720px) { .asal-grid { grid-template-columns: 1fr; } }
+.asal-pane {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 12px 14px;
+}
+.asal-pane-lbl {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-2);
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+  letter-spacing: 0.4px;
+}
+.asal-pane-lbl.asal-sharp-lbl { color: var(--coral-deep); font-weight: 600; }
+.asal-out { min-height: 100px; }
+
 @media (max-width: 600px) {
   html, body { overflow-x: hidden; }
   .page { padding: 40px 14px 80px 14px; }
@@ -815,11 +1323,29 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The audit that decides which assets to keep used to need a research vendor and several weeks of fieldwork. A 2024 study by the Ehrenberg-Bass team showed that the Fame-and-Uniqueness coding rubric now runs inside a large language model with no loss of accuracy. The validation passed 4,600 brand names and roughly 600 non-name assets through the pipeline across the United Kingdom, the United States, and Australia. GPT-4-class systems coded the assets thirty-four percent more accurately than GPT-3.5, and forty-four percent more accurately than human coders, at roughly one percent of the survey cost.<sup class="cite" data-cite="ref-10"></sup> The audit now runs in an afternoon for a few thousand API tokens. The team that does not run it concedes the diagnostic to whichever competitor does.</p>
 
 <figure id="widget-1-memory" style="margin: 36px 0;">
-  <iframe src="exhibits/ch04-memory-link-workbench.html?v=2"
-          title="Interactive 4.1: What Comes to Sara's Mind"
-          loading="lazy" scrolling="no"
-          style="width: 100%; height: 760px; border: 1px solid #ddd; border-radius: 6px; background: #fbf8f5;"></iframe>
-  <figcaption><span class="fnum" data-cap="interactive"></span> Press one button and watch which coffee brands rise into Sara's mind for the 8:14 rush to class. Give Folgers a $50M ad campaign: its fame hits 100% and it still stays on the table. Then ask Claude which morning moments a coffee brand should own.</figcaption>
+  <div class="mlw">
+    <div class="mlw-head">
+      <span class="mlw-cap">Interactive 4.1 &middot; Memory Link Workbench</span>
+      <span class="mlw-sub">Sara, 8:14 a.m., chemistry exam in fifty minutes.</span>
+    </div>
+    <p class="mlw-frame">Sara needs caffeine and she needs it before the 9 a.m. bell. The cue is the morning rush, not coffee in general. Fire the cue and watch which brands her memory volunteers. Each brand carries a Fame score (does she recognize the logo on a list) and a Morning-Link score (does the brand actually fire on this 8:14 cue). Mental availability is the second one. Awareness is the first. The widget makes the gap visible.</p>
+    <div class="mlw-brands" id="mlw-brands">
+      <!-- populated by mlw-render -->
+    </div>
+    <div class="mlw-controls">
+      <button class="mlw-fire" id="mlw-fire">Fire the 8:14 a.m. cue</button>
+      <button class="mlw-boost" id="mlw-boost">Give Folgers a $50M fame campaign</button>
+      <button class="mlw-reset" id="mlw-reset">Reset</button>
+    </div>
+    <div class="mlw-verdict" id="mlw-verdict">Press <em>Fire the cue</em> to see whose brand the cue actually surfaces.</div>
+    <div class="mlw-ask">
+      <label for="mlw-ask-in" class="mlw-ask-lbl">Now ask Claude which morning moments a coffee brand should own:</label>
+      <input type="text" id="mlw-ask-in" placeholder="e.g. Dunkin', or your own coffee brand" autocomplete="off">
+      <button class="mlw-ask-go" id="mlw-ask-go">Ask Claude</button>
+      <div class="demo-stream" id="mlw-ask-out" aria-live="polite"></div>
+    </div>
+  </div>
+  <figcaption><span class="fnum" data-cap="interactive"></span> Press <em>Fire the cue</em> and watch which coffee brands rise for Sara's 8:14 rush. Then give Folgers a $50M fame campaign and watch its fame hit 100% while its morning link stays dark, so the cue still surfaces Starbucks and Dunkin' before Folgers ever arrives. Then ask Claude which morning moments any coffee brand could plausibly own.</figcaption>
 </figure>
 
 <p data-complete>A brand absent from the model's response is in the same position as one absent from the buyer's own set: invisible at the moment of choice. The buyer who delegates the retrieval has handed the <span class="term" data-tt="The small set of brands a buyer can recall at the moment of decision. Typically 2 to 8, modally 3. Brands outside the set effectively don't exist for that purchase, no matter how strong the product is.">consideration set</span> to a system with its own associative network. That network was built from press coverage, reviews, and the <span class="term" data-tt="The structured metadata brands publish on their product pages, product type, price, rating, FAQ blocks, in a format search engines and AI assistants can read directly. Invisible to a human buyer, but the model sees it first.">schema markup</span> the brand may not even know it is publishing.<sup class="cite" data-cite="ref-11"></sup> The retrieval problem now has two storefronts, and they share the same architecture. Most retrievals do not even feel like decisions: they happen on autopilot, which is where the next section starts.</p>
@@ -873,11 +1399,60 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">A brand that models only segments and personas is reading only the person side of Lewin's equation, and the environment side is where most of the change happens. When does the buyer actually slow down and think? That is the rarer state the next section covers, the buyer who has the motivation, the resources, and the situation to think a decision through.</p>
 
 <figure id="widget-2-habit" style="margin: 36px 0;">
-  <iframe src="exhibits/ch04-habit-disruption-lab.html?v=2"
-          title="Interactive 4.2: Habit Disruption Lab"
-          loading="lazy" scrolling="no"
-          style="width: 100%; height: 760px; border: 1px solid #ddd; border-radius: 6px; background: #fbf8f5;"></iframe>
-  <figcaption><span class="fnum" data-cap="interactive"></span> Pick a buyer, pick what just happened in her life, and watch the habit curve drop. Slide the brand move into the window or outside it and see the in-window lift against the out-of-window flat line. Ask Claude to find buyers whose habits just broke in your category.</figcaption>
+  <div class="hdl">
+    <div class="hdl-head">
+      <span class="hdl-cap">Interactive 4.2 &middot; Habit Disruption Lab</span>
+      <span class="hdl-sub">A buyer's autopilot, and the four-to-twelve-week window where she actually thinks again.</span>
+    </div>
+    <p class="hdl-frame">Pick a life event. The event dissolves a piece of her cue layer, and the curve drops. Then pick when your brand reaches her. Inside the window the promotion lands on a buyer who has no autopilot to fall back on, so lift is structural. Outside the window the same promotion reaches a buyer whose loops are intact, and the lift collapses to zero. The chart redraws so the principle is the visible artifact, not the number.</p>
+    <div class="hdl-grid">
+      <div class="hdl-col">
+        <div class="hdl-cap2">1. Life event</div>
+        <div class="hdl-chips" id="hdl-event">
+          <button class="hdl-chip active" data-event="move">moved apartments</button>
+          <button class="hdl-chip" data-event="job">started a new job</button>
+          <button class="hdl-chip" data-event="baby">had a baby</button>
+          <button class="hdl-chip" data-event="grad">graduated</button>
+          <button class="hdl-chip" data-event="none">nothing changed</button>
+        </div>
+      </div>
+      <div class="hdl-col">
+        <div class="hdl-cap2">2. When does the brand reach her?</div>
+        <div class="hdl-chips" id="hdl-when">
+          <button class="hdl-chip active" data-when="in">week 2 (inside the window)</button>
+          <button class="hdl-chip" data-when="late">week 16 (after the window)</button>
+        </div>
+      </div>
+    </div>
+    <div class="hdl-chart" aria-label="Habit-strength curve with discontinuity window">
+      <svg viewBox="0 0 720 220" id="hdl-svg" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id="hdl-grad" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#DA7756" stop-opacity="0.22"/>
+            <stop offset="100%" stop-color="#DA7756" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <rect id="hdl-window" x="120" y="20" width="220" height="170" fill="#fff7f0" stroke="#E8A488" stroke-dasharray="4 4" stroke-width="1"/>
+        <text x="230" y="40" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#B8553A" letter-spacing="0.5">DISCONTINUITY WINDOW</text>
+        <path id="hdl-curve" d="M 40 50 C 100 50, 110 50, 130 90 C 160 150, 200 175, 340 175 C 480 175, 540 130, 660 70" fill="none" stroke="#DA7756" stroke-width="2.5"/>
+        <path id="hdl-fill" d="M 40 50 C 100 50, 110 50, 130 90 C 160 150, 200 175, 340 175 C 480 175, 540 130, 660 70 L 660 200 L 40 200 Z" fill="url(#hdl-grad)"/>
+        <circle id="hdl-promo" cx="200" cy="172" r="7" fill="#B8553A" stroke="#fff" stroke-width="2"/>
+        <line x1="40" y1="200" x2="700" y2="200" stroke="#888" stroke-width="1"/>
+        <text x="40" y="215" font-family="Inter, sans-serif" font-size="11" fill="#555">week 0 (life event)</text>
+        <text x="700" y="215" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#555">week 20</text>
+        <text x="20" y="55" font-family="Inter, sans-serif" font-size="11" fill="#555">habit</text>
+        <text x="20" y="195" font-family="Inter, sans-serif" font-size="11" fill="#555">re-deliberation</text>
+      </svg>
+    </div>
+    <div class="hdl-verdict" id="hdl-verdict">A move dissolves her morning-coffee cue around week 0. Reach her in week 2 and she has no autopilot to fall back on, so the promotion produces structural lift.</div>
+    <div class="hdl-ask">
+      <label for="hdl-ask-in" class="hdl-ask-lbl">Ask Claude to find buyers whose habits just broke in your category:</label>
+      <input type="text" id="hdl-ask-in" placeholder="your category, e.g. cold-brew coffee, gym apparel, banking app" autocomplete="off">
+      <button class="hdl-ask-go" id="hdl-ask-go">Ask Claude</button>
+      <div class="demo-stream" id="hdl-ask-out" aria-live="polite"></div>
+    </div>
+  </div>
+  <figcaption><span class="fnum" data-cap="interactive"></span> Pick a life event and watch the habit curve drop. Slide the promotion mark into the shaded window and the lift is structural; slide it out and the same promotion lands flat. Then ask Claude which cohorts in your category are inside their window right now.</figcaption>
 </figure>
 
 
@@ -958,11 +1533,43 @@ Walk through it in plain prose, no preamble:
 <p data-focused style="display:none">The diagnostic move is to ask which mode the buyers in a category are running at the moment of choice. A category stable for a decade has trained its buyers into RRB, and a competitor cannot dislodge the incumbent with an argument they are not listening to. The cheap window opens when a <span class="term" data-tt="A change that disrupts a category's habits at scale, pushing buyers out of RRB and back into deliberation. Regulatory shifts, pricing resets, and new buying interfaces all qualify. The live one is AI-mediated discovery.">category shock</span> pushes the population back into deliberation.<sup class="cite" data-cite="ref-18"></sup> The live shock under every category now is AI-mediated discovery. A buyer who used to retrieve her tumbler brand in a second is asking ChatGPT instead, and the model's set is not hers, so Stanley and YETI now compete against whatever set it assembles first. Section 4.6 returns to that shift.</p>
 
 <figure id="widget-3-decision" style="margin: 36px 0;">
-  <iframe src="exhibits/ch04-decision-effort-switchboard.html?v=2"
-          title="Interactive 4.3: Decision Effort Switchboard"
-          loading="lazy" scrolling="no"
-          style="width: 100%; height: 760px; border: 1px solid #ddd; border-radius: 6px; background: #fbf8f5;"></iframe>
-  <figcaption><span class="fnum" data-cap="interactive"></span> Drag eight buying situations into the three bins ("she barely thinks," "she compares a few options," "she does not think at all"). Watch the decision path expand and collapse. Toggle a category shock and watch a routine slide back into limited problem solving. Ask Claude where any new situation belongs.</figcaption>
+  <div class="des">
+    <div class="des-head">
+      <span class="des-cap">Interactive 4.3 &middot; Decision Effort Switchboard</span>
+      <span class="des-sub">Same buyer, eight situations, three modes of effort.</span>
+    </div>
+    <p class="des-frame">Click a situation to cycle its mode. Every situation must land in one of the three columns. There is no single right answer, only the joint pattern of motivation, ability, and opportunity that puts each one there. Then toggle the category shock and watch a habit slide back into the deliberation column, because the autopilot just lost its track.</p>
+    <div class="des-cols">
+      <div class="des-col" data-col="rrb">
+        <div class="des-col-head"><strong>RRB</strong><br>routinized response</div>
+        <div class="des-col-body" id="des-col-rrb"></div>
+      </div>
+      <div class="des-col" data-col="lps">
+        <div class="des-col-head"><strong>LPS</strong><br>limited problem solving</div>
+        <div class="des-col-body" id="des-col-lps"></div>
+      </div>
+      <div class="des-col" data-col="eps">
+        <div class="des-col-head"><strong>EPS</strong><br>extensive problem solving</div>
+        <div class="des-col-body" id="des-col-eps"></div>
+      </div>
+    </div>
+    <div class="des-toggle">
+      <label class="des-shock"><input type="checkbox" id="des-shock"> Toggle the category shock (AI-mediated discovery, late 2025)</label>
+    </div>
+    <div class="des-verdict" id="des-verdict">Click any chip to cycle it across the three columns. Watch how MAO conditions sort the same buyer differently across her day.</div>
+    <div class="des-mao">
+      <div class="des-mao-row" data-mao="motivation"><span class="des-mao-lbl">Motivation</span><div class="des-mao-bar"><span id="des-bar-m"></span></div></div>
+      <div class="des-mao-row" data-mao="ability"><span class="des-mao-lbl">Ability</span><div class="des-mao-bar"><span id="des-bar-a"></span></div></div>
+      <div class="des-mao-row" data-mao="opportunity"><span class="des-mao-lbl">Opportunity</span><div class="des-mao-bar"><span id="des-bar-o"></span></div></div>
+    </div>
+    <div class="des-ask">
+      <label for="des-ask-in" class="des-ask-lbl">Ask Claude where a new situation belongs and why:</label>
+      <input type="text" id="des-ask-in" placeholder="e.g. choosing a 401k contribution rate at a new job" autocomplete="off">
+      <button class="des-ask-go" id="des-ask-go">Ask Claude</button>
+      <div class="demo-stream" id="des-ask-out" aria-live="polite"></div>
+    </div>
+  </div>
+  <figcaption><span class="fnum" data-cap="interactive"></span> Click each situation to cycle it through the three modes. Watch how the same buyer occupies different cells across a single day. Toggle the category shock and the habitual column thins as routines slide back into deliberation. Then ask Claude where any new situation belongs.</figcaption>
 </figure>
 
 <span class="ax">04 // shortcuts shape the choice</span>
@@ -1043,11 +1650,43 @@ Walk through it in plain prose, no preamble:
 <p data-focused style="display:none">Reading about four families is one thing; spotting them in a real ad is the skill that transfers. Drop a product page or ad screenshot into the widget below, and Claude names the shortcuts it is pulling, with the on-screen evidence for each. Ask it the vague way and the sharp way, and watch which question, not which tool, decides what you learn.</p>
 
 <figure id="widget-4-shortcuts" style="margin: 36px 0;">
-  <iframe src="exhibits/ch04-heuristic-choice-studio.html?v=2"
-          title="Interactive 4.4: What shortcut is this ad pulling?"
-          loading="lazy" scrolling="no"
-          style="width: 100%; height: 820px; border: 1px solid #ddd; border-radius: 6px; background: #fbf8f5;"></iframe>
-  <figcaption><span class="fnum" data-cap="interactive"></span> Upload a real ad or landing-page screenshot. Claude reads the image and names the persuasion shortcuts it pulls (social proof, authority, scarcity, anchoring) with the on-screen evidence for each. Ask it the vague way and the sharp way, and watch which question, not which tool, decides what you learn.</figcaption>
+  <div class="hcs">
+    <div class="hcs-head">
+      <span class="hcs-cap">Interactive 4.4 &middot; Heuristic Choice Studio</span>
+      <span class="hcs-sub">Paste any ad copy. Watch the same model answer two different questions.</span>
+    </div>
+    <p class="hcs-frame">A vague prompt and a sharp prompt go to the same model, hit the same proxy, and cost roughly the same. The second one returns a teardown you can act on. The first returns a loose opinion. The tool is identical in both cases, so the question itself is the skill the section is teaching. Paste any ad copy or landing-page text and run both.</p>
+    <div class="hcs-input">
+      <label for="hcs-text" class="hcs-input-lbl">Paste the ad copy or page text:</label>
+      <textarea id="hcs-text" rows="5" placeholder="Limited drop. Three colors left. Over 12,000 verified five-star reviews from real Stanley owners. Recommended by Cosmopolitan. Sign up for color-drop alerts before Friday."></textarea>
+      <button class="hcs-go" id="hcs-go">Run both prompts</button>
+    </div>
+    <div class="hcs-grid">
+      <div class="hcs-pane">
+        <span class="hcs-label">Vague prompt: <em>is this a good ad?</em></span>
+        <div class="demo-stream hcs-out" id="hcs-out-vague" aria-live="polite"></div>
+      </div>
+      <div class="hcs-pane">
+        <span class="hcs-label hcs-sharp">Sharp prompt: <em>name the four families of shortcuts, quote on-screen evidence, flag truthful or exploitative.</em></span>
+        <div class="demo-stream hcs-out" id="hcs-out-sharp" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cc-pa">
+    <div class="cc-pa-bar">
+      <span class="cc-pa-dot"></span><span class="cc-pa-dot"></span><span class="cc-pa-dot"></span>
+      <span class="cc-pa-title">/principle-audit &middot; reusable Claude Code Skill</span>
+      <span class="cc-pa-model">haiku</span>
+    </div>
+    <div class="cc-pa-body" id="cc-pa-body"></div>
+    <div class="cc-pa-presets">
+      <button class="cc-pa-preset" data-cmd="claude /principle-audit stanley-tiktok-cosmo">/principle-audit stanley-tiktok-cosmo</button>
+      <button class="cc-pa-preset" data-cmd="claude /principle-audit duolingo-streak-email">/principle-audit duolingo-streak-email</button>
+      <button class="cc-pa-preset" data-cmd="claude /principle-audit patagonia-worn-wear">/principle-audit patagonia-worn-wear</button>
+    </div>
+  </div>
+  <figcaption><span class="fnum" data-cap="interactive"></span> Top: paste any ad text and watch the model answer the vague way and the sharp way side by side. Bottom: the same audit packaged as a reusable Claude Code Skill, run against three real campaigns. The question, not the tool, decides what you learn.</figcaption>
 </figure>
 
 <div class="callout deep" id="cb-shortcut-audit" data-complete>
@@ -1112,11 +1751,39 @@ No preamble, no closer.</pre>
 <p data-focused style="display:none">The prior question is which situations put the brand into the set at all. <span class="term" data-tt="Category Entry Points: the situations, occasions, emotions, and cues that prompt a buyer to think of the category and the brands in it. Growth means owning more of them.">Category Entry Points</span> (CEPs) are the situations and cues that prompt a buyer to reach for the category.<sup class="cite" data-cite="ref-8"></sup> The framework organizes them along seven W-spokes: why (the goal), when (time of day), where (location), with whom (social context), while doing what (parallel activity), with what (paired product), and how feeling (emotional state). Each spoke covers many moments, so Stanley can own morning, gym hour, school drop-off, and the desk-water break at once.</p>
 
 <figure id="widget-5-cep" style="margin: 36px 0;">
-  <iframe src="exhibits/ch04-cep-consideration-builder.html?v=2"
-          title="Interactive 4.5: How does Stanley pass Yeti?"
-          loading="lazy" scrolling="no"
-          style="width: 100%; height: 760px; border: 1px solid #ddd; border-radius: 6px; background: #fbf8f5;"></iframe>
-  <figcaption><span class="fnum" data-cap="interactive"></span> Click the buying situations Stanley should own and watch its mental-availability meter rise past Yeti, not by being a better cup but by coming to mind in more moments. Then ask Claude which situations a rival does not already dominate.</figcaption>
+  <div class="cep-sim" id="cep-sim">
+    <div class="cep-head">
+      <strong>Interactive 4.5 &middot; Category Entry Point Builder</strong>
+      Pick a brand. Click the situations it could own. Watch its share follow the polygon area, not the cell quality.
+    </div>
+    <div class="cep-pickers" id="cep-pickers">
+      <button class="cep-brand active" data-brand="coke">Coca-Cola</button>
+      <button class="cep-brand" data-brand="duo">Duolingo</button>
+      <button class="cep-brand" data-brand="costco">Costco</button>
+      <button class="cep-brand" data-brand="craft">a new craft soda</button>
+    </div>
+    <div class="cep-grid" id="cep-grid"></div>
+    <div class="cep-readout">
+      <span>Share of category retrieval</span>
+      <div class="cep-bar-wrap"><div class="cep-bar" id="cep-bar"></div></div>
+      <div class="cep-share" id="cep-share">0%</div>
+    </div>
+    <div class="cep-verdict" id="cep-verdict">Pick a brand, then toggle which buying moments it owns. The polygon area is the share.</div>
+  </div>
+
+  <div class="cep-audit">
+    <div class="cep-audit-head">
+      <span class="cep-audit-cap">Now ask Claude: where are the untapped CEPs?</span>
+      <span class="cep-audit-sub">Run the audit on a real brand and category.</span>
+    </div>
+    <div class="cep-audit-controls">
+      <input type="text" id="cep-brand-in" placeholder="Brand (e.g. Stanley)" autocomplete="off">
+      <input type="text" id="cep-cat-in" placeholder="Category (e.g. insulated drinkware)" autocomplete="off">
+      <button class="demo-button" id="cep-go">Run the CEP audit</button>
+    </div>
+    <div class="demo-stream" id="cep-out" aria-live="polite"></div>
+  </div>
+  <figcaption><span class="fnum" data-cap="interactive"></span> Click the buying moments Stanley should own and watch its retrieval share rise past Yeti. The cup did not get better between 2019 and 2024. Its polygon got wider. Then ask Claude which entry points a rival has not yet locked down in your own category.</figcaption>
 </figure>
 
 <p data-complete>Market share approximates the polygon area a brand draws when its CEP links are plotted as spokes, roughly the count of CEPs the brand owns multiplied by the average link strength.<sup class="cite" data-cite="ref-8"></sup> A brand that owns many weak links can beat a brand that owns a few strong ones, because the buyer's retrieval moment is unpredictable. Adding a new situation the brand could plausibly serve is usually cheaper than out-competing for one an incumbent already owns. The Ehrenberg-Bass tradition separates growth CEPs, situations the brand is not yet retrieved at where the spend recruits light buyers, from refresh CEPs, situations the brand already owns where the spend re-cues heavy buyers who would have bought anyway. Almost all category growth lives in light-buyer recruitment, so roughly sixty to seventy percent of brand-building spend should route to growth CEPs.<sup class="cite" data-cite="ref-30"></sup></p>
@@ -1150,11 +1817,36 @@ No preamble, no closer.</pre>
 </figure>
 
 <figure id="widget-6-ai" style="margin: 36px 0;">
-  <iframe src="exhibits/ch04-ai-shopping-agent-lab.html?v=2"
-          title="Interactive 4.6: Who does the AI recommend?"
-          loading="lazy" scrolling="no"
-          style="width: 100%; height: 760px; border: 1px solid #ddd; border-radius: 6px; background: #fbf8f5;"></iframe>
-  <figcaption><span class="fnum" data-cap="interactive"></span> You are the shopper. Ask the AI assistant the vague way and the specific way, and watch the same model rerank real water-bottle brands. The brand that wins is the one legible to the exact criteria you named. The model's answer is the new shelf.</figcaption>
+  <div class="asal">
+    <div class="asal-head">
+      <span class="asal-cap">Interactive 4.6 &middot; AI Shopping Agent Lab</span>
+      <span class="asal-sub">You are the shopper. The model is the shelf.</span>
+    </div>
+    <p class="asal-frame">A buyer who asks the same question two different ways receives two different consideration sets. The brand that wins is the one legible to the exact criteria she named. Type a vague prompt and a specific prompt; the same Haiku model answers both. The reranking is the new mental-availability story, now happening inside the model's weights instead of inside Sara's head.</p>
+    <div class="asal-input">
+      <div class="asal-row">
+        <label class="asal-lbl">Vague prompt:</label>
+        <input type="text" id="asal-vague" value="recommend a water bottle" autocomplete="off">
+      </div>
+      <div class="asal-row">
+        <label class="asal-lbl asal-sharp-lbl">Specific prompt:</label>
+        <input type="text" id="asal-sharp" value="recommend a 40-ounce insulated water bottle under $50 for weekend hiking, three picks ranked, one-sentence fit reason each" autocomplete="off">
+      </div>
+      <button class="asal-go" id="asal-go">Ask the AI shelf, both ways</button>
+    </div>
+    <div class="asal-grid">
+      <div class="asal-pane">
+        <span class="asal-pane-lbl">Vague answer</span>
+        <div class="demo-stream asal-out" id="asal-out-vague" aria-live="polite"></div>
+      </div>
+      <div class="asal-pane">
+        <span class="asal-pane-lbl asal-sharp-lbl">Sharp answer</span>
+        <div class="demo-stream asal-out" id="asal-out-sharp" aria-live="polite"></div>
+      </div>
+    </div>
+    <div class="asal-verdict" id="asal-verdict">The brand that wins each list is the one whose training-data presence, reviews, and schema markup match the exact criteria the shopper named. The brand absent from the model's answer is in the same position as the brand absent from the buyer's own memory: invisible at the moment of choice.</div>
+  </div>
+  <figcaption><span class="fnum" data-cap="interactive"></span> Ask the same model the vague way and the specific way. Watch the consideration set reorder around the criteria you named. The brand that wins is the one legible to the prompt, and the model's answer is the new shelf.</figcaption>
 </figure>
 
 <p data-complete>The buyer's first instinct is to distrust the second network even when its picks are better. A student asked to choose between a human advisor and an algorithmic one will pick the advisor.<sup class="cite" data-cite="ref-35"></sup> The preference sharpens after the algorithm makes a single visible mistake, and it is sharpest on tasks the buyer reads as subjective, because she believes her case is special in ways the algorithm cannot see.<sup class="cite" data-cite="ref-37"></sup> The same buyer accepts the algorithm without hesitation on tasks she reads as objective: the fastest driving route, the cheapest flight, the top-rated charger. Identity-laden categories trigger the <span class="term" data-tt="People often prefer a human recommender over an algorithm even when the algorithm is provably more accurate, and the preference sharpens after the algorithm makes one visible error.">algorithm aversion</span>, while functionally-bounded ones leave the buyer indifferent to who or what made the choice.</p>
@@ -3094,6 +3786,488 @@ No preamble, no closer.</pre>
 })();
 </script>
 
+<script>
+/* ============================================================
+   Inline widgets 4.1 - 4.6 (replacements for the broken iframes).
+   Shared proxy helper, then one handler per widget.
+   ============================================================ */
+(function(){
+  // Shared proxy call. Returns the model's text, or throws on failure.
+  async function callProxy(system, user, opts){
+    opts = opts || {};
+    var resp = await fetch('http://localhost:8787/api/exhibit/generic', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system: system,
+        user: user,
+        model: opts.model || 'claude-haiku-4-5',
+        max_tokens: opts.max_tokens || 480
+      })
+    });
+    if (!resp.ok) throw new Error('proxy ' + resp.status);
+    var data = await resp.json();
+    if (!data.ok) throw new Error(data.error || 'proxy err');
+    return (data.data.text || '').trim();
+  }
+  // Shared step renderer: writes labeled lines into a .demo-stream.
+  function step(out, cls, txt){
+    var d = document.createElement('div');
+    d.className = 'demo-step ' + (cls || '');
+    d.textContent = txt;
+    out.appendChild(d);
+    return d;
+  }
+
+  /* ===== 4.1 MEMORY LINK WORKBENCH =====
+     The principle: mental availability is the brand's count and strength of
+     situational cue links, not its fame. Folgers can be famous and still off
+     the morning consideration set, because it has no link to the 8:14 cue. */
+  (function(){
+    var mount = document.getElementById('mlw-brands');
+    var fire = document.getElementById('mlw-fire');
+    var boost = document.getElementById('mlw-boost');
+    var reset = document.getElementById('mlw-reset');
+    var verdict = document.getElementById('mlw-verdict');
+    if (!mount || !fire || !boost || !verdict) return;
+
+    var STATE = {
+      brands: [
+        { id: 'starbucks', name: 'Starbucks',     fame: 92, link: 88, surfaced: false },
+        { id: 'dunkin',    name: "Dunkin'",       fame: 78, link: 82, surfaced: false },
+        { id: 'folgers',   name: 'Folgers',       fame: 70, link: 12, surfaced: false },
+        { id: 'campus',    name: 'campus cart',   fame: 35, link: 64, surfaced: false },
+        { id: 'rare',      name: 'Bird Rock cold-brew', fame: 8, link: 4, surfaced: false }
+      ],
+      boosted: false
+    };
+
+    function render(){
+      mount.innerHTML = '';
+      STATE.brands.forEach(function(b){
+        var row = document.createElement('div');
+        row.className = 'mlw-brand-row' + (b.surfaced ? ' surfaced' : '') +
+          ((!b.surfaced && (window.__mlwFired || false)) ? ' dim' : '');
+        var statusText = b.surfaced ? 'IN HER MIND' : (window.__mlwFired ? 'not retrieved' : 'waiting for cue');
+        row.innerHTML =
+          '<div class="mlw-brand-name">' + b.name +
+          '<span class="mlw-status">' + statusText + '</span></div>' +
+          '<div class="mlw-meter fame"><span style="font-size:10.5px;font-family:var(--mono);color:var(--ink-3);letter-spacing:.5px;">FAME</span><div class="mlw-meter-bar"><div class="mlw-meter-fill" style="width:' + b.fame + '%"></div></div><span class="mlw-meter-val">' + b.fame + '</span></div>' +
+          '<div class="mlw-meter link"><span style="font-size:10.5px;font-family:var(--mono);color:var(--ink-3);letter-spacing:.5px;">8:14 LINK</span><div class="mlw-meter-bar"><div class="mlw-meter-fill" style="width:' + b.link + '%"></div></div><span class="mlw-meter-val">' + b.link + '</span></div>';
+        mount.appendChild(row);
+      });
+    }
+
+    function fireCue(){
+      window.__mlwFired = true;
+      // Surface any brand whose 8:14 link exceeds 50. Order by link strength.
+      var sorted = STATE.brands.slice().sort(function(a,b){return b.link - a.link;});
+      var picked = sorted.filter(function(b){return b.link >= 50;}).slice(0,3).map(function(b){return b.id;});
+      STATE.brands.forEach(function(b){ b.surfaced = picked.indexOf(b.id) !== -1; });
+      render();
+      if (STATE.boosted) {
+        verdict.innerHTML = "Folgers's fame meter hit 100, and the morning link still reads 12. The cue does not find Folgers, so the campaign moved no shelf at 8:14. Awareness is not retrieval. Mental availability is the chapter's load-bearing asset.";
+      } else {
+        verdict.innerHTML = "Three brands surfaced. Each has both fame <em>and</em> a strong 8:14 link. Folgers is famous but its morning link is weak, so it stays off her list even though she would recognize the logo on a survey.";
+      }
+    }
+
+    fire.addEventListener('click', fireCue);
+
+    boost.addEventListener('click', function(){
+      STATE.boosted = !STATE.boosted;
+      boost.classList.toggle('active', STATE.boosted);
+      STATE.brands.forEach(function(b){
+        if (b.id === 'folgers') { b.fame = STATE.boosted ? 100 : 70; }
+      });
+      boost.textContent = STATE.boosted ? "Folgers is famous again. Toggle to undo." : "Give Folgers a $50M fame campaign";
+      if (window.__mlwFired) fireCue(); else render();
+      if (!window.__mlwFired) {
+        verdict.innerHTML = STATE.boosted
+          ? "Folgers's fame meter is now at 100. Press <em>Fire the cue</em> and watch whether the morning link matters more."
+          : "Press <em>Fire the cue</em> to see whose brand the cue actually surfaces.";
+      }
+    });
+
+    reset.addEventListener('click', function(){
+      window.__mlwFired = false;
+      STATE.boosted = false;
+      STATE.brands.forEach(function(b){
+        b.surfaced = false;
+        if (b.id === 'folgers') b.fame = 70;
+      });
+      boost.classList.remove('active');
+      boost.textContent = "Give Folgers a $50M fame campaign";
+      render();
+      verdict.innerHTML = "Press <em>Fire the cue</em> to see whose brand the cue actually surfaces.";
+    });
+
+    render();
+
+    // Ask Claude block.
+    var askIn = document.getElementById('mlw-ask-in');
+    var askGo = document.getElementById('mlw-ask-go');
+    var askOut = document.getElementById('mlw-ask-out');
+    if (askGo && askIn && askOut) {
+      askGo.addEventListener('click', async function(){
+        askOut.innerHTML = '';
+        var brand = (askIn.value || '').trim() || 'a generic coffee brand';
+        askGo.disabled = true;
+        step(askOut, 'thinking', 'Model is reading the brand and category...');
+        try {
+          var text = await callProxy(
+            'You are a buyer-behavior analyst. For the named coffee brand, list six morning moments where the brand could plausibly become the first-retrieved option, ordered from cheapest to enter to most defended by an incumbent. Output six numbered lines. Each line has the moment, the cue, and one sentence on what asset would carry retrieval. No preamble.',
+            'Brand: ' + brand + '. List six morning CEPs the brand could plausibly own.',
+            { max_tokens: 420 }
+          );
+          step(askOut, 'answer', text);
+        } catch (e) {
+          step(askOut, 'error', 'Live AI requires `python core-course/scripts/proxy_server.py` running on localhost:8787. Sample answer:');
+          step(askOut, 'answer',
+            '1. 8:14 a.m. dash to class: the empty thermos cue. A visible drive-through line carries retrieval.\n' +
+            '2. The Sunday pour-over ritual: the bean-grinder cue. Packaging design and a story-of-the-bean blurb carry retrieval.\n' +
+            '3. The dorm-fridge cold-brew bottle: the late-night-paper cue. A bottle silhouette in the cooler door carries retrieval.\n' +
+            '4. The 2 p.m. library slump: the slipping-focus cue. A campus partnership and a refill stamp card carry retrieval.\n' +
+            '5. The post-workout reward: the locker-room cue. A pre-bottled chilled latte at the gym fridge carries retrieval.\n' +
+            '6. Saturday brunch at home: the brunch-board cue. A nostalgic blue-can color and a kitchen-counter silhouette carry retrieval.');
+        }
+        askGo.disabled = false;
+      });
+    }
+  })();
+
+  /* ===== 4.2 HABIT DISRUPTION LAB =====
+     The principle: a life event opens a 4-12 week window inside which a
+     promotion lands on a buyer who has no autopilot. Outside it the same
+     promotion lands flat. */
+  (function(){
+    var svg = document.getElementById('hdl-svg');
+    var curve = document.getElementById('hdl-curve');
+    var fill = document.getElementById('hdl-fill');
+    var promo = document.getElementById('hdl-promo');
+    var windowRect = document.getElementById('hdl-window');
+    var verdict = document.getElementById('hdl-verdict');
+    if (!svg || !curve || !promo || !verdict) return;
+
+    var EVENTS = {
+      move:  { dip: 175, recoverX: 480, label: 'a move',           weeks: '8-12 weeks' },
+      job:   { dip: 165, recoverX: 440, label: 'a new job',         weeks: '6-10 weeks' },
+      baby:  { dip: 180, recoverX: 560, label: 'a new baby',        weeks: '10-16 weeks' },
+      grad:  { dip: 170, recoverX: 460, label: 'a graduation',      weeks: '8-12 weeks' },
+      none:  { dip: 70,  recoverX: 200, label: 'nothing in particular', weeks: 'no window' }
+    };
+    var STATE = { event: 'move', when: 'in' };
+
+    function buildCurve(ev){
+      var e = EVENTS[ev];
+      // Habit starts high (y=50), dips to e.dip at week ~6, recovers by recoverX.
+      if (ev === 'none') {
+        return 'M 40 60 C 200 60, 360 60, 660 60';
+      }
+      return 'M 40 50 C 100 50, 110 50, 130 ' + (e.dip - 80) +
+             ' C 160 ' + e.dip + ', 200 ' + e.dip + ', 340 ' + e.dip +
+             ' C 480 ' + e.dip + ', 540 130, 660 70';
+    }
+    function buildFill(ev){
+      var d = buildCurve(ev);
+      // close to baseline at y=200
+      return d + ' L 660 200 L 40 200 Z';
+    }
+
+    function render(){
+      var ev = STATE.event;
+      var e = EVENTS[ev];
+      curve.setAttribute('d', buildCurve(ev));
+      fill.setAttribute('d', buildFill(ev));
+      if (ev === 'none') {
+        windowRect.style.opacity = '0';
+      } else {
+        windowRect.style.opacity = '1';
+      }
+      // Promo position: inside window = x:200,y:near dip; outside = x:560,y:near recovered
+      if (STATE.when === 'in') {
+        promo.setAttribute('cx', '200');
+        promo.setAttribute('cy', String(e.dip - 3));
+        promo.setAttribute('fill', '#B8553A');
+      } else {
+        promo.setAttribute('cx', '560');
+        promo.setAttribute('cy', '125');
+        promo.setAttribute('fill', '#888');
+      }
+      // verdict
+      if (ev === 'none') {
+        verdict.innerHTML = 'No event, no window. The buyer’s loops are intact. A promotion at any week lands on autopilot and produces no measurable lift.';
+        return;
+      }
+      if (STATE.when === 'in') {
+        verdict.innerHTML = 'After ' + e.label + ', the cue layer dissolves around week 0. A promotion delivered <strong>inside</strong> the shaded ' + e.weeks + ' window lands on a buyer with no autopilot to fall back on. Lift is structural.';
+      } else {
+        verdict.innerHTML = 'After ' + e.label + ' the window closes around week 12. A promotion delivered <strong>outside</strong> the window lands on a buyer whose new routines have already locked in. Lift collapses to near zero.';
+      }
+    }
+
+    document.querySelectorAll('#hdl-event .hdl-chip').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('#hdl-event .hdl-chip').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        STATE.event = btn.dataset.event;
+        render();
+      });
+    });
+    document.querySelectorAll('#hdl-when .hdl-chip').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('#hdl-when .hdl-chip').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        STATE.when = btn.dataset.when;
+        render();
+      });
+    });
+
+    render();
+
+    // Ask Claude block.
+    var askIn = document.getElementById('hdl-ask-in');
+    var askGo = document.getElementById('hdl-ask-go');
+    var askOut = document.getElementById('hdl-ask-out');
+    if (askGo && askIn && askOut) {
+      askGo.addEventListener('click', async function(){
+        askOut.innerHTML = '';
+        var cat = (askIn.value || '').trim() || 'cold-brew coffee';
+        askGo.disabled = true;
+        step(askOut, 'thinking', 'Model is enumerating cohorts whose cue layer recently broke...');
+        try {
+          var text = await callProxy(
+            'You are a buyer-behavior analyst. For the named category, list four cohorts whose cue layer broke within the past 4-12 weeks and is currently open. Output four numbered lines. Each line: the cohort, the event that opened the window, an estimated window size, one detectable signal (a query, a purchase, a list) the brand could use to find them.',
+            'Category: ' + cat + '. Four cohorts inside their habit-discontinuity window right now.',
+            { max_tokens: 420 }
+          );
+          step(askOut, 'answer', text);
+        } catch (e) {
+          step(askOut, 'error', 'Live AI requires `python core-course/scripts/proxy_server.py` running on localhost:8787. Sample answer:');
+          step(askOut, 'answer',
+            '1. Recent movers in the last 60 days: the move event opens an 8-12 week window. Detectable signal: USPS change-of-address feed, or any in-app prompt asking for a new shipping address.\n' +
+            '2. Parents in the first 90 days postpartum: a new-baby event opens a 10-16 week window for snack and beverage routines. Detectable signal: subscription sign-up to a diaper service.\n' +
+            '3. Job-changers in their first 30 days: the commute and lunch cue layer breaks. Detectable signal: a LinkedIn job-change event triggering a new commute query.\n' +
+            '4. Recent college graduates in May-August: the campus cue layer dissolves. Detectable signal: a graduation announcement and the first apartment lease.');
+        }
+        askGo.disabled = false;
+      });
+    }
+  })();
+
+  /* ===== 4.3 DECISION EFFORT SWITCHBOARD =====
+     Eight buying situations, three columns (RRB / LPS / EPS). The principle:
+     the same buyer occupies different columns across one day, depending on
+     motivation, ability, and opportunity (the MAO triad). A category shock
+     pushes situations leftward (more deliberation). */
+  (function(){
+    var verdict = document.getElementById('des-verdict');
+    var shock = document.getElementById('des-shock');
+    var barM = document.getElementById('des-bar-m');
+    var barA = document.getElementById('des-bar-a');
+    var barO = document.getElementById('des-bar-o');
+    var colRrb = document.getElementById('des-col-rrb');
+    var colLps = document.getElementById('des-col-lps');
+    var colEps = document.getElementById('des-col-eps');
+    if (!verdict || !colRrb || !colLps || !colEps) return;
+
+    var COLS = ['rrb','lps','eps'];
+    var SITUATIONS = [
+      { id: 'soda',    label: 'vending-machine Coke',       defaultCol: 'rrb', shockCol: 'rrb', m:1,a:3,o:3 },
+      { id: 'salt',    label: 'tube of toothpaste',         defaultCol: 'rrb', shockCol: 'rrb', m:1,a:3,o:3 },
+      { id: 'snack',   label: 'a 3 p.m. granola bar',       defaultCol: 'rrb', shockCol: 'lps', m:1,a:3,o:3 },
+      { id: 'flight',  label: 'cheapest flight home',      defaultCol: 'lps', shockCol: 'lps', m:2,a:2,o:2 },
+      { id: 'phone',   label: 'a phone replacement',       defaultCol: 'lps', shockCol: 'eps', m:2,a:2,o:1 },
+      { id: 'tumbler', label: 'a Stanley tumbler',         defaultCol: 'lps', shockCol: 'lps', m:2,a:2,o:2 },
+      { id: 'laptop',  label: 'a first-college laptop',    defaultCol: 'eps', shockCol: 'eps', m:3,a:1,o:1 },
+      { id: 'lease',   label: 'a first-apartment lease',   defaultCol: 'eps', shockCol: 'eps', m:3,a:1,o:1 }
+    ];
+
+    var STATE = { shocked: false };
+    SITUATIONS.forEach(function(s){ s.col = s.defaultCol; });
+
+    function placeChips(){
+      colRrb.innerHTML = '';
+      colLps.innerHTML = '';
+      colEps.innerHTML = '';
+      SITUATIONS.forEach(function(s){
+        var btn = document.createElement('button');
+        btn.className = 'des-chip' + (STATE.shocked && s.shockCol !== s.defaultCol ? ' shocked' : '');
+        btn.dataset.id = s.id;
+        btn.textContent = s.label;
+        btn.addEventListener('click', function(){
+          var i = COLS.indexOf(s.col);
+          s.col = COLS[(i+1) % 3];
+          placeChips();
+          updateMaoFromCols();
+        });
+        if (s.col === 'rrb') colRrb.appendChild(btn);
+        else if (s.col === 'lps') colLps.appendChild(btn);
+        else colEps.appendChild(btn);
+      });
+    }
+
+    function updateMaoFromCols(){
+      // average MAO across columns shifts as the buyer's situations shift right.
+      // Bars reflect the proportion of EPS-like situations the day contains.
+      var nEps = SITUATIONS.filter(function(s){return s.col==='eps';}).length;
+      var nLps = SITUATIONS.filter(function(s){return s.col==='lps';}).length;
+      var nRrb = SITUATIONS.filter(function(s){return s.col==='rrb';}).length;
+      // Motivation rises with EPS share; ability falls; opportunity falls.
+      var mot = Math.min(100, 25 + 18*nEps + 7*nLps);
+      var abi = Math.max(20, 100 - 12*nEps - 5*nLps);
+      var opp = Math.max(20, 100 - 12*nEps - 5*nLps);
+      if (barM) barM.style.width = mot + '%';
+      if (barA) barA.style.width = abi + '%';
+      if (barO) barO.style.width = opp + '%';
+      var msg;
+      if (nEps >= 4) msg = 'Heavy EPS day. Motivation high, ability and opportunity tight. She is running the lease-decision circuit on most purchases. Outside the chapter’s norm.';
+      else if (nEps + nLps >= 5) msg = 'A mixed day. She compares a few options on most decisions but stays on autopilot for the familiar ones.';
+      else if (nRrb >= 5) msg = 'A mostly-autopilot day. Most situations route through RRB, which is the chapter’s default. Watch what happens when the category shock toggles on.';
+      else msg = 'A balanced sort. Watch what happens to motivation and opportunity as you push situations rightward.';
+      if (STATE.shocked) msg += ' The shock has pushed two routines back into deliberation, because the buyer no longer trusts her old retrieval.';
+      verdict.innerHTML = msg;
+    }
+
+    function applyShock(){
+      SITUATIONS.forEach(function(s){
+        s.col = STATE.shocked ? s.shockCol : s.defaultCol;
+      });
+      placeChips();
+      updateMaoFromCols();
+    }
+
+    if (shock) {
+      shock.addEventListener('change', function(){
+        STATE.shocked = shock.checked;
+        applyShock();
+      });
+    }
+
+    placeChips();
+    updateMaoFromCols();
+
+    // Ask Claude block.
+    var askIn = document.getElementById('des-ask-in');
+    var askGo = document.getElementById('des-ask-go');
+    var askOut = document.getElementById('des-ask-out');
+    if (askGo && askIn && askOut) {
+      askGo.addEventListener('click', async function(){
+        askOut.innerHTML = '';
+        var sit = (askIn.value || '').trim();
+        if (!sit) { step(askOut, 'error', 'Type a buying situation first.'); return; }
+        askGo.disabled = true;
+        step(askOut, 'thinking', 'Reading the situation against MAO conditions...');
+        try {
+          var text = await callProxy(
+            'You are a buyer-behavior analyst. Classify the named purchase situation as RRB, LPS, or EPS, and justify the call against motivation, ability, and opportunity in plain prose. Output three labeled lines (MODE, MAO, WHY) plus one CHANGE THE MODE line naming a single contextual change that would push the buyer into the next mode. No preamble.',
+            'Situation: ' + sit,
+            { max_tokens: 320 }
+          );
+          step(askOut, 'answer', text);
+        } catch (e) {
+          step(askOut, 'error', 'Live AI requires `python core-course/scripts/proxy_server.py` running on localhost:8787. Sample answer:');
+          step(askOut, 'answer',
+            'MODE: EPS (extensive problem solving).\n' +
+            'MAO: motivation high (long-term financial commitment), ability moderate (numbers are checkable but jargon is opaque), opportunity moderate (a 90-day enrollment window).\n' +
+            'WHY: a 401k contribution rate is irreversible at the daily margin, so the buyer routes through evaluation rather than retrieval. The decision has stakes, time, and a fixed set of alternatives.\n' +
+            'CHANGE THE MODE: if HR auto-enrolls her at 6%, the buyer falls back into RRB. The same buyer running the same circuit produces a different choice because the default did the work.');
+        }
+        askGo.disabled = false;
+      });
+    }
+  })();
+
+  /* ===== 4.4 HEURISTIC CHOICE STUDIO =====
+     Same model, same input, two prompts. The principle: the question
+     decides the answer. The vague question returns a loose opinion; the
+     sharp question returns a teardown. */
+  (function(){
+    var ta = document.getElementById('hcs-text');
+    var go = document.getElementById('hcs-go');
+    var outV = document.getElementById('hcs-out-vague');
+    var outS = document.getElementById('hcs-out-sharp');
+    if (!ta || !go || !outV || !outS) return;
+
+    var FALLBACK_VAGUE = 'The ad is well-targeted. It uses urgency, social proof, and clear value. The visual is on-brand and the call to action is strong. Overall, this is a good ad for its audience.';
+    var FALLBACK_SHARP = 'SOCIAL (proof): "12,000 verified five-star reviews" + "from real Stanley owners" fires social proof at high intensity. TRUTHFUL if the count is checkable.\n' +
+                       'AUTHORITY: "Recommended by Cosmopolitan" fires borrowed authority via a magazine seal. ARGUABLE TRUTHFUL.\n' +
+                       'LOSS / SCARCITY: "Limited drop. Three colors left." + "before Friday" fires scarcity twice. Verify against drop inventory; otherwise EXPLOITATIVE.\n' +
+                       'REFERENCE-POINT: not in evidence in the supplied copy. Absence is a tell about which choice mode the asset assumes.\n' +
+                       'INTENSITY: scarcity stacked twice (count + deadline) trips reactance. Drop one.\n' +
+                       'WHAT TO FIX: replace "before Friday" with the actual drop date the inventory system already shows, or remove the deadline entirely.';
+
+    go.addEventListener('click', async function(){
+      var text = (ta.value || '').trim();
+      if (!text) { step(outV, 'error', 'Paste some ad copy first.'); return; }
+      outV.innerHTML = '';
+      outS.innerHTML = '';
+      go.disabled = true;
+      step(outV, 'thinking', 'Asking the model the vague way...');
+      step(outS, 'thinking', 'Asking the model the sharp way...');
+      try {
+        var both = await Promise.all([
+          callProxy('You are a casual reader. The user shows you ad copy and asks whether it is a good ad. Answer in 3-4 sentences as a friendly opinion. No structure, no quoting.', 'Is this a good ad? ' + text, { max_tokens: 240 }),
+          callProxy('You audit one marketing asset for persuasion shortcuts. Output exactly five short labeled blocks in plain prose: SOCIAL (proof/liking/unity), AUTHORITY, LOSS/SCARCITY, REFERENCE-POINT (anchoring/framing/defaults). For each, quote the literal on-screen trigger or write "not in evidence." Then add INTENSITY (any move likely to trip reactance) and WHAT TO FIX (one concrete change). No preamble, no closer.', 'Audit this ad copy for the four families of shortcuts. Quote evidence. ' + text, { max_tokens: 520 })
+        ]);
+        outV.innerHTML = ''; outS.innerHTML = '';
+        step(outV, 'answer', both[0]);
+        step(outS, 'answer', both[1]);
+      } catch (e) {
+        outV.innerHTML = ''; outS.innerHTML = '';
+        step(outV, 'error', 'Live AI requires `python core-course/scripts/proxy_server.py` running on localhost:8787. Sample answers:');
+        step(outV, 'answer', FALLBACK_VAGUE);
+        step(outS, 'answer', FALLBACK_SHARP);
+      }
+      go.disabled = false;
+    });
+  })();
+
+  /* ===== 4.6 AI SHOPPING AGENT LAB =====
+     Same model, two prompts. The principle: the brand that wins each list
+     is the brand legible to the criteria the buyer actually named. */
+  (function(){
+    var vagueIn = document.getElementById('asal-vague');
+    var sharpIn = document.getElementById('asal-sharp');
+    var go = document.getElementById('asal-go');
+    var outV = document.getElementById('asal-out-vague');
+    var outS = document.getElementById('asal-out-sharp');
+    if (!vagueIn || !sharpIn || !go || !outV || !outS) return;
+
+    var FALLBACK_V = 'Try a Stanley Quencher. It is popular and comes in many colors. Yeti and Hydro Flask are also well-regarded. Pick what fits your style.';
+    var FALLBACK_S = '1. Hydro Flask 40 oz Wide Mouth ($45): keeps ice 24 hours, slim diameter fits standard pack pockets, lifetime warranty.\n' +
+                     '2. YETI Rambler 36 oz ($45): rugged shape survives drops on rock and granite, magnetic lid stays attached on the trail.\n' +
+                     '3. Stanley Quencher 40 oz ($45): wide opening accepts a standard-size hand-fill, handle clip rides on a daypack strap.\n' +
+                     'Notice which brand is missing: the cosmopolitan-pink Stanley that wins the vague prompt. The sharp prompt named hiking, weight, and dollars, and the model rebuilt the consideration set from those words.';
+
+    go.addEventListener('click', async function(){
+      outV.innerHTML = '';
+      outS.innerHTML = '';
+      var vague = (vagueIn.value || '').trim();
+      var sharp = (sharpIn.value || '').trim();
+      if (!vague || !sharp) { step(outV, 'error', 'Type both prompts first.'); return; }
+      go.disabled = true;
+      step(outV, 'thinking', 'Asking the AI shelf the vague way...');
+      step(outS, 'thinking', 'Asking the AI shelf the sharp way...');
+      try {
+        var both = await Promise.all([
+          callProxy('You are an AI shopping assistant. The user asks for a brand recommendation. Answer in 2-3 sentences. Be casual. Name brands. Do not over-structure.', vague, { max_tokens: 240 }),
+          callProxy('You are an AI shopping assistant. The user asks for a specific recommendation. Return exactly three numbered picks, each with brand + model + price band + one-sentence fit reason that quotes the exact criteria the buyer named. No preamble, no closer.', sharp, { max_tokens: 360 })
+        ]);
+        outV.innerHTML = ''; outS.innerHTML = '';
+        step(outV, 'answer', both[0]);
+        step(outS, 'answer', both[1]);
+      } catch (e) {
+        outV.innerHTML = ''; outS.innerHTML = '';
+        step(outV, 'error', 'Live AI requires `python core-course/scripts/proxy_server.py` running on localhost:8787. Sample answers:');
+        step(outV, 'answer', FALLBACK_V);
+        step(outS, 'answer', FALLBACK_S);
+      }
+      go.disabled = false;
+    });
+  })();
+})();
+</script>
 <script>
 /* === CHAPTER-TOC JS INJECTED === */
 (function() {

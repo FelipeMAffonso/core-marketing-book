@@ -113,6 +113,26 @@
       gap: 4px;
     }
 
+    /* "Back to courseware" pill — coral text, sits before the depth control */
+    .header-back {
+      font-size: 12px; font-weight: 600;
+      color: var(--coral);
+      padding: 0 10px; height: 30px;
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 1px solid var(--border); border-radius: 6px;
+      text-decoration: none;
+      transition: background 140ms ease, color 140ms ease;
+      margin-right: 6px;
+      white-space: nowrap;
+    }
+    .header-back:hover { background: var(--bg-alt); }
+    .header-back:focus-visible { outline: 2px solid var(--coral); outline-offset: 2px; }
+    .header-back svg { width: 12px; height: 12px; }
+    @media (max-width: 600px) {
+      .header-back .label { display: none; }
+      .header-back { padding: 0 8px; }
+    }
+
     .header-btn {
       width: 32px; height: 32px;
       background: none; border: none;
@@ -1017,6 +1037,12 @@
     <div class="header-title" id="header-title">Principles of <span>Marketing</span></div>
     <div class="header-right">
 
+      <!-- Back to courseware -->
+      <a class="header-back" href="../index.html" aria-label="Back to courseware dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        <span class="label">Courseware</span>
+      </a>
+
       <!-- Depth toggle (Complete / Focused) -->
       <div class="depth-wrap" id="depth-wrap">
         <button class="depth-btn" id="depth-btn" aria-label="Reading depth" aria-expanded="false" title="Reading depth">
@@ -1236,6 +1262,7 @@
       <div class="sb-item" data-href="front-preface.html"><span class="num">&nbsp;</span> Preface</div>
       <div class="sb-item" data-href="front-how-to-use.html"><span class="num">&nbsp;</span> How to Use This Book</div>
       <div class="sb-item" data-href="front-instructor-notes.html"><span class="num">&nbsp;</span> Instructor's Notes</div>
+      <div class="sb-item" data-href="front-acknowledgments.html"><span class="num">&nbsp;</span> Acknowledgments</div>
     </div>
 
     <!-- Part I: Foundations -->

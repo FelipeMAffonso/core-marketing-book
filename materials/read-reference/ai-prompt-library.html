@@ -20,6 +20,9 @@
   --font:'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif;
   --font-serif:'EB Garamond',Georgia,serif;
   --font-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Consolas,monospace;
+  --rail-w: 240px;
+  --right-w: 220px;
+  --topbar-h: 58px;
 }
 html{scroll-behavior:smooth;}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
@@ -34,7 +37,7 @@ a:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;border-ra
 .topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.9);
   backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
   border-bottom:1px solid var(--border);}
-.topbar-inner{max-width:860px;margin:0 auto;padding:0 28px;height:58px;display:flex;
+.topbar-inner{max-width:1320px;margin:0 auto;padding:0 28px;height:58px;display:flex;
   align-items:center;gap:14px;}
 .topbar .mark{width:28px;height:28px;border-radius:7px;flex-shrink:0;background:var(--coral-deep);
   color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;
@@ -66,13 +69,17 @@ main hr{border:0;border-top:1px solid var(--border);margin:34px 0;}
 main strong{font-weight:700;color:var(--ink);}
 main em{font-style:italic;}
 main code{font-family:var(--font-mono);font-size:0.88em;background:var(--bg-3);
-  padding:2px 6px;border-radius:4px;color:var(--coral-text);border:1px solid var(--border);}
+  padding:2px 6px;border-radius:4px;color:var(--coral-text);border:1px solid var(--border);
+  word-break:break-word;overflow-wrap:break-word;}
 main pre{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;
   padding:16px 18px;overflow-x:auto;margin:0 0 18px;}
+main pre:focus-visible{outline:2px solid var(--coral);outline-offset:2px;}
 main pre code{background:none;border:0;padding:0;color:var(--ink);font-size:13.5px;
   line-height:1.55;}
-main table{width:100%;border-collapse:collapse;margin:0 0 22px;font-size:15px;
-  display:block;overflow-x:auto;}
+main .table-wrap{overflow-x:auto;margin:0 0 22px;border:1px solid var(--border);
+  border-radius:6px;}
+main .table-wrap:focus-visible{outline:2px solid var(--coral);outline-offset:2px;}
+main table{width:100%;border-collapse:collapse;font-size:15px;}
 main thead th{background:var(--bg-2);text-align:left;font-weight:650;color:var(--ink);
   padding:9px 13px;border:1px solid var(--border-strong);white-space:nowrap;}
 main tbody td{padding:9px 13px;border:1px solid var(--border);color:var(--ink-2);
@@ -108,6 +115,208 @@ a.ccard:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;}
   .topbar-inner{padding:0 18px;}
   .ccards{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
 }
+
+/* ── DOCS-STYLE 3-COLUMN LAYOUT (left rail + main + right rail) ──────────
+   Used by every materials/reference/cartridge/videos page. The classic
+   API-reference docs feel: sticky left rail of siblings, sticky right rail
+   of in-page TOC + related materials, breadcrumb + prev/next around the
+   main column. Responsive collapse at 1080px (right rail hides) and 720px
+   (left rail collapses into a dropdown disclosure at top of main). */
+/* override main's narrow column when the docs layout is in use */
+main:has(.docs-layout){max-width:none;padding:0;}
+.docs-layout {
+  display: grid;
+  grid-template-columns: var(--rail-w) minmax(0, 1fr) var(--right-w);
+  gap: 36px;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 28px 28px 80px;
+  align-items: start;
+}
+.docs-rail {
+  position: sticky;
+  top: calc(var(--topbar-h) + 16px);
+  max-height: calc(100vh - var(--topbar-h) - 32px);
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.docs-rail::-webkit-scrollbar { width: 6px; }
+.docs-rail::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+.docs-rail .rail-eyebrow {
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral-text);
+  margin: 0 0 10px;
+}
+.docs-rail .rail-group {
+  margin-bottom: 22px;
+}
+.docs-rail .rail-group h3 {
+  font-size: 11.5px; font-weight: 650; color: var(--ink); text-transform: uppercase;
+  letter-spacing: 0.06em; margin: 0 0 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.docs-rail .rail-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 1px;
+}
+.docs-rail .rail-list a, .docs-rail .rail-list .rail-soon {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 5px 10px; border-radius: 6px;
+  font-size: 13px; color: var(--ink-2); text-decoration: none;
+  line-height: 1.32;
+  border-left: 2px solid transparent;
+}
+.docs-rail .rail-list a:hover {
+  background: var(--bg-2); color: var(--ink); text-decoration: none;
+}
+.docs-rail .rail-list a.is-active {
+  color: var(--coral-text); font-weight: 600;
+  background: var(--coral-tint);
+  border-left-color: var(--coral);
+}
+.docs-rail .rail-list .rail-soon {
+  color: var(--ink-3); cursor: default;
+}
+.docs-rail .rail-list .rail-soon .rail-num {
+  color: var(--ink-3);
+}
+.docs-rail .rail-num {
+  font-family: var(--font-mono); font-size: 11px; color: var(--ink-3);
+  flex-shrink: 0; min-width: 24px; letter-spacing: 0.04em;
+}
+.docs-rail .rail-list a.is-active .rail-num {
+  color: var(--coral-text);
+}
+.docs-rail .rail-soon::after {
+  content: "soon"; font-size: 9.5px; font-family: var(--font-mono);
+  color: var(--ink-3); margin-left: auto;
+  padding: 1px 5px; border-radius: 3px; background: var(--bg-3);
+  letter-spacing: 0.04em; flex-shrink: 0;
+}
+
+/* Mobile/tablet — left rail collapses to a dropdown disclosure */
+.docs-rail-mobile {
+  display: none;
+  margin-bottom: 16px;
+}
+.docs-rail-mobile summary {
+  font-size: 13px; font-weight: 600; color: var(--ink-2);
+  padding: 10px 14px; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 7px;
+  background: var(--bg-2);
+  list-style: none;
+}
+.docs-rail-mobile summary::after { content: " ▾"; color: var(--ink-3); float: right; }
+.docs-rail-mobile[open] summary::after { content: " ▴"; }
+.docs-rail-mobile .rail-group { margin: 12px 0; }
+
+/* Right rail (in-page TOC + related) */
+.docs-right .toc-eyebrow {
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral-text);
+  margin: 0 0 10px;
+}
+.docs-right .toc-list {
+  list-style: none; padding: 0; margin: 0 0 28px;
+  border-left: 2px solid var(--border);
+  display: flex; flex-direction: column; gap: 1px;
+}
+.docs-right .toc-list a {
+  display: block; padding: 4px 12px; font-size: 12.5px; color: var(--ink-3);
+  text-decoration: none; line-height: 1.4; margin-left: -2px;
+  border-left: 2px solid transparent;
+}
+.docs-right .toc-list a:hover { color: var(--ink); text-decoration: none; }
+.docs-right .toc-list a.is-current {
+  color: var(--coral-text); font-weight: 600;
+  border-left-color: var(--coral);
+}
+.docs-right .toc-list .toc-h3 { padding-left: 24px; font-size: 12px; }
+.docs-right .related-block {
+  margin-top: 20px;
+}
+.docs-right .related-block h3 {
+  font-size: 11.5px; font-weight: 650; color: var(--ink); text-transform: uppercase;
+  letter-spacing: 0.06em; margin: 0 0 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.docs-right .related-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.docs-right .related-list a {
+  display: flex; align-items: baseline; gap: 7px;
+  padding: 5px 10px; border-radius: 6px;
+  font-size: 12.5px; color: var(--ink-2); text-decoration: none;
+  line-height: 1.32;
+}
+.docs-right .related-list a:hover {
+  background: var(--bg-2); color: var(--coral-text); text-decoration: none;
+}
+.docs-right .related-list .rel-arrow {
+  color: var(--coral); font-weight: 700;
+}
+
+/* Main column */
+.docs-main { min-width: 0; }
+.breadcrumb {
+  font-size: 12.5px; color: var(--ink-3); margin: 0 0 18px;
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  font-family: var(--font);
+}
+.breadcrumb a {
+  color: var(--ink-3); text-decoration: none; font-weight: 500;
+  padding: 2px 6px; border-radius: 4px;
+}
+.breadcrumb a:hover { color: var(--coral-text); background: var(--bg-2); }
+.breadcrumb .sep { color: var(--ink-3); font-size: 11px; opacity: 0.5; }
+.breadcrumb .current { color: var(--ink); font-weight: 600; padding: 2px 6px; }
+
+.page-overview {
+  font-size: 16.5px; color: var(--ink-2); line-height: 1.55;
+  padding: 16px 0 6px; margin: 0 0 30px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Prev / Next footer */
+.prev-next {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  margin-top: 48px; padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.prev-next a {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px;
+  color: var(--ink-2); text-decoration: none;
+  transition: border-color 140ms ease, background 140ms ease;
+}
+.prev-next a:hover {
+  border-color: var(--coral); color: var(--coral-text); background: var(--bg-2);
+  text-decoration: none;
+}
+.prev-next .pn-eyebrow {
+  font-size: 11px; color: var(--ink-3); letter-spacing: 0.04em;
+}
+.prev-next .pn-title {
+  font-size: 14px; font-weight: 600; color: inherit;
+}
+.prev-next .pn-next { text-align: right; }
+.prev-next .pn-empty { visibility: hidden; pointer-events: none; }
+
+@media (max-width: 1100px) {
+  .docs-layout { grid-template-columns: var(--rail-w) minmax(0, 1fr); gap: 28px; }
+  .docs-right { display: none; }
+}
+@media (max-width: 760px) {
+  .docs-layout {
+    grid-template-columns: 1fr; padding: 16px 18px 60px; gap: 14px;
+  }
+  .docs-rail { display: none; }
+  .docs-rail-mobile { display: block; }
+  .topbar-inner { padding: 0 18px; }
+  .prev-next { grid-template-columns: 1fr; }
+  .page-overview { font-size: 15px; }
+}
 </style>
 </head>
 <body>
@@ -120,7 +329,7 @@ a.ccard:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;}
   </div>
 </header>
 <main id="main">
-<h1>AI Prompt Library</h1>
+<div class="docs-layout"><aside class="docs-rail" aria-label="Section navigation"><div class="rail-group"><h3>Read &amp; Reference</h3><ul class="rail-list"><li><a class="" href="../../textbook/index.html"><span class="rail-label">Textbook</span></a></li><li><a class="" href="../../textbook/back-glossary.html"><span class="rail-label">Glossary</span></a></li><li><a class="is-active" href="ai-prompt-library.html"><span class="rail-label">AI Prompt Library</span></a></li><li><span class="rail-soon"><span class="rail-label">Datasets</span></span></li></ul></div></aside><section class="docs-main"><details class="docs-rail-mobile"><summary>Browse this section</summary><div class="rail-group"><h3>Read &amp; Reference</h3><ul class="rail-list"><li><a class="" href="../../textbook/index.html"><span class="rail-label">Textbook</span></a></li><li><a class="" href="../../textbook/back-glossary.html"><span class="rail-label">Glossary</span></a></li><li><a class="is-active" href="ai-prompt-library.html"><span class="rail-label">AI Prompt Library</span></a></li><li><span class="rail-soon"><span class="rail-label">Datasets</span></span></li></ul></div></details><nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Courseware</a><span class="sep">›</span><a href="../index.html">Materials</a><span class="sep">›</span><a href="../index.html#read-reference">Read &amp; Reference</a><span class="sep">›</span><span class="current">AI Prompt Library</span></nav><p class="page-overview">27 chapters of copy-paste prompts that turn each framework into a hands-on AI exercise. Jump to a chapter on the right.</p><div class="doc-body"><h1>AI Prompt Library</h1>
 <h3>Principles of Marketing: An AI-Integrated Approach</h3>
 <p><strong>How to use this library.</strong> Each section below is one chapter&#x27;s hands-on AI moves. Every prompt is drawn directly from that chapter&#x27;s interactive widgets, Apply-box exercises, or named AI loops. Copy the block, fill in the bracketed fields with your brand or topic, and paste it into any chat model with web search enabled (Claude, ChatGPT, or Gemini). The prompts are organized on the course&#x27;s <strong>ask -&gt; use -&gt; connect -&gt; build -&gt; publish</strong> ladder: earlier chapters sit on the ask rung, later chapters climb toward connecting live data and publishing outputs.</p>
 <p><strong>AI-use policy (one paragraph).</strong> Use AI as a thinking partner, not a ghostwriter. Verify every specific claim, statistic, date, and name against a real source before it appears in any deliverable. Never paste customer data, PII, confidential financials, or trade secrets into a public tool. Disclose AI assistance when your instructor or employer asks. The course&#x27;s benchmark: an AI-assisted answer you can defend line by line beats an AI answer you cannot explain at all.</p>
@@ -130,7 +339,7 @@ a.ccard:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;}
 <hr>
 <h3>1-A. Vague vs. Specific: Prompt-Builder Demo</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s core interactive widget. It runs two versions of the same request through a live model so you can see how precision changes the output.</p>
-<pre><code>Vague request (button 1):
+<pre tabindex="0" role="region" aria-label="Code block"><code>Vague request (button 1):
 Summarize this brand for me.
 
 Brand context: Liquid Death is a canned mountain water brand that launched in 2019 
@@ -151,7 +360,7 @@ Brand context: [same as above]</code></pre>
 <hr>
 <h3>1-B. Build the Rung-Two Version (Apply Box)</h3>
 <p><strong>What it does.</strong> Turns a one-off task into a reusable Skill (rung two). The step that takes the Apply box from reading about the ladder to climbing it.</p>
-<pre><code>I want to build a reusable assistant for this task:
+<pre tabindex="0" role="region" aria-label="Code block"><code>I want to build a reusable assistant for this task:
 [Describe the task in one sentence, e.g., &quot;summarize a year of customer reviews 
 and flag the top three complaints.&quot;]
 
@@ -173,7 +382,7 @@ Custom GPT or Claude Project so this task is reusable.</code></pre>
 <hr>
 <h3>2-A. 4Cs Value-Proposition Audit</h3>
 <p><strong>What it does.</strong> Audits any homepage hero or value-proposition text against Lauterborn&#x27;s four buyer-side variables. Flags which one is missing.</p>
-<pre><code>You are auditing a value proposition against Lauterborn&#x27;s 4Cs: Consumer wants &amp; 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are auditing a value proposition against Lauterborn&#x27;s 4Cs: Consumer wants &amp; 
 needs, Cost-to-satisfy, Convenience-to-buy, Communication. 
 
 For each C, output one line: the C name, a verdict of PRESENT / VAGUE / MISSING, 
@@ -191,7 +400,7 @@ Value proposition to audit:
 <hr>
 <h3>2-B. Mission Rewrite: Buyer-Job Lens</h3>
 <p><strong>What it does.</strong> Rewrites a product-centric mission statement so it names the buyer&#x27;s job, then identifies which of the five marketing decisions the rewrite would change first.</p>
-<pre><code>Rewrite this mission so it names the buyer&#x27;s job instead of the product, then say 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Rewrite this mission so it names the buyer&#x27;s job instead of the product, then say 
 which of the five marketing decisions (what to make / who to serve / how much to 
 charge / where to sell / how to talk) the rewrite changes first.
 
@@ -207,7 +416,7 @@ Mission to rewrite:
 <hr>
 <h3>3-A. Live PESTEL Scan with Quarter-over-Quarter Diff</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s environmental-scanning widget (vague vs. sharp). The sharp version produces a real-time PESTEL read with source citations and a binding-force verdict.</p>
-<pre><code>Run a PESTEL scan of the current environment for this brand / industry. Search the 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Run a PESTEL scan of the current environment for this brand / industry. Search the 
 live web for current 2026 sources. For each of the six axes (Political, Economic, 
 Social, Technological, Environmental, Legal), give me the top two dated 2026 signals, 
 each with a source and a 1-10 impact score, framed as a quarter-over-quarter diff 
@@ -222,7 +431,7 @@ Brand / industry: [e.g., &quot;U.S. plant-based meat category, mid-2026&quot;]</
 <hr>
 <h3>3-B. The Flip Test (SWOT from the Rival&#x27;s Seat)</h3>
 <p><strong>What it does.</strong> Flips your SWOT by reading each strength the way your strongest rival would read it, revealing vulnerabilities your own analysis misses.</p>
-<pre><code>You are a competitive-strategy coach. Search the live web for current 2026 sources 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a competitive-strategy coach. Search the live web for current 2026 sources 
 when a market claim needs one. No preamble, no em dashes, plain language.
 
 Brand: [your brand]
@@ -243,7 +452,7 @@ competing. Then name the single competitive opening the flip reveals.</code></pr
 <hr>
 <h3>4-A. Decision-Journey Map (Apply Box)</h3>
 <p><strong>What it does.</strong> Maps a buyer&#x27;s decision process for your category, stage by stage, and identifies where the brand is absent.</p>
-<pre><code>Map the consumer decision journey for a buyer choosing [product category, e.g., 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Map the consumer decision journey for a buyer choosing [product category, e.g., 
 &quot;a new laptop under $1,000&quot;] in [year, e.g., &quot;2026&quot;]. For each stage — 
 need recognition, information search, evaluation of alternatives, purchase, 
 and post-purchase evaluation — name the top two touchpoints where a brand can 
@@ -259,7 +468,7 @@ Plain English, 5-6 sentences per stage, no preamble.</code></pre>
 <hr>
 <h3>5-A. Code Open-Ended Survey Responses (Vague vs. Specific)</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s real-AI widget. Sends the same set of open-ended responses through a vague and a sharp coding request to show how instruction quality drives analysis quality.</p>
-<pre><code>Vague version:
+<pre tabindex="0" role="region" aria-label="Code block"><code>Vague version:
 What themes appear in these customer responses?
 [Paste 8-12 open-ended survey responses, one per line.]
 
@@ -286,7 +495,7 @@ Responses:
 <hr>
 <h3>6-A. Name the Segments from Cluster Output</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s first real-AI widget. Reads raw cluster rows, proposes plain-English segment names, and scores each on the five usability criteria.</p>
-<pre><code>You are a segmentation methodologist helping a marketing student read raw cluster 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a segmentation methodologist helping a marketing student read raw cluster 
 output. Be concise and use plain English. Never invent attributes the columns do 
 not contain.
 
@@ -305,7 +514,7 @@ Cluster data:
 <hr>
 <h3>6-B. Draft a Persona from the Strategic Segment</h3>
 <p><strong>What it does.</strong> Turns a one-line strategic segment into a buyer persona with media-buyable descriptors.</p>
-<pre><code>Turn this strategic segment into a buyable media profile: &quot;[paste your segment 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Turn this strategic segment into a buyable media profile: &quot;[paste your segment 
 description, e.g., &#x27;women aged 28-44 who treat daily hydration as part of a 
 health-and-identity practice&#x27;]&quot;. List the Meta and TikTok interest categories, 
 the geo and income filters, and flag where the profile reaches non-target buyers.</code></pre>
@@ -316,7 +525,7 @@ the geo and income filters, and flag where the profile reaches non-target buyers
 <hr>
 <h3>6-C. Write and Audit a Positioning Statement</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s positioning widget. Given four inputs (brand, target, best-differentiator, rival), it writes a statement in the standard template and flags any clause the firm cannot prove or that a rival could say word for word.</p>
-<pre><code>You are a brand-positioning coach helping a marketing student. Be concise and use 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a brand-positioning coach helping a marketing student. Be concise and use 
 plain English. Never invent facts the student did not provide.
 
 Write a positioning statement in the standard template (For [target] who [need], 
@@ -339,7 +548,7 @@ One rival: [competitor name]</code></pre>
 <hr>
 <h3>7-A. Distinctive-Asset Audit</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s asset-audit widget. For any brand, it lists non-name cues (color, shape, sound, character, font, slogan fragment), scores each on fame and uniqueness, and flags assets at risk of erosion.</p>
-<pre><code>You are a brand strategist auditing distinctive assets for a marketing course. 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a brand strategist auditing distinctive assets for a marketing course. 
 A distinctive asset is a non-name cue (color, shape, sound, character, font, 
 packaging, slogan fragment) that buyers tie to one brand. Be concise. No preamble.
 
@@ -357,7 +566,7 @@ Brand: [brand name and one-line description]</code></pre>
 <hr>
 <h3>7-B. GEO Weekly-Check Prompt</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s generative-engine-optimization move. Monitors how AI search engines describe your brand this week and tracks citation share over a four-week window.</p>
-<pre><code>Search the web for how AI-powered search engines (Perplexity, Google AI Overview, 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Search the web for how AI-powered search engines (Perplexity, Google AI Overview, 
 ChatGPT search) describe [brand name] when someone asks &quot;[the category question 
 your buyer asks, e.g., &#x27;what is the best running shoe for marathon training&#x27;]&quot; 
 right now. 
@@ -373,7 +582,7 @@ improve its citation share. Be specific and dated.</code></pre>
 <hr>
 <h3>7-C. Perceptual-Map Read + Competitor Positioning</h3>
 <p><strong>What it does.</strong> For any brand and two axes, places the brand and its named rivals on a map from their public positioning, then reads the empty quadrant.</p>
-<pre><code>You are a brand strategist helping a marketing student build a perceptual map. 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a brand strategist helping a marketing student build a perceptual map. 
 Reason about the actual named brands and their current real positioning, using 
 what you know and any live web information. Be concrete and place brands only 
 from their public positioning. No preamble, no marketing cliches.
@@ -397,7 +606,7 @@ whether buyer ideal points cluster there.</code></pre>
 <hr>
 <h3>8-A. Product-Lifecycle Stage Detector</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s live-AI widget. Given any product or brand, it searches the web for current signals and places it on the PLC curve with evidence.</p>
-<pre><code>Search the live web for current signals about this product or brand, then place 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Search the live web for current signals about this product or brand, then place 
 it on the product lifecycle curve (introduction / growth / maturity / decline). 
 Name the specific signals that justify the placement: revenue trend, competitive 
 intensity, price trajectory, and category penetration rate. Then name the one 
@@ -411,7 +620,7 @@ Product / brand: [e.g., &quot;Apple AirPods, mid-2026&quot;]</code></pre>
 <hr>
 <h3>8-B. Packaging-as-Strategy Audit (Apply Box)</h3>
 <p><strong>What it does.</strong> Evaluates a product&#x27;s packaging on its five jobs: attract attention, communicate quality, enable purchase, build brand recognition, and support sustainability claims.</p>
-<pre><code>Audit the packaging of [brand + product, e.g., &quot;Liquid Death 16oz tallboy can&quot;] 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Audit the packaging of [brand + product, e.g., &quot;Liquid Death 16oz tallboy can&quot;] 
 on its five strategic jobs: (1) attract shelf attention, (2) communicate quality 
 or brand personality, (3) enable purchase (ease of handling, information clarity), 
 (4) build distinctive recognition at distance, (5) support any sustainability 
@@ -427,7 +636,7 @@ Close with the one job the packaging handles worst and what a fix would cost.</c
 <hr>
 <h3>9-A. SERVQUAL Gap Diagnosis (Sharp Version)</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s gap-diagnosis widget. Given one real customer complaint, it identifies which of the five SERVQUAL gaps it belongs in, cites the upstream cause, and prescribes a fix.</p>
-<pre><code>You are a service-quality advisor diagnosing a customer complaint with the 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a service-quality advisor diagnosing a customer complaint with the 
 SERVQUAL five-gap model. The brand and failure may be real and recent; search 
 the live web for the current facts of the case before you judge, and cite a 
 date where you can.
@@ -458,7 +667,7 @@ description of the failure.]</code></pre>
 <hr>
 <h3>9-B. Journey Map to Service Blueprint (Apply Box)</h3>
 <p><strong>What it does.</strong> Converts a customer journey description into a service blueprint with frontstage and backstage actions, and flags the highest-risk failure point.</p>
-<pre><code>Convert this customer journey into a service blueprint. For each stage of the 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Convert this customer journey into a service blueprint. For each stage of the 
 journey I describe, name: (1) the frontstage action (what the customer does or 
 sees), (2) the frontstage employee action, (3) the backstage action the customer 
 never sees, and (4) the supporting systems or tools. Then flag the single point 
@@ -473,7 +682,7 @@ Journey stages for [brand + service, e.g., &quot;a hotel check-in through depart
 <hr>
 <h3>9-C. Score the Queue on Three Justices (Apply Box)</h3>
 <p><strong>What it does.</strong> Given a service failure and a recovery response, scores the response on distributive, procedural, and interactional justice and identifies the justice leak.</p>
-<pre><code>Score this service recovery on the three justices:
+<pre tabindex="0" role="region" aria-label="Code block"><code>Score this service recovery on the three justices:
 - Distributive justice: was the compensation fair relative to the harm?
 - Procedural justice: was the process fast, transparent, and consistent?
 - Interactional justice: was the communication warm, personal, and respectful?
@@ -494,7 +703,7 @@ Recovery: [describe what the brand did in response]</code></pre>
 <hr>
 <h3>10-A. Pricing-Approach Picker (Sharp Version)</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s core AI widget. Given a brand and segment, identifies which of the four pricing approaches fits, explains the dollar reasoning, and provides a sample price band.</p>
-<pre><code>You are a pricing advisor matching a real brand to one of the four pricing 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a pricing advisor matching a real brand to one of the four pricing 
 approaches. The brand and segment may be real, so you may search the live web 
 for current facts and cite a date where you can. The four approaches are: 
 cost-based (markup over unit cost, the floor, common in regulated utilities), 
@@ -522,7 +731,7 @@ firms bidding on municipal contracts&quot;]</code></pre>
 <hr>
 <h3>10-B. Competitor Pricing Audit (Apply Box)</h3>
 <p><strong>What it does.</strong> Scans current competitor prices, identifies the pricing anchor in the category, and flags where your brand is under- or over-positioned relative to the category frame.</p>
-<pre><code>Search the live web for current pricing of the top four competitors in 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Search the live web for current pricing of the top four competitors in 
 [product category, e.g., &quot;U.S. premium wireless headphones, 2026&quot;]. For each 
 competitor, report: the brand name, the flagship product SKU, the current 
 list price, and one sentence on the value claim that justifies the price. 
@@ -540,7 +749,7 @@ cite a source and date for each price.</code></pre>
 <hr>
 <h3>11-A. Channel Arithmetic: Markup vs. Margin (Apply Box)</h3>
 <p><strong>What it does.</strong> Runs the markup-vs-margin calculation for any channel and flags where a brand&#x27;s pricing math breaks down when it adds an intermediary.</p>
-<pre><code>A brand sells a product at a manufacturer&#x27;s suggested retail price of $[MSRP]. 
+<pre tabindex="0" role="region" aria-label="Code block"><code>A brand sells a product at a manufacturer&#x27;s suggested retail price of $[MSRP]. 
 The brand&#x27;s cost to produce is $[unit cost]. A retailer who carries the product 
 takes a [X]% margin on the retail price. A distributor between the brand and 
 retailer takes a [Y]% margin on the price it charges the retailer.
@@ -557,7 +766,7 @@ name one alternative channel structure that would recover it.</code></pre>
 <hr>
 <h3>11-B. Four-Forces Channel Conflict Triage (Apply Box)</h3>
 <p><strong>What it does.</strong> Given a channel conflict situation, identifies which of the four conflict forces is driving it and prescribes the appropriate response.</p>
-<pre><code>Classify this channel conflict and prescribe a response. The four forces are: 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Classify this channel conflict and prescribe a response. The four forces are: 
 (1) goal incompatibility — brand and channel partner want different things, 
 (2) role ambiguity — unclear who owns which customer, territory, or SKU, 
 (3) power imbalance — one side has leverage the other cannot match, 
@@ -580,7 +789,7 @@ are, what triggered it, what each side wants]</code></pre>
 <hr>
 <h3>12-A. Bring-Your-Own-Store: Eight-Decision Retail Audit</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s AI audit loop. Given any retail concept, walks it through eight decision checkpoints and flags the one that most threatens the economics.</p>
-<pre><code>Run a retail-entry audit for this concept on eight decisions: (1) target shopper 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Run a retail-entry audit for this concept on eight decisions: (1) target shopper 
 and trip mission, (2) assortment depth vs. breadth trade-off, (3) store-layout 
 type (grid / racetrack / free-flow / boutique) and why, (4) pricing architecture 
 (anchor item, traffic-driver, margin-builder), (5) experience element that earns 
@@ -601,7 +810,7 @@ target buyer, category]</code></pre>
 <hr>
 <h3>13-A. Product-Page Five-Jobs Audit (Apply Box)</h3>
 <p><strong>What it does.</strong> Evaluates any product page against its five jobs: attract, inform, reassure, convert, and retain (post-purchase).</p>
-<pre><code>Audit this product page against the five jobs a product page must do: 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Audit this product page against the five jobs a product page must do: 
 (1) attract — headline and hero image earn a 3-second stay, 
 (2) inform — product description answers the top three buyer questions, 
 (3) reassure — social proof, returns policy, and trust signals are present, 
@@ -621,7 +830,7 @@ Product page URL or description: [paste URL or describe the page in detail]</cod
 <hr>
 <h3>13-B. LTV/CAC Reveal: Which Lever Drives the Gap? (Apply Box)</h3>
 <p><strong>What it does.</strong> Given two customer cohorts, decomposes the LTV difference into its three drivers (purchase frequency, average order value, margin) to identify which lever moves the number most.</p>
-<pre><code>Two customer cohorts for [brand]:
+<pre tabindex="0" role="region" aria-label="Code block"><code>Two customer cohorts for [brand]:
 Cohort A (high-value): [average purchase frequency per year] purchases/year, 
 [average order value], [gross margin %]
 Cohort B (low-value): [average purchase frequency per year] purchases/year, 
@@ -641,7 +850,7 @@ most efficiently close it. Show the arithmetic.</code></pre>
 <hr>
 <h3>14-A. Push Notification Generator (Sharp Version)</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s real-AI widget. Given a segment brief, generates one push notification in the correct format: title, pipe, body under 178 characters for iOS.</p>
-<pre><code>You are a mobile-CRM copywriter generating one push notification from a brief. 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a mobile-CRM copywriter generating one push notification from a brief. 
 Output exactly one line: a short title, then a pipe (|), then the body. Keep 
 the body under 178 characters for iOS. Be specific to the segment in the brief; 
 do not write generic filler.
@@ -664,7 +873,7 @@ Tone: [e.g., &quot;energetic but not pushy&quot;]</code></pre>
 <hr>
 <h3>15-A. Market-Entry Brief (Sharp Version)</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s live-AI widget. Given a firm description and a target market, writes a one-page entry brief naming the entry mode, partner constraint, and first-90-day risks.</p>
-<pre><code>You are an international-marketing strategist writing a one-page entry brief for 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are an international-marketing strategist writing a one-page entry brief for 
 a marketing student. Be specific and concrete. When the question allows, name the 
 entry mode, the partner constraint, and the first-90-day risks. Output 4 to 6 
 short lines, no preamble.
@@ -681,7 +890,7 @@ competitive conditions.</code></pre>
 <hr>
 <h3>15-B. Localization Audit: Seven-Checkpoint Loop (Apply Box)</h3>
 <p><strong>What it does.</strong> Walks any campaign asset through seven localization checkpoints and flags the one most likely to create a brand or legal risk.</p>
-<pre><code>Run a seven-checkpoint localization audit on this asset for [target market]:
+<pre tabindex="0" role="region" aria-label="Code block"><code>Run a seven-checkpoint localization audit on this asset for [target market]:
 1. Language: is the translation natural, not literal?
 2. Cultural register: does the tone match local norms for the category?
 3. Imagery: do visuals avoid taboo elements (color, gesture, symbol)?
@@ -706,7 +915,7 @@ Target market: [country and, if relevant, region or language variant]</code></pr
 <hr>
 <h3>16-A. Print Ad Creative Brief (Sharp Version)</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s creative widget. Given a product and constraint, generates one print ad concept: headline, visual device, and a note on what makes it ownable.</p>
-<pre><code>You are an advertising creative director helping a marketing student. Read the 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are an advertising creative director helping a marketing student. Read the 
 brief and return exactly 3 short lines for ONE print ad: a headline, a one-line 
 visual device, and a one-line note on what makes it ownable. Each line 16 words 
 or fewer. Separate the three lines with newlines. No preamble.
@@ -721,7 +930,7 @@ for ten years. Name the device.</code></pre>
 <hr>
 <h3>16-B. Live-Campaign Audit (Apply Box)</h3>
 <p><strong>What it does.</strong> Reads a brand&#x27;s current advertising against STEPPS and awareness rung, then names the single fix that would improve campaign efficiency.</p>
-<pre><code>You are a brand strategist auditing a real brand&#x27;s CURRENT advertising for a 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a brand strategist auditing a real brand&#x27;s CURRENT advertising for a 
 marketing student. Search the live web for the brand&#x27;s recent campaigns and 
 current positioning, then reply ONLY with these four labeled lines, each on 
 its own line, each 22 words or fewer:
@@ -742,7 +951,7 @@ Brand to audit: [brand name]</code></pre>
 <hr>
 <h3>17-A. Pillar-Cluster Content Plan (Live Web Search)</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s content-planning widget. Uses live search to read what currently ranks, then returns a buildable pillar-cluster plan in a strict format.</p>
-<pre><code>You are a content-strategy advisor helping a marketing student. Use a live web 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a content-strategy advisor helping a marketing student. Use a live web 
 search to read what currently ranks and gets cited on the student&#x27;s topic THIS 
 WEEK, then return a buildable content plan. Reply as compact plain text in 
 EXACTLY this shape, nothing else:
@@ -763,7 +972,7 @@ Brand: [brand name and one-line description]</code></pre>
 <hr>
 <h3>17-B. Magic Words: Headline and Copy Craft (Apply Box)</h3>
 <p><strong>What it does.</strong> Applies Berger&#x27;s SUCCESs criteria and the STEPPS rubric to a draft headline, rewrites it to score higher, and explains the one lever that moved the most.</p>
-<pre><code>Apply the SUCCESs rubric (Simple, Unexpected, Concrete, Credible, Emotional, 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Apply the SUCCESs rubric (Simple, Unexpected, Concrete, Credible, Emotional, 
 Story) and the STEPPS framework to this draft headline. Score it 1-3 on each 
 dimension, rewrite it to score higher on the weakest dimension, and name the 
 one lever that moves the most value. Then write a second variant optimized for 
@@ -783,7 +992,7 @@ Target reader: [one-line description of the buyer]</code></pre>
 <hr>
 <h3>18-A. GEO Content Brief (Six Levers)</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s GEO widget. Given a brand brief, returns a content brief structured on the six GEO levers so the brand earns citations in AI-generated search answers.</p>
-<pre><code>You are a GEO content strategist advising a marketing student. Be specific and 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a GEO content strategist advising a marketing student. Be specific and 
 concrete. Output a content brief structured around the six GEO levers (FAQ schema, 
 expert quotation, authority placement, direct-answer paragraphs, brand mentions, 
 monitoring). Use 5 to 8 short bullets and nothing else. Lean on the exact specifics 
@@ -802,7 +1011,7 @@ Current content gap: [what your site does not yet have]</code></pre>
 <hr>
 <h3>18-B. FAQPage JSON-LD Generator (Apply Box)</h3>
 <p><strong>What it does.</strong> Given a product or service and its top buyer questions, generates valid FAQPage JSON-LD markup ready to paste into a <code>&lt;script type=&quot;application/ld+json&quot;&gt;</code> tag.</p>
-<pre><code>Generate valid FAQPage JSON-LD markup for this product or service. Include 4-6 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Generate valid FAQPage JSON-LD markup for this product or service. Include 4-6 
 questions and answers. Each answer should be a direct-answer paragraph under 
 60 words. Use proper JSON-LD syntax with @context, @type, and mainEntity. 
 The answers should be factual and verifiable, not marketing copy.
@@ -823,7 +1032,7 @@ Top buyer questions:
 <hr>
 <h3>19-A. STEPPS Score: Will It Travel?</h3>
 <p><strong>What it does.</strong> Scores any piece of content on the six STEPPS levers and returns a verdict on whether it is likely to travel organically.</p>
-<pre><code>Score this piece of content on the six STEPPS levers that predict organic sharing. 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Score this piece of content on the six STEPPS levers that predict organic sharing. 
 For each lever, give a score of 0 to 3 and one sentence explaining the rating.
 
 Social Currency: does sharing it make the sharer look good or in-the-know?
@@ -845,7 +1054,7 @@ Platform: [TikTok / Instagram Reels / LinkedIn / X / other]</code></pre>
 <hr>
 <h3>19-B. Platform Triage: Where Should This Post Live? (Apply Box)</h3>
 <p><strong>What it does.</strong> Given a content brief, recommends which platform tier to publish on first, which to adapt for second, and which to skip, with specific format guidance.</p>
-<pre><code>Recommend the right platform sequence for this content. The three tiers are: 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Recommend the right platform sequence for this content. The three tiers are: 
 (1) mass-discovery (TikTok, Instagram Reels, YouTube Shorts) — algorithm-driven, 
 format = short video, first-batch test decides reach, 
 (2) text-and-journalist (X, LinkedIn, Threads) — follower-network-driven, 
@@ -865,7 +1074,7 @@ target audience, brand tone]</code></pre>
 <hr>
 <h3>19-C. Write the Reply to a Viral Moment (Apply Box)</h3>
 <p><strong>What it does.</strong> Drafts the one post a brand should send when a customer puts something about it on the For You page, in the brand&#x27;s voice, fast and human.</p>
-<pre><code>Draft the single social media reply this brand should post if [describe a 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Draft the single social media reply this brand should post if [describe a 
 hypothetical viral-customer-moment, e.g., &quot;a customer posts a TikTok showing 
 their Stanley cup surviving a car fire and the car being totaled&quot;]. 
 
@@ -887,7 +1096,7 @@ Platform: [TikTok / X / Instagram / other]</code></pre>
 <hr>
 <h3>20-A. Creator-Tier Picker (Sharp Version)</h3>
 <p><strong>What it does.</strong> Given a budget, audience, and campaign goal, recommends a specific creator tier, estimates how many creators the budget buys, and explains why the tier fits the goal.</p>
-<pre><code>I have a budget of $[amount], an audience of [describe in one sentence], 
+<pre tabindex="0" role="region" aria-label="Code block"><code>I have a budget of $[amount], an audience of [describe in one sentence], 
 and a campaign goal of [e.g., &quot;drive trial purchases of a new flavor among 
 18-24-year-old fitness enthusiasts in the U.S.&quot;]. 
 
@@ -903,7 +1112,7 @@ that would fit any brand.</code></pre>
 <hr>
 <h3>20-B. Creator Vetting Audit (Live Web Search)</h3>
 <p><strong>What it does.</strong> Given a creator handle, searches the web and returns a brand-side vetting report on audience authenticity, content-brand alignment, controversy history, and commercial terms.</p>
-<pre><code>You are a creator-vetting analyst on a brand-side marketing team. Audit this 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a creator-vetting analyst on a brand-side marketing team. Audit this 
 social creator handle for fit before the brand signs a paid integration. Use 
 live web search to ground every claim in current, dated information. Report 
 in this structure:
@@ -929,7 +1138,7 @@ Brand: [brand name and one-line description]</code></pre>
 <hr>
 <h3>21-A. One-Prompt Customer-Base Audit (Apply Box)</h3>
 <p><strong>What it does.</strong> Has the model generate a synthetic transaction log, sort buyers into profit deciles, and decompose the top-vs-bottom decile gap into frequency, basket size, and margin.</p>
-<pre><code>Invent a 40-row transaction log for [brand name], a [brief brand description]. 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Invent a 40-row transaction log for [brand name], a [brief brand description]. 
 Each row should include: customer ID, number of orders in the last 12 months, 
 average order value, and estimated gross margin per order (use realistic 
 category benchmarks).
@@ -946,7 +1155,7 @@ of the three explains most of the gap between the top and bottom decile.</code><
 <hr>
 <h3>21-B. Defection-Cause Triage Before the Win-Back (Apply Box)</h3>
 <p><strong>What it does.</strong> Classifies three lapsed buyers by defection type (dissatisfied / deliberative / lifestyle switcher) and prescribes the win-back for each, including which one to stop spending on.</p>
-<pre><code>Classify each of these three lapsed buyers as a dissatisfied, deliberative, 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Classify each of these three lapsed buyers as a dissatisfied, deliberative, 
 or lifestyle switcher, write the one-line win-back each should get, and tell 
 me which one I should stop spending on.
 
@@ -963,7 +1172,7 @@ Brand: [brand name and category]</code></pre>
 <hr>
 <h3>21-C. CLV-by-CRV Grid: Separate Spenders from Referrers (Apply Box)</h3>
 <p><strong>What it does.</strong> Places five imagined buyers on a 2x2 of high/low lifetime value vs. high/low referral value, then prescribes the marketing play for each quadrant.</p>
-<pre><code>Place these five imagined buyers for [brand] on a 2×2 grid of high/low 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Place these five imagined buyers for [brand] on a 2×2 grid of high/low 
 lifetime value (CLV) versus high/low referral value (CRV), and prescribe 
 the marketing play for each quadrant.
 
@@ -984,7 +1193,7 @@ Five buyers (one per line):
 <hr>
 <h3>21-D. Three-Tier Loyalty Program Design (Apply Box)</h3>
 <p><strong>What it does.</strong> Designs a three-tier loyalty program for a specific brand, names earn rules and rewards, and flags the tier most likely to become a margin drain.</p>
-<pre><code>Design a three-tier loyalty program for [brand name]: name each tier, its earn 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Design a three-tier loyalty program for [brand name]: name each tier, its earn 
 rule, its reward, and the one buyer behavior each tier is meant to change. 
 Then tell me which tier risks becoming a margin drain — the one where you end 
 up subsidizing purchases the buyer would have made anyway.</code></pre>
@@ -998,7 +1207,7 @@ up subsidizing purchases the buyer would have made anyway.</code></pre>
 <hr>
 <h3>22-A. Share-of-Voice Monitor (Live Web Search)</h3>
 <p><strong>What it does.</strong> Searches the last seven days of press, news, and social coverage to estimate a brand&#x27;s share of voice against named competitors.</p>
-<pre><code>You are an earned-media analyst on a brand-side comms team. Estimate share of 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are an earned-media analyst on a brand-side comms team. Estimate share of 
 voice for [brand] against [competitor 1] and [competitor 2] using LIVE web 
 search of the last seven days of press, news, and social coverage. For each 
 brand, report: estimated mention volume relative to the others (high / medium / 
@@ -1013,7 +1222,7 @@ for [brand] based on the read.</code></pre>
 <hr>
 <h3>22-B. SCCT Crisis Classifier (Apply Box)</h3>
 <p><strong>What it does.</strong> Classifies a crisis against Coombs&#x27;s SCCT clusters and recommends a response family.</p>
-<pre><code>You are a senior crisis-communications director applying Situational Crisis 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a senior crisis-communications director applying Situational Crisis 
 Communication Theory (Coombs 2007). Classify directly from the description the 
 user provides; do not search the web. For each incident, output exactly four 
 labeled lines:
@@ -1035,7 +1244,7 @@ Incident 2 (optional): [describe a second incident for comparison]</code></pre>
 <hr>
 <h3>22-C. Crisis Statement Audit (Apply Box)</h3>
 <p><strong>What it does.</strong> Given a draft crisis statement, audits it against the five elements of an effective first-hour anchor: acknowledgment, facts, action, timeline, and channel.</p>
-<pre><code>Audit this draft crisis statement against five elements of an effective 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Audit this draft crisis statement against five elements of an effective 
 first-hour anchor:
 1. Acknowledgment: does it acknowledge the incident without admitting liability 
    prematurely?
@@ -1061,7 +1270,7 @@ Draft statement:
 <hr>
 <h3>23-A. Competitive Comparison Framework (Apply Box)</h3>
 <p><strong>What it does.</strong> Builds a side-by-side comparison of your brand against the top two rivals on the attributes a B2B buyer cares about most.</p>
-<pre><code>Build a competitive-comparison framework for a B2B sales conversation. For 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Build a competitive-comparison framework for a B2B sales conversation. For 
 [brand] versus [rival 1] and [rival 2], compare on the five attributes a 
 buyer in [buyer role, e.g., &quot;a procurement manager at a mid-size manufacturer&quot;] 
 cares most about. 
@@ -1085,7 +1294,7 @@ Rival 2: [competitor name]</code></pre>
 <hr>
 <h3>24-A. Marketing Plan Sanity Check (Apply Box)</h3>
 <p><strong>What it does.</strong> Runs a draft marketing plan through five diagnostic questions and identifies which of the six common failure modes it is most at risk of.</p>
-<pre><code>Run a five-question sanity check on this marketing plan and then name which of 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Run a five-question sanity check on this marketing plan and then name which of 
 the six common failure modes it is most at risk of.
 
 The five questions:
@@ -1112,7 +1321,7 @@ split, attribution method, and how learning gets fed back]</code></pre>
 <hr>
 <h3>25-A. Marketing Budget Defense Audit (Live Web Search)</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s budget-audit widget. Reads a firm&#x27;s current marketing-to-revenue position and earnings against category benchmarks, then frames a defense of the spend.</p>
-<pre><code>You are a marketing-finance analyst auditing how a real firm defends its 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a marketing-finance analyst auditing how a real firm defends its 
 marketing budget. Use live web search to read the firm&#x27;s current marketing-
 to-revenue position, recent earnings, and category benchmark. Begin directly 
 with the read; do not narrate that you are searching or list your steps.
@@ -1132,7 +1341,7 @@ Company: [company name and ticker if public]</code></pre>
 <hr>
 <h3>25-B. Budget-Defense Memo (Apply Box)</h3>
 <p><strong>What it does.</strong> Given P&amp;L inputs, drafts a one-paragraph budget-defense memo in plain English, then names the single figure that does the most work.</p>
-<pre><code>You are a marketing-finance analyst drafting a one-paragraph budget-defense 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a marketing-finance analyst drafting a one-paragraph budget-defense 
 memo from the P&amp;L figures given. Compute directly from the figures provided; 
 do not search the web and do not invent outside facts. Write a tight defense 
 memo (no headers, no bullet list). After the memo, on a new line, write 
@@ -1156,7 +1365,7 @@ Category marketing-to-revenue median: [benchmark]%</code></pre>
 <hr>
 <h3>26-A. Privacy-Policy Red-Flag Audit (Apply Box)</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s live audit demo. Given a privacy policy, identifies the three highest-risk clauses and maps them to the applicable regulation.</p>
-<pre><code>Audit this privacy policy for marketing red flags. Identify the three clauses 
+<pre tabindex="0" role="region" aria-label="Code block"><code>Audit this privacy policy for marketing red flags. Identify the three clauses 
 that create the highest risk for the brand under GDPR (consent and Article 22 
 automated decisions), CCPA/CPRA (sale of personal information, opt-out rights), 
 or the EU AI Act (Article 50 disclosure for AI-generated content). For each 
@@ -1172,7 +1381,7 @@ Privacy policy text: [paste the policy or the most relevant section]</code></pre
 <hr>
 <h3>26-B. SAFE AI-Use Policy Generator (Apply Box)</h3>
 <p><strong>What it does.</strong> Generates a one-page AI-use policy organized on the SAFE spine (Safeguards, Accountability, Fairness, Empowerment) that a team can adopt on Monday.</p>
-<pre><code>Draft a one-page AI-use policy for this brand, organized on SAFE.
+<pre tabindex="0" role="region" aria-label="Code block"><code>Draft a one-page AI-use policy for this brand, organized on SAFE.
 Brand: &lt;one line: what it sells, who it serves, team size&gt;
 
 SAFEGUARDS (privacy + consent):
@@ -1204,7 +1413,7 @@ section two to four lines, with one named owner per section.</code></pre>
 <hr>
 <h3>27-A. Capstone Brand-Decision Analyzer (Apply Box)</h3>
 <p><strong>What it does.</strong> The chapter&#x27;s capstone builder. Given five inputs about a real brand, synthesizes the relevant chapter frameworks and returns a one-page marketing plan.</p>
-<pre><code>You are a marketing strategist building a one-page marketing plan for a 
+<pre tabindex="0" role="region" aria-label="Code block"><code>You are a marketing strategist building a one-page marketing plan for a 
 sophomore&#x27;s capstone project. Given the five brand inputs below, synthesize 
 the relevant frameworks from a principles-of-marketing course (STP, pricing 
 approach, distribution strategy, content and social strategy, lifecycle and 
@@ -1233,7 +1442,7 @@ NORTH STAR METRIC: the one number that tells you the plan is working</code></pre
 <hr>
 <h3>27-B. Connect the Skills: What Have You Built? (Apply Box)</h3>
 <p><strong>What it does.</strong> Inventories the AI moves the student has practiced across the book and places them on the rung ladder so they can see the climb.</p>
-<pre><code>I have practiced the following AI moves across a principles-of-marketing course. 
+<pre tabindex="0" role="region" aria-label="Code block"><code>I have practiced the following AI moves across a principles-of-marketing course. 
 Place each move on the four-rung ladder (ask / Skill / MCP-connected / 
 scheduled agent), name the chapter it came from, and tell me which three moves 
 I should prioritize making into reusable Skills (rung two) before I graduate.
@@ -1249,7 +1458,65 @@ Goal I am trying to achieve: [e.g., &quot;get a job in brand management&quot;]</
 <p><strong>Expected output.</strong> A table placing each move on a rung, with chapter citations, plus a three-move priority list for rung-two conversion.</p>
 <p><strong>Disclosure/verification note.</strong> Keep a personal log of AI outputs you have verified and used. Employers increasingly ask for examples of AI-assisted work with documented verification steps.</p>
 <hr>
-<p><em>Library version: 2026-05-24. Prompts drawn from chapter-01 through chapter-27 HTML source files, v7. Compiled for read-reference as part of the Principles of Marketing: An AI-Integrated Approach courseware package.</em></p></main>
+<p><em>Library version: 2026-05-24. Prompts drawn from chapter-01 through chapter-27 HTML source files, v7. Compiled for read-reference as part of the Principles of Marketing: An AI-Integrated Approach courseware package.</em></p></div></section><aside class="docs-right" aria-label="On this page and related"><div class="doc-toc"></div></aside></div>
+<script>
+(function(){
+  "use strict";
+  function slugify(t) {
+    return String(t||"").toLowerCase()
+      .replace(/[^a-z0-9 \-]/g, "")
+      .replace(/\s+/g, "-").replace(/^-+|-+$/g, "")
+      .slice(0, 60) || "section";
+  }
+  var doc = document.querySelector(".doc-body");
+  var tocHost = document.querySelector(".doc-toc");
+  if (!doc || !tocHost) return;
+  var hs = doc.querySelectorAll("h2, h3");
+  if (!hs.length) { tocHost.style.display = "none"; return; }
+  // ensure each heading has an id
+  var seen = {};
+  var items = [];
+  hs.forEach(function(h){
+    var id = h.id || slugify(h.textContent);
+    if (seen[id]) { id = id + "-" + (++seen[id]); } else { seen[id] = 1; }
+    h.id = id;
+    items.push({ el: h, id: id, text: h.textContent.replace(/\s+/g, " ").trim(),
+                 tag: h.tagName.toLowerCase() });
+  });
+  // build TOC
+  var html = '<p class="toc-eyebrow">On this page</p><ul class="toc-list">';
+  items.forEach(function(it){
+    var cls = it.tag === "h3" ? "toc-h3" : "";
+    html += '<li><a class="' + cls + '" href="#' + it.id + '" data-toc-id="' + it.id + '">' +
+      it.text.replace(/[<>&]/g, function(c){return {"<":"&lt;",">":"&gt;","&":"&amp;"}[c];}) +
+      '</a></li>';
+  });
+  html += '</ul>';
+  tocHost.innerHTML = html + tocHost.innerHTML;
+
+  // active-section spy
+  var links = {};
+  tocHost.querySelectorAll("a[data-toc-id]").forEach(function(a){
+    links[a.getAttribute("data-toc-id")] = a;
+  });
+  if ("IntersectionObserver" in window) {
+    var current = null;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var id = e.target.id;
+        if (!id || !links[id]) return;
+        if (e.isIntersecting) {
+          if (current) current.classList.remove("is-current");
+          current = links[id];
+          current.classList.add("is-current");
+        }
+      });
+    }, { rootMargin: "-80px 0px -70% 0px", threshold: 0 });
+    items.forEach(function(it){ io.observe(it.el); });
+  }
+})();
+</script>
+</main>
 <footer><div class="inner">Principles of Marketing: An AI-Integrated Approach &middot; instructor courseware.</div></footer>
 </body>
 </html>

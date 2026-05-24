@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 280" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="Stanley revenue climbed from about 73 million dollars in 2019 to past 750 million in 2023 after the firm re-pointed the 40-ounce Quencher at the buyer its dashboards were not counting. The re-point year, 2019, is the load-bearing event and is drawn in coral.">
+  <g font-size="11" fill="#1a1a1a">
+    <line x1="70" y1="220" x2="624" y2="220" stroke="#7A7A7A"/>
+    <line x1="70" y1="40" x2="70" y2="220" stroke="#E8E6E1"/>
+    <g font-size="11" fill="#7A7A7A" text-anchor="end">
+      <text x="62" y="224">$0</text>
+      <text x="62" y="172">$200M</text>
+      <text x="62" y="120">$500M</text>
+      <text x="62" y="68">$800M</text>
+    </g>
+    <text x="32" y="130" font-size="11" fill="#7A7A7A" text-anchor="middle" font-style="italic" transform="rotate(-90 32 130)">annual revenue</text>
+
+    <g font-size="10" fill="#7A7A7A" text-anchor="middle">
+      <text x="100" y="244">2019</text>
+      <text x="230" y="244">2021</text>
+      <text x="360" y="244">2023</text>
+      <text x="490" y="244">2024</text>
+      <text x="600" y="244">2025</text>
+    </g>
+
+    <polyline points="100,210 165,202 230,180 295,138 360,76 425,66 490,62 555,90 600,112"
+              fill="none" stroke="#1a1a1a" stroke-width="2"/>
+
+    <circle cx="100" cy="210" r="3.5" fill="#1a1a1a"/>
+    <circle cx="230" cy="180" r="3" fill="#1a1a1a"/>
+    <circle cx="360" cy="76"  r="3" fill="#1a1a1a"/>
+    <circle cx="490" cy="62"  r="6" fill="#DA7756"/>
+
+    <text x="100" y="200" font-size="11" font-weight="600">$73M</text>
+    <text x="498" y="56"  font-size="13" font-weight="700" fill="#DA7756">$800M</text>
+
+    <line x1="100" y1="34" x2="100" y2="206" stroke="#DA7756" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <text x="100" y="28" text-anchor="middle" font-size="11" fill="#DA7756" font-weight="700">2019 re-point</text>
+    <text x="100" y="14" text-anchor="middle" font-size="10" fill="#888" font-style="italic">same 1913 product. new buyer.</text>
+
+    <text x="330" y="268" text-anchor="middle" font-size="11" fill="#7A7A7A" font-style="italic">the dashboard read the buyer as men 35 to 55. the Quencher buyer was a woman drinking water at her desk all day.</text>
+  </g>
+</svg>

@@ -186,24 +186,6 @@
       "meta": "draft"
     },
     {
-      "id": "accessibility-vpat",
-      "group": "adopt-deploy",
-      "title": "Accessibility / VPAT",
-      "blurb": "The courseware ships compliant by default; this documents how and where it conforms.",
-      "status": "available",
-      "href": "#accessibility",
-      "meta": "WCAG 2.2 AA"
-    },
-    {
-      "id": "get-started",
-      "group": "adopt-deploy",
-      "title": "Get Started / Adopt",
-      "blurb": "A short path from curious to teaching: what's ready now and how to put it to work.",
-      "status": "available",
-      "href": "#get-started",
-      "meta": null
-    },
-    {
       "id": "whats-new",
       "group": "adopt-deploy",
       "title": "What's New / Roadmap",

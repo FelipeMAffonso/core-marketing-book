@@ -341,32 +341,11 @@
           is ready to use right now, what is in draft and accessible, and what is in the queue.
           No invented ship dates. No vaporware.
         </p>
-        <div class="state-card" role="region" aria-label="Build summary">
-          <div class="state-row">
-            <div class="state-item">
-              <span class="state-num">27</span>
-              <span class="state-label">Chapters</span>
-            </div>
-            <div class="state-divider" aria-hidden="true"></div>
-            <div class="state-item">
-              <span class="state-num coral">27</span>
-              <span class="state-label">Test banks</span>
-            </div>
-            <div class="state-divider" aria-hidden="true"></div>
-            <div class="state-item">
-              <span class="state-num coral">804</span>
-              <span class="state-label">LMS items</span>
-            </div>
-            <div class="state-divider" aria-hidden="true"></div>
-            <div class="state-item">
-              <span class="state-num">9</span>
-              <span class="state-label">Slide decks</span>
-            </div>
+        <div class="state-card" role="region" aria-label="Build summary" id="state-card">
+          <div class="state-row" id="state-row">
+            <!-- populated by JS from courseware.json -->
           </div>
-          <p class="state-note">
-            All 27 chapters live in the textbook. The test bank, LMS cartridge, and a growing set
-            of slides, teaching notes, assignments, cases, and AI prompts have shipped in draft form.
-          </p>
+          <p class="state-note" id="state-note">Loading current build status from the manifest&hellip;</p>
         </div>
       </div>
     </header>
@@ -379,457 +358,28 @@
         <h2 id="shipped-heading">What has shipped</h2>
         <p class="section-intro">
           Everything below is live and accessible. Items labeled "draft" are reachable and usable
-          but are still being polished or extended across all chapters.
+          but are still being polished or extended across all chapters. This page is rendered live
+          from <code>courseware.json</code>, so counts never go stale.
         </p>
         <hr class="section-divider">
-
-        <!-- Read and Reference -->
-        <div class="group-block">
-          <p class="group-label">Read &amp; Reference</p>
-          <ul class="item-list" role="list">
-
-            <li class="item" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Textbook v7</span>
-                  <span class="pill available">Available</span>
-                  <span class="item-meta">27 chapters</span>
-                </div>
-                <p class="item-desc">
-                  All 27 chapters, each readable at two depths (Comprehensive and Concise) with
-                  interactive AI widgets, hand-drawn coral SVG illustrations, and a full references
-                  apparatus. A toggleable redline layer shows every addition over the prior version
-                  with an inline rationale, so adopting instructors can track what changed and why.
-                </p>
-              </div>
-            </li>
-
-            <li class="item" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Glossary</span>
-                  <span class="pill available">Available</span>
-                  <span class="item-meta">A&ndash;Z</span>
-                </div>
-                <p class="item-desc">
-                  Every key term across all 27 chapters, defined in plain language and cross-linked
-                  back to the chapter where it first appears.
-                </p>
-              </div>
-            </li>
-
-            <li class="item is-draft" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">AI Prompt Library</span>
-                  <span class="pill draft">Draft</span>
-                  <span class="item-meta">27 chapters</span>
-                </div>
-                <p class="item-desc">
-                  Copy-paste prompts that turn each chapter's framework into a hands-on AI exercise.
-                  The library was compiled recently from the in-chapter AI Apply steps; the full
-                  formatted page is in draft.
-                </p>
-              </div>
-            </li>
-
-          </ul>
+        <div id="shipped-groups">
+          <p class="section-intro">Loading shipped components&hellip;</p>
         </div>
-
-        <!-- Teach -->
-        <div class="group-block">
-          <p class="group-label">Teach</p>
-          <ul class="item-list" role="list">
-
-            <li class="item is-draft" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Slide Decks</span>
-                  <span class="pill draft">Draft</span>
-                  <span class="item-meta">9 of 27</span>
-                </div>
-                <p class="item-desc">
-                  Chapter-level lecture decks built on the book's coral design system, one claim per
-                  slide, with the chapter's SVG illustrations lifted in as visual anchors. Chapters 2,
-                  3, 5, 6, 7, 8, 9, 10, and 11 are complete. The remaining 18 are in progress.
-                </p>
-              </div>
-            </li>
-
-            <li class="item is-draft" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Teaching Notes / Instructor Guide</span>
-                  <span class="pill draft">Draft</span>
-                  <span class="item-meta">3 of 27</span>
-                </div>
-                <p class="item-desc">
-                  Session-by-session instructor guides covering timing, talking points, discussion
-                  prompts, common misconceptions, and the hands-on AI moment for each chapter.
-                  Chapters 6 (STP), 7 (Brands), and 10 (Pricing) are complete with minute-by-minute
-                  plans and bundle references. The remaining 24 are in the queue.
-                </p>
-              </div>
-            </li>
-
-            <li class="item is-draft" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Lecture Videos</span>
-                  <span class="pill draft">Draft / In production</span>
-                  <span class="item-meta">Scripts: 3 of 27 written</span>
-                </div>
-                <p class="item-desc">
-                  Short animated lecture videos (the HBR-explainer format). Chapter 10 (Pricing)
-                  has a complete rendered video. Scripts for Chapters 2, 6, and 7 are finished and
-                  verified; narration generation and rendering follow once the voice budget is
-                  confirmed. The production pipeline (66 reusable Remotion worlds, ElevenLabs
-                  alignment, PRODUCTION BIBLE) is fully documented and proven.
-                </p>
-              </div>
-            </li>
-
-            <li class="item is-draft" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Cases</span>
-                  <span class="pill draft">Draft</span>
-                  <span class="item-meta">1 of 27</span>
-                </div>
-                <p class="item-desc">
-                  Teaching cases with discussion questions tied to the chapter's running brand example.
-                  The Chapter 6 STP case (Stanley/brand repositioning) is complete, with a template
-                  for the remaining chapters.
-                </p>
-              </div>
-            </li>
-
-          </ul>
-        </div>
-
-        <!-- Assess -->
-        <div class="group-block">
-          <p class="group-label">Assess</p>
-          <ul class="item-list" role="list">
-
-            <li class="item is-draft" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Test and Quiz Bank</span>
-                  <span class="pill draft">Draft</span>
-                  <span class="item-meta">27 of 27 chapters, ~760 items</span>
-                </div>
-                <p class="item-desc">
-                  All 27 chapters covered. Items are adapted from the Kotler MM16 bank and
-                  written from scratch for the AI-era chapters that have no Kotler equivalent.
-                  Each item is re-tagged to the book's own learning objectives, AACSB-tagged
-                  (Application / Reflective / Analytical / Ethics), and QTI-formatted for export.
-                  This is a full draft; review and editorial polish are still in progress.
-                </p>
-              </div>
-            </li>
-
-            <li class="item is-draft" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Assignments</span>
-                  <span class="pill draft">Draft</span>
-                  <span class="item-meta">2 of 27</span>
-                </div>
-                <p class="item-desc">
-                  Graded individual take-home assignments tied to each chapter's learning objectives,
-                  with AI-as-critic use built in and rubrics mapped to the real LOs. Chapters 6 and
-                  10 are complete. A reusable template is in place for the remaining chapters.
-                </p>
-              </div>
-            </li>
-
-          </ul>
-        </div>
-
-        <!-- Adopt and Deploy -->
-        <div class="group-block">
-          <p class="group-label">Adopt &amp; Deploy</p>
-          <ul class="item-list" role="list">
-
-            <li class="item is-draft" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Syllabus and Pacing Guide</span>
-                  <span class="pill draft">Draft</span>
-                </div>
-                <p class="item-desc">
-                  An adaptable syllabus with 34 clearly marked [ADAPT] placeholders for institution,
-                  course number, and term details. Includes a 15-week pacing of all 27 chapters,
-                  course-level outcomes, an AACSB-tag note, and a modern AI-use policy. No invented
-                  institution or course number. Ready to adapt and teach from.
-                </p>
-              </div>
-            </li>
-
-            <li class="item is-draft" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.3 7 12 12 20.7 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Canvas / LMS Cartridge</span>
-                  <span class="pill draft">Draft</span>
-                  <span class="item-meta">804 items, QTI 1.2 / Common Cartridge</span>
-                </div>
-                <p class="item-desc">
-                  A Common Cartridge (.imscc) generated from the 27-chapter test bank: 662 auto-graded
-                  MCQ items and 142 manually graded essay and AI-era items, organized by chapter with
-                  a full imsmanifest.xml. Import directly into Canvas, Moodle, D2L, or any
-                  IMS-compatible LMS. Draft status reflects that the underlying test bank is still
-                  being polished editorially.
-                </p>
-              </div>
-            </li>
-
-            <li class="item is-draft" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">AACSB Outcomes Map</span>
-                  <span class="pill draft">Draft</span>
-                </div>
-                <p class="item-desc">
-                  A 27-chapter master map grounded in the real AACSB tags on the test-bank items
-                  (805 tag occurrences: Application 368, Reflective 223, Analytical 183, Ethics 25).
-                  Covers MCQ tiers, AI-era items, and projects P1-P3, with a closing-the-loop
-                  assurance-of-learning cycle and [ADAPT] placeholders for program-level competencies.
-                </p>
-              </div>
-            </li>
-
-            <li class="item" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2"/><path d="M12 6v6m0 0 5 2m-5-2-5 2m5 4v-4"/><path d="M5 8h14"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Accessibility / VPAT</span>
-                  <span class="pill available">Available</span>
-                  <span class="item-meta">WCAG 2.2 AA</span>
-                </div>
-                <p class="item-desc">
-                  The courseware ships compliant by default. All text contrast meets WCAG AA 4.5:1;
-                  coral accent is routed to a darker terracotta (#a8472a) wherever it carries small
-                  text. Every control is a real link or button with a visible focus ring.
-                  High-contrast, large-text, reduced-motion, and dyslexia-friendly font modes are
-                  available through the reader settings.
-                </p>
-              </div>
-            </li>
-
-          </ul>
-        </div>
-
       </section>
-      <!-- end SHIPPED -->
 
       <!-- ─── SECTION 2: COMING SOON ─── -->
-      <section class="section-block" id="coming-soon" aria-labelledby="coming-heading">
-        <p class="section-eyebrow">Planned</p>
-        <h2 id="coming-heading">Coming soon</h2>
+      <section class="section-block" id="coming-soon" aria-labelledby="coming-soon-heading">
+        <p class="section-eyebrow">In the queue</p>
+        <h2 id="coming-soon-heading">What is coming next</h2>
         <p class="section-intro">
-          These components are in the design or early build phase. They will be added to the
-          courseware as they complete and will flip their dashboard tile from grayed to live.
+          These are the components in the queue. Some are partially drafted today; others are
+          scaffolded in the manifest and will appear here as they ship.
         </p>
         <hr class="section-divider">
-
-        <div class="group-block">
-          <p class="group-label">Read &amp; Reference</p>
-          <ul class="item-list" role="list">
-            <li class="item is-planned" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Datasets</span>
-                  <span class="pill planned">Planned</span>
-                </div>
-                <p class="item-desc">Clean, classroom-ready datasets backing the projects and in-chapter analyses, downloadable and LMS-ready.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="group-block">
-          <p class="group-label">Teach</p>
-          <ul class="item-list" role="list">
-            <li class="item is-planned" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">In-class Kit</span>
-                  <span class="pill planned">Planned</span>
-                </div>
-                <p class="item-desc">Live polls, think-pair-share prompts, and quick room activities for each chapter, designed to pair with the slide deck.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="group-block">
-          <p class="group-label">Assess</p>
-          <ul class="item-list" role="list">
-            <li class="item is-planned" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Projects P1, P2, P3</span>
-                  <span class="pill planned">Planned</span>
-                </div>
-                <p class="item-desc">Three scaffolded team projects that take a real brand from research to a full marketing plan. The syllabus and pacing guide already reference their placement.</p>
-              </div>
-            </li>
-            <li class="item is-planned" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Rubrics</span>
-                  <span class="pill planned">Planned</span>
-                </div>
-                <p class="item-desc">Transparent grading rubrics for every project and major assignment, aligned to the same learning objectives as the test bank.</p>
-              </div>
-            </li>
-            <li class="item is-planned" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">Answer Keys</span>
-                  <span class="pill planned">Planned</span>
-                </div>
-                <p class="item-desc">Worked solutions and model answers for assignments and the test bank. The test bank already contains answer keys inline; a compiled instructor-facing format is in the queue.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="group-block">
-          <p class="group-label">Build</p>
-          <ul class="item-list" role="list">
-            <li class="item is-planned" role="listitem">
-              <span class="item-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 8V4M9 4h6"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>
-              </span>
-              <div class="item-body">
-                <div class="item-head">
-                  <span class="item-title">AI Teaching Assistant</span>
-                  <span class="pill planned">Planned</span>
-                </div>
-                <p class="item-desc">A guided track for instructors who want to stand up their own AI assistant grounded in this course's materials, using the textbook and test bank as the retrieval corpus.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-      </section>
-      <!-- end COMING SOON -->
-
-      <!-- ─── ROADMAP ─── -->
-      <section class="section-block" id="roadmap" aria-labelledby="roadmap-heading">
-        <div class="roadmap-panel">
-          <p class="section-eyebrow">Roadmap</p>
-          <h2 id="roadmap-heading">What comes next</h2>
-          <p>
-            The textbook and test bank are the ground truth everything else derives from. Both are
-            complete in draft. Near-term work is finishing the derived-material layer to the same
-            level of coverage across all 27 chapters, then packaging the deploy kit.
-          </p>
-          <div class="roadmap-tracks" role="list">
-
-            <div class="roadmap-track" role="listitem">
-              <p class="track-label">Near term</p>
-              <p class="track-title">Extend to full 27-chapter coverage</p>
-              <ul class="track-items">
-                <li>Slide decks for the remaining 18 chapters (9 are done)</li>
-                <li>Teaching notes for the remaining 24 chapters (3 are done)</li>
-                <li>Assignments for the remaining 25 chapters (2 are done)</li>
-                <li>Cases for the remaining 26 chapters (1 is done)</li>
-                <li>Lecture video scripts for the remaining 24 chapters (3 are done)</li>
-              </ul>
-            </div>
-
-            <div class="roadmap-track" role="listitem">
-              <p class="track-label">Near term</p>
-              <p class="track-title">Render the lecture videos</p>
-              <ul class="track-items">
-                <li>ElevenLabs narration for each approved script</li>
-                <li>Remotion render using the 66-world production pipeline</li>
-                <li>Chapter 10 Pricing is already rendered; Chapters 2, 6, 7 are scripted and next</li>
-              </ul>
-            </div>
-
-            <div class="roadmap-track" role="listitem">
-              <p class="track-label">Following</p>
-              <p class="track-title">Complete the deploy kit</p>
-              <ul class="track-items">
-                <li>Projects P1-P3 with scaffolded instructions and datasets</li>
-                <li>Rubrics for all graded work</li>
-                <li>Compiled answer keys in instructor format</li>
-                <li>In-class kit (polls + activities) per chapter</li>
-                <li>Editorial polish pass on the test bank and LMS cartridge</li>
-              </ul>
-            </div>
-
-            <div class="roadmap-track" role="listitem">
-              <p class="track-label">Later</p>
-              <p class="track-title">Advanced and build-your-own</p>
-              <ul class="track-items">
-                <li>Cleaned classroom-ready datasets for the projects</li>
-                <li>AI teaching assistant guided track</li>
-                <li>Ongoing updates as AI tools, regulations, and data change</li>
-              </ul>
-            </div>
-
-          </div>
+        <div id="planned-groups">
+          <p class="section-intro">Loading planned components&hellip;</p>
         </div>
       </section>
-      <!-- end ROADMAP -->
 
     </div>
     <!-- end page-body -->
@@ -842,6 +392,149 @@
       <p>What's New / Roadmap &middot; reflects the live 2026 build &middot; WCAG 2.2 AA</p>
     </div>
   </footer>
+
+  <!-- Manifest-driven render: state-card + Shipped / Coming Soon lists ----
+       Pulls live counts and component status from courseware.json so the page
+       cannot go stale. Mirrors the dashboard's render logic. -->
+  <script>
+  (function () {
+    "use strict";
+
+    // SVG icon family, keyed by component id / group; mirrors the dashboard set
+    var ICONS = {
+      "textbook": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+      "glossary": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>',
+      "ai-prompt-library": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>',
+      "datasets": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/></svg>',
+      "slides": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>',
+      "teaching-notes": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/></svg>',
+      "lecture-videos": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>',
+      "cases": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
+      "in-class-kit": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/></svg>',
+      "assignments": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+      "projects": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/></svg>',
+      "test-quiz-bank": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+      "rubrics": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>',
+      "answer-keys": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/></svg>',
+      "syllabus-pacing": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>',
+      "lms-cartridge": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
+      "aacsb-map": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>',
+      "whats-new": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4"/></svg>',
+      "ai-teaching-assistant": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="2"/></svg>'
+    };
+    function iconFor(id) { return ICONS[id] || ICONS["textbook"]; }
+    function esc(s) {
+      return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+        return { "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c];
+      });
+    }
+
+    function groupTitle(groups, id) {
+      for (var i = 0; i < groups.length; i++) if (groups[i].id === id) return groups[i].title;
+      return id;
+    }
+
+    function renderStateCard(data) {
+      var comps = data.components || [];
+      var avail = comps.filter(function(c){return c.status==="available";}).length;
+      var wip   = comps.filter(function(c){return c.status==="wip";}).length;
+      var planned = comps.filter(function(c){return c.status==="planned";}).length;
+      var total = comps.length;
+
+      var row = document.getElementById("state-row");
+      row.innerHTML =
+        '<div class="state-item"><span class="state-num">27</span><span class="state-label">Chapters</span></div>' +
+        '<div class="state-divider" aria-hidden="true"></div>' +
+        '<div class="state-item"><span class="state-num coral">'+avail+'</span><span class="state-label">Shipped</span></div>' +
+        '<div class="state-divider" aria-hidden="true"></div>' +
+        '<div class="state-item"><span class="state-num">'+wip+'</span><span class="state-label">In progress</span></div>' +
+        '<div class="state-divider" aria-hidden="true"></div>' +
+        '<div class="state-item"><span class="state-num">'+planned+'</span><span class="state-label">Planned</span></div>';
+
+      document.getElementById("state-note").innerHTML =
+        '<strong>'+avail+'</strong> of '+total+' courseware components are available now; '+
+        wip+' are in progress and reachable in draft form; '+planned+' are scaffolded for the queue. '+
+        'The textbook, glossary, and what’s-new page are live; everything below is driven from the manifest.';
+    }
+
+    var STATUS_LABEL = { available: "Available", wip: "Draft", planned: "Planned" };
+
+    function itemHtml(c) {
+      var pillClass = c.status === "available" ? "available" : (c.status === "wip" ? "draft" : "planned");
+      var pillLabel = STATUS_LABEL[c.status] || "Planned";
+      var itemClass = c.status === "available" ? "item" : (c.status === "wip" ? "item is-draft" : "item is-planned");
+      var meta = c.meta ? '<span class="item-meta">'+esc(c.meta)+'</span>' : '';
+      var titleHtml = esc(c.title);
+      if (c.href && (c.status === "available" || c.status === "wip")) {
+        titleHtml = '<a href="'+esc(c.href)+'">'+esc(c.title)+'</a>';
+      }
+      return '<li class="'+itemClass+'" role="listitem">'+
+        '<span class="item-icon" aria-hidden="true">'+iconFor(c.id)+'</span>'+
+        '<div class="item-body">'+
+          '<div class="item-head">'+
+            '<span class="item-title">'+titleHtml+'</span>'+
+            '<span class="pill '+pillClass+'">'+pillLabel+'</span>'+
+            meta+
+          '</div>'+
+          '<p class="item-desc">'+esc(c.blurb || "")+'</p>'+
+        '</div>'+
+      '</li>';
+    }
+
+    function groupListByGroup(comps) {
+      var byGroup = {};
+      comps.forEach(function(c){
+        if (!byGroup[c.group]) byGroup[c.group] = [];
+        byGroup[c.group].push(c);
+      });
+      return byGroup;
+    }
+
+    function renderSection(host, comps, groups, emptyMsg) {
+      if (!comps.length) {
+        host.innerHTML = '<p class="section-intro">'+esc(emptyMsg)+'</p>';
+        return;
+      }
+      var byG = groupListByGroup(comps);
+      var html = "";
+      // honour the group order from the manifest
+      groups.forEach(function(g){
+        var items = byG[g.id];
+        if (!items || !items.length) return;
+        html += '<div class="group-block">';
+        html += '<p class="group-label">'+esc(g.title)+'</p>';
+        html += '<ul class="item-list" role="list">';
+        items.forEach(function(c){ html += itemHtml(c); });
+        html += '</ul></div>';
+      });
+      host.innerHTML = html;
+    }
+
+    function render(data) {
+      var comps = data.components || [];
+      var groups = data.groups || [];
+      renderStateCard(data);
+      // Shipped = available + wip (draft is reachable, that counts as shipped to users)
+      var shipped = comps.filter(function(c){ return c.status === "available" || c.status === "wip"; });
+      var planned = comps.filter(function(c){ return c.status === "planned"; });
+      renderSection(document.getElementById("shipped-groups"), shipped, groups, "Nothing shipped yet.");
+      renderSection(document.getElementById("planned-groups"), planned, groups, "Nothing in the queue — everything in the manifest has shipped.");
+    }
+
+    // try the file first; fall back to the inline manifest in courseware-product.html
+    // (which the build pipeline keeps in sync).
+    fetch("courseware.json", { cache: "no-store" })
+      .then(function(r){ if (!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+      .then(render)
+      .catch(function() {
+        // graceful fallback message
+        document.getElementById("state-note").textContent =
+          "Could not load the manifest. Refresh the page or check that courseware.json is present.";
+        document.getElementById("shipped-groups").innerHTML = '';
+        document.getElementById("planned-groups").innerHTML = '';
+      });
+  })();
+  </script>
 
   <!-- Cover-particles hero (ported from courseware-product.html, with reduced-motion guard) -->
   <script>

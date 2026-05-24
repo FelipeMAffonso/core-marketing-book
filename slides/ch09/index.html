@@ -1,154 +1,410 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<title>MKTG 4333 · Chapter 9 · Services deck</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Lecture deck for Chapter 9 (Services Marketing) — Principles of Marketing.">
+<title>Ch 09 Services Marketing · Slide deck · Principles of Marketing</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23DA7756' width='100' height='100' rx='12'/><text x='50' y='68' font-family='system-ui' font-size='36' font-weight='bold' fill='white' text-anchor='middle'>PM</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#f5f2ec; --ink:#1a1a1a; --ink-soft:#4A4A4A; --ink-mute:#7A7A7A;
-    --rule:#E8E6E1; --accent:#DA7756; --accent-tint:#FDF6F3;
-    --font:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --coral:#DA7756; --coral-deep:#B8553A; --coral-soft:#E8A488;
+  --coral-text:#a8472a; --coral-tint:#fdf3ee;
+  --ink:#1a1a1a; --ink-2:#43474f; --ink-3:#5a5f67;
+  --bg:#ffffff; --bg-2:#f7f8fa; --bg-3:#f1f2f5;
+  --border:#e6e6ea; --border-strong:#d7dae0;
+  --font:'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif;
+  --font-serif:'EB Garamond',Georgia,serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Consolas,monospace;
+  --rail-w: 240px;
+  --right-w: 220px;
+  --topbar-h: 58px;
+}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.62;
+  -webkit-font-smoothing:antialiased;}
+a{color:var(--coral-text);text-decoration:none;}
+a:hover{text-decoration:underline;text-underline-offset:3px;}
+a:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;border-radius:4px;}
+.skip-link{position:absolute;left:-999px;top:0;z-index:2000;background:var(--ink);
+  color:#fff;padding:10px 16px;border-radius:0 0 6px 0;font-size:14px;font-weight:600;}
+.skip-link:focus{left:0;text-decoration:none;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.9);
+  backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);}
+.topbar-inner{max-width:1320px;margin:0 auto;padding:0 28px;height:58px;display:flex;
+  align-items:center;gap:14px;}
+.topbar .mark{width:28px;height:28px;border-radius:7px;flex-shrink:0;background:var(--coral-deep);
+  color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;
+  letter-spacing:-0.5px;}
+.topbar .doc-title{font-size:14.5px;font-weight:600;color:var(--ink);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.topbar .back{margin-left:auto;font-size:13.5px;font-weight:600;color:var(--coral-text);
+  padding:7px 13px;border-radius:7px;border:1px solid var(--border);white-space:nowrap;}
+.topbar .back:hover{background:var(--bg-2);text-decoration:none;}
+main{max-width:860px;margin:0 auto;padding:44px 28px 96px;}
+.kicker{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--coral-text);margin-bottom:10px;}
+main h1{font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-0.02em;
+  line-height:1.12;color:var(--ink);margin:0 0 8px;}
+main h2{font-size:clamp(21px,2.8vw,26px);font-weight:700;letter-spacing:-0.015em;color:var(--ink);
+  margin:42px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+main h3{font-size:19px;font-weight:650;color:var(--ink);margin:30px 0 10px;}
+main h4{font-size:16px;font-weight:650;color:var(--ink-2);margin:24px 0 8px;}
+main h5,main h6{font-size:14px;font-weight:650;color:var(--ink-2);margin:20px 0 6px;
+  text-transform:uppercase;letter-spacing:0.04em;}
+main p{margin:0 0 16px;color:var(--ink);font-size:17px;}
+main ul,main ol{margin:0 0 18px;padding-left:26px;}
+main li{margin:0 0 7px;color:var(--ink);font-size:17px;}
+main li>ul,main li>ol{margin:7px 0 0;}
+main blockquote{margin:0 0 18px;padding:4px 18px;border-left:3px solid var(--coral);
+  background:var(--coral-tint);color:var(--ink-2);border-radius:0 6px 6px 0;}
+main blockquote p{margin:8px 0;}
+main hr{border:0;border-top:1px solid var(--border);margin:34px 0;}
+main strong{font-weight:700;color:var(--ink);}
+main em{font-style:italic;}
+main code{font-family:var(--font-mono);font-size:0.88em;background:var(--bg-3);
+  padding:2px 6px;border-radius:4px;color:var(--coral-text);border:1px solid var(--border);
+  word-break:break-word;overflow-wrap:break-word;}
+main pre{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;
+  padding:16px 18px;overflow-x:auto;margin:0 0 18px;}
+main pre:focus-visible{outline:2px solid var(--coral);outline-offset:2px;}
+main pre code{background:none;border:0;padding:0;color:var(--ink);font-size:13.5px;
+  line-height:1.55;}
+main .table-wrap{overflow-x:auto;margin:0 0 22px;border:1px solid var(--border);
+  border-radius:6px;}
+main .table-wrap:focus-visible{outline:2px solid var(--coral);outline-offset:2px;}
+main table{width:100%;border-collapse:collapse;font-size:15px;}
+main thead th{background:var(--bg-2);text-align:left;font-weight:650;color:var(--ink);
+  padding:9px 13px;border:1px solid var(--border-strong);white-space:nowrap;}
+main tbody td{padding:9px 13px;border:1px solid var(--border);color:var(--ink-2);
+  vertical-align:top;}
+main tbody tr:nth-child(even){background:var(--bg-2);}
+main a{color:var(--coral-text);font-weight:500;}
+.toc-note{font-size:14px;color:var(--ink-3);margin-bottom:30px;}
+footer{border-top:1px solid var(--border);background:var(--bg-2);padding:28px 0;
+  margin-top:60px;}
+footer .inner{max-width:860px;margin:0 auto;padding:0 28px;font-size:12.5px;color:var(--ink-3);}
+/* card grid — chapter decks + materials, echoing the dashboard tiles */
+.ccards{display:grid;grid-template-columns:repeat(auto-fill,minmax(212px,1fr));gap:14px;
+  margin:6px 0 34px;list-style:none;padding:0;}
+.ccard{display:flex;flex-direction:column;gap:7px;padding:15px 16px;min-height:108px;
+  border:1px solid var(--border);border-radius:10px;background:var(--bg);text-decoration:none;
+  transition:border-color 150ms var(--ease-coral,ease),box-shadow 150ms,transform 150ms;}
+a.ccard:hover{border-color:var(--coral);box-shadow:0 6px 20px rgba(218,119,86,0.13);
+  transform:translateY(-2px);text-decoration:none;}
+a.ccard:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;}
+.ccard .ci-num{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.08em;
+  color:var(--coral-text);}
+.ccard .ci-title{font-size:15px;font-weight:650;color:var(--ink);line-height:1.28;}
+.ccard .ci-meta{font-size:12px;color:var(--ink-3);margin-top:auto;}
+.ccard.soon{background:var(--bg-2);border-style:dashed;cursor:default;}
+.ccard.soon .ci-title{color:var(--ink-3);font-weight:600;}
+.ci-pill{align-self:flex-start;font-size:9.5px;font-weight:700;letter-spacing:0.07em;
+  text-transform:uppercase;padding:2px 8px;border-radius:10px;background:var(--coral-tint);
+  color:var(--coral-text);}
+.ccard.soon .ci-pill{background:var(--bg-3);color:var(--ink-3);}
+.group-blurb{font-size:14px;color:var(--ink-3);margin:0 0 14px;}
+@media (max-width:600px){
+  main{padding:30px 18px 64px;}
+  .topbar-inner{padding:0 18px;}
+  .ccards{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+}
+
+/* ── DOCS-STYLE 3-COLUMN LAYOUT (left rail + main + right rail) ──────────
+   Used by every materials/reference/cartridge/videos page. The classic
+   API-reference docs feel: sticky left rail of siblings, sticky right rail
+   of in-page TOC + related materials, breadcrumb + prev/next around the
+   main column. Responsive collapse at 1080px (right rail hides) and 720px
+   (left rail collapses into a dropdown disclosure at top of main). */
+/* override main's narrow column when the docs layout is in use */
+main:has(.docs-layout){max-width:none;padding:0;}
+.docs-layout {
+  display: grid;
+  grid-template-columns: var(--rail-w) minmax(0, 1fr) var(--right-w);
+  gap: 36px;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 28px 28px 80px;
+  align-items: start;
+}
+.docs-rail {
+  position: sticky;
+  top: calc(var(--topbar-h) + 16px);
+  max-height: calc(100vh - var(--topbar-h) - 32px);
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.docs-rail::-webkit-scrollbar { width: 6px; }
+.docs-rail::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+.docs-rail .rail-eyebrow {
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral-text);
+  margin: 0 0 10px;
+}
+.docs-rail .rail-group {
+  margin-bottom: 22px;
+}
+.docs-rail .rail-group h3 {
+  font-size: 11.5px; font-weight: 650; color: var(--ink); text-transform: uppercase;
+  letter-spacing: 0.06em; margin: 0 0 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.docs-rail .rail-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 1px;
+}
+.docs-rail .rail-list a, .docs-rail .rail-list .rail-soon {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 5px 10px; border-radius: 6px;
+  font-size: 13px; color: var(--ink-2); text-decoration: none;
+  line-height: 1.32;
+  border-left: 2px solid transparent;
+}
+.docs-rail .rail-list a:hover {
+  background: var(--bg-2); color: var(--ink); text-decoration: none;
+}
+.docs-rail .rail-list a.is-active {
+  color: var(--coral-text); font-weight: 600;
+  background: var(--coral-tint);
+  border-left-color: var(--coral);
+}
+.docs-rail .rail-list .rail-soon {
+  color: var(--ink-3); cursor: default;
+}
+.docs-rail .rail-list .rail-soon .rail-num {
+  color: var(--ink-3);
+}
+.docs-rail .rail-num {
+  font-family: var(--font-mono); font-size: 11px; color: var(--ink-3);
+  flex-shrink: 0; min-width: 24px; letter-spacing: 0.04em;
+}
+.docs-rail .rail-list a.is-active .rail-num {
+  color: var(--coral-text);
+}
+.docs-rail .rail-soon::after {
+  content: "soon"; font-size: 9.5px; font-family: var(--font-mono);
+  color: var(--ink-3); margin-left: auto;
+  padding: 1px 5px; border-radius: 3px; background: var(--bg-3);
+  letter-spacing: 0.04em; flex-shrink: 0;
+}
+
+/* Mobile/tablet — left rail collapses to a dropdown disclosure */
+.docs-rail-mobile {
+  display: none;
+  margin-bottom: 16px;
+}
+.docs-rail-mobile summary {
+  font-size: 13px; font-weight: 600; color: var(--ink-2);
+  padding: 10px 14px; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 7px;
+  background: var(--bg-2);
+  list-style: none;
+}
+.docs-rail-mobile summary::after { content: " ▾"; color: var(--ink-3); float: right; }
+.docs-rail-mobile[open] summary::after { content: " ▴"; }
+.docs-rail-mobile .rail-group { margin: 12px 0; }
+
+/* Right rail (in-page TOC + related) */
+.docs-right .toc-eyebrow {
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral-text);
+  margin: 0 0 10px;
+}
+.docs-right .toc-list {
+  list-style: none; padding: 0; margin: 0 0 28px;
+  border-left: 2px solid var(--border);
+  display: flex; flex-direction: column; gap: 1px;
+}
+.docs-right .toc-list a {
+  display: block; padding: 4px 12px; font-size: 12.5px; color: var(--ink-3);
+  text-decoration: none; line-height: 1.4; margin-left: -2px;
+  border-left: 2px solid transparent;
+}
+.docs-right .toc-list a:hover { color: var(--ink); text-decoration: none; }
+.docs-right .toc-list a.is-current {
+  color: var(--coral-text); font-weight: 600;
+  border-left-color: var(--coral);
+}
+.docs-right .toc-list .toc-h3 { padding-left: 24px; font-size: 12px; }
+.docs-right .related-block {
+  margin-top: 20px;
+}
+.docs-right .related-block h3 {
+  font-size: 11.5px; font-weight: 650; color: var(--ink); text-transform: uppercase;
+  letter-spacing: 0.06em; margin: 0 0 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.docs-right .related-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.docs-right .related-list a {
+  display: flex; align-items: baseline; gap: 7px;
+  padding: 5px 10px; border-radius: 6px;
+  font-size: 12.5px; color: var(--ink-2); text-decoration: none;
+  line-height: 1.32;
+}
+.docs-right .related-list a:hover {
+  background: var(--bg-2); color: var(--coral-text); text-decoration: none;
+}
+.docs-right .related-list .rel-arrow {
+  color: var(--coral); font-weight: 700;
+}
+
+/* Main column */
+.docs-main { min-width: 0; }
+.breadcrumb {
+  font-size: 12.5px; color: var(--ink-3); margin: 0 0 18px;
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  font-family: var(--font);
+}
+.breadcrumb a {
+  color: var(--ink-3); text-decoration: none; font-weight: 500;
+  padding: 2px 6px; border-radius: 4px;
+}
+.breadcrumb a:hover { color: var(--coral-text); background: var(--bg-2); }
+.breadcrumb .sep { color: var(--ink-3); font-size: 11px; opacity: 0.5; }
+.breadcrumb .current { color: var(--ink); font-weight: 600; padding: 2px 6px; }
+
+.page-overview {
+  font-size: 16.5px; color: var(--ink-2); line-height: 1.55;
+  padding: 16px 0 6px; margin: 0 0 30px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Prev / Next footer */
+.prev-next {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  margin-top: 48px; padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.prev-next a {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px;
+  color: var(--ink-2); text-decoration: none;
+  transition: border-color 140ms ease, background 140ms ease;
+}
+.prev-next a:hover {
+  border-color: var(--coral); color: var(--coral-text); background: var(--bg-2);
+  text-decoration: none;
+}
+.prev-next .pn-eyebrow {
+  font-size: 11px; color: var(--ink-3); letter-spacing: 0.04em;
+}
+.prev-next .pn-title {
+  font-size: 14px; font-weight: 600; color: inherit;
+}
+.prev-next .pn-next { text-align: right; }
+.prev-next .pn-empty { visibility: hidden; pointer-events: none; }
+
+@media (max-width: 1100px) {
+  .docs-layout { grid-template-columns: var(--rail-w) minmax(0, 1fr); gap: 28px; }
+  .docs-right { display: none; }
+}
+@media (max-width: 760px) {
+  .docs-layout {
+    grid-template-columns: 1fr; padding: 16px 18px 60px; gap: 14px;
   }
-  *{ margin:0; padding:0; box-sizing:border-box; }
-  html,body{ background:var(--bg); font-family:var(--font); color:var(--ink); }
-  body{ padding:64px 72px 96px; }
-  header{
-    display:flex; justify-content:space-between; align-items:flex-end;
-    border-bottom:1px solid var(--rule); padding-bottom:20px; margin-bottom:36px;
-  }
-  header .dot{ display:inline-block; width:10px; height:10px; background:var(--accent); border-radius:50%; margin-right:10px; vertical-align:middle; }
-  header h1{ font-size:32px; font-weight:600; letter-spacing:-0.01em; }
-  header h1 em{ font-style:italic; color:var(--accent); font-weight:500; }
-  header .meta{
-    font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
-    color:var(--ink-mute); font-weight:600;
-  }
-  .intro{
-    max-width:70ch; font-size:18px; line-height:1.55; color:var(--ink-soft);
-    margin-bottom:44px;
-  }
-  .intro a{ color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); }
-  .grid{
-    display:grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-    gap:28px;
-  }
-  .card{
-    background:#fff; border:1px solid var(--rule);
-    display:flex; flex-direction:column; overflow:hidden;
-    transition: transform .2s, box-shadow .2s;
-  }
-  .card:hover{ transform:translateY(-2px); box-shadow: 0 8px 24px -10px rgba(0,0,0,.15); }
-  .card .frame{
-    position:relative; aspect-ratio: 16 / 9; overflow:hidden; background:#ffffff;
-    border-bottom:1px solid var(--rule);
-  }
-  .card .frame .scaler{
-    position:absolute; top:0; left:0;
-    width:960px; height:540px;
-    transform-origin: top left;
-  }
-  .card .frame iframe{
-    width:960px; height:540px; border:0; display:block; pointer-events:none;
-    background:#ffffff;
-  }
-  .card .info{ padding:16px 22px; display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
-  .card .info h3{ font-size:16px; font-weight:600; line-height:1.3; }
-  .card .info .n{
-    font-size:11px; font-weight:600; letter-spacing:0.14em; color:var(--ink-mute);
-    text-transform:uppercase; white-space:nowrap;
-  }
-  .card .info .tmpl{ display:block; font-size:12px; color:var(--ink-soft); margin-top:3px; font-style:italic; }
-  .card a.open{
-    display:block; text-align:right; font-size:11px; letter-spacing:0.12em;
-    text-transform:uppercase; color:var(--accent); font-weight:600;
-    padding:0 22px 16px; text-decoration:none;
-  }
-  footer{
-    margin-top:64px; padding-top:20px; border-top:1px solid var(--rule);
-    font-size:13px; color:var(--ink-mute); display:flex; justify-content:space-between;
-  }
+  .docs-rail { display: none; }
+  .docs-rail-mobile { display: block; }
+  .topbar-inner { padding: 0 18px; }
+  .prev-next { grid-template-columns: 1fr; }
+  .page-overview { font-size: 15px; }
+}
+
+.deck-intro { font-size: 16px; color: var(--ink-2); line-height: 1.55; max-width: 70ch;
+  margin: 0 0 28px; }
+.slide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px; margin: 6px 0 32px; }
+.slide-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+  text-decoration: none; }
+.slide-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(218,119,86,0.13);
+  border-color: var(--coral); text-decoration: none; }
+.slide-card:focus-visible { outline: 2px solid var(--coral-deep); outline-offset: 2px; }
+.slide-frame { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #fff;
+  border-bottom: 1px solid var(--border); }
+.slide-frame .scaler { position: absolute; top: 0; left: 0; width: 960px; height: 540px;
+  transform-origin: top left; }
+.slide-frame iframe { width: 960px; height: 540px; border: 0; display: block;
+  pointer-events: none; background: #fff; }
+.slide-info { padding: 13px 16px 14px; display: flex; flex-direction: column; gap: 4px; }
+.slide-num { font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.10em; text-transform: uppercase; color: var(--coral-text); }
+.slide-claim { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.32; }
+.slide-template { font-size: 11.5px; color: var(--ink-3); font-style: italic;
+  margin-top: 2px; }
 </style>
 </head>
 <body>
-  <header>
-    <h1><span class="dot"></span>Chapter 9 · <em>Services marketing</em>.</h1>
-    <span class="meta">MKTG 4333 · 20 slides · 960 × 540</span>
-  </header>
-
-  <p class="intro">
-    A teaching deck on services marketing, built on the coral design system. One claim per slide, white backgrounds,
-    one coral element per slide, Segoe UI throughout. It runs the same arc as the Chapter 9 chapter: the buyer is inside
-    the production, the four IIVP characteristics and the disciplines they force, the search-experience-credence spectrum,
-    the seven Ps, the five SERVQUAL gaps and the RATER hierarchy, the service blueprint and its line of visibility, the
-    moments of truth, and service recovery (the recovery effect, the three justices, the Ritz-Carlton cap), closing on
-    four brand anchors (Singapore Airlines, Costco, Patagonia, Mayo Clinic). Read the system rules in
-    <a href="../DESIGN-SYSTEM.md">DESIGN-SYSTEM.md</a> and
-    <a href="../CHART-PRINCIPLES.md">CHART-PRINCIPLES.md</a>.
-  </p>
-
-  <div class="grid" id="grid"></div>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="mark" aria-hidden="true">PM</span>
+    <span class="doc-title">Ch 09 Services Marketing · Slide deck</span>
+    <a class="back" href="../../index.html">&larr; Back to courseware</a>
+  </div>
+</header>
+<main id="main">
+<p class="kicker">Teach · Lecture deck</p>
+<h1>Chapter 9 &middot; <em>Services marketing</em></h1>
+<p class="deck-intro">A teaching deck on services marketing, built on the coral design system. One claim per slide, white backgrounds, one coral element per slide, Segoe UI throughout. It runs the same arc as the Chapter 9 chapter: the buyer is inside the production, the four IIVP characteristics and the disciplines they force, the search-experience-credence spectrum, the seven Ps, the five SERVQUAL gaps and the RATER hierarchy, the service blueprint and its line of visibility, the moments of truth, and service recovery (the recovery effect, the three justices, the Ritz-Carlton cap), closing on four brand anchors (Singapore Airlines, Costco, Patagonia, Mayo Clinic).</p>
+<div class="slide-grid">
+<a class="slide-card" href="01-title.html"><div class="slide-frame"><div class="scaler"><iframe src="01-title.html?thumb=1" title="Services marketing" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 01</span><span class="slide-claim">Services marketing</span><span class="slide-template">Title / cover</span></div></a>
+<a class="slide-card" href="02-divider-buyer-inside.html"><div class="slide-frame"><div class="scaler"><iframe src="02-divider-buyer-inside.html?thumb=1" title="The buyer is on the factory floor" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 02</span><span class="slide-claim">The buyer is on the factory floor</span><span class="slide-template">Section divider</span></div></a>
+<a class="slide-card" href="03-iivp.html"><div class="slide-frame"><div class="scaler"><iframe src="03-iivp.html?thumb=1" title="Each of the four IIVP traits forces one discipline" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 03</span><span class="slide-claim">Each of the four IIVP traits forces one discipline</span><span class="slide-template">Content · four traits</span></div></a>
+<a class="slide-card" href="04-search-credence.html"><div class="slide-frame"><div class="scaler"><iframe src="04-search-credence.html?thumb=1" title="The further right a purchase sits, the more the buyer leans on cues" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 04</span><span class="slide-claim">The further right a purchase sits, the more the buyer leans on cues</span><span class="slide-template">Exhibit · chapter spectrum</span></div></a>
+<a class="slide-card" href="05-seven-ps.html"><div class="slide-frame"><div class="scaler"><iframe src="05-seven-ps.html?thumb=1" title="Services add three Ps once the buyer is in the room" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 05</span><span class="slide-claim">Services add three Ps once the buyer is in the room</span><span class="slide-template">Two-column</span></div></a>
+<a class="slide-card" href="06-divider-gaps.html"><div class="slide-frame"><div class="scaler"><iframe src="06-divider-gaps.html?thumb=1" title="The buyer feels only one of five gaps" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 06</span><span class="slide-claim">The buyer feels only one of five gaps</span><span class="slide-template">Section divider</span></div></a>
+<a class="slide-card" href="07-gaps-model.html"><div class="slide-frame"><div class="scaler"><iframe src="07-gaps-model.html?thumb=1" title="The firm closes the four it cannot see to close the one the buyer feels" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 07</span><span class="slide-claim">The firm closes the four it cannot see to close the one the buyer feels</span><span class="slide-template">Exhibit · chapter SERVQUAL</span></div></a>
+<a class="slide-card" href="08-rater.html"><div class="slide-frame"><div class="scaler"><iframe src="08-rater.html?thumb=1" title="Firms spend most on the dimension that moves judgment least" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 08</span><span class="slide-claim">Firms spend most on the dimension that moves judgment least</span><span class="slide-template">Comparison bars</span></div></a>
+<a class="slide-card" href="09-klarna-amazon.html"><div class="slide-frame"><div class="scaler"><iframe src="09-klarna-amazon.html?thumb=1" title="An AI front door could not safely own the recovery encounter" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 09</span><span class="slide-claim">An AI front door could not safely own the recovery encounter</span><span class="slide-template">Two-column</span></div></a>
+<a class="slide-card" href="10-divider-blueprint.html"><div class="slide-frame"><div class="scaler"><iframe src="10-divider-blueprint.html?thumb=1" title="An invisible service cannot be fixed" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 10</span><span class="slide-claim">An invisible service cannot be fixed</span><span class="slide-template">Section divider</span></div></a>
+<a class="slide-card" href="11-blueprint.html"><div class="slide-frame"><div class="scaler"><iframe src="11-blueprint.html?thumb=1" title="The five swimlanes split at the line of visibility" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 11</span><span class="slide-claim">The five swimlanes split at the line of visibility</span><span class="slide-template">Exhibit · service blueprint</span></div></a>
+<a class="slide-card" href="12-journey-vs-blueprint.html"><div class="slide-frame"><div class="scaler"><iframe src="12-journey-vs-blueprint.html?thumb=1" title="The blueprint is the journey map plus the backstage" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 12</span><span class="slide-claim">The blueprint is the journey map plus the backstage</span><span class="slide-template">Two-column</span></div></a>
+<a class="slide-card" href="13-moments-of-truth.html"><div class="slide-frame"><div class="scaler"><iframe src="13-moments-of-truth.html?thumb=1" title="SAS funded the front line ahead of assets the buyer never sees" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 13</span><span class="slide-claim">SAS funded the front line ahead of assets the buyer never sees</span><span class="slide-template">Content · the arithmetic</span></div></a>
+<a class="slide-card" href="14-divider-recovery.html"><div class="slide-frame"><div class="scaler"><iframe src="14-divider-recovery.html?thumb=1" title="A good recovery can beat no failure at all" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 14</span><span class="slide-claim">A good recovery can beat no failure at all</span><span class="slide-template">Section divider</span></div></a>
+<a class="slide-card" href="15-recovery-effect.html"><div class="slide-frame"><div class="scaler"><iframe src="15-recovery-effect.html?thumb=1" title="A well-resolved failure is associated with more loyalty than no problem" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 15</span><span class="slide-claim">A well-resolved failure is associated with more loyalty than no problem</span><span class="slide-template">Comparison bars</span></div></a>
+<a class="slide-card" href="16-three-justices.html"><div class="slide-frame"><div class="scaler"><iframe src="16-three-justices.html?thumb=1" title="The conversation outweighs the compensation amount" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 16</span><span class="slide-claim">The conversation outweighs the compensation amount</span><span class="slide-template">Content · three justices</span></div></a>
+<a class="slide-card" href="17-ritz-carnival.html"><div class="slide-frame"><div class="scaler"><iframe src="17-ritz-carnival.html?thumb=1" title="A recovery has to match the shape of the failure" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 17</span><span class="slide-claim">A recovery has to match the shape of the failure</span><span class="slide-template">Two-column</span></div></a>
+<a class="slide-card" href="18-recovery-quote.html"><div class="slide-frame"><div class="scaler"><iframe src="18-recovery-quote.html?thumb=1" title="Compensation buys the resolution; the conversation buys the relationship" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 18</span><span class="slide-claim">Compensation buys the resolution; the conversation buys the relationship</span><span class="slide-template">Pull quote</span></div></a>
+<a class="slide-card" href="19-four-brands.html"><div class="slide-frame"><div class="scaler"><iframe src="19-four-brands.html?thumb=1" title="Four brands, each through the discipline a different trait forces" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 19</span><span class="slide-claim">Four brands, each through the discipline a different trait forces</span><span class="slide-template">KPI row</span></div></a>
+<a class="slide-card" href="20-closing.html"><div class="slide-frame"><div class="scaler"><iframe src="20-closing.html?thumb=1" title="Run the chapter&#x27;s four moves on a real service you use" loading="lazy"></iframe></div></div><div class="slide-info"><span class="slide-num">Slide 20</span><span class="slide-claim">Run the chapter&#x27;s four moves on a real service you use</span><span class="slide-template">Closing / takeaways</span></div></a>
+</div>
+<p style="margin-top:18px;"><a href="../index.html">&larr; All chapter decks</a></p>
 
 <script>
-(() => {
-  const slides = [
-    ["01-title.html",               "01", "Services marketing", "Title / cover"],
-    ["02-divider-buyer-inside.html","02", "The buyer is on the factory floor", "Section divider"],
-    ["03-iivp.html",                "03", "Each of the four IIVP traits forces one discipline", "Content · four traits"],
-    ["04-search-credence.html",     "04", "The further right a purchase sits, the more the buyer leans on cues", "Exhibit · chapter spectrum"],
-    ["05-seven-ps.html",            "05", "Services add three Ps once the buyer is in the room", "Two-column"],
-    ["06-divider-gaps.html",        "06", "The buyer feels only one of five gaps", "Section divider"],
-    ["07-gaps-model.html",          "07", "The firm closes the four it cannot see to close the one the buyer feels", "Exhibit · chapter SERVQUAL"],
-    ["08-rater.html",               "08", "Firms spend most on the dimension that moves judgment least", "Comparison bars"],
-    ["09-klarna-amazon.html",       "09", "An AI front door could not safely own the recovery encounter", "Two-column"],
-    ["10-divider-blueprint.html",   "10", "An invisible service cannot be fixed", "Section divider"],
-    ["11-blueprint.html",           "11", "The five swimlanes split at the line of visibility", "Exhibit · service blueprint"],
-    ["12-journey-vs-blueprint.html","12", "The blueprint is the journey map plus the backstage", "Two-column"],
-    ["13-moments-of-truth.html",    "13", "SAS funded the front line ahead of assets the buyer never sees", "Content · the arithmetic"],
-    ["14-divider-recovery.html",    "14", "A good recovery can beat no failure at all", "Section divider"],
-    ["15-recovery-effect.html",     "15", "A well-resolved failure is associated with more loyalty than no problem", "Comparison bars"],
-    ["16-three-justices.html",      "16", "The conversation outweighs the compensation amount", "Content · three justices"],
-    ["17-ritz-carnival.html",       "17", "A recovery has to match the shape of the failure", "Two-column"],
-    ["18-recovery-quote.html",      "18", "Compensation buys the resolution; the conversation buys the relationship", "Pull quote"],
-    ["19-four-brands.html",         "19", "Four brands, each through the discipline a different trait forces", "KPI row"],
-    ["20-closing.html",             "20", "Run the chapter's four moves on a real service you use", "Closing / takeaways"]
-  ];
-  const grid = document.getElementById('grid');
-  slides.forEach(([href, n, claim, tmpl]) => {
-    const card = document.createElement('article');
-    card.className = 'card';
-    card.innerHTML =
-      '<div class="frame"><div class="scaler"><iframe src="' + href + '?thumb=1" title="' + claim + '"></iframe></div></div>' +
-      '<div class="info"><div><h3>' + claim + '</h3><span class="tmpl">' + tmpl + '</span></div><span class="n">' + n + '</span></div>' +
-      '<a class="open" href="' + href + '" target="_blank">Open &rarr;</a>';
-    grid.appendChild(card);
-  });
-
-  function fitCards(){
-    document.querySelectorAll('.card .frame').forEach(frame => {
-      const scaler = frame.querySelector('.scaler');
+(function(){
+  function fit() {
+    document.querySelectorAll('.slide-frame').forEach(function(frame){
+      var scaler = frame.querySelector('.scaler');
       if (!scaler) return;
-      const w = frame.clientWidth;
-      const s = w / 960;
+      var w = frame.clientWidth;
+      var s = w / 960;
       scaler.style.transform = 'scale(' + s + ')';
-      scaler.style.width  = '960px';
+      scaler.style.width = '960px';
       scaler.style.height = '540px';
       frame.style.height = (540 * s) + 'px';
     });
   }
-  document.querySelectorAll('iframe').forEach(f => {
-    f.addEventListener('load', () => {
-      try { f.contentDocument.documentElement.classList.add('is-thumb'); } catch(_){}
+  document.querySelectorAll('.slide-frame iframe').forEach(function(f){
+    f.addEventListener('load', function(){
+      try { f.contentDocument.documentElement.classList.add('is-thumb'); } catch(e){}
     });
   });
-  window.addEventListener('resize', fitCards);
-  window.addEventListener('load', fitCards);
-  fitCards();
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
 })();
 </script>
-
-  <footer>
-    <span>MKTG 4333 · Prof. Felipe M. Affonso · Spears School of Business</span>
-    <span>White bg · Segoe UI · one coral accent · pairs with the Ch 9 chapter</span>
-  </footer>
+</main>
+<footer><div class="inner">Principles of Marketing: An AI-Integrated Approach &middot; instructor courseware.</div></footer>
 </body>
 </html>

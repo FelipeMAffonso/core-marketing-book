@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="The Economist subscription decoy. With the dominated print-only decoy present, 16 percent pick web-only, 0 percent the decoy, and 84 percent the bundle. Without the decoy, 68 percent pick web-only and 32 percent the bundle.">
+  <g font-size="12" fill="#1a1a1a">
+    <line x1="68" y1="230" x2="560" y2="230" stroke="#7A7A7A"/>
+    <line x1="68" y1="56" x2="68" y2="230" stroke="#E8E6E1"/>
+    <g font-size="11" fill="#7A7A7A" text-anchor="end">
+      <text x="60" y="234">0</text>
+      <text x="60" y="148">50</text>
+      <text x="60" y="62">100</text>
+    </g>
+    <line x1="68" y1="144" x2="560" y2="144" stroke="#E8E6E1" stroke-dasharray="2,3"/>
+    <text x="32" y="146" font-size="11" fill="#7A7A7A" text-anchor="middle" font-style="italic" transform="rotate(-90 32 146)">share choosing (%)</text>
+
+    <text x="178" y="44" text-anchor="middle" font-size="12" fill="#5C5C5C" font-weight="700" letter-spacing="0.6">WITH DECOY</text>
+    <rect x="96" y="206" width="44" height="24" fill="#BDB7AC"/>
+    <text x="118" y="198" text-anchor="middle" font-size="11" fill="#5C5C5C" font-weight="600">16%</text>
+    <text x="118" y="248" text-anchor="middle" font-size="10">web $59</text>
+
+    <rect x="156" y="228" width="44" height="2" fill="#D8D2C7"/>
+    <text x="178" y="220" text-anchor="middle" font-size="11" fill="#888" font-weight="600">0%</text>
+    <text x="178" y="248" text-anchor="middle" font-size="10" fill="#888">print $125</text>
+
+    <rect x="216" y="84" width="44" height="146" fill="#DA7756"/>
+    <text x="238" y="76" text-anchor="middle" font-size="13" fill="#DA7756" font-weight="700">84%</text>
+    <text x="238" y="248" text-anchor="middle" font-size="10" font-weight="600">print+web $125</text>
+
+    <line x1="320" y1="62" x2="320" y2="230" stroke="#E8E6E1" stroke-width="1" stroke-dasharray="3,3"/>
+
+    <text x="442" y="44" text-anchor="middle" font-size="12" fill="#5C5C5C" font-weight="700" letter-spacing="0.6">WITHOUT DECOY</text>
+    <rect x="372" y="112" width="50" height="118" fill="#BDB7AC"/>
+    <text x="397" y="104" text-anchor="middle" font-size="12" fill="#5C5C5C" font-weight="600">68%</text>
+    <text x="397" y="248" text-anchor="middle" font-size="10">web $59</text>
+
+    <rect x="440" y="174" width="50" height="56" fill="#BDB7AC"/>
+    <text x="465" y="166" text-anchor="middle" font-size="12" fill="#5C5C5C" font-weight="600">32%</text>
+    <text x="465" y="248" text-anchor="middle" font-size="10">print+web $125</text>
+
+    <text x="306" y="278" text-anchor="middle" font-size="11" fill="#888" font-style="italic">average revenue per subscriber moves $80 to $114 with the decoy on the page</text>
+  </g>
+</svg>

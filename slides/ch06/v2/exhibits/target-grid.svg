@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="The target-compatibility by attractiveness grid. The upper-right cell is the segment to chase. The tempting oversized circle in the low-compatibility row is the size trap, the expensive fight where a stronger rival already serves the buyers better. The chosen target is drawn in coral.">
+  <g font-size="12" fill="#1a1a1a">
+    <line x1="120" y1="60" x2="120" y2="290" stroke="#7A7A7A" stroke-width="1"/>
+    <line x1="120" y1="290" x2="640" y2="290" stroke="#7A7A7A" stroke-width="1"/>
+    <line x1="120" y1="175" x2="640" y2="175" stroke="#BDB7AC" stroke-width="0.6" stroke-dasharray="3,3"/>
+    <line x1="380" y1="60" x2="380" y2="290" stroke="#BDB7AC" stroke-width="0.6" stroke-dasharray="3,3"/>
+
+    <text x="380" y="312" text-anchor="middle" font-size="11" font-weight="600" fill="#5C5C5C">attractiveness</text>
+    <text x="380" y="328" text-anchor="middle" font-size="10" fill="#7A7A7A" font-style="italic">size, growth, monetary and strategic value</text>
+    <text x="105" y="175" text-anchor="end" font-size="11" font-weight="600" fill="#5C5C5C" transform="rotate(-90 105 175)">compatibility</text>
+
+    <text x="250" y="78" text-anchor="middle" font-size="10" fill="#7A7A7A" letter-spacing="0.6">LOW ATTRACTIVENESS</text>
+    <text x="510" y="78" text-anchor="middle" font-size="10" fill="#7A7A7A" letter-spacing="0.6">HIGH ATTRACTIVENESS</text>
+    <text x="115" y="118" text-anchor="end" font-size="10" fill="#7A7A7A">HIGH</text>
+    <text x="115" y="234" text-anchor="end" font-size="10" fill="#7A7A7A">LOW</text>
+
+    <text x="250" y="100" text-anchor="middle" font-size="11" fill="#888" font-style="italic">narrow win</text>
+    <circle cx="250" cy="135" r="12" fill="none" stroke="#7A7A7A" stroke-width="1.2"/>
+
+    <text x="510" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#B8553A">the target</text>
+    <circle cx="510" cy="135" r="20" fill="none" stroke="#DA7756" stroke-width="2"/>
+    <text x="510" y="172" text-anchor="middle" font-size="10" fill="#B8553A" font-style="italic">go here</text>
+
+    <text x="250" y="218" text-anchor="middle" font-size="11" fill="#888" font-style="italic">obvious skip</text>
+    <circle cx="250" cy="252" r="10" fill="none" stroke="#7A7A7A" stroke-width="1.2"/>
+
+    <text x="510" y="218" text-anchor="middle" font-size="11" font-weight="700" fill="#5C5C5C">size trap</text>
+    <circle cx="510" cy="252" r="32" fill="none" stroke="#7A7A7A" stroke-width="1.4" stroke-dasharray="4,3"/>
+    <text x="510" y="298" text-anchor="middle" font-size="10" fill="#888" font-style="italic">a stronger rival serves it better</text>
+
+    <text x="360" y="350" text-anchor="middle" font-size="11" fill="#7A7A7A" font-style="italic">Targeting hunts for the segment you can win, not the biggest one.</text>
+  </g>
+</svg>

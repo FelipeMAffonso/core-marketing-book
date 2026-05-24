@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" preserveAspectRatio="xMidYMid meet" font-family="'Segoe UI', sans-serif" role="img" aria-label="The four standard segmentation bases drawn as four quadrants on the question each one answers: geographic asks where, demographic asks who, psychographic asks what the buyer values, behavioral asks what the buyer does. Underneath sits benefit segmentation, drawn in coral as the deeper cause of choice.">
+  <g font-size="12" fill="#1a1a1a">
+    <line x1="60"  y1="40"  x2="60"  y2="220" stroke="#7A7A7A" stroke-width="0.8"/>
+    <line x1="660" y1="40"  x2="660" y2="220" stroke="#7A7A7A" stroke-width="0.8"/>
+    <line x1="60"  y1="40"  x2="660" y2="40"  stroke="#7A7A7A" stroke-width="0.8"/>
+    <line x1="60"  y1="220" x2="660" y2="220" stroke="#7A7A7A" stroke-width="0.8"/>
+    <line x1="360" y1="40"  x2="360" y2="220" stroke="#BDB7AC" stroke-width="0.6" stroke-dasharray="3,3"/>
+    <line x1="60"  y1="130" x2="660" y2="130" stroke="#BDB7AC" stroke-width="0.6" stroke-dasharray="3,3"/>
+
+    <text x="76" y="62" font-size="11" font-weight="700" fill="#5C5C5C" letter-spacing="1.4">GEOGRAPHIC</text>
+    <text x="76" y="86" font-size="13" font-weight="600">where the buyer is</text>
+    <text x="76" y="106" font-size="11" fill="#7A7A7A" font-style="italic">country to ZIP code to a geofence</text>
+
+    <text x="376" y="62" font-size="11" font-weight="700" fill="#5C5C5C" letter-spacing="1.4">DEMOGRAPHIC</text>
+    <text x="376" y="86" font-size="13" font-weight="600">who the buyer is</text>
+    <text x="376" y="106" font-size="11" fill="#7A7A7A" font-style="italic">age, income, life stage, gender</text>
+
+    <text x="76" y="152" font-size="11" font-weight="700" fill="#5C5C5C" letter-spacing="1.4">PSYCHOGRAPHIC</text>
+    <text x="76" y="176" font-size="13" font-weight="600">what the buyer values</text>
+    <text x="76" y="196" font-size="11" fill="#7A7A7A" font-style="italic">attitudes, interests, lifestyle</text>
+
+    <text x="376" y="152" font-size="11" font-weight="700" fill="#5C5C5C" letter-spacing="1.4">BEHAVIORAL</text>
+    <text x="376" y="176" font-size="13" font-weight="600">what the buyer does</text>
+    <text x="376" y="196" font-size="11" fill="#7A7A7A" font-style="italic">usage, occasion, loyalty status</text>
+
+    <rect x="60" y="248" width="600" height="44" fill="none" stroke="#DA7756" stroke-width="1.6" rx="2"/>
+    <text x="360" y="266" text-anchor="middle" font-size="11" font-weight="700" fill="#B8553A" letter-spacing="1.4">BENEFIT</text>
+    <text x="360" y="284" text-anchor="middle" font-size="12" font-weight="600" fill="#B8553A">the deeper cause: the benefit the buyer wants from the product</text>
+  </g>
+</svg>
