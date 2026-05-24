@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 10 Pricing &middot; 16 &middot; Cost-plus</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.cmp{ display:flex; flex-direction:column; padding:72px 96px 100px; }
+  .cmp .head{ margin-bottom:24px; }
+  .cmp .head .title{ font-size:80px; font-weight:700; line-height:1.05; color:var(--ink); letter-spacing:-0.018em; }
+  .cmp .head .sub{ margin-top:10px; font-size:36px; color:var(--ink-soft); line-height:1.35; max-width:60ch; }
+  .cmp .head .sub em{ font-style:italic; color:var(--accent); font-weight:600; }
+  .cmp .head .rule{ width:120px; height:4px; background:var(--accent); margin-top:18px; }
+
+  .cmp .body-row{ display:grid; grid-template-columns: 1.5fr 1fr; grid-template-rows: minmax(0, 1fr); gap:56px; flex:1; min-height:0; }
+  .cmp .chart{ background:var(--bg); border:2px solid var(--rule); padding:24px 32px 16px; display:flex; flex-direction:column; min-height:0; max-height:100%; overflow:hidden; }
+  .cmp .chart .caption{ font-size:22px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:6px; }
+  .cmp svg{ width:100%; flex:1; min-height:0; display:block; }
+
+  .cmp .side{ display:flex; flex-direction:column; gap:24px; min-height:0; max-height:100%; overflow:hidden; }
+  .cmp h4{ font-size:38px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .cmp ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
+  .cmp ul li{ font-size:36px; color:var(--ink-body); line-height:1.2; padding-left:32px; position:relative; }
+  .cmp ul li::before{ content:""; position:absolute; left:0; top:20px; width:16px; height:4px; background:var(--accent); }
+  .cmp .source{ position:absolute; right:80px; bottom:28px; font-size:22px; color:var(--source); }
+</style>
+</head>
+<body>
+  <section class="slide cmp">
+    <div class="head">
+      <h1 class="title">Cost-plus</h1>
+      <p class="sub">Price is set as unit cost plus a chosen markup, anchored on the <em>cost floor</em> of the value stick.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="body-row">
+      <div class="chart">
+        <span class="caption">Food-truck burrito &middot; markup of 40 percent on unit cost</span>
+        <svg viewBox="0 0 950 620" preserveAspectRatio="xMidYMid meet" role="img"
+             aria-label="A horizontal bar. The leftmost segment is unit cost at seven dollars. The next segment is the markup at two dollars and eighty cents. Together they sum to the posted price of nine dollars and eighty cents. A coral dashed marker further to the right shows the buyer's willingness-to-pay at thirteen dollars; the gap between the posted price and willingness-to-pay is the consumer surplus the firm did not capture.">
+          <g font-family="'Segoe UI', sans-serif" fill="#1a1a1a">
+            <!-- baseline + scale -->
+            <line x1="90" y1="380" x2="900" y2="380" stroke="#7A7A7A" stroke-width="2"/>
+
+            <g font-size="36" fill="#7A7A7A" text-anchor="middle">
+              <text x="90"  y="440">$0</text>
+              <text x="430" y="440">$7</text>
+              <text x="566" y="440">$9.80</text>
+              <text x="720" y="440">$13</text>
+            </g>
+
+            <!-- unit cost bar -->
+            <rect x="90" y="320" width="340" height="60" fill="#E8E6E1" stroke="#7A7A7A" stroke-width="1.5"/>
+            <text x="260" y="356" text-anchor="middle" font-size="36" font-weight="700">unit cost $7</text>
+
+            <!-- markup bar -->
+            <rect x="430" y="320" width="136" height="60" fill="#BDB7AC" stroke="#7A7A7A" stroke-width="1.5"/>
+            <text x="498" y="356" text-anchor="middle" font-size="36" font-weight="700">+ $2.80</text>
+
+            <!-- posted price marker -->
+            <line x1="566" y1="280" x2="566" y2="395" stroke="#1a1a1a" stroke-width="3"/>
+            <text x="566" y="265" text-anchor="middle" font-size="38" font-weight="700">posted price</text>
+
+            <!-- WTP marker (coral dashed) -->
+            <line x1="720" y1="200" x2="720" y2="395" stroke="#DA7756" stroke-width="3" stroke-dasharray="8,5"/>
+            <text x="720" y="185" text-anchor="middle" font-size="38" font-weight="700" fill="#B8553A">WTP $13</text>
+
+            <!-- uncaptured surplus bracket -->
+            <line x1="566" y1="125" x2="720" y2="125" stroke="#DA7756" stroke-width="2.5"/>
+            <line x1="566" y1="118" x2="566" y2="125" stroke="#DA7756" stroke-width="2.5"/>
+            <line x1="720" y1="118" x2="720" y2="125" stroke="#DA7756" stroke-width="2.5"/>
+            <text x="643" y="105" text-anchor="middle" font-size="36" font-style="italic" fill="#B8553A">uncaptured surplus $3.20</text>
+
+            <!-- formula -->
+            <text x="495" y="540" text-anchor="middle" font-size="40" font-weight="700" fill="#1a1a1a" font-family="'Source Code Pro', Consolas, monospace">price = unit cost &times; (1 + markup)</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="side">
+        <div>
+          <h4>When it fits</h4>
+          <ul>
+            <li>WTP cannot be measured reliably</li>
+            <li>Unit-cost data is well-defined</li>
+            <li>Buyers do not compare alternatives</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Where it fails</h4>
+          <ul>
+            <li>WTP exceeds the cost-plus price</li>
+            <li>Differentiation goes uncaptured</li>
+            <li>A competitor captures the surplus</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p class="source">Source: Marn &amp; Rosiello, <em>HBR</em> (1992); standard cost-accounting formulation.</p>
+  </section>
+</body>
+</html>

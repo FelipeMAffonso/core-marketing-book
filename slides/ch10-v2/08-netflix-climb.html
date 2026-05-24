@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 10 Pricing &middot; 08 &middot; Netflix climb</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; padding:72px 96px 100px; }
+  .exh .head{ margin-bottom:24px; }
+  .exh .head .title{ font-size:80px; font-weight:700; line-height:1.05; color:var(--ink); letter-spacing:-0.018em; }
+  .exh .head .sub{ margin-top:10px; font-size:36px; color:var(--ink-soft); line-height:1.35; max-width:60ch; }
+  .exh .head .sub em{ font-style:italic; color:var(--accent); font-weight:600; }
+  .exh .head .rule{ width:120px; height:4px; background:var(--accent); margin-top:18px; }
+
+  .exh .frame{ background:var(--bg); border:2px solid var(--rule); padding:24px 32px 16px; display:flex; flex-direction:column; flex:1; min-height:0; max-height:100%; overflow:hidden; }
+  .exh .caption{ font-size:22px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:6px; }
+  .exh svg{ width:100%; flex:1; min-height:0; display:block; }
+  .exh .source{ position:absolute; right:80px; bottom:28px; font-size:22px; color:var(--source); }
+</style>
+</head>
+<body>
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">Netflix, 2010 to 2024</h1>
+      <p class="sub">Six price increases moved the US standard plan from $7.99 to $15.99, because the <em>marginal cost of one additional viewer is near zero</em>.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Netflix US standard-plan monthly price</span>
+      <svg viewBox="0 0 1600 620" preserveAspectRatio="xMidYMid meet" role="img"
+           aria-label="A step chart of Netflix's US standard plan rising from $7.99 in 2010 through six price increases to $15.99 in 2024.">
+        <g font-family="'Segoe UI', sans-serif" fill="#1a1a1a">
+          <line x1="120" y1="520" x2="1560" y2="520" stroke="#7A7A7A" stroke-width="2"/>
+          <line x1="120" y1="60"  x2="120"  y2="520" stroke="#E8E6E1" stroke-width="1.5"/>
+
+          <g font-size="36" fill="#7A7A7A" text-anchor="end">
+            <text x="105" y="528">$0</text>
+            <text x="105" y="413">$5</text>
+            <text x="105" y="298">$10</text>
+            <text x="105" y="183">$15</text>
+          </g>
+          <line x1="120" y1="405" x2="1560" y2="405" stroke="#E8E6E1" stroke-dasharray="4,6"/>
+          <line x1="120" y1="290" x2="1560" y2="290" stroke="#E8E6E1" stroke-dasharray="4,6"/>
+          <line x1="120" y1="175" x2="1560" y2="175" stroke="#E8E6E1" stroke-dasharray="4,6"/>
+
+          <g font-size="36" fill="#7A7A7A" text-anchor="middle">
+            <text x="200" y="570">2010</text>
+            <text x="540" y="570">2014</text>
+            <text x="880" y="570">2018</text>
+            <text x="1220" y="570">2022</text>
+            <text x="1500" y="570">2024</text>
+          </g>
+
+          <!-- step path approximating: $7.99(2010), $8.99(2014), $9.99(2015), $10.99(2017), $12.99(2019), $13.99(2020), $15.49(2022), $15.99(2024) -->
+          <path d="M 200 337 L 540 337 L 540 314 L 660 314 L 660 291 L 880 291 L 880 245 L 1100 245 L 1100 222 L 1220 222 L 1220 188 L 1380 188 L 1380 176 L 1500 176"
+                stroke="#DA7756" stroke-width="5" fill="none"/>
+
+          <g font-size="40" font-weight="700">
+            <text x="200" y="320">$7.99</text>
+            <text x="1430" y="155" fill="#B8553A">$15.99</text>
+          </g>
+
+          <text x="840" y="110" text-anchor="middle" font-size="38" fill="#5C5C5C" font-style="italic">six price increases, fourteen years</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: Netflix US public price history, 2010 to 2024, standard HD plan.</p>
+  </section>
+</body>
+</html>

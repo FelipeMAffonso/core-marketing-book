@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 10 Pricing &middot; 30 &middot; The fairness ceiling</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; padding:72px 96px 100px; }
+  .exh .head{ margin-bottom:24px; }
+  .exh .head .title{ font-size:80px; font-weight:700; line-height:1.05; color:var(--ink); letter-spacing:-0.018em; }
+  .exh .head .sub{ margin-top:10px; font-size:36px; color:var(--ink-soft); line-height:1.35; max-width:60ch; }
+  .exh .head .sub em{ font-style:italic; color:var(--accent); font-weight:600; }
+  .exh .head .rule{ width:120px; height:4px; background:var(--accent); margin-top:18px; }
+
+  .exh .frame{ background:var(--bg); border:2px solid var(--rule); padding:24px 32px 16px; display:flex; flex-direction:column; flex:1; min-height:0; max-height:100%; overflow:hidden; }
+  .exh .caption{ font-size:22px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:6px; }
+  .exh svg{ width:100%; flex:1; min-height:0; display:block; }
+  .exh .source{ position:absolute; right:80px; bottom:28px; font-size:22px; color:var(--source); }
+</style>
+</head>
+<body>
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">The fairness ceiling</h1>
+      <p class="sub">A price below willingness-to-pay can still violate the buyer's <em>fairness threshold</em>.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Kahneman-Knetsch-Thaler snow-shovel survey &middot; share judging the price "fair"</span>
+      <svg viewBox="0 0 1600 620" preserveAspectRatio="xMidYMid meet" role="img"
+           aria-label="Four scenarios on a percent fair axis. Raising the price of a snow shovel after a blizzard scores 18 percent fair. Raising because a competitor stopped selling them scores 24 percent. Raising because the wholesaler raised its price scores 79 percent (in coral). Charging a long-time customer the higher market price scores 51 percent. A coral fairness line at 50 percent separates the two windfall scenarios below from the cost-pass-through and customer-blind scenarios above.">
+        <g font-family="'Segoe UI', sans-serif" fill="#1a1a1a">
+          <line x1="120" y1="490" x2="1480" y2="490" stroke="#7A7A7A" stroke-width="2"/>
+          <line x1="120" y1="60"  x2="120"  y2="490" stroke="#E8E6E1" stroke-width="1.5"/>
+
+          <g font-size="36" fill="#7A7A7A" text-anchor="end">
+            <text x="105" y="498">0%</text>
+            <text x="105" y="392">25%</text>
+            <text x="105" y="285">50%</text>
+            <text x="105" y="178">75%</text>
+          </g>
+          <line x1="120" y1="385" x2="1480" y2="385" stroke="#E8E6E1" stroke-dasharray="4,6"/>
+          <line x1="120" y1="172" x2="1480" y2="172" stroke="#E8E6E1" stroke-dasharray="4,6"/>
+
+          <!-- fairness line at 50% (y=278) -->
+          <line x1="120" y1="278" x2="1480" y2="278" stroke="#DA7756" stroke-width="3"/>
+          <text x="1470" y="262" text-anchor="end" font-size="38" font-weight="700" fill="#B8553A">fairness line</text>
+
+          <!-- 4 bars: 18%, 24%, 79%, 51%. Range 430 (60→490). 1% = 5.73px -->
+          <g font-size="42" font-weight="700" text-anchor="middle">
+            <rect x="220" y="412" width="200" height="78" fill="#BDB7AC"/>
+            <text x="320" y="392">18%</text>
+            <text x="320" y="546" font-size="36" fill="#5C5C5C" font-weight="500">blizzard</text>
+            <text x="320" y="586" font-size="36" fill="#5C5C5C" font-weight="500">price-up</text>
+
+            <rect x="490" y="403" width="200" height="87" fill="#BDB7AC"/>
+            <text x="590" y="383">24%</text>
+            <text x="590" y="546" font-size="36" fill="#5C5C5C" font-weight="500">competitor</text>
+            <text x="590" y="586" font-size="36" fill="#5C5C5C" font-weight="500">exit</text>
+
+            <rect x="760" y="138" width="200" height="352" fill="#DA7756"/>
+            <text x="860" y="118" fill="#B8553A">79%</text>
+            <text x="860" y="546" font-size="36" fill="#5C5C5C" font-weight="500">wholesale</text>
+            <text x="860" y="586" font-size="36" fill="#5C5C5C" font-weight="500">cost-up</text>
+
+            <rect x="1030" y="271" width="200" height="219" fill="#BDB7AC"/>
+            <text x="1130" y="251">51%</text>
+            <text x="1130" y="546" font-size="36" fill="#5C5C5C" font-weight="500">market price,</text>
+            <text x="1130" y="586" font-size="36" fill="#5C5C5C" font-weight="500">old buyer</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: Kahneman, Knetsch &amp; Thaler, <em>AER</em> (1986), Table 1; phone survey n &asymp; 100.</p>
+  </section>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 10 Pricing &middot; 12 &middot; Three brand positions</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; padding:72px 96px 100px; }
+  .exh .head{ margin-bottom:24px; }
+  .exh .head .title{ font-size:80px; font-weight:700; line-height:1.05; color:var(--ink); letter-spacing:-0.018em; max-width:24ch; }
+  .exh .head .title em{ font-style:italic; color:var(--accent); font-weight:600; }
+  .exh .head .sub{ margin-top:10px; font-size:36px; color:var(--ink-soft); line-height:1.35; max-width:60ch; }
+  .exh .head .sub em{ font-style:italic; color:var(--accent); font-weight:600; }
+  .exh .head .rule{ width:120px; height:4px; background:var(--accent); margin-top:18px; }
+
+  .exh .frame{ background:var(--bg); border:2px solid var(--rule); padding:24px 32px 16px; display:flex; flex-direction:column; flex:1; min-height:0; max-height:100%; overflow:hidden; }
+  .exh .caption{ font-size:22px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:6px; }
+  .exh svg{ width:100%; flex:1; min-height:0; display:block; }
+  .exh .source{ position:absolute; right:80px; bottom:28px; font-size:22px; color:var(--source); }
+</style>
+</head>
+<body>
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">Three brand positions</h1>
+      <p class="sub">Walmart prices at the cost floor, Salesforce in the middle of the stick, Apple <em>near the WTP ceiling</em>.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Three brands, three positions on the value stick</span>
+      <svg viewBox="0 0 1600 620" preserveAspectRatio="xMidYMid meet" role="img"
+           aria-label="Three vertical value sticks side by side. Walmart sets its price just above cost so the consumer-surplus wedge dominates. Salesforce sets its price in the middle. Apple sets its price near the willingness-to-pay ceiling so the firm captures most of the value created.">
+        <g font-family="'Segoe UI', sans-serif" fill="#1a1a1a">
+          <!-- WALMART -->
+          <g transform="translate(140,60)">
+            <text x="180" y="-10" text-anchor="middle" font-size="44" font-weight="700">Walmart</text>
+            <rect x="100" y="380" width="160" height="80" fill="#BDB7AC"/>
+            <rect x="100" y="340" width="160" height="40" fill="#E8E6E1"/>
+            <rect x="100" y="40"  width="160" height="300" fill="#F4EDE6"/>
+            <rect x="100" y="40"  width="160" height="420" fill="none" stroke="#7A7A7A" stroke-width="1.2"/>
+            <line x1="60" y1="40"  x2="300" y2="40"  stroke="#DA7756" stroke-width="4"/>
+            <line x1="60" y1="340" x2="300" y2="340" stroke="#7A7A7A" stroke-width="3"/>
+            <text x="180" y="500" text-anchor="middle" font-size="36" fill="#5C5C5C" font-style="italic">price near floor</text>
+          </g>
+
+          <!-- SALESFORCE -->
+          <g transform="translate(620,60)">
+            <text x="180" y="-10" text-anchor="middle" font-size="44" font-weight="700">Salesforce</text>
+            <rect x="100" y="380" width="160" height="80" fill="#BDB7AC"/>
+            <rect x="100" y="220" width="160" height="160" fill="#E8E6E1"/>
+            <rect x="100" y="40"  width="160" height="180" fill="#F4EDE6"/>
+            <rect x="100" y="40"  width="160" height="420" fill="none" stroke="#7A7A7A" stroke-width="1.2"/>
+            <line x1="60" y1="40"  x2="300" y2="40"  stroke="#DA7756" stroke-width="4"/>
+            <line x1="60" y1="220" x2="300" y2="220" stroke="#7A7A7A" stroke-width="3"/>
+            <text x="180" y="500" text-anchor="middle" font-size="36" fill="#5C5C5C" font-style="italic">price near middle</text>
+          </g>
+
+          <!-- APPLE -->
+          <g transform="translate(1100,60)">
+            <text x="180" y="-10" text-anchor="middle" font-size="44" font-weight="700">Apple</text>
+            <rect x="100" y="380" width="160" height="80" fill="#BDB7AC"/>
+            <rect x="100" y="120" width="160" height="260" fill="#E8E6E1"/>
+            <rect x="100" y="40"  width="160" height="80"  fill="#F4EDE6"/>
+            <rect x="100" y="40"  width="160" height="420" fill="none" stroke="#7A7A7A" stroke-width="1.2"/>
+            <line x1="60" y1="40"  x2="300" y2="40"  stroke="#DA7756" stroke-width="4"/>
+            <line x1="60" y1="120" x2="300" y2="120" stroke="#7A7A7A" stroke-width="3"/>
+            <text x="180" y="500" text-anchor="middle" font-size="36" fill="#5C5C5C" font-style="italic">price near ceiling</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: positions illustrative, after Oberholzer-Gee, <em>Better, Simpler Strategy</em> (HBS Press, 2021), Ch. 1.</p>
+  </section>
+</body>
+</html>

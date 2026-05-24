@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 10 Pricing &middot; 11 &middot; Three buyers on the stick</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; padding:72px 96px 100px; }
+  .exh .head{ margin-bottom:24px; }
+  .exh .head .title{ font-size:80px; font-weight:700; line-height:1.05; color:var(--ink); letter-spacing:-0.018em; max-width:24ch; }
+  .exh .head .title em{ font-style:italic; color:var(--accent); font-weight:600; }
+  .exh .head .sub{ margin-top:10px; font-size:36px; color:var(--ink-soft); line-height:1.35; max-width:60ch; }
+  .exh .head .sub em{ font-style:italic; color:var(--accent); font-weight:600; }
+  .exh .head .rule{ width:120px; height:4px; background:var(--accent); margin-top:18px; }
+
+  .exh .frame{ background:var(--bg); border:2px solid var(--rule); padding:24px 32px 16px; display:flex; flex-direction:column; flex:1; min-height:0; max-height:100%; overflow:hidden; }
+  .exh .caption{ font-size:22px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:6px; }
+  .exh svg{ width:100%; flex:1; min-height:0; display:block; }
+  .exh .source{ position:absolute; right:80px; bottom:28px; font-size:22px; color:var(--source); }
+</style>
+</head>
+<body>
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">Three buyers, one price</h1>
+      <p class="sub">A single posted price yields a different <em>consumer-surplus allocation</em> for each buyer's willingness-to-pay.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">One posted price &middot; three buyers &middot; three surplus wedges</span>
+      <svg viewBox="0 0 1600 620" preserveAspectRatio="xMidYMid meet" role="img"
+           aria-label="A horizontal value stick with cost at the left and the firm's price at a fixed point to its right. Three buyers stand at different willingness-to-pay positions further right; the gap between the price and each buyer's WTP is the consumer surplus that buyer keeps.">
+        <g font-family="'Segoe UI', sans-serif" fill="#1a1a1a">
+          <line x1="120" y1="300" x2="1480" y2="300" stroke="#7A7A7A" stroke-width="2.5"/>
+          <line x1="120" y1="280" x2="120"  y2="320" stroke="#7A7A7A" stroke-width="3"/>
+          <line x1="380" y1="280" x2="380"  y2="320" stroke="#DA7756" stroke-width="6"/>
+
+          <text x="120" y="380" text-anchor="middle" font-size="42" font-weight="700">Cost</text>
+          <text x="120" y="424" text-anchor="middle" font-size="36" fill="#7A7A7A" font-style="italic">$7</text>
+          <text x="380" y="380" text-anchor="middle" font-size="42" font-weight="700" fill="#B8553A">Price</text>
+          <text x="380" y="424" text-anchor="middle" font-size="36" fill="#B8553A" font-style="italic">$10</text>
+
+          <!-- three buyer ticks + WTP labels -->
+          <g>
+            <line x1="700" y1="280" x2="700" y2="320" stroke="#7A7A7A" stroke-width="2.5"/>
+            <text x="700" y="240" text-anchor="middle" font-size="40" font-weight="700">Buyer A</text>
+            <text x="700" y="180" text-anchor="middle" font-size="36" fill="#7A7A7A" font-style="italic">WTP $13</text>
+            <rect x="380" y="294" width="320" height="12" fill="#DA7756" opacity="0.30"/>
+            <text x="540" y="520" text-anchor="middle" font-size="36" fill="#5C5C5C">surplus $3</text>
+          </g>
+          <g>
+            <line x1="1020" y1="280" x2="1020" y2="320" stroke="#7A7A7A" stroke-width="2.5"/>
+            <text x="1020" y="240" text-anchor="middle" font-size="40" font-weight="700">Buyer B</text>
+            <text x="1020" y="180" text-anchor="middle" font-size="36" fill="#7A7A7A" font-style="italic">WTP $16</text>
+            <rect x="380" y="310" width="640" height="12" fill="#DA7756" opacity="0.50"/>
+            <text x="700" y="560" text-anchor="middle" font-size="36" fill="#5C5C5C">surplus $6</text>
+          </g>
+          <g>
+            <line x1="1420" y1="280" x2="1420" y2="320" stroke="#7A7A7A" stroke-width="2.5"/>
+            <text x="1420" y="240" text-anchor="middle" font-size="40" font-weight="700">Buyer C</text>
+            <text x="1420" y="180" text-anchor="middle" font-size="36" fill="#7A7A7A" font-style="italic">WTP $22</text>
+            <rect x="380" y="326" width="1040" height="12" fill="#DA7756" opacity="0.65"/>
+            <text x="900" y="600" text-anchor="middle" font-size="36" fill="#5C5C5C">surplus $12</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: derived from Oberholzer-Gee, <em>Better, Simpler Strategy</em> (HBS Press, 2021).</p>
+  </section>
+</body>
+</html>

@@ -2592,7 +2592,7 @@
       } catch (e) {}
     }
 
-    // Shell-side title swap: chapters were authored with "Core Marketing" in their hero
+    // Shell-side title swap: chapters were authored with "Principles of Marketing: An AI-Integrated Approach" in their hero
     // eyebrow/front-matter. The book is now "Principles of Marketing" — replace the visible
     // text in the chapter iframe (the chapter files stay frozen). Idempotent.
     function swapBookTitle(doc) {
@@ -2601,12 +2601,12 @@
         var walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null);
         var hits = [], n;
         while ((n = walker.nextNode())) {
-          if (n.nodeValue && n.nodeValue.indexOf('Core Marketing') !== -1) {
+          if (n.nodeValue && n.nodeValue.indexOf('Principles of Marketing: An AI-Integrated Approach') !== -1) {
             var tag = n.parentNode && n.parentNode.tagName;
             if (tag !== 'SCRIPT' && tag !== 'STYLE') hits.push(n);
           }
         }
-        hits.forEach(function (t) { t.nodeValue = t.nodeValue.replace(/Core Marketing/g, 'Principles of Marketing'); });
+        hits.forEach(function (t) { t.nodeValue = t.nodeValue.replace(/Principles of Marketing: An AI-Integrated Approach/g, 'Principles of Marketing'); });
       } catch (e) {}
     }
 

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 10 Pricing &middot; 23 &middot; The decoy effect</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  /* Concept slide — bullet-point primitive at 1920×1080, two-column body */
+  .slide.cmp{ display:flex; flex-direction:column; padding:72px 96px 100px; }
+  .cmp .head{ margin-bottom:28px; }
+  .cmp .head .title{ font-size:80px; font-weight:700; line-height:1.05; color:var(--ink); letter-spacing:-0.018em; }
+  .cmp .head .sub{ margin-top:10px; font-size:36px; color:var(--ink-soft); line-height:1.35; }
+  .cmp .head .sub em{ font-style:italic; color:var(--accent); font-weight:600; }
+  .cmp .head .rule{ width:120px; height:4px; background:var(--accent); margin-top:18px; }
+
+  .cmp .body-row{ display:grid; grid-template-columns: 1.5fr 1fr; grid-template-rows: minmax(0, 1fr); gap:56px; flex:1; min-height:0; }
+  .cmp .chart{ background:var(--bg); border:2px solid var(--rule); padding:20px 28px 12px; display:flex; flex-direction:column; min-height:0; max-height:100%; overflow:hidden; }
+  .cmp .chart .caption{ font-size:22px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:6px; }
+  .cmp svg{ width:100%; flex:1; min-height:0; display:block; }
+
+  .cmp .side{ display:flex; flex-direction:column; gap:24px; min-height:0; max-height:100%; overflow:hidden; }
+  .cmp h4{ font-size:38px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .cmp ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
+  .cmp ul li{ font-size:36px; color:var(--ink-body); line-height:1.2; padding-left:32px; position:relative; }
+  .cmp ul li::before{ content:""; position:absolute; left:0; top:20px; width:16px; height:4px; background:var(--accent); }
+  .cmp .source{ position:absolute; right:80px; bottom:28px; font-size:22px; color:var(--source); }
+</style>
+</head>
+<body>
+  <section class="slide cmp">
+    <div class="head">
+      <h1 class="title">The decoy effect</h1>
+      <p class="sub">A dominated option pulls choice toward the <em>option that dominates it</em>.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="body-row">
+      <div class="chart">
+        <span class="caption">Cinema popcorn &middot; share of buyers by menu</span>
+        <svg viewBox="0 0 950 620" preserveAspectRatio="xMidYMid meet" role="img"
+             aria-label="Five vertical bars on a percent-of-buyers axis, grouped two-versus-three. Without a decoy, Small at $4 takes 66% and Medium at $7 takes 34%. After Large at $7.50 is added as a decoy, Small drops to 22%, Medium climbs to 73% (in coral), and the dominated Large takes only 5%.">
+          <g font-family="'Segoe UI', sans-serif" fill="#1a1a1a">
+            <!-- y-axis -->
+            <line x1="90" y1="460" x2="900" y2="460" stroke="#7A7A7A" stroke-width="2"/>
+            <line x1="90" y1="60"  x2="90"  y2="460" stroke="#E8E6E1" stroke-width="1.5"/>
+            <g font-size="36" fill="#7A7A7A" text-anchor="end">
+              <text x="78" y="466">0</text>
+              <text x="78" y="339">25</text>
+              <text x="78" y="86">75</text>
+            </g>
+            <line x1="90" y1="333" x2="900" y2="333" stroke="#E8E6E1" stroke-dasharray="4,6"/>
+            <line x1="90" y1="207" x2="900" y2="207" stroke="#E8E6E1" stroke-dasharray="4,6"/>
+            <line x1="90" y1="80"  x2="900" y2="80"  stroke="#E8E6E1" stroke-dasharray="4,6"/>
+            <text x="36" y="270" font-size="36" fill="#7A7A7A" font-style="italic" text-anchor="middle" transform="rotate(-90 36 270)">% choosing</text>
+
+            <!-- GROUP A: two sizes -->
+            <!-- Small 66% → height 334, top 126 -->
+            <rect x="110" y="126" width="100" height="334" fill="#BDB7AC"/>
+            <text x="160" y="106" text-anchor="middle" font-size="44" font-weight="700">66%</text>
+            <text x="160" y="500" text-anchor="middle" font-size="38" font-weight="600">Small</text>
+            <text x="160" y="555" text-anchor="middle" font-size="36" fill="#5C5C5C">$4</text>
+
+            <!-- Med 34% → height 172, top 288 -->
+            <rect x="235" y="288" width="100" height="172" fill="#BDB7AC"/>
+            <text x="285" y="268" text-anchor="middle" font-size="44" font-weight="700">34%</text>
+            <text x="285" y="500" text-anchor="middle" font-size="38" font-weight="600">Med</text>
+            <text x="285" y="555" text-anchor="middle" font-size="36" fill="#5C5C5C">$7</text>
+
+            <!-- group A label (moved down with breathing room) -->
+            <text x="225" y="610" text-anchor="middle" font-size="40" font-weight="700">two sizes</text>
+
+            <!-- divider -->
+            <line x1="400" y1="60" x2="400" y2="460" stroke="#E8E6E1" stroke-dasharray="5,8"/>
+
+            <!-- GROUP B: three sizes, decoy added -->
+            <!-- Small 22% → height 111, top 349 -->
+            <rect x="435" y="349" width="100" height="111" fill="#BDB7AC"/>
+            <text x="485" y="329" text-anchor="middle" font-size="44" font-weight="700">22%</text>
+            <text x="485" y="500" text-anchor="middle" font-size="38" font-weight="600">Small</text>
+            <text x="485" y="555" text-anchor="middle" font-size="36" fill="#5C5C5C">$4</text>
+
+            <!-- Med 73% → height 369, top 91 -->
+            <rect x="560" y="91" width="100" height="369" fill="#DA7756"/>
+            <text x="610" y="71" text-anchor="middle" font-size="44" font-weight="700" fill="#B8553A">73%</text>
+            <text x="610" y="500" text-anchor="middle" font-size="38" font-weight="700" fill="#B8553A">Med</text>
+            <text x="610" y="555" text-anchor="middle" font-size="36" fill="#B8553A">$7</text>
+
+            <!-- Large decoy 5% → height 25, top 435 -->
+            <rect x="685" y="435" width="100" height="25" fill="#F4EDE6" stroke="#DA7756" stroke-dasharray="4,5"/>
+            <text x="735" y="415" text-anchor="middle" font-size="44" font-weight="700" fill="#B8553A">5%</text>
+            <text x="735" y="500" text-anchor="middle" font-size="38" font-weight="600" fill="#B8553A">decoy</text>
+            <text x="735" y="555" text-anchor="middle" font-size="36" fill="#B8553A">$7.50</text>
+
+            <!-- group B label (moved down with breathing room) -->
+            <text x="610" y="610" text-anchor="middle" font-size="40" font-weight="700" fill="#B8553A">decoy added</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="side">
+        <div>
+          <h4>The setup</h4>
+          <ul>
+            <li>Two strong options, one trade-off</li>
+            <li>A dominated third option</li>
+            <li>Buyer selects the option that dominates the decoy</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Where you see it</h4>
+          <ul>
+            <li>Cinema popcorn pricing</li>
+            <li>SaaS three-tier pricing</li>
+            <li>Apple storage tiers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p class="source">Source: Huber, Payne &amp; Puto, <em>JCR</em> (1982); asymmetric-dominance experimental paradigm.</p>
+  </section>
+</body>
+</html>

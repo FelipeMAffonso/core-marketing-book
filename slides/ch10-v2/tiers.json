@@ -1,0 +1,47 @@
+{
+  "_doc": "Tier assignment per slide. essential = appears in 15+30+45+75. standard = appears in 30+45+75. depth = appears in 45+75. bonus = appears in 75 only.",
+  "_chapter": "Ch10 Pricing",
+  "_canvas": "1920x1080",
+  "_running_case": "Wendy's dynamic-pricing reversal, Feb 26 to Mar 9, 2024",
+  "slides": [
+    { "file": "01-cover.html",            "tier": "essential", "role": "cover",      "part": 0, "title": "Pricing" },
+    { "file": "02-wendys-hook.html",      "tier": "essential", "role": "hook",       "part": 0, "title": "Wendy's reversed dynamic pricing in twelve days" },
+    { "file": "03-value-stick.html",      "tier": "essential", "role": "frame",      "part": 0, "title": "The value stick" },
+    { "file": "04-agenda.html",           "tier": "essential", "role": "agenda",     "part": 0, "title": "Today's lecture" },
+
+    { "file": "06-p1-divider.html",       "tier": "essential", "role": "divider",    "part": 1, "title": "Part 1 — Price leverage" },
+    { "file": "05-margin-markup.html",    "tier": "standard",  "role": "concept",    "part": 1, "title": "Margin and markup" },
+    { "file": "07-leverage-bars.html",    "tier": "essential", "role": "concept",    "part": 1, "title": "Asymmetric leverage" },
+    { "file": "08-netflix-climb.html",    "tier": "standard",  "role": "case",       "part": 1, "title": "Netflix, 2010 to 2024" },
+    { "file": "09-p1-synthesis.html",     "tier": "essential", "role": "synthesis",  "part": 1, "title": "Part 1 synthesis" },
+
+    { "file": "10-p2-divider.html",       "tier": "essential", "role": "divider",    "part": 2, "title": "Part 2 — The value stick" },
+    { "file": "11-value-stick-buyers.html","tier": "standard",  "role": "concept",   "part": 2, "title": "Three buyers, one price" },
+    { "file": "12-three-brands.html",     "tier": "standard",  "role": "case",       "part": 2, "title": "Three brand positions" },
+    { "file": "13-p2-synthesis.html",     "tier": "essential", "role": "synthesis",  "part": 2, "title": "Part 2 synthesis" },
+
+    { "file": "14-p3-divider.html",       "tier": "essential", "role": "divider",    "part": 3, "title": "Part 3 — Four approaches" },
+    { "file": "15-four-approaches.html",  "tier": "essential", "role": "concept",    "part": 3, "title": "Four approaches on the stick" },
+    { "file": "16-cost-plus.html",        "tier": "standard",  "role": "concept",    "part": 3, "title": "Cost-plus" },
+    { "file": "17-competitor-match.html", "tier": "standard",  "role": "concept",    "part": 3, "title": "Competitor-match" },
+    { "file": "18-value-based.html",      "tier": "standard",  "role": "concept",    "part": 3, "title": "Value-based" },
+    { "file": "19-van-westendorp.html",   "tier": "standard",  "role": "concept",    "part": 3, "title": "Van Westendorp" },
+    { "file": "20-dynamic-pricing.html",  "tier": "standard",  "role": "concept",    "part": 3, "title": "Dynamic pricing" },
+    { "file": "21-p3-synthesis.html",     "tier": "essential", "role": "synthesis",  "part": 3, "title": "Part 3 synthesis" },
+
+    { "file": "22-p4-divider.html",       "tier": "essential", "role": "divider",    "part": 4, "title": "Part 4 — Pricing psychology" },
+    { "file": "22b-p4-bridge.html",       "tier": "standard",  "role": "transition", "part": 4, "title": "Three effects (visual transition)" },
+    { "file": "23-decoy-effect.html",     "tier": "essential", "role": "concept",    "part": 4, "title": "The decoy effect" },
+    { "file": "24-compromise-effect.html","tier": "standard",  "role": "concept",    "part": 4, "title": "The compromise effect" },
+    { "file": "25-charm-pricing.html",    "tier": "standard",  "role": "concept",    "part": 4, "title": "Charm pricing" },
+    { "file": "26-p4-synthesis.html",     "tier": "essential", "role": "synthesis",  "part": 4, "title": "Part 4 synthesis" },
+
+    { "file": "27-p5-divider.html",       "tier": "essential", "role": "divider",    "part": 5, "title": "Part 5 — Dynamic and fairness" },
+    { "file": "28-three-degrees.html",    "tier": "standard",  "role": "concept",    "part": 5, "title": "Three degrees of discrimination" },
+    { "file": "29-indianapolis-zoo.html", "tier": "standard",  "role": "case",       "part": 5, "title": "Indianapolis Zoo" },
+    { "file": "30-fairness-ceiling.html", "tier": "essential", "role": "concept",    "part": 5, "title": "The fairness ceiling" },
+    { "file": "31-wendys-revisit.html",   "tier": "essential", "role": "case",       "part": 5, "title": "Uber surge vs Wendy's" },
+
+    { "file": "32-closing.html",          "tier": "essential", "role": "closing",    "part": 6, "title": "Pricing is the choice of which line of the stick to read" }
+  ]
+}

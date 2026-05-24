@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ch 10 Pricing &middot; 19 &middot; Van Westendorp</title>
+<link rel="stylesheet" href="../_tokens.css"/>
+<style>
+  .slide.exh{ display:flex; flex-direction:column; padding:72px 96px 100px; }
+  .exh .head{ margin-bottom:24px; }
+  .exh .head .title{ font-size:80px; font-weight:700; line-height:1.05; color:var(--ink); letter-spacing:-0.018em; max-width:24ch; }
+  .exh .head .sub{ margin-top:10px; font-size:36px; color:var(--ink-soft); line-height:1.35; max-width:60ch; }
+  .exh .head .sub em{ font-style:italic; color:var(--accent); font-weight:600; }
+  .exh .head .rule{ width:120px; height:4px; background:var(--accent); margin-top:18px; }
+
+  .exh .frame{ background:var(--bg); border:2px solid var(--rule); padding:24px 32px 16px; display:flex; flex-direction:column; flex:1; min-height:0; max-height:100%; overflow:hidden; }
+  .exh .caption{ font-size:22px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-mute); margin-bottom:6px; }
+  .exh svg{ width:100%; flex:1; min-height:0; display:block; }
+  .exh .source{ position:absolute; right:80px; bottom:28px; font-size:22px; color:var(--source); }
+</style>
+</head>
+<body>
+  <section class="slide exh">
+    <div class="head">
+      <h1 class="title">Van Westendorp</h1>
+      <p class="sub">Four survey questions map the <em>acceptable price corridor</em> for a category.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="frame">
+      <span class="caption">Price-sensitivity meter &middot; hypothetical SaaS plan, n = 412 respondents</span>
+      <svg viewBox="0 0 1600 620" preserveAspectRatio="xMidYMid meet" role="img"
+           aria-label="Four cumulative price curves. 'Too cheap' and 'expensive' cross at the lower 'point of marginal cheapness' near $22. 'Too expensive' and 'cheap' cross at the upper 'point of marginal expensiveness' near $54. The optimum price sits at $36 where 'too cheap' equals 'too expensive'.">
+        <g font-family="'Segoe UI', sans-serif" fill="#1a1a1a">
+          <line x1="120" y1="500" x2="1480" y2="500" stroke="#7A7A7A" stroke-width="2"/>
+          <line x1="120" y1="80"  x2="120"  y2="500" stroke="#E8E6E1" stroke-width="1.5"/>
+
+          <g font-size="36" fill="#7A7A7A" text-anchor="middle">
+            <text x="120"  y="555">$0</text>
+            <text x="460"  y="555">$20</text>
+            <text x="800"  y="555">$40</text>
+            <text x="1140" y="555">$60</text>
+            <text x="1480" y="555">$80</text>
+          </g>
+
+          <!-- four curves -->
+          <path d="M 120 95 C 380 130, 700 440, 1480 495" stroke="#7A7A7A" stroke-width="3" fill="none"/>
+          <text x="180" y="130" font-size="38" font-weight="700" fill="#5C5C5C">too cheap</text>
+
+          <path d="M 120 495 C 400 460, 720 140, 1480 95" stroke="#1a1a1a" stroke-width="3.5" fill="none"/>
+          <text x="1260" y="135" font-size="38" font-weight="700">too expensive</text>
+
+          <path d="M 120 95 C 420 245, 780 400, 1480 495" stroke="#7A7A7A" stroke-width="3" stroke-dasharray="6,5" fill="none"/>
+          <text x="200" y="320" font-size="38" font-weight="700" fill="#5C5C5C">cheap</text>
+
+          <path d="M 120 495 C 420 410, 780 245, 1480 95" stroke="#1a1a1a" stroke-width="3" stroke-dasharray="6,5" fill="none"/>
+          <text x="1160" y="335" font-size="38" font-weight="700">expensive</text>
+
+          <!-- key x markers: PMC ~$22, OPP $36, PME $54 -->
+          <line x1="500" y1="80" x2="500" y2="500" stroke="#DA7756" stroke-width="2" stroke-dasharray="4,5" opacity="0.55"/>
+          <text x="500" y="62" text-anchor="middle" font-size="36" font-weight="700" fill="#B8553A">PMC $22</text>
+
+          <line x1="780" y1="80" x2="780" y2="500" stroke="#DA7756" stroke-width="3.5"/>
+          <text x="780" y="62" text-anchor="middle" font-size="40" font-weight="700" fill="#B8553A">optimum $36</text>
+
+          <line x1="1080" y1="80" x2="1080" y2="500" stroke="#DA7756" stroke-width="2" stroke-dasharray="4,5" opacity="0.55"/>
+          <text x="1080" y="62" text-anchor="middle" font-size="36" font-weight="700" fill="#B8553A">PME $54</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="source">Source: Van Westendorp, <em>ESOMAR</em> (1976); figures illustrative.</p>
+  </section>
+</body>
+</html>

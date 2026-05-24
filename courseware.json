@@ -1,8 +1,8 @@
 {
   "course": {
     "title": "Principles of Marketing: An AI-Integrated Approach",
-    "tagline": "Everything you need to teach Principles of Marketing — with AI, hands-on.",
-    "subtitle": "A complete, instructor-ready courseware package: a dual-depth interactive textbook, slides, teaching notes, projects, an AI-graded test bank, and a deploy kit — built for the AI era and held to WCAG 2.2 AA."
+    "tagline": "Everything you need to teach Principles of Marketing, with AI, hands-on.",
+    "subtitle": "A complete, instructor-ready courseware package: a dual-depth interactive textbook, slides, teaching notes, projects, an AI-graded test bank, and a deploy kit, built for the AI era and held to WCAG 2.2 AA."
   },
   "groups": [
     {
@@ -36,7 +36,7 @@
       "id": "textbook",
       "group": "read-reference",
       "title": "Textbook",
-      "blurb": "27 chapters, each readable two ways — Comprehensive or Concise — with interactive AI widgets.",
+      "blurb": "27 chapters, each readable two ways (Comprehensive or Concise) with interactive AI widgets.",
       "status": "available",
       "href": "textbook/index.html",
       "meta": "27 chapters"
@@ -90,7 +90,7 @@
       "id": "lecture-videos",
       "group": "teach",
       "title": "Lecture Videos",
-      "blurb": "Short, animated lecture videos — the first chapter is recorded, the rest are in production.",
+      "blurb": "Short, animated lecture videos. The Pricing chapter is recorded; the rest are in production.",
       "status": "wip",
       "href": "videos/index.html",
       "meta": "1 of 27: Pricing"

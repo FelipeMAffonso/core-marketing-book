@@ -1,6 +1,6 @@
-/* MKTG 4333 Slide Design System — shared tokens + base type.
+/* Slide Design System — shared tokens + base type.
    Import into every template: <link rel="stylesheet" href="_tokens.css">.
-   Canvas: 960 × 540 px. */
+   Canvas: 1920 × 1080 px (16:9, native PPTX widescreen export). */
 
 /* Source Sans 3 — forced everywhere while evaluating the substitute.
    To re-enable local Segoe UI on Windows, restore local('Segoe UI'), local('SegoeUI')
@@ -62,94 +62,95 @@
 html, body{ background:#0a0806; font-family:var(--font); color:var(--ink); }
 body{ min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
 
-/* 960×540 shell. Host-level scaling (e.g. a card or deck-stage) should wrap
-   this and apply a transform; the shell itself stays at native size. */
+/* 1920×1080 shell. Host-level scaling (e.g. a card or deck-stage) should wrap
+   this and apply a transform; the shell itself stays at native size.
+   Safe-area padding 56/80/96/80 = content area 1760×928 inside 1920×1080. */
 .slide{
   position:relative;
-  width:960px; height:540px;
+  width:1920px; height:1080px;
   background:var(--bg);
-  padding:28px 40px 48px 40px;
+  padding:56px 80px 96px 80px;
   overflow:hidden;
-  box-shadow: 0 8px 32px -8px rgba(0,0,0,.35);
+  box-shadow: 0 16px 64px -16px rgba(0,0,0,.35);
 }
 /* Note: dark variant intentionally removed — this system is light-only. */
 
-/* Rhythm primitives */
+/* Rhythm primitives — all 2x of the original 960×540 sizes */
 .eyebrow{
-  font-size:11px; font-weight:600; letter-spacing:0.12em;
+  font-size:22px; font-weight:600; letter-spacing:0.12em;
   text-transform:uppercase; color:var(--ink-mute);
-  margin-bottom:10px;
+  margin-bottom:20px;
 }
 .dark .eyebrow{ color:var(--dk-mute); }
 .title{
-  font-size:30px; font-weight:600; color:var(--ink);
+  font-size:60px; font-weight:600; color:var(--ink);
   line-height:1.2; letter-spacing:-0.01em;
-  max-width: 820px;
+  max-width: 1640px;
 }
 .title em{ font-style:normal; color:var(--accent); }
 .dark .title{ color:var(--dk-ink); }
 .subtitle{
-  font-size:20px; font-weight:400; color:var(--ink-soft);
-  line-height:1.45; margin-top:8px; max-width:780px;
+  font-size:40px; font-weight:400; color:var(--ink-soft);
+  line-height:1.45; margin-top:16px; max-width:1560px;
 }
 .dark .subtitle{ color:var(--dk-ink-2); }
-.rule{ width:60px; height:2px; background:var(--accent); margin-top:14px; }
+.rule{ width:120px; height:4px; background:var(--accent); margin-top:28px; }
 
 /* Body text */
-.body{ font-size:22px; line-height:1.45; color:var(--ink-body); }
-.body.sm{ font-size:20px; }
+.body{ font-size:44px; line-height:1.45; color:var(--ink-body); }
+.body.sm{ font-size:40px; }
 
 /* Cards */
 .card{
   background:var(--bg);
   border:1px solid var(--rule);
-  padding:22px 24px;
+  padding:44px 48px;
 }
 .card.featured{
   background:var(--accent-tint);
   border: none;
-  border-left:3px solid var(--accent);
+  border-left:6px solid var(--accent);
 }
 
 /* Pills + tags */
 .tag{
   display:inline-block;
-  font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+  font-size:22px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
   color:var(--ink-label);
   background:var(--bg-soft);
-  padding:5px 10px; border-radius:2px;
+  padding:10px 20px; border-radius:4px;
 }
 
 /* KPI */
-.kpi .n{ font-size:48px; font-weight:600; color:var(--ink); letter-spacing:-0.02em; line-height:1; }
+.kpi .n{ font-size:96px; font-weight:600; color:var(--ink); letter-spacing:-0.02em; line-height:1; }
 .kpi .n.accent{ color:var(--accent); }
-.kpi .l{ font-size:13px; color:var(--ink-label); margin-top:8px; }
+.kpi .l{ font-size:26px; color:var(--ink-label); margin-top:16px; }
 
 /* Checklist */
-.check{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px; }
-.check li{ font-size:20px; color:var(--ink-body); padding-left:24px; position:relative; }
+.check{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:24px; }
+.check li{ font-size:40px; color:var(--ink-body); padding-left:48px; position:relative; }
 .check li::before{
-  content:""; position:absolute; left:0; top:14px;
-  width:14px; height:2px; background:var(--accent);
+  content:""; position:absolute; left:0; top:28px;
+  width:28px; height:4px; background:var(--accent);
 }
 
-/* Source line (only text < 20px allowed) */
+/* Source line (only text < 40px allowed, intentionally chrome) */
 .source{
-  position:absolute; bottom:12px; right:20px;
-  font-size:11px; color:var(--source); letter-spacing:0.02em;
+  position:absolute; bottom:24px; right:40px;
+  font-size:22px; color:var(--source); letter-spacing:0.02em;
 }
 
 /* Page counter — optional, top-right */
 .page{
-  position:absolute; top:28px; right:40px;
-  font-size:11px; font-weight:600; letter-spacing:0.12em;
+  position:absolute; top:56px; right:80px;
+  font-size:22px; font-weight:600; letter-spacing:0.12em;
   text-transform:uppercase; color:var(--ink-mute);
 }
 
 /* Stand-alone viewing: scale the slide to fit viewport */
-@media (max-width: 1000px){
+@media (max-width: 2000px){
   body{ overflow:hidden; }
-  .slide{ transform-origin: center center; transform: scale( calc( (100vw - 48px) / 960) ); }
+  .slide{ transform-origin: center center; transform: scale( calc( (100vw - 48px) / 1920) ); }
 }
 /* Inside an iframe thumbnail, the host handles fitting — don't double-scale */
 html.is-thumb body{ padding:0; overflow:hidden; }
