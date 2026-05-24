@@ -28,6 +28,41 @@
    ============================================================= */
 
 /* --------------------------------------------------------------
+   0. ACCESSIBLE DEFAULTS (always on) — WCAG 2.1 AA baseline
+   --------------------------------------------------------------
+   The book ships COMPLIANT BY DEFAULT; the toggles below only
+   layer FURTHER. Two root fixes here:
+   (a) the muted neutral #888 (~3.5:1, fails 4.5:1) is darkened;
+   (b) coral used as SMALL text on light backgrounds is routed to
+       coral-deep (#B8553A, ~4.6:1). Bright coral stays on LARGE
+       headings (>=24px, pass 3:1), markers, rules, chips, and SVG
+       strokes (those need only 3:1, which coral meets).
+   -------------------------------------------------------------- */
+:root { --ink-3: #6b6b6b; --text-muted: #6b6b6b; }   /* chapters + shell muted neutral -> >=4.5:1 */
+.sec-num.sec-num, .fnum.fnum, .ax.ax, .eyebrow.eyebrow, .part-num.part-num,
+.def-term.def-term, .sn-num.sn-num, .institution.institution,
+.sb-brand-label.sb-brand-label, .a11y-fab.a11y-fab, #header-title > span {
+  color: #a8472a !important;   /* coral SMALL text: passes white AND cream; doubled class beats chapter !important */
+}
+
+/* 0b. DARK THEMES: the coral SMALL-text color above (#a8472a) is tuned for light/cream and falls
+   to ~3.3:1 on the gray/night surfaces. Under the dark themes (the shell sets data-mode on <html>),
+   switch those same roles to a LIGHT coral that clears 4.5:1 on the dark backgrounds. */
+html[data-mode="gray"] .sec-num.sec-num, html[data-mode="night"] .sec-num.sec-num,
+html[data-mode="gray"] .fnum.fnum, html[data-mode="night"] .fnum.fnum,
+html[data-mode="gray"] .ax.ax, html[data-mode="night"] .ax.ax,
+html[data-mode="gray"] .eyebrow.eyebrow, html[data-mode="night"] .eyebrow.eyebrow,
+html[data-mode="gray"] .part-num.part-num, html[data-mode="night"] .part-num.part-num,
+html[data-mode="gray"] .def-term.def-term, html[data-mode="night"] .def-term.def-term,
+html[data-mode="gray"] .sn-num.sn-num, html[data-mode="night"] .sn-num.sn-num,
+html[data-mode="gray"] .institution.institution, html[data-mode="night"] .institution.institution,
+html[data-mode="gray"] .sb-brand-label.sb-brand-label, html[data-mode="night"] .sb-brand-label.sb-brand-label,
+html[data-mode="gray"] .a11y-fab.a11y-fab, html[data-mode="night"] .a11y-fab.a11y-fab,
+html[data-mode="gray"] #header-title > span, html[data-mode="night"] #header-title > span {
+  color: #f0a98f !important;
+}
+
+/* --------------------------------------------------------------
    1. HIGH CONTRAST
    --------------------------------------------------------------
    The book's :root sets --ink (#1a1a1a), --ink-2 (#555),
@@ -330,3 +365,31 @@ html[data-a11y-font="dyslexia"] body {
   color: var(--coral, #DA7756);
 }
 .a11y-popover .a11y-option { padding: 6px 0; }
+
+/* --------------------------------------------------------------
+   6. CHANGE-POPUP TOAST + RESET BUTTON (added 2026-05-23)
+   The book ships WCAG 2.1 AA by default; changing theme/accent/
+   font/size/toggles can reduce that, so a quick toast warns, and
+   a Reset button restores the accessible defaults.
+   -------------------------------------------------------------- */
+.cc-a11y-toast {
+  position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%) translateY(16px);
+  max-width: min(560px, 92vw); background: #1a1a1a; color: #ffffff;
+  padding: 12px 16px; border-radius: 6px; z-index: 99999;
+  font: 14px/1.45 'Inter', -apple-system, sans-serif;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.28);
+  opacity: 0; pointer-events: none; transition: opacity .25s ease, transform .25s ease;
+}
+.cc-a11y-toast[data-show] { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+.cc-a11y-toast button {
+  background: none; border: 1px solid #ffffff; color: #ffffff; border-radius: 4px;
+  padding: 3px 10px; margin-left: 8px; cursor: pointer; font: 600 13px 'Inter', sans-serif;
+}
+.cc-a11y-toast button:hover { background: #ffffff; color: #1a1a1a; }
+.cc-a11y-toast .cc-a11y-toast-x { border: none; font-size: 18px; line-height: 1; padding: 0 4px; }
+.rs-reset-btn {
+  margin-top: 12px; width: 100%; background: #a8472a; color: #ffffff; border: none;
+  border-radius: 4px; padding: 9px 12px; cursor: pointer; font: 600 13px 'Inter', sans-serif;
+}
+.rs-reset-btn:hover { background: #8f3b22; }
+.rs-reset-btn:focus-visible { outline: 2px solid #a8472a; outline-offset: 2px; }

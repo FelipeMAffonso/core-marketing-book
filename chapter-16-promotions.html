@@ -684,6 +684,95 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<!-- ============================================================
+     A11Y CONTRAST OVERRIDES (Ch16) — appended LAST in <head> so it wins the
+     cascade over both the chapter CSS and _accessibility.css. Doubled-class
+     specificity (.foo.foo) + !important beats the chapter's own !important.
+     Fixes the 41 axe color-contrast failures at their TRUE source color:
+       A) white-on-coral buttons / active toggles  -> background #a8472a (5.83:1), hover #8f3c23.
+       B) small coral / coral-deep TEXT on white or cream -> #a8472a (~5:1).
+       C) opacity-washed cards (.w-card opacity:.55, .sr-card inline opacity)
+          -> drop the text-washing opacity; dim with a muted #faf7f3 bg + softer
+          #efe7da border instead, text at FULL opacity; the .w-live/.sr-active
+          state restores the bright white card.
+     Bright coral #DA7756 is left untouched where it is a heading/marker/rule/
+     border/SVG stroke (those meet 3:1 — Felipe's directive). No prose, JS, or
+     SVG geometry is touched.
+     ============================================================ -->
+<style>
+/* A) White-on-coral buttons + active toggles: darken the BACKGROUND, keep white text. */
+.w161-chip.on.on,
+.w161-btn.solid.solid, #w161-fire.w161-btn,
+.stepps-scorer .ss-btn.ss-btn, #stepps-score-btn.ss-btn,
+.schwartz-rewriter .sr-preset[aria-pressed="true"],
+.schwartz-rewriter .sr-level[aria-pressed="true"],
+#distinctive-auditor .da-go.da-go,
+.widget .w-btn.w-solid.w-solid {
+  background: #a8472a !important;
+  color: #ffffff !important;
+}
+.w161-chip.on.on { border-color: #a8472a !important; }
+#distinctive-auditor .da-go.da-go { border-color: #a8472a !important; }
+.w161-btn.solid.solid:hover, #w161-fire.w161-btn:hover,
+.stepps-scorer .ss-btn.ss-btn:hover, #stepps-score-btn.ss-btn:hover,
+#distinctive-auditor .da-go.da-go:hover,
+.widget .w-btn.w-solid.w-solid:hover { background: #8f3c23 !important; }
+/* keep disabled neutral, not coral */
+.widget .w-btn.w-solid.w-solid[disabled] { background: #6b6b6b !important; }
+
+/* B) Small coral / coral-deep TEXT on white or cream -> #a8472a (~5:1). */
+.figure .figcaption strong,
+p.figcaption strong,
+.widget .w-eyebrow.w-eyebrow,
+.widget .w-eyebrow .cap-num,
+.widget .w-deep .w-cardtag.w-cardtag,
+.w161-cap.w161-cap,
+.w161-fblab.w161-fblab,
+#distinctive-auditor .da-fblab.da-fblab,
+.widget .w-brief-pick.w-on .w-pick-tag, .widget .w-ask.w-on .w-ask-tag,
+.schwartz-rewriter .sr-narrator strong,
+.schwartz-rewriter .sr-card .sr-rung,
+.schwartz-rewriter .sr-card.sr-active .sr-rung,
+.widget .w-auditrow .w-arow-lab {
+  color: #a8472a !important;
+}
+
+/* C) Opacity-washed model cards (16.7 cheap-vs-deep): the .55 opacity blends the
+   tag/placeholder text below 4.5:1. Drop the wash; dim with a muted surface;
+   .w-live restores the bright white card. Text now renders at full opacity. */
+.widget .w-card.w-card {
+  opacity: 1 !important;
+  background: #faf7f3 !important;
+  border-color: #efe7da !important;
+}
+.widget .w-card.w-live.w-live {
+  background: #ffffff !important;
+  border-color: var(--line) !important;
+}
+.widget .w-card.w-deep.w-live { border-color: var(--coral-soft) !important; }
+/* muted neutral text inside the dimmed cards, at full opacity (>=4.5:1 on #faf7f3) */
+.widget .w-cheap .w-cardtag.w-cardtag,
+.widget .w-card .w-cardbody .w-ph,
+.widget .w-auditcard .w-ph { color: #6b6b6b !important; }
+
+/* C) Opacity-washed awareness cards (16.2 schwartz-rewriter): the JS sets an
+   inline per-rung opacity (0.52-1.0) that washes the card text. Drop the wash;
+   dim the non-selected cards with the same muted surface; .sr-active = bright. */
+.schwartz-rewriter .sr-card.sr-card {
+  opacity: 1 !important;
+  background: #faf7f3 !important;
+  border-color: #efe7da !important;
+}
+.schwartz-rewriter .sr-card.sr-active.sr-active {
+  background: #ffffff !important;
+  border-color: var(--coral-deep) !important;
+}
+
+/* C) chip sub-label (16.1): opacity:.72 washes the #555 (and the .on chip's
+   white) below 4.5:1. Show it at full opacity — the default chip text is #555
+   (passes) and the .on chip now sits on the darkened #a8472a background. */
+.w161-chip .w161-chsub.w161-chsub { opacity: 1 !important; }
+</style>
 </head>
 <body data-chapter-num="16">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -695,6 +784,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of");
+         injected SVG mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 16.
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-16-promotions.html  (target 0 serious/critical)
+     ============================================================ -->
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 16 &middot; The Mix Layer</p>
   <h1 class="title">Promotions and Advertising</h1>
@@ -1029,7 +1131,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
         </div>
       </div>
     </div>
-    <div class="sr-cards" id="sr-cards" aria-live="polite"></div>
+    <div class="sr-cards" id="sr-cards" aria-live="polite" aria-atomic="false"></div>
     <div class="sr-narrator" id="sr-narrator"></div>
   </div>
   <figcaption><span class="fnum" data-cap="figure"></span> A headline rewriter against the awareness ladder. Pick a brand, mark the rung the buyer is on, and the five cards show the headline pattern each rung needs. The principle is the <span class="term" data-tt="The rung-first rule says you name the buyer's current awareness rung before you write the headline, not after. A headline that pulls at one rung fails at any other, so a Most-Aware offer aimed at an Unaware audience reads as noise even when the offer is generous. The right headline is rarely the cleverest one in the room; it is the one whose pull matches what the buyer already knows at the moment the ad reaches her.">rung-first rule</span>: the right headline is not the cleverest one, it is the one that matches the buyer's current rung.<sup class="cite" data-cite="ref-12"></sup></figcaption>
@@ -1174,7 +1276,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <figure id="stepps-scorer-figure" class="stepps-scorer-fig">
   <div class="stepps-scorer" id="stepps-scorer">
     <span class="ss-cap">Score a draft against the six levers</span>
-    <textarea id="stepps-input" placeholder="Paste a draft social post, ad copy, or recruiting message, then click Score." rows="5">Liquid Death just dropped a Limited Edition can shaped like Whitney Houston's high notes, in heavy-metal type with a parental-advisory sticker, and it sold out in 38 minutes. Death to plastic. Tag a friend who would carry one.</textarea>
+    <textarea id="stepps-input" aria-label="Draft social post, ad copy, or recruiting message to score against the six STEPPS levers" placeholder="Paste a draft social post, ad copy, or recruiting message, then click Score." rows="5">Liquid Death just dropped a Limited Edition can shaped like Whitney Houston's high notes, in heavy-metal type with a parental-advisory sticker, and it sold out in 38 minutes. Death to plastic. Tag a friend who would carry one.</textarea>
     <div class="ss-presets">
       <button class="ss-preset" type="button" data-preset="liquiddeath">Liquid Death "Death to Plastic"</button>
       <button class="ss-preset" type="button" data-preset="stanley">Stanley Quencher product thread</button>
@@ -1420,14 +1522,14 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="w-twocol">
     <div class="w-card w-cheap" id="cvdCardHaiku">
       <div class="w-cardhead"><span class="w-cardtag">Cheap model (Haiku)</span><span class="w-cost" id="cvdCostHaiku"></span></div>
-      <div class="w-cardbody" id="cvdOutHaiku"><span class="w-ph">Press <b>Run on both models</b>.</span></div>
+      <div class="w-cardbody" id="cvdOutHaiku" aria-live="polite" aria-atomic="false"><span class="w-ph">Press <b>Run on both models</b>.</span></div>
     </div>
     <div class="w-card w-deep" id="cvdCardOpus">
       <div class="w-cardhead"><span class="w-cardtag">Deep model (Opus)</span><span class="w-cost" id="cvdCostOpus"></span></div>
-      <div class="w-cardbody" id="cvdOutOpus"><span class="w-ph">Press <b>Run on both models</b>.</span></div>
+      <div class="w-cardbody" id="cvdOutOpus" aria-live="polite" aria-atomic="false"><span class="w-ph">Press <b>Run on both models</b>.</span></div>
     </div>
   </div>
-  <div class="w-verdict" id="cvdVerdict"></div>
+  <div class="w-verdict" id="cvdVerdict" aria-live="polite" aria-atomic="false"></div>
   <p class="w-tool">In practice you would generate the bulk of variants on the cheap model and reserve the expensive one for the final set, and a Skill loaded with the brand's reference images can batch ten of them for the whole team. That install is the build work Chapter 18 covers.</p>
 </div>
 
@@ -1513,10 +1615,10 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     <button class="w-btn w-solid" id="araRun" type="button"><span class="w-dot"></span>Search the live web and audit</button>
     <span class="w-cost" id="araCost"></span>
   </div>
-  <div class="w-auditcard" id="araOut">
+  <div class="w-auditcard" id="araOut" aria-live="polite" aria-atomic="false">
     <span class="w-ph">Type a real brand, choose a question, then press <b>Search the live web and audit</b>. The model reads the brand's current advertising, so its read is candidate evidence from a live web search, not a verified brand-tracker panel.</span>
   </div>
-  <div class="w-verdict" id="araVerdict"></div>
+  <div class="w-verdict" id="araVerdict" aria-live="polite" aria-atomic="false"></div>
   <p class="w-tool">For a team, a /promo-audit Skill loaded with the brand's positioning and connected to a brand-tracker MCP runs this on every brief. That setup is the build work Chapter 18 covers.</p>
 </div>
 

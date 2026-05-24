@@ -862,6 +862,53 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<!-- ============================================================
+     A11Y CONTRAST FIXES (Ch17) — appended LAST in <head> so it wins over both the
+     chapter's own <style> and _accessibility.css. WCAG 2.1 AA: text >=4.5:1.
+     Doubled-class / id specificity + !important. Diagnosed from contrast_detail.js.
+     Bright coral #DA7756 is preserved everywhere it is a heading/marker/rule/border/
+     SVG stroke (those meet 3:1); only SMALL CORAL TEXT and WHITE-ON-CORAL UI are darkened.
+     ============================================================ -->
+<style>
+  /* 1. White-on-coral BUTTONS fail at 3.1:1. Darken the BACKGROUND to #a8472a
+        (white on #a8472a = 5.83:1); keep white text. Hover #8f3c23; disabled #6b6b6b. */
+  #w172 .demo-button.cm-add.cm-add,
+  #w17-ideator .w17-run.w17-run {
+    background: #a8472a !important;
+    color: #ffffff !important;
+  }
+  #w17-ideator .w17-run.w17-run { border-color: #a8472a !important; }
+  #w172 .demo-button.cm-add.cm-add:hover,
+  #w17-ideator .w17-run.w17-run:hover { background: #8f3c23 !important; }
+  #w17-ideator .w17-run.w17-run:hover { border-color: #8f3c23 !important; }
+  #w172 .demo-button.cm-add.cm-add:disabled { background: #6b6b6b !important; }
+
+  /* 2. Small coral-deep (#B8553A) READOUT text on cream (#f5f0e8) is 4.2:1.
+        Darken the text to #a8472a (~5:1). These are the deterministic readouts,
+        not headings/strokes, so darkening is safe. */
+  #w171 .cph-verdict.cph-verdict b,
+  #w172 .cm-readout.cm-readout b { color: #a8472a !important; }
+
+  /* 3. Widget 17.4 comparison columns used opacity:.5 to dim the un-pressed card,
+        which washed the muted label (#888 -> ~#b5b5b5) and coral-deep (#B8553A -> ~#dcaa9d)
+        BELOW 4.5:1. Replace the text-washing opacity with a NON-opacity dim: muted
+        background + softer border, text kept at FULL opacity. The .live state restores
+        the bright white card so the "this column is active" affordance survives. */
+  #widget-17-4 .wv-col.wv-col {
+    opacity: 1 !important;
+    background: #faf7f3 !important;
+    border-color: #efe7da !important;
+  }
+  #widget-17-4 .wv-col.wv-col.live {
+    background: #ffffff !important;
+  }
+  #widget-17-4 .wv-col.sharp.live { border-color: var(--coral-soft) !important; }
+  /* full-opacity readable colors on the now-non-transparent card */
+  #widget-17-4 .wv-col.vague .wv-ct.wv-ct,
+  #widget-17-4 .wv-col .wv-cost.wv-cost { color: #6b6b6b !important; }
+  #widget-17-4 .wv-col.sharp .wv-ct.wv-ct { color: #a8472a !important; }
+  #widget-17-4 .wv-ans .ph.ph { color: #6b6b6b !important; }
+</style>
 </head>
 <body data-chapter-num="17">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -873,6 +920,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of"); injected SVG
+         mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 17 (review; Haiku can hallucinate).
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-17-content-marketing.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 17</p>
@@ -890,7 +950,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p class="lede first" data-focused style="display:none">A <span class="term" data-tt="B2B is short for business-to-business, any marketing situation where the buyer is another company rather than an individual person. The deal cycle usually runs six to eighteen months because several people at the buying company sign off, and the content that earns its keep is benchmark research and reports the buyer trades an email address for. The opposite is B2C, business-to-consumer, where the buyer is one person and the decision can collapse to minutes.">B2B (business-to-business)</span> software company spent eleven years publishing weekly research, a benchmarks report, a podcast, and a conference before its founder sold the operation in 2016 for a high seven-figure sum.<sup class="cite" data-cite="ref-2"></sup> The company never sold software. The product was the audience a media holding company paid to acquire: the email list, the speaker contacts, the back catalogue, and the sponsor relationships.<sup class="cite" data-cite="ref-2"></sup></p>
 
 <figure class="sketch" aria-label="The opener puzzle: a company published one schedule for eleven years and the asset the buyer paid for was the audience that returns on that schedule, not any product.">
-  <div class="mount" id="sk-audience-asset-mount" data-w="700" data-h="300"></div>
+  <div class="mount" id="sk-audience-asset-mount" data-w="700" data-h="300" aria-hidden="true"></div>
   <figcaption>One company published on the same schedule for eleven years, and the thing the buyer paid for was the audience that comes back every week, because the content stays valuable to one defined worldview.</figcaption>
 </figure>
 
@@ -932,7 +992,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">3.</span> HubSpot's own Q1 2026 reporting shows 299,458 paying customers generating 881 million dollars in quarterly revenue, the kind of scale that requires the inbound motion to run across a generation of customers, not one launch quarter. The field has renamed the operating instruction three times (the original funnel, then the Attract-Engage-Delight flywheel in 2018, then Loop Marketing in 2025), but the instruction has not changed in twenty years: attract the buyer with content they were already going to read.<sup class="cite" data-cite="ref-5"></sup></aside>
 
 <figure class="sketch" aria-label="Inbound versus outbound by three HubSpot replicated numbers: cost per lead, close rate, and the time horizon for payback.">
-  <div class="mount" id="sk-hubspot-numbers-mount" data-w="700" data-h="290"></div>
+  <div class="mount" id="sk-hubspot-numbers-mount" data-w="700" data-h="290" aria-hidden="true"></div>
   <figcaption>Three numbers, three different shapes. Inbound costs roughly 39 dollars per lead against 100 for outbound. Inbound closes at 14.6 percent against 1.7 percent. And the gap only appears on a 12-to-18 month horizon, which is why most teams quit before the curve bends.</figcaption>
 </figure>
 
@@ -986,7 +1046,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">B2C runs on a faster loop, so its format mix tilts toward short-form video and email where B2B leans on long-form and gated research.<sup class="cite" data-cite="ref-3"></sup> §17.2 builds the first stage the definition implies, the pillar that anchors the audience's worldview.</p>
 
 <figure class="sketch" aria-label="B2B content motion ordered by buyer purchase-stage with corresponding asset types.">
-  <div class="mount" id="sk-b2b-funnel-mount" data-w="700" data-h="320"></div>
+  <div class="mount" id="sk-b2b-funnel-mount" data-w="700" data-h="320" aria-hidden="true"></div>
   <figcaption>B2B content by purchase stage. Awareness-stage assets refresh memory structures in the 95 percent not in market; consideration-stage assets help the 5 percent who just entered the market shortlist; decision-stage assets close.</figcaption>
 </figure>
 <span class="ax">02 // pillar plus cluster</span>
@@ -1055,7 +1115,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The claim that linking twenty short articles back to one long page earns a ranking can sound like superstition, but the mechanism is plain once you picture what the engine is doing. Think of a search engine as a librarian deciding which periodicals are authoritative on which subjects. The librarian sees one periodical that publishes a comprehensive reference essay on insulated drinkware, and then publishes twenty narrower pieces (on vacuum versus single-wall construction, on cup-holder fit in standard cars, on the difference between 18/8 and 304 stainless) that all cite the reference essay. The librarian concludes the periodical genuinely knows the subject, because nobody assembles twenty cross-referenced articles unless they have something coherent to say.</p>
 
 <figure class="sketch" aria-label="Pillar page surrounded by cluster pages with bidirectional link arrows">
-  <div class="mount" id="sk-pillar-cluster-mount" data-w="700" data-h="300"></div>
+  <div class="mount" id="sk-pillar-cluster-mount" data-w="700" data-h="300" aria-hidden="true"></div>
   <figcaption>Each cluster page links to the pillar; the pillar links to each cluster. The bidirectional structure is what the search engine reads as topical authority.</figcaption>
 </figure>
 
@@ -1072,7 +1132,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>Worn Wear shows how a pillar and an operating program feed each other. In 2025 the program logged 174,799 garments repaired across seventy repair centers, and most of those repairs became publishable content.<sup class="cite" data-cite="ref-11"></sup> A garment comes in, a staff photographer captures the repair, the customer's short story runs alongside it, and the piece links back to the central Worn Wear pillar. Because every repair encounter is a potential cluster page, the program produces the operational outcome and the content asset in one motion.</p>
 
 <figure class="sketch" aria-label="A 2014 pillar essay still ranks in 2026 because newer cluster pages added across twelve years all link back to it">
-  <div class="mount" id="sk-asset-accrual-mount" data-w="700" data-h="300"></div>
+  <div class="mount" id="sk-asset-accrual-mount" data-w="700" data-h="300" aria-hidden="true"></div>
   <figcaption>The 2014 essay did not earn its 2026 ranking alone. It earned it because the cluster pages added year after year kept linking back, so a cost paid once compounds for years.</figcaption>
 </figure>
 
@@ -1135,7 +1195,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>Batch production is the move that makes the cadence achievable for a small team. The naive way to publish weekly is to write one piece on the first workday, edit the next, polish the third, and ship the fourth, then start the cycle over. That looks fine until week three or four, when the setup cost (opening the software, finding last week's research, getting back into the topic) has been paid four separate times and the work starts to grind. Batching inverts it. The team books one full day, produces four pieces, and the batch costs about the same setup overhead as a single piece would have. The audience still experiences a weekly cadence because the four pieces ship one per week over the following month, while the team experiences one production day a month. That is what keeps a two-year-old operation running while the unbatched version stalls around month four.</p>
 
 <figure class="sketch" aria-label="The per-session setup cost is paid once when work is batched, four times when it is not">
-  <div class="mount" id="sk-batch-economics-mount" data-w="700" data-h="270"></div>
+  <div class="mount" id="sk-batch-economics-mount" data-w="700" data-h="270" aria-hidden="true"></div>
   <figcaption>Batched, the setup cost is paid once and four pieces ship from one day. Unbatched, the same setup cost is paid four times and the schedule stalls around month four.</figcaption>
 </figure>
 
@@ -1173,7 +1233,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </figure>
 
 <figure class="sketch" aria-label="A quarter laid out as 13 weekly cells with the pillar week marked and daily repurpose tags">
-  <div class="mount" id="sk-cadence-mount" data-w="700" data-h="240"></div>
+  <div class="mount" id="sk-cadence-mount" data-w="700" data-h="240" aria-hidden="true"></div>
   <figcaption>What it looks like on the wall. One pillar piece anchors the quarter; the twelve clusters fill in around it.</figcaption>
 </figure>
 
@@ -1292,7 +1352,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </figure>
 
 <figure class="sketch" aria-label="Repurposing tree: one source piece branches into five derivative formats, each rewritten for its channel">
-  <div class="mount" id="sk-repurpose-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-repurpose-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>The repurposing tree as the practitioner literature draws it. One source piece, five derivative branches, each rewritten for its channel rather than cross-posted unmodified.</figcaption>
 </figure>
 
@@ -1300,7 +1360,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The rule that makes the cascade work is simple: a derivative has to respect its channel's native format. A LinkedIn post is a 500-word excerpt rewritten for someone who will not click away. An X thread is a tweet-by-tweet story where each tweet stands alone. An Instagram reel is a 60-second hook and payoff with captions, because most viewers watch sound off. Cross-post the same thing everywhere and a reader reads the obvious copy-paste as background noise.<sup class="cite" data-cite="ref-14"></sup></p>
 
 <figure class="sketch" aria-label="Why one clip cross-posted everywhere underperforms: each platform rewards a different native format">
-  <div class="mount" id="sk-native-format-mount" data-w="720" data-h="320"></div>
+  <div class="mount" id="sk-native-format-mount" data-w="720" data-h="320" aria-hidden="true"></div>
   <figcaption>The same clip dropped on every platform unmodified earns the engagement floor of the platform its format fits worst, not the ceiling of the one it fits best. A LinkedIn PDF carousel, an X tweet-by-tweet thread, and a sound-off captioned reel each reward a different native shape, so one identical upload cannot win on all three.</figcaption>
 </figure>
 
@@ -1349,11 +1409,11 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
   <div class="wv-grid">
     <div class="wv-col vague" id="widget-17-4-col-vague">
       <div class="wv-colhead"><span class="wv-ct">Generic re-posts, you already knew this</span><span class="wv-cost" id="widget-17-4-cost-vague"></span></div>
-      <div class="wv-ans" id="widget-17-4-ans-vague"><span class="ph">Press the vague question above.</span></div>
+      <div class="wv-ans" id="widget-17-4-ans-vague" aria-live="polite" aria-atomic="false"><span class="ph">Press the vague question above.</span></div>
     </div>
     <div class="wv-col sharp" id="widget-17-4-col-sharp">
       <div class="wv-colhead"><span class="wv-ct">A cascade you can build this week</span><span class="wv-cost" id="widget-17-4-cost-sharp"></span></div>
-      <div class="wv-ans" id="widget-17-4-ans-sharp"><span class="ph">Press the specific question above.</span></div>
+      <div class="wv-ans" id="widget-17-4-ans-sharp" aria-live="polite" aria-atomic="false"><span class="ph">Press the specific question above.</span></div>
     </div>
   </div>
   <div class="wv-verdict" id="widget-17-4-verdict"></div>
@@ -1370,7 +1430,7 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
 <p data-focused style="display:none">A company selling software to other companies publishes for a buyer who takes months to decide. Three frames run underneath that motion. The first is the <span class="term" data-tt="A long-form piece (a benchmark report, a template, a study) the brand puts behind an email-capture form, so the buyer trades an email address for the download and enters a follow-up sequence.">lead magnet</span>, the asset behind an email form. The second is <span class="term" data-tt="Any piece published openly on the public web with no form and no friction. The brand earns the read on merit, and the visitor can leave without giving anything back.">ungated content</span>, published in the open. The third is the <span class="term" data-tt="The difficulty of crediting revenue to a specific piece when the buyer saw many touches over many months before purchasing. Which touch gets credit, and how much, is the question.">attribution problem</span>, the puzzle you solve to know whether either is working.</p>
 
 <figure class="sketch" aria-label="Gating versus ungating: gating cuts reach by roughly two-thirds and produces a lead; ungating multiplies reach and produces no immediate lead">
-  <div class="mount" id="sk-gating-mount" data-w="700" data-h="260"></div>
+  <div class="mount" id="sk-gating-mount" data-w="700" data-h="260" aria-hidden="true"></div>
   <figcaption>Gating cuts a piece's reach by roughly two-thirds and produces a lead. Ungating multiplies the reach and produces no immediate lead. The choice is not gated versus ungated, it is which pieces are scarce enough to gate.</figcaption>
 </figure>
 
@@ -1383,7 +1443,7 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
 <p data-focused style="display:none">Two labels every B2B team uses fix the attribution discussion. An <span class="term" data-tt="Marketing-qualified lead: someone who has signaled enough interest through content that marketing thinks sales should look, but whom no salesperson has yet validated.">MQL</span> is someone marketing thinks is worth a sales look. An <span class="term" data-tt="Sales-qualified lead: someone a salesperson has talked to and confirmed has budget, authority, need, and a timeline.">SQL</span> is someone sales has confirmed is real. The rate at which MQLs turn into SQLs is the most honest signal of whether your content produces leads sales can close or just form fills.</p>
 
 <figure class="sketch" aria-label="The 95-5 rule: about 95 percent of B2B buyers are not in market and only about 5 percent are at any moment">
-  <div class="mount" id="sk-95-5-mount" data-w="700" data-h="280"></div>
+  <div class="mount" id="sk-95-5-mount" data-w="700" data-h="280" aria-hidden="true"></div>
   <figcaption>At any moment about 95 percent of B2B buyers are not in market and only about 5 percent are, so a piece is far more likely to reach the 95 percent than the 5 percent. That reframes content's job from converting on the spot to refreshing memory so the brand is recalled when the buyer enters the 5 percent.</figcaption>
 </figure>
 
@@ -1469,7 +1529,7 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
 <aside class="sn" data-complete><span class="sn-num">11.</span> The 2009 original tracked about 20,000 buyers. Later McKinsey work expanded the audit to the roughly 200,000 purchases across 90 industries cited here, so the larger number belongs to the expanded study, not the first one.<sup class="cite" data-cite="ref-22"></sup></aside>
 
 <figure class="sketch" aria-label="McKinsey two-thirds versus one-third split of buyer touchpoints, with the consumer-driven majority drawn larger than the firm-controlled minority.">
-  <div class="mount" id="sk-mckinsey-ratio-mount" data-w="700" data-h="320"></div>
+  <div class="mount" id="sk-mckinsey-ratio-mount" data-w="700" data-h="320" aria-hidden="true"></div>
   <figcaption>Of every three touchpoints the buyer absorbs during active evaluation, the brand produces only one. The other two travel through reviews, conversations, product glimpses, and prior memory. The instruction follows: design what you publish so it can travel into the channels you do not own.</figcaption>
 </figure>
 
@@ -1479,7 +1539,7 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
 <p data-focused style="display:none">So what makes a piece travel? Six ingredients whose first letters spell BADASS.<sup class="cite" data-cite="ref-22"></sup> <strong>Brand recognition</strong> is the credit a reader gives a source before reading a word. <strong>Alpha-audience targeting</strong> aims at the readers who pass things onward. <strong>Distribution time</strong> is the 80-20 flip stated per piece. <strong>Paid amplification</strong> extends only the top fifth, the pieces the early feed shows are working. <strong>Shareability</strong> is built in: a quotable line or a phone-readable chart. <strong>Social proof</strong> is a trusted endorsement in place before you publish.</p>
 
 <figure class="sketch" aria-label="The BADASS acronym broken into six cards, one per letter, with each factor named and a single-line gloss underneath.">
-  <div class="mount" id="sk-badass-mount" data-w="720" data-h="396"></div>
+  <div class="mount" id="sk-badass-mount" data-w="720" data-h="396" aria-hidden="true"></div>
   <figcaption>Six structural ingredients a piece needs before it can travel. The acronym is a memory device; the factors build on each other. Recognition compounds publication after publication; alpha audiences carry the piece outward; distribution time has to be on the calendar; the early feed tells you which pieces deserve paid amplification; shareability is engineered, not added; social proof is in place before publication, not after.</figcaption>
 </figure>
 
@@ -1503,7 +1563,7 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
 <aside class="sn" data-complete><span class="sn-num">13.</span> The reframe underneath this is content-as-profit-center: some brands run the editorial operation as a media product earning subscription, sponsorship, and licensing revenue, where the audience itself is the asset. Red Bull Media House reported about $545.8M in publishing revenue, and Mailchimp bought Courier magazine in 2020 for an eight-figure sum because the magazine's audience was the asset it wanted.<sup class="cite" data-cite="ref-25"></sup></aside>
 
 <figure class="sketch" aria-label="Distribution channel ladder: owned, earned, paid, with the typical reach versus control trade-off marked.">
-  <div class="mount" id="sk-channels-mount" data-w="700" data-h="260"></div>
+  <div class="mount" id="sk-channels-mount" data-w="700" data-h="260" aria-hidden="true"></div>
   <figcaption>The owned-earned-paid spectrum and the reach-versus-control trade-off it forces.</figcaption>
 </figure>
 
@@ -1515,7 +1575,7 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
 <p data-focused style="display:none">You can hand much of the content work to AI in 2026 along a four-step ladder, the same one Chapter 1 introduced. First you ask a chat model and get topic ideas back. Next, once you ask the same thing weekly, you save it as a <span class="term" data-tt="A saved instruction file you write once and reuse, so the model runs your exact recipe on demand instead of re-typing the prompt.">Skill</span>. Then you connect the model to a real source through <span class="term" data-tt="Model Context Protocol, an open standard from Anthropic in late 2024, that lets a model plug into an outside tool through one shared connection, the way USB-C fits many devices.">MCP (Model Context Protocol)</span>, so it reads what already ranked. Finally you schedule it as an agent that runs weekly on its own. Each rung takes more routine work off your plate while you keep the decision about what ships; scheduling an agent is the jump from a human in the loop to a human watching over it.</p>
 
 <figure class="sketch" aria-label="Four-tier AI content workflow: ideation, draft, repurpose, schedule.">
-  <div class="mount" id="sk-ai-tiers-mount" data-w="720" data-h="300"></div>
+  <div class="mount" id="sk-ai-tiers-mount" data-w="720" data-h="300" aria-hidden="true"></div>
   <figcaption>The same four-tier ladder from Chapter 1, applied to a content motion. The boundary between tier 3 and tier 4 is the boundary between human-in-the-loop and human-on-the-loop.</figcaption>
 </figure>
 
@@ -1552,7 +1612,7 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
       <span class="w17-outtag" id="w17-outtag">Your plan will show here</span>
       <span class="w17-cost" id="w17-cost"></span>
     </div>
-    <div class="w17-body" id="w17-body">
+    <div class="w17-body" id="w17-body" aria-live="polite" aria-atomic="false">
       <p class="w17-ph">Type a topic and press <b>Ideate the pillar + 10 clusters</b>. The model reads the live web and hands back one pillar, ten clusters, the gaps where AI Overviews cite weak sources, and a one-line verdict on what to write first.</p>
     </div>
     <p class="w17-honest" id="w17-honest"></p>
@@ -1563,7 +1623,7 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
 </div>
 
 <figure class="sketch" aria-label="The ideator output card: one pillar topic above ten cluster sub-topics, each tagged with a rough search-volume estimate and a one-line angle.">
-  <div class="mount" id="sk-ideator-output-mount" data-w="700" data-h="380"></div>
+  <div class="mount" id="sk-ideator-output-mount" data-w="700" data-h="380" aria-hidden="true"></div>
   <figcaption>What a sharp content question hands back: one pillar to anchor the cluster, then ten sub-topics, each with a rough search-volume guess and a one-line angle. You see the shape of the answer before you run the widget.</figcaption>
 </figure>
 
@@ -1593,7 +1653,7 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
 <aside class="sn" data-complete><span class="sn-num">16.</span> The compounding curve has three windows. Month one is the launch spike. Month six is the search-ranking ramp, once the engine has indexed the page and weighed its link structure. Month eighteen is the cluster-link compounding period, once roughly twenty cluster pages link back to the pillar.</aside>
 
 <figure class="sketch" aria-label="Content asset compounding curve: the same piece's traffic over 24 months">
-  <div class="mount" id="sk-compound-mount" data-w="700" data-h="280"></div>
+  <div class="mount" id="sk-compound-mount" data-w="700" data-h="280" aria-hidden="true"></div>
   <figcaption>The same essay's traffic, month over month, for two years. Months 1 to 3 are the launch window, months 4 to 12 are the search-ranking ramp, and months 13 to 24 are the cluster-link compounding period. The curve climbs as the cluster structure matures, which is what makes the pillar an asset and not a campaign.</figcaption>
 </figure>
 
@@ -1613,7 +1673,7 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
 <p data-focused style="display:none">The cultural reason most teams report the wrong number is the metric they pick, and three vanity metrics dominate the dashboard. Page views measure reach without memory, so a 50,000-view essay nobody recalls is worth less than a 5,000-view one they remember. Social shares measure surface shareability, not category recall. Email open rates measure only a click on a subject line, so a 35-percent open with no action beats a 15-percent open with 4-percent action only on the slide.<sup class="cite" data-cite="ref-7"></sup></p>
 
 <figure class="sketch" aria-label="Two columns comparing vanity metrics (fast and misleading) against business metrics (slow but load-bearing) side by side.">
-  <div class="mount" id="sk-vanity-business-mount" data-w="700" data-h="320"></div>
+  <div class="mount" id="sk-vanity-business-mount" data-w="700" data-h="320" aria-hidden="true"></div>
   <figcaption>The vanity stack reports on a monthly rhythm and looks decisive on a slide. The business stack reports on a quarterly rhythm and actually moves with the outcomes the brand cares about. The rule is to keep both visible and treat the slow column as the load-bearing signal.</figcaption>
 </figure>
 
@@ -1634,7 +1694,7 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
 <p data-focused style="display:none">The strategic correction is direct. Undifferentiated AI-drafted content fails by construction, because it is precisely what an Overview can summarize without sending anyone to the source.<sup class="cite" data-cite="ref-22"></sup> The premium goes to work an engine alone cannot produce: original reporting, a named human point of view, and format choices that break the brand's own pattern, like a Patagonia documentary an Overview cannot stand in for. The community layer extends the correction into the audience, because an organized network of buyers compounds the investment through conversations the brand never sees.<sup class="cite" data-cite="ref-22"></sup></p>
 
 <figure class="sketch" aria-label="The chapter spine drawn as one labeled left-to-right strip from worldview through pillar, cadence, cascade, distribution, and measurement, with the opening Content Marketing Institute puzzle resolved.">
-  <div class="mount" id="sk-ch17-recap-mount" data-w="760" data-h="280"></div>
+  <div class="mount" id="sk-ch17-recap-mount" data-w="760" data-h="280" aria-hidden="true"></div>
   <figcaption>The chapter in one strip. Own a worldview narrow enough to publish for, build the pillar that anchors it, hold a cadence the team can sustain, repurpose across the channels the audience uses, distribute more aggressively than you create, and measure the slow business numbers. The company that published weekly for eleven years sold the audience that returns on a schedule, not any software.</figcaption>
 </figure>
 
@@ -1642,7 +1702,7 @@ Most stainless cup reviews quote a vacuum-claim number from the brand spec sheet
 <p data-focused style="display:none">The five commitments converge on one outcome. Pick a worldview narrow enough to publish for, build the pillar that anchors it, hold a cadence the team can sustain, run the cascade across the channels the audience uses, and distribute more aggressively than you create. The asset that survives an AI Overview is the one all five point at, and it answers the puzzle the chapter opened with: the company that published weekly for eleven years sold the audience that returns on a schedule, not software.</p>
 
 <figure class="sketch" aria-label="Five chapter commitments funneling into one citable asset that survives an AI Overview, with a turn-arrow forward into the search-and-retrieval layer Chapter 18 takes up.">
-  <div class="mount" id="sk-saturation-converge-mount" data-w="900" data-h="404"></div>
+  <div class="mount" id="sk-saturation-converge-mount" data-w="900" data-h="404" aria-hidden="true"></div>
   <figcaption>The five commitments converge on one citable asset that survives an AI Overview. The turn-arrow forward points into Chapter 18, the search-and-retrieval layer of classical SEO plus generative-engine optimization.</figcaption>
 </figure>
 

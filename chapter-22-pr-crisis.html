@@ -355,6 +355,61 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<style>
+/* ============================================================
+   A11Y CONTRAST FIXES (WCAG 2.1 AA) — appended LAST in <head> so it wins
+   over _accessibility.css. Doubled-id specificity (#x#x) + !important so
+   these beat the widgets' own scoped rules without touching their CSS logic.
+   Felipe's directive: keep bright coral #DA7756 as a heading/marker/rule/
+   border/SVG stroke (>=3:1); darken ONLY what axe flags as small text or
+   as a white-on-coral control. Every selector below maps to a node
+   contrast_detail.js reported failing. Bright-coral borders/markers/strokes
+   are untouched. Disabled controls stay at #6b6b6b (>=4.5:1 vs cream).
+   ============================================================ */
+
+/* (1) White-on-coral RUN buttons (#sv-run / #rt-go / #sc-go): #DA7756 bg
+   gives 3.1:1 under white text. Darken bg to #a8472a (white -> 5.83:1).
+   Hover #8f3c23. Keep white text. Disabled -> #6b6b6b (white -> ~5.0:1). */
+#w-sov-live#w-sov-live .sv-run,
+#w-redteam-statement#w-redteam-statement .rt-go,
+#w-scct-models#w-scct-models .sc-go {
+  background: #a8472a !important;
+  border-color: #a8472a !important;
+  color: #ffffff !important;
+}
+#w-sov-live#w-sov-live .sv-run:hover,
+#w-redteam-statement#w-redteam-statement .rt-go:hover,
+#w-scct-models#w-scct-models .sc-go:hover {
+  background: #8f3c23 !important;
+  border-color: #8f3c23 !important;
+}
+#w-sov-live#w-sov-live .sv-run[disabled],
+#w-redteam-statement#w-redteam-statement .rt-go[disabled],
+#w-scct-models#w-scct-models .sc-go[disabled] {
+  background: #6b6b6b !important;
+  border-color: #6b6b6b !important;
+  color: #ffffff !important;
+}
+
+/* (2) White-on-coral ACTIVE toggle (.on): same 3.1:1 white-on-#DA7756.
+   Darken the active background to #a8472a, keep white text (5.83:1).
+   Both holding-statement builders (the #w-cb-builder live one and the
+   global .cb-builder shell) share this state. Inactive toggles keep their
+   coral-deep text on white, which already passes. */
+#w-cb-builder#w-cb-builder .cbb-toggle button.on,
+.cb-builder .cb-toggle button.on.on {
+  background: #a8472a !important;
+  border-color: #a8472a !important;
+  color: #ffffff !important;
+}
+
+/* (3) Small muted text in the share-of-voice widget that axe blends to
+   3.35:1 / 3.54:1 on cream/white (the #888 --sv-ink-3 token, used only on
+   small <=13.5px labels/chips/placeholders/disclaimer/tag). Re-point the
+   token to #a8472a (~5:1). The .live/.err chip states keep their own
+   colors; the bright-coral markers (li bullets, .on border) are untouched. */
+#w-sov-live#w-sov-live { --sv-ink-3: #a8472a !important; }
+</style>
 </head>
 <body data-chapter-num="22">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -366,6 +421,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of"); injected SVG
+         mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 22 (review; Haiku can hallucinate).
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-22-pr-crisis.html  (target 0 serious/critical)
+     ============================================================ -->
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 22</p>
   <h1 class="title">PR, Crisis Comms, and Earned Media</h1>
@@ -402,7 +470,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </figure>
 
 <figure class="sketch" aria-label="A clock showing the ten days between the Bud Light video and the company statement">
-  <div class="mount" id="sk-tenday-clock-mount" data-w="720" data-h="300"></div>
+  <div class="mount" id="sk-tenday-clock-mount" data-w="720" data-h="300" aria-hidden="true"></div>
   <figcaption>The opener puzzle on one dial. The ten-second video posts at the top, ten days of internal meetings sweep around the face, and the statement arrives at hour 240, by which point a two-decade top position is already gone. The brand&rsquo;s response reached the audience after the audience had finished deciding.</figcaption>
 </figure>
 
@@ -470,7 +538,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="A 2x2 grid of when to invoke PR vs when to use marketing">
-  <div class="mount" id="sk-when-pr-mount" data-w="700" data-h="240"></div>
+  <div class="mount" id="sk-when-pr-mount" data-w="700" data-h="240" aria-hidden="true"></div>
   <figcaption>The four conditions under which a marketing channel cannot do the job and PR has to take over.</figcaption>
 </figure>
 
@@ -481,7 +549,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">3.</span> The 2026 Edelman Trust Barometer, with nearly 34,000 respondents across 28 countries, reports trust in business at 64 percent, trust in government at 53 percent, and an employer-as-trusted-source figure of 78 percent, the highest of the institutions tracked. The four models the posture diagnostic compresses (press agentry, public information, two-way asymmetric, two-way symmetric) were laid out in 1984 and validated empirically across 327 organizations.</aside>
 
 <figure class="sketch" aria-label="Edelman trust ladder: employees first, beat reporters second, paid celebrity third">
-  <div class="mount" id="sk-trust-ladder-mount" data-w="700" data-h="304"></div>
+  <div class="mount" id="sk-trust-ladder-mount" data-w="700" data-h="304" aria-hidden="true"></div>
   <figcaption>The Edelman trust ladder for 2024&ndash;2026. Audiences trust employees and known beat reporters more than paid celebrity partnerships, so PR&rsquo;s job is to operate where the trust is highest.</figcaption>
 </figure>
 
@@ -517,7 +585,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">4.</span> The newsroom era of &ldquo;PR sends to a press list, the press writes the story&rdquo; gave way around 2018 to a beat-reporter era, where individual journalists with personal newsletters and social followings carry more brand-relevant audience than the masthead they nominally work for. Beat reporters like Patrick Coffee at the Wall Street Journal (advertising and marketing) and Maja Pawinska Sims at PRovoke Media (the PR industry) drive coverage at the individual level.</aside>
 
 <figure class="sketch" aria-label="The pitch routing flow from PR org through beat reporter to publication">
-  <div class="mount" id="sk-pitch-route-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-pitch-route-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>A pitch is a routing problem. The wrong reporter at the right publication kills the story, while the right reporter at a second-tier publication runs it.</figcaption>
 </figure>
 
@@ -549,7 +617,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn"><span class="sn-num">6.</span> Worked example of the four-part template in one line. Subject: &ldquo;Stanley Quencher viral fire video, exclusive on the recall data.&rdquo; Body opener: &ldquo;Your piece last week on [story title] noted [the detail you wrote down]; I have something that extends that angle directly, with one verifiable proof point you could call to confirm, and I can offer you the exclusive ahead of broader release on Tuesday.&rdquo; That is the skeleton the Job Aid prints as a fill-in-the-blank card.</aside>
 
 <figure class="sketch" aria-label="The four-paragraph pitch email anatomy">
-  <div class="mount" id="sk-pitch-anatomy-mount" data-w="700" data-h="280"></div>
+  <div class="mount" id="sk-pitch-anatomy-mount" data-w="700" data-h="280" aria-hidden="true"></div>
   <figcaption>The four-paragraph pitch email. Subject under sixty characters, body under 220 words. The journalist reads it on a phone in twelve seconds.</figcaption>
 </figure>
 <span class="ax">03 // building the media list</span>
@@ -572,12 +640,12 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn"><span class="sn-num">7.</span> Journalist email turnover at major publications runs roughly 18-22 percent a year. A list scrubbed once a year is about 80 percent accurate at the start and 60 percent accurate by the end. The Cision, Muck Rack, and Prowly databases re-verify daily, but the brand's own notes on a reporter (the last interaction, the personal context) live in the brand's CRM and only stay current if the brand maintains them.</aside>
 
 <figure class="sketch" aria-label="Three PR vendor stacks compared on database size, price, and target user">
-  <div class="mount" id="sk-vendors-mount" data-w="700" data-h="260"></div>
+  <div class="mount" id="sk-vendors-mount" data-w="700" data-h="260" aria-hidden="true"></div>
   <figcaption>The three PR-tooling vendors. Cision is the enterprise default; Muck Rack is the journalist-friendly modern competitor; Prowly is the small-business option.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="How an unscrubbed media list decays into the spam folder over a quarter">
-  <div class="mount" id="sk-sender-decay-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-sender-decay-mount" data-w="720" data-h="260" aria-hidden="true"></div>
   <figcaption>Skip the hygiene and the cost compounds. Bounces lower the brand's sender reputation, and within a quarter the brand's pitches route to spam before any reporter sees them.</figcaption>
 </figure>
 
@@ -664,7 +732,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p class="widget-pointer">In a real comms department this counting is automated: a Talkwalker or Brandwatch subscription posts the SOV trend and sentiment on a dashboard every morning, and connecting that monitoring platform through MCP lets a Skill pull the live numbers with no copy-paste (the MCP wiring is covered in Chapter 18).</p>
 
 <figure class="sketch" aria-label="Three-pillar message pull-through scorecard">
-  <div class="mount" id="sk-pillars-mount" data-w="700" data-h="240"></div>
+  <div class="mount" id="sk-pillars-mount" data-w="700" data-h="240" aria-hidden="true"></div>
   <figcaption>Message pull-through scorecard for a three-pillar messaging house. Coverage skew toward one pillar tells the team which other pillars need pitch reinforcement.</figcaption>
 </figure>
 
@@ -673,14 +741,14 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">These three metrics measure what the brand produced in the press, but none measures the relationship underneath, the buffer that decides whether the brand keeps operating once an audience pays attention. A 1999 Institute for Public Relations paper named six indicators: control mutuality, trust, commitment, satisfaction, and the pair that does most of the work in a crisis, communal and exchange.<sup class="cite" data-cite="ref-12"></sup> A <span class="term" data-tt="A communal relationship is one built on mutual care rather than a running tab, where each side helps because it cares about the other's welfare and expects nothing specific back. It survives a bad stretch because the goodwill was never conditional on the last transaction.">communal relationship</span> is the roommate who brings you soup and expects nothing back; an <span class="term" data-tt="An exchange relationship is one in which each side gives in explicit expectation of getting something back, like a gym membership: you pay, the gym lets you in, and the relationship ends without ceremony the moment either side stops delivering.">exchange relationship</span> is the gym membership that ends the moment either side stops delivering. A brand can run a healthy exchange with no communal one underneath, but the exchange assumes the brand keeps delivering value, and when that breaks nothing slows the breakup.</p>
 
 <figure class="sketch" aria-label="Communal versus exchange relationships as the buffer the coverage metrics do not capture">
-  <div class="mount" id="sk-communal-exchange-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-communal-exchange-mount" data-w="720" data-h="260" aria-hidden="true"></div>
   <figcaption>Underneath the metrics sit two relationship types. A communal relationship (the roommate with soup, no running tab) survives a bad quarter; an exchange relationship (the gym membership) ends the day either side stops delivering.</figcaption>
 </figure>
 <span class="ax">05 // the crisis playbook</span>
 <h2 id="playbook">The Crisis Playbook</h2>
 
 <figure class="sketch" aria-label="The seven crisis types and the recovery curve each one runs on">
-  <div class="mount" id="sk-crisis-types-mount" data-w="820" data-h="342"></div>
+  <div class="mount" id="sk-crisis-types-mount" data-w="820" data-h="342" aria-hidden="true"></div>
   <figcaption>Seven crisis types paired with the recovery curve each one runs on, drawn so the curve gets longer as the audience assigns more blame. The type the signal in front of you falls into is set by who the audience blames, not by how big the incident looks.</figcaption>
 </figure>
 
@@ -699,7 +767,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn"><span class="sn-num">9.</span> Knowing the type is half the diagnostic. The other half is knowing where the brand sits in the five-stage crisis lifecycle: signal detection (catching weak signals before they surface), prevention and preparedness (pre-drafted templates, quarterly crisis-team rosters, press lists re-verified every ninety days), containment (the response phase the three time windows cover), recovery (rebuilding strained relationships), and learning (the post-mortem that names what failed). Most organizations are competent at containment because the time pressure forces the work, and weak at the stages on either side. Two findings hold across the firms studied. Preparation costs roughly one-tenth of post-crisis response, so a $50,000 annual program buys down something like $500,000 in expected response expense. And organizations that skip the learning stage repeat the same crisis class within five years, because the weak point that produced the first one is still in place.</aside>
 
 <figure class="sketch" aria-label="The five-stage crisis-management lifecycle">
-  <div class="mount" id="sk-lifecycle-mount" data-w="720" data-h="300"></div>
+  <div class="mount" id="sk-lifecycle-mount" data-w="720" data-h="300" aria-hidden="true"></div>
   <figcaption>The five-stage lifecycle drawn as a loop, with containment lit up as the stage most organizations fund and the two stages on either side faint as the underfunded ones. This is the where-are-we-in-the-cycle audit, not the sort-by-blame map.</figcaption>
 </figure>
 
@@ -756,7 +824,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 
 <figure class="sketch" aria-label="The five-component holding statement template">
-  <div class="mount" id="sk-holding-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-holding-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>The five sentences of a holding statement, each one drawn answering a question the audience has already asked: did you see this, are you doing something, who is in charge, when will I hear next, where do I look.</figcaption>
 </figure>
 
@@ -769,7 +837,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">By the first-week stage, where the brand announces what changed to prevent a repeat, the response has hardened into one of three families, and the choice is not the brand&rsquo;s to make. It is constrained by what the audience already concluded about fault. If a friend&rsquo;s car gets keyed, their reaction depends on whether they think it was random, an angry neighbor, or the roommate they fought with that morning. The framework that sorts every incident by that attribution is <span class="term" data-tt="A framework that helps a brand pick its response by first asking what the audience already believes caused the crisis. It groups responses into three families (deny, diminish, rebuild) and matches each to a kind of attribution the public has assigned, so a tampering case calls for one family and a manufacturing fraud calls for another. The single most common failure in crisis response is mismatching the family to the attribution, and the framework exists to make that mismatch visible before the statement goes out.">Situational Crisis Communication Theory</span> (SCCT).<sup class="cite" data-cite="ref-13"></sup></p>
 
 <figure class="sketch" aria-label="SCCT family choice constrained by audience attribution, with image-repair strategies that fit each family">
-  <div class="mount" id="sk-scct-mount" data-w="720" data-h="298"></div>
+  <div class="mount" id="sk-scct-mount" data-w="720" data-h="298" aria-hidden="true"></div>
   <figcaption>The SCCT family is a constraint, not a menu: an attribution ladder from external to full blame, with deny at the external end, diminish in the middle, rebuild at the full-blame end, and the audience picking the rung before the brand speaks.</figcaption>
 </figure>
 
@@ -782,7 +850,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">Within the chosen family, the sentence-level move sits on an <span class="term" data-tt="The five sentence-level moves a statement can make, arranged on a continuum from least to most accepted responsibility. DENIAL (the company did not do it, or the harm did not happen). EVADING RESPONSIBILITY (limited blame, through scapegoating a supplier, arguing the company lacked information or control, or arguing it was provoked). REDUCING OFFENSIVENESS (asking the audience to weigh the event differently, through prior good acts, minimizing the harm, or compensation without admitting fault). CORRECTIVE ACTION (announcing what will change to prevent a repeat, credible only if the company actually does it). MORTIFICATION (the explicit apology that accepts responsibility). The single most reliable signal of an unworkable response is the absence of mortification when the audience has assigned full blame.">image repair</span> continuum of five moves, from denial through evading responsibility, reducing offensiveness, and corrective action to mortification, the full apology.<sup class="cite" data-cite="ref-16"></sup> Certain combinations fail every time: an apology stacked with a denial reads as incoherent, one that minimizes the harm reads as performed remorse, corrective action with no apology reads as burying the failure in process news. A director checks every draft for which move it makes and whether it fits the blame assigned.</p>
 
 <figure class="sketch" aria-label="Image repair theory five strategies arranged on a continuum from denial through mortification">
-  <div class="mount" id="sk-imrep-continuum-mount" data-w="920" data-h="280"></div>
+  <div class="mount" id="sk-imrep-continuum-mount" data-w="920" data-h="280" aria-hidden="true"></div>
   <figcaption>Image repair's five strategies sit on a continuum from least to most accepted responsibility (denial, evading, reducing offensiveness, corrective action, mortification). The move that fits is whichever sits at the responsibility level the audience already attributed.</figcaption>
 </figure>
 
@@ -836,12 +904,12 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 
 <figure class="sketch" aria-label="Tylenol 1982 timeline: the canonical first-hour first-day first-week case">
-  <div class="mount" id="sk-tylenol-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-tylenol-mount" data-w="720" data-h="240" aria-hidden="true"></div>
   <figcaption>Tylenol 1982 ran the first-hour first-day first-week template before it was named, with the CEO's visible accountability as the load-bearing node and recalls and product changes following from it. This is the canonical met-the-clock case.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="Bud Light April 2023 timeline: ten-day silence and aftermath">
-  <div class="mount" id="sk-bud-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-bud-mount" data-w="720" data-h="240" aria-hidden="true"></div>
   <figcaption>Bud Light April 2023. The ten-day gap between the April 1 trigger and the April 14 statement is the load-bearing failure, and the statement itself was workshopped past any clear reading. The inverse of Stanley.</figcaption>
 </figure>
 
@@ -850,7 +918,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">Bud Light, the opener case, sits in the confrontation type, and its first-hour and first-day response was nothing: across ten days it workshopped draft language without authorizing a statement. The worst answer to the first-hour rule is not a wrong statement but no statement, because a wrong statement at least gives the audience something to react to while silence reads as the brand being asleep or hiding. A statement workshopped past the point of saying anything is then the same as no statement, because audiences in 2026 read uncommitted wording fluently.<sup class="cite" data-cite="ref-1"></sup></p>
 
 <figure class="sketch" aria-label="Cracker Barrel 2025 timeline: rebrand reversal in about a week">
-  <div class="mount" id="sk-cracker-mount" data-w="720" data-h="220"></div>
+  <div class="mount" id="sk-cracker-mount" data-w="720" data-h="220" aria-hidden="true"></div>
   <figcaption>Cracker Barrel 2025: the launch-to-reversal cycle ran fast, from the August 19 reveal to the reversal about a week later. The lesson is that legacy brands carry visual-identity equity that is not on the balance sheet. This is the misread-the-channel case.</figcaption>
 </figure>
 
@@ -869,7 +937,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">Stanley faced the inverse case. On November 16, 2023 a user named Danielle posted a TikTok of her burned-out car with a Stanley Quencher in the cup holder still holding unmelted ice, durability that reached 96 million views in a week. No one blamed the brand, but a viral moment that size either rewards or exposes it. Global President Terence Reilly answered the same day, in a TikTok he recorded himself, promising to replace the Quencher and Danielle&rsquo;s car, which pushed Stanley&rsquo;s share of voice to 41 percent.<sup class="cite" data-cite="ref-23"></sup> It is the inverse of Bud Light point for point: Stanley met the first-hour rule the same day, Bud Light missed it by ten days, and the audience read one as quality and the other as evasion.</p>
 
 <figure class="sketch" aria-label="Stanley November 2023 viral incident: same-day CEO TikTok response">
-  <div class="mount" id="sk-stanley-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-stanley-mount" data-w="720" data-h="240" aria-hidden="true"></div>
   <figcaption>Stanley November 2023, the playbook run in inverted form: a customer story inbound, a same-day CEO TikTok response inside the first-hour window, and the cycle generating more brand value than the incident cost. The same template as Bud Light, opposite outcome.</figcaption>
 </figure>
 
@@ -888,7 +956,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-focused style="display:none;">Reputation monitoring is catching a signal early enough to act, before the conversation outruns the brand&rsquo;s normal cadence. The 2026 stack runs in three levels, each adding cost and speed. Free <span class="term" data-tt="A free Google service that emails a daily digest of new web pages mentioning a chosen term, such as a brand name. It lags by hours to days and scores no sentiment, so a glowing feature and a hostile takedown arrive looking identical.">Google Alerts</span> sits at the bottom: it lags by hours to days and scores no sentiment, which suits a brand asking &ldquo;did anything happen this week.&rdquo; A paid platform in the middle, roughly 14,000 to 30,000 dollars a year, runs in near-real time across news, social, podcasts, and broadcast, with an AI-augmented layer on top.<sup class="cite" data-cite="ref-11"></sup></p>
 
-<div class="mount" id="sk-monitor-mount" data-w="720" data-h="240"></div>
+<div class="mount" id="sk-monitor-mount" data-w="720" data-h="240" aria-hidden="true"></div>
 
 <p data-complete>The free level costs nothing, which is why small brands and student teams reach for it first, and the price reflects what it can do. Google Alerts depends on the Google News indexer, so it lags by hours to days, captures only sources that index in Google News, and scores no sentiment. The level works for a brand whose real question is "did anything happen this week," not "what is happening this minute," which is a fair starting point for coverage moving at trade-publication speed.</p>
 
@@ -905,7 +973,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <aside class="sn" data-complete><span class="sn-num">12.</span> The escalation-detection layer is the most under-built piece of the stack. The Stanley Quencher virality cycle of January 2024, the holiday-color drops at Target, was visible on TikTok five days before it reached trade-press coverage. A stack tuned only for trade-press lag would have missed the cycle, while one tuned for TikTok velocity would have caught it on day one.</aside>
 
-<div class="mount" id="sk-escalation-mount" data-w="720" data-h="240"></div>
+<div class="mount" id="sk-escalation-mount" data-w="720" data-h="240" aria-hidden="true"></div>
 
 <p data-complete>The strongest 2026 setups pair the platform vendor with a small in-house rule the brand's own team configures, because the vendor's default alerting is generic while the rules that matter are brand-specific. A consumer-cup brand wants to trip on a product video crossing ten million views, while a regulated financial brand wants to trip on any tier-one reporter publishing within an hour of the market open, so the brand sets its own threshold and points it at the person who should answer. Wiring that alert into a team's chat or an on-call rotation is build work the dedicated AI chapter covers later.<sup class="cite" data-cite="ref-10"></sup></p>
 
@@ -923,13 +991,13 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-complete>PR's load-bearing uses cluster in two places: drafting pitches at scale, and generating crisis statements with a mandatory human red-team. Both follow one rule. The AI handles the parts that scale linearly, a person keeps the parts that turn on judgment, and the line between them is drawn on purpose. The most useful saved-recipe pattern is a <span class="term" data-tt="A saved folder of instructions an AI assistant loads on demand, the way a cook pulls a recipe card off the shelf. Anthropic open-sourced the SKILL.md standard in December 2025, so a team writes a recipe once and shares it, and OpenAI's Codex adopted the same format.">Skill</span>: write a pitch-drafter Skill once and a crisis-statement Skill once, and the same instructions run inside a chat assistant, a Project, or a custom workspace, so you are learning a portable recipe rather than one vendor's button. The full recipe folders belong to the later build chapter.</p>
 
-<div class="mount" id="sk-ai-roles-mount" data-w="720" data-h="240"></div>
+<div class="mount" id="sk-ai-roles-mount" data-w="720" data-h="240" aria-hidden="true"></div>
 
 <p data-complete>The riskiest use is the crisis statement, and it is the one that most needs a structural red-team. The pattern is two calls. The first call drafts the five-sentence holding statement using the assigned cluster and response family as constraints. The second call is a separate second opinion that scores the draft on five failure modes (blame, overcommit, tone, time, posture) and names the top fix without rewriting anything, because a drafter cannot reliably red-team itself. A person with PR judgment but no time then reads the draft and the audit together and decides publish, revise, or escalate.<sup class="cite" data-cite="ref-24"></sup></p>
 
 <p data-focused style="display:none;">The riskiest use is the crisis statement, the one that most needs a structural red-team. The pattern is two calls. The first drafts the five-sentence holding statement using the assigned cluster and family as constraints. The second is a separate second opinion that scores the draft on five failure modes, blame, overcommit, tone, time, and posture, and names the top fix without rewriting, because a drafter cannot reliably red-team itself. A person with PR judgment then reads draft and audit together and decides publish, revise, or escalate.<sup class="cite" data-cite="ref-24"></sup></p>
 
-<div class="mount" id="sk-redteam-loop-mount" data-w="720" data-h="270"></div>
+<div class="mount" id="sk-redteam-loop-mount" data-w="720" data-h="270" aria-hidden="true"></div>
 
 <div class="w-redteam-statement" id="w-redteam-statement">
   <div class="rt-head">
@@ -953,7 +1021,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     <button class="rt-go" id="rt-go" type="button"><span class="rt-dot"></span>Run the audit</button>
     <span class="rt-cost" id="rt-cost"></span>
   </div>
-  <div class="rt-result" id="rt-result" aria-live="polite">
+  <div class="rt-result" id="rt-result" aria-live="polite" aria-atomic="false">
     <ul class="rt-scores" id="rt-scores"></ul>
     <div class="rt-verdict" id="rt-verdict"></div>
   </div>
@@ -995,11 +1063,11 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="sc-grid">
     <div class="sc-card cheap" id="sc-card-cheap">
       <div class="sc-cardhead"><span class="sc-ct">Cheap arm &middot; Haiku</span><span class="sc-cost" id="sc-cost-cheap"></span></div>
-      <div class="sc-out" id="sc-out-cheap"><span class="sc-ph">Press "Run on both models" to call the cheap arm.</span></div>
+      <div class="sc-out" id="sc-out-cheap" aria-live="polite" aria-atomic="false"><span class="sc-ph">Press "Run on both models" to call the cheap arm.</span></div>
     </div>
     <div class="sc-card deep" id="sc-card-deep">
       <div class="sc-cardhead"><span class="sc-ct">Deep arm &middot; Sonnet 4.6</span><span class="sc-cost" id="sc-cost-deep"></span></div>
-      <div class="sc-out" id="sc-out-deep"><span class="sc-ph">Press "Run on both models" to call the deep arm.</span></div>
+      <div class="sc-out" id="sc-out-deep" aria-live="polite" aria-atomic="false"><span class="sc-ph">Press "Run on both models" to call the deep arm.</span></div>
     </div>
   </div>
 </div>
@@ -1026,12 +1094,12 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-focused style="display:none;">By 2027 the holding-statement template will likely add a sixth sentence, a content-credentials link the audience can click to confirm which CEO communications are genuine.<sup class="cite" data-cite="ref-26"></sup> That turns verification from work each viewer does alone into something the brand pre-built. The crisis team that once needed ten days to say anything will soon hold a one-minute template and a way to prove what is real. This chapter walked from who controls the message, through the pitch and the coverage metrics, the first-hour clock, and the response family the audience already chose, to the AI that drafts and red-teams while the human stays editor. The next decade adds an adversary who can fabricate the trigger, so the brands that survive build the loop with that assumption baked in.</p>
 
-<figure class="sketch">
-  <div class="mount" id="sk-ch22-recap-mount" data-w="900" data-h="300"></div>
+<figure class="sketch" aria-label="The whole chapter as one earned-media loop, left to right: own the gap, PESO, pitch and measure, first hour, SCCT family, monitor, AI drafts while a human edits. Below it the opening puzzle resolved: ten days of silence cost Bud Light a two-decade number-one position, where a one-minute holding statement would have answered in hour one.">
+  <div class="mount" id="sk-ch22-recap-mount" data-w="900" data-h="300" aria-hidden="true"></div>
 </figure>
 
-<figure class="sketch">
-  <div class="mount" id="sk-turn-ch23-mount" data-w="820" data-h="280"></div>
+<figure class="sketch" aria-label="The turn into Chapter 23: the consideration set PR builds in the press has to be converted or wasted by the sales conversation that closes it. The Wells Fargo 2016 seam marks the failure case, where one-way incentives with no audit produced two million fake accounts and a one-billion-dollar consent order.">
+  <div class="mount" id="sk-turn-ch23-mount" data-w="820" data-h="280" aria-hidden="true"></div>
 </figure>
 
 <aside class="sn jobaid" aria-label="Job Aid: the first-hour crisis card and the pitch skeleton">
@@ -2576,7 +2644,7 @@ sketches['sk-ch22-recap-mount'] = function(svg) {
     '<div class="sv-presets" id="sv-presets">'+
       SAMPLES.map(function(s){ return '<button class="sv-preset" data-id="'+s.id+'" data-brand="'+s.brand+'" data-comp="'+s.comp+'">'+s.brand+' vs '+s.label+'</button>'; }).join('')+
     '</div>'+
-    '<div class="sv-result" id="sv-result"><span class="sv-ph">The estimated SOV split, a one-line sentiment read per brand, and the one story moving the week appear here.</span></div>'+
+    '<div class="sv-result" id="sv-result" aria-live="polite" aria-atomic="false"><span class="sv-ph">The estimated SOV split, a one-line sentiment read per brand, and the one story moving the week appear here.</span></div>'+
     '<p class="sv-disc">Estimated from a live search, not a verified Cision panel. Treat it as a fast read, not an audited number.</p>'+
     '<div class="sv-vs">'+
       '<p class="sv-vslead">Now ask the <b>same brands</b> two ways. Same AI, same cost; only the precision of the question changes.</p>'+

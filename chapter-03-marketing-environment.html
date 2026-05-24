@@ -451,6 +451,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of");
+         injected SVG mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 3.
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-03-marketing-environment.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 3 &middot; The Foundation</p>
@@ -486,7 +499,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">This chapter is the toolkit a marketing team uses to read a world that keeps moving. The <span class="term" data-tt="The marketing environment is the full set of forces, inside and outside the firm, that shape what a brand can do and how buyers respond. It splits into two layers: a microenvironment of actors the brand can negotiate with directly, and a macroenvironment of larger forces it can read and react to but cannot bargain with.">marketing environment</span> has two layers, and the rest of the chapter gives you one tool per job for reading them, with Stanley, Patagonia, and Liquid Death recurring as worked examples.<sup class="cite" data-cite="ref-2"></sup></p>
 
 <!-- Opener sketch 1 of 2 (KEEP / re-aim): the chapter MAP -->
-<figure id="fig-process" class="sketch" style="margin: 36px 0 28px 0;" aria-label="Six macro forces circle a center brand hexagon; the brand reacts to each on its own timeline.">
+<figure id="fig-process" class="sketch" style="margin: 36px 0 28px 0;" aria-label="Six macro forces surrounding a brand each operate on different timelines, requiring businesses to anticipate and respond strategically to each.">
   <div class="mount" id="process-mount" data-w="720" data-h="280"></div>
   <figcaption>Six macro forces, each on its own timeline. Read each early enough to respond; know which to act on, which to absorb.</figcaption>
 </figure>
@@ -494,7 +507,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <!-- Opener sketch 2 of 2 (NEW, JC-11): the differing-SPEEDS clock. Distinct
      from process-mount (that is the forces-around-the-brand MAP; this is why a
      snapshot goes stale, the reason the chapter exists). -->
-<figure class="sketch" aria-label="One clock face with six hands at different speeds, one per macro force; the fastest hand is circled.">
+<figure class="sketch" aria-label="Six clock hands at different speeds represent macro forces, with the fastest circled to show it determines how quickly market conditions change.">
   <div class="mount" id="sk-forces-clock" data-w="720" data-h="300"></div>
   <figcaption>The six forces move at different speeds. The fastest hand decides how often you have to look up from the plan, which is why a single snapshot of the world goes stale.</figcaption>
 </figure>
@@ -529,7 +542,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">2.</span> Tropicana shows the cost: a 2009 redesign that dropped the orange-with-a-straw cue lost about a fifth of sales in six weeks, the case Section 3.8 returns to as the snapshot failure mode.</aside>
 
 <!-- §3.1 sketch 1 of 2 (KEEP / re-aim): the snapshot trap (alignment drift). -->
-<figure class="sketch" aria-label="A brand lined up with its environment at T0; the same brand misaligned at T+5 because the world moved while the brand stayed put.">
+<figure class="sketch" aria-label="Brands risk becoming outdated when environments evolve while brand positioning remains static over time.">
   <div class="mount" id="sk-snapshot-mount" data-w="700" data-h="260"></div>
   <figcaption>The snapshot trap. The brand at T0 is lined up with its world. At T+5 the world has moved and the brand has not, so being right once did not keep it right.</figcaption>
 </figure>
@@ -543,7 +556,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">You can measure how often the photo loses. Of the 500 biggest US companies on the 1955 <span class="term" data-tt="The Fortune 500 is the yearly ranking of the 500 largest US public companies by revenue, published since 1955; falling off it usually means the company was bought, taken private, or went bankrupt.">Fortune 500</span>, only 51 were still on that list seventy years later.<sup class="cite" data-cite="ref-3"></sup> Almost every one that dropped off had missed a single shift its existing strengths could not absorb, the way MySpace, Yahoo, and Blockbuster each led a market and then lost it to a rival that took a force seriously while the leader waved it off.</p>
 
 <!-- §3.1 sketch 2 of 2 (NEW): the survival-rate evidence (a count, not a drift) -->
-<figure class="sketch" aria-label="One tall bar of 500 companies in 1955 shrinking to a thin sliver of 51 seventy years later.">
+<figure class="sketch" aria-label="Of 500 largest US companies in 1955, only 51 survived seventy years, illustrating how most leaders fail to adapt through market shifts.">
   <div class="mount" id="sk-fortune-churn" data-w="700" data-h="300"></div>
   <figcaption>The survival rate. Of the 500 biggest US companies in 1955, 51 were still on the list seventy years later. Most leaders miss one shift and fall off.</figcaption>
 </figure>
@@ -592,7 +605,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <h2 id="layers">Micro and macro environment</h2>
 
 <!-- §3.2 sketch 1 of 2 (KEEP / re-aim): the 5C concentric ring. -->
-<figure class="sketch" aria-label="The 5C ring with the customer in the center, company collaborators competitors in the middle ring, context as the outer ring you cannot bargain with.">
+<figure class="sketch" aria-label="The five C's framework positions customers at the center, surrounded by controllable factors (company, collaborators, competitors), with uncontrollable external context as the outer ring.">
   <div class="mount" id="sk-five-cs-mount" data-w="700" data-h="280"></div>
   <figcaption>The customer-centered scan, five C's at a glance. Customer at the center; company, collaborators, and competitors in the middle ring; context as the outer ring you can only react to.</figcaption>
 </figure>
@@ -617,7 +630,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <!-- §3.2 sketch 2 of 2 (NEW; re-aims the retired fig-1 5C content): the
      negotiate-vs-read split, the load-bearing idea of the section. -->
-<figure class="sketch" aria-label="Two columns: 'you can call, sign, sue' holding a retail buyer and a supplier, versus 'you can only read and react' holding a Fed rate hike and a pending EU rule.">
+<figure class="sketch" aria-label="Marketing strategy distinguishes between controllable micro stakeholders like buyers and suppliers versus uncontrollable macro forces like interest rates and regulations.">
   <div class="mount" id="sk-negotiate-vs-read" data-w="720" data-h="300"></div>
   <figcaption>The split is about who you can argue with. The micro layer is parties you can call, sign with, or sue. The macro layer is forces you can only read early enough to answer.</figcaption>
 </figure>
@@ -650,11 +663,11 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     <div class="w32-bins">
       <div class="w32-bin" id="w32-bin-micro" data-bin="micro">
         <div class="w32-binhead">I can negotiate <span class="w32-sub">(micro layer)</span></div>
-        <div class="w32-drop" id="w32-drop-micro" aria-label="Drop forces you can negotiate with here"></div>
+        <div class="w32-drop" id="w32-drop-micro" role="list" aria-label="Drop forces you can negotiate with here"></div>
       </div>
       <div class="w32-bin" id="w32-bin-macro" data-bin="macro">
         <div class="w32-binhead">I can only read &amp; react <span class="w32-sub">(macro layer)</span></div>
-        <div class="w32-drop" id="w32-drop-macro" aria-label="Drop forces you can only react to here"></div>
+        <div class="w32-drop" id="w32-drop-macro" role="list" aria-label="Drop forces you can only react to here"></div>
       </div>
     </div>
     <div class="w32-msg" id="w32-msg" aria-live="polite">Drag a force into a layer. On a phone, tap a force and then tap a layer.</div>
@@ -671,7 +684,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-focused style="display:none">Six forces sit outside your brand, and you cannot phone a tariff or a privacy law into changing its mind, so all you can do is read each force early and move while cheap options remain. <span class="term" data-tt="PESTEL is a six-factor scan of the macroenvironmental forces outside a brand's control: Political, Economic, Sociocultural, Technological, Environmental, and Legal. It is run as a quarterly working scan, not a one-time deck, and the habit behind the acronym matters more than the letters.">PESTEL</span> is the checklist that keeps you from missing one, standing for Political, Economic, Sociocultural, Technological, Environmental, and Legal. The point is the habit, to walk all six on a regular clock so none becomes the blind spot that catches you flat.<sup class="cite" data-cite="ref-7"></sup></p>
 
-<figure class="sketch" aria-label="Six macro forces drawn as arrows pointing inward at a center brand, each arrow tagged with its own clock running at a different speed.">
+<figure class="sketch" aria-label="Six inward-pointing arrows representing macro forces, each with different clock speeds, illustrating variable competitive pressures on a brand.">
   <div class="mount" id="sk-pestel-mount" data-w="720" data-h="315"></div>
   <figcaption>Six forces pointing inward, each on its own clock. Your job is knowing which arrow moves fastest this quarter.</figcaption>
 </figure>
@@ -680,7 +693,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-focused style="display:none">One rule runs underneath all six forces, so learn it first. The clearer a signal gets, the fewer cheap moves you have left. A draft rule buried in trade press costs almost nothing to prepare for, but by the time it is a final rule with a date on it, the cheap options are gone. The skill is acting while the signal is still faint enough that almost nobody else believes it.<sup class="cite" data-cite="ref-8"></sup></p>
 
-<figure class="sketch" aria-label="Two curves crossing over a left-to-right timeline labeled draft, comment period, effective date; signal clarity rises while the menu of cheap responses falls, and the crossing point is circled.">
+<figure class="sketch" aria-label="Signal clarity and affordable response options decrease over time, crossing at a contingency point between draft and effective date stages.">
   <div class="mount" id="sk-signal-options-mount" data-w="720" data-h="280"></div>
   <figcaption>Signal clarity rises as a draft becomes a comment period becomes an effective date. The menu of cheap responses falls along the same timeline. The crossing point in the middle is where the cheap contingency was still affordable.</figcaption>
 </figure>
@@ -749,11 +762,11 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="pestel-grid">
     <div class="pestel-col vague" id="pestel-scan-colVague">
       <div class="pestel-colhead"><span class="pestel-ct">Vague question</span><span class="pestel-cost" id="pestel-scan-costVague"></span></div>
-      <div class="demo-stream" id="pestel-scan-outVague" aria-live="polite"><span class="pestel-ph">Press the vague question above.</span></div>
+      <div class="demo-stream" id="pestel-scan-outVague" aria-live="polite" aria-atomic="false"><span class="pestel-ph">Press the vague question above.</span></div>
     </div>
     <div class="pestel-col sharp" id="pestel-scan-colSharp">
       <div class="pestel-colhead"><span class="pestel-ct">Sharp question</span><span class="pestel-cost" id="pestel-scan-costSharp"></span></div>
-      <div class="demo-stream" id="pestel-scan-outSharp" aria-live="polite"><span class="pestel-ph">Press the sharp question above.</span></div>
+      <div class="demo-stream" id="pestel-scan-outSharp" aria-live="polite" aria-atomic="false"><span class="pestel-ph">Press the sharp question above.</span></div>
     </div>
   </div>
   <div class="pestel-verdict" id="pestel-scan-verdict"></div>
@@ -867,6 +880,36 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   #pestel-scan .pestel-qbtns { grid-template-columns: 1fr; }
   #pestel-scan .pestel-grid { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   A11Y CONTRAST FIXES (WCAG 2.1 AA) — additive, source-of-truth.
+   Doubled-class specificity + !important to beat the chapter's
+   own rules. Bright coral (#DA7756) stays for borders / markers /
+   strokes (>=3:1); only BUTTON/TOGGLE backgrounds and small coral
+   TEXT are darkened to a >=4.5:1 pair. White text on the darker
+   #a8472a coral = 5.83:1; #a8472a on cream = ~5:1.
+   ============================================================ */
+/* Coral-background buttons: white-on-coral was 3.1:1. Darken bg, keep white text. */
+.demo-button.demo-button { background: #a8472a !important; color: #fff !important; }
+.demo-button.demo-button:hover { background: #8f3c22 !important; }
+.demo-button.demo-button:disabled { background: var(--ink-3) !important; }
+/* PESTEL "sharp" question button (carries qtag/qtext/qask white text on coral). */
+#pestel-scan .pestel-q.sharp.sharp { background: #a8472a !important; }
+#pestel-scan .pestel-q.sharp.sharp:hover { background: #8f3c22 !important; }
+/* Remove the text-washing opacity on the question-button labels so white text
+   stays at full strength on both the coral (sharp) and #6b6b6b (vague) grounds. */
+#pestel-scan .pestel-q .pestel-qtag.pestel-qtag,
+#pestel-scan .pestel-q .pestel-qask.pestel-qask { opacity: 1 !important; }
+/* Small coral-deep TEXT on cream (#B8553A 4.2:1 -> #a8472a ~5:1). Background/borders untouched. */
+#pestel-scan .pestel-axis.pestel-axis { color: #a8472a !important; }
+#pestel-scan .pestel-col.sharp .pestel-ct.pestel-ct { color: #a8472a !important; }
+/* Armed drag item + active snapshot chip: same white-on-coral toggle pattern. */
+#w32 .w32-item.is-armed.is-armed { background: #a8472a !important; border-color: #a8472a !important; color: #fff !important; }
+#w31 .w31-chip.is-on.is-on { background: #a8472a !important; border-color: #a8472a !important; color: #fff !important; }
+/* Five-forces vague/sharp question buttons: opacity:0.7 washed the coral button
+   below 4.5:1. Keep both buttons fully opaque (white on #a8472a = 5.83:1); the
+   .active state's coral-deep outline remains the selected-question affordance. */
+#ff-widget .ff-q.ff-q { opacity: 1 !important; }
 </style>
 
 <span class="ax">04 // porter five forces</span>
@@ -880,7 +923,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-focused style="display:none">Picture the category as a box with five hands pressing on it from five directions. Each hand is one <span class="term" data-tt="An industry-attractiveness analysis Michael Porter introduced in a 1979 Harvard Business Review article. Five structural forces compress margin in a category: rivalry among existing firms, the threat of new entrants, the threat of substitutes, the bargaining power of suppliers, and the bargaining power of buyers. The framework finds the position where the forces are weakest.">force</span>, and the harder they press, the less air is left inside the box. That leftover air is the profit the category lets a brand keep.</p>
 
-<figure class="sketch" aria-label="An industry box in the center with five labeled arrows pushing inward; the squeeze leaves a small margin in the middle">
+<figure class="sketch" aria-label="Five competitive forces, supplier power, buyer power, threat of substitutes, new entrants, and rivalry, compress industry margins, leaving brands to seek positioning where competitive pressure is weakest.">
   <div class="mount" id="sk-porter-mount" data-w="720" data-h="280"></div>
   <figcaption>Five forces compressing margin on the whole category. The leftover space in the middle is the profit the structure allows; the brand picks a position where the binding force is weakest, or picks a different category.</figcaption>
 </figure>
@@ -897,7 +940,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-focused style="display:none">Here is the trap that catches careful teams. Average all five hands and the result is almost always "moderate pressure," because the hands rarely press hard at once, so the average buries the one thing you needed to know. What squeezes a category in a given quarter is usually a single hand pressing harder than the rest, the <span class="term" data-tt="The single force, among Porter's five, that is doing the most to compress margin in a brand's category right now. The quarterly question is whether that one force is tightening or loosening, and averaging the five almost always returns &quot;moderate&quot; and buries it.">binding force</span> you have to name. Find the hand pressing hardest, then ask whether it is tighter than last quarter or letting up, because that is where the next move goes.</p>
 
-<figure class="sketch" aria-label="Five bars of differing height for the five forces, one (substitutes) clearly tallest with a margin-ceiling line; a lower average line is labeled misleading">
+<figure class="sketch" aria-label="Substitutes represent the strongest competitive threat to Stanley's drinkware margins, with their binding force significantly exceeding the average of all five forces.">
   <div class="mount" id="sk-binding-force-mount" data-w="940" data-h="300"></div>
   <figcaption>The binding-force diagnostic in insulated drinkware, Q2 2026. Substitutes are the tallest bar because twelve-dollar Amazon steel look-alikes are the force pulling hardest on Stanley's margin. Averaging the five would have produced "moderate"; reading the binding force names the actual move.</figcaption>
 </figure>
@@ -947,7 +990,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     </div>
     <button class="demo-button" id="ff-go">Run the read (live model)</button>
   </div>
-  <div class="demo-stream" id="ff-out" aria-live="polite"><span class="ph">Pick a preset, stress a force, then choose the loose or the sharp question and run the read.</span></div>
+  <div class="demo-stream" id="ff-out" aria-live="polite" aria-atomic="false"><span class="ph">Pick a preset, stress a force, then choose the loose or the sharp question and run the read.</span></div>
   <div class="ff-cost" id="ff-cost">cost shows here after a live run</div>
 </div>
 
@@ -963,7 +1006,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-focused style="display:none">PESTEL reads the outside world and Porter reads the category, and SWOT is where you fold both reads together with what you know about your own brand. A <span class="term" data-tt="A 2x2 synthesis grid cataloging a brand's Strengths, Weaknesses, Opportunities, and Threats. Strengths and Weaknesses are internal capabilities the firm has or lacks; Opportunities and Threats are external forces favoring or pressuring the brand. The framework adds rigor only when the inputs are scored, not merely listed.">SWOT analysis</span> sorts those reads into four boxes, internal strengths and weaknesses over external opportunities and threats. The grid is old and simple, and the depth never comes from the grid but from how honest and well-sourced the items in the boxes are.<sup class="cite" data-cite="ref-19"></sup></p>
 
-<figure class="sketch" aria-label="A 2x2 SWOT drawn for Liquid Death, internal strengths and weaknesses on top, external opportunities and threats below">
+<figure class="sketch" aria-label="Liquid Death's SWOT analysis shows metal branding as strength, limited shelf visibility as weakness, sober-curious trends as opportunity, and major competitor canned water as threat.">
   <div class="mount" id="sk-swot-mount" data-w="700" data-h="300"></div>
   <figcaption>The same 2x2 drawn for Liquid Death. A death-metal voice you spot from one can is the strength; thin shelf presence is the weakness; the sober-curious party occasion is the opportunity; a Coke or Pepsi canned-water launch is the threat. Internal on top, external below.</figcaption>
 </figure>
@@ -1077,7 +1120,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-complete>The third read is outside-in, and it exposes the blind spot by making you write how each major rival would describe you, in that rival's own voice. Yeti's likely read of Stanley in early 2026: Stanley owns women's hydration with a depth Yeti cannot match inside a year, but it has almost no foothold in the men's outdoor-utility segment that is Yeti's home turf. So Yeti defends men's outdoor utility hard while pricing any crossover to make a women's-hydration push too expensive to bother. A Stanley team that writes its own outside-in version sees the move coming and pushes into men's outdoor utility before Yeti's defense locks the door. The three reads in sequence are what turn a SWOT from a slide into a working instrument.</p>
 
-<figure class="sketch" aria-label="The same SWOT grid shown three times in a row, labeled right-side-up, upside-down, outside-in, with an arrow showing one grid read three ways">
+<figure class="sketch" aria-label="Three orientations of a SWOT analysis, right-side-up, upside-down, and outside-in, demonstrate how reading it multiple ways stress-tests strategic assumptions.">
   <div class="mount" id="sk-disruptive-mount" data-w="720" data-h="260"></div>
   <figcaption>Three reads on the same SWOT. Right-side-up is the world as it is; upside-down asks which strength flips; outside-in asks how a rival describes you. A SWOT only read right-side-up has not been stress-tested.</figcaption>
 </figure>
@@ -1091,7 +1134,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-complete>This separates a scan that drives decisions from one that decorates a shared drive. A team that runs PESTEL once a year ships a polished deck in January, files it, and then runs the year on assumptions that started going stale by February. The working version runs the scan every quarter against an explicit comparison to the quarter before, then writes a one-page diff in three columns: the axis, what changed since last quarter, and the recommended move.<sup class="cite" data-cite="ref-20"></sup> <strong>That quarterly diff is the deliverable of the section,</strong> because it is the comparison, rather than any standalone deck, that tells a team a new strategy is needed.</p>
 
-<figure class="sketch" aria-label="The five-stage peripheral-vision loop that repeats every quarter">
+<figure class="sketch" aria-label="The peripheral-vision loop cycles through five stages, Scope, Scan, Interpret, Probe, Act, quarterly to detect market changes.">
   <div class="mount" id="sk-environmental-scanning-mount" data-w="720" data-h="220"></div>
   <figcaption>Scope, Scan, Interpret, Probe, Act. A ring that repeats every quarter, filing the diff against last quarter.</figcaption>
 </figure>
@@ -1106,7 +1149,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-focused style="display:none">A scan that names a force still has to settle which kind of strategy it calls for. Patagonia's climate stance is the <span class="term" data-tt="Deliberate strategy is the term Henry Mintzberg and James Waters used in their 1985 paper for a strategy the firm articulated explicitly before the action and then realized as intended. Patagonia's climate stance is the deliberate version, written down decades early and held on purpose.">deliberate</span> kind, held on purpose for decades, while Stanley's Quencher is the <span class="term" data-tt="Emergent strategy is the term Mintzberg and Waters used in 1985 for a strategy realized without prior intention, where the consistency only becomes visible in hindsight. Stanley's Quencher is the emergent version: a buyer base the team never planned for, on a platform it did not control.">emergent</span> kind, a turn the plan never anticipated until the probe confirmed it.<sup class="cite" data-cite="ref-23"></sup> A working strategist commits deliberately to the load-bearing forces while scanning for the emergent signal.</p>
 
-<figure class="sketch" aria-label="A scenario 2x2 with two high-uncertainty axes producing four futures">
+<figure class="sketch" aria-label="Four potential brand futures emerge from two high-uncertainty dimensions, each requiring distinct strategic positioning.">
   <div class="mount" id="sk-scenario-planning-mount" data-w="720" data-h="320"></div>
   <figcaption>A scenario 2x2. Two high-uncertainty, high-impact axes cross to make four futures, each with one written brand strategy.</figcaption>
 </figure>
@@ -1158,7 +1201,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
       <span class="cost-chip" id="scan-clock-cost"></span>
     </div>
   </div>
-  <div class="demo-stream" id="scan-clock-out" aria-live="polite"><span class="scan-clock-ph">Pick a category, choose a quadrant to fund, then run the sharp scan.</span></div>
+  <div class="demo-stream" id="scan-clock-out" aria-live="polite" aria-atomic="false"><span class="scan-clock-ph">Pick a category, choose a quadrant to fund, then run the sharp scan.</span></div>
 </div>
 
 <p data-focused style="display:none">The same model and the same bill answer both buttons, and the sharp question is what turns trend salad into a sourced, dated scan that reads fresh this week. Pointed at a live economic feed and a rules feed, it reruns on a schedule for a few dollars a month. The next section runs all of this machinery onto three real brands.</p>
@@ -1177,7 +1220,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-focused style="display:none">Each rhythm leaves a rule you can carry to your own brand. Stanley shows reading as a recurring cadence, Patagonia shows it as a commitment held across a decade, while Liquid Death shows the rarer skill of catching the moment when several forces overlap at once.</p>
 
-<figure class="sketch" aria-label="Stanley 2018: the dashboard read vs the TikTok read">
+<figure class="sketch" aria-label="Stanley's 2018 dashboard missed female users 25-44 that TikTok's algorithm revealed, enabling a $750M product turnaround.">
   <div class="mount" id="sk-stanley-tiktok-mount" data-w="720" data-h="280"></div>
   <figcaption>Two reads of the same brand in 2018. The dashboard saw contractors and hunters; TikTok's algorithm saw women 25 to 44 absent from every report. Reading the second view in time pulled a $750M arc out of a nearly cancelled product.</figcaption>
 </figure>
@@ -1190,7 +1233,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-complete>Patagonia is the opposite rhythm, one macro force read across forty years. Yvon Chouinard concluded that the long-run binding force was not feature competition but the environmental cost the whole industry's supply chain imposed, and he built the operating capabilities the thesis needed before the stance was fashionable: a global repair network of more than 110 centers, materials-sourcing audits, and a Worn Wear trade-in program that cannibalizes new-product sales on purpose. In September 2022 Chouinard transferred ownership to a purpose trust and a climate nonprofit, a roughly $3 billion move that locked the thesis into governance so no later leadership change could roll it back.<sup class="cite" data-cite="ref-27"></sup> The reproducible lesson sits underneath that gift, in the rule it follows: pick one or two macro forces, treat them as load-bearing for a decade, write the stance down so every decision can be tested against it, and build the capabilities the stance requires rather than the communications around them. Capabilities compound, while communications evaporate when the next campaign launches.</p>
 
-<figure class="sketch" aria-label="Liquid Death: three forces converging on one 2017 window">
+<figure class="sketch" aria-label="Three overlapping circles representing cheap video technology, Gen-Z anti-corporate sentiment, and aluminum packaging converge to create the market opportunity for Liquid Death.">
   <div class="mount" id="sk-convergence-mount" data-w="720" data-h="300"></div>
   <figcaption>Three forces (cheap video, Gen-Z anti-corporate, aluminum over plastic) arrive at one 2017 window. The opening lives in the overlap, not in any single force.</figcaption>
 </figure>
@@ -1207,7 +1250,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p>Even a brand that owns every framework in this chapter can still miss the shift. The misses fall into five shapes, and each one is a good read of the world gone stale. Naming them is the cheapest way to catch yourself before the loss arrives.</p>
 
 <!-- SKETCH 1 (KEEP / re-aim): existing sk-tropicana renderer carries this exactly. Single concrete case. -->
-<figure class="sketch" aria-label="Tropicana's January 2009 redesign drops the orange-with-straw cue; before and after shelves with sales falling 20%">
+<figure class="sketch" aria-label="Tropicana's 2009 packaging redesign eliminated its iconic orange-with-straw symbol, causing a 20% sales drop within two months.">
   <div class="mount" id="sk-tropicana-mount" data-w="720" data-h="240"></div>
   <figcaption>Tropicana's January 2009 redesign removed the orange-with-a-straw image, its most distinctive memory cue; sales fell 20% in two months.</figcaption>
 </figure>
@@ -1239,7 +1282,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <!-- SKETCH 2 (NEW small): the five-mode taxonomy. Zero overlap with sk-tropicana (single case). -->
-<figure class="sketch" aria-label="A five-cell strip naming the five failure modes, each tagged to the earlier read it switches off">
+<figure class="sketch" aria-label="Five failure modes are presented as cells, each showing which analytical tool it disables: PESTEL scan, weak-signal cadence, noise filter, Porter/SWOT, or dependency audit.">
   <div class="mount" id="sk-failure-grid-mount" data-w="720" data-h="220"></div>
   <figcaption>The five modes at a glance. Each cell names the read it breaks: the PESTEL scan, the weak-signal cadence, the noise filter, the Porter and SWOT criteria, the dependency audit.</figcaption>
 </figure>
@@ -1256,14 +1299,14 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <!-- CLOSE SKETCH 1 (NEW, JC-11): the six PESTEL forces as one labeled strip, the opener's map closed back up. -->
 <!-- Mirrors Ch1 sk-recap / Ch2 sk-five-recap. -->
-<figure class="sketch" aria-label="The six environmental forces as one labeled strip, the chapter's map closed back up">
+<figure class="sketch" aria-label="Six environmental forces, political, economic, social, technological, environmental, legal, displayed sequentially as the chapter's integrated framework.">
   <div class="mount" id="sk-ch3-recap-mount" data-w="720" data-h="200"></div>
   <figcaption>The chapter's toolkit, recapped. The same six forces the chapter opened on, lined up in one strip: political, economic, social, technological, environmental, legal.</figcaption>
 </figure>
 
 <!-- CLOSE SKETCH 2 (NEW, JC-11): the Ch3 -> Ch4 turn arrow, outside forces bending inward to the buyer's attention. -->
 <!-- Mirrors Ch1 sk-turn / the Ch2 close turn. Distinct from sk-ch3-recap (backward recap, not forward hand-off). -->
-<figure class="sketch" aria-label="A turn arrow from the outside forces of this chapter bending inward to a buyer's attention in the next chapter">
+<figure class="sketch" aria-label="Outside forces bend inward as the focus shifts from environmental factors to how buyers actually make purchasing decisions.">
   <div class="mount" id="sk-turn-ch4-mount" data-w="720" data-h="200"></div>
   <figcaption>The turn from Chapter 3 to Chapter 4. The outside forces here bend inward, from how the floor shifts to how buyers actually buy.</figcaption>
 </figure>

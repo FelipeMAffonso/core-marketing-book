@@ -326,6 +326,28 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<style>
+/* ============================================================
+   A11Y CONTRAST FIX (Ch12) — loaded LAST so it wins over _accessibility.css
+   and the in-body widget <style>. Doubled-class specificity + !important.
+
+   Root cause of all 4 axe color-contrast failures: the inactive comparison
+   column #w123 .wv-col carried opacity:.5, which washed its FULL-opacity text
+   (--ink-3 #6b6b6b body and --coral-deep #B8553A label) down to ~#b5b5b5 /
+   ~#dcaa9d (~2:1, fails 4.5:1). Fix per the locked playbook: REMOVE the
+   text-washing opacity and dim the inactive card with a non-opacity treatment
+   (muted cream surface + softer border) so the text renders at full opacity
+   and passes. The .live state restores the bright white card, so the
+   "this column is now answering" affordance survives.
+   ============================================================ */
+#w123 .wv-col.wv-col{opacity:1;background:#faf7f3;border-color:#efe7da;}
+#w123 .wv-col.live.wv-col{background:#fff;border-color:var(--line);}
+#w123 .wv-col.sharp.live.wv-col{border-color:var(--coral-soft);}
+/* keep the placeholder + uppercase labels at compliant full-opacity colors */
+#w123 .wv-ans .ph.ph{color:#6b6b6b;}
+#w123 .wv-col.vague .wv-ct.wv-ct{color:#6b6b6b;}
+#w123 .wv-col.sharp .wv-ct.wv-ct{color:#a8472a;}
+</style>
 </head>
 <body data-chapter-num="12">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -337,6 +359,19 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of");
+         injected SVG mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 12.
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-12-retail.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 12 &middot; Mix Layer</p>
@@ -359,13 +394,13 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>The seven-of-ten review number is the simplest test for any retail decision in this chapter, because it asks whether the format would hold if the human-in-the-loop layer were taken away. The eight decisions, the wheel of retailing, the pricing arithmetic, the omnichannel pivot, and the failure modes named across JCPenney, Casper, and Just Walk Out all come back to that one test. Costco, Trader Joe's, and Patagonia carry the worked cases as the chapter goes, while Liquid Death, Duolingo, and Stanley return in later chapters.</p>
 
 <figure class="sketch" aria-label="The Just Walk Out reversal of April 2024">
-  <div class="mount" id="sk-jwo-reversal-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-jwo-reversal-mount" data-w="720" data-h="280"></div>
   <figcaption>Amazon Fresh phased out Just Walk Out in April 2024 and replaced it with Dash Carts. The retail decision the technology was supposed to remove (the checkout) was rebuilt around the buyer's hand on the cart instead of the buyer's eye on a camera. Cashier-less retail is not gone; it is now honest about the staff it still requires.</figcaption>
 </figure>
 
 <p><strong>Retailing includes all the activities involved in selling goods or services directly to final consumers for personal, nonbusiness use.</strong><sup class="cite" data-cite="ref-5"></sup> The textbook definition is correct, and it understates the job.</p>
 
-<figure id="fig-process" class="sketch" style="margin: 36px 0 28px 0;">
+<figure id="fig-process" aria-label="The eight retail decisions in the order a retailer makes them, each feeding the next and all anchored to the buyer’s moment of truth at the shelf." class="sketch" style="margin: 36px 0 28px 0;">
   <div class="mount" id="process-mount" data-w="780" data-h="320" aria-hidden="true"></div>
   <figcaption>The eight retail decisions, in the order a retailer makes them, all anchored to the buyer's moment of truth at the shelf. Each decision feeds the next; a mistake at the assortment level cannot be repaired at the pricing level, and a failure at atmospherics cannot be undone at the loyalty level.</figcaption>
 </figure>
@@ -380,7 +415,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none">A manufacturer makes a small set of decisions and sends the product into the channel. The retailer inherits all of it and stacks eight more on top: <strong>target market</strong>, <strong>assortment and procurement</strong>, <strong>services</strong>, <strong>store atmosphere</strong>, <strong>pricing</strong>, <strong>incentives</strong>, <strong>communications</strong>, and <strong>channels</strong>.<sup class="cite" data-cite="ref-5"></sup> They read as a dependency chain, since each answers a question the one before it raised, so getting one link wrong leaves the rest no hold.</p>
 
 <figure class="sketch" aria-label="The eight retail decisions as a dependency chain">
-  <div class="mount" id="sk-eight-decision-stack-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-eight-decision-stack-mount" data-w="720" data-h="300"></div>
   <figcaption>The eight retail decisions read as a dependency chain, where each decision answers a question the one before it raised. A wrong target market makes the assortment unanswerable, and a mispriced assortment leaves atmospherics nothing to rescue. Get one link wrong and the rest lose hold.</figcaption>
 </figure>
 
@@ -441,7 +476,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 </figure>
 
 <figure class="sketch" aria-label="The three-to-seven-second FMOT window at the shelf">
-  <div class="mount" id="sk-fmot-shelf-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-fmot-shelf-mount" data-w="720" data-h="280"></div>
   <figcaption>The First Moment of Truth as a single shelf close-up. An eye crosses three feet of shelf, settles on the package it recognized fastest, and the hand follows, all inside three to seven seconds. POPAI's 2014 study put roughly seventy-six percent of category and brand choices at this in-store window.</figcaption>
 </figure>
 
@@ -563,7 +598,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 </figure>
 
 <figure class="sketch" aria-label="The wheel of retailing as a hand-drawn turning cycle: innovation, trade-up, vulnerability, decline">
-  <div class="mount" id="sk-wheel-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-wheel-mount" data-w="720" data-h="300"></div>
   <figcaption>The wheel of retailing as one turning cycle. A new format enters cheap and unglamorous, trades up as it succeeds, grows vulnerable as its cost base rises, and declines when the next low-cost entrant takes the position. The pattern is a default, not a law.</figcaption>
 </figure>
 
@@ -576,7 +611,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <aside class="sn" data-complete><span class="sn-num">5a.</span> <strong>Freshness anchor (May 2026):</strong> Aldi US passed 2,677 stores by early May 2026 (up from 2,614 on December 31, 2025) on the $9B capital plan, and is now the third-largest US grocer by store count behind Walmart and Kroger.<sup class="cite" data-cite="ref-13"></sup> By Numerator's late-2025 ranking the chain reached roughly 2.8 percent of national grocery share, and across the 2022-to-2025 inflation cycle it was the only mid-sized US grocer outside Walmart and Costco to gain share. The principle (a discounter scaling faster than its cost structure rises) is sharpening, not weakening.</aside>
 
 <figure class="sketch" aria-label="Aldi's store count scaling the format faster than its cost rises">
-  <div class="mount" id="sk-aldi-expansion-mount" data-w="720" data-h="220"></div>
+  <div class="mount" aria-hidden="true" id="sk-aldi-expansion-mount" data-w="720" data-h="220"></div>
   <figcaption>Aldi's US footprint scaling the original format rather than trading up out of it. Each new store spreads the distribution network and the private-label supplier base across more square feet, so the per-unit cost of running the format keeps falling as the chain grows.</figcaption>
 </figure>
 
@@ -585,12 +620,12 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <aside class="sn" data-complete><span class="sn-num">5b.</span> Off-price retail is the wheel's other standing counter-example, and the scale is larger than most courses credit. TJX, Ross, and Burlington together posted roughly $88 billion in fiscal 2025 revenue across nearly seven thousand US stores, and each ran three straight years of positive comps while Macy's and Kohl's declined.<sup class="cite" data-cite="ref-14"></sup> The format resists the wheel by a different route than Aldi: it runs an arbitrage operation across other chains' surplus inventory, buying closeouts and overruns at a target cost and paying for the treasure-hunt inconsistency with the price advantage rather than building owned supply. Both routes show that a coherent low-cost format can hold for decades without trading up.</aside>
 
 <figure class="sketch" aria-label="Kahn Retailing Success Matrix: the product axis crossed with the experience axis yields four winning quadrants plus the muddled middle">
-  <div class="mount" id="sk-kahn-matrix-mount" data-w="720" data-h="420"></div>
+  <div class="mount" aria-hidden="true" id="sk-kahn-matrix-mount" data-w="720" data-h="420"></div>
   <figcaption>The Retailing Success Matrix as a reference card. A retailer wins by being the lowest-price option, the most differentiated product, the most frictionless experience, or the most immersive one. The <span class="term" data-tt="The muddled middle is the losing position on the Kahn Retailing Success Matrix: a retailer that is neither the lowest price, the most differentiated product, the most frictionless experience, nor the most immersive one wins on no axis and gets squeezed from every side. It is the diagnosis behind much of the mid-market department store's decline.">muddled middle</span> wins on no axis, which is the diagnosis behind much of the mid-market department store's decline.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="Macy's footprint: 150 closures as a quarter of stores generating under a tenth of sales">
-  <div class="mount" id="sk-macys-decline-mount" data-w="720" data-h="270"></div>
+  <div class="mount" aria-hidden="true" id="sk-macys-decline-mount" data-w="720" data-h="270"></div>
   <figcaption>Macy's at the decline stage. The 150 closing stores are a quarter of the footprint that generated under a tenth of sales, while the same parent expands its higher-margin Bloomingdale's and Bluemercury formats. Whether the full-line store re-energizes from inside the way McDonald's did is the open department-store question.</figcaption>
 </figure>
 
@@ -606,7 +641,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none">The clearest place to see retail decisions at work is the assortment. <span class="term" data-tt="Product assortment is the set of goods a retailer chooses to carry, on two dimensions: breadth is the number of distinct product lines, and depth is the number of variants within each line.">Product assortment</span> has two dimensions, breadth (distinct lines) and depth (variants per line).<sup class="cite" data-cite="ref-5"></sup> A conventional supermarket carries about fifty thousand items, Trader Joe's and Costco about four thousand each, and Aldi about fourteen hundred. The narrow grocers are not short on shelf space; they are choosing what not to carry, which is a marketing decision and not a logistics one.</p>
 
 <figure class="sketch" aria-label="Trader Joe's narrow assortment versus a conventional supermarket">
-  <div class="mount" id="sk-trader-joes-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-trader-joes-mount" data-w="720" data-h="280"></div>
   <figcaption>A Trader Joe's stocks roughly four thousand items in a footprint a third the size of a conventional supermarket, runs no loyalty program or app, sells nothing online, and posts revenue per square foot above two thousand dollars against a Kroger's six hundred. The narrow assortment is the strategy, not a constraint.</figcaption>
 </figure>
 
@@ -628,7 +663,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>Costco's private-label decision is the same Trader Joe's choice at warehouse-club scale. Kirkland Signature ran about eighty-six billion dollars in 2024, roughly thirty percent of Costco's revenue, on the same narrow four-thousand-item chassis.<sup class="cite" data-cite="ref-16"></sup> The chain reached that scale without a Super Bowl spot and without a separate Kirkland marketing program, because the label rides on the warehouse traffic the membership format already produces. The economics explain the format-by-format pattern. Private-label margin is structurally higher, since the retailer keeps both the manufacturer's slice and its own and skips the national brand's marketing cost, so discounters and warehouse clubs lean on it where their cost structure needs the help. Department stores moved the other way, letting private-label share slip toward half its 1990s level, which is part of the margin pressure they report.</p>
 
 <figure class="sketch" aria-label="Private-label penetration across formats">
-  <div class="mount" id="sk-private-label-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-private-label-mount" data-w="720" data-h="240"></div>
   <figcaption>Private-label share by format. Aldi and Trader Joe's near eighty percent, Costco's Kirkland around thirty and climbing, conventional supermarkets near twenty. The pattern: the more deliberate the assortment, the higher the share.</figcaption>
 </figure>
 
@@ -682,11 +717,11 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
   <div class="wv-grid">
     <div class="wv-col vague" id="w123-col-vague">
       <div class="wv-colhead"><span class="wv-ct">Generic, you knew this already</span><span class="wv-cost" id="w123-cost-vague"></span></div>
-      <div class="wv-ans" id="w123-ans-vague"><span class="ph">Press the vague question above.</span></div>
+      <div class="wv-ans" id="w123-ans-vague" aria-live="polite" aria-atomic="false"><span class="ph">Press the vague question above.</span></div>
     </div>
     <div class="wv-col sharp" id="w123-col-sharp">
       <div class="wv-colhead"><span class="wv-ct">Named format + the cull</span><span class="wv-cost" id="w123-cost-sharp"></span></div>
-      <div class="wv-ans" id="w123-ans-sharp"><span class="ph">Press the specific question above.</span></div>
+      <div class="wv-ans" id="w123-ans-sharp" aria-live="polite" aria-atomic="false"><span class="ph">Press the specific question above.</span></div>
     </div>
   </div>
   <div class="wv-verdict" id="w123-verdict"></div>
@@ -712,7 +747,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>The second effect is the <span class="term" data-tt="The transition zone is the first five to fifteen feet inside the entrance, sometimes called the decompression zone, where the shopper's eyes are still adjusting from outdoor light and the body is still slowing from the walk in. Merchandise placed in that strip is functionally invisible, so experienced retailers leave it deliberately empty and reserve the high-value goods for the stretch just beyond it.">transition zone</span>. The shopper crosses it while her eyes are still adjusting and her body is still slowing, so any merchandise placed there is functionally invisible. Experienced retailers leave the strip empty and stage the high-value goods just beyond it. The third effect is right-side bias. About ninety percent of shoppers turn right on entering, which makes the right-hand <span class="term" data-tt="The power wall is the right-hand wall about five to fifteen paces past the entrance, the single highest-value square footage in a store. By that point the shopper has stopped accelerating and refocused, and the first conscious shopping decision of the trip happens within reach of that wall, which is why a Target endcap there is one of the most expensive placements a brand can buy.">power wall</span> the most valuable square footage in the store, because the first conscious shopping decision of the trip happens within reach of it.</p>
 
 <figure class="sketch" aria-label="Underhill butt-brush effect">
-  <div class="mount" id="sk-underhill-butt-brush-mount" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-underhill-butt-brush-mount" data-w="720" data-h="260"></div>
   <figcaption>The butt-brush effect. A high-engagement display in a narrow aisle near a doorway loses shoppers as bodies bump it from behind. The same display moved twenty feet in with six feet of clearance retains them. The fix is geometric, not aesthetic.</figcaption>
 </figure>
 
@@ -723,7 +758,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none">A parallel program tracked <span class="term" data-tt="Radio Frequency Identification (RFID) tags are small wireless tags that broadcast a unique identifier when a reader passes nearby. Attached to a cart instead of an item, the tag maps the path a shopper takes through the aisles.">RFID</span> tags on carts and mapped shopper paths, and the findings stack on the camera evidence: shoppers spend most of a visit in transit between fixtures, a few destination categories drive most of the traffic, and eighty-twenty distributions rule the aisle.<sup class="cite" data-cite="ref-18"></sup> So a planogram reviewer asks where an item sits on the actual path before counting facings, because facings granted before a destination category's draw are invisible.</p>
 
 <figure class="sketch" aria-label="Sorensen shopper path map">
-  <div class="mount" id="sk-shopper-path-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-shopper-path-mount" data-w="720" data-h="280"></div>
   <figcaption>The PathTracker RFID data shows shoppers spend most of an in-store visit in transit between fixtures, not stopped at them. Destination categories (the items the shopper came in for) anchor the trip, and everything else is opportunistic. The right-side bias and the transition-zone rule structure the rest.</figcaption>
 </figure>
 
@@ -745,7 +780,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <aside class="sn" data-complete><span class="sn-num">10a.</span> IKEA carries the same atmospherics-as-strategy logic at warehouse scale, across 374 stores and roughly 1.7 billion visits a year, a footprint about two thousand times the size of one Apple Store doing the same brand-construction work in the aisle.<sup class="cite" data-cite="ref-22"></sup> The IKEA Place augmented-reality app extends the decision past the store walls, letting the buyer preview true-to-scale furniture in her own room, so the format's atmospherics now begin in the apartment.</aside>
 
 <figure class="sketch" aria-label="Apple Store productivity">
-  <div class="mount" id="sk-apple-store-mount" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-apple-store-mount" data-w="720" data-h="260"></div>
   <figcaption>Apple Store revenue per square foot near $5,546 against an industry average near $325. The format itself is the explanation: no checkout counter, every product demonstrable, the Genius Bar on the floor, and flagships as architectural ads. Atmospherics is the productivity model, not decoration.</figcaption>
 </figure>
 
@@ -773,7 +808,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none">The empirical anchor is a 1994 field experiment on Chicago's Dominick's Finer Foods chain, which used its <span class="term" data-tt="Scanner data is item-level transaction data captured at the register, time-stamped to the basket with the price and any promotion that applied. The Dominick's database became the standard academic testbed for retail-pricing experiments.">scanner data</span> to vary the shelf price across twenty-six categories.<sup class="cite" data-cite="ref-23"></sup> A ten-percent EDLP cut lifted volume only about three percent, a losing trade, while a symmetric ten-percent HiLo raise improved profit fifteen percent, because deal-prone shoppers stayed loyal to the promotions and planned shoppers absorbed the higher everyday price. EDLP is a margin sacrifice that has to be paid for somewhere else.</p>
 
 <figure class="sketch" aria-label="Dominick's Finer Foods field experiment: a ten percent EDLP cut produced only a three percent volume lift, while a symmetric ten percent Hi-Lo posted-price raise produced a fifteen percent profit improvement.">
-  <div class="mount" id="sk-hoch-edlp-mount" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-hoch-edlp-mount" data-w="720" data-h="260"></div>
   <figcaption>The Dominick&rsquo;s field experiment. A 10% EDLP cut bought only 3% volume. The symmetric 10% Hi-Lo raise lifted profit 15%. EDLP is a margin sacrifice that has to be paid for somewhere else (supplier leverage, SKU concentration, or a second revenue stream).</figcaption>
 </figure>
 
@@ -782,7 +817,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none">EDLP repays that sacrifice only where the retailer can call on one of three offsets. The first is <strong>scale-driven supplier leverage</strong>, where Walmart and Home Depot are big enough that suppliers absorb the cut as a price of shelf access. The second is <span class="term" data-tt="SKU concentration is a retailer's choice to carry far fewer items than a conventional competitor, roughly 1,400 at Aldi and 4,000 at Costco and Trader Joe's against 30,000 to 50,000 at a conventional grocer. The huge per-SKU volume produces supplier-cost reductions large enough to satisfy the EDLP test without Walmart-scale size.">SKU concentration</span> paired with private label, where Costco, Aldi, and Trader Joe's move enormous volume per item at a margin they capture end to end. The third is <strong>a second revenue stream</strong>, like Costco's membership-fee profit or Walmart Connect's retail-media revenue. Without one of the three, EDLP gets the JCPenney result.</p>
 
 <figure class="sketch" aria-label="The three structural offsets that repay EDLP's margin sacrifice">
-  <div class="mount" id="sk-edlp-offset-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-edlp-offset-mount" data-w="720" data-h="300"></div>
   <figcaption>The three structural offsets that repay EDLP, each a column holding up the same lowered price line: scale-driven supplier leverage, SKU concentration paired with private label, and a second revenue stream. EDLP is safe only where one of the three covers the sacrifice; remove all three and the price collapses the margin.</figcaption>
 </figure>
 
@@ -836,7 +871,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none">The "e-commerce will kill stores" narrative drove most retail journalism through the 2010s, and the post-pandemic data says otherwise. <span class="term" data-tt="Buy Online, Pickup In Store (BOPIS) is the format where the buyer orders on the retailer's site or app and drives to the local store to collect it at a counter or curbside, turning the store into a fulfillment node rather than just a place to shop.">BOPIS</span> reached 97.2 million U.S. users in 2024, and eighty-five percent of pickup visits add at least one extra in-store purchase.<sup class="cite" data-cite="ref-27"></sup> The store becomes a fulfillment node rather than a casualty, because the buyer who comes to collect keeps shopping once she is through the door.</p>
 
 <figure class="sketch" aria-label="BOPIS adoption flow">
-  <div class="mount" id="sk-bopis-flow-mount" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-bopis-flow-mount" data-w="720" data-h="260"></div>
   <figcaption>BOPIS turns the store into a hybrid: order online, pick up in store. Eighty-five percent of pickup visits produce at least one additional in-store purchase. The store footprint that looked like a liability in the 2015 e-commerce thesis is now an asset for fulfillment, picking, and incremental basket size.</figcaption>
 </figure>
 
@@ -845,7 +880,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none">Walmart is the canonical worked example. In 2015 it ran roughly 4,500 US stores with online at two percent of revenue, and investors priced it for managed decline against Amazon. The 2026 Walmart runs more than 4,600 stores that now work as warehouses too, filling more than half of online orders from a local store and promising same-day delivery from a local node.<sup class="cite" data-cite="ref-17"></sup> Walmart did not out-code Amazon; it already owned the asset that makes a same-day promise cheap to keep, so the footprint that looked like a fixed cost in 2015 flipped into the moat once the dominant promise compressed from two-day to two-hour.</p>
 
 <figure class="sketch" aria-label="Walmart 2015 versus Walmart 2026: the same physical footprint flips from liability to moat once the dominant fulfillment promise compresses from two-day to two-hour.">
-  <div class="mount" id="sk-walmart-flip-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-walmart-flip-mount" data-w="720" data-h="280"></div>
   <figcaption>Same 4,600 stores, ten years apart. In 2015 the footprint was the liability and the share price was being marked for managed decline. In 2026 the same footprint is the moat, because a two-hour promise is cheap to keep from a store and expensive to keep from a regional warehouse.</figcaption>
 </figure>
 
@@ -864,7 +899,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>The omnichannel turn has a second half running in parallel, and the dollars in it have moved fast enough that a 2026 planner has to take it seriously. <span class="term" data-tt="Social commerce is retail that happens inside a social or short-video app rather than on a standalone store website, where the buyer discovers, evaluates, and purchases a product without leaving the feed. TikTok Shop is the 2026 archetype, an in-app marketplace that lets shoppers buy directly from short videos and livestreams, and the format collapses the distance between the content that creates demand and the checkout that captures it.">Social commerce</span> is the half. TikTok Shop, the in-app marketplace that lets shoppers buy directly from short videos and livestreams, processed roughly $33.2 billion in gross merchandise volume in 2024 and reached roughly $64.3 billion in 2025, nearly a doubling in twelve months, with the U.S. share at $15.1 billion across about seventy-one million shoppers.<sup class="cite" data-cite="ref-31"></sup> The structural feature that sets it apart is how much of the volume runs through the <span class="term" data-tt="The creator-affiliate channel is the part of TikTok Shop where a creator earns a commission for posting another brand's product in a short video, a livestream, or a shop-tab placement, while the brand's own storefront fulfills the actual order. It is distinct from a first-party storefront, where the brand operates its own TikTok Shop and posts its own content. The fact that roughly sixty percent of TikTok Shop volume flows through the affiliate channel rather than the first-party channel is the empirical version of the claim that on social commerce the creator is the new shelf.">creator-affiliate channel</span> rather than through brands' own storefronts. Roughly sixty percent of the platform's volume runs through creator-affiliate posts, where a creator earns a commission for featuring a product and the brand's storefront fulfills the order. That sixty-percent share is the empirical version of the claim that on social commerce the creator is the new shelf, because more than half of the volume runs through inventory the creator chose to feature. Whether TikTok Shop becomes a durable format or turns out to be the innovation stage of another turn of the wheel remains an open question, though the size of the dollars moving through it is settled.<sup class="cite" data-cite="ref-31"></sup></p>
 
 <figure class="sketch" data-complete aria-label="TikTok Shop growth">
-  <div class="mount" id="sk-tiktok-shop-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-tiktok-shop-mount" data-w="720" data-h="240"></div>
   <figcaption>TikTok Shop GMV: $33.2B in 2024, $64.3B in 2025 (nearly double), $15.1B in the U.S. The format mix runs about fifty-eight percent video, thirty-two percent in-app shop, ten percent livestream. Whether this is a durable new retail format or a stage of the wheel of retailing is unresolved, even though the dollars moving through it are not in doubt.</figcaption>
 </figure>
 
@@ -939,12 +974,12 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>The <span class="term" data-tt="The Strategic Profit Model (SPM) is the retail industry's standard way of measuring how well a store turns its assets into profit. Net profit margin is the share of each sales dollar the store keeps after every cost is paid. Asset turnover is how many times per year the store flips its stock and capital through sales. Multiply the two and you get return on assets, the bottom-line measure of whether the format is working. Different formats trade margin against turnover on purpose: a warehouse club runs thin margin on fast turnover, a luxury specialty store runs fat margin on slow turnover, and both can land at the same return on assets.">Strategic Profit Model</span> decomposes return on assets into net profit margin times asset turnover.<sup class="cite" data-cite="ref-8"></sup> Costco runs net margin in the one-to-three percent band on asset turnover four to eight times a year, winning on velocity where an Apple Store wins on margin per transaction, yet both reach a respectable return on assets. The membership fee is the third lever that lets the merchandise line run at a margin a non-membership club could not sustain.</p>
 
 <figure class="sketch" data-complete aria-label="Strategic Profit Model: three retail formats reach similar ROA from opposite corners of the margin-by-turnover plane">
-  <div class="mount" id="sk-spm-iso-mount" data-w="720" data-h="410"></div>
+  <div class="mount" aria-hidden="true" id="sk-spm-iso-mount" data-w="720" data-h="410"></div>
   <figcaption>Net margin on the vertical axis, asset turnover on the horizontal. The dashed curves are iso-ROA lines: every point on a curve multiplies to the same return on assets. Costco sits in the low-margin, high-turnover corner; the Apple Store sits in the high-margin, low-turnover corner; Trader Joe&rsquo;s holds an off-diagonal position above both. The diagnostic question is not which retailer earns more per dollar of sales but which two ratios the format is built to move, because the format that tries to lift both at once usually lifts neither.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="Costco warehouse layout">
-  <div class="mount" id="sk-costco-warehouse-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-costco-warehouse-mount" data-w="720" data-h="280"></div>
   <figcaption>A Costco warehouse, top-down. The membership gate at the entry is the segment filter (only members past this point). The treasure-hunt aisles run a deliberately rotating limited-time SKU mix that creates urgency and repeat visits. The rotisserie chicken at $4.99 sits back-right next to the wine and prepared foods, so every shopper who comes for the chicken passes the highest-margin departments first.</figcaption>
 </figure>
 
@@ -973,7 +1008,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <aside class="sn" data-complete><span class="sn-num">17b.</span> Rouge Celebration, the program's annual in-store event for the top tier, drew about 300,000 attendees in 2024 and roughly 600,000 in 2025, and average order value across those Rouge households rose roughly forty percent year over year (re-verify at build).<sup class="cite" data-cite="ref-38"></sup> The doubling of attendance says Rouge households want to be in the room with the brand, and the rise in spend per visit says they buy more once they are there.</aside>
 
 <figure class="sketch" aria-label="Sephora Beauty Insider scale">
-  <div class="mount" id="sk-sephora-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-sephora-mount" data-w="720" data-h="240"></div>
   <figcaption>Sephora Beauty Insider 2025: 45M+ North American members generating about eighty percent of North American sales, with the Rouge tier ($1,000+ annual spend) at about six percent of members but a disproportionate share of revenue and frequency. The 1,100+ Kohl&rsquo;s shop-in-shop locations added more than $1.8B in 2024 incremental sales by reaching the mid-market customer the standalone footprint missed: two retail formats nested into one loyalty program.</figcaption>
 </figure>
 
@@ -1074,7 +1109,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>The modern in-store stack runs three layers. <span class="term" data-tt="Radio Frequency Identification (RFID) inventory tagging puts a small wireless tag on each unit of merchandise so the store's system can read the unit from across a room without a line of sight. A back-room reader logs every case that arrives, a handheld scanner counts the shelf in minutes instead of hours, and an exit reader logs items that leave unbought. Item-level tagging drives the inventory-accuracy gains the chapter cites; the conventional U.S. apparel baseline runs about 60 to 65 percent accuracy, and item-level rollouts (Lululemon to 98 percent, Walmart from 65 to 95-plus percent) lift accuracy, cut stockouts ten to fifteen percent, and add a sales lift, with shrink reduction falling out downstream.">Item-level RFID tagging</span> is the foundation, because it tells the chain what is actually on the shelf, and an accuracy lift from the low sixties to the high nineties cuts stockouts and adds a sales lift before it ever touches shrink. <span class="term" data-tt="Computer-vision shrink monitoring pairs ceiling cameras with a model trained to recognize a self-checkout shopper who scans one item but bags two (a 'non-scan' or pass-through), a basket leaving unbagged, or a high-loss SKU taken off the shelf without a later scan. The model flags the transaction for a clerk in real time rather than arresting anyone; self-checkout is the canonical deployment because the camera-to-transaction link is cleanest there, with double-digit first-year shrink reduction and twelve-to-eighteen-month payback in reported 2024 to 2025 cases.">Computer-vision monitoring</span> sits at the self-checkout lane, where it catches the non-scan a register cannot see and flags it to a clerk while the shopper is still there. The <span class="term" data-tt="An electronic shelf label (ESL) is a small e-ink display on the shelf edge where the paper price tag used to be. The price the shopper sees is the price the central system pushes, so a chain-wide price change takes seconds instead of a clerk walking the aisle with a tag gun. Its first gain is labor and pricing agility, not shrink: a paper-tag chain spends about one FTE per store per week re-papering shelves, and an ESL chain redeploys that labor to the shrink-prevention surface. Walmart's March 2026 update accelerated its VusionGroup rollout to roughly 4,600 U.S. stores by year-end.">electronic shelf labels (ESLs)</span> free the labor that used to re-paper paper tags, and the chain redeploys it to inventory walks and self-checkout attendants.<sup class="cite" data-cite="ref-43"></sup></p>
 
 <figure class="sketch" data-complete aria-label="Three layers of the modern in-store technology stack drawn as a stacked diagram: RFID at the foundation, computer vision in the middle, electronic shelf labels at the top, each labeled with its operational gain.">
-  <div class="mount" id="sk-retail-tech-stack-mount" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-retail-tech-stack-mount" data-w="720" data-h="260"></div>
   <figcaption>RFID counts what is actually on the shelf, computer vision catches the non-scan and the empty facing, and electronic shelf labels free the labor that gets redeployed onto both. A chain that runs all three buys integrated protection, while a chain that runs one buys partial protection.</figcaption>
 </figure>
 
@@ -1085,7 +1120,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <aside class="sn" data-complete><span class="sn-num">18a.</span> <strong>Freshness anchor (May 2026):</strong> Walmart announced March 2026 that electronic shelf labels will reach every U.S. store by year-end (roughly forty-six hundred stores), accelerating the June 2024 plan to hit twenty-three hundred stores by 2026 originally signed with VusionGroup. Lululemon's late-2025 deployment with Nedap's iD Cloud reached more than six hundred stores globally with ninety-eight percent item-level accuracy. The global ESL market grew from approximately $1.85B in 2024 toward a forecast above $7B by 2033. Computer-vision shrink monitoring at self-checkout reports double-digit first-year shrink reductions across grocery, convenience, and big-box, with twelve-to-eighteen-month payback in most published cases.<sup class="cite" data-cite="ref-43"></sup></aside>
 
 <figure class="sketch" aria-label="The five retail failure modes drawn as one vertical register, each row a labeled card returning to the chapter's running test of whether the format would hold without the human in the loop.">
-  <div class="mount" id="sk-failure-modes-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-failure-modes-mount" data-w="720" data-h="300"></div>
   <figcaption>Five modes, one register. Each row names the decision that went wrong and the case that shows it, and each fails the same test: would the format hold if the human-in-the-loop layer were taken away.</figcaption>
 </figure>
 
@@ -1101,14 +1136,14 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>The March 2026 Walmart-OpenAI pivot is the live worked example. Instant Checkout launched in October 2025 with OpenAI taking the cart and Walmart taking the fulfillment, and six months later Walmart pulled the cart back inside Sparky, embedding it as a first-party app inside ChatGPT and then Gemini while keeping discovery, account, and loyalty on its own surface.<sup class="cite" data-cite="ref-29"></sup> Run the eight decisions through the move and the logic reads cleanly, because Walmart will let an agent be the entry point while keeping the format in its own hands, since surrendering target market, pricing, and loyalty to a partner it does not own would repeat JCPenney's 2012 generic-format-fit failure at the AI layer.</p>
 
 <figure class="sketch" aria-label="The chapter spine drawn as a labeled left-to-right strip from the offer hitting the shelf through the eight decisions, the wheel, assortment, atmospherics, pricing, the store as moat, and the agent that watches while a human acts.">
-  <div class="mount" id="sk-ch12-recap-mount" data-w="760" data-h="250"></div>
+  <div class="mount" aria-hidden="true" id="sk-ch12-recap-mount" data-w="760" data-h="250"></div>
   <figcaption>The chapter in one strip. The offer hits the shelf, the retailer makes eight more decisions, the wheel turns but a coherent format resists, assortment is the strategy, atmospherics decides where the buyer stops, pricing trains a habit, the store becomes the moat, and the agent watches the eight decisions while a human acts on them.</figcaption>
 </figure>
 
 <p>Chapter 13 takes up the inverse of the retail-format question. When a brand owns its own storefront and the buyer arrives through a Shopify checkout instead of a Target endcap, the eight decisions this chapter walked compress into a CAC-and-LTV math the brand reads in real time, a Klaviyo lifecycle layer the chain-retail brand never had to build, and the agentic-shopping surface where ChatGPT or Perplexity reads the product page on the buyer's behalf. The DTC operator inherits the discovery and account layers Walmart spent decades building, along with the unit-economics discipline the venture-backed cohort of 2014 to 2020 learned the expensive way.</p>
 
 <figure class="sketch" aria-label="A turn-arrow handing off from the brand on someone else's shelf at the Target endcap to the brand owning its own storefront at the Shopify checkout, labeled as the move from a slot on a retailer's shelf to a storefront the brand owns.">
-  <div class="mount" id="sk-turn-ch13-mount" data-w="720" data-h="200"></div>
+  <div class="mount" aria-hidden="true" id="sk-turn-ch13-mount" data-w="720" data-h="200"></div>
   <figcaption>The turn into Chapter 13. The brand moves from a slot on a retailer's shelf to a storefront it owns, and the eight decisions compress into a CAC-and-LTV math the brand sees in real time.</figcaption>
 </figure>
 

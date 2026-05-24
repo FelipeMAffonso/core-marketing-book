@@ -260,11 +260,38 @@ h2 .sec-num {
   }
 }
 </style>
+<!-- ============================================================
+     A11Y CONTRAST FIX (WCAG 2.1 AA, additive / surgical).
+     Appended LAST in <head> so it wins over the page's own rules.
+     Only the two SMALL coral text labels that axe flagged below 4.5:1
+     on white (#DA7756 @ 11px = 3.1:1) are darkened to #a8472a (5.83:1).
+     Bright coral #DA7756 is intentionally KEPT on every LARGE/UI/marker
+     use (the hero rule, h2 .sec-num, the .ax leading rule, jump-letter
+     borders) which meet 3:1. Doubled-class specificity + !important.
+     ============================================================ -->
+<style>
+  /* "Back Matter" hero eyebrow: small coral text -> #a8472a (5.83:1 on white). */
+  .eyebrow.eyebrow { color: #a8472a !important; }
+  /* Per-letter atlas marker ("01 // a", .ax / .ax.in): small coral text -> #a8472a.
+     The decorative leading rule (.ax::before) keeps bright coral as a >=3:1 UI mark. */
+  .ax.ax { color: #a8472a !important; }
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
   <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT text/markup here you MUST keep:
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI). Bright coral #DA7756 is large/marker
+         only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - LABELS: search/filter inputs labeled; alphabetical nav inside a labeled <nav>.
+       - IMAGES: any img/svg has a text alternative; decorative -> aria-hidden.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js back-glossary.html  (target 0 serious/critical)
+     ============================================================ -->
 <header class="hero">
       <span class="eyebrow">Back Matter</span>
       <h1 class="title">Glossary</h1>

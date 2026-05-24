@@ -730,6 +730,33 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<!-- ============================================================
+     A11Y CONTRAST OVERRIDES (Ch15) — appended LAST in <head> so it wins over
+     _accessibility.css. Doubled-class specificity + !important. Fixes only the
+     small-text / white-on-coral failures axe reported; bright coral #DA7756 is
+     left untouched where it is a heading, marker, rule, border, or SVG stroke
+     (those meet 3:1). See the A11Y MAINTENANCE CONTRACT comment in <main>.
+     ============================================================ -->
+<style id="a11y-contrast-ch15">
+  /* White-on-coral RUN button (#cmp-india-entry-go): coral bg 3.1:1 -> #a8472a 5.83:1, keep white text. */
+  .cmp-go.cmp-go{background:#a8472a !important;color:#fff !important;}
+  .cmp-go.cmp-go:hover{background:#8f3c23 !important;}
+  .cmp-go.cmp-go:disabled{background:#6b6b6b !important;color:#fff !important;opacity:1 !important;}
+
+  /* White-on-coral ACTIVE toggle (#w157 selected preset): coral bg 3.1:1 -> #a8472a 5.83:1, keep white text. */
+  #w157 .wv-preset.sel.sel{background:#a8472a !important;color:#fff !important;border-color:#a8472a !important;}
+
+  /* Opacity-washed comparison columns (#w157 .wv-col had opacity:.5, blending small text below 4.5:1).
+     Remove the text-washing opacity; dim the resting card with a muted background + softer border instead,
+     keeping ALL text at full opacity. The .live state restores the bright white card. */
+  #w157 .wv-col.wv-col{opacity:1 !important;background:#faf7f3 !important;border-color:#efe7da !important;}
+  #w157 .wv-col.live.live{background:#fff !important;border-color:var(--line) !important;}
+  #w157 .wv-col.sharp.live.live{border-color:var(--coral-soft) !important;}
+  /* Full-opacity text colors that clear 4.5:1 on the muted (and white) card. */
+  #w157 .wv-ans .ph.ph{color:#6b6b6b !important;}                 /* 4.99:1 on #faf7f3 */
+  #w157 .wv-col.vague .wv-ct.wv-ct{color:#6b6b6b !important;}     /* 4.99:1 on #faf7f3 */
+  #w157 .wv-col.sharp .wv-ct.wv-ct{color:#a8472a !important;}     /* 5.46:1 on #faf7f3, 5.83:1 on white */
+</style>
 </head>
 <body data-chapter-num="15">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -741,6 +768,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of");
+         injected SVG mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 15.
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-15-international.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 15 &middot; Execution</p>
@@ -758,7 +798,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p>The engineering, the pricing, and the factory all worked. The Nano failed because it was built around the word <em>cheap</em> while the buyer was shopping for the word <em>arrived</em>. That same buyer would stretch and borrow for a Maruti-Suzuki Alto and walk straight past the Nano showroom, because the car that frees you from the rain is also the car that announces you cannot afford a real one.<sup class="cite" data-cite="ref-1"></sup></p>
 
 <figure class="sketch" aria-label="The Nano opener puzzle: the engineering succeeded and the meaning failed, so the buyer shopping for an arrived signal walked past the car built to read as cheap">
-  <div class="mount" id="sk-nano-misread-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-nano-misread-mount" data-w="720" data-h="240" aria-hidden="true"></div>
   <figcaption>The opening puzzle. Every engineering target was hit, yet the meaning missed, so the buyer who wanted to look like she had arrived walked past the car designed to look cheap.</figcaption>
 </figure>
 
@@ -798,7 +838,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">A billion-dollar exit is not a campaign that failed to convert but a capital decision made years before any campaign ran. The store leases, distribution centers, and labor commitments were sunk before a single shopper formed an opinion, so a marketing fix arriving later had nothing to work with.<sup class="cite" data-cite="ref-4"></sup></p>
 
 <figure class="sketch" aria-label="Walmart Germany failure: a U.S. supercenter playbook transplanted into a German retail ecosystem already served by Aldi and Lidl">
-  <div class="mount" id="sk-walmart-germany-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-walmart-germany-mount" data-w="720" data-h="260" aria-hidden="true"></div>
   <figcaption>Walmart Germany. The price was right and the channel was wrong, so no amount of pricing rigor could fix it. About $1 billion in losses, exit 2006.</figcaption>
 </figure>
 
@@ -807,7 +847,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">3.</span> The further an offer sits from social meaning, the more it standardizes, so an industrial input or a commodity travels almost untouched. The closer it sits to social meaning, like a fashion item or a ritual beverage, the more of it has to be re-grounded for the local buyer.</aside>
 
 <figure class="sketch" aria-label="Tata Nano: a $2,500 car launched in 2009, target 250,000 a year, achieved under 10,000, line wound down in 2018">
-  <div class="mount" id="sk-tata-nano-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-tata-nano-mount" data-w="720" data-h="260" aria-hidden="true"></div>
   <figcaption>The Tata Nano. The engineering succeeded and the meaning failed. Cumulative sales stayed under a million against a 250,000-unit-per-year plan, and the line was wound down in 2018.</figcaption>
 </figure>
 
@@ -831,7 +871,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The top two rungs put your own money on the ground. A <span class="term" data-tt="A joint venture (JV) is a new company that you and a local partner jointly own, so you share the capital risk and gain the partner's local knowledge and regulatory access. The cost is shared control. China still requires JV structures for foreign carmakers and telecom firms.">joint venture</span> pairs you with a local firm, buying local knowledge and regulatory access at the price of shared control. A <span class="term" data-tt="A wholly-owned subsidiary means building or buying a complete foreign operation that you alone own and run. You get full control over brand, people, and margin, but you carry the largest capital exposure to anything that goes wrong in that country.">wholly-owned subsidiary</span> means you own the operation outright, the way Toyota runs its U.S. plants. You get full control and full margin and carry the full weight of country risk, so firms reach this rung only after years lower down.<sup class="cite" data-cite="ref-2"></sup></p>
 
 <figure class="sketch" aria-label="The five-mode entry ladder, with commitment rising against speed and overhead">
-  <div class="mount" id="sk-entry-ladder-mount" data-w="720" data-h="320"></div>
+  <div class="mount" id="sk-entry-ladder-mount" data-w="720" data-h="320" aria-hidden="true"></div>
   <figcaption>The five rungs climb from indirect export to a wholly-owned operation. Commitment, risk, control, and profit potential rise together, while speed, capital efficiency, and operating ease fall against them. The right rung is the lowest one that still teaches you enough to climb.</figcaption>
 </figure>
 
@@ -847,7 +887,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>There is also a named tool for reading which rung fits. The <span class="term" data-tt="The OLI paradigm is John Dunning's framework (also called the eclectic paradigm) that scores a candidate market on three independent yes-or-no questions and reads off the entry mode. Ownership asks whether you carry an advantage a local rival cannot match; Location asks whether the country offers something your home market lacks; Internalization asks whether you gain more from running it in-house than from licensing it out. Strong on all three points to a wholly-owned operation.">OLI paradigm</span> scores any candidate market on three independent questions. Ownership asks what advantage you carry across the border, the way Coca-Cola carries brand recognition that arrives years before the first bottle. Location asks what the country uniquely offers, such as Brazil's market size or Switzerland's stable institutions. Internalization asks whether you gain more by running the operation yourself than by handing it to a partner, which Apple does because hardware, software, and retail only work when one firm controls all three. When all three answers are strong, the tool points to a wholly-owned operation. When only Ownership is strong, it points back down to exporting. The console where a firm sets per-country app prices makes either move equally easy, so the real work is the willingness-to-pay research that decides the number you type in.</p>
 
 <figure class="sketch" data-complete aria-label="The OLI read as three independent switches feeding a recommended entry mode">
-  <div class="mount" id="sk-oli-grid-mount" data-w="720" data-h="312"></div>
+  <div class="mount" id="sk-oli-grid-mount" data-w="720" data-h="312" aria-hidden="true"></div>
   <figcaption>Score three independent questions Strong or Weak. All three strong points to a wholly-owned operation. Only Ownership strong points back down to exporting. The tool reads the mode off the combination, the way a checklist reads off a recommendation.</figcaption>
 </figure>
 
@@ -952,7 +992,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </figure>
 
 <figure class="sketch" aria-label="Hofstede six-dimension radar chart sketch overlay">
-  <div class="mount" id="sk-hofstede-radar-mount" data-w="720" data-h="336"></div>
+  <div class="mount" id="sk-hofstede-radar-mount" data-w="720" data-h="336" aria-hidden="true"></div>
   <figcaption>Hofstede decomposes <em>culture</em>, an unmanageable abstraction, into six measurable axes. The chart is not a destination; it makes the question <em>where will the program break</em> answerable before any money is committed.</figcaption>
 </figure>
 
@@ -961,7 +1001,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The country score is the broadest layer, and a real brand never meets a whole country. A brand manager walking into a Mumbai launch meeting faces one room, in one company, in one industry. The <span class="term" data-tt="A five-layer read of any cross-border encounter: national (the country score), regional (Mumbai vs. Delhi), industry (two marketers share a vocabulary across borders), corporate (Apple's norms differ from Microsoft's), and functional (engineers in Cupertino and Bangalore share a language the marketing team next door does not).">interacting spheres of culture</span> read reminds you that the national number is only one fifth of the situation, and the worksheet that walks all five lives in the chapter's Job Aid.</p>
 
 <figure class="sketch" aria-label="CAGE distance as a four-arm radar with one arm binding">
-  <div class="mount" id="sk-cage-axes-mount" data-w="720" data-h="368"></div>
+  <div class="mount" id="sk-cage-axes-mount" data-w="720" data-h="368" aria-hidden="true"></div>
   <figcaption>CAGE reads the gap between two countries on four arms (Cultural, Administrative, Geographic, Economic) and asks which single arm is <em>binding</em>, so a manager names the one distance that decides the entry while the others recede. For a U.S. consumer-goods entry, Mexico's short Administrative and Geographic arms usually outweigh its longer Cultural arm.</figcaption>
 </figure>
 
@@ -972,7 +1012,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The Administrative axis moves fastest in 2026. A fifth kind of distance has become load-bearing, and it comes not from the buyer or the geography but from the government. Call it <span class="term" data-tt="The friction a host government creates between two markets through tariffs, ownership rules, or platform regulation. It can shift on an executive-order timeline rather than over decades.">regulatory-and-geopolitical distance</span>, and it shows up in three patterns. First is tariff and duty action, raising the cost of importing until a producer absorbs the duty or moves production. Second is platform regulation: the EU's <span class="term" data-tt="The Digital Markets Act, enforceable March 6, 2024, names seven large platforms as gatekeepers and imposes rules on their core services before any violation. Apple, Google, Meta, Amazon, Microsoft, ByteDance, and Booking are the gatekeepers.">Digital Markets Act</span> fined Apple and Meta in 2025 and re-priced any budget routed through them.<sup class="cite" data-cite="ref-15"></sup> Third is forced divestiture, making a foreign owner surrender control as the price of access, which the U.S. <span class="term" data-tt="The Protecting Americans from Foreign Adversary Controlled Applications Act, signed April 2024, forced ByteDance to sell TikTok's U.S. operations or face a ban; the divestiture closed in January 2026.">PAFACA</span> law did to TikTok.<sup class="cite" data-cite="ref-16"></sup> A 2026 plan that runs CAGE without a fifth-distance scan under-budgets the friction by enough to invalidate the plan.<sup class="cite" data-cite="ref-17"></sup></p>
 
 <figure class="sketch" aria-label="The fifth distance and its three enforcement patterns">
-  <div class="mount" id="sk-fifth-distance-mount" data-w="720" data-h="290"></div>
+  <div class="mount" id="sk-fifth-distance-mount" data-w="720" data-h="290" aria-hidden="true"></div>
   <figcaption>The fifth distance has three enforcement patterns, and each one moves on an executive-order timeline rather than a decades-long one. A 2024 entry screen can return a different answer in 2025 because the rule underneath it moved.</figcaption>
 </figure>
 
@@ -1065,7 +1105,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </figure>
 
 <figure class="sketch" aria-label="Glocalization spectrum with the Coca-Cola sweetness variation, McDonalds local menus, and KFC China as anchor points">
-  <div class="mount" id="sk-glocalization-mount" data-w="720" data-h="256"></div>
+  <div class="mount" id="sk-glocalization-mount" data-w="720" data-h="256" aria-hidden="true"></div>
   <figcaption>For each element of the program (logo, formula, packaging, menu, advertising, channel, price), you can ask whether the buyer's job changes across markets, and if so, by how much. The asking is the work.</figcaption>
 </figure>
 
@@ -1084,7 +1124,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn"><span class="sn-num">11.</span> The sachet is the visible edge of a <span class="term" data-tt="Bottom of the pyramid (BOP) is the idea that the largest, poorest income tier can be a real market when products are built from the buyer's economics outward. A 2007 critique by Aneel Karnani warned that the headline market size overstates real spending power once subsistence is netted out, and that sourcing from and employing low-income households often does more good than selling more to them.">bottom-of-the-pyramid</span> approach to serving households whose income arrives and is spent on a daily cash cycle: packaging sized to a day's spend, distribution invented for the geography (Project Shakti grew to 200,000-plus village entrepreneurs and roughly 40 percent of Hindustan Unilever revenue by 2025), credit designed for the cash cycle, and product invented from first principles rather than engineered down from a Western model.<sup class="cite" data-cite="ref-31"></sup> Tata Nano failed by treating an emerging-market buyer as a stripped-down Western one, while Reliance Jio passed by inventing free 4G data on daily-recharge plans.</aside>
 
 <figure class="sketch" aria-label="The three product strategies: straight extension keeps the product, product adaptation rebuilds the executional layer, product invention builds a new product">
-  <div class="mount" id="sk-product-strategies-mount" data-w="720" data-h="340"></div>
+  <div class="mount" id="sk-product-strategies-mount" data-w="720" data-h="340" aria-hidden="true"></div>
   <figcaption>The three product moves, in rising order of cost and rebuild. Straight extension ships the home product unchanged (a camera, a spreadsheet app). Product adaptation keeps the identity and rebuilds the executional layer (McDonald's keeps the brand, swaps the menu). Product invention builds a new product because the home one is unbuyable in the local context (the one-rupee sachet, not a smaller bottle).</figcaption>
 </figure>
 
@@ -1144,7 +1184,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </figure>
 
 <figure class="sketch" aria-label="EPRG quadrant sketch with example brands">
-  <div class="mount" id="sk-eprg-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-eprg-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>EPRG names a posture, not a strategy. The ethnocentric posture produces Walmart Germany; the polycentric posture produces classic Unilever. The posture is upstream of the marketing program, and most failures trace back to a posture the manager had not noticed taking.</figcaption>
 </figure>
 
@@ -1163,7 +1203,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The other three brands round out the picture in a clause each. Liquid Death was quietly ethnocentric, exporting its U.S. heavy-metal voice to the U.K. without handing decisions to local managers, and it announced its U.K. exit in early 2025 after about eighteen months. Duolingo is geocentric by digital default, rolling the same green-owl app worldwide with 110-plus language pairs as the only localization. Stanley is mid-conversion from ethnocentric to regiocentric, visible in its 2024 to 2026 hiring of regional managers in Shanghai, Amsterdam, and Sydney before it could enter Tmall and Douyin. A posture shift takes 18 to 36 months, and Stanley is about halfway.<sup class="cite" data-cite="ref-37"></sup></p>
 
 <figure class="sketch" aria-label="The four EPRG postures placed on the chapter roster of real brands">
-  <div class="mount" id="sk-eprg-roster-mount" data-w="720" data-h="300"></div>
+  <div class="mount" id="sk-eprg-roster-mount" data-w="720" data-h="300" aria-hidden="true"></div>
   <figcaption>The four postures made concrete. Trader Joe's pins to ethnocentric, Costco to regiocentric, and Patagonia straddles geocentric values with polycentric commerce. The posture is a who-decides answer, not an abstract label.</figcaption>
 </figure>
 
@@ -1190,14 +1230,14 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="cmp-grid">
     <div class="cmp-pane">
       <span class="cmp-label">claude-haiku-4-5 <span class="cmp-rate">($1/M in)</span><span class="cmp-cost" id="cmp-india-entry-haiku-cost"></span></span>
-      <div class="cmp-out" id="cmp-india-entry-haiku"><span class="cmp-ph">Pick an ask, then run on both.</span></div>
+      <div class="cmp-out" id="cmp-india-entry-haiku" aria-live="polite" aria-atomic="false"><span class="cmp-ph">Pick an ask, then run on both.</span></div>
     </div>
     <div class="cmp-pane">
       <span class="cmp-label cmp-smart">claude-opus-4-7 <span class="cmp-rate">($5/M in)</span><span class="cmp-cost" id="cmp-india-entry-opus-cost"></span></span>
-      <div class="cmp-out" id="cmp-india-entry-opus"><span class="cmp-ph">The deeper read shows up here.</span></div>
+      <div class="cmp-out" id="cmp-india-entry-opus" aria-live="polite" aria-atomic="false"><span class="cmp-ph">The deeper read shows up here.</span></div>
     </div>
   </div>
-  <p class="cmp-verdict" id="cmp-india-entry-verdict"></p>
+  <p class="cmp-verdict" id="cmp-india-entry-verdict" aria-live="polite" aria-atomic="false"></p>
 </div>
 
 <p data-complete>Haiku names the obvious moves. Opus names the partner constraints, the institutional risks, and the order to do them in. The price gap buys judgment, not length, and a sharp ask buys more than a vague one buys. EPRG decided who in the firm makes this call. Section 15.4 already covered what they decide for each piece of the offer, and Section 15.6 puts both questions to work on real companies that read them right and wrong.</p>
@@ -1218,7 +1258,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn"><span class="sn-num">14.</span> Two cautions sit with the Apple headline. Apple makes iPhones in India mostly for export, not for Indian buyers: its smartphone share inside India is under 10 percent, with the mass market owned by Samsung, Xiaomi, and Vivo, and Foxconn alone runs about 65 percent of India production, so supplier concentration is a real risk even as the country base diversifies. The Walmart side has its own early-warning sign worth naming: a country head who turns over in under eighteen months during a new market's first three years is a structural-mismatch signal, not an HR problem.<sup class="cite" data-cite="ref-19"></sup><sup class="cite" data-cite="ref-4"></sup></aside>
 
 <figure class="sketch" aria-label="The fifth-distance matched pair: Walmart Germany skipped rungs and exited; Apple India read the tariff gap and climbed two years early">
-  <div class="mount" id="sk-walmart-vs-apple-mount" data-w="720" data-h="286"></div>
+  <div class="mount" id="sk-walmart-vs-apple-mount" data-w="720" data-h="286" aria-hidden="true"></div>
   <figcaption>The same kind of distance, read two ways. Walmart Germany skipped rungs into a market whose competition law and store-hour rules it could not read, and exited in 2006 at a roughly $1B charge. Apple India read a 45-percentage-point tariff gap and pulled production into India on the policy timeline, reaching 25 percent of global iPhone output two years ahead of plan.</figcaption>
 </figure>
 
@@ -1228,7 +1268,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The second pair is the same parent, brand, and category, with opposite outcomes because the per-element decisions inverted. Euro Disney opened in 1992 with the U.S. playbook intact: alcohol-free in a wine country, a food-court layout against the seated mid-day meal. A $1.1 billion restructuring in 1994 averted collapse, and recovery came only once the park added wine, redesigned the food, and renamed itself Disneyland Paris.<sup class="cite" data-cite="ref-6"></sup></p>
 
 <figure class="sketch" aria-label="Euro Disney 1992 launch failure and Disneyland Paris recovery curve">
-  <div class="mount" id="sk-disney-paris-mount" data-w="720" data-h="256"></div>
+  <div class="mount" id="sk-disney-paris-mount" data-w="720" data-h="256" aria-hidden="true"></div>
   <figcaption>Euro Disney 1992: attendance well below forecast, because the U.S. playbook met French expectations on wine, mid-day meals, and hospitality vocabulary. A 1994 restructuring and the rename to Disneyland Paris began a twenty-year recovery to one of Europe's most-visited attractions.</figcaption>
 </figure>
 
@@ -1254,7 +1294,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The cases so far have been large multinationals. Now take three brands you already know and run the chapter's machinery at the scale a single brand manager works at. Each answers the same question differently: which part of the offer travels, and which part has to be rebuilt for the buyer in front of you.</p>
 
 <figure class="sketch" aria-label="Patagonia, Costco, and Liquid Death placed on the standardize-or-adapt question by which layer of the offer travels and which gets rebuilt locally.">
-  <div class="mount" id="sk-roster-postures-mount" data-w="720" data-h="250"></div>
+  <div class="mount" id="sk-roster-postures-mount" data-w="720" data-h="250" aria-hidden="true"></div>
   <figcaption>Three brands, three answers to the same question. Patagonia's values cross every border untouched while its commerce is rebuilt market by market, Costco's membership engine travels and its assortment is rebuilt, and Liquid Death's brand voice was the whole offer and did not travel at all.</figcaption>
 </figure>
 
@@ -1286,7 +1326,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">You can package this whole pre-flight check as a <span class="term" data-tt="A Skill is a folder of instructions and reference files an AI assistant loads on demand when you invoke it by name, so the same audit runs the same way every time.">Skill</span> you invoke from <span class="term" data-tt="Claude Code is Anthropic's command-line agent: you type a short command and the model runs the matching Skill, calls the data sources it needs, and writes the report to a file.">Claude Code</span>. The widget below runs that read live: it takes a real brand and country, searches the web for current entry conditions, and returns the binding distance, the entry mode, the one element to rebuild, and the highest risk before you commit.</p>
 
 <figure class="sketch" aria-label="The same heavy-metal Liquid Death can read two ways: against bland US competitors it reads fresh and edgy because the social-meaning slot is open, and against a UK tap-water-default culture it reads as imported irony because the slot is already taken.">
-  <div class="mount" id="sk-voice-travels-mount" data-w="720" data-h="252"></div>
+  <div class="mount" id="sk-voice-travels-mount" data-w="720" data-h="252" aria-hidden="true"></div>
   <figcaption>One can, two cultural backdrops, two readings. The same Liquid Death styling reads as fresh provocation where the social-meaning slot is open and as imported irony where local brands already own it. Brand voice is the layer of the offer least likely to travel.</figcaption>
 </figure>
 
@@ -1323,14 +1363,14 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="wv-grid">
     <div class="wv-col vague" id="w157-col-vague">
       <div class="wv-colhead"><span class="wv-ct">Generic, you knew this already</span><span class="wv-cost" id="w157-cost-vague"></span></div>
-      <div class="wv-ans" id="w157-ans-vague"><span class="ph">Press the vague question above.</span></div>
+      <div class="wv-ans" id="w157-ans-vague" aria-live="polite" aria-atomic="false"><span class="ph">Press the vague question above.</span></div>
     </div>
     <div class="wv-col sharp" id="w157-col-sharp">
       <div class="wv-colhead"><span class="wv-ct">Binding distance + entry mode + the rebuild</span><span class="wv-cost" id="w157-cost-sharp"></span></div>
-      <div class="wv-ans" id="w157-ans-sharp"><span class="ph">Press the sharp question above.</span></div>
+      <div class="wv-ans" id="w157-ans-sharp" aria-live="polite" aria-atomic="false"><span class="ph">Press the sharp question above.</span></div>
     </div>
   </div>
-  <div class="wv-verdict" id="w157-verdict"></div>
+  <div class="wv-verdict" id="w157-verdict" aria-live="polite" aria-atomic="false"></div>
   <div class="wv-note">A candidate read from the model on live web data, not a verified country report. The model searches the web, so a real 2026 brand-and-country pair gets a current read of its tariffs, ownership rules, and incumbents; treat it as a first pass and verify any tariff, name, or date before you act.</div>
 </div>
 
@@ -1374,7 +1414,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
       </select>
     </label>
   </div>
-  <div class="cfit-readout">
+  <div class="cfit-readout" aria-live="polite" aria-atomic="false">
     <div id="cfit-distance" class="cfit-distance">Pick a home market and a target market.</div>
     <div id="cfit-risks" class="cfit-risks"></div>
   </div>
@@ -1394,7 +1434,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">19.</span> Three earlier cases ran the same arc at smaller scale: H&amp;M's 2018 &ldquo;coolest monkey in the jungle&rdquo; hoodie, Burberry's 2019 noose-styled hoodie, and Gap's 2016 ad that posed a white girl resting her arm on a smaller Black girl's head. Each was approved by a room with no one from the affected community in it.</aside>
 
 <figure class="sketch" data-complete aria-label="A four-stage internal review that catches a cultural-fit failure before launch: the brief names the audience plurality, a diverse panel reviews the creative before any media buy, a paid cultural consultant has veto, and revise-or-launch is the default rather than an emergency.">
-  <div class="mount" id="sk-inclusive-review-mount" data-w="720" data-h="250"></div>
+  <div class="mount" id="sk-inclusive-review-mount" data-w="720" data-h="250" aria-hidden="true"></div>
   <figcaption>The four-stage review that catches the failure before launch, not after. The brief names the audience plurality, a diverse panel reads the creative before any media is bought, a paid cultural consultant signs off or vetoes, and revise-or-launch is the default with the revise priced into the schedule.</figcaption>
 </figure>
 
@@ -1438,7 +1478,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">So here is the chapter in one pass. You decide whether to enter. You read the culture and the binding distance, including the fifth one that can move on an executive-order timeline. You pick the rung on the entry ladder that produces enough learning and margin for the next move. You decide, element by element, what to standardize and what to rebuild. And you set the EPRG posture that decides who inside the firm makes the call.</p>
 
 <figure class="sketch" aria-label="The chapter spine drawn as one labeled left-to-right strip: decide to enter, pick the rung on the entry ladder, read the cultural gap and the binding distance and the fifth force, decide per-element standardize-or-adapt, and set the EPRG posture, ending on the Nano puzzle resolved where the engineering succeeded but the meaning failed.">
-  <div class="mount" id="sk-ch15-recap-mount" data-w="884" data-h="258"></div>
+  <div class="mount" id="sk-ch15-recap-mount" data-w="884" data-h="258" aria-hidden="true"></div>
   <figcaption>The chapter in one strip. You decide whether to enter, pick the rung on the entry ladder, read the cultural gap and the binding distance and the fifth force, decide element by element what to standardize and what to rebuild, and set the EPRG posture. The Nano closes the loop: the engineering succeeded and the meaning failed.</figcaption>
 </figure>
 
@@ -1446,7 +1486,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Chapter 16 takes up promotions and advertising, where the standardize-or-adapt decision now operates at the level of the message. A tagline that states a buyer truth tends to travel, the way Volkswagen's <em>Think small</em> crossed borders cleanly, while one that leans on a culture-specific punchline does not. Chapter 16 walks how advertising refreshes the memory structures buyers carry, how the distinctive-asset audit becomes a global-versus-local decision, and how AI-Overview retrieval is reshaping which advertising moves the needle in 2026.</p>
 
 <figure class="sketch" aria-label="A turn-arrow handing off from the standardize-or-adapt decision at the program level to the same decision at the message level, labeled from the program to the message, with a tagline that travels (Volkswagen Think small) against one that does not (the Nano's cheap framing).">
-  <div class="mount" id="sk-turn-ch16-mount" data-w="720" data-h="200"></div>
+  <div class="mount" id="sk-turn-ch16-mount" data-w="720" data-h="200" aria-hidden="true"></div>
   <figcaption>The turn into Chapter 16. The standardize-or-adapt decision moves from the program down to the message: a tagline that states a buyer truth travels, like Volkswagen's <em>Think small</em>, while one that leans on a culture-specific punchline does not, like the Nano's <em>cheap</em> framing.</figcaption>
 </figure>
 

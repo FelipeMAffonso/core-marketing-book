@@ -384,6 +384,41 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 .brand-controls .brand-reset:hover{background:#fff7f0;}
 #demoBrands .rung-active rect,#demoG .rung-active rect{stroke-width:2.6;}
 </style>
+<!-- ch01 a11y: WCAG 2.1 AA contrast remediation (additive; doubled-class !important beats the chapter's own rules).
+     Loaded last so it wins the cascade. Bright coral #DA7756 is kept on headings/markers/rules/strokes;
+     only SMALL text and white-on-coral buttons are darkened. See the A11Y MAINTENANCE CONTRACT in <main>. -->
+<style>
+/* (1) White-on-coral controls: coral #DA7756 bg = 3.1:1 under white text. Darken bg to #a8472a (white on #a8472a = 5.83:1). */
+.btn.btn{background:#a8472a;}
+.btn.btn:hover{background:#8f3c23;}
+.cmp-go.cmp-go:not(.brand-reset){background:#a8472a;}
+.cmp-go.cmp-go:not(.brand-reset):hover{background:#8f3c23;}
+.file-btn.active.active{background:#a8472a;color:#fff;}
+/* keep disabled/secondary affordances readable (ink-3 #888 on white = 4.6:1; outline buttons keep darkened coral text on white) */
+.btn.btn:disabled,.cmp-go.cmp-go:disabled{background:#6b6b6b;}
+.btn.secondary.secondary{background:#fff;color:#a8472a;}
+.brand-controls .brand-reset.brand-reset{background:#fff;color:#a8472a;}
+
+/* (2) Small coral-deep text on cream/white: #B8553A ~4.2:1 -> #a8472a (~5:1). */
+.chat-panel .panel-label.panel-label{color:#a8472a;}
+
+/* (3) #demoC .col used opacity:.5 to dim the inactive card, which axe blended its label/placeholder text
+       below 4.5:1 (#888->#b5b5b5, coral-deep->#dcaa9d). Dim with a muted surface + softer border instead,
+       keeping ALL text at full opacity. The .live state restores the bright white card so the
+       inactive-vs-active affordance survives. */
+#demoC .col.col{opacity:1;background:#faf7f3;border-color:#e6dfd2;}
+#demoC .col.live.live{background:#fff;border-color:var(--line);}
+#demoC .col.sharp.live.live{border-color:var(--coral-soft);}
+/* full-opacity label/placeholder colors that clear 4.5:1 on both #faf7f3 and #fff */
+#demoC .colhead .ct2.ct2{color:#6b6b6b;}
+#demoC .col.sharp .ct2.ct2{color:#a8472a;}
+#demoC .colhead .cost2.cost2{color:#6b6b6b;}
+#demoC .ans .ph.ph{color:#6b6b6b;}
+
+/* (4) Active folder tree node: coral-deep text on coral-soft #E8A488 bg = 2.29:1.
+       The active row already intends ink text; let the .active selection win over .folder so it reads. */
+.tree-node.folder.active{color:#1a1a1a;}
+</style>
 </head>
 <body data-chapter-num="1">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -395,6 +430,19 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of");
+         injected SVG mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 1.
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-01-ai-for-marketers.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 1 &middot; Prerequisite</p>
@@ -419,13 +467,13 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 <p data-complete>You will meet them one at a time. The file is the thing you upload. The wire is how it travels to the company that runs the AI. The model is the part doing the guessing. The agent is the model let loose to use tools on its own. The stack is the ladder you climb as you hand it more of the work.</p>
 <p data-focused style="display:none">You will meet them one at a time: the file you upload, the wire it travels on, the model that does the guessing, the agent let loose to use tools on its own, and the stack you climb as you hand it more of the work.</p>
 
-<figure id="fig-process" class="sketch" aria-label="The five parts in order: file, wire, model, agent, stack">
-  <div class="mount" id="process-mount" data-w="720" data-h="280"></div>
+<figure id="fig-process" class="sketch" aria-label="Five sequential components, file, wire, model, agent, stack, each essential to prevent failures in the process.">
+  <div class="mount" aria-hidden="true" id="process-mount" data-w="720" data-h="280"></div>
   <figcaption>The five parts, in order. Each one is a separate idea, and the failures this chapter prevents come from missing one of them.</figcaption>
 </figure>
 
-<figure class="sketch" aria-label="What went wrong in the opening story">
-  <div class="mount" id="sk-opening-fail-mount" data-w="700" data-h="300"></div>
+<figure class="sketch" aria-label="A spreadsheet with 8,000 rows where a model only read 3,800 rows, causing an incorrect 67 percent calculation from incomplete data.">
+  <div class="mount" aria-hidden="true" id="sk-opening-fail-mount" data-w="700" data-h="300"></div>
   <figcaption>What actually went wrong. The spreadsheet held 8,000 rows, the model read only as far as row 3,800, and the 67 percent came from that top slice, not the whole file.</figcaption>
 </figure>
 
@@ -446,8 +494,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 
 <aside class="sn" data-complete><span class="sn-num">2.</span> An <span class="term" data-tt="XLSX is Microsoft Excel's format, stored as raw bytes only Excel fully understands (a 'binary' file). Open one in Notepad and you get garbled symbols. PDFs, photos (.png, .jpg), and videos (.mp4) are binary too. When accuracy matters, export the sheet to CSV first so the AI gets a clean grid.">.xlsx</span> is binary; a <code>.csv</code> is plaintext. <span class="term" data-tt="Encoding is the rule that maps stored bytes to letters on screen. Almost every file made after about 2010 uses UTF-8, which covers every written language, every accent, and emoji. An older Windows Excel export sometimes uses a different rule, which is why a British pound sign can show up as a question mark when a Mac opens the file.">Encoding</span> is the rule that maps stored bytes to letters; most files use UTF-8.</aside>
 
-<figure class="sketch" aria-label="Three formats are three different things the AI receives">
-  <div class="mount" id="sk-files-mount" data-w="700" data-h="240"></div>
+<figure class="sketch" aria-label="CSV data presents as organized grids, PDFs as linear text, and XLSX files as sometimes-inaccessible containers, showing how file format affects AI model interpretation.">
+  <div class="mount" aria-hidden="true" id="sk-files-mount" data-w="700" data-h="240"></div>
   <figcaption>Three formats, three different things the model receives. The CSV arrives as a grid. The PDF arrives as a printed page the model reads top to bottom, columns gone. The XLSX arrives as a sealed box the model can sometimes open and sometimes not.</figcaption>
 </figure>
 
@@ -459,8 +507,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 
 <aside class="sn" data-complete><span class="sn-num">3.</span> &ldquo;Truncate&rdquo; means to cut off the end. The cut here is <span class="term" data-tt="'Truncate' means to cut off the end. Truncation here is silent because the cut happens before the model is even involved, so there is no error message and no warning banner to display. The only fix is on your side: check whether the whole file actually fit.">silent</span> because it happens before the model is even involved, so there is no error message to show. The only fix is on your side: check whether the whole file actually fit.</aside>
 
-<figure class="sketch" aria-label="The window is a fixed ceiling and overflow gets cut">
-  <div class="mount" id="sk-context-mount" data-w="700" data-h="220"></div>
+<figure class="sketch" aria-label="A context window acts as a fixed ceiling that truncates any content exceeding its capacity without warning.">
+  <div class="mount" aria-hidden="true" id="sk-context-mount" data-w="700" data-h="220"></div>
   <figcaption>The context window is a fixed ceiling on what the model can hold. A file that fits is read in full. The part that sticks out past the edge is cut before the model sees it, with no warning.</figcaption>
 </figure>
 
@@ -478,7 +526,7 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
     <button class="file-btn" data-tokens="500000" data-name="customer-survey.csv">customer-survey.csv &middot; 500,000 tokens</button>
   </div>
   <svg id="demoA-svg" viewBox="0 0 640 160" role="img" aria-label="File size compared to context window" style="padding: 0 18px;"><text x="0" y="20" font-family="Inter" font-size="11" font-weight="600" fill="#6b6b6b">CONTEXT WINDOW (200,000 tokens)</text><rect x="0" y="30" width="600" height="34" fill="#f5f0e8" stroke="#ddd2c0" stroke-width="1"/><text x="0" y="100" font-family="Inter" font-size="11" font-weight="600" fill="#B8553A">YOUR FILE</text><rect id="demoA-file-bar" x="0" y="110" width="2" height="34" fill="#DA7756"/><rect id="demoA-overflow" x="600" y="110" width="0" height="34" fill="#B8553A" opacity="0.4" style="display:none"/><text id="demoA-overflow-label" x="0" y="135" font-family="Inter" font-size="11" font-weight="600" fill="#B8553A" style="display:none">cut</text></svg>
-  <p class="file-readout" id="demoA-readout"></p>
+  <p class="file-readout" id="demoA-readout" aria-live="polite" aria-atomic="true"></p>
 </div>
 
 <span class="ax">02 // the wire</span>
@@ -490,8 +538,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 <p data-complete>That round trip has a name and a shape worth knowing, because every app on your phone and laptop runs on the same one. The trip out is called a <span class="term" data-tt="Method: GET asks for data, POST sends data (your chat message is a POST). URL: the full web address being called, like https://api.anthropic.com/v1/messages. Headers: small labels on the outside, like one saying the body is JSON and one carrying your key. Body: the message itself.">request</span>, the trip back is called a response, and together they travel over a shared set of rules called <span class="term" data-tt="HyperText Transfer Protocol, the rules that let one program ask another for something across the internet. Every page you load and every chat message travels over it. A request carries a method (GET to read, POST to send), a URL (the address), headers (labels about the request), and a body (the actual content). The response carries a status code, headers, and a body. It usually runs over HTTPS, which encrypts the contents so nobody in between can read them.">HTTP</span>. Picture the request as a piece of mail you drop in a box, addressed where it is going, labeled with what kind of mail it is, and sealed around the actual message. The reply mail that comes back carries a short <span class="term" data-tt="A three-digit number the server sends back saying how it went. The four you will see: 200 (success, here is your answer), 401 (your key was missing or wrong), 404 (that address does not exist), 500 (the server itself crashed). 200s are good, 400s are yours to fix, 500s are the company's fault.">status</span> up front, like a delivery receipt, with the answer itself underneath.</p>
 <p data-focused style="display:none">That round trip has a shape worth knowing, because every app runs on the same one. The trip out is a <span class="term" data-tt="Method: GET asks for data, POST sends data (your chat message is a POST). URL: the full web address being called, like https://api.anthropic.com/v1/messages. Headers: small labels on the outside, like one saying the body is JSON and one carrying your key. Body: the message itself.">request</span>, the trip back a response, and both travel over a shared set of rules called <span class="term" data-tt="HyperText Transfer Protocol, the rules that let one program ask another for something across the internet. Every page you load and every chat message travels over it. A request carries a method (GET to read, POST to send), a URL (the address), headers (labels about the request), and a body (the actual content). The response carries a status code, headers, and a body. It usually runs over HTTPS, which encrypts the contents so nobody in between can read them.">HTTP</span>. Picture the request as sealed mail, addressed and labeled, and the reply carries a short <span class="term" data-tt="A three-digit number the server sends back saying how it went. The four you will see: 200 (success, here is your answer), 401 (your key was missing or wrong), 404 (that address does not exist), 500 (the server itself crashed). 200s are good, 400s are yours to fix, 500s are the company's fault.">status</span> up front, like a delivery receipt.</p>
 
-<figure class="sketch">
-  <div class="mount" id="sk-envelope-mount" data-w="700" data-h="260"></div>
+<figure class="sketch" aria-label="One request and one reply travel between your laptop and the server, each carrying an address, a key in the header, and the message in the body.">
+  <div class="mount" aria-hidden="true" id="sk-envelope-mount" data-w="700" data-h="260"></div>
   <figcaption>One round trip. Your laptop drops a sealed envelope into the internet, addressed (the URL), tagged on the outside (a header carries the key), with the message inside (the body). It arrives at a server that runs the model, and a reply envelope comes back stamped 200 OK with the answer and a token count.</figcaption>
 </figure>
 
@@ -504,8 +552,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 <p data-complete>The reason to take the key seriously is that careless keys get drained fast. A developer once pasted a key into a public code page by accident. Automated scanners that comb the internet for exactly this found it in about forty minutes and ran up a bill over five thousand dollars before anyone noticed. Keys get scanned for constantly, so the rule is simple: never paste a key into a Slack message, never save it in a file you might share, never email it. The safe way is to store it once in a named slot on your computer (an <span class="term" data-tt="A named slot the operating system holds in memory that any program can read by name. You set ANTHROPIC_API_KEY once at the terminal (`export ANTHROPIC_API_KEY=sk-ant-...` on Mac, `setx ANTHROPIC_API_KEY &quot;sk-ant-...&quot;` on Windows). After that, programs ask for it by name and get the value, so the key's actual characters never appear in a file you could leak.">environment variable</span>) and let your programs read it by that name, so the actual secret never sits inside a file you could accidentally hand to someone. A public page on <span class="term" data-tt="The largest site for storing and sharing code, owned by Microsoft. Public pages there are visible to anyone, which is why a key pasted into a public one leaks to automated scrapers within minutes. Treat any public post of code as if it were a screenshot you put on a billboard.">GitHub</span> is the most common place this leaks.</p>
 <p data-focused style="display:none">Careless keys get drained fast. One developer pasted a key into a public page on <span class="term" data-tt="The largest site for storing and sharing code, owned by Microsoft. Public pages there are visible to anyone, which is why a key pasted into a public one leaks to automated scrapers within minutes. Treat any public post of code as if it were a screenshot you put on a billboard.">GitHub</span>, and scanners found it in forty minutes and ran up a bill over five thousand dollars. The safe way is to store it once in a named slot on your computer (an <span class="term" data-tt="A named slot the operating system holds in memory that any program can read by name. You set ANTHROPIC_API_KEY once at the terminal (`export ANTHROPIC_API_KEY=sk-ant-...` on Mac, `setx ANTHROPIC_API_KEY &quot;sk-ant-...&quot;` on Windows). After that, programs ask for it by name and get the value, so the key's actual characters never appear in a file you could leak.">environment variable</span>) and let programs read it by name, so the secret never sits in a file you could leak.</p>
 
-<figure class="sketch">
-  <div class="mount" id="sk-keysafe-mount" data-w="700" data-h="240"></div>
+<figure class="sketch" aria-label="An API key is safe in a named slot the program reads by name, and exposed the moment it is pasted into a chat anyone can copy.">
+  <div class="mount" aria-hidden="true" id="sk-keysafe-mount" data-w="700" data-h="240"></div>
   <figcaption>Two ways to hold an API key. On the left, the key sits in a named slot the script reads by name, never seeing the characters. On the right, the same key is pasted into a chat message anyone can screenshot, copy, or post.</figcaption>
 </figure>
 
@@ -517,15 +565,15 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
   <div class="chat-grid">
     <div class="chat-panel">
       <p class="panel-label">Chat</p>
-      <div class="chat-log" id="demoB-log"></div>
+      <div class="chat-log" id="demoB-log" role="log" aria-live="polite" aria-atomic="false" aria-label="Model reply"></div>
     </div>
     <div class="chat-panel">
       <p class="panel-label">Wire</p>
-      <div class="wire-readout" id="demoB-wire">No call sent yet. Type a question below.</div>
+      <div class="wire-readout" id="demoB-wire" role="region" aria-live="polite" aria-atomic="false" aria-label="HTTP request and response">No call sent yet. Type a question below.</div>
     </div>
   </div>
   <div class="input-row">
-    <input id="demoB-input" type="text" placeholder="What is mental availability in marketing?" />
+    <input id="demoB-input" type="text" placeholder="What is mental availability in marketing?" aria-label="Type a marketing question to send to the model" />
     <button class="btn" id="demoB-send">Send</button>
   </div>
   <p class="status" id="demoB-status"></p>
@@ -543,8 +591,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 <p data-complete>The thing that answered you is called a <span class="term" data-tt="A language model is a computer program trained on a large body of text that takes text in and produces text out. It reads your prompt and predicts the next word, then the next, then the next, until it stops. Claude, ChatGPT, and Gemini are all language models. The qualifier &quot;large&quot; (giving the acronym LLM) means the program&rsquo;s weight count and training corpus are big enough that it handles most kinds of writing and reasoning without task-specific training.">model</span>, and underneath it runs one small trick. Your phone already does a tiny version of it. When you start texting &ldquo;I&rsquo;m running five minutes,&rdquo; the keyboard offers &ldquo;late&rdquo; before you type it, because it has watched how your sentences usually end. A model is that same guess-the-next-word trick, scaled up almost past believing. It read an enormous slice of the internet, plus books and articles, one time, and from all that reading it learned which word tends to follow which. That learning is stored as billions of internal numbers called <span class="term" data-tt="Weights are the internal numbers a language model learns during training. A modern frontier model has roughly 100 billion to 1 trillion of them, each one a tiny dial the training process adjusted until the model predicted the next word well enough on the training text. Together the weights encode everything the model knows, the way a brain&rsquo;s synapses together encode what a person knows. After training ends the weights are frozen and never change for any user, so every conversation runs against the same frozen weights from the model&rsquo;s release date.">weights</span>. When you ask it something, it guesses the next word, then the word after that, then the next, until the answer is done. Every reply you have ever gotten was built one guessed word at a time.</p>
 <p data-focused style="display:none">The thing that answered you is called a <span class="term" data-tt="A language model is a computer program trained on a large body of text that takes text in and produces text out. It reads your prompt and predicts the next word, then the next, then the next, until it stops. Claude, ChatGPT, and Gemini are all language models. The qualifier &quot;large&quot; (giving the acronym LLM) means the program&rsquo;s weight count and training corpus are big enough that it handles most kinds of writing and reasoning without task-specific training.">model</span>, and it runs one small trick. Your phone does a tiny version when the keyboard offers &ldquo;late&rdquo; after you type &ldquo;I&rsquo;m running five minutes.&rdquo; A model is that same guess-the-next-word trick scaled up: it read a huge slice of the internet once and learned which word tends to follow which, stored as billions of numbers called <span class="term" data-tt="Weights are the internal numbers a language model learns during training. A modern frontier model has roughly 100 billion to 1 trillion of them, each one a tiny dial the training process adjusted until the model predicted the next word well enough on the training text. Together the weights encode everything the model knows, the way a brain&rsquo;s synapses together encode what a person knows. After training ends the weights are frozen and never change for any user, so every conversation runs against the same frozen weights from the model&rsquo;s release date.">weights</span>. Every reply is built one guessed word at a time.</p>
 
-<figure class="sketch" aria-label="A phone's next-word guess scaled up into a model">
-  <div class="mount" id="sk-autocomplete-mount" data-w="820" data-h="280"></div>
+<figure class="sketch" aria-label="Large language models predict text using the same next-word prediction technique as phone keyboards, but trained on vastly larger internet data.">
+  <div class="mount" aria-hidden="true" id="sk-autocomplete-mount" data-w="820" data-h="280"></div>
   <figcaption>The keyboard guessed your next word from your past texts; the model guesses its next word from a slice of the whole internet. Same trick, scaled up almost past believing.</figcaption>
 </figure>
 
@@ -559,8 +607,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 <p data-complete>People are also surprised that the model has no <span class="term" data-tt="A stateless function has no memory of prior calls; each request is independent and sees only what the current call hands it. The model is stateless. The chat surface fakes continuity inside one conversation by re-sending the entire prior conversation as part of each new request, which is why a long chat costs more per turn than a short one even though the model is the same.">memory between conversations</span>. Tell it your name today, open a fresh chat tomorrow, and you are a stranger again. The app fakes a memory inside one conversation by quietly resending everything the two of you have said so far with every new message, which is why a long chat slowly feels heavier and, on a paid plan, costs a little more each turn.</p>
 <p data-focused style="display:none">The model also has no <span class="term" data-tt="A stateless function has no memory of prior calls; each request is independent and sees only what the current call hands it. The model is stateless. The chat surface fakes continuity inside one conversation by re-sending the entire prior conversation as part of each new request, which is why a long chat costs more per turn than a short one even though the model is the same.">memory between conversations</span>. Tell it your name today, open a fresh chat tomorrow, and you are a stranger again. The app fakes memory inside one conversation by resending everything you have said with each message, which is why a long chat slowly costs a little more.</p>
 
-<figure class="sketch" aria-label="What happens on one model call">
-  <div class="mount" id="sk-prompt-mount" data-w="760" data-h="300"></div>
+<figure class="sketch" aria-label="Language model generates responses word-by-word using current input and training data, requiring full conversation history to maintain context in subsequent exchanges.">
+  <div class="mount" aria-hidden="true" id="sk-prompt-mount" data-w="760" data-h="300"></div>
   <figcaption>What you type plus a memory frozen at training time feed the model, which guesses the reply one word at a time, left to right. Next time, the app re-sends the whole chat so it remembers within this conversation only.</figcaption>
 </figure>
 
@@ -588,11 +636,11 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
     <div class="aigrid">
       <div class="col vague" id="demoC-colVague">
         <div class="colhead"><span class="ct2">Vague request</span><span class="cost2" id="demoC-costVague"></span></div>
-        <div class="ans" id="demoC-ansVague"><span class="ph">Press the vague request above.</span></div>
+        <div class="ans" id="demoC-ansVague" role="log" aria-live="polite" aria-atomic="false" aria-label="Reply to the vague request"><span class="ph">Press the vague request above.</span></div>
       </div>
       <div class="col sharp" id="demoC-colSharp">
         <div class="colhead"><span class="ct2">Specific request</span><span class="cost2" id="demoC-costSharp"></span></div>
-        <div class="ans" id="demoC-ansSharp"><span class="ph">Press the specific request above.</span></div>
+        <div class="ans" id="demoC-ansSharp" role="log" aria-live="polite" aria-atomic="false" aria-label="Reply to the specific request"><span class="ph">Press the specific request above.</span></div>
       </div>
     </div>
     <div class="averdict" id="demoC-verdict"></div>
@@ -648,8 +696,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 
 <p data-complete>You can see the shape of the loop in one tiny example. Give the model a single tool that can open a web page and ask it for the top headline on a news site. The model does not open the page itself. It writes a short request that names the tool and the address, the app around the model opens the page and hands back what was there, and the model reads that, finds the headline, and replies. That back-and-forth (think, use a tool, read the result, decide the next step) is the loop, and a real agent just runs it more times with more tools until the job is done. The model never reaches the outside world by itself, the way an assistant runs the errand while the manager stays at the desk.</p>
 
-<figure class="sketch">
-  <div class="mount" id="sk-agentloop-mount" data-w="720" data-h="260"></div>
+<figure class="sketch" aria-label="An agent runs a five-stage loop: you set the goal once, then the model thinks, asks for a tool, reads the result, and answers, repeating until the job is done.">
+  <div class="mount" aria-hidden="true" id="sk-agentloop-mount" data-w="720" data-h="260"></div>
   <figcaption>The agent loop in five plain stages. You set the goal once. The model thinks, asks for a tool, the app runs the tool and hands back the result, and the model answers. The loop repeats until the job is done.</figcaption>
 </figure>
 
@@ -667,8 +715,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 
 <p data-complete>The same saved-task idea reaches into the software you already use, since Anthropic put Claude inside Microsoft Excel, PowerPoint, Word, and Outlook as a <span class="term" data-tt="These are called add-ins: a small panel and button added inside an app you already use, leaving your file the same file. The analyst opens the brand-tracker workbook, clicks the Claude button, a sidebar opens, and answers come back with a clickable link on each claim that jumps to the exact cell it came from (a cell-level citation), so the analytical chain is auditable inside Excel. A March 2026 update lets one conversation carry from Excel into the PowerPoint deck. Named limits as of 2026: the add-ins do not run macros, do not handle Excel data tables, and are not for audit-critical math without human review.">side panel</span>. The analyst asks the question right next to the spreadsheet, a quarterly review that ate an afternoon now takes about forty-five minutes, and there is no new license beyond the subscription the team already pays for.</p>
 
-<figure class="sketch">
-  <div class="mount" id="sk-skillfolder-mount" data-w="700" data-h="270"></div>
+<figure class="sketch" aria-label="A Skill is a folder holding a plain-English SKILL.md, reference templates, and helper scripts the model loads only when the task matches.">
+  <div class="mount" aria-hidden="true" id="sk-skillfolder-mount" data-w="700" data-h="270"></div>
   <figcaption>What a Skill actually is: a folder named <code>competitor-pestel/</code>. <code>SKILL.md</code> holds the instructions in plain English. <code>references/</code> holds templates it can borrow from. <code>scripts/</code> holds small helpers for when web search is busy.</figcaption>
 </figure>
 
@@ -697,7 +745,7 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
   <div class="skill-trigger">
     <button class="btn" id="demoD-run">Run /competitor-pestel Liquid&nbsp;Death</button>
     <span class="meter" id="demoD-meter" style="display:none;"></span>
-    <div class="skill-output" id="demoD-output"></div>
+    <div class="skill-output" id="demoD-output" role="log" aria-live="polite" aria-atomic="false" aria-label="Skill output"></div>
   </div>
 </div>
 
@@ -711,8 +759,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 
 <p data-complete>This used to be a back-office story about databases and chat tools, and it is now reaching the software marketers actually run. Adobe shipped an MCP plug for Marketo, the email-and-campaign platform used by thousands of business-to-business firms, so a marketing-operations specialist can describe a campaign in a sentence and the assistant translates it into the right operations through the plug. <span class="term" data-tt="Adobe published the Marketo Engage MCP server on April 27, 2026, the first connector from a marketing-software vendor of that size, with more than a hundred operations covering forms, campaigns, lead lists, and exports. The worked smart-campaign prompt and the authentication detail (client id, secret, Munchkin ID carried as request headers) weave forward to the digital-marketing chapter. The signal to keep here: the connector layer is moving from infrastructure into the marketing stack, and HubSpot, Salesforce, and Braze are the natural next vendors.">Marketo, the email-and-campaign platform</span>. HubSpot and Salesforce are the obvious vendors to follow, which means the apps on your own desk are starting to grow these plugs.</p>
 
-<figure class="sketch">
-  <div class="mount" id="sk-mcp-mount" data-w="720" data-h="340"></div>
+<figure class="sketch" aria-label="MCP is one shared port: every tool ships a single plug, and any AI app that speaks the standard reaches them all.">
+  <div class="mount" aria-hidden="true" id="sk-mcp-mount" data-w="720" data-h="340"></div>
   <figcaption>MCP as one shared port. The model sits in the center; four tools surround it, each joined by the same little plug. Every tool ships one plug, and every AI app that speaks the standard reaches them all.</figcaption>
 </figure>
 
@@ -725,8 +773,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 <p data-complete>You have met four things so far, taught one at a time so each would stick: the file, the wire, the model, and the agent. Set them on top of each other, because that is how they actually fit together, and what you get is a ladder. Each rung sits on the one below it and takes one more chore off your hands than the rung beneath it did, so as you climb you do less while the work does more.</p>
 <p data-focused style="display:none">You have met four things: the file, the wire, the model, and the agent. Set them on top of each other and you get a ladder, where each rung takes one more chore off your hands than the one below.</p>
 
-<figure class="sketch" aria-label="The four rungs as one climb">
-  <div class="mount" id="sk-ladder-mount" data-w="720" data-h="340"></div>
+<figure class="sketch" aria-label="A four-tier ladder shows increasing automation levels, from manual per-question requests at the base to weekly scheduled runs at the top.">
+  <div class="mount" aria-hidden="true" id="sk-ladder-mount" data-w="720" data-h="340"></div>
   <figcaption>Four rungs, one climb. Tier 1 <em>ask</em> runs per question, Tier 2 <em>save</em> runs per task, Tier 3 <em>connect</em> runs per data pull, Tier 4 <em>schedule</em> runs per week. Each rung does more of the work while you do less.</figcaption>
 </figure>
 
@@ -744,8 +792,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 
 <p data-complete>The sketch below walks the top rung in slow motion. The agent reuses the Skill you saved on rung two and the data connector you plugged in on rung three, so setting it up takes an afternoon the first time and then nothing after, the way a coffee maker with a timer takes some fiddling the night you buy it and then hands you coffee every morning from then on.</p>
 
-<figure class="sketch" aria-label="What the top rung does overnight">
-  <div class="mount" id="sk-overnight-mount" data-w="720" data-h="260"></div>
+<figure class="sketch" aria-label="Automation systems operate independently after initial setup, requiring no ongoing manual intervention to function.">
+  <div class="mount" aria-hidden="true" id="sk-overnight-mount" data-w="720" data-h="260"></div>
   <figcaption>What the top rung does overnight. You set it up once; it runs without you.</figcaption>
 </figure>
 
@@ -776,8 +824,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 <p data-complete>You can often read a company's chosen rung from the outside without anyone telling you, because what a brand ships and what its leaders say in public are the tells. One number sets the stakes first. By 2025, about four in five organizations were using AI in some form, and of all the business functions studied, marketing showed the biggest measured jump in output.<sup class="cite" data-cite="ref-4"></sup> Nearly every brand is already climbing the ladder, so the part worth your attention is which rung each one stopped on, and what that choice tells you about the brand.</p>
 <p data-focused style="display:none">You can often read a company's chosen rung from the outside, because what a brand ships and what its leaders say in public are the tells. By 2025, about four in five organizations were using AI in some form, and marketing showed the biggest measured jump in output of any business function studied.<sup class="cite" data-cite="ref-4"></sup> Nearly every brand is already climbing, so the part worth your attention is which rung each one stopped on.</p>
 
-<figure class="sketch" aria-label="Four brands placed on the four rungs">
-  <div class="mount" id="sk-brands-mount" data-w="720" data-h="408"></div>
+<figure class="sketch" aria-label="Four brands positioned at different rungs of a ladder demonstrate varying levels of brand engagement, from minimal (Liquid Death) to intensive (Duolingo).">
+  <div class="mount" aria-hidden="true" id="sk-brands-mount" data-w="720" data-h="408"></div>
   <figcaption>Same ladder, four different stopping points. Liquid Death stays low, Costco sits on rung 1, Patagonia connects on rung 3, Duolingo runs overnight on rung 4.</figcaption>
 </figure>
 
@@ -795,8 +843,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 
 <aside class="sn" data-complete><span class="sn-num">9.</span> A note worth keeping in mind as brands climb to the top rung: an AI agent left running on its own can drift over a long stretch. In one published company experiment, an agent set loose to run a small shop for a month began making strange calls and even started insisting it was a human employee. Chapter 26 tells that story in full and explains the guardrails. For now, the takeaway is that the top rung needs a person checking on it, not a person typing during it.</aside>
 
-<figure class="sketch" aria-label="How you read a rung from the outside">
-  <div class="mount" id="sk-decoder-mount" data-w="720" data-h="424"></div>
+<figure class="sketch" aria-label="Brand signals communicate which position a company occupies in the market hierarchy, revealing its chosen rung to external audiences.">
+  <div class="mount" aria-hidden="true" id="sk-decoder-mount" data-w="720" data-h="424"></div>
   <figcaption>How you read a rung from the outside. The signals a brand gives off tell you which rung it picked.</figcaption>
 </figure>
 
@@ -832,8 +880,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 <p data-complete>You might think a 2026 model has solved this, and most days it has. The newest models hold about a million words at once, so a normal file slides in whole and nothing gets cut. The trap is the genuinely big file, the full year of reviews or the whole call log, where you cannot eyeball whether it fit. The fix takes one question. Before you trust a summary, ask the model in plain words how many <span class="term" data-tt="A token is roughly three-quarters of a word: a chunk of text the model reads and writes in, and the unit you are billed in. A 1,000-word memo is about 1,300 tokens. When you ask the model 'how many tokens is this,' you are asking how much of its fixed reading capacity your file will use up.">tokens</span> your file is, and check that against its limit. If the count sits comfortably under, you are fine, and if it is close or over, you feed the model a smaller slice you picked yourself or let a tool break the file into pieces and summarize each one. The chat will never warn you on its own, so the warning has to be you.</p>
 <p data-focused style="display:none">You paste a long file, the model reads only the part that fit, and it summarizes that slice in the same confident voice it would use for the whole thing, which is the story this chapter opened with. A 2026 model has mostly solved this, since the newest models hold about a million words, so the trap is now the genuinely big file where you cannot eyeball whether it fit. Before you trust a summary, ask the model how many <span class="term" data-tt="A token is roughly three-quarters of a word: a chunk of text the model reads and writes in, and the unit you are billed in. A 1,000-word memo is about 1,300 tokens. When you ask the model 'how many tokens is this,' you are asking how much of its fixed reading capacity your file will use up.">tokens</span> the file is, and check it against the limit. The chat never warns you, so the warning has to be you.</p>
 
-<figure class="sketch" aria-label="The silent-truncation warning the chat never shows">
-  <div class="mount" id="sk-truncate-mount" data-w="700" data-h="232"></div>
+<figure class="sketch" aria-label="A chat interface fails to warn users when file uploads are truncated, forcing marketers to manually discover incomplete data processing.">
+  <div class="mount" aria-hidden="true" id="sk-truncate-mount" data-w="700" data-h="232"></div>
   <figcaption>The warning the chat surface should show but never does. The model received the first slice of the file. The rest fell off the back, with no banner and no flag. The marketer has to ask.</figcaption>
 </figure>
 
@@ -844,8 +892,8 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 <p data-complete>People assume that letting the model search the web fixes this, since it is now reading real pages rather than guessing from memory. Searching helps, and you should leave it on, but made-up sources still slip through even when search is running. So the rule does not change in 2026. Every specific number, date, name, and citation in anything you ship gets a real source clicked and read first, and if you cannot find the source, the fact does not exist and does not go on the slide.<sup class="cite" data-cite="ref-7"></sup></p>
 <p data-focused style="display:none">Ask for a statistic and you can get back a clean number, a real-looking journal name, and a link, in the same calm tone the model uses when it is right, and two weeks later the link goes nowhere. Letting the model search the web helps, and you should leave it on, but made-up sources still slip through. So the rule does not change in 2026: every specific number, date, name, and citation you ship gets a real source clicked and read first, and if you cannot find the source, the fact does not go on the slide.<sup class="cite" data-cite="ref-7"></sup></p>
 
-<figure class="sketch" aria-label="A confident citation that is fake">
-  <div class="mount" id="sk-halluc-mount" data-w="700" data-h="220"></div>
+<figure class="sketch" aria-label="Fabricated academic citation with realistic formatting and broken link demonstrates how misinformation can appear credible to unsuspecting readers.">
+  <div class="mount" aria-hidden="true" id="sk-halluc-mount" data-w="700" data-h="220"></div>
   <figcaption>A fictional citation, presented in a coral-bordered box and stamped VERIFY. The journal name looks real. The volume number looks plausible. The link goes nowhere.</figcaption>
 </figure>
 
@@ -870,15 +918,15 @@ figure svg path.reveal,figure svg line.reveal,figure svg polyline.reveal,figure 
 <p data-complete>The five parts now have names you can use without anyone walking you through them again. A file is a named thing the model reads in chunks, where a chunk past its limit never arrives. The wire is the trip your question takes to a metered server and back. The model is the well-read autocomplete that searches the web when a question needs it and can still be confidently wrong, so you check its facts. The agent is that model put in a loop with a few tools and a stop button, working a goal on its own. The stack is the four-rung climb, from asking by hand on rung one to a Monday agent that runs while you sleep on rung four. Hold those five and the rest of the book has its floor.</p>
 <p data-focused style="display:none">The five parts now have names you can use on your own. A file is read in chunks, where a chunk past the limit never arrives. The wire carries it to a metered server and back. The model is the well-read autocomplete that searches the web yet can still be confidently wrong. The agent is that model in a loop with tools and a stop button, and the stack is the four-rung climb from a chat box to a Monday agent that runs while you sleep.</p>
 
-<figure class="sketch" aria-label="The five primitives, the chapter's map closed back up">
-  <div class="mount" id="sk-recap-mount" data-w="720" data-h="200"></div>
+<figure class="sketch" aria-label="The five primitives of the chapter, file, wire, model, agent, and stack, labeled and ready for reference.">
+  <div class="mount" aria-hidden="true" id="sk-recap-mount" data-w="720" data-h="200"></div>
   <figcaption>The chapter's map, closed back up. The same five parts the chapter opened on, now each with a name you can use: file, wire, model, agent, stack.</figcaption>
 </figure>
 
 <p>Chapter 2 turns from <em>how the tools work</em> to <em>what they are for</em>. Marketing is the set of choices a company makes about what to make, who to serve, what to charge, where to sell it, and how to talk about it, and each choice is now a job you can hand to AI at one of the four rungs. The next chapter shows why one wrong choice undoes the rest, and how the choice itself tells you which rung to reach for.</p>
 
-<figure class="sketch" aria-label="The turn from Chapter 1 to Chapter 2">
-  <div class="mount" id="sk-turn-mount" data-w="720" data-h="200"></div>
+<figure class="sketch" aria-label="Five marketing fundamentals from Chapter 1 transform into five core marketing decisions: product, target audience, pricing, distribution, and promotion.">
+  <div class="mount" aria-hidden="true" id="sk-turn-mount" data-w="720" data-h="200"></div>
   <figcaption>The turn into Chapter 2. The same five parts you just learned point at the five marketing choices they are now used to make: what to make, who to serve, what to charge, where to sell, how to talk.</figcaption>
 </figure>
 
@@ -2645,14 +2693,16 @@ input.addEventListener('keydown',e =>{if(e.key === 'Enter')submit();});
       ans: document.getElementById('demoC-ansVague'),
       cost: document.getElementById('demoC-costVague'),
       col: document.getElementById('demoC-colVague'),
-      user: 'Summarize this product description: Liquid Death is canned mountain water sold in 16-oz tallboys. The brand uses heavy-metal-style packaging, irreverent ad copy, and a "death to plastic" environmental message. It launched in 2019 and reached unicorn valuation in 2024.'
+      user: 'Summarize this product description: Liquid Death is canned mountain water sold in 16-oz tallboys. The brand uses heavy-metal-style packaging, irreverent ad copy, and a "death to plastic" environmental message. It launched in 2019 and reached unicorn valuation in 2024.',
+      sample: 'Liquid Death is a canned mountain water brand that launched in 2019 and reached a unicorn valuation in 2024. It is sold in 16-ounce tallboys and is known for its heavy-metal-style packaging, irreverent advertising, and a "death to plastic" environmental message that sets it apart in the bottled water category.'
     },
     sharp: {
       btn: document.getElementById('demoC-qSharp'),
       ans: document.getElementById('demoC-ansSharp'),
       cost: document.getElementById('demoC-costSharp'),
       col: document.getElementById('demoC-colSharp'),
-      user: 'Summarize the following product description in exactly three bullet points. Each bullet must be under 12 words. Use plain English. No marketing jargon.\n\nProduct description: Liquid Death is canned mountain water sold in 16-oz tallboys. The brand uses heavy-metal-style packaging, irreverent ad copy, and a "death to plastic" environmental message. It launched in 2019 and reached unicorn valuation in 2024.'
+      user: 'Summarize the following product description in exactly three bullet points. Each bullet must be under 12 words. Use plain English. No marketing jargon.\n\nProduct description: Liquid Death is canned mountain water sold in 16-oz tallboys. The brand uses heavy-metal-style packaging, irreverent ad copy, and a "death to plastic" environmental message. It launched in 2019 and reached unicorn valuation in 2024.',
+      sample: '• Canned mountain water in 16-ounce tallboys.\n• Heavy-metal packaging and an anti-plastic message.\n• Launched 2019, hit a unicorn valuation in 2024.'
     }
   };
   if(!DC.vague.btn || !DC.sharp.btn) return;
@@ -2692,11 +2742,21 @@ input.addEventListener('keydown',e =>{if(e.key === 'Enter')submit();});
       var ask = q.btn.querySelector('.qask'); if(ask) ask.textContent = 'asked ✓';
       ran++; if(ran >= 2) showVerdict();
     }catch(e){
-      // proxy-offline fallback: never leave a dead widget
-      q.cost.className = 'cost2 err';
-      q.cost.textContent = 'failed';
-      q.ans.innerHTML = '<span class="ph">' + window.__FALLBACK_MSG__ + '</span>';
-      q.btn.disabled = false;
+      // proxy-offline fallback: never leave a dead widget. Show a representative SAMPLE
+      // reply for this request so the vague-vs-specific contrast still teaches with no proxy.
+      if(q.sample){
+        typeOut(q.ans, q.sample);
+        q.cost.className = 'cost2';
+        q.cost.textContent = 'offline sample';
+        q.btn.dataset.done = '1';
+        var askS = q.btn.querySelector('.qask'); if(askS) askS.textContent = 'sample shown';
+        ran++; if(ran >= 2) showVerdict();
+      } else {
+        q.cost.className = 'cost2 err';
+        q.cost.textContent = 'failed';
+        q.ans.innerHTML = '<span class="ph">' + window.__FALLBACK_MSG__ + '</span>';
+        q.btn.disabled = false;
+      }
     }
   }
 

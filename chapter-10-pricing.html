@@ -103,6 +103,36 @@
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<!-- ===== A11Y CONTRAST FIXES (Ch10, WCAG 2.1 AA). Appended last in <head> so it wins the cascade;
+     doubled-class specificity + !important beats the chapter's own scoped rules. Additive only:
+     no prose, JS, SVG, or depth tagging touched. Fixes the 8 axe color-contrast nodes:
+       (1) #w102 .wv-col opacity:.5 washed all column text below 4.5:1 (.ph, .wv-ct). Replace the
+           opacity wash with a muted background + softer border; keep text at FULL opacity and
+           darken the small labels so they pass. .live restores the bright white card.
+       (2) white-on-#DA7756 run buttons (#ddw-toggle, #cmp-competitor-go) were 3.1:1 -> bg #a8472a (5.83:1).
+       (3) small coral-deep #B8553A text on cream (.ddw-narrate strong, .fm-narrate strong) was 4.2:1 -> #a8472a.
+     Bright coral #DA7756 is left untouched wherever it is a heading/marker/rule/border/SVG stroke. ===== -->
+<style>
+/* (1) Replace the .wv-col opacity wash with a non-opacity dim: muted bg + softer border, text full-opacity. */
+#w102 .wv-col.wv-col{opacity:1 !important;background:#faf7f3 !important;border-color:#efe7da !important;}
+#w102 .wv-col.live.live{background:#ffffff !important;border-color:#e6dfd2 !important;}
+#w102 .wv-col.sharp.live.live{border-color:var(--coral-soft) !important;}
+/* Small labels inside the (now non-opacity) dimmed columns must themselves meet 4.5:1 on #faf7f3 / #fff. */
+#w102 .wv-col.vague .wv-ct.wv-ct{color:#6b6b6b !important;}
+#w102 .wv-col.sharp .wv-ct.wv-ct{color:#a8472a !important;}
+#w102 .wv-cost.wv-cost{color:#6b6b6b !important;}
+#w102 .wv-ans .ph.ph{color:#6b6b6b !important;}
+#w102 .wv-note.wv-note{color:#6b6b6b !important;}
+/* (2) White-on-coral run/toggle buttons: darken the background, keep white text (5.83:1); hover deeper. */
+.dd-designer .ddw-btn.ddw-btn{background:#a8472a !important;color:#ffffff !important;}
+.dd-designer .ddw-btn.ddw-btn:hover{background:#8f3c23 !important;}
+.cmp-box .cmp-go.cmp-go{background:#a8472a !important;color:#ffffff !important;}
+.cmp-box .cmp-go.cmp-go:hover{background:#8f3c23 !important;}
+.cmp-box .cmp-go.cmp-go:disabled{background:#6b6b6b !important;}
+/* (3) Small coral-deep text on cream -> #a8472a (~5:1). Narration emphasis in the decoy + freemium widgets. */
+.dd-designer .ddw-narrate strong.ddw-narrate-s,.dd-designer .ddw-narrate strong{color:#a8472a !important;}
+.fm-calc .fm-narrate strong{color:#a8472a !important;}
+</style>
 </head>
 <body data-chapter-num="10">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -114,6 +144,19 @@
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of");
+         injected SVG mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 10.
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-10-pricing.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 10 &middot; The Mix Layer</p>
@@ -131,9 +174,9 @@
 
 <p data-focused style="display:none">In 2007 an <span class="term" data-tt="A brand-name auto-injector delivering one emergency dose of epinephrine for a severe allergic reaction. Mylan held about 90 percent of the U.S. market through the years the price climbed.">EpiPen</span> two-pack cost about $100. By 2016 the same two-pack cost $608, though the drug and the injector had not changed and parents had no substitute.<sup class="cite" data-cite="ref-1"></sup> The price climbed in roughly fifteen separate steps across nine years, each small enough to draw no reaction, until the cumulative line broke past what parents of allergic children would tolerate quietly at a 2016 Senate hearing.<sup class="cite" data-cite="ref-1"></sup></p>
 
-<figure class="sketch">
+<figure class="sketch" aria-label="EpiPen two-pack wholesale price climbs roughly fivefold from 2007 to 2016 through small individually unremarkable increases, until the late-2016 Senate hearing made the cumulative climb publicly visible and broke Mylan's pricing power.">
   <figcaption>EpiPen two-pack wholesale price, 2007 to 2016. The line climbs roughly fivefold over nine years through small, individually unremarkable increases. The late-2016 Senate hearing is the point at which the cumulative climb became publicly visible and Mylan's pricing power broke.</figcaption>
-  <div class="mount" id="sk-epipen-mount" data-w="700" data-h="260"></div>
+  <div class="mount" id="sk-epipen-mount" data-w="700" data-h="260" aria-hidden="true"></div>
 </figure>
 
 <p data-complete>The first-order question is whether a firm <em>can</em> raise price, which lives in its cost structure, its market power, and the buyer's substitutes. The second-order question is whether it <em>should</em>, which lives in what the buyer accepts as fair, what the regulator and press will tolerate, and what the brand can survive once the line becomes public. Mylan answered the first by climbing, and the Senate hearing was where the second caught up.</p>
@@ -151,7 +194,7 @@
   Price is the amount charged for a product, or the sum of values customers exchange for the benefits of using it.<sup class="cite" data-cite="ref-2"></sup> It is rarely a single number, because a sticker comes with rebates and dealer incentives, and a subscription comes with per-seat add-ons and overage. Price can also be non-monetary, paid in miles, points, or the time spent shopping.
 </div>
 
-<figure id="fig-process" class="sketch" style="margin: 36px 0 28px 0;">
+<figure id="fig-process" class="sketch" aria-label="The pricing-approach compass: cost-based pricing sits south, competitor-based west, value-based north, and customer-determined east, the four approaches the chapter walks through." style="margin: 36px 0 28px 0;">
   <div class="mount" id="process-mount" aria-hidden="true">
     <svg id="process-svg" viewBox="0 0 720 295" role="img" aria-labelledby="proct" xmlns="http://www.w3.org/2000/svg">
       <title id="proct">Pricing-approach compass: cost S, competitor W, value N, customer E.</title>
@@ -166,12 +209,12 @@
 
 <p data-focused style="display:none">Picture a firm with $100 of revenue and $97 of cost. The $3 left over is a 3 percent <span class="term" data-tt="Net margin is the share of revenue a firm keeps after every cost. Grocery runs near 3 percent, Apple's hardware closer to 25 percent, pure software 30 to 50 percent because one more copy rounds to zero.">net margin</span>. Raise the price 1 percent at flat cost, and profit jumps from $3 to $4, a 33 percent gain on a 1 percent move.<sup class="cite" data-cite="ref-2"></sup> Matching that through volume would take 33 percent more units. A 1 percent price move beats a 1 percent volume move by an order of magnitude, yet most teams are paid to manage volume.<sup class="cite" data-cite="ref-3"></sup></p>
 
-<figure class="sketch">
-  <div class="mount" id="sk-pricing-leverage-mount" data-w="660" data-h="285"></div>
+<figure class="sketch" aria-label="Three one-percent moves give three different profit lifts at a 3 percent margin: a price increase lifts profit about 33 percent, a volume increase only about 10 percent, and a cost cut about 33 percent, so a price move beats a volume move by roughly three times.">
+  <div class="mount" id="sk-pricing-leverage-mount" data-w="660" data-h="285" aria-hidden="true"></div>
 </figure>
 
-<figure class="sketch">
-  <div class="mount" id="sk-volume-vs-price" data-w="660" data-h="240"></div>
+<figure class="sketch" aria-label="Two paths to the same extra dollar of profit: the price path needs only a short 1 percent move with no extra cost to carry, while the volume path needs a long move all the way across, showing the order-of-magnitude gap in effort.">
+  <div class="mount" id="sk-volume-vs-price" data-w="660" data-h="240" aria-hidden="true"></div>
 </figure>
 
 <p data-complete>Netflix is the worked example over a long horizon. In 2010 the standard streaming plan was $7.99 a month at roughly 20 million mostly U.S. subscribers. By the end of 2024 the standard plan had climbed to $15.99 a month at more than 300 million subscribers across 190 countries, with a new ad-supported tier carrying a meaningful share of recent sign-ups.<sup class="cite" data-cite="ref-2"></sup> The share of subscribers willing to pay each posted price held within a few points of the prior plan's share. The moves passed through to the bottom line because the cost of serving one more streamed minute rounds to zero, since the content is already produced, the recommendation engine is already running, and bandwidth costs a fraction of a cent. The same arithmetic fails for a grocery chain raising margarine a dollar, because the next tub still has to be bought, shipped, and warehoused.</p>
@@ -223,11 +266,11 @@
   <div class="wv-grid">
     <div class="wv-col vague" id="w102-col-vague">
       <div class="wv-colhead"><span class="wv-ct">Generic, you knew this already</span><span class="wv-cost" id="w102-cost-vague"></span></div>
-      <div class="wv-ans" id="w102-ans-vague"><span class="ph">Press the vague question above.</span></div>
+      <div class="wv-ans" id="w102-ans-vague" aria-live="polite" aria-atomic="false"><span class="ph">Press the vague question above.</span></div>
     </div>
     <div class="wv-col sharp" id="w102-col-sharp">
       <div class="wv-colhead"><span class="wv-ct">Named approach + a sample band</span><span class="wv-cost" id="w102-cost-sharp"></span></div>
-      <div class="wv-ans" id="w102-ans-sharp"><span class="ph">Press the specific question above.</span></div>
+      <div class="wv-ans" id="w102-ans-sharp" aria-live="polite" aria-atomic="false"><span class="ph">Press the specific question above.</span></div>
     </div>
   </div>
   <div class="wv-verdict" id="w102-verdict"></div>
@@ -275,7 +318,7 @@
 <p data-focused style="display:none">Caterpillar's dealer pitch is the worked example. The dealer opens at the <strong>$90,000</strong> competitor-equivalent base procurement has anchored on, then attaches a verifiable premium to each better attribute: longer component life <strong>$7,000</strong>, fewer breakdowns <strong>$6,000</strong>, same-day parts <strong>$5,000</strong>, a warranty <strong>$2,000</strong>, summing to a <strong>$110,000</strong> EVC.<sup class="cite" data-cite="ref-2"></sup> A value pitch closes at a discount both sides read as a win, so a <strong>$10,000</strong> cut signs the buyer at <strong>$100,000</strong>, capturing premium a $90,000 competitor-match would have given away.</p>
 
 <figure class="sketch" aria-label="Caterpillar value-based price built up from a competitor-equivalent base through four attribute premiums to the full EVC, then discounted to the closing price.">
-  <div class="mount" id="sk-evc-mount" data-w="720" data-h="410"></div>
+  <div class="mount" id="sk-evc-mount" data-w="720" data-h="410" aria-hidden="true"></div>
   <figcaption>The Caterpillar walk. A $90,000 competitor base plus four verifiable premiums climbs to a $110,000 EVC, and a $10,000 discount closes at $100,000, which is how a value-based price is constructed rather than guessed.</figcaption>
 </figure>
 
@@ -284,19 +327,19 @@
 <p data-focused style="display:none">The catch is that value-based pricing needs willingness-to-pay data the first two approaches skip, and an organization that can hold the premium all the way to the invoice rather than discounting it away. Section 10.3 picks up the willingness-to-pay half of the problem.</p>
 
 <figure class="sketch" aria-label="Nagle Strategic Pricing Pyramid: six stacked layers from value creation at the base to price-setter structures at the apex.">
-  <div class="mount" id="sk-nagle-pyramid-mount" data-w="660" data-h="370"></div>
+  <div class="mount" id="sk-nagle-pyramid-mount" data-w="660" data-h="370" aria-hidden="true"></div>
   <figcaption>The Nagle pyramid. Six layers, bottom-up. A firm that skips a layer below and tries to optimize a layer above gets cost-plus outcomes regardless of what the strategy document says.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="Pocket price waterfall: list price falls through four leak categories to the pocket price the firm actually keeps.">
-  <div class="mount" id="sk-pocket-waterfall-mount" data-w="720" data-h="360"></div>
+  <div class="mount" id="sk-pocket-waterfall-mount" data-w="720" data-h="360" aria-hidden="true"></div>
   <figcaption>The Castle Battery waterfall. Each leak reads as small in isolation, yet stacked the four leaks carry the $28.40 list down to a $21.60 pocket, a 24 percent erosion the income statement reports as one undifferentiated cost line.</figcaption>
 </figure>
 
 <aside class="sn" data-complete><span class="sn-num">3.</span> How much is on the table when a firm reads the value ceiling well? Two cross-industry records agree on the ranking. Across roughly 10,000 Simon-Kucher client engagements, a 1 percent gain in realized price at constant volume lifts operating profit by about 11 percent, against about 6 percent for a 1 percent cost cut and about 3 percent for a 1 percent volume gain.<sup class="cite" data-cite="ref-11"></sup> A 2003 McKinsey analysis of the S&amp;P 1500 put the same 1 percent price improvement at an 8 percent profit lift, a couple of points lower because that sample holds more low-margin firms.<sup class="cite" data-cite="ref-8"></sup> The price lever sits far above the other two for the same marginal-cost reason Section 10.1 derived, scaled across thousands of firms, which is why a firm rarely captures the full lever. A 2008 study catalogued five organizational barriers that absorb it before it reaches the income statement: value-assessment difficulty, value-communication difficulty, segmentation deficits, sales-force readiness, and the lack of senior-management support, where top-quartile <span class="term" data-tt="CEO championing of pricing, which Stephan Liozu and Andreas Hinterhuber introduced as a measured construct in their 2013 work, captures how visibly the CEO defends pricing as a strategic priority inside the firm. The construct has three operational components: the CEO articulates pricing-strategy priorities to the leadership team, defends realized prices against quarter-end discount pressure from the sales force, and links pricing performance to executive compensation. Liozu and Hinterhuber operationalized this as a seven-item survey scale, and their firm-level data showed that it strongly moderates whether the firm's pricing capabilities actually translate into higher profitability or just stay on the strategy slide.">CEO championing of pricing</span> closes 4 to 7 points of the gap.<sup class="cite" data-cite="ref-7"></sup></aside>
 
 <figure class="sketch" aria-label="The five Hinterhuber organizational barriers that absorb the 1 percent price lever before it reaches the income statement.">
-  <div class="mount" id="sk-pricing-barriers-mount" data-w="720" data-h="350"></div>
+  <div class="mount" id="sk-pricing-barriers-mount" data-w="720" data-h="350" aria-hidden="true"></div>
   <figcaption>The 1 percent lever exists in the math but rarely reaches the income statement. Five organizational barriers absorb it on the way down, and top-quartile CEO championing closes 4 to 7 percentage points of the gap.</figcaption>
 </figure>
 
@@ -305,7 +348,7 @@
 <p data-focused style="display:none">A single posted price leaves money on the table, so a staircase of prices captures more of the demand curve. The five <span class="term" data-tt="The five price-customization mechanisms Dolan and Simon catalogued: segmentation, nonlinear, bundling, product-line, and time-based pricing. Each reaches a slice of willingness-to-pay a single price cannot.">price-customization mechanisms</span> are that staircase: segmentation (Adobe's student vs pro tier), nonlinear (Costco's fee plus a per-item price), bundling (the Disney+, Hulu, HBO Max trio), product-line (Apple's SE-to-Pro-Max ladder), and time-based (Patagonia's Worn Wear resale). A firm running three captures most of the lift.<sup class="cite" data-cite="ref-4"></sup></p>
 
 <figure class="sketch" aria-label="The five Dolan-Simon price-customization mechanisms, each tagged with a canonical worked example.">
-  <div class="mount" id="sk-five-mechs-mount" data-w="720" data-h="320"></div>
+  <div class="mount" id="sk-five-mechs-mount" data-w="720" data-h="320" aria-hidden="true"></div>
   <figcaption>The five Dolan-Simon mechanisms compress the eight routes. Each reaches a different slice of willingness-to-pay variation, which is why a firm running three captures most of the available lift.</figcaption>
 </figure>
 
@@ -327,9 +370,9 @@
 
 <p data-complete>A 1969 diffusion model put numbers on which posture fits. Buyers split into <span class="term" data-tt="Innovators in Bass's diffusion model are the buyers who adopt a new product because they heard about it from a source outside their friend network (an ad, a press article, a search result). The fraction of the population in this group per unit of time is the innovation coefficient p. Typical p values across packaged-goods categories run 0.01 to 0.03.">innovators</span>, who adopt after an ad, and <span class="term" data-tt="Imitators in Bass's diffusion model are buyers who adopt only after they have seen friends, family, or coworkers adopt first. The strength of that social-imitation channel is the imitation coefficient q. Typical q values across packaged-goods categories run 0.3 to 0.5, an order of magnitude larger than p.">imitators</span>, who adopt after seeing friends adopt. Cumulative adoption traces an <span class="term" data-tt="The S-curve of cumulative adoption is the characteristic shape Bass's diffusion model produces over time: a slow start while only innovators are adopting, a steep middle as imitators convert their friends who convert their friends, and a flattening tail as the eligible population saturates. The shape repeats across categories from refrigerators to color TVs to streaming subscriptions.">S-curve</span>, and the shape depends on the <strong>q-to-p ratio</strong>.<sup class="cite" data-cite="ref-12"></sup> The 1999 <span class="term" data-tt="The Bass regime rule, derived by Trichy Krishnan, Frank Bass, and Dipak Jain in a 1999 paper, tells a firm which of the two launch strategies (penetration or skimming) the math actually favors for a given product category. When the imitation-to-innovation ratio q/p is above about 7, penetration pricing dominates. When q/p is below about 4, skimming dominates.">regime rule</span> sets the threshold: when <strong>q/p is above about 7</strong>, the imitation cascade dominates and a cheap launch puts more sparks in early, so penetration wins, and when <strong>q/p is below about 4</strong>, the cascade is too weak to recover the sacrificed margin, so skimming wins.<sup class="cite" data-cite="ref-12"></sup> The campus drink lives in the high-q/p regime because every party photo and group chat is an imitation channel, so a $4 launch beats an $8 launch on two-semester share. The choice also depends on how much the new product asks the buyer to change, because the deeper the workflow change, the more the launch needs penetration, since <span class="term" data-tt="The 9x effect, named by John Gourville in his 2006 Harvard Business Review article, is the empirical pattern where new products consistently miss their projected adoption by roughly a factor of nine. The mechanism multiplies two separate threes. Sellers value the new product at roughly three times its objective benefit because they are endowed with knowing how good it is. Buyers, on the other hand, weight giving up their current product at roughly three times the projected gain because of loss aversion and the status-quo endowment combined. Three times three equals nine, which is the gap between what the launch team projects and what the buyer population delivers. Gourville's practical rule is that high product-change with low behavior-change supports a skim strategy (Sonicare, Tesla replacing a luxury sedan), while low product-change with high behavior-change demands a penetration strategy (TiVo, Apple Pay) because the incumbent inertia is too heavy to lift with margin alone.">loss aversion against the old way</span> roughly multiplies the gap between projected and realized adoption.<sup class="cite" data-cite="ref-13"></sup></p>
 
-<figure class="sketch">
+<figure class="sketch" aria-label="S-curve of cumulative adoption from Bass's diffusion model: a slow innovator start, a steep imitation cascade, and a saturation tail; a high imitation-to-innovation ratio favors a penetration launch and a low ratio favors skimming.">
   <figcaption>S-curve of cumulative adoption from Bass's diffusion model. A slow innovator start, a steep imitation cascade, and a saturation tail; a high q/p favors a penetration launch and a low q/p favors skimming.</figcaption>
-  <div class="mount" id="sk-bass-curve-mount" data-w="660" data-h="252"></div>
+  <div class="mount" id="sk-bass-curve-mount" data-w="660" data-h="252" aria-hidden="true"></div>
 </figure>
 
 <div class="def" data-complete>
@@ -384,8 +427,8 @@
 
 <p data-focused style="display:none">Value-based pricing is only as good as the firm's read of <span class="term" data-tt="Willingness to pay (WTP) is the most a specific buyer would pay before walking away. It varies across buyers, and that variation is what gives the demand curve its downward slope.">willingness to pay</span> (WTP), the most a buyer would pay before walking away. A marketer who pays $35 for a Stanley tumbler still has to price for a buyer who pays $20 and one who pays $60. That spread across buyers is what gives the demand curve its downward slope.<sup class="cite" data-cite="ref-2"></sup></p>
 
-<figure class="sketch">
-  <div class="mount" id="sk-wtp-distribution-mount" data-w="700" data-h="240"></div>
+<figure class="sketch" aria-label="A willingness-to-pay distribution: each customer has a different maximum price, so demand spreads across a range rather than sitting at one number, which is why a single posted price leaves money on both sides.">
+  <div class="mount" id="sk-wtp-distribution-mount" data-w="700" data-h="240" aria-hidden="true"></div>
 </figure>
 
 <p data-complete>Before any survey can measure that spread, the team has to choose the prices the buyer will see, and the first guess is usually anchored on the team's own habit. The fix is the <strong>absurdity walkdown</strong>, run before the survey fields.<sup class="cite" data-cite="ref-14"></sup> The team opens with bounds it thinks ridiculous on both ends, a 40-ounce tumbler at 10 cents and at $400, then tightens each bound one click at a time, defending every move, until it can describe a real buyer paying that number. The output is a price range the team is roughly 90 percent confident contains the buyer's true WTP, which keeps the survey grid off the team's own anchor.</p>
@@ -412,8 +455,8 @@
 
 <p data-complete>The six conditions compound, so distinctive brands with strong habits and third-party payers hold increases that competitors cannot.</p>
 
-<figure class="sketch">
-  <div class="mount" id="sk-elasticity-mount" data-w="700" data-h="280"></div>
+<figure class="sketch" aria-label="Inelastic demand is steep, so a 50 percent price hike cuts volume only from 105 to 100, while elastic demand is shallow and the same hike halves volume from 150 to 50.">
+  <div class="mount" id="sk-elasticity-mount" data-w="700" data-h="280" aria-hidden="true"></div>
   <figcaption>Inelastic demand is steep, so a 50 percent hike cuts volume only 105 to 100, while elastic demand is shallow and the same hike halves it from 150 to 50.</figcaption>
 </figure>
 
@@ -583,8 +626,8 @@
 
 <p data-focused style="display:none">Buyers read every price through a comparison lens. The <span class="term" data-tt="A reference price is the internal benchmark in the buyer's memory used to judge whether a new price feels high, low, or right; a moving average of recent exposures.">reference price</span> is the benchmark each price is measured against, so a $600 dress reads moderate next to a $1,200 sibling and expensive next to a $200 one.<sup class="cite" data-cite="ref-21"></sup> Buyers miss small changes, because the <span class="term" data-tt="The just-noticeable-difference is the smallest price change a buyer perceives, roughly 5 to 15 percent; below it the change is invisible margin.">just-noticeable-difference</span> runs 5 to 15 percent. Around it sits a <span class="term" data-tt="The latitude of acceptance is the band around the reference within which a buyer accepts the price without searching; its lower edge is the price-quality floor.">latitude of acceptance</span>, whose lower edge matters too: a boutique cutting from $60 to $35 can lose volume when the price recodes the product as not the real thing.</p>
 
-<figure class="sketch">
-  <div class="mount" id="sk-anchor-mount" data-w="700" data-h="220"></div>
+<figure class="sketch" aria-label="Anchoring in action: the same item reads as cheap or expensive depending on the reference set placed beside it, so the surrounding options, not the item alone, set the buyer's read of the price.">
+  <div class="mount" id="sk-anchor-mount" data-w="700" data-h="220" aria-hidden="true"></div>
 </figure>
 
 <p data-complete>Deliberate <span class="term" data-tt="Anchoring, documented across decades of work by Tversky and Kahneman, is the cognitive pattern where a salient first number biases later judgment toward it, even when the first number is irrelevant. A $1,200 dress placed next to a $600 dress makes the $600 read as moderate; the firm picks the anchor it wants the buyer to start from, often by placing a high-priced sibling SKU in the same product line.">anchoring</span> is the firm's lever on that moving average. Because the reference adapts to whatever the buyer sees alongside the focal price, the firm can move it by choosing the comparison, placing the product among pricier rivals on the shelf or reframing a $600-a-year gym membership as <em>$50 a month</em> so the adapted level shifts before the buyer reads the focal number.<sup class="cite" data-cite="ref-2"></sup> The same mechanism reaches the price tag itself when the firm splits a total into a base plus tagged surcharges, the <span class="term" data-tt="Attention arousal is the effect Marco Bertini and Luc Wathieu documented in a 2008 Marketing Science paper, where tagging a surcharge to a named attribute raises that attribute's cognitive salience. It is the second cognitive account running inside a partitioned price tag, alongside anchor-and-adjust.">attention-arousal</span> account this section closes on.<sup class="cite" data-cite="ref-9"></sup></p>
@@ -653,8 +696,8 @@
   <figcaption><span class="fnum" data-cap="figure"></span> Decoy effect at <em>The Economist</em>, where adding the dominated print-only option shifted 52 percentage points from the cheap option to the expensive bundle.</figcaption>
 </figure>
 
-<figure class="sketch">
-  <div class="mount" id="sk-decoy-mount" data-w="700" data-h="240"></div>
+<figure class="sketch" aria-label="The decoy effect: adding a dominated third option, one that is beaten on every attribute, shifts buyer choice toward the option that dominates it, without changing either original option.">
+  <div class="mount" id="sk-decoy-mount" data-w="700" data-h="240" aria-hidden="true"></div>
 </figure>
 
 <h3 id="dd-explorer-h" data-no-num>Interactive: design a decoy and watch buyer choice shift</h3>
@@ -705,7 +748,7 @@
       <div class="ddw-price">$59</div>
       <div class="ddw-features">digital access, archive, mobile app, no print</div>
     </div>
-    <div class="ddw-slot" id="ddw-slot" aria-live="polite">place a decoy to add a third option</div>
+    <div class="ddw-slot" id="ddw-slot" aria-live="polite" aria-atomic="false">place a decoy to add a third option</div>
     <div class="ddw-card ddw-target" id="ddw-card-b">
       <span class="ddw-cap">option B (target)</span>
       <div class="ddw-name">print + web subscription</div>
@@ -746,8 +789,8 @@
 
 <p data-focused style="display:none"><span class="term" data-tt="Charm pricing sets the last digit to a 9 ($39, $9.99) because that ending moves demand more than the math suggests. It runs on leftmost-digit encoding. Apple and Patagonia round to whole dollars because a 9-ending reads as a discount that undercuts a premium position.">Charm pricing</span> sets prices to end in 9 because the ending matters more than the math. A 1996 study rotated a clothing item through $34, $39, and $44 across catalog mailings, and demand at $39 beat both the lower $34 and the higher $44, three times.<sup class="cite" data-cite="ref-25"></sup> The <span class="term" data-tt="A 9-ending lifts demand relative to round endings even when the number is higher; the signal disappears for buyers who look the number up.">9-ending</span> reads as a sale signal, so charm works where buyers do not comparison-shop and fails where they look the number up.</p>
 
-<figure class="sketch">
-  <div class="mount" id="sk-charm-mount" data-w="660" data-h="240"></div>
+<figure class="sketch" aria-label="Charm pricing: three identical items shown at three prices, where a just-below number like $3.99 reads as meaningfully cheaper than $4.00 because buyers anchor on the left-most digit.">
+  <div class="mount" id="sk-charm-mount" data-w="660" data-h="240" aria-hidden="true"></div>
 </figure>
 
 <p data-complete>Charm is one of five <span class="term" data-tt="A pricing cue is a context signal buyers use to read whether a price is fair when they cannot recall the exact number: prices ending in 9, sale signs, signpost items (Costco's $4.99 rotisserie, Trader Joe's $1.99 wine), price-matching guarantees, and posted comparison prices.">pricing cues</span> from the catalog-pricing literature, alongside sale signs, signpost items, price-matching guarantees, and posted comparison prices.<sup class="cite" data-cite="ref-25"></sup> Each works because it is rare, which is why premium positioning avoids 9-endings entirely, the way Apple's iPhone 16 Pro at $1,099 sits next to Patagonia's round $139, $199, and $299. The cues are structure-dependent, because sale signs and signpost promotion do most of their work inside a Hi-Lo strategy and largely switch off inside everyday-low-pricing, where the value-focused buyer ignores discount-as-search-signal.<sup class="cite" data-cite="ref-10"></sup></p>
@@ -808,8 +851,8 @@
 
 <aside class="sn" data-complete><span class="sn-num">E.</span> The Cintra Dallas managed-lane operation is an infrastructure example of the same mechanism. North Texas contracted Cintra to run the LBJ Express and North Tarrant Express lanes beside the free freeway, carrying a real-time toll from a $0.90 off-peak floor to a $4.50 peak ceiling, updated every five minutes against measured traffic. The target is not maximum revenue but a service-level commitment, where the toll rises high enough to keep enough drivers in the free lanes that managed-lane speed holds above 50 mph. The same mechanism runs on a residence-hall lot that posts variable rates by time of day to keep a target fraction of spaces open.<sup class="cite" data-cite="ref-2"></sup><sup class="cite" data-cite="ref-34"></sup></aside>
 
-<figure class="sketch">
-  <div class="mount" id="sk-yield-mount" data-w="700" data-h="220"></div>
+<figure class="sketch" aria-label="The Indianapolis Zoo replaced one posted adult price with a published day-of-week grid running from an $8 Tuesday floor to a $30 Saturday peak, which lifted weekday attendance share and revenue while widening access for fixed-income families.">
+  <div class="mount" id="sk-yield-mount" data-w="700" data-h="220" aria-hidden="true"></div>
 </figure>
 
 <p data-complete>The clearest non-airline case is the Indianapolis Zoo's 2009 to 2010 rollout, which shows yield management can serve a social goal rather than only an extraction one. The Zoo's single posted adult price of $16.95 over-priced the under-used Tuesday slot and under-priced the over-crowded Saturday one, so working-poor families who could only visit Saturday faced both a queue and the full barrier. A pricing consultancy replaced the single price with a published calendar grid running from an <strong>$8</strong> Tuesday floor to a <strong>$30</strong> peak-Saturday ceiling.<sup class="cite" data-cite="ref-35"></sup> Two design choices separated it from the surge-pricing pattern, because the off-peak price was genuinely lower than the prior single price, so a budget-constrained family paid less, and the whole calendar was published in advance. Weekday attendance share moved from <strong>57% to 67%</strong>, total revenue rose <strong>12%</strong>, and access widened for fixed-income families whose Saturday visit had been gated by both crowd and the $16.95 barrier.<sup class="cite" data-cite="ref-35"></sup> Yield management is a capacity-allocation tool rather than inherently an extraction one, and which goal it serves depends on whether the off-peak floor sits below the single-price baseline. An undergraduate organizing a charity gala runs the same regime, where a lower-priced Wednesday session plus a higher-priced Saturday one captures the seat-fill and donor-spend a single posting would have missed.</p>
@@ -822,15 +865,15 @@
 
 <p data-focused style="display:none">Uber applies the same logic to a category buyers treat as emergency service, where the <span class="term" data-tt="A surge multiplier is the factor a dynamic-pricing engine adds during a demand spike, from about 1.2x to 7x. Buyers tolerate it on rideshare because the scarcity is visible, but reject it on staples.">surge multiplier</span> rises to 7x on storms.<sup class="cite" data-cite="ref-2"></sup> Wendy's tested it on staple food in February 2024 and reversed within twelve days under viral surge-pricing framing.<sup class="cite" data-cite="ref-36"></sup> A campus tutor's Tuesday $20 study session reads as fair, but the same $20-versus-$40 spread sold as an &ldquo;exam-week emergency rate&rdquo; reads as gouging. Same dollars, opposite ceiling, set by which side of the reference point the change is announced from.</p>
 
-<figure class="sketch">
-  <div class="mount" id="sk-uber-surge-mount" data-w="700" data-h="240"></div>
+<figure class="sketch" aria-label="Buyer tolerance for surge pricing falls sharply as the multiplier crosses about 3x, which is why a visible-scarcity category like rideshare absorbs surge while a staple category like fast food rejects it.">
+  <div class="mount" id="sk-uber-surge-mount" data-w="700" data-h="240" aria-hidden="true"></div>
 </figure>
 
 <p data-complete>A May 2024 <em>HBR</em> review of the 2024 dynamic-pricing wave names two conditions buyers tolerate. The dynamic price has to be a <span class="term" data-tt="The better-than-static condition, from Bertini and Koenigsberg's May 2024 HBR article, says a dynamic-pricing regime is only acceptable when it beats a single static price on a dimension the buyer values, such as a lower off-peak price, a shorter queue, or guaranteed availability.">better deal</span> than a static one on a dimension the buyer values, and it has to read as part of the brand's promise rather than a margin-recovery move stapled on at announcement.<sup class="cite" data-cite="ref-36"></sup> A 2024 follow-up record expands the two into six principles a firm walks before launch, each a separate failure mode the 2024 reversals exposed.<sup class="cite" data-cite="ref-37"></sup></p>
 
 
 <figure class="sketch" data-complete aria-label="Six principles of dynamic-pricing audit drawn as a 3 by 2 grid of named cells: explicability, transparency, cooperative framing, category tolerance, brand-promise compatibility, pre-launch communication. Each cell carries a one-line empirical example.">
-  <div class="mount" id="sk-six-principles-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-six-principles-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>The six-principle audit converts the fairness ceiling from a constraint a firm hits at reversal into a checklist a firm runs before launch. Each cell names one failure mode from the 2024 cases.</figcaption>
 </figure>
 
@@ -862,8 +905,8 @@
 <p data-complete>When the marginal cost of one more user falls to near zero, the firm's pricing problem stops being per-unit cost recovery and becomes acquiring users who would not pay anything to try the product. The model works only when the converted cohort covers fixed development and acquisition spend across the whole free-plus-paid population, which makes freemium a conversion problem before it is a pricing one.<sup class="cite" data-cite="ref-40"></sup> Conversion across leading platforms shows the spread. Spotify ended 2024 with roughly 40 percent of its near-600-million monthly users on a paid tier, an exceptionally high rate that reflects an integrated free-and-paid app. Duolingo Super converts around 8 percent and Notion around 4 percent. Slack and Dropbox report team conversion of 25 to 30 percent once a workspace crosses an active-member threshold, the network-effect lift that separates team-dynamic freemium from purely individual use.<sup class="cite" data-cite="ref-39"></sup><sup class="cite" data-cite="ref-40"></sup></p>
 
 
-<figure class="sketch" data-complete aria-label="The freemium conversion funnel.">
-  <div class="mount" id="sk-freemium-funnel-mount" data-w="700" data-h="282"></div>
+<figure class="sketch" data-complete aria-label="The freemium conversion funnel: a free tier acquires users at near-zero cost, the trial qualifies them, and the paid conversion is the lever that decides whether the model funds itself.">
+  <div class="mount" id="sk-freemium-funnel-mount" data-w="700" data-h="282" aria-hidden="true"></div>
   <figcaption>Freemium is a conversion funnel. The free tier acquires users at almost no cost, the trial qualifies them, and the paid conversion is the lever that decides whether the model funds itself, not the headline price.</figcaption>
 </figure>
 
@@ -933,8 +976,8 @@
 
 <p data-complete>Freemium, subscription, and dynamic pricing all sit on top of one upstream question. Is the firm selling the buyer a product, the <span class="term" data-tt="The means-and-ends frame asks whether the firm is charging the buyer for the product it sells (the means) or for the outcome the buyer is actually trying to achieve (the end). A power-tool firm sells drills, but the buyer is paying for holes. A software company sells seat licenses, but the buyer is paying for resolved support tickets.">means</span>, or charging for the outcome the buyer is trying to reach, the end?<sup class="cite" data-cite="ref-42"></sup> The buyer walking into the hardware store does not want a drill, she wants a hole in the wall. The price structures that answer this question sit on a risk-transfer spectrum across four families.</p>
 
-<figure class="sketch" data-complete aria-label="The four pricing families on a risk-transfer ladder.">
-  <div class="mount" id="sk-means-ends-ladder" data-w="700" data-h="272"></div>
+<figure class="sketch" data-complete aria-label="The four pricing families on a risk-transfer ladder: pay-per-use keeps consumption risk on the firm, tiered subscription shifts it to the buyer, outcome-based pricing pays only when the work is done, and gainsharing moves almost all the risk onto the supplier.">
+  <div class="mount" id="sk-means-ends-ladder" data-w="700" data-h="272" aria-hidden="true"></div>
   <figcaption>The four families on a risk ladder. Pay-per-use puts consumption risk on the firm, tiered subscription puts it on the buyer for a predictable bill, outcome-based pricing pays only when the work is done, and gainsharing moves almost all the risk onto the supplier by paying a slice of the measured benefit.</figcaption>
 </figure>
 
@@ -968,8 +1011,8 @@
 
 <aside class="sn" data-complete><span class="sn-num">N.</span> The broader family is <span class="term" data-tt="Customer pricing intervention is a class of structures where the firm cedes some price-setting authority to the buyer: pay-what-you-want, name-your-own-price, sliding-scale, community pricing, value-adjustment-line invoicing. The participation lifts the buyer's fairness perception by letting the buyer express a personal valuation instead of facing a fixed constraint.">customer pricing intervention</span>: Humble Bundle's pay-what-you-want, GoBank's $0-to-$9 sliding monthly fee, Logos.com community pricing, and Summit Law's value-adjustment-line invoice.<sup class="cite" data-cite="ref-9"></sup> Each one lets the buyer express a personal valuation, and an undergraduate running a campus tutoring service can test the principle by replacing a flat $25 hourly rate with a $20-to-$35 sliding scale the buyer picks, then watching whether the average realized price moves up or down.</aside>
 
-<figure class="sketch" aria-label="The dual-entitlement fairness line.">
-  <div class="mount" id="sk-fairness-mount" data-w="700" data-h="240"></div>
+<figure class="sketch" aria-label="The dual-entitlement fairness line: the same dollar increase reads as fair when the firm tells a rising-cost story and as gouging when it follows a demand spike.">
+  <div class="mount" id="sk-fairness-mount" data-w="700" data-h="240" aria-hidden="true"></div>
   <figcaption>The dual-entitlement line. The same dollar increase reads as fair when the firm tells a rising-cost story and as gouging when it follows a demand spike, because buyers grant the firm the right to defend its profit but not to capture a windfall.</figcaption>
 </figure>
 
@@ -983,8 +1026,8 @@
 
 <p data-focused style="display:none">When input-cost inflation compresses margin and the dual-entitlement story looks weak, the firm has four routes.<sup class="cite" data-cite="ref-49"></sup> Route 1, the posted increase: raise the shelf price, and detection is immediate. Route 2, absorb: hold the price and eat the margin. Route 3, <span class="term" data-tt="Shrinkflation holds the shelf price constant while shrinking the package, so the per-unit price rises but the change is invisible at purchase. Low-recall categories like paper towels hide it longest.">shrinkflation</span>: shrink the package, so the per-unit price rises while the shelf price does not. Route 4, <span class="term" data-tt="Skimpflation holds price and package constant while substituting cheaper inputs. The only signals are taste or performance, so it can run undetected until a public exposure.">skimpflation</span>: substitute cheaper inputs. Routes 3 and 4 are covert by design.</p>
 
-<figure class="sketch" aria-label="The four covert-increase routes by detection latency.">
-  <div class="mount" id="sk-covert-routes" data-w="700" data-h="260"></div>
+<figure class="sketch" aria-label="The four covert-increase routes ordered by detection latency: a posted increase is caught at once, an absorbed cost is invisible but eats margin, shrinkflation is caught in weeks, and skimpflation can run undetected until a category-wide exposure.">
+  <div class="mount" id="sk-covert-routes" data-w="700" data-h="260" aria-hidden="true"></div>
   <figcaption>The four routes ordered by how fast buyers notice. A posted increase is caught at once, an absorbed cost is invisible but eats margin, shrinkflation is caught in weeks in high-recall categories and much later in low-recall ones, and skimpflation can run undetected until a category-wide exposure resets the ceiling.</figcaption>
 </figure>
 
@@ -999,8 +1042,8 @@
 
 <p>The four approaches, the willingness-to-pay methods, the psychological levers, the fairness ceiling, and the covert routes are the chapter's machinery. Three brands now show what happens when a firm picks one approach as a structural commitment and runs the rest of the business off it.</p>
 
-<figure class="sketch" aria-label="Three brands on the pricing compass.">
-  <div class="mount" id="sk-three-anchors" data-w="720" data-h="260"></div>
+<figure class="sketch" aria-label="Three brands on the pricing compass: Costco commits to competitor-based pricing through an everyday-low-price markup cap, Patagonia to value-based pricing defended by purpose, and Liquid Death to value-based pricing defended by identity positioning.">
+  <div class="mount" id="sk-three-anchors" data-w="720" data-h="260" aria-hidden="true"></div>
   <figcaption>Three brands, three anchors. Costco commits to competitor-based pricing through an everyday-low-price markup cap, Patagonia commits to value-based pricing defended by purpose, and Liquid Death commits to value-based pricing defended by identity positioning.</figcaption>
 </figure>
 
@@ -1010,8 +1053,8 @@
 
 <p data-focused style="display:none">Costco is the standard low-margin, high-volume case, capping its markup at 14 percent per SKU.<sup class="cite" data-cite="ref-50"></sup> The membership fee ($65 Gold Star, $130 Executive) carries roughly 70 percent of net income, so every shelf decision (the $4.99 rotisserie, the $1.50 hot-dog combo) is an investment in renewal, not a margin line.<sup class="cite" data-cite="ref-50"></sup> The commitment is everyday low pricing at the SKU level, made viable by the fee that absorbs the 18 percent margin penalty no unbacked everyday-low-price retailer survives.<sup class="cite" data-cite="ref-10"></sup></p>
 
-<figure class="sketch" aria-label="Costco's two-part pricing engine.">
-  <div class="mount" id="sk-membership-engine" data-w="720" data-h="240"></div>
+<figure class="sketch" aria-label="Costco's two-part pricing engine: a capped markup keeps the shelf price visibly low and pulls volume, while the membership fee carries about 70 percent of the profit.">
+  <div class="mount" id="sk-membership-engine" data-w="720" data-h="240" aria-hidden="true"></div>
   <figcaption>Costco runs a two-part engine. The capped markup keeps the shelf price visibly low and pulls the volume, and the membership fee carries about 70 percent of the profit, so the cheap shelf is what makes the renewable fee worth paying.</figcaption>
 </figure>
 
@@ -1093,12 +1136,12 @@
   <div class="cmp-grid">
     <div class="cmp-pane">
       <span class="cmp-label">claude-haiku-4-5 (fast tier)</span>
-      <div class="cmp-out demo-stream" id="cmp-competitor-haiku" aria-live="polite"></div>
+      <div class="cmp-out demo-stream" id="cmp-competitor-haiku" aria-live="polite" aria-atomic="false"></div>
       <span class="cmp-cost" id="cmp-competitor-haiku-cost"></span>
     </div>
     <div class="cmp-pane">
       <span class="cmp-label cmp-smart">claude-opus-4-7 (deep tier)</span>
-      <div class="cmp-out demo-stream" id="cmp-competitor-opus" aria-live="polite"></div>
+      <div class="cmp-out demo-stream" id="cmp-competitor-opus" aria-live="polite" aria-atomic="false"></div>
       <span class="cmp-cost" id="cmp-competitor-opus-cost"></span>
     </div>
   </div>
@@ -1110,8 +1153,8 @@
 <span class="ax">09 // looking ahead</span>
 <h2 id="ahead">Looking Ahead</h2>
 
-<figure class="sketch" aria-label="The chapter spine as one strip.">
-  <div class="mount" id="sk-ch10-recap" data-w="720" data-h="250"></div>
+<figure class="sketch" aria-label="The chapter spine as one strip: a 1 percent price move beats a 1 percent volume move, the four approaches set floor, frame, and ceiling, willingness-to-pay methods recover the band, psychological levers move the read, governance bounds dynamic pricing, freemium inverts the problem when marginal cost is near zero, and the fairness ceiling is what finally caught the EpiPen climb.">
+  <div class="mount" id="sk-ch10-recap" data-w="720" data-h="250" aria-hidden="true"></div>
   <figcaption>The chapter on one strip. A 1 percent price move beats a 1 percent volume move, the four approaches set floor, frame, and ceiling, the willingness-to-pay methods recover the band, the psychological levers move the read, governance bounds dynamic pricing, freemium inverts the problem when marginal cost is near zero, and the fairness ceiling is what finally caught the EpiPen climb.</figcaption>
 </figure>
 
@@ -1125,8 +1168,8 @@
 
 <aside class="sn" data-complete><span class="sn-num">N.</span> The AI-driven price-optimization software market reached roughly $3 billion in 2024 and is on track for about $11.7 billion by 2034 (a 15 percent compound rate), with four large vendors leading: Pricefx (CPG and chemicals), Vendavo (B2B industrial deal management), PROS (airline and travel yield), and Zilliant (industrial distribution).<sup class="cite" data-cite="ref-53"></sup> All four sell the same product roadmap, from rule-based engines to ML recommenders to reinforcement-learning autonomy. The marketer's ladder runs the same way: a one-off pricing scan in a chat assistant with web search, a saved <span class="term" data-tt="A Skill is a reusable instruction file you save once so an AI assistant runs the same multi-step task on demand. The install and wiring are covered in Chapter 18.">Skill</span> that runs a four-step procedure automatically, an <span class="term" data-tt="An MCP server is a connector that lets an AI model read live data from a tool you already use (a survey platform, a competitor-price feed) without a copy-paste step. Covered in Chapter 18.">MCP server</span> pulling live survey or competitor-price data, and a scheduled job that runs the audit overnight and pings the team only when the recommended price moves outside the discount-latitude budget. Both regulatory ceilings the chapter named, algorithmic collusion (Section 10.5) and the fairness ceiling (Section 10.7), sit below the technical capability of every connected and scheduled system, so the binding constraint on a 2026 rollout is what the brand can survive and what the regulator will not investigate.</aside>
 
-<figure class="sketch" aria-label="The hand-off to Chapter 11.">
-  <div class="mount" id="sk-turn-ch11" data-w="700" data-h="200"></div>
+<figure class="sketch" aria-label="The hand-off to Chapter 11: the price is decided, and the next problem is getting the product to the shelf.">
+  <div class="mount" id="sk-turn-ch11" data-w="700" data-h="200" aria-hidden="true"></div>
   <figcaption>From setting the number to getting the product to the shelf. The price is decided, and the next decision is the channel: the structures and partners that carry the product the last distance to the buyer.</figcaption>
 </figure>
 

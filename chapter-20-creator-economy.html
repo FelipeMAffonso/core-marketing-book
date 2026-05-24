@@ -352,6 +352,53 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<!-- ============================================================
+     A11Y CONTRAST FIXES (Ch20) — appended LAST in <head> so it wins over the
+     chapter's own <style> blocks AND _accessibility.css. Doubled-class / id-doubled
+     specificity + !important. SOURCE-LEVEL fixes for every axe color-contrast failure.
+     Felipe's directive: keep bright coral #DA7756 as heading/marker/rule/border/SVG
+     stroke (meets 3:1); darken ONLY what fails as small text or as a white-on-coral fill.
+     Nothing here changes geometry, prose, or layout — color tokens + opacity treatment only.
+     ============================================================ -->
+<style>
+/* (1) White-on-coral RUN / active-toggle / solid buttons: white text was 3.1:1 on #DA7756.
+       Darken the BACKGROUND to #a8472a (white-on-#a8472a = 5.83:1); hover #8f3c23 (7.40:1).
+       Keep disabled state dimmed via the widgets' own [disabled] opacity (still readable). */
+#w-creator-audit#w-creator-audit .ca-run{background:#a8472a!important;border-color:#a8472a!important;color:#fff!important}
+#w-creator-audit#w-creator-audit .ca-run:hover{background:#8f3c23!important;border-color:#8f3c23!important}
+#w-tier-buy#w-tier-buy .tb-btn.solid{background:#a8472a!important;color:#fff!important}
+#w-tier-buy#w-tier-buy .tb-btn.solid:hover{background:#8f3c23!important}
+#w-tier-buy#w-tier-buy .tb-goal button[aria-pressed="true"]{background:#a8472a!important;color:#fff!important}
+
+/* (2) Small CORAL-DEEP text (#B8553A / var(--coral-deep)) on cream/white was 4.2:1.
+       Recolor the small-text uses to #a8472a (>=5:1). NOT borders/strokes/markers. */
+#w-tier-buy#w-tier-buy .tb-eyebrow,
+#w-tier-buy#w-tier-buy .tb-eyebrow .cap-num{color:#a8472a!important}
+#w-creator-audit#w-creator-audit .ca-chip.live{color:#a8472a!important}
+#w-creator-audit#w-creator-audit .ca-qbtn.sharp .ca-qtag{color:#a8472a!important}
+
+/* (3) Small GREY text (#888 / var(--ca-ink-3)) on cream/white was 3.35-3.54:1.
+       Darken these small-text uses to #6b6b6b (>=5:1 on white, 5.04:1 on cream). */
+#w-creator-audit#w-creator-audit .ca-chip{color:#6b6b6b!important}
+#w-creator-audit#w-creator-audit .ca-presetlab{color:#6b6b6b!important}
+#w-creator-audit#w-creator-audit .ca-verdict .ca-ph{color:#6b6b6b!important}
+#w-creator-audit#w-creator-audit .ca-qbtn.vague .ca-qtag{color:#6b6b6b!important}
+
+/* (4) OPACITY-WASHED comparison columns (#w-tier-buy .tb-col): the resting column was
+       dimmed with opacity:.5, which blended its placeholder + header text to ~2.1:1.
+       Replace the text-washing opacity with a NON-opacity dim (muted bg + softer border),
+       keep ALL text at FULL opacity, and force the small text tokens to passing colors so
+       contrast holds in BOTH the resting AND the .live (white-card) state. The .live state
+       still restores the brighter white card via its own rule + the override below. */
+#w-tier-buy#w-tier-buy .tb-col{opacity:1!important;background:#faf7f3!important;border-color:#efe7da!important}
+#w-tier-buy#w-tier-buy .tb-col.live{background:#fff!important;border-color:#e6dfd2!important}
+#w-tier-buy#w-tier-buy .tb-col.sharp.live{border-color:#E8A488!important}
+#w-tier-buy#w-tier-buy .tb-col .tb-body{color:#1a1a1a!important}
+#w-tier-buy#w-tier-buy .tb-col .tb-ph{color:#6b6b6b!important}
+#w-tier-buy#w-tier-buy .tb-col.vague .tb-ct2{color:#6b6b6b!important}
+#w-tier-buy#w-tier-buy .tb-col.sharp .tb-ct2{color:#a8472a!important}
+#w-tier-buy#w-tier-buy .tb-col .tb-cost2{color:#6b6b6b!important}
+</style>
 </head>
 <body data-chapter-num="20">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -363,6 +410,19 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of"); injected SVG
+         mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 20 (review; Haiku can hallucinate).
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-20-creator-economy.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 20</p>
@@ -389,7 +449,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 </figure>
 
 <figure class="sketch" aria-label="What the brand pays for versus what it rents: follower count versus reputation">
-  <div class="mount" id="sk-reputation-vs-followers" data-w="700" data-h="250"></div>
+  <div class="mount" id="sk-reputation-vs-followers" data-w="700" data-h="250" aria-hidden="true"></div>
   <figcaption>What the brand pays for against what it actually rents. The invoice is written against the follower count, but the asset that can walk away when the campaign ends is the creator's reputation.</figcaption>
 </figure>
 
@@ -402,7 +462,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none;">For most of the last century, a marketer who wanted a mass audience bought television, magazine, or radio spots at Nielsen-measured rates. By 2024 that arrangement had mostly collapsed, and <span class="term" data-tt="Marginal cost is the dollar amount it takes to make the next unit of something, on top of what you have already spent. A 1995 magazine paid for paper and trucks for every extra copy, but a TikTok video in 2026 costs the creator essentially nothing extra to publish. When marginal cost falls to roughly zero, anyone can publish.">marginal cost</span> explains most of why. A phone now shoots broadcast-quality video, TikTok and YouTube distribute it free, and the median U.S. adult under thirty spends more time on creator video than on broadcast television.<sup class="cite" data-cite="ref-3"></sup></p>
 
 <figure class="sketch" aria-label="Three falling costs that produced the creator channel: cost to produce, cost to distribute, willingness to watch ads">
-  <div class="mount" id="sk-attention-shift" data-w="700" data-h="250"></div>
+  <div class="mount" id="sk-attention-shift" data-w="700" data-h="250" aria-hidden="true"></div>
   <figcaption>The structural cause in one picture. The cost to produce a video, the cost to distribute it, and the audience's willingness to watch advertising all fall toward zero at once, and creators are what fill the gap.</figcaption>
 </figure>
 
@@ -417,7 +477,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none;">The creator line's share of a consumer brand's budget went from effectively zero in 2014 to 18 to 24 percent in 2026, so roughly one in five marketing dollars now goes to creator partnerships, and the share is still climbing.<sup class="cite" data-cite="ref-5"></sup> The same supply-and-demand logic reaches a student running a Greek-life account and a Stanley manager allocating seventy million dollars alike, because both buy in the same market.</p>
 
 <figure class="sketch" aria-label="The creator-economy supply curve: from near zero in 2014 to roughly 480 billion projected by 2027">
-  <div class="mount" id="sk-supply-mount" data-w="660" data-h="280"></div>
+  <div class="mount" id="sk-supply-mount" data-w="660" data-h="280" aria-hidden="true"></div>
   <figcaption>The creator economy as a supply curve. The slope is what matters: the marginal cost of becoming a creator approaches zero, so the supply of creators expands faster than the supply of attention, which is what gives the brand its bargaining position.</figcaption>
 </figure>
 
@@ -502,7 +562,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 </div>
 
 <figure class="sketch" aria-label="CPM (cost per thousand impressions) by tier: nano, micro, macro, mega">
-  <div class="mount" id="sk-cpm-mount" data-w="700" data-h="256"></div>
+  <div class="mount" id="sk-cpm-mount" data-w="700" data-h="256" aria-hidden="true"></div>
   <figcaption>CPM by tier on Instagram, 2026. The bars do not increase monotonically: nanos run high on a CPM basis because the post fee is fixed and the audience is small, CPM falls in the micro and macro tiers, and rises again at the mega tier where the celebrity premium dominates the post fee.</figcaption>
 </figure>
 
@@ -516,7 +576,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <aside class="sn" data-complete><span class="sn-num">4.</span> The benchmark CPM tables published yearly by Influencer Marketing Hub, Aspire, and CreatorIQ are the standard reference. They vary by platform (TikTok runs 30 to 60 percent cheaper per impression than Instagram in 2026), by category (B2B SaaS 2 to 3 times more expensive than consumer-packaged goods), and by format (a 60-second integrated YouTube segment runs 2 to 4 times the price of a 15-second TikTok at the same audience size). In production a brand reads three numbers off a platform such as Aspire, Grin, or Modash, the median reach per post, the median engagement rate, and the quoted fee range, then runs the same CPM check before any brief goes out, filtering out a creator whose CPM is too high for the goal or whose engagement sits below the tier benchmark. </aside>
 
 <figure class="sketch" aria-label="The CPM versus cost-per-engagement flip: micro-creator beats mega on engagement, mega beats micro on CPM">
-  <div class="mount" id="sk-cpm-flip-mount" data-w="720" data-h="295"></div>
+  <div class="mount" id="sk-cpm-flip-mount" data-w="720" data-h="295" aria-hidden="true"></div>
   <figcaption>The metric flip. The micro-creator buy and the mega-creator buy yield opposite verdicts depending on which denominator the marketer reports against. The right tier is the tier whose dominant metric matches the brand's decision, not the tier with the biggest follower count.</figcaption>
 </figure>
 
@@ -530,7 +590,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <aside class="sn" data-complete><span class="sn-num">5.</span> The Chapter 5 fraternity homecoming-T-shirt example has a creator-economy variant: a Sigma Chi pledge class running the chapter account chooses among shooting its own homecoming reel internally, paying a 4,000-follower nano-creator senior for a paid integration about the chapter's philanthropy, or negotiating product-only with three brothers who already post about Greek life. Each option is computable on a single-page spreadsheet, and the right answer usually converts the small budget into three creator integrations rather than one, with the nano engagement rates compounding.</aside>
 
 <figure class="sketch" aria-label="The undergraduate creator stack: from a 1,200-follower personal account to a 12,000-follower campus micro tier">
-  <div class="mount" id="sk-undergrad-mount" data-w="700" data-h="220"></div>
+  <div class="mount" id="sk-undergrad-mount" data-w="700" data-h="220" aria-hidden="true"></div>
   <figcaption>The undergraduate version of the tier ladder. The same engagement-rate gradient applies at smaller scale, which is why a Greek-life chapter can run a credible creator program on a 200-dollar weekly budget.</figcaption>
 </figure>
 <span class="ax">03 // disclosure and brand safety</span>
@@ -586,7 +646,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <aside class="sn"><span class="sn-num">8.</span> The ASA's 2024 Instagram and TikTok monitoring found roughly 57 percent of influencer ads compliant, 9 percent using an unclear label, and 34 percent with no disclosure at all, against 3,500-plus complaints that year. </aside>
 
 <figure class="sketch" aria-label="A hidden-ad post versus a compliantly disclosed post: same creator, same product, different legal status">
-  <div class="mount" id="sk-hidden-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-hidden-mount" data-w="720" data-h="240" aria-hidden="true"></div>
   <figcaption>The same content, two legal regimes. A hidden-ad post and a compliantly disclosed post sit side by side, same creator and same product, with different legal status. Disclosure at the front of the caption plus the structured platform tag is the binding standard.</figcaption>
 </figure>
 
@@ -612,7 +672,7 @@ The contract carries this in four numbered clauses, each addressing a distinct e
 <p data-focused style="display:none;">The CPM math the chapter just walked is the standard benchmark, and it misses something. A media plan calls a 2-million-impression mega video a better buy than a 60,000-impression nano one because the count is 33 times higher. But an impression is not a unit of attention; it is a moment when the platform served the post to a feed, and whether the buyer looked for half a second or four seconds depends on the platform. Because two impressions are not the same thing, CPM can overpay the wrong creators by a wide margin.</p>
 
 <figure class="sketch" aria-label="One-shot reach versus repeat engagement: the second exposure does most of the memory work">
-  <div class="mount" id="sk-attention-mount" data-w="700" data-h="256"></div>
+  <div class="mount" id="sk-attention-mount" data-w="700" data-h="256" aria-hidden="true"></div>
   <figcaption>Memory encoding by exposure number. The first exposure does roughly half the work of being recognized, while the second and third do the work of being remembered. Repeat engagement with the same creator beats one-shot scale on this curve.</figcaption>
 </figure>
 
@@ -651,7 +711,7 @@ The contract carries this in four numbered clauses, each addressing a distinct e
 <p data-focused style="display:none;">Repeat engagement compounds the attention effect. A buyer who has watched a nano-creator three times a week for two months is now in a <span class="term" data-tt="A parasocial relationship is the one-sided sense of friendship a viewer builds with a creator they have never met, because the videos feel like a friend talking straight to camera. The term comes from a 1956 paper by Horton and Wohl, and it is why a creator's recommendation reads like a friend's text rather than an ad.">parasocial relationship</span> with that creator, so the brand's next integration reaches a viewer who already trusts the messenger.<sup class="cite" data-cite="ref-17"></sup> A campaign across three micro-creators builds three exposure stacks instead of one, which is how Liquid Death built a national reputation in 36 months on a spend that would not have covered one Super Bowl spot.<sup class="cite" data-cite="ref-18"></sup> Fixed-fee posts make the brand pay before it knows the post worked, and affiliate flips that.</p>
 
 <figure class="sketch" aria-label="Three different creators reaching the same buyer: parasocial stack compounding across micro-creators">
-  <div class="mount" id="sk-parasocial-mount" data-w="720" data-h="250"></div>
+  <div class="mount" id="sk-parasocial-mount" data-w="720" data-h="250" aria-hidden="true"></div>
   <figcaption>The parasocial stack. Three different micro-creators integrating the same brand reach the same buyer at three different first-exposure points, so the brand's net memory rises faster than one mega-creator's would at the same total spend.</figcaption>
 </figure>
 
@@ -724,7 +784,7 @@ The contract carries this in four numbered clauses, each addressing a distinct e
 
 <figure class="sketch" aria-label="Comparison of affiliate networks: Amazon, Impact, Refersion, ShareASale, with cookie windows and commission ranges">
   
-  <div class="mount" id="sk-affiliate-mount" data-w="700" data-h="240"></div>
+  <div class="mount" id="sk-affiliate-mount" data-w="700" data-h="240" aria-hidden="true"></div>
   <figcaption>The four affiliate networks a 2026 marketer chooses among. Amazon's 24-hour window is the trade-off the brand pays for the largest catalog and the highest buyer trust.</figcaption>
 </figure>
 
@@ -760,7 +820,7 @@ The contract carries this in four numbered clauses, each addressing a distinct e
 <p data-focused style="display:none;">The brand's most common and most expensive mistake is buying the organic-only tier when the asset would have repaid the repurposing right inside a quarter. A video that performs well on the creator's feed is exactly the one the brand wants to re-edit for its own grid, and that right costs far less bought up front than re-shot later. The 2026 default sits inside the 12-month repurposing region, not the perpetual ceiling.</p>
 
 <figure class="sketch" aria-label="UGC rights ladder: organic, whitelisting, repurposing, perpetual">
-  <div class="mount" id="sk-rights-mount" data-w="700" data-h="240"></div>
+  <div class="mount" id="sk-rights-mount" data-w="700" data-h="240" aria-hidden="true"></div>
   <figcaption>The UGC rights ladder. Each step up adds cost and adds usage scope. The cheapest mistake a marketer makes is buying organic-only when the asset would have repaid the cost of the repurposing right inside a quarter.</figcaption>
 </figure>
 
@@ -841,7 +901,7 @@ The contract carries this in four numbered clauses, each addressing a distinct e
 <p data-focused style="display:none;">The matching problem is harder than that shortlist makes it look. A creator's advertised audience is self-reported and drifts with the platform's latest algorithm change. A fitness creator who built a following on home workouts may have shifted to a parenting audience, so the brief that paid for gym-goers reaches new mothers instead. The audit that catches a misclassified creator runs on the last fifty posts, and it is where AI now does the heavy lifting.</p>
 
 <figure class="sketch" aria-label="Creator decision matrix: audience overlap on x-axis, brand-safety score on y-axis, with four candidates plotted">
-  <div class="mount" id="sk-decision-mount" data-w="700" data-h="280"></div>
+  <div class="mount" id="sk-decision-mount" data-w="700" data-h="280" aria-hidden="true"></div>
   <figcaption>The brand-side decision matrix. A high-overlap, high-engagement creator carrying a brand-safety flag is often a worse buy than a moderate-overlap creator with a clean record, which is why a single number never settles the match.</figcaption>
 </figure>
 
@@ -849,7 +909,7 @@ The contract carries this in four numbered clauses, each addressing a distinct e
 <p data-focused style="display:none;">That audit follows five checks: audience match (how much of the audience overlaps the brand's target), a brand-safety scan of past content, engagement authenticity (which reads comment depth to estimate the <span class="term" data-tt="The share of a creator's audience that is bought or bot accounts. A high band means the advertised reach is mostly hollow, so the brand pays for impressions no real buyer will see.">fake-follower band</span>), disclosure history, and a recommended rate band for this tier. A creator can clear the first four and still fail the fifth, which is why the order matters.</p>
 
 <figure class="sketch" aria-label="The five brand-side audit checks drawn as an ordered funnel a creator passes through: audience match, brand-safety scan, engagement authenticity, disclosure history, recommended rate">
-  <div class="mount" id="sk-audit-ladder-mount" data-w="700" data-h="390"></div>
+  <div class="mount" id="sk-audit-ladder-mount" data-w="700" data-h="390" aria-hidden="true"></div>
   <figcaption>The five-check audit as an ordered funnel. A creator can clear the first four gates and still fail the fifth, which drops the contract, so the audit is a sequence rather than a single score.</figcaption>
 </figure>
 
@@ -897,7 +957,7 @@ The contract carries this in four numbered clauses, each addressing a distinct e
 <p data-focused style="display:none;">The burned-car clip drove Stanley's revenue past 750 million dollars in 2023 and over one billion in 2024, but the same channel also exposed it to a crisis paid media could not have absorbed. In January 2024 a creator's home lead-test on a Quencher reported a positive result, and though the pellet meets FDA standards, on TikTok it read as a broken safety promise. Rather than draft press statements over a week, Stanley sent lab results to a pre-built roster of 47 food-safety creators under a 24-hour exclusive, whose videos drew 170 million views in 72 hours and closed the crisis inside one news cycle.<sup class="cite" data-cite="ref-29"></sup> A brand without that roster would have watched the claim outrun the correction, because once the storm starts there is no relationship to build.</p>
 
 <figure class="sketch" aria-label="Stanley's revenue arc 2018-2024 with creator events overlaid: Buy Guide order, Quencher launch, burned-Chevrolet TikTok, lead-pellet TikTok">
-  <div class="mount" id="sk-stanley-arc-mount" data-w="720" data-h="320"></div>
+  <div class="mount" id="sk-stanley-arc-mount" data-w="720" data-h="320" aria-hidden="true"></div>
   <figcaption>Stanley's 2018-to-2024 revenue arc, with the four creator events that bent the curve. Two of the four were unpaid earned-media moments and two were paid integrations, and together they drove more revenue for the brand than the entire 2019 paid-media budget did on its own.</figcaption>
 </figure>
 
@@ -912,7 +972,7 @@ The contract carries this in four numbered clauses, each addressing a distinct e
 <p data-complete>The model compounds only because of one structural decision. In 2022 the executive sponsor removed the marketing department's pre-publication veto on individual posts. Most brands run a legal-and-marketing review chain that catches every post before it goes out, and that chain is why most in-house creator accounts read as stiff rather than native. The corollary risk arrived twice in 2024, when two posts triggered short-lived brand-safety incidents that the brand absorbed with a public apology and kept posting. The Duolingo playbook works for a risk-tolerant brand whose leadership accepts occasional backlash as the price of native voice, and it cannot work at all for a risk-averse brand whose legal team gates publication. That condition is why the model has not generalized as widely as the engagement numbers would suggest. Every case so far featured a human creator, and the 2026 question is what happens when the face is generated.</p>
 
 <figure class="sketch" aria-label="2x2 case grid: whether the brand owns the creator, and whether the audience attaches to the creator or the brand, placing MrBeast, Stanley, Liquid Death, and Duolingo">
-  <div class="mount" id="sk-case-grid-mount" data-w="720" data-h="318"></div>
+  <div class="mount" id="sk-case-grid-mount" data-w="720" data-h="318" aria-hidden="true"></div>
   <figcaption>The four cases on one map. Whether the brand owns the creator (vertical axis) and whether the audience attaches to the creator or the brand (horizontal axis) sorts MrBeast, Stanley, Liquid Death, and Duolingo into four distinct positions, and the choice of position is the brand's strategic decision.</figcaption>
 </figure>
 
@@ -927,7 +987,7 @@ The contract carries this in four numbered clauses, each addressing a distinct e
 <p data-complete>Two named examples anchor the cohort. Lil Miquela, launched in 2016 by a Los Angeles agency as a styled CGI character, reached roughly 2.4 million Instagram followers by 2026 with paid integrations across Prada, Calvin Klein, and BMW, and reported monthly revenue above 100,000 dollars.<sup class="cite" data-cite="ref-32"></sup> Aitana Lopez, launched by a Barcelona agency in late 2023, reached 200,000 followers in eight months with integrations for Olaplex and Intimissimi at roughly 10,000 euros a month.<sup class="cite" data-cite="ref-32"></sup> The production stack behind them is the same generative tooling the rest of the chapter named: a frontier image model for the still posts, a frontier video model for short-form clips, a voice-clone layer, and a small editorial team of three to six humans running the calendar, the brand outreach, and the contracts.</p>
 
 <figure class="sketch" aria-label="Synthetic creator vs human creator: face, voice, audience, regulatory status compared">
-  <div class="mount" id="sk-synthetic-mount" data-w="720" data-h="250"></div>
+  <div class="mount" id="sk-synthetic-mount" data-w="720" data-h="250" aria-hidden="true"></div>
   <figcaption>The synthetic creator next to the human creator. The face is generated, the voice is cloned, the audience is real, and the regulatory category is unsettled. The 2026 question for the brand is whether the audience reads the synthetic post as fundamentally different.</figcaption>
 </figure>
 
@@ -938,7 +998,7 @@ The contract carries this in four numbered clauses, each addressing a distinct e
 <p data-focused style="display:none;">The most useful near-term role for a synthetic creator is not as the channel but as the research instrument that briefs the channel. A brand can generate three persona archetypes, run each on a small paid budget against the same targeting, measure which earns the most engagement, and brief the human roster on the winner. The synthetic persona does the cheap experimentation, and the human creators carry the campaign that converts.</p>
 
 <figure class="sketch" aria-label="Research-instrument loop: generate persona archetypes, run each on a micro-budget, measure engagement, brief the human creator roster">
-  <div class="mount" id="sk-synthetic-test-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-synthetic-test-mount" data-w="720" data-h="260" aria-hidden="true"></div>
   <figcaption>The synthetic creator as a research instrument. Generate persona archetypes, test each on a micro-budget, measure the engagement difference, and brief the human roster on the winner. The synthetic persona runs the experiment; the human creators run the campaign.</figcaption>
 </figure>
 
@@ -2323,10 +2383,10 @@ return '$' + usd.toFixed(4);
         '</button>' +
       '</div>' +
       '<div class="tb-aigrid">' +
-        '<div class="tb-col vague" id="tb-colv"><div class="tb-colhead"><span class="tb-ct2">Vague question</span><span class="tb-cost2" id="tb-costv"></span></div><div class="tb-body tb-ph">Press the vague question above.</div></div>' +
-        '<div class="tb-col sharp" id="tb-cols"><div class="tb-colhead"><span class="tb-ct2">Specific question</span><span class="tb-cost2" id="tb-costs"></span></div><div class="tb-body tb-ph">Press the specific question above.</div></div>' +
+        '<div class="tb-col vague" id="tb-colv"><div class="tb-colhead"><span class="tb-ct2">Vague question</span><span class="tb-cost2" id="tb-costv"></span></div><div class="tb-body tb-ph" aria-live="polite" aria-atomic="false">Press the vague question above.</div></div>' +
+        '<div class="tb-col sharp" id="tb-cols"><div class="tb-colhead"><span class="tb-ct2">Specific question</span><span class="tb-cost2" id="tb-costs"></span></div><div class="tb-body tb-ph" aria-live="polite" aria-atomic="false">Press the specific question above.</div></div>' +
       '</div>' +
-      '<div class="tb-averdict" id="tb-averdict"></div>' +
+      '<div class="tb-averdict" id="tb-averdict" aria-live="polite" aria-atomic="false"></div>' +
     '</div>';
   if (window.DepthEngine) window.DepthEngine.ccAutoCaptions(document);  // number the JS-built caption
 
@@ -2655,14 +2715,14 @@ return '$' + usd.toFixed(4);
     '<div class="ca-presets" id="ca-presets">'+
       SAMPLES.map(function(s){ return '<button class="ca-preset" data-id="'+s.id+'" data-handle="'+s.handle+'">'+s.label+'</button>'; }).join('')+
     '</div>'+
-    '<div class="ca-verdict" id="ca-verdict"><span class="ca-ph">The five-section verdict appears here. Audience match, brand-safety, engagement authenticity, disclosure, and a recommended rate band.</span></div>'+
+    '<div class="ca-verdict" id="ca-verdict" aria-live="polite" aria-atomic="false"><span class="ca-ph">The five-section verdict appears here. Audience match, brand-safety, engagement authenticity, disclosure, and a recommended rate band.</span></div>'+
     '<div class="ca-vs">'+
       '<p class="ca-vslead">Now ask the <b>same handle</b> two ways. Same model, same cost; only the precision of the question changes.</p>'+
       '<div class="ca-qbtns">'+
         '<button class="ca-qbtn vague" id="ca-qvague"><span class="ca-qtag">Vague question</span><span class="ca-qtext">"Is this creator good?"</span></button>'+
         '<button class="ca-qbtn sharp" id="ca-qsharp"><span class="ca-qtag">Specific question</span><span class="ca-qtext">"Audit @handle for a $15-25 AOV coffee brand at $350/post: overlap, safety, fakes, disclosure, fair rate."</span></button>'+
       '</div>'+
-      '<div class="ca-meta" id="ca-meta"></div>'+
+      '<div class="ca-meta" id="ca-meta" aria-live="polite" aria-atomic="false"></div>'+
     '</div>';
 
   const handleEl  = root.querySelector("#ca-handle");

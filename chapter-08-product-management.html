@@ -495,6 +495,45 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<style>
+/* ============================================================
+   A11Y CONTRAST FIX (Ch8, WCAG 2.1 AA) — appended last in <head> so it wins
+   over the in-body #w83/#w85 <style> blocks. Doubled-class + !important to
+   beat the chapter's own scoped rules. ADDITIVE: changes color/opacity only,
+   no prose / no JS / no markup. See contrast_detail.js report.
+   ============================================================ */
+
+/* (A) White-on-coral run/go BUTTONS: 3.1:1 -> darken background to #a8472a
+   (white on #a8472a = 5.83:1); keep white text; hover #8f3c23; disabled #6b6b6b. */
+#oa-run.oa-run, #oa-run[id]{ background:#a8472a !important; color:#fff !important; }
+#oa-run.oa-run:hover, #oa-run[id]:hover{ background:#8f3c23 !important; }
+#w84-go.demo-button, #w84-go[id]{ background:#a8472a !important; color:#fff !important; }
+#w84-go.demo-button:hover, #w84-go[id]:hover{ background:#8f3c23 !important; }
+#w84-go.demo-button:disabled, #w84-go[id]:disabled{ background:#6b6b6b !important; }
+
+/* (B) Vague/Sharp comparison COLUMNS (w83 + w85): the inactive state used
+   opacity:.5, which washed the placeholder + column-head text below 4.5:1.
+   Remove the text-washing opacity; dim the inactive card with a muted cream
+   background + softer border instead, keeping ALL text at FULL opacity. The
+   .live state (an answer arrived) restores the bright white card. */
+#w83 .w83-col.w83-col, #w85 .w85-col.w85-col{
+  opacity:1 !important;
+  background:#faf7f3 !important;
+  border-color:#efe7da !important;
+}
+#w83 .w83-col.w83-col.live, #w85 .w85-col.w85-col.live{
+  background:#fff !important;
+}
+#w83 .w83-col.w83-col.sharp.live{ border-color:var(--coral-soft) !important; }
+#w85 .w85-col.w85-col.sharp.live{ border-color:var(--coral-soft) !important; }
+
+/* (C) Full-opacity text colors inside those columns (now that opacity no longer
+   dims them): placeholders + the VAGUE column-head -> #6b6b6b (5.74:1); the
+   SHARP coral column-head -> #a8472a (~5:1). Bright coral elsewhere untouched. */
+#w83 .w83-ans .ph.ph, #w85 .w85-ans .w85-ph.w85-ph{ color:#6b6b6b !important; }
+#w83 .w83-col.vague .w83-ct.w83-ct, #w85 .w85-col.vague .w85-ct.w85-ct{ color:#6b6b6b !important; }
+#w83 .w83-col.sharp .w83-ct.w83-ct, #w85 .w85-col.sharp .w85-ct.w85-ct{ color:#a8472a !important; }
+</style>
 </head>
 <body data-chapter-num="8">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -506,6 +545,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of");
+         injected SVG mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 8.
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-08-product-management.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 8 &middot; The Mix Layer</p>
@@ -525,7 +577,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">PepsiCo reverted within two months at a reported 35-million-dollar cost, because only the package had moved and buyers scanning the shelf could no longer find the brand they knew.<sup class="cite" data-cite="ref-1"></sup> The brand promises something and the product proves the promise, so when a change breaks the promise the brand pays the bill.</p>
 
 <figure class="sketch" aria-label="The Tropicana redesign as a four-step timeline: a pre-launch test that read as fresher, the January 2009 launch, a roughly 20 percent sales drop six weeks later, and a reversion within two months at about 35 million dollars, because only the package moved and the buyer could no longer find the brand on the shelf.">
-  <div class="mount" id="sk-tropicana-hook-mount" data-w="760" data-h="210"></div>
+  <div class="mount" aria-hidden="true" id="sk-tropicana-hook-mount" data-w="760" data-h="210"></div>
   <figcaption>The Tropicana puzzle that runs through the chapter. The package tested as fresher and still lost the shelf, because only the package moved and a buyer scanning for the orange-and-straw cue could no longer find the brand.</figcaption>
 </figure>
 
@@ -535,7 +587,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The textbook definition holds. <strong>A product is a market offering built from three integrated elements: the product itself, the service that wraps it, and the brand that names it.</strong><sup class="cite" data-cite="ref-2"></sup> Tropicana's mistake was a brand-element change wearing the costume of a packaging refresh, because the package was carrying brand meaning the design team read as decoration.</p>
 <p data-focused style="display:none"><strong>A product is a market offering built from three integrated elements: the product itself, the service that wraps it, and the brand that names it.</strong><sup class="cite" data-cite="ref-2"></sup> Tropicana's mistake was a brand-element change dressed as a packaging refresh, because the package carried brand meaning the design team read as decoration.</p>
 
-<figure id="fig-process" class="sketch" style="margin: 36px 0 28px 0;">
+<figure id="fig-process" class="sketch" aria-label="The offer drawn as three things at once: the product in the box, the service work around it, and the brand meaning attached before the box is opened. A weak leg drags down the other two." style="margin: 36px 0 28px 0;">
   <div class="mount" id="process-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>The offer is three things at once: the thing in the box, the work around it, and the meaning attached before the buyer opens the box. A weak leg drags down the other two.</figcaption>
 </figure>
@@ -609,7 +661,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </figure>
 
 <figure class="sketch" aria-label="The three-element offering decomposition: product, service, brand laid out as three columns the buyer pays for together.">
-  <div class="mount" id="sk-three-elements-mount" data-w="700" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-three-elements-mount" data-w="700" data-h="280"></div>
   <figcaption>A Liquid Death buyer is buying the water (product), the cooler placement (service), and the social signaling of the can (brand). Drop any one and the remaining offer is unsellable.</figcaption>
 </figure>
 
@@ -624,7 +676,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="pd-options" style="margin-top:10px;">
     <button class="pd-btn" id="oa-run" style="background:var(--coral);color:#fff;">Run the three-element audit</button>
   </div>
-  <div class="pd-result" id="oa-result">
+  <div class="pd-result" id="oa-result" aria-live="polite" aria-atomic="false">
     <span class="pd-stage" id="oa-verdict"></span>
     <div id="oa-legs" style="margin:8px 0 10px 0;"></div>
     <p id="oa-read" style="margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.5;"></p>
@@ -646,20 +698,20 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>Most of the nine are quick to read. Core functionality is whether the product does the basic job, because a phone that drops calls fails no matter how good the camera is. Features are the extras that help right up until the product crosses <span class="term" data-tt="Feature fatigue is the point in a product's feature accumulation where adding the next capability stops increasing buyer value and starts decreasing it, because the product has become overwhelming, hard to learn, or hard to find the basic operations inside. Kitchen appliances with twenty programmed cycles the buyer never uses, software with dozens of menus the buyer cannot navigate, and consumer electronics with feature lists the marketing team cannot fit on the box are all classic cases. The discipline is to identify the peak of the value curve and stop adding features past it.">feature fatigue</span>, after which each new feature lowers value. Durability is how long the product lasts under stress, and reliability is how rarely it breaks while it is still in use. The undergrad cue: durability is how long it lasts before it wears out, reliability is how often it fails while still under warranty. Form is size and shape, the 16.9-ounce tallboy set against the 12-ounce stubby, and it decides what shelf the product lives on and what hand position it asks for. Style is look and feel, the thing that makes a product recognizable from across a room before a word of copy is read. <span class="term" data-tt="Customization is the firm's ability to deliver something specific to one buyer, from Nike By You shoes to M&amp;Ms with printed initials to a Burberry trench cut to the wearer's measurements. The word covers four genuinely different strategies, each with its own cost structure, sorted by Pine and Gilmore's four faces of mass customization.">Customization</span> is the firm tailoring the product to one buyer, and it carries a premium even when the underlying function is unchanged.</p>
 <p data-complete>The pair worth slowing down on is performance versus conformance, because beginners run them together and they mean different things to a buyer. Performance quality is the operating level of the product on its best day, the luxury sedan that accelerates faster, the flagship camera that resolves detail a budget phone blurs. <span class="term" data-tt="Conformance quality is the degree to which every individual unit a firm produces matches the design specification the engineering team set. High conformance means every can of Coca-Cola tastes the same as every other can, every BMW M3 hits zero-to-sixty within a tight tolerance of the spec, and every Stanley Quencher seals identically on the lid threads. Low conformance means two buyers of the same brand have different experiences depending on which production batch they bought from, which kills the trust the brand promise depends on. The plain-English contrast worth carrying is that performance quality describes the ceiling the product can hit on its best day, while conformance quality describes whether every buyer who walks out of the store actually experiences that same best day rather than a worse day produced on a worse shift.">Conformance quality</span> is whether every buyer who walks out of the store gets that same best day, even on a worse shift. Performance sets the ceiling the product can reach, and conformance holds the floor every buyer actually stands on.</p>
 <figure class="sketch" data-complete aria-label="Nine attributes of product differentiation listed as a coral wheel with brand examples on each spoke">
-  <div class="mount" id="sk-nine-attrs-mount" data-w="700" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-nine-attrs-mount" data-w="700" data-h="320"></div>
   <figcaption>Nine attributes a product can win on. A strong product leads on two or three; a weak product is in the middle on all nine.</figcaption>
 </figure>
 
 <p data-complete>Mercedes in the early 2000s is the worked case for what a leaky floor costs. It was the brand most buyers would have named first for engineering rigor, winning on roughly seven of the nine attributes. The one that had drifted was conformance: two cars with the same model number, built the same week on the same line, reached dealers with different door fit, different rattles, and a different feel through the steering. By 2003 BMW had passed Mercedes on global luxury-sedan volume for the first time in the segment's modern history. The board reorganized the quality function and ran roughly 10,000 diagnostic tests per model before release. Reported flaws per vehicle fell about 72 percent, and warranty costs dropped about 25 percent, a quarter of the repair dollars going straight back into operating profit.<sup class="cite" data-cite="ref-3"></sup></p>
 <figure class="sketch" data-complete aria-label="Mercedes versus BMW global luxury-sedan volume between 1998 and 2008 with the 2003 crossover annotated and the 72 percent flaw reduction plus 25 percent warranty cost drop labelled">
-  <div class="mount" id="sk-mercedes-bmw-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-mercedes-bmw-mount" data-w="720" data-h="300"></div>
   <figcaption>BMW passed Mercedes on global luxury-sedan volume in 2003. The recovery was a measurable production-line program, not a brand campaign.</figcaption>
 </figure>
 
 <p data-complete>Conformance does its least visible work when it is high and its most punishing work when it slips, because a brand can win on performance, style, durability, and reliability and still bleed share when buyers cannot count on the next unit feeling like the last one. The Mercedes recovery worked because the firm treated conformance as a measurable production-line problem with a budget and a deadline, not as a slogan about quality.</p>
 <p data-complete>Customization is the ninth attribute, and it earns one extra line because the word hides four different strategies. Pine and Gilmore's <span class="term" data-tt="Pine and Gilmore's customization 2-by-2 is a framework from their 1997 Harvard Business Review article that sorts every form of personalization onto two axes: whether the underlying product physically changes from buyer to buyer (yes or no) and whether the buyer perceives the change (yes or no). The four resulting quadrants are collaborative (Nike By You, where the product changes and the buyer knows), cosmetic (Stanley colorways and printed-initial M&amp;Ms, where the product is identical and the buyer sees a surface change), adaptive (Spotify Daily Mix, where the product changes and the buyer does not consciously notice), and transparent (a hotel quietly assigning a returning guest her preferred floor, where the product changes and the buyer does not perceive it). The point is to pick the right face before committing the factory or the data pipeline, because each face pays for its variety in a different place, whether through modular tooling, surface finishing, behavioral data, or the standard product itself.">four faces of mass customization</span> sort those faces by two yes-or-no questions: does the underlying product change from one buyer to the next, and does the buyer perceive the change. The face a brand picks decides whether it pays for variety on the factory floor, at the surface-finishing step, or in the data pipeline. The cosmetic face scales all the way down: a dorm-room Etsy shop selling name stickers runs the same face Stanley runs at scale, one base template plus a buyer-specified name, with no second engineering line. Customization is an architecture choice, not a Fortune-500 luxury, and the lesson is to pick the face before the assembly line or the recommendation engine is built.<sup class="cite" data-cite="ref-4"></sup></p>
 <figure class="sketch" data-complete aria-label="Pine and Gilmore's four faces of mass customization arranged on a two-by-two grid: the horizontal axis is whether the buyer perceives the customization, the vertical axis is whether the underlying product changes, and the four quadrants are collaborative, cosmetic, transparent, and adaptive customization with one Fortune-500 example and one undergrad-scale example in each.">
-  <div class="mount" id="sk-four-faces-mount" data-w="720" data-h="470"></div>
+  <div class="mount" aria-hidden="true" id="sk-four-faces-mount" data-w="720" data-h="470"></div>
   <figcaption>The four faces sorted by two yes-or-no questions about the offer. Collaborative and cosmetic share the right column because the buyer sees the customization in both; collaborative and transparent share the top row because the underlying product genuinely changes in both. The face a brand occupies on the grid is what determines whether the operations investment goes into modular tooling, surface finishing, behavioral data, or the standard product itself, so the face is a decision the firm makes before the assembly line or the data pipeline is committed.<sup class="cite" data-cite="ref-4"></sup></figcaption>
 </figure>
 
@@ -681,7 +733,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>Procter and Gamble's fabric-care portfolio is the textbook illustration. Width is three lines (oral care, skin and personal care, fabric care). Length is roughly twelve items, with Tide as the anchor. Depth is six commercially active Tide variants (two scents, two formulations, two additives) plus dozens of smaller permutations.<sup class="cite" data-cite="ref-5"></sup> Consistency is high inside fabric care and lower across the lines.</p>
 
 <figure class="sketch" aria-label="A 2 by 2 by 2 grid of Tide variants showing the depth dimension of the product mix">
-  <div class="mount" id="sk-portfolio-grid-mount" data-w="700" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-portfolio-grid-mount" data-w="700" data-h="300"></div>
   <figcaption>Tide's depth, schematic. Two scents &times; two formulations &times; two additives = six commercial variants. Each variant exists because a buyer segment wants the difference; each costs the firm a warehouse slot, the <span class="term" data-tt="A planogram is the shelf-layout diagram a retailer uses to specify exactly which products sit where on each shelf, including how many facings each product gets and which products sit next to which neighbors. Suppose a Target category buyer decides to give a Stanley Quencher three facings at eye level on aisle G7 with the lid display directly to its right. That single instruction is captured on the chain's planogram and then rolled out to every store in the chain, so a shopper in Tulsa sees the same Quencher layout that a shopper in San Diego sees, and the brand gets a consistent visual presentation across the country.">planogram</span>, and a tracking dashboard.</figcaption>
 </figure>
 
@@ -689,7 +741,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Stanley's 2018-to-2024 run shows the dials moving at different speeds. In 2018 it sold a narrow set of rugged-hunter drinkware: one category, a handful of shapes, one or two colors each. By 2024 only depth had moved. The Quencher stretched into roughly thirty colorways, four capacities, and seasonal Target and Starbucks drops that resold for multiples of retail, while width, length, and consistency held.<sup class="cite" data-cite="ref-6"></sup> The four-dimension vocabulary lets a manager name that move precisely as a depth play, not a vague case of getting bigger.</p>
 
 <figure class="sketch" aria-label="The four portfolio dials drawn as four horizontal sliders. The Stanley case shows the depth slider pulled nearly to the end while width, length, and consistency stay near the start, illustrating that a firm can grow by pushing one dimension hard while the others hold.">
-  <div class="mount" id="sk-four-dials-mount" data-w="700" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-four-dials-mount" data-w="700" data-h="300"></div>
   <figcaption>The four portfolio dials as sliders. Stanley pushed depth hard from 2018 to 2024 (roughly thirty colorways and four capacities) while width, length, and consistency held. Pull one dial and the others move, so the product manager names which dial is moving before approving the expansion.</figcaption>
 </figure>
 
@@ -726,7 +778,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">7.</span> The per-tier risk profiles do not transfer. A down-market stretch's main exposure is franchise damage to the premium buyer, an up-market stretch's is missing permission, and a two-way stretch's is boundary blur across all three tiers. Each tier needs its own name discipline, which is why the luxury tiers above almost always launch under a separate nameplate.</aside>
 
 <figure class="sketch" aria-label="Three price-stretch directions on a price ladder: down-market risks damaging the existing tier, up-market may lack permission so launches a new name, and two-way needs crisp boundaries among all three tiers">
-  <div class="mount" id="sk-stretch-directions-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-stretch-directions-mount" data-w="720" data-h="300"></div>
   <figcaption>Three directions to stretch a line in price, each with its own risk. Down-market can damage the existing tier; up-market may lack permission, so the luxury tier usually launches under a new name (Lexus, Infiniti, Acura); two-way needs crisp boundaries among all three.</figcaption>
 </figure>
 
@@ -738,7 +790,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The costly failures are the ones where the parent carries a meaning the new category's buyers are trying to escape. Bic, the world leader in disposable pens, lighters, and razors, read its cheap-functional-throwaway meaning as license to launch a five-dollar perfume in flat plastic bottles. But perfume is a self-presentation purchase, and buyers wanted lasting and premium, the opposite of what the brand carried. The line died within two years.<sup class="cite" data-cite="ref-8"></sup></p>
 
 <figure class="sketch" aria-label="The Bic perfume failure: brand meaning incompatible with category">
-  <div class="mount" id="sk-bic-perfume-mount" data-w="700" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-bic-perfume-mount" data-w="700" data-h="280"></div>
   <figcaption>Bic's brand meaning (disposable, cheap, functional) was incompatible with perfume's (lasting, premium, considered). Audit before launch: name three things the parent means, three the new category requires, look for conflicts.</figcaption>
 </figure>
 
@@ -823,14 +875,14 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="w83-grid">
     <div class="w83-col vague" id="w83-col-vague">
       <div class="w83-colhead"><span class="w83-ct">Vague answer</span><span class="w83-cost" id="w83-cost-vague"></span></div>
-      <div class="w83-ans" id="w83-ans-vague"><span class="ph">Press the vague question above.</span></div>
+      <div class="w83-ans" id="w83-ans-vague" aria-live="polite" aria-atomic="false"><span class="ph">Press the vague question above.</span></div>
     </div>
     <div class="w83-col sharp" id="w83-col-sharp">
       <div class="w83-colhead"><span class="w83-ct">Specific answer</span><span class="w83-cost" id="w83-cost-sharp"></span></div>
-      <div class="w83-ans" id="w83-ans-sharp"><span class="ph">Press the specific question above.</span></div>
+      <div class="w83-ans" id="w83-ans-sharp" aria-live="polite" aria-atomic="false"><span class="ph">Press the specific question above.</span></div>
     </div>
   </div>
-  <div class="w83-verdict" id="w83-verdict"></div>
+  <div class="w83-verdict" id="w83-verdict" aria-live="polite" aria-atomic="false"></div>
   <div class="w83-note">A candidate read from the model on live web data, not measured panel data. Treat the verdict as a first-pass screen and check the numbers before a prototype budget commits.</div>
 </div>
 
@@ -850,7 +902,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="The four-stage product life cycle drawn as a diagnostic, rising into a plateau and falling, with introduction, growth, maturity, and decline labelled and the strategic priority for each stage annotated underneath">
-  <div class="mount" id="sk-plc-curve-mount" data-w="720" data-h="310"></div>
+  <div class="mount" aria-hidden="true" id="sk-plc-curve-mount" data-w="720" data-h="310"></div>
   <figcaption>The four-stage curve as a diagnostic. The strategic priority shifts at each transition, which is why one playbook does not fit all four.</figcaption>
 </figure>
 
@@ -925,7 +977,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The bell is the textbook shape, but it is not the only path a product traces, and each variant calls for a different move.<sup class="cite" data-cite="ref-9"></sup> A <span class="term" data-tt="A scalloped product life cycle is a variant where a product goes through several successive growth phases rather than rising once and declining. Each new wave is triggered by the product finding a new use the earlier wave had not surfaced. Nylon is the canonical case: DuPont commercialized it in the late 1930s, and the curve scalloped upward across four decades through parachutes (1940s), hosiery (1950s), carpeting (1960s), and tire reinforcement (1970s), each new use stacking a fresh growth wave on the maturing earlier one.">scalloped</span> curve goes through more than one growth phase, with each wave triggered by a new use. Nylon ran four waves across four decades, from wartime parachutes to hosiery to carpeting to tire cord, and the lesson is that a mature product is not automatically a declining one. It is a product whose first use has saturated, and the question is whether a second use exists. The cycle-recycle variant shows a first decline interrupted by a deliberate relaunch, common in pharmaceuticals when a drug finds a second indication. The growth-slump-maturity variant shows a strong early-adopter peak that drops when the enthusiast pool churns out, then settles at a durable plateau below the peak, the way a new air fryer or sous-vide circulator runs hot through food media and then steadies into a replacement-and-gifting market. A manager who reads that slump as terminal decline pulls investment too early.</p>
 
 <figure class="sketch" aria-label="Three PLC variants drawn as side-by-side curves: scalloped (multiple stacked waves), cycle-recycle (a smaller second hump after first decline), and growth-slump-maturity (an early peak that drops then stabilizes lower)">
-  <div class="mount" id="sk-plc-variants-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-plc-variants-mount" data-w="720" data-h="240"></div>
   <figcaption>Three curve shapes the textbook bell does not predict: scalloped (nylon's four-decade ladder of new uses), cycle-recycle (a smaller second hump after a deliberate relaunch), and growth-slump-maturity (early-adopter peak, drop, durable plateau below it).</figcaption>
 </figure>
 
@@ -936,7 +988,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>Crocs is the case that ties the variants together. The foam clog launched in 2002 through marine-supply channels, crossed into fashion novelty, and hit 847 million dollars of revenue by 2007 with a 208-million-dollar IPO. In 2008 the curve reversed in a single year, the stock fell from above 70 dollars to roughly 1, the company laid off thousands, and analysts wrote it off as the textbook <span class="term" data-tt="A fad is a product whose sales rise and fall on a short, unpredictable timeline because the demand runs on social novelty rather than a durable buyer benefit. A trend has direction and durability because something in the world keeps pushing buyers toward it; a fad has no such substrate and collapses once the novelty wears off.">fad</span> whose novelty had run out. By 2011 revenue had passed one billion dollars. The recovery did not come from reinventing the clog. It came from widening to over 300 models, engineering the Jibbitz charm system that turned the shoe into a personalization platform, and rebalancing retail from United States specialty stores to global mass-market.<sup class="cite" data-cite="ref-10"></sup> The fad-versus-scallop distinction is not a property the product carries on launch day. It is an outcome the team produces at the saturation point, by whether it reads saturation as terminal or asks what second use exists.</p>
 
 <figure class="sketch" aria-label="Crocs revenue trajectory: peak in 2007, collapse in 2008, recovery in 2011 via product extension and retail diversification">
-  <div class="mount" id="sk-crocs-multi-mount" data-w="700" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-crocs-multi-mount" data-w="700" data-h="260"></div>
   <figcaption>Crocs revenue arc: 2007 peak, 2008 collapse, recovery past 1B by 2011 via 300-plus models and broader retail. Saturation is not terminal decline if a second use exists.</figcaption>
 </figure>
 
@@ -968,7 +1020,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     </div>
   </div>
   <button class="demo-button" id="w84-go" style="grid-column:auto;margin-top:14px;">Read the stage</button>
-  <div class="pd-result" id="w84-result">
+  <div class="pd-result" id="w84-result" aria-live="polite" aria-atomic="false">
     <span class="pd-stage" id="w84-stage">stage:</span>
     <div class="pd-strat" id="w84-strat">awaiting answers</div>
     <div id="w84-detail" style="font-size: 13px; color: var(--ink-2); line-height: 1.5;">answer the four questions, then press Read the stage to map a product onto its life-cycle stage</div>
@@ -997,7 +1049,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Cooper built the method by comparing hundreds of successful launches against hundreds of failures, and the survivors shared one feature: the work was broken into stages with a real review at each boundary, where a committee advanced, killed, or returned the project.<sup class="cite" data-cite="ref-12"></sup> Each review answers three questions. <em>Desirability</em> asks whether buyers want it enough to pay. <em>Feasibility</em> asks whether engineering can build it on the calendar. <em>Viability</em> asks whether the economics, regulation, channel, and brand fit support the launch. A concept that clears two but fails the third is exactly what the gate exists to catch, before launch commits the spend.</p>
 
 <figure class="sketch" aria-label="The three questions every Cooper stage gate has to answer: desirability, feasibility, and viability, drawn as a triangle with the launch-killing failure mode each unanswered question produces">
-  <div class="mount" id="sk-dfv-gate-mount" data-w="720" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-dfv-gate-mount" data-w="720" data-h="320"></div>
   <figcaption>The three questions each gate review answers, with the launch-killing failure mode if any one of them is left un-cleared. A project that clears two of the three is not ready; the gate is what catches the third.</figcaption>
 </figure>
 
@@ -1025,7 +1077,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">You harvest those forces with a <span class="term" data-tt="A switch interview is a thirty-to-sixty-minute conversation with one buyer who switched to your product within the prior sixty days, developed by Bob Moesta. The interviewer walks the buyer backward through the decision timeline from the moment of purchase ('when did you actually swipe your card?') and reconstructs what pushed them off the old solution and pulled them to the new one. It is an excavation of one real switching event in the buyer's own words, not a survey about preferences in the abstract.">switch interview</span>, a short conversation with a buyer who recently switched, and across a 3,500-launch dataset roughly ten interviews cover ninety percent of a category.<sup class="cite" data-cite="ref-16"></sup> The job statement then follows a fixed syntax: when [circumstance], I want to [motivation], so I can [outcome]. The syntax forces the real circumstance, motivation, and outcome into the record, and stripping any clause slides the framework back into demographic segmentation in new vocabulary.<sup class="cite" data-cite="ref-15"></sup></p>
 
 <figure class="sketch" aria-label="A filled-in Jobs-to-Be-Done job-statement card for the morning-milkshake case, with the three clauses and the four forces of progress underneath">
-  <div class="mount" id="sk-jtbd-card-mount" data-w="700" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-jtbd-card-mount" data-w="700" data-h="320"></div>
   <figcaption>A filled-in job-statement card: the three clauses (circumstance, motivation, outcome) stacked as one sentence, with the four forces of progress underneath (push of the current solution, pull of the new one, anxiety about switching, habit of the present). Strip the circumstance and the framework reverts to demographic segmentation. Distinct from the gate-review triangle: this is the buyer-job excavation, not the gate structure.<sup class="cite" data-cite="ref-15"></sup></figcaption>
 </figure>
 
@@ -1077,14 +1129,14 @@ Target buyer: 18-34 year old who would buy an energy drink and is open to a non-
     <div class="w85-grid">
       <div class="w85-col vague" id="w85-colVague">
         <div class="w85-colhead"><span class="w85-ct">Padded: you already knew this</span><span class="w85-cost" id="w85-costVague"></span></div>
-        <div class="w85-ans" id="w85-ansVague"><span class="w85-ph">Press the vague request above.</span></div>
+        <div class="w85-ans" id="w85-ansVague" aria-live="polite" aria-atomic="false"><span class="w85-ph">Press the vague request above.</span></div>
       </div>
       <div class="w85-col sharp" id="w85-colSharp">
         <div class="w85-colhead"><span class="w85-ct">Falsifiable: you can act on this</span><span class="w85-cost" id="w85-costSharp"></span></div>
-        <div class="w85-ans" id="w85-ansSharp"><span class="w85-ph">Press the sharp request above.</span></div>
+        <div class="w85-ans" id="w85-ansSharp" aria-live="polite" aria-atomic="false"><span class="w85-ph">Press the sharp request above.</span></div>
       </div>
     </div>
-    <div class="w85-verdict" id="w85-verdict"></div>
+    <div class="w85-verdict" id="w85-verdict" aria-live="polite" aria-atomic="false"></div>
     <p class="w85-honest">This is a candidate score from a model reasoning about your concept and searching the live web, not a measured concept test with real buyers. It proposes real experiments you can run now.</p>
   </div>
 </div>
@@ -1099,7 +1151,7 @@ Target buyer: 18-34 year old who would buy an energy drink and is open to a non-
 </details>
 
 <figure class="sketch" aria-label="The stage-gate funnel as a narrowing pipe: roughly 100 ideas in, 1 launch out, the survivor count dropping at each gate">
-  <div class="mount" id="sk-stage-gate-mount" data-w="700" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-stage-gate-mount" data-w="700" data-h="280"></div>
   <figcaption>The further upstream a bad idea is caught, the lower the cost. Killed at concept it costs weeks of analyst time; killed at commercial launch it costs millions in tooling, inventory, and channel commitments. The setup is the same setup Apple runs at one billion; only the dollar figures change.</figcaption>
 </figure>
 
@@ -1248,7 +1300,7 @@ Target buyer: 18-34 year old who would buy an energy drink and is open to a non-
 </div>
 
 <figure class="sketch" aria-label="The chasm between early adopters and early majority, with strategy implications">
-  <div class="mount" id="sk-chasm-mount" data-w="700" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-chasm-mount" data-w="700" data-h="260"></div>
   <figcaption>Crossing the chasm is a product and brand-argument problem, not an advertising problem. The early majority needs references, full features, support infrastructure, and a <span class="term" data-tt="A beachhead use case is a single, specific use case the new product can win decisively before the firm tries to expand outward into adjacent uses. Geoffrey Moore uses a bowling-pin metaphor: the firm knocks down one pin first, and the references and credibility from that win then knock down the next pins in the row. For Documentum, the beachhead was pharmaceutical regulatory affairs, and only after that segment adopted did the firm move into petrochemicals and broader energy.">beachhead use case</span> where the new product is the obvious choice for one segment.</figcaption>
 </figure>
 
@@ -1264,7 +1316,7 @@ Target buyer: 18-34 year old who would buy an energy drink and is open to a non-
 <p data-focused style="display:none">Casper crossed each objection with a move that did not exist at launch: a hundred-night return guarantee that took back the touch-test risk, a line extension into pillows and frames that made it a bedroom-system seller, and selective showrooms through Target. By 2017 revenue had passed six hundred million dollars. The launch product never changed; what changed was the system built around it once the visionaries ran out.</p>
 
 <figure class="sketch" aria-label="Casper crossed the chasm by adding the 100-night return guarantee, expanding into pillows and frames, and opening selective showrooms">
-  <div class="mount" id="sk-casper-mount" data-w="700" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-casper-mount" data-w="700" data-h="240"></div>
   <figcaption>Casper's chasm crossing was a product evolution: pragmatists needed the return guarantee, the complete bedroom system, and physical retail, none available at launch.</figcaption>
 </figure>
 
@@ -1291,7 +1343,7 @@ Target buyer: 18-34 year old who would buy an energy drink and is open to a non-
 <aside class="sn" data-complete><span class="sn-num">ld.</span> The dense Liquid Death cadence sits here. The still launch was January 2019; the 2022 sparkling line carried four flavors (Mango Chainsaw, Severed Lime, Convicted Melon, Berry It Alive); the 2023 iced-tea line (Armless Palmer, Rest in Peach, Grim Leafer) made it the number-one new US iced-tea brand that year, with total retail-scanned sales of about 263 million dollars across the portfolio per SPINS (the 2023 figure). The brand-extension moves that kept the cues constant include Tony Hawk blood-infused skateboards (2021), Martha Stewart severed-hand candles (2022), and the 2025 Super Bowl <em>Safe for Work</em> spot. The valuation reached 1.4 billion dollars in March 2024, with a forecast 340-million-dollar 2025 revenue run-rate.<sup class="cite" data-cite="ref-34"></sup></aside>
 
 <figure class="sketch" aria-label="Liquid Death's annual line-extension cadence with the can, skull, and tagline held constant">
-  <div class="mount" id="sk-liquiddeath-cadence-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-liquiddeath-cadence-mount" data-w="720" data-h="300"></div>
   <figcaption>Liquid Death's cadence runs about once a year, still water to sparkling to iced tea to energy, while the can, the skull, and the tagline stay fixed across the whole strip. The category widens; the cues do not move, and that consistency is what holds the additions together.</figcaption>
 </figure>
 
@@ -1301,7 +1353,7 @@ Target buyer: 18-34 year old who would buy an energy drink and is open to a non-
 <p data-focused style="display:none">Patagonia operates 70 global repair centers and repaired about 174,799 garments in fiscal 2025.<sup class="cite" data-cite="ref-35"></sup> <span class="term" data-tt="Worn Wear is Patagonia's repair, resale, and recycling program, set up so a torn Patagonia jacket can be sent to one of the firm's seventy global repair centers and returned fixed, often free of charge for standard wear patterns. The program is built into the product offer itself, which means buyers paying the Patagonia premium are paying partly for the multi-year repair guarantee, and the firm carries it as a product cost it planned for.">Worn Wear</span> is part of the augmented product, because the offer guarantees repair as long as the garment is repairable. The textbook name is the <span class="term" data-tt="A service-augmented product is an offer whose value includes substantial firm-performed services wrapped around the physical good (delivery, installation, training, maintenance, repair) that are not optional paid add-ons but part of why the buyer chose the offer. Patagonia's Worn Wear, Caterpillar's machine-uptime guarantees, and AppleCare coverage are examples: the buyer pays a premium over a bare-product alternative and receives a bundled service guarantee.">service-augmented product</span>: the repair workflow is why the buyer paid the premium, so a torn jacket fixed and shipped back reads as a product feature, not a service-desk favor.</p>
 
 <figure class="sketch" aria-label="Patagonia's augmented offer drawn as the jacket plus the repair loop inside one product boundary">
-  <div class="mount" id="sk-patagonia-wornwear-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-patagonia-wornwear-mount" data-w="720" data-h="240"></div>
   <figcaption>The augmented offer is the jacket and the repair loop drawn as one product. A torn jacket goes to a repair center and comes back fixed, and because the loop sits inside the product boundary the repair reads as a feature the buyer paid for, not a service-desk favor.</figcaption>
 </figure>
 
@@ -1319,7 +1371,7 @@ Target buyer: 18-34 year old who would buy an energy drink and is open to a non-
 <aside class="sn" data-complete><span class="sn-num">stanley.</span> The dense Stanley detail sits here. The 30-plus colorways span pastels, neutrals, jewel tones, and seasonal palettes; the added capacities are 20-, 30-, and 64-ounce; the January 2024 Target-Starbucks Valentine's drop cleared 300-to-500-dollar resale within hours. The Hook-Model mechanics (buyers monitoring the website, the Target app, and Instagram for an unpredictable next-drop date) fold into the Hook Model tooltip.<sup class="cite" data-cite="ref-36"></sup></aside>
 
 <figure class="sketch" aria-label="Stanley's 73M to 750M arc drawn as three parallel decisions converging on the revenue curve">
-  <div class="mount" id="sk-stanley-arc-mount" data-w="720" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-stanley-arc-mount" data-w="720" data-h="320"></div>
   <figcaption>Stanley's lift from 73 million to 750 million dollars rode three decisions climbing in parallel, the depth stretch, the daily-hydration repositioning, and the Hook-model drop cadence, all feeding the same revenue curve. Pull any one line out and the curve flattens.</figcaption>
 </figure>
 <span class="ax">08 // failure modes</span>
@@ -1348,7 +1400,7 @@ Target buyer: 18-34 year old who would buy an energy drink and is open to a non-
 </div>
 
 <figure class="sketch" aria-label="Tropicana 2009 packaging change: 20% sales drop in 6 weeks, 35M revenue impact, brand reverted">
-  <div class="mount" id="sk-tropicana-mount" data-w="700" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-tropicana-mount" data-w="700" data-h="280"></div>
   <figcaption>Tropicana 2009. The pre-launch test said the package read as fresher, and six weeks at retail said buyers could not find the brand. Sales dropped about 20 percent and PepsiCo reverted within two months, roughly 35 million lost. A consumer test that does not measure shelf-recognition is testing the wrong thing.<sup class="cite" data-cite="ref-1"></sup></figcaption>
 </figure>
 
@@ -1358,12 +1410,12 @@ Target buyer: 18-34 year old who would buy an energy drink and is open to a non-
 </div>
 
 <figure class="sketch" aria-label="Feature creep: each new feature lifts buyer value at first, then drops it past the fatigue threshold">
-  <div class="mount" id="sk-feature-creep-mount" data-w="700" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-feature-creep-mount" data-w="700" data-h="300"></div>
   <figcaption>The feature-fatigue curve. Each added feature lifts buyer value at first, peaks, then falls as the product becomes harder to learn and market. The product manager finds the peak and adds only when the next feature still moves the curve up.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="iPhone 2007 versus Nokia 2007: feature simplification beat feature accumulation">
-  <div class="mount" id="sk-iphone-nokia-mount" data-w="700" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-iphone-nokia-mount" data-w="700" data-h="280"></div>
   <figcaption>2007 iPhone (one model, one feature set) against the 2007 Nokia line (100-plus models, roughly 40 billion dollars of R&D, no single product argument). One product that buyers could name beat a hundred they could not, and by 2011 Nokia's smartphone share had collapsed.<sup class="cite" data-cite="ref-39"></sup></figcaption>
 </figure>
 
@@ -1390,7 +1442,7 @@ Target buyer: 18-34 year old who would buy an energy drink and is open to a non-
 <p data-focused style="display:none">The product is the proof of what the brand promised, and the Tropicana puzzle shows the cost when the proof slips: only the package moved, and buyers who could no longer find the carton walked away. You now carry four moves for any product. Decompose the offer on its three elements. Place the product on its life-cycle stage and ask which job that stage hands you. Run the stage-gate kill-thresholds before the spend turns irreversible. Audit any extension for brand-fit before it dilutes the parent.</p>
 
 <figure class="sketch" aria-label="A left-to-right strip recapping the chapter: the offer is product plus service plus brand, the portfolio has four dials, extensions live or die on brand-fit, the life cycle asks a different job at each stage, the stage-gate fails bad ideas early, and the opening Tropicana puzzle resolved because only the package moved">
-  <div class="mount" id="sk-ch8-recap-mount" data-w="720" data-h="200"></div>
+  <div class="mount" aria-hidden="true" id="sk-ch8-recap-mount" data-w="720" data-h="200"></div>
   <figcaption>The chapter's spine, in one line. The opening Tropicana puzzle resolved at the end: only the package moved, so buyers scanning a familiar shelf could no longer find the brand.</figcaption>
 </figure>
 
@@ -1398,7 +1450,7 @@ Target buyer: 18-34 year old who would buy an energy drink and is open to a non-
 <p data-focused style="display:none">The next question is what changes when the offer is produced and consumed in the same moment. Chapter 9 takes up services, where the buyer stands on the factory floor and variance becomes the central risk. Product strategy, new-product development, and diffusion open onto a field people spend whole careers inside, and what you hold now is the working machinery to read a product, place it, and decide what to build next.</p>
 
 <figure class="sketch" aria-label="A turn arrow handing off from a finished product the buyer inspects on a shelf before buying to a service made and bought in the same moment, the work of Chapter 9">
-  <div class="mount" id="sk-turn-ch9-mount" data-w="720" data-h="210"></div>
+  <div class="mount" aria-hidden="true" id="sk-turn-ch9-mount" data-w="720" data-h="210"></div>
   <figcaption>The turn from Chapter 8 to Chapter 9: from the product you can inspect before buying to the service that is made as you buy it, with the buyer standing on the factory floor.</figcaption>
 </figure>
 

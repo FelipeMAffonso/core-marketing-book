@@ -724,6 +724,32 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<style>
+/* ============================================================
+   [A11Y] WCAG 1.4.3 contrast residual for Ch26's own variable-/inline-color widgets.
+   The global _accessibility.css cannot reach these (they use the --coral token directly,
+   via class CSS and inline style="color:var(--coral)" spans built in widget JS). Bright
+   coral #DA7756 is PRESERVED where it is a heading / marker / rule / border / SVG stroke
+   (>=3:1). Fixed here: (A) white text on coral BUTTON backgrounds -> #a8472a background
+   (white-on-#a8472a = 5.83:1); (B) small coral TEXT on cream/white -> #a8472a (~5:1).
+   This block is LAST in <head>, after _accessibility.css, so it wins; doubled selectors
+   (.x.x) and !important raise specificity over the base rules + inline color above. ======= */
+
+/* (A) coral button backgrounds -> #a8472a. Keep white text. Hover #8f3c23. Disabled #6b6b6b. */
+.cmp-go.cmp-go { background:#a8472a !important; color:#fff !important; }
+.cmp-go.cmp-go:hover { background:#8f3c23 !important; }
+.demo-button.demo-button { background:#a8472a !important; color:#fff !important; }
+.demo-button.demo-button:hover { background:#8f3c23 !important; }
+.demo-button.demo-button:disabled { background:#6b6b6b !important; }
+.dp-detector .dp-go.dp-go { background:#a8472a !important; color:#fff !important; }
+.dp-detector .dp-go.dp-go:hover { background:#8f3c23 !important; }
+
+/* (B) small coral TEXT on cream/white -> #a8472a (#a8472a on #fcfaf6/#fafaf8 ~= 5:1). These are
+   inline style="color:var(--coral)" spans (the "// here" mark in .kq, the NN number prefix in
+   the dark-pattern .dp-name built by widget JS) -> small text, so they must clear 4.5:1. */
+.kq-grid .kq strong span.kq-here, .kq-grid .kq strong span { color:#a8472a !important; }
+.dp-pattern-row .dp-name span.dp-num, .dp-pattern-row .dp-name > span { color:#a8472a !important; }
+</style>
 </head>
 <body data-chapter-num="26">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -735,6 +761,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of"); injected SVG
+         mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 26 (review; Haiku can hallucinate).
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-26-ethics-ai.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 26</p>
@@ -794,7 +833,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="Triple bottom line plus 2026 provenance axis as four spokes around a brand decision">
-  <div class="mount" id="sk-triple-bottom-line-mount" data-w="660" data-h="280"></div>
+  <div class="mount" id="sk-triple-bottom-line-mount" aria-hidden="true" data-w="660" data-h="280"></div>
   <figcaption>The four axes a 2026 marketing decision is accountable on. First three stable since the early 2000s. Provenance, the epistemic-integrity axis, was added by 2024-2026 AI deployments. A decision satisfying all four survives the enforcement record; profit alone does not.</figcaption>
 </figure>
 
@@ -804,7 +843,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">One reason ethics is structural is cost: the pre-deployment audit is cheaper than the remediation after. Meta paid <span id="anno-meta-fine">€1.2 billion</span> in 2023 for a data-flow violation a privacy review would have caught,<sup class="cite" data-cite="ref-3"></sup> Bud Light lost $27 billion on a brand stance a coalition audit would have flagged,<sup class="cite" data-cite="ref-4"></sup> Rite Aid took a five-year facial-recognition ban for skipping the bias audit,<sup class="cite" data-cite="ref-5"></sup> and Klarna rebuilt the staff it had cut.<sup class="cite" data-cite="ref-1"></sup> Each chose speed over the audit and paid for both.</p>
 
 <figure class="sketch" aria-label="Meta 1.2 billion euro fine record bar, with the 4 percent and 7 percent revenue ceilings of GDPR and EU AI Act marked">
-  <div class="mount" id="sk-meta-fine-mount" data-w="660" data-h="220"></div>
+  <div class="mount" id="sk-meta-fine-mount" aria-hidden="true" data-w="660" data-h="220"></div>
   <figcaption>The €1.2 billion Meta fine of 2023 anchors "GDPR has teeth, and they bite the largest commercial-marketing data flows." The bar shows the fine relative to the GDPR 4 percent ceiling and the EU AI Act 7 percent ceiling.</figcaption>
 </figure>
 
@@ -981,7 +1020,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>Behind that provenance duty, the industry built a three-layer redundancy stack because no single layer survives every removal attempt: a <span class="term" data-tt="A sampling-time watermark is a tiny statistical fingerprint embedded in AI-generated text or image content while the model is still producing it. The way it works is that the model's token-selection step is biased pseudorandomly by a secret key, so the resulting sequence of words or pixels carries a pattern only a holder of that key can read back. The signature is invisible to a human reader and survives a screenshot intact, but heavy paraphrase or translation breaks it because rewriting the words breaks the token-by-token signal the watermark depends on.">sampling-time watermark</span> baked into the bytes as the AI produces the content (Google DeepMind's <span class="term" data-tt="SynthID-Text is Google DeepMind's sampling-time watermark for large language model outputs. The method works by biasing each token's selection through a small tournament: at each step, multiple candidate tokens are scored and the choice is nudged in a way that leaves a key-detectable statistical signature in the produced text. Dathathri and colleagues published the empirical record in Nature on October 24, 2024, reporting a live experiment with roughly twenty million Gemini users that found no detectable preference difference between watermarked and non-watermarked responses. The team released the implementation as open source on Hugging Face on October 23, 2024, the day before the paper, which makes it the canonical reference for a layer-one provenance disclosure on AI-generated text.">SynthID-Text</span>, <em>Nature</em> 634, 2024, is the reference), a cryptographically signed <span class="term" data-tt="The C2PA Content Credentials manifest is a small structured file that travels alongside an image, video, audio, or text file produced by an AI tool, describing what tools made the content, when, with what edits, and signed cryptographically so the manifest cannot be tampered with after the fact. The format was ratified as ISO/IEC 22144 in 2025, and Adobe, Microsoft, OpenAI, Google Pixel, Samsung, Sony, and TikTok ship support for reading and writing it in their consumer tools. The manifest is the implementation the EU AI Act's Article 50 references as the canonical machine-readable provenance format.">C2PA Content Credentials manifest</span> that travels with the file, and a post-hoc detector scanning in-the-wild content for the statistical signature of AI authorship, backed by the FTC <span class="term" data-tt="16 CFR Part 465 is the FTC's final rule on consumer reviews and testimonials, effective October 21, 2024, which made six categories of review manipulation explicitly prohibited (including AI-generated fake reviews, paid testimonials presented as organic, and reviews from undisclosed insiders). Violations carry a civil penalty of $51,744 per individual review under 15 USC Section 45(m)(1)(A), which means a brand that posts a thousand AI-generated five-star reviews is exposed to roughly $52 million in penalties at the per-review ceiling.">16 CFR Part 465</span> rule at $51,744 per violation. The Monday move is to pick a vendor carrying SynthID-Text or equivalent, confirm the C2PA manifest is written on export, and contract a quarterly detector audit.<sup class="cite" data-cite="ref-20"></sup></p>
 
 <figure class="sketch" data-complete aria-label="Three-layer provenance stack showing which removal attacks strip which layer">
-  <div class="mount" id="sk-watermark-stack-mount" data-w="700" data-h="280"></div>
+  <div class="mount" id="sk-watermark-stack-mount" aria-hidden="true" data-w="700" data-h="280"></div>
   <figcaption>The Article 50 stack survives by redundancy. Sampling watermarks survive screenshots; C2PA manifests survive paraphrase; detectors catch legacy content the upstream layers missed. No single layer is durable.</figcaption>
 </figure>
 
@@ -989,13 +1028,13 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <div class="cmp-box" data-complete id="cmp-watermark">
   <p class="cmp-title">same passage, two models &middot; watermarked vs paraphrased detection</p>
-  <textarea class="cmp-prompt" id="cmp-watermark-prompt" rows="3" placeholder="Paste two passages, label A and B; the model classifies each as AI-watermarked, AI-paraphrased, or human.">PASSAGE A (raw model output, claim: SynthID-tagged): "Mental availability is the probability a brand is thought of in a buying situation, a function of the breadth and freshness of memory structures the brand maintains across category cues."
+  <textarea class="cmp-prompt" id="cmp-watermark-prompt" rows="3" aria-label="Two passages to classify as AI-watermarked, AI-paraphrased, or human" placeholder="Paste two passages, label A and B; the model classifies each as AI-watermarked, AI-paraphrased, or human.">PASSAGE A (raw model output, claim: SynthID-tagged): "Mental availability is the probability a brand is thought of in a buying situation, a function of the breadth and freshness of memory structures the brand maintains across category cues."
 PASSAGE B (paraphrase of A, claim: signature degraded): "How likely your brand pops to mind when someone is buying depends on how many cues link back to it and how recently those links were refreshed."
 Classify each as AI-WATERMARKED, AI-PARAPHRASED (signature degraded), or HUMAN. Name the signal used and the regulatory exposure under EU AI Act Article 50 + FTC 16 CFR 465.</textarea>
   <button class="cmp-go" id="cmp-watermark-go">run on both</button>
   <div class="cmp-grid">
-    <div class="cmp-pane"><span class="cmp-label">claude-haiku-4-5  ($1/M in)</span><div class="cmp-out demo-stream" id="cmp-watermark-haiku"></div></div>
-    <div class="cmp-pane"><span class="cmp-label cmp-smart">claude-opus-4-7 ($15/M in)</span><div class="cmp-out demo-stream" id="cmp-watermark-opus"></div></div>
+    <div class="cmp-pane"><span class="cmp-label">claude-haiku-4-5  ($1/M in)</span><div class="cmp-out demo-stream" id="cmp-watermark-haiku" aria-live="polite" aria-atomic="false"></div></div>
+    <div class="cmp-pane"><span class="cmp-label cmp-smart">claude-opus-4-7 ($15/M in)</span><div class="cmp-out demo-stream" id="cmp-watermark-opus" aria-live="polite" aria-atomic="false"></div></div>
   </div>
 </div>
 
@@ -1009,7 +1048,7 @@ Classify each as AI-WATERMARKED, AI-PARAPHRASED (signature degraded), or HUMAN. 
 <p data-focused style="display:none;">In the US, FTC Section 5(a) prohibits "unfair or deceptive acts or practices," and the December 2023 Rite Aid settlement is the marker case: the company ran facial recognition from 2012 to 2020 without auditing differential outcomes, false positives ran higher in plurality-Black and plurality-Asian communities, and the consent order imposed a five-year ban.<sup class="cite" data-cite="ref-5"></sup> Rite Aid sits inside more than 200 Section 5 cases since 2000, Operation AI Comply added five at once in 2024, and state attorneys general now run in parallel under analogs like the <span class="term" data-tt="The Texas Deceptive Trade Practices Act (DTPA), codified at Tex. Bus. &amp; Com. Code Section 17.41 et seq., is the Texas state analog to FTC Section 5(a) and reaches the same kinds of unfair or deceptive marketing practices the federal statute does. The Texas remedy is unusually strong: the statute permits treble damages on top of per-violation civil penalties, and it gives both the state Attorney General and private plaintiffs a right of action, which means a brand making a deceptive marketing claim in Texas can face the AG, a consumer class action, and the FTC against the same conduct.">Texas DTPA</span>.<sup class="cite" data-cite="ref-25"></sup><sup class="cite" data-cite="ref-26"></sup></p>
 
 <figure class="sketch" aria-label="Rite Aid's five year facial recognition ban diagram with deployment to enforcement timeline">
-  <div class="mount" id="sk-rite-aid-fine-mount" data-w="660" data-h="246"></div>
+  <div class="mount" id="sk-rite-aid-fine-mount" aria-hidden="true" data-w="660" data-h="246"></div>
   <figcaption>Rite Aid's facial-recognition ran 2012-2020 without a bias audit. The 2023 FTC settlement imposed a five-year ban, the first major US retailer barred by federal order. Across all five Operation AI Comply cases: AI marketing claims face the same Section 5(a) substantiation standard as any other claim.</figcaption>
 </figure>
 
@@ -1025,12 +1064,12 @@ Classify each as AI-WATERMARKED, AI-PARAPHRASED (signature degraded), or HUMAN. 
 <p data-focused style="display:none;">The next question is whether the brand's anonymized data is actually anonymous. Stripping name and email does not, because of the field the privacy literature calls a <span class="term" data-tt="A quasi-identifier is a data field that is not on its own enough to identify a specific person, but when combined with two or three other fields uniquely picks out that person from the population. Common examples are five-digit ZIP code, gender, date of birth, household income bucket, device type, browser fingerprint, and IP-derived city. Sweeney's 1997-2000 study showed that the combination of ZIP code, gender, and date of birth uniquely identifies 87 percent of Americans, which is the empirical foundation under GDPR Recital 26's 'reasonably likely re-identification' standard for what counts as personal data even after names and emails have been stripped.">quasi-identifier</span>. Sweeney's <span class="term" data-tt="Sweeney's 1997-2000 re-identification study is Latanya Sweeney's empirical demonstration that three innocuous-looking quasi-identifiers are enough to uniquely identify most Americans. Sweeney, then a PhD student at MIT and now a Harvard professor, took the 1990 US census and matched it against publicly available voter-registration rolls in Cambridge, Massachusetts to show that 87.1 percent of Americans were uniquely identifiable from the combination of five-digit ZIP code, gender, and date of birth alone. The result was replicated on the 2010 census at 87 percent. Sweeney's finding is the technical foundation under GDPR Recital 26's 'reasonably likely re-identification' standard for what counts as personal data, and under HIPAA's eighteen-identifier Safe Harbor de-identification rule for which data fields have to be stripped before health data can be released as 'anonymized.'">re-identification study</span> set the bound: <strong>87.1 percent of Americans were uniquely identifiable from a ZIP code, a gender flag, and a date of birth alone</strong>. Under GDPR Article 4(1) and the <em>Breyer</em> ruling, any data recombinable to re-identify a person is personal data, so a profile carrying three or more quasi-identifiers is functionally personal data and "no PII" does not change the math.<sup class="cite" data-cite="ref-23"></sup></p>
 
 <figure class="sketch" aria-label="Cambridge Analytica data flow showing 87 million Facebook profiles harvested through the Open Graph API">
-  <div class="mount" id="sk-cambridge-analytica-mount" data-w="700" data-h="240"></div>
+  <div class="mount" id="sk-cambridge-analytica-mount" aria-hidden="true" data-w="700" data-h="240"></div>
   <figcaption>The Cambridge Analytica flow: installers consented to their own data, but the 2013 Open Graph API also exposed each installer's friends. 270,000 installers became 87 million harvested profiles for psychographic political ad targeting in 2016. Marketing-API data can travel outside the marketing function in ways the original consent did not contemplate.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="Sweeney 87 percent re-identification figure showing how three quasi-identifiers collapse anonymity">
-  <div class="mount" id="sk-sweeney-reid-mount" data-w="720" data-h="352"></div>
+  <div class="mount" id="sk-sweeney-reid-mount" aria-hidden="true" data-w="720" data-h="352"></div>
   <figcaption>Three columns marketers think of as innocuous: a 5-digit ZIP, a gender flag, a date of birth. Their joint cardinality is roughly 41,683 ZCTAs &times; 2 &times; 36,500 birthdays &asymp; 3.04 billion cells against a 333M US population. At 87.1 percent of cells with one or zero people, three quasi-identifiers in a CDP are not anonymized data; they are personal data under GDPR Article 4(1) and CJEU <em>Breyer</em>. The vendor's "no PII" claim does not change the math.</figcaption>
 </figure>
 
@@ -1045,7 +1084,7 @@ Classify each as AI-WATERMARKED, AI-PARAPHRASED (signature degraded), or HUMAN. 
     <span class="cc-title">~/marketing-research/privacy-audit</span>
     <span class="cc-model">claude-sonnet-4-7</span>
   </div>
-  <div class="cc-body" id="cc-privacy-audit-body">
+  <div class="cc-body" id="cc-privacy-audit-body" aria-live="polite" aria-atomic="false">
     <div class="cc-line"><span class="cc-prompt">&gt;</span> <span class="cc-cmd">claude</span></div>
     <div class="cc-line cc-out">Claude Code v2.4 ready. /privacy-policy-audit Skill loaded. Try a policy URL.</div>
   </div>
@@ -1072,7 +1111,7 @@ Classify each as AI-WATERMARKED, AI-PARAPHRASED (signature degraded), or HUMAN. 
 
 <h4 id="mm-prompt">Monday morning: paste-able prompt</h4>
 <p data-complete>For tier 1 (Claude.ai, ChatGPT web search) or tier 2 (a Claude Code Skill). Cost: $0.02-$0.05 per run with prompt caching.</p>
-<pre class="code">Audit this privacy policy for dark-pattern indicators.
+<pre class="code" tabindex="0" role="region" aria-label="Prompt: audit a privacy policy for dark-pattern indicators">Audit this privacy policy for dark-pattern indicators.
 Score 0-10 on each dimension:
   - opt-out friction
   - pre-checked consent
@@ -1227,7 +1266,7 @@ Policy text follows:
 <p data-complete>Spotify Wrapped 2024 violated no specific regulation and still failed. The release leaned on AI genre labels ("Pink Pilates Princess"), removed popular features, and produced nonsensical AI output, and brand sentiment fell to <span id="anno-spotify">+41.5 percent positive</span> in 2024 from +50.5 percent in 2023.<sup class="cite" data-cite="ref-36"></sup> Article 50 disclosure is the floor, not the ceiling: it does not rescue an inferior creative product.</p>
 
 <figure class="sketch" data-complete aria-label="Spotify Wrapped 2024 sentiment drop bar chart against 2023 baseline">
-  <div class="mount" id="sk-spotify-wrapped-mount" data-w="660" data-h="220"></div>
+  <div class="mount" id="sk-spotify-wrapped-mount" aria-hidden="true" data-w="660" data-h="220"></div>
   <figcaption>Spotify Wrapped 2024's brand-sentiment drop versus 2023 baseline. The campaign violated no specific regulation; it failed the customer-experience test. Replacement without an honest read on whether the replacement is better.</figcaption>
 </figure>
 
@@ -1235,7 +1274,7 @@ Policy text follows:
 <p data-focused style="display:none;">Bud Light 2023 is the brand-activism cautionary case. After April's Mulvaney promotion, May sales fell 25 percent, the brand lost <span id="anno-bud">$27 billion in market value</span>, and Modelo Especial became America's best-selling beer for the first time in two decades.<sup class="cite" data-cite="ref-4"></sup> The failure was launching the position without a coalition audit, the qualitative pass with both audiences that would have caught how fragile it was.</p>
 
 <figure class="sketch" aria-label="Bud Light 2023 sales drop and market cap loss timeline">
-  <div class="mount" id="sk-bud-light-mount" data-w="700" data-h="274"></div>
+  <div class="mount" id="sk-bud-light-mount" aria-hidden="true" data-w="700" data-h="274"></div>
   <figcaption>Bud Light 2023: April Mulvaney promotion, May sales collapse, Modelo crossover. The position was defensible; the failure was launching it without coalition-building or fallback messaging.</figcaption>
 </figure>
 
@@ -1245,11 +1284,11 @@ Policy text follows:
 
 <div class="cmp-box" id="cmp-darkpattern">
   <p class="cmp-title">same flow, two models &middot; dark-pattern audit</p>
-  <textarea class="cmp-prompt" id="cmp-darkpattern-prompt" rows="3" placeholder="Paste a UI flow description and audit it for Brignull dark patterns.">Audit this checkout flow for Brignull dark patterns: Free trial signup is one click on the product page. To cancel, the user must call our customer service line during business hours and confirm with three different agents who each ask a retention question. The unsubscribe checkbox is pre-checked, with the opt-out labeled "No thanks, I prefer to pay full price." Shipping fees and a 6 percent service charge appear only on the final checkout step. Card is silently charged on day 31 of the free trial.</textarea>
+  <textarea class="cmp-prompt" id="cmp-darkpattern-prompt" rows="3" aria-label="UI flow description to audit for Brignull dark patterns" placeholder="Paste a UI flow description and audit it for Brignull dark patterns.">Audit this checkout flow for Brignull dark patterns: Free trial signup is one click on the product page. To cancel, the user must call our customer service line during business hours and confirm with three different agents who each ask a retention question. The unsubscribe checkbox is pre-checked, with the opt-out labeled "No thanks, I prefer to pay full price." Shipping fees and a 6 percent service charge appear only on the final checkout step. Card is silently charged on day 31 of the free trial.</textarea>
   <button class="cmp-go" id="cmp-darkpattern-go">run on both</button>
   <div class="cmp-grid">
-    <div class="cmp-pane"><span class="cmp-label">claude-haiku-4-5  ($1/M in)</span><div class="cmp-out demo-stream" id="cmp-darkpattern-haiku"></div></div>
-    <div class="cmp-pane"><span class="cmp-label cmp-smart">claude-opus-4-7 ($15/M in)</span><div class="cmp-out demo-stream" id="cmp-darkpattern-opus"></div></div>
+    <div class="cmp-pane"><span class="cmp-label">claude-haiku-4-5  ($1/M in)</span><div class="cmp-out demo-stream" id="cmp-darkpattern-haiku" aria-live="polite" aria-atomic="false"></div></div>
+    <div class="cmp-pane"><span class="cmp-label cmp-smart">claude-opus-4-7 ($15/M in)</span><div class="cmp-out demo-stream" id="cmp-darkpattern-opus" aria-live="polite" aria-atomic="false"></div></div>
   </div>
 </div>
 
@@ -1259,7 +1298,7 @@ Policy text follows:
     Paste a UI-flow description; the detector flags matches against the 12 patterns and the regulation each one most likely violates.
   </div>
   <div class="dp-controls">
-    <textarea id="dp-input" placeholder="Describe the UI flow. e.g. 'Free trial signup is one click. Cancellation requires calling a phone number during business hours and confirming with three different agents. The unsubscribe checkbox is pre-checked and worded as a double negative.'">Free trial signup is one click. Cancellation requires calling a phone number during business hours. The card is silently charged on day 31. The unsubscribe checkbox is pre-checked and the option to opt out is labeled "No thanks, I don't want to save money." Shipping fees only appear at the final checkout step.</textarea>
+    <textarea id="dp-input" aria-label="UI flow description to run through the 12-pattern dark-pattern detector" placeholder="Describe the UI flow. e.g. 'Free trial signup is one click. Cancellation requires calling a phone number during business hours and confirming with three different agents. The unsubscribe checkbox is pre-checked and worded as a double negative.'">Free trial signup is one click. Cancellation requires calling a phone number during business hours. The card is silently charged on day 31. The unsubscribe checkbox is pre-checked and the option to opt out is labeled "No thanks, I don't want to save money." Shipping fees only appear at the final checkout step.</textarea>
     <div class="dp-presets">
       <button class="dp-preset" data-preset="trial">free trial / forced continuity</button>
       <button class="dp-preset" data-preset="checkout">deceptive checkout</button>
@@ -1281,7 +1320,7 @@ Policy text follows:
 
 <h4 id="mm-darkpattern-self-audit">Monday morning: the <code>/dark-pattern-self-audit</code> prompt</h4>
 <p data-complete>The audit a brand runs on itself before every growth-surface ship and at quarterly review covers signup, checkout, cancellation, unsubscribe, data-export, and refund. Cost is $0.04-$0.08 on Sonnet, $0.20-$0.40 on Opus with Gabriel's four-condition test added. Productionize as a Skill at <code>~/.claude/skills/dark-pattern-self-audit/SKILL.md</code> reading a Figma export or screen-recording transcript.</p>
-<pre class="code">Audit the following growth surface against three diagnostics and return
+<pre class="code" tabindex="0" role="region" aria-label="Prompt: audit a growth surface against three ethics diagnostics">Audit the following growth surface against three diagnostics and return
 a single verdict the team can act on Monday.
 
 Surface: &lt;name; signup / checkout / cancellation / unsubscribe / refund&gt;
@@ -1354,7 +1393,7 @@ Surface description follows: &lt;paste flow&gt;</pre>
 <p data-focused style="display:none;">The standard documentation artifact is the <span class="term" data-tt="A model card is a structured public document describing a trained machine-learning model, proposed by Mitchell and colleagues in a 2019 paper at the FAccT conference. The standard sections cover model details (architecture, training procedure), intended use cases, evaluation factors (which slices of the population were measured), performance metrics across those slices, the training and evaluation datasets used, ethical considerations, and the known caveats. By 2026 the format is de facto required on all major model hubs (Hugging Face, Google's Vertex AI, Microsoft's Azure ML, Amazon's SageMaker), so a vendor who cannot produce one is operating outside the industry-standard procurement disclosure.">model card</span> (Mitchell et al., FAccT 2019).<sup class="cite" data-cite="ref-44"></sup> <strong>For the brand procuring an AI vendor, the model card is the procurement gate:</strong> a vendor that cannot produce one has not done the documentation, which means the audit has not been done either.</p>
 
 <figure class="sketch" aria-label="Model card structure as nine sections covering intended use through ethical considerations">
-  <div class="mount" id="sk-model-cards-mount" data-w="720" data-h="308"></div>
+  <div class="mount" id="sk-model-cards-mount" aria-hidden="true" data-w="720" data-h="308"></div>
   <figcaption>The Mitchell et al. model card: intended use, evaluation factors, demographic breakdowns, ethical considerations.</figcaption>
 </figure>
 
@@ -1364,7 +1403,7 @@ Surface description follows: &lt;paste flow&gt;</pre>
 <p data-focused style="display:none;">The other foundational artifact is the constitution. Anthropic's <span class="term" data-tt="Constitutional AI is a training framework Anthropic published in December 2022 (Bai et al.) that aims to produce a 'helpful, honest, harmless' assistant by combining two ingredients: a written constitution describing what the model should and should not do (for example, refusing to help plan violence, declining to deceive the user) and an AI-generated feedback loop where the model critiques its own responses against that constitution. The published constitution becomes a procurement artifact because a brand can audit it before signing, in a way the brand cannot audit a hidden training objective.">Constitutional AI</span> trains an assistant against a written constitution plus AI feedback, making the training objective auditable.<sup class="cite" data-cite="ref-45"></sup> The public <span class="term" data-tt="The Anthropic Constitution is the public, dated, versioned document describing the instructions and character traits Claude is trained against. It was released in early 2026 and runs roughly twice the length of the earlier internal Soul Document. In the 2026 procurement stack, the Constitution is the third procurement-auditable document alongside the model card (what the lab measured the model on) and the Responsible Scaling Policy (what the lab has committed not to deploy), and brands can read it before signing a vendor contract to check that the trained behavior matches what the brand intends to deploy.">Anthropic Constitution</span> (January 2026) and OpenAI's <span class="term" data-tt="The Model Spec is OpenAI's published instruction set describing how ChatGPT and the company's API models are supposed to behave. The document was first released on May 8, 2024 and has been revised through 2025-2026 as the company updates which behaviors are mandatory, default, or available. It is OpenAI's parallel to the Anthropic Constitution: a procurement-auditable document describing what the lab optimized the model to do, which a brand can read before signing a vendor contract.">Model Spec</span> are the parallel artifacts at the two labs. So the 2026 procurement stack is three documents: the model card (what was measured), the constitution (what was optimized for), and the RSP (what will not be deployed), all auditable on request, one or none a procurement risk.<sup class="cite" data-cite="ref-45"></sup><sup class="cite" data-cite="ref-46"></sup><sup class="cite" data-cite="ref-47"></sup></p>
 
 <figure class="sketch" aria-label="Constitutional AI two-phase training diagram showing supervised self-critique and RLAIF preference modeling">
-  <div class="mount" id="sk-constitutional-ai-mount" data-w="700" data-h="252"></div>
+  <div class="mount" id="sk-constitutional-ai-mount" aria-hidden="true" data-w="700" data-h="252"></div>
   <figcaption>Constitutional AI, two phases. Phase 1: model generates responses, critiques them against the constitution, fine-tunes on revisions. Phase 2: model evaluates response pairs and trains a preference model (RLAIF).</figcaption>
 </figure>
 
@@ -1384,7 +1423,7 @@ Surface description follows: &lt;paste flow&gt;</pre>
 <p data-complete>What does a brand monitor in production to catch these failure modes early? Chen et al. (Anthropic, July 2025) gave deployers the first upstream monitoring primitive, the <strong>persona vector</strong>, a "sycophancy direction" in the model's internal numbers the brand can monitor on every production response to catch drift before satisfaction scores do, steer away from at inference time, or screen training data against.<sup class="cite" data-cite="ref-57"></sup> The companion <span class="term" data-tt="Subliminal learning is the failure mode that Cloud and colleagues documented at Anthropic in July 2025, where a model trained on data generated by another model picks up traits of the generator that are nowhere stated in the data itself. The clearest experiment took a teacher model that secretly preferred owls and asked it to generate number sequences with no semantic content (no animals, no preferences, just digits). A student model fine-tuned only on those number sequences then exhibited the owl preference, even though no owl was ever mentioned anywhere in the training data. The finding generalizes to any trait the teacher carries, which means a brand fine-tuning its model on synthetic data generated by an externally aligned base model inherits the generator's alignment along channels the brand cannot see in the prompts.">subliminal learning</span> result (Cloud et al., July 2025) adds that a brand fine-tuning on a base model's synthetic outputs inherits the generator's alignment however clean the prompts look.</p>
 
 <figure class="sketch" aria-label="Alignment failure mode matrix showing seven 2023-2025 failure modes by gamed signal and procurement implication">
-  <div class="mount" id="sk-alignment-failures-mount" data-w="720" data-h="470"></div>
+  <div class="mount" id="sk-alignment-failures-mount" aria-hidden="true" data-w="720" data-h="470"></div>
   <figcaption>The 2023-2025 alignment-failure record, organized by gamed signal. Sycophancy games user approval; sleeper agents survive standard safety training on a hidden trigger; alignment faking comply during evaluation while reasoning differently in deployment; emergent misalignment generalizes from a narrow malicious fine-tune; agentic misalignment chooses harmful insider actions under replacement threat; in-context scheming sustains deception across adversarial follow-up turns. Klarna 2024 is the deployment-metric instance: resolution-rate and handle-time were the literal specification, CSAT on the cases that mattered was the intent.</figcaption>
 </figure>
 
@@ -1394,13 +1433,13 @@ Surface description follows: &lt;paste flow&gt;</pre>
 <p data-focused style="display:none;">Documents and policies are the procurement layer; the audit is what the brand runs itself, exactly what Rite Aid failed. The Monday shape is to run the system on a held-out test set stratified by protected attribute, compare false-positive and false-negative rates across slices, and require parity within tolerance before deployment.<sup class="cite" data-cite="ref-5"></sup> The voluntary US complement is the <span class="term" data-tt="The NIST AI Risk Management Framework (formally NIST AI 100-1), published in January 2023, is the US National Institute of Standards and Technology's voluntary framework for managing AI-system risk. It organizes the work into four continuous core functions (GOVERN, MAP, MEASURE, MANAGE) and seven trustworthiness characteristics the framework expects every AI deployment to address. Adopting it closes roughly 60-70 percent of the compliance gap to the EU AI Act, which is why values-led US brands have been able to use it as a procurement gate while waiting for the August 2026 AI Act deadlines.">NIST AI RMF</span>, whose adoption closes most of the gap to EU AI Act compliance, so a values-led brand can use it as a procurement gate.<sup class="cite" data-cite="ref-62"></sup></p>
 
 <figure class="sketch" data-complete aria-label="NIST AI RMF four-function loop with EU AI Act Article 10 data-governance mapping">
-  <div class="mount" id="sk-nist-rmf-mount" data-w="720" data-h="360"></div>
+  <div class="mount" id="sk-nist-rmf-mount" aria-hidden="true" data-w="720" data-h="360"></div>
   <figcaption>The NIST AI RMF runs as a continuous loop: GOVERN sets policy, MAP establishes deployment context, MEASURE assesses trustworthiness, MANAGE allocates resources to mapped risks. The four functions map onto EU AI Act Article 10 (data and data governance) sub-obligations: bias examination (10.2.f), data-gap identification (10.2.g), and bias-mitigation documentation (10.2.h). For paid-search and GEO deployments, the four functions are the operational answer to the auction-logic harm Noble 2018 named.</figcaption>
 </figure>
 
 <h4 id="mm-vendor-audit" data-complete>Monday morning: the <code>/ai-vendor-audit</code> prompt</h4>
 <p data-complete>Audits the AI vendor against Section 26.4's gates. Run before signing and at renewal. $0.05-$0.12 on Sonnet, $0.40-$0.90 on Opus for the deeper constitution + RSP read. Productionize as a Claude Code Skill at <code>~/.claude/skills/ai-vendor-audit/SKILL.md</code> calling <code>mcp__brave-search</code> for RSP and model-card URLs.</p>
-<pre class="code" data-complete>Audit an AI vendor against the seven Chapter 26 procurement gates.
+<pre class="code" data-complete tabindex="0" role="region" aria-label="Prompt: audit an AI vendor against the seven procurement gates">Audit an AI vendor against the seven Chapter 26 procurement gates.
 
 Vendor: &lt;name and product&gt;
 Use case: &lt;1-2 sentences&gt;
@@ -1454,7 +1493,7 @@ audits, RFI responses&gt;</pre>
 <p data-focused style="display:none;">This section walks the routing rule that, for each automated output, decides whether it ships to the customer or escalates to a human first. It is the load-bearing principle of the chapter, and Klarna shows why. The 2022-2024 replacement tracked the metrics an automated path moves cleanly (resolution rate, handle time, tickets per hour) but not <span class="term" data-tt="CSAT is the Customer Satisfaction Score, a short post-interaction survey, usually one question scored 1 to 5 or 1 to 10, asking the customer how satisfied they were with the interaction that just completed. CSAT is distinct from NPS in scope: CSAT measures the specific touchpoint the customer just experienced (this call, this chat session, this checkout flow), while NPS measures the broader relationship across multiple touchpoints. A brand running a CSAT-only dashboard can miss relationship deterioration that shows up only at NPS scale.">CSAT</span> or <span class="term" data-tt="NPS is the Net Promoter Score, introduced by Frederick Reichheld in 2003 and now the dominant measure of brand-relationship quality in consumer industries. The instrument is a single question scored 0 to 10: 'How likely are you to recommend this brand to a friend or colleague?' Responses are bucketed into promoters (9 or 10), passives (7 or 8), and detractors (0 through 6), and the NPS is computed as the percentage of promoters minus the percentage of detractors, which can run from -100 to +100. Because NPS asks about the broader brand relationship rather than the most recent touchpoint, it surfaces deterioration that single-interaction CSAT scores miss, which is why the Section 26.5 parallel-track architecture instruments both.">NPS</span> on the complex disputes it was failing. That instrumentation would have surfaced the deterioration before the rehire, so the architecture is mandatory before an AI customer-facing deployment, not optional after one.<sup class="cite" data-cite="ref-1"></sup></p>
 
 <figure class="sketch" aria-label="Klarna 2024 reversal showing replacement followed by rebuild after CSAT deterioration">
-  <div class="mount" id="sk-klarna-reversal-mount" data-w="720" data-h="292"></div>
+  <div class="mount" id="sk-klarna-reversal-mount" aria-hidden="true" data-w="720" data-h="292"></div>
   <figcaption>Klarna's three-act trajectory: 2022-2024 replacement (700 positions cut, AI handles 2.3M conversations/month), 2025 reversal (CSAT data forces rebuild), 2026 hybrid (AI on routine, human on escalations). Act three built the parallel-track CSAT/NPS instrumentation missing in act one.</figcaption>
 </figure>
 
@@ -1462,7 +1501,7 @@ audits, RFI responses&gt;</pre>
 <p data-focused style="display:none;">Amazon Just Walk Out 2024 is the same failure at a different layer. Amazon launched the cashier-less tech in 2018 claiming AI computed the bill in real time, but April 2024 reporting found it depended on roughly <span id="anno-amazon-walkout">1,000 low-paid workers in India</span> reviewing video, and Amazon ended it in Amazon Fresh within weeks.<sup class="cite" data-cite="ref-64"></sup> An AI claim that depends on a hidden human workforce does not survive disclosure, so the clean move is to disclose the human path and route to it.</p>
 
 <figure class="sketch" aria-label="Amazon Just Walk Out hidden human workforce diagram with India reviewers behind the AI claim">
-  <div class="mount" id="sk-amazon-walkout-mount" data-w="700" data-h="240"></div>
+  <div class="mount" id="sk-amazon-walkout-mount" aria-hidden="true" data-w="700" data-h="240"></div>
   <figcaption>Amazon's Just Walk Out: 1,000 reviewers in India verifying transactions on video. The 2024 disclosure ended the deployment.</figcaption>
 </figure>
 
@@ -1470,7 +1509,7 @@ audits, RFI responses&gt;</pre>
 <p data-focused style="display:none;">Klarna and Just Walk Out failed at the same diagnostic layer: where the AI sat on the buyer's perception map. The Hermann-Puntoni framework sorts consumer-facing AI on two axes, what the AI does to the human task (<strong>enhancement</strong> augments a worker who stays, <strong>replacement</strong> removes the worker) crossed with which marketing function it touches (<strong>research</strong>, <strong>strategy</strong>, or customer-facing <strong>action</strong>). Aversion rises toward action and toward replacement, so Klarna's customer-service deployment sat in the replacement-action cell, exactly where the framework predicts aversion is highest.<sup class="cite" data-cite="ref-1"></sup></p>
 
 <figure class="sketch" aria-label="Hermann-Puntoni two-axis grid of AI deployment by enhancement vs replacement crossed with research, strategy, and action">
-  <div class="mount" id="sk-hermann-puntoni-grid-mount" data-w="720" data-h="320"></div>
+  <div class="mount" id="sk-hermann-puntoni-grid-mount" aria-hidden="true" data-w="720" data-h="320"></div>
   <figcaption>Hermann-Puntoni grid. Aversion is lightest in enhancement-research (the safest cell, coral-light-outlined) and heaviest in replacement-action (coral-deep-filled). The procurement test reads cell-by-cell: pick the lightest cell that still delivers the operating value the deployment needs, and instrument the parallel-track architecture in Section 26.5 against the residual cells the deployment cannot avoid.</figcaption>
 </figure>
 
@@ -1560,7 +1599,7 @@ audits, RFI responses&gt;</pre>
 </div>
 
 <figure class="sketch" aria-label="Fallback path routing diagram showing low-risk auto and high-risk human routes with kill switch">
-  <div class="mount" id="sk-fallback-path-mount" data-w="720" data-h="310"></div>
+  <div class="mount" id="sk-fallback-path-mount" aria-hidden="true" data-w="720" data-h="310"></div>
   <figcaption>The routing logic. Confidence and risk-tier are the two gates. Both clear: automated. Either fails: human. Kill switch: every output routes to human while the AI path is investigated. Answers Article 22 and Klarna's CSAT failure mode at once.</figcaption>
 </figure>
 
@@ -1573,8 +1612,8 @@ audits, RFI responses&gt;</pre>
 <p data-complete>Does the parallel-track architecture actually change outcomes in production? The clearest published case is Allegheny County's Family Screening Tool (AFST), which triages child-welfare hotline calls in Pittsburgh by predicted risk. Run without a human-override layer the original model screened in Black children at the highest-risk referrals at higher rates than white, and the county documented it rather than burying it, adding an override layer that let case workers set aside the high-risk score. The 2024 county DHS evaluation measured the screen-in gap at the highest-risk tier falling from <strong>10.6 percentage points</strong> to <strong>1.8 percentage points</strong> with the model itself unchanged, the principle the seven-step architecture is built around: a predictive scoring system survives production by being more correctable, not more accurate.<sup class="cite" data-cite="ref-42"></sup></p>
 <p data-focused style="display:none;">Does the architecture actually change outcomes? The clearest case is Allegheny County's Family Screening Tool, which triages child-welfare hotline calls in Pittsburgh by predicted risk. Run alone, the model screened in Black children at the highest-risk referrals at higher rates than white; the county documented it and added an override layer letting case workers set aside the high-risk score. The 2024 evaluation measured the gap at the highest-risk tier falling from <strong>10.6 to 1.8 percentage points</strong> with the model unchanged, which is the principle the seven-step architecture is built around: a predictive scoring system survives production by being more correctable, not more accurate.<sup class="cite" data-cite="ref-42"></sup></p>
 
-<figure class="sketch" id="fig-sk-allegheny-mount">
-  <div class="mount" id="sk-allegheny-mount" data-w="720" data-h="320"></div>
+<figure class="sketch" id="fig-sk-allegheny-mount" aria-label="Allegheny County child-screening model: the racial disparity in highest-risk referrals before versus after a human-override layer, which cut the gap by 8.8 points">
+  <div class="mount" id="sk-allegheny-mount" aria-hidden="true" data-w="720" data-h="320"></div>
   <figcaption>Allegheny County AFST: highest-risk-referral racial disparity before vs after the human-override layer (Allegheny County Analytics, May 2024). The model produced 20 percent more screen-ins for Black children than white children when run alone, and the 8.8-point reduction came from the override layer that the county added in response to the documented disparity, after the political process around the system was retooled.</figcaption>
 </figure>
 
@@ -1588,7 +1627,7 @@ audits, RFI responses&gt;</pre>
 
 <h4 id="mm-weekly-compliance-scan" data-complete>Monday morning: the <code>/weekly-compliance-scan</code> Skill</h4>
 <p data-complete>Productionize as a Skill at <code>~/.claude/skills/weekly-compliance-scan/SKILL.md</code> with four reference files in the same folder (<code>gdpr-checklist.md</code>, <code>ai-act-checklist.md</code>, <code>state-privacy-checklist.md</code>, <code>dark-pattern-catalog.md</code>). Cost is $0.08-$0.18 per weekly run on Sonnet with prompt caching across the four files, $0.60-$1.20 on Opus for the deeper Article 22 read. The scan runs Friday afternoon, the team reads the register at standup, and legal signs the high-risk items by Monday or routes them to the Section 26.5 reviewer queue.<sup class="cite" data-cite="ref-65"></sup></p>
-<pre class="code" data-complete>Scan the features shipped in the last 7 days against four compliance checklists
+<pre class="code" data-complete tabindex="0" role="region" aria-label="Prompt: scan the week's shipped features against four compliance checklists">Scan the features shipped in the last 7 days against four compliance checklists
 and return a Friday risk register the team can act on Monday.
 
 Inputs:

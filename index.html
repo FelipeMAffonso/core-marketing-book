@@ -27,7 +27,7 @@
       /* neutrals (driven by MODE: light/dark) */
       --text: #1a1a1a;
       --text-secondary: #555555;
-      --text-muted: #888888;
+      --text-muted: #6b6b6b;
       --bg: #ffffff;
       --bg-alt: #f4f4f6;
       --border: #e6e6ea;
@@ -683,6 +683,16 @@
 
     .sb-item.active .num { color: var(--coral); }
 
+    /* A11Y: the active row's bright-coral text/number on the pale coral-light fill is only
+       ~2.9:1; use a darker coral in LIGHT mode (the coral left-border + tint + bold still cue
+       "active"). Dark modes keep bright coral, which passes as light-on-dark. */
+    html[data-mode="light"] .sb-item.active,
+    html[data-mode="light"] .sb-item.active .num { color: #a8472a; }
+    /* dark themes: bright coral on the dark coral tint is only ~3.9:1, so the active row uses a
+       light coral (high contrast on the dark fill) while keeping the coral identity. */
+    html:not([data-mode="light"]) .sb-item.active,
+    html:not([data-mode="light"]) .sb-item.active .num { color: #f0a98f; }
+
     /* "Coming soon" tag for rows whose file does not exist yet */
     .sb-soon {
       margin-left: auto;
@@ -1176,6 +1186,8 @@
                 </span>
               </label>
             </div>
+            <button type="button" class="rs-reset-btn" id="rs-reset-defaults">Reset to accessible defaults</button>
+            <div class="rs-hint">This book ships WCAG 2.1 AA-compliant. Reset restores the default theme, color, typeface, size, and toggles.</div>
           </div>
 
           <div class="rs-divider"></div>
@@ -1334,7 +1346,7 @@
 
   <!-- Main content -->
   <main class="main" id="main">
-    <div id="welcome" class="welcome">
+    <div id="welcome" class="welcome" tabindex="0" aria-label="Welcome">
       <h1 class="welcome-sr-title">Principles of Marketing: An AI-Integrated Approach</h1>
       <p class="eyebrow">An Interactive Textbook</p>
 
@@ -1487,15 +1499,15 @@
     var MODES = {
       light: {
         bg: '#ffffff', bgAlt: '#f4f4f6', text: '#1a1a1a',
-        textSec: '#555555', textMuted: '#888888', border: '#e6e6ea', dark: false
+        textSec: '#555555', textMuted: '#6b6b6b', border: '#e6e6ea', dark: false
       },
       gray: {
         bg: '#2d3138', bgAlt: '#363b44', text: '#e8eaee',
-        textSec: '#b0b6bf', textMuted: '#868c96', border: '#444a55', dark: true
+        textSec: '#b0b6bf', textMuted: '#a8aeb8', border: '#444a55', dark: true
       },
       night: {
         bg: '#0e1014', bgAlt: '#161a20', text: '#e9ebee',
-        textSec: '#a6abb3', textMuted: '#767c85', border: '#242931', dark: true
+        textSec: '#a6abb3', textMuted: '#9298a2', border: '#242931', dark: true
       }
     };
 
@@ -2905,6 +2917,7 @@
         if (!el) return;
         part.classList.toggle('closed');
         el.classList.toggle('closed');
+        part.setAttribute('aria-expanded', part.classList.contains('closed') ? 'false' : 'true');
       });
     });
     // group open-height is CSS-driven now (.sb-group max-height:480px, .closed:0); no per-mode
@@ -2966,6 +2979,27 @@
       });
     });
 
+    // ── Keyboard access for the click-to-navigate sidebar. The items + collapsible part
+    //    headers are <div>s; make each focusable + operable via Enter/Space (mirrors the
+    //    brand handler above). This also gives the scrollable <nav id="sidebar"> the
+    //    focusable content that WCAG 2.1.1 / axe scrollable-region-focusable require.
+    document.querySelectorAll('#sidebar .sb-item').forEach(function(el) {
+      if (el.getAttribute('data-disabled') === '1') return;
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('role', 'link');
+      el.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+      });
+    });
+    document.querySelectorAll('#sidebar .sb-part').forEach(function(part) {
+      part.setAttribute('tabindex', '0');
+      part.setAttribute('role', 'button');
+      part.setAttribute('aria-expanded', part.classList.contains('closed') ? 'false' : 'true');
+      part.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); part.click(); }
+      });
+    });
+
     // ════════════════════════════════════════════════════════════════════
     //  DEAD-LINK GUARD — every sidebar data-href row is probed once (same
     //  origin HEAD). Rows whose file does not exist degrade to a non-clickable
@@ -2977,6 +3011,8 @@
       el.style.opacity = '0.5';
       el.style.cursor = 'default';
       el.setAttribute('aria-disabled', 'true');
+      el.setAttribute('tabindex', '-1');
+      el.removeAttribute('role');
       el.setAttribute('title', 'Coming soon');
       // Append a subtle "Soon" tag if not already present.
       if (!el.querySelector('.sb-soon')) {
@@ -3399,5 +3435,42 @@
     draw();
   })();
   </script>
+<script>
+/* Accessibility change-popup + reset (added 2026-05-23). The book ships WCAG 2.1 AA by
+   default; warn when a setting that can reduce accessibility changes, and offer a reset. */
+(function () {
+  var KEYS = ['cc-mode', 'cc-accent', 'cc-fontSize', 'cc-font', 'cm_a11y_v1', 'cc-cctoc'];
+  var last = 0;
+  function toast() {
+    var now = Date.now(); if (now - last < 6000) return; last = now;
+    var t = document.getElementById('cc-a11y-toast');
+    if (!t) {
+      t = document.createElement('div'); t.id = 'cc-a11y-toast'; t.className = 'cc-a11y-toast';
+      t.setAttribute('role', 'status');
+      t.innerHTML = 'This book ships ADA-compliant by default. This change can reduce accessibility. ' +
+        '<button type="button" class="cc-a11y-toast-reset">Reset</button>' +
+        '<button type="button" class="cc-a11y-toast-x" aria-label="Dismiss">&times;</button>';
+      document.body.appendChild(t);
+    }
+    t.setAttribute('data-show', '1');
+    clearTimeout(t._to); t._to = setTimeout(function () { t.removeAttribute('data-show'); }, 7000);
+  }
+  function reset() {
+    KEYS.forEach(function (k) { try { localStorage.removeItem(k); } catch (e) {} });
+    location.reload();
+  }
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest ? e.target.closest(
+      '.rs-mode-btn, .rs-accent-btn, .rs-font-btn, .rs-fs-btn, #rs-reset-defaults, .cc-a11y-toast-reset, .cc-a11y-toast-x') : null;
+    if (!el) return;
+    if (el.id === 'rs-reset-defaults' || el.className === 'cc-a11y-toast-reset') { reset(); return; }
+    if (el.className === 'cc-a11y-toast-x') { var t = document.getElementById('cc-a11y-toast'); if (t) t.removeAttribute('data-show'); return; }
+    toast();
+  });
+  document.addEventListener('change', function (e) {
+    if (e.target.matches && e.target.matches('[data-a11y-toggle], #rs-custom-color')) toast();
+  });
+})();
+</script>
 </body>
 </html>

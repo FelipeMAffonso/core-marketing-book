@@ -308,6 +308,43 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<!-- ============================================================
+     A11Y CONTRAST FIXES (appended LAST in <head>, after _accessibility.css so it wins).
+     WCAG 2.1 AA color-contrast remediation, fixed at source. Doubled-class specificity
+     (.foo.foo{...!important}) beats the chapter's scoped rules. Additive only: no prose,
+     markup, SVG, or widget JS changed. Diagnosis from _orchestration/a11y/contrast_detail.js:
+       1. #widget-14-6 .wv-col carries opacity:.5 by default, which washed the column-head
+          label (.wv-ct) and placeholder (.ph) text below 4.5:1 (e.g. #6b6b6b->#b5b5b5,
+          coral-deep #B8553A->#dcaa9d). FIX: drop the text-washing opacity; dim the resting
+          card with a muted cream bg + softer border instead, keeping text at FULL opacity.
+          The .live state restores the bright white card. (Per Felipe's opacity directive.)
+       2. #w142 .kw-verdict b was coral-deep #B8553A on cream = 4.2:1 (small bold text).
+          FIX: route to #a8472a (~5:1 on cream/white).
+       3. #widget-14-6b .cmp-go was white on bright coral #da7756 = 3.1:1 (a button/UI text
+          that needs 4.5:1). FIX: darken the BACKGROUND to #a8472a (white stays, 5.83:1);
+          hover #8f3c23; disabled stays #6b6b6b. Bright coral kept everywhere it is a
+          heading/marker/rule/border/SVG stroke (those meet 3:1).
+     ============================================================ -->
+<style id="cc-a11y-contrast-14">
+  /* (1) Widget 14.6 comparison columns: replace opacity dim with non-opacity dim so text
+         stays at full contrast. Resting card = muted cream; .live restores bright white. */
+  #widget-14-6 .wv-col.wv-col{opacity:1 !important;background:#faf7f3 !important;border-color:#efe7da !important;}
+  #widget-14-6 .wv-col.wv-col.live{background:#ffffff !important;border-color:var(--line) !important;}
+  #widget-14-6 .wv-col.sharp.live.live{border-color:var(--coral-soft) !important;}
+  /* keep column-head label + placeholder + cost text at their full source color (>=4.5:1) */
+  #widget-14-6 .wv-col.vague .wv-ct.wv-ct{color:#6b6b6b !important;}
+  #widget-14-6 .wv-col.sharp .wv-ct.wv-ct{color:#a8472a !important;}
+  #widget-14-6 .wv-ans .ph.ph{color:#6b6b6b !important;}
+  #widget-14-6 .wv-cost.wv-cost{color:#6b6b6b !important;}
+
+  /* (2) Keyword-tester verdict bold: coral-deep -> #a8472a (small bold text on cream). */
+  #w142 .kw-verdict b.kw-verdict-strong, #w142 .kw-verdict.kw-verdict b{color:#a8472a !important;}
+
+  /* (3) Widget 14.6b run button: darken background so white text passes (5.83:1). */
+  #widget-14-6b .cmp-go.cmp-go{background:#a8472a !important;color:#ffffff !important;}
+  #widget-14-6b .cmp-go.cmp-go:hover{background:#8f3c23 !important;}
+  #widget-14-6b .cmp-go.cmp-go:disabled{background:#6b6b6b !important;}
+</style>
 </head>
 <body data-chapter-num="14">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -319,6 +356,19 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of");
+         injected SVG mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 14.
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-14-mobile-app.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 14</p>
@@ -337,15 +387,15 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>The listing those learners saw was four screenshots, a fifteen-second silent autoplay video, and a title and subtitle carrying the keywords the store indexes. Under that listing sat close to a billion cumulative installs and a 4.7-star average.<sup class="cite" data-cite="ref-1"></sup> The screenshots had been A/B tested against twelve variant sets the year before, and the winning set, a cartoon owl on a coral background with a three-word value proposition, lifted the conversion from store-impression to install by 14 percent. Apple Search Ads on the keyword <em>spanish</em> ran a tap-through rate about 2.4 times the App Store organic average, so the brand was buying the search result and engineering the page it pointed to.<sup class="cite" data-cite="ref-2"></sup> The website team had spent a decade optimizing a storefront that most new learners never saw.</p>
 
 <figure class="sketch" aria-label="The opener puzzle: two-thirds of new Duolingo learners arrived through the App Store, not the website the team had optimized for a decade">
-  <div class="mount" id="sk-duolingo-door-mount" data-w="720" data-h="264"></div>
+  <div class="mount" aria-hidden="true" id="sk-duolingo-door-mount" data-w="720" data-h="264"></div>
   <figcaption>The door most learners actually used. The website team optimized the search-and-signup page on the left for a decade, while two-thirds of new learners arrived through the App Store listing on the right, tapped the green owl, and installed without seeing the website at all.</figcaption>
 </figure>
 
 <p data-complete>The Duolingo case is one instance of the definition this chapter works from. <strong>Mobile marketing is the coordinated set of decisions about how a product is found, installed, opened, retained, and re-monetized inside an app-store ecosystem.</strong><sup class="cite" data-cite="ref-3"></sup> The phrase rules out treating mobile as a smaller web, because Apple and Google own both the channel installs happen through and the channel engagement gets measured through. Found, installed, opened, retained, and re-monetized are five jobs that fail in different ways, and the brand that wins runs the listing, the push channel, the in-app surface, the measurement stack, and the paid mix as one connected system. Three brands carry the chapter, Duolingo at scale, Stanley learning that mobile is where the buyer shops, and an OSU senior shipping a flashcard app at a 200-install scale, while Costco, Patagonia, and Liquid Death return in later chapters.</p>
 <p data-focused style="display:none">The Duolingo case shows the definition this chapter works from. <strong>Mobile marketing is the coordinated set of decisions about how a product is found, installed, opened, retained, and re-monetized inside an app-store ecosystem.</strong><sup class="cite" data-cite="ref-3"></sup> Those five jobs fail differently, so the winning brand runs the listing, the push channel, the in-app surface, the measurement stack, and the paid mix as one system. Three brands carry the chapter: Duolingo at scale, Stanley shopping on mobile, and an OSU senior shipping a flashcard app at 200 installs.</p>
 
-<figure id="fig-process" class="sketch" style="margin: 36px 0 28px 0;">
-  <div class="mount" id="process-mount" data-w="720" data-h="280"></div>
+<figure id="fig-process" class="sketch" aria-label="The mobile marketing loop runs in five stages: the listing feeds acquisition, acquisition feeds the install, the install feeds opened-and-retained, and retention feeds monetization, with the day-30 checkpoint deciding whether to keep spending or return to the listing." style="margin: 36px 0 28px 0;">
+  <div class="mount" id="process-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>The five-stage mobile marketing loop. A listing optimized for discovery feeds ad acquisition, which feeds the install, which feeds opened-and-retained, which feeds monetization through subscription or in-app purchase. Each stage produces an input the next stage needs, and the day-30 retention checkpoint decides whether the loop keeps spending or returns to the listing.</figcaption>
 </figure>
 <span class="ax">01 // why mobile is its own marketing surface</span>
@@ -355,7 +405,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none">A buyer who wants a flashcard app does not type a query into Google. They swipe to the App Store, type two or three letters, and tap whichever icon looks most like the thing they want. That buyer is inside a closed retail environment whose owner, Apple on iPhone and Google on Android, decides what shows and at what price.<sup class="cite" data-cite="ref-3"></sup> The brand's job is to win shelf space on a shelf it does not own.</p>
 
 <figure class="sketch" aria-label="Mobile is its own retail environment because Apple and Google own the storefront, the search index, and the payment rails">
-  <div class="mount" id="sk-storefront-mount" data-w="700" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-storefront-mount" data-w="700" data-h="240"></div>
   <figcaption>The closed-loop retail environment of the mobile app store. Search, browse, payment, and refunds all live inside the same two firms, so the brand wins shelf space on a shelf it does not own.</figcaption>
 </figure>
 
@@ -436,7 +486,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none">The third layer is the <span class="term" data-tt="A Mobile Measurement Partner (MMP) is the third-party SDK that handles the attribution Apple and Google deliberately do not provide. The four 2026 MMPs are AppsFlyer, Adjust, Singular, and Branch. It tracks which ad drove which install and where the lifetime value settles later, then feeds that back to the ad networks.">Mobile Measurement Partner</span> (MMP), which attributes each install to the ad that drove it. The fourth is the set of <span class="term" data-tt="Paid-acquisition channels buy installs. Apple Search Ads and Google App Campaigns are the floor, because the user is already inside the store on the way to an install. Meta, TikTok, Snapchat, and the programmatic networks layer on top.">paid-acquisition channels</span> that buy traffic into the listing. The four chain together: whether the spend worked depends on the user finding the listing, so a broken listing makes the measurement layer report misleading numbers.<sup class="cite" data-cite="ref-6"></sup> Section 14.2 starts with the listing.</p>
 
 <figure class="sketch" aria-label="Four mobile-marketing layers and the chained questions each one answers">
-  <div class="mount" id="sk-four-layers-mount" data-w="720" data-h="354"></div>
+  <div class="mount" aria-hidden="true" id="sk-four-layers-mount" data-w="720" data-h="354"></div>
   <figcaption>Four layers, four chained questions. A break in any layer ripples downstream: a broken listing makes the measurement layer report misleading numbers, and a misread of measurement budgets the wrong paid mix on top of it.</figcaption>
 </figure>
 
@@ -493,7 +543,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none">Keyword research weighs every candidate term on three axes that fight each other.<sup class="cite" data-cite="ref-8"></sup> <span class="term" data-tt="Traffic is the estimated number of times a keyword is searched in the App Store per day. Tools like AppTweak and Sensor Tower infer it from rank shifts after controlled listing changes.">Traffic</span> is how often the term is searched. <span class="term" data-tt="Difficulty estimates how hard a keyword is to rank for, given how many apps compete and how strong their listings are. On a 0-100 scale, below 30 is easy and above 80 is the category leader's territory.">Difficulty</span> is how hard it is to rank for, and high-traffic terms are usually high-difficulty because everyone competes for them. <span class="term" data-tt="Relevance is how well a keyword matches what the app does. A flashcard app ranking for 'workout tracker' has traffic and zero relevance, so those installs churn on day one. Relevance prevents the trap of ranking on a high-traffic but irrelevant term.">Relevance</span> quietly disqualifies the rest, since an unrelated term wins installs that leave within a day. The bet a team can win has enough traffic to matter, low enough difficulty to rank without paid support, and tight relevance so the installs stay.</p>
 
 <figure class="sketch" aria-label="Keyword research as a three-axis optimization across traffic, difficulty, and relevance">
-  <div class="mount" id="sk-keyword-axes-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-keyword-axes-mount" data-w="720" data-h="300"></div>
   <figcaption>Traffic, difficulty, and relevance. The asymmetric bet sits in the upper-left-front octant; the rest is volume without payoff or competition without breakthrough.</figcaption>
 </figure>
 
@@ -543,7 +593,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none">The single largest outside factor on conversion is the star rating. A 4.7-star app converts roughly 2.4 times a 3.4-star app on the same traffic, and the 2025 algorithm weights recency, so a six-month-old 4.8-star history loses ground to a fresh 4.6.<sup class="cite" data-cite="ref-14"></sup> So Duolingo asks for the rating only after a seven-day streak, answers negative reviews within about two days, and refreshes the listing every few weeks.<sup class="cite" data-cite="ref-15"></sup></p>
 
 <figure class="sketch" aria-label="The ratings flywheel: better ratings raise rank, higher rank brings more impressions, more impressions bring more installs, more satisfied installs bring more ratings">
-  <div class="mount" id="sk-ratings-flywheel-mount" data-w="660" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-ratings-flywheel-mount" data-w="660" data-h="320"></div>
   <figcaption>Ratings, rank, impressions, installs, ratings. The flywheel that accumulates when the underlying product is good and stalls catastrophically when it is not.</figcaption>
 </figure>
 
@@ -597,7 +647,7 @@ language learning</textarea>
 <p data-focused style="display:none">The listing wins the install; the surfaces inside the app decide whether the user stays. The first is the push notification, which reaches the lock screen even when the app is closed.<sup class="cite" data-cite="ref-16"></sup> Its biggest lever is the opt-in moment, because iOS shows the prompt only once per install. Asking at first open fails. Duolingo asks after the first complete lesson, when "would you like reminders to keep going?" reads as a favor, which lifts opt-in by roughly 18 points.<sup class="cite" data-cite="ref-17"></sup></p>
 
 <figure class="sketch" aria-label="Push permission timing: ask after the value-delivering action, not before">
-  <div class="mount" id="sk-push-timing-mount" data-w="700" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-push-timing-mount" data-w="700" data-h="240"></div>
   <figcaption>The first-open prompt versus the post-delight prompt. The same opt-in question, asked at two different moments, produces opt-in rates 18 points apart.</figcaption>
 </figure>
 
@@ -644,7 +694,7 @@ language learning</textarea>
 <p data-focused style="display:none">Where push reaches the user away from the app, <span class="term" data-tt="In-app messaging is the modals, banners, and tooltip nudges the brand shows while the user is inside the app, distinct from push, which arrives on the lock screen when the app is closed. The brand already knows which screen the user is on and what they just did, so the context is sharper.">in-app messaging</span> reaches them inside it, with sharper context.<sup class="cite" data-cite="ref-19"></sup> It takes three forms: the onboarding modal that walks a first-timer to the first valuable action, the contextual prompt that enables a feature on a specific screen, and the paywall that turns a free user into a subscriber. The principle through all three is to delay friction until after value, which is why Duolingo routes the user into a 60-second lesson before asking for a sign-up.<sup class="cite" data-cite="ref-20"></sup><sup class="cite" data-cite="ref-21"></sup></p>
 
 <figure class="sketch" aria-label="Onboarding flow: screens that ask for friction before value versus screens that deliver value first">
-  <div class="mount" id="sk-onboarding-mount" data-w="700" data-h="328"></div>
+  <div class="mount" aria-hidden="true" id="sk-onboarding-mount" data-w="700" data-h="328"></div>
   <figcaption>Two onboarding flows compared. The friction-first flow loses users at every step; the value-first flow defers the sign-up screen until after the user has experienced the product.</figcaption>
 </figure>
 
@@ -659,7 +709,7 @@ language learning</textarea>
 <p data-focused style="display:none">The paywall is the most A/B-tested screen in a subscription app, and where it sits decides most of the conversion.<sup class="cite" data-cite="ref-22"></sup> At first open it is catastrophic, killing more than half of installs. After onboarding it is the conservative middle. At the moment a free-tier limit is hit, the way Duolingo shows it when the user runs out of hearts, it converts three to four times the first-open rate, because the user has felt the value and just hit the wall.</p>
 
 <figure class="sketch" aria-label="Paywall placement A/B: first-open vs post-onboarding vs at-limit">
-  <div class="mount" id="sk-paywall-mount" data-w="700" data-h="276"></div>
+  <div class="mount" aria-hidden="true" id="sk-paywall-mount" data-w="700" data-h="276"></div>
   <figcaption>The three paywall placements and their typical conversion rates. The at-limit placement converts at three to four times the first-open rate because the user has already experienced the value.</figcaption>
 </figure>
 
@@ -719,7 +769,7 @@ language learning</textarea>
 <p data-focused style="display:none">Installing the MMP's <span class="term" data-tt="Software Development Kit: a small library of code dropped into the app at build time. It listens for the first open after install and reports it to the MMP, which matches it against the ad networks' click logs to decide which ad gets credit. Installing it is engineering's job; reading the dashboard is the marketer's.">software kit (SDK)</span> is engineering's job, not yours. Your job is the dashboard, where one table lists, for every install last week, which network drove it, what it cost, and how the day-7 and day-30 curves look by source.<sup class="cite" data-cite="ref-25"></sup> The MMP also pipes that signal back to the ad networks, which is how Meta, Google, and TikTok learn which clicks turned into installs that stayed.</p>
 
 <figure class="sketch" aria-label="The four MMP vendors: AppsFlyer, Adjust, Singular, Branch">
-  <div class="mount" id="sk-mmp-vendors-mount" data-w="700" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-mmp-vendors-mount" data-w="700" data-h="240"></div>
   <figcaption>The four MMP vendors. Market position, pricing model, and the question each one answers best: AppsFlyer the US default, Adjust the AppLovin-network pick, Singular the revenue-analytics option, Branch the deep-link-first choice.</figcaption>
 </figure>
 
@@ -762,7 +812,7 @@ language learning</textarea>
 </figure>
 
 <figure class="sketch" aria-label="The MMP attribution timeline: from ad click to attribution callback in about 36 hours">
-  <div class="mount" id="sk-mmp-timeline-mount" data-w="700" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-mmp-timeline-mount" data-w="700" data-h="240"></div>
   <figcaption>The attribution timeline. The ad click happens in seconds, the install in minutes, the conversion event hours later, and the attribution callback the same day or up to 72 hours on.</figcaption>
 </figure>
 
@@ -780,7 +830,7 @@ language learning</textarea>
 <p data-focused style="display:none">The degradation has four parts. First, the data is aggregate only, so Apple reports "this campaign produced fifty installs," never "this user installed." Second, it is delayed 24 to 72 hours. Third, it carries only a small set of preset <span class="term" data-tt="A postback is the small report Apple's system sends an ad network once a campaign's conversion window closes and the privacy threshold is met. It holds the campaign ID and a conversion value the brand chose ahead of time, but no user identifier. The MMP collects postbacks automatically and shows them as install counts in the dashboard.">postback values</span> the brand defines in advance, such as "reached the paywall." Fourth, it is withheld until a campaign clears a privacy threshold, since data on three installs would expose the individual. You never read this raw; your MMP collects it into the dashboard.</p>
 
 <figure class="sketch" aria-label="SKAdNetwork conversion-value postback: aggregated, delayed, privacy-thresholded">
-  <div class="mount" id="sk-skan-postback-mount" data-w="700" data-h="298"></div>
+  <div class="mount" aria-hidden="true" id="sk-skan-postback-mount" data-w="700" data-h="298"></div>
   <figcaption>The postback flow. Aggregated across many users, delayed 24 to 72 hours, and withheld until the privacy-threshold conversion count is met, so precision is traded for privacy.</figcaption>
 </figure>
 
@@ -788,7 +838,7 @@ language learning</textarea>
 <p data-focused style="display:none">The 2026 brand runs two parallel modes at once.<sup class="cite" data-cite="ref-27"></sup> For the roughly 25 percent who allowed tracking, the deterministic mode still works and the dashboards look like 2020. For the other 75 percent, only the privacy-preserving mode is available, reporting at the campaign level, never the user level. The teams that kept growing run both and bridge the gap with <span class="term" data-tt="Media mix modeling (MMM) infers how much each channel contributed to total installs, using regression on time-series data and aggregated postbacks rather than per-user clicks. It is the successor to last-click: less precise on any single install, more robust to the privacy constraints that broke last-click.">media mix modeling</span> (MMM), which fits a curve through weekly spend and installs to estimate each channel's share, a population-level average rather than per-install attribution.</p>
 
 <figure class="sketch" aria-label="Pre-ATT vs post-ATT measurement: the share of installs trackable deterministically dropped from 100 to 25 percent on iOS">
-  <div class="mount" id="sk-att-bar-mount" data-w="700" data-h="256"></div>
+  <div class="mount" aria-hidden="true" id="sk-att-bar-mount" data-w="700" data-h="256"></div>
   <figcaption>Pre-ATT versus post-ATT. The deterministic share of iOS installs collapsed from 100 percent to roughly 25 percent in 18 months, and the privacy-preserving postbacks plus modeling fill the rest.</figcaption>
 </figure>
 
@@ -808,7 +858,7 @@ language learning</textarea>
 <p data-complete>The benchmarks let the brand forecast what it would pay and get back, and the percentages matter only once you translate them into a real campaign.<sup class="cite" data-cite="ref-30"></sup> Start with the tap-through rate, the share of users who see the promoted listing and tap it. Apple Search Ads runs about 4 to 9 percent, so four to nine of every hundred users who searched the keyword tapped through. That is far above the typical web banner or feed ad near 0.5 percent, because the user searching "spanish" is already shopping for a Spanish app and the ad meets them inside that intent. The next number is the install conversion rate, the share who tapped through and then installed, which runs roughly 32 to 48 percent because the user has pre-filtered themselves twice. Compound the two and about 2 percent of users who see the ad install the app, which is the efficiency that justifies the channel even at premium pricing. The price for that efficiency is the cost per install, which in the United States now centers around four dollars and climbs higher on the most competitive keywords as the auction fills in.</p>
 
 <figure class="sketch" aria-label="Apple Search Ads vs Google App Campaigns: keyword targeting vs creative-targeting, same install KPI">
-  <div class="mount" id="sk-paid-channels-mount" data-w="700" data-h="270"></div>
+  <div class="mount" aria-hidden="true" id="sk-paid-channels-mount" data-w="700" data-h="270"></div>
   <figcaption>The two in-store channels. Apple Search Ads buys keyword slots in the App Store, and Google App Campaigns buys cross-Google traffic optimized to installs. Different instruments, same install KPI.</figcaption>
 </figure>
 
@@ -821,7 +871,7 @@ language learning</textarea>
 <p data-complete>The programmatic-network layer is structurally different. AppLovin, Unity Ads, and Mintegral aggregate ad inventory across hundreds of smaller apps and sell it as a single buy, which fits brands that need install volume at a controlled cost without much demographic precision. These networks have the worst attribution problem of any channel, because the ad shows up inside another app rather than inside a search result, which is exactly why the MMP layer from Section 14.4 matters most for programmatic spend.</p>
 
 <figure class="sketch" aria-label="The paid mix as an intent ladder: buy first where the buyer is already shopping">
-  <div class="mount" id="sk-intent-ladder-mount" data-w="700" data-h="312"></div>
+  <div class="mount" aria-hidden="true" id="sk-intent-ladder-mount" data-w="700" data-h="312"></div>
   <figcaption>The paid mix as an intent ladder. The App Store searcher has the highest intent and sits at the floor of the mix, the Instagram or TikTok scroller has lower intent and layers on once the in-store auction saturates, so the brand buys first where the buyer is already shopping.</figcaption>
 </figure>
 
@@ -833,7 +883,7 @@ language learning</textarea>
 <p data-focused style="display:none">The mobile-growth work so far is the kind an AI does well. A model can read an app's current store listing, find the low-difficulty keywords it should rank for, critique screenshot copy, and write ten push variants. That is the real product work a junior marketer would spend a week on, compressed into minutes, with the marketer still deciding what ships.<sup class="cite" data-cite="ref-33"></sup> This is the same rung the book has climbed since Chapter 1, now pointed at the App Store.</p>
 
 <figure class="sketch" aria-label="The four-tier AI cadence: chat, Skill, MCP-connected, scheduled agent">
-  <div class="mount" id="sk-ai-tiers-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-ai-tiers-mount" data-w="720" data-h="280"></div>
   <figcaption>The same audit, run four ways. Type the question into chat the first time. Package it as a Skill once it recurs week after week. Connect your measurement partner through MCP so the Skill pulls live install data instead of asking you to paste it. Schedule an agent to run the whole thing and post the diff to Slack. Each step removes a piece of human labor, and none of them removes the marketer's decision over what to ship.</figcaption>
 </figure>
 
@@ -845,7 +895,7 @@ language learning</textarea>
 <p data-complete>The most useful version of this is an audit you can run on any app you know. A model reads the app's current store positioning, compares it against the competitors actually ranking for its keywords, and names the single highest-impact fix, because a vague question gets generic advice while a sharp question with live data gets an anchored answer. The widget below runs exactly that audit on an app you choose.</p>
 
 <figure class="sketch" aria-label="What an AI listing audit returns: keyword gap, screenshot critique, cost impact, verdict">
-  <div class="mount" id="sk-listing-audit-mount" data-w="700" data-h="384"></div>
+  <div class="mount" aria-hidden="true" id="sk-listing-audit-mount" data-w="700" data-h="384"></div>
   <figcaption>What a good listing audit returns, in order. The keyword gap names the terms competitors rank for that this app does not, sorted by traffic over difficulty. Then one screenshot-copy critique with a short rewrite, a rough install-lift estimate for the top change, and a one-line verdict naming the single thing to ship first. Seeing the shape of the answer before running it is what separates a useful audit from a wall of generic advice.</figcaption>
 </figure>
 
@@ -879,11 +929,11 @@ language learning</textarea>
   <div class="wv-grid">
     <div class="wv-col vague" id="widget-14-6-col-vague">
       <div class="wv-colhead"><span class="wv-ct">Generic levers, you knew these</span><span class="wv-cost" id="widget-14-6-cost-vague"></span></div>
-      <div class="wv-ans" id="widget-14-6-ans-vague"><span class="ph">Press the vague question above.</span></div>
+      <div class="wv-ans" id="widget-14-6-ans-vague" aria-live="polite" aria-atomic="false"><span class="ph">Press the vague question above.</span></div>
     </div>
     <div class="wv-col sharp" id="widget-14-6-col-sharp">
       <div class="wv-colhead"><span class="wv-ct">Keyword gap + the one fix</span><span class="wv-cost" id="widget-14-6-cost-sharp"></span></div>
-      <div class="wv-ans" id="widget-14-6-ans-sharp"><span class="ph">Press the specific question above.</span></div>
+      <div class="wv-ans" id="widget-14-6-ans-sharp" aria-live="polite" aria-atomic="false"><span class="ph">Press the specific question above.</span></div>
     </div>
   </div>
   <div class="wv-verdict" id="widget-14-6-verdict"></div>
@@ -907,11 +957,11 @@ language learning</textarea>
   <div class="cmp-grid">
     <div class="cmp-pane" id="widget-14-6b-col-haiku">
       <div class="cmp-head"><span class="cmp-label">claude-haiku-4-5 ($1/M in)</span><span class="wv-cost" id="widget-14-6b-cost-haiku"></span></div>
-      <div class="wv-ans" id="widget-14-6b-ans-haiku"><span class="ph">Press run to send the brief to both models.</span></div>
+      <div class="wv-ans" id="widget-14-6b-ans-haiku" aria-live="polite" aria-atomic="false"><span class="ph">Press run to send the brief to both models.</span></div>
     </div>
     <div class="cmp-pane smart" id="widget-14-6b-col-opus">
       <div class="cmp-head"><span class="cmp-label cmp-smart">claude-opus-4-7 ($5/M in)</span><span class="wv-cost" id="widget-14-6b-cost-opus"></span></div>
-      <div class="wv-ans" id="widget-14-6b-ans-opus"><span class="ph">Press run to send the brief to both models.</span></div>
+      <div class="wv-ans" id="widget-14-6b-ans-opus" aria-live="polite" aria-atomic="false"><span class="ph">Press run to send the brief to both models.</span></div>
     </div>
   </div>
   <div class="wv-note">Two candidate drafts from live models, not approved copy. The cheap model writes from the thin brief alone; the larger model leans on the segment context. Read both, then decide which one you would ship.</div>
@@ -934,7 +984,7 @@ language learning</textarea>
 <p data-focused style="display:none">The first fork is whether to build without code or with it. The <span class="term" data-tt="A no-code builder assembles a working app by dragging components onto screens, with no programming. Glide turns a spreadsheet into an app; Bubble is the most full-custom; FlutterFlow generates real native source you can keep building in code; Adalo makes marketplace-style apps on flat pricing. Entry plans run roughly $25 to $36 a month, and tiers drift quarterly.">no-code builder</span> path is the fastest route, and the four tools each answer a different question: Glide if your data lives in a spreadsheet, Bubble for full custom logic, FlutterFlow for a native binary with a code-eject option, Adalo for a marketplace-style app on flat pricing. Each now layers an AI assistant on top, so a plain request returns a working draft instead of a blank canvas.<sup class="cite" data-cite="ref-35"></sup><sup class="cite" data-cite="ref-36"></sup></p>
 
 <figure class="sketch" aria-label="Decision tree across the four no-code mobile builders">
-  <div class="mount" id="sk-nocode-pick-mount" data-w="740" data-h="266"></div>
+  <div class="mount" aria-hidden="true" id="sk-nocode-pick-mount" data-w="740" data-h="266"></div>
   <figcaption>The four no-code paths and the question each one answers cleanest. A spreadsheet behind the data points to Glide, full custom logic points to Bubble, a native binary with a code-eject option points to FlutterFlow, and a marketplace-style native app on flat pricing points to Adalo. Pick by the question the app has to answer, not by the longest feature list.</figcaption>
 </figure>
 
@@ -957,7 +1007,7 @@ language learning</textarea>
 <p data-complete>Put the pieces on a calendar and the weekend is real. Friday is the brief, one paragraph that locks the scope so the Saturday self does not feature-creep. Saturday is the build in a no-code editor plus the push wiring, with the first test push sent to the student's own phone by evening. Sunday is the listing, the screenshots, the privacy answers, and the submit button. The constraint across the weekend is decision-making rather than coding throughput, because the AI assistant and the no-code editor absorb the typing-heavy work while the student decides what to cut.<sup class="cite" data-cite="ref-34"></sup> A few weeks after launch the app has a few hundred classmates installed, a real retention curve in the dashboard, and a line on the student's resume.</p>
 
 <figure class="sketch" aria-label="Weekend deployment timeline: Friday idea, Saturday build and push, Sunday submit">
-  <div class="mount" id="sk-weekend-mount" data-w="760" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-weekend-mount" data-w="760" data-h="280"></div>
   <figcaption>The weekend, block by block. Friday evening writes the one-paragraph brief and opens the accounts. Saturday builds in the no-code editor and wires the first push to your own phone. Sunday writes the listing, shoots and sizes the screenshots, answers the privacy questions, and submits. Each block is two to four hours, and the bottleneck is deciding what to cut, not typing speed. Submit with a few days of slack, because 2026 review can take longer than a weekend.</figcaption>
 </figure>
 
@@ -969,7 +1019,7 @@ language learning</textarea>
 <p data-focused style="display:none">The weekend deployment ran on the 2026 playbook as it stands today, but a student who ships this semester will optimize a different channel in two years. Three frontier moves are reshaping mobile marketing, and each extends a method the chapter already taught onto a surface the channel could not reach cleanly a year ago.</p>
 
 <figure class="sketch" aria-label="Three frontier moves extending the 2026 mobile-marketing playbook: the first two extend the listing-optimization method onto visual surfaces and AI creative, while the third changes the question because the listing stops being the path the user takes.">
-  <div class="mount" id="sk-frontier-mount" data-w="720" data-h="316"></div>
+  <div class="mount" aria-hidden="true" id="sk-frontier-mount" data-w="720" data-h="316"></div>
   <figcaption>Three frontier moves. The first two extend the listing-optimization method onto visual surfaces and AI-produced creative. The third changes the question, because the listing stops being the path the user takes.</figcaption>
 </figure>
 
@@ -987,7 +1037,7 @@ language learning</textarea>
 <p data-focused style="display:none">The third move changes the question, because the listing stops being the path the user takes. A growing class of apps can be run by an AI assistant on the user's behalf, through Apple's <span class="term" data-tt="App Intents lets an app declare specific actions ('log 250ml of water,' 'start a workout') the system assistant can call directly. Live since iOS 16, with App Intent Domains added in 2026. A team instruments App Intents in 2026 the way teams instrumented deep links in 2017.">App Intents</span> or Google's <span class="term" data-tt="App Actions is Google's equivalent: it exposes an Android app's core actions to the Gemini assistant so it can call them without the user opening the app. Together they open a traffic source that does not route through the store search bar at all.">App Actions</span>.<sup class="cite" data-cite="ref-45"></sup> The user never sees the listing because the user never opens the app.</p>
 
 <figure class="sketch" aria-label="A user tells an assistant to book a flight; the assistant calls an exposed App Intent on the airline's app and prefills the search without the user ever opening the app, so the install graph rewards apps whose App Intents surface is rich and discoverable.">
-  <div class="mount" id="sk-app-intents-mount" data-w="720" data-h="282"></div>
+  <div class="mount" aria-hidden="true" id="sk-app-intents-mount" data-w="720" data-h="282"></div>
   <figcaption>The agent path. The user tells an assistant what to do, the assistant calls an exposed App Intent and prefills the search, and the result comes back without the app's screen ever opening. The install graph rewards apps whose actions are well-named and discoverable.</figcaption>
 </figure>
 
@@ -1003,7 +1053,7 @@ language learning</textarea>
 <p data-focused style="display:none">The Duolingo PM from the opener now reads the install graph as a five-stage loop. She optimizes the listing so learners find it and install, wins the engagement surface with the right push and paywall placement, measures who drove each install after privacy broke deterministic tracking, buys installs first where intent is highest, and ships the next thing in a weekend. The two-thirds of learners who came through the App Store door, not the website, passed through every stage.</p>
 
 <figure class="sketch" aria-label="The chapter spine drawn as one labeled left-to-right strip: the store is the shelf Apple and Google own, optimize the listing to find and convert, win the engagement surface with push and paywall, measure after privacy, buy installs where intent is highest, and ship the thing, with the opening Duolingo-door puzzle resolved.">
-  <div class="mount" id="sk-ch14-recap-mount" data-w="760" data-h="262"></div>
+  <div class="mount" aria-hidden="true" id="sk-ch14-recap-mount" data-w="760" data-h="262"></div>
   <figcaption>The chapter in one strip. The store is a shelf Apple and Google own, the listing is optimized to find and convert, the engagement surface decides retention, measurement runs after privacy, paid buys where intent is highest, and the whole thing ships in a weekend. The Duolingo-door puzzle from the opener is resolved.</figcaption>
 </figure>
 
@@ -1011,7 +1061,7 @@ language learning</textarea>
 <p data-focused style="display:none">The next chapter takes up the layer on top of every install graph just walked. A push sent at 8 a.m. Eastern arrives at 1 a.m. in Mumbai, and the keyword index tuned for the US storefront may not rank in Brazil, Germany, or Japan. Chapter 15 works through the standardize-or-adapt decision, asking which parts of the listing, push copy, paywall, and onboarding cross a border unchanged and which have to be rebuilt for each market.</p>
 
 <figure class="sketch" aria-label="A turn-arrow from the install graph optimized for one US storefront to the same graph across many storefronts and time zones, where 8 a.m. Eastern is 1 a.m. in Mumbai, labeled as the move from one market to every market the app reaches.">
-  <div class="mount" id="sk-turn-ch15-mount" data-w="720" data-h="200"></div>
+  <div class="mount" aria-hidden="true" id="sk-turn-ch15-mount" data-w="720" data-h="200"></div>
   <figcaption>The turn into Chapter 15. The same install graph the chapter optimized for one US storefront now has to hold across many storefronts and time zones, from one market to every market the app reaches.</figcaption>
 </figure>
 

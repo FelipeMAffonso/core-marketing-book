@@ -834,6 +834,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of");
+         injected SVG mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 5.
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-05-marketing-research.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 5</p>
@@ -1009,15 +1022,15 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     <div class="ms-bins">
       <div class="ms-bin" id="ms-bin-qual" data-bin="qual">
         <div class="ms-binhead">Qualitative <span class="ms-sub">(words / why)</span></div>
-        <div class="ms-drop" id="ms-drop-qual" aria-label="Drop questions answered with words here"></div>
+        <div class="ms-drop" id="ms-drop-qual" role="list" aria-label="Drop questions answered with words here"></div>
       </div>
       <div class="ms-bin" id="ms-bin-quant" data-bin="quant">
         <div class="ms-binhead">Quantitative <span class="ms-sub">(numbers / how many)</span></div>
-        <div class="ms-drop" id="ms-drop-quant" aria-label="Drop questions answered with numbers here"></div>
+        <div class="ms-drop" id="ms-drop-quant" role="list" aria-label="Drop questions answered with numbers here"></div>
       </div>
       <div class="ms-bin" id="ms-bin-obs" data-bin="obs">
         <div class="ms-binhead">Observational <span class="ms-sub">(behavior / what they did)</span></div>
-        <div class="ms-drop" id="ms-drop-obs" aria-label="Drop questions answered by watching behavior here"></div>
+        <div class="ms-drop" id="ms-drop-obs" role="list" aria-label="Drop questions answered by watching behavior here"></div>
       </div>
     </div>
     <div class="ms-msg" id="ms-msg" aria-live="polite">Drag a question into a mode. On a phone, tap a question and then tap a mode.</div>
@@ -1207,7 +1220,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     </label>
     <button class="demo-button" id="ssize-go">Run a sample-size calculation</button>
   </div>
-  <div class="demo-stream" id="ssize-out" aria-live="polite"></div>
+  <div class="demo-stream" id="ssize-out" aria-live="polite" aria-atomic="false"></div>
 
   <div class="ss-drawers">
     <div class="ss-drawers-cap">Evidence drawers &middot; the deeper machinery this section compressed. Open one when you want the full treatment.</div>
@@ -1320,6 +1333,16 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   padding: 1px 4px;
   border-radius: 2px;
 }
+
+/* ===== A11Y CONTRAST FIXES (additive; WCAG 2.1 AA) =====
+   White-on-bright-coral small text fails 4.5:1 (3.1:1 measured). Keep white text,
+   darken only the BACKGROUND to #a8472a (5.83:1). Bright coral #DA7756 stays as a
+   heading/marker/rule/stroke color elsewhere. Doubled-class specificity + !important
+   beats the chapter's own .demo-button/.ss-axis rules at source. */
+.demo-button.demo-button { background: #a8472a !important; color: #fff !important; }
+.demo-button.demo-button:hover { background: #8f3c23 !important; }
+.demo-button.demo-button:disabled { background: var(--ink-3) !important; }
+#ssize-demo .ss-drawer .ss-axis.ss-axis { background: #a8472a !important; color: #fff !important; }
 </style>
 <span class="ax">04 // qualitative mechanics</span>
 <h2 id="qual">The mechanics of a qualitative study</h2>
@@ -1401,7 +1424,7 @@ i want one that doesn't sweat all over my desk</textarea>
       <button class="demo-button coder-sharp" id="coder-sharp" type="button" style="grid-column: auto;">Sharp rubric: read all 8, propose 4&ndash;8 themes, code each, return a frequency table</button>
     </div>
   </div>
-  <div class="demo-stream" id="coder-out" aria-live="polite"></div>
+  <div class="demo-stream" id="coder-out" aria-live="polite" aria-atomic="false"></div>
 </div>
 
 <p data-complete>Packaging that sharp rubric as a reusable Skill, or uploading the transcripts to a Claude Project to run all three passes and check its own kappa, is the kind of standing workflow Chapter 18 builds. The live coder above is enough to show what the capability does today.</p>
@@ -1690,12 +1713,12 @@ Tell me what you cannot find.</pre>
     <div id="qaudit-colVague" style="display: flex; flex-direction: column; gap: 8px;">
       <button class="demo-button" id="qaudit-vague">Vague ask: &ldquo;is this question OK?&rdquo;</button>
       <span id="qaudit-costVague" style="font-family: var(--mono, monospace); font-size: 12px; color: var(--ink-soft, #555);">&nbsp;</span>
-      <div class="demo-stream" id="qaudit-ansVague" aria-live="polite" style="min-height: 60px;"></div>
+      <div class="demo-stream" id="qaudit-ansVague" aria-live="polite" aria-atomic="false" style="min-height: 60px;"></div>
     </div>
     <div id="qaudit-colSharp" style="display: flex; flex-direction: column; gap: 8px;">
       <button class="demo-button" id="qaudit-sharp">Sharp ask: four-stage audit + rewrite</button>
       <span id="qaudit-costSharp" style="font-family: var(--mono, monospace); font-size: 12px; color: var(--ink-soft, #555);">&nbsp;</span>
-      <div class="demo-stream" id="qaudit-ansSharp" aria-live="polite" style="min-height: 60px;"></div>
+      <div class="demo-stream" id="qaudit-ansSharp" aria-live="polite" aria-atomic="false" style="min-height: 60px;"></div>
     </div>
   </div>
   <div class="demo-verdict" id="qaudit-verdict" style="margin-top: 12px; font-size: 13px; color: var(--ink); display: none;"></div>

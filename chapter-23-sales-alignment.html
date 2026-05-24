@@ -459,6 +459,41 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<!-- ============================================================
+     A11Y CONTRAST FIXES (Ch23) — appended LAST in <head>, after _accessibility.css,
+     so this cascade wins. Doubled-class/id specificity + !important. Source diagnosis
+     from _orchestration/a11y/contrast_detail.js. ADDITIVE ONLY: no prose/JS/SVG touched.
+     Bright coral #DA7756 is kept everywhere it is a heading/marker/rule/border/SVG stroke
+     (those meet 3:1); only SMALL coral TEXT and white-on-coral BUTTONS are darkened, and
+     opacity-washed comparison columns are de-washed (full-opacity text + a muted background).
+     ============================================================ -->
+<style>
+/* (1) Small coral-deep (#B8553A) TEXT on cream/white below 4.5:1 -> #a8472a (~5:1). */
+details.casestudy.casestudy > summary { color: #a8472a !important; }
+#w-cqg .wc-foot.wc-foot code { color: #a8472a !important; }
+
+/* (2) Small BRIGHT-coral (#DA7756) eyebrow TEXT on cream (2.74:1) -> #a8472a. */
+#w-cqg .wc-eyebrow.wc-eyebrow,
+#w-transcript-audit .wt-eyebrow.wt-eyebrow { color: #a8472a !important; }
+
+/* (3) White-on-coral BUTTONS / active toggles: darken the BACKGROUND to #a8472a
+       (white on #a8472a = 5.83:1); keep white text; hover #8f3c23. */
+#w-cqg .wc-go.wc-go { background: #a8472a !important; border-color: #a8472a !important; }
+#w-cqg .wc-go.wc-go:hover { background: #8f3c23 !important; border-color: #8f3c23 !important; }
+#w-cqg .wc-chip.wc-chip.active { background: #a8472a !important; border-color: #a8472a !important; }
+
+/* (4) The vague/sharp comparison columns started at opacity:.5, which axe blended the
+       label/placeholder text below 4.5:1 (#b5b5b5, #dcaa9d). REMOVE the text-washing
+       opacity and dim the resting state with a muted background + softer border instead,
+       keeping all text at FULL opacity. The .live state restores the bright white card so
+       the affordance still reads. */
+#w-cqg .wc-col.wc-col { opacity: 1 !important; background: #faf7f3; border-color: #efe7da; }
+#w-cqg .wc-col.live.live { background: #fff; border-color: var(--line); }
+#w-cqg .wc-col.sharp.live.live { border-color: var(--coral-soft); }
+#w-cqg .wc-col .wc-ct.wc-ct { color: #6b6b6b !important; }
+#w-cqg .wc-col.sharp .wc-ct.wc-ct { color: #a8472a !important; }
+#w-cqg .wc-list li.wc-ph.wc-ph { color: #6b6b6b !important; }
+</style>
 </head>
 <body data-chapter-num="23">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -470,6 +505,19 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of"); injected SVG
+         mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 23 (review; Haiku can hallucinate).
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-23-sales-alignment.html  (target 0 serious/critical)
+     ============================================================ -->
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 23 &middot; Execution Layer</p>
   <h1 class="title">Sales and Marketing Alignment</h1>
@@ -506,7 +554,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 </figure>
 
 <figure class="sketch" aria-label="One number on a dashboard, products per household, tied to the bonus, bending the whole branch toward forging accounts.">
-  <div class="mount" id="sk-eight-is-great-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-eight-is-great-mount" data-w="720" data-h="300"></div>
   <figcaption>The opener puzzle on one dial. One number on the branch dashboard, products opened per household, is wired to the bonus, the review, and the job. A system optimizes the metric attached to the paycheck, which is how a sales target became 3.5 million forged accounts.</figcaption>
 </figure>
 
@@ -524,7 +572,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <aside class="sn"><span class="sn-num">3.</span> The CFPB consent order of September 8, 2016 names the sales pressure from &ldquo;eight is great&rdquo; as the proximate cause of the unauthorized openings. The 2023&ndash;24 sales literature finds a three-attribute pattern that reliably produces smaller versions of the same trouble: a single-axis volume metric with no quality offset, a measurement window short enough to game inside one cycle, and an <span class="term" data-tt="An audit-by-design clause is a written rule that runs pattern-deviation checks at the same cadence the bonus is paid, so the firm catches misconduct in the week the rep would otherwise spend the check. It flags rep-level outliers on the volume-to-velocity ratio, complaint clusters, mid-month enrollment spikes, and peer z-scores.">audit-by-design clause</span> that is missing. A 12-item review walks a draft comp plan before approval; plans flagging on more than four items concentrate roughly 70 percent of the next three years&rsquo; misconduct, which makes the half-hour audit the highest-leverage time the head of revenue spends on the plan all year.<sup class="cite" data-cite="ref-6"></sup></aside>
 
 <figure class="sketch" aria-label="A coral box labeled SALES with a bonus arrow pointing at COUNT, a coral box labeled MARKETING with a bonus arrow pointing at RELATIONSHIP, and a fissure where the two metrics diverge.">
-  <div class="mount" id="sk-wells-fargo-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-wells-fargo-mount" data-w="720" data-h="280"></div>
   <figcaption>The Wells Fargo seam. Sales measured one number, marketing&rsquo;s public promise another. Without a shared metric the friction registered as 3.5M unauthorized accounts before the regulator arrived.</figcaption>
 </figure>
 
@@ -532,7 +580,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <p data-focused style="display:none">The fight gets worse under <span class="term" data-tt="Parallel channels are two or more sales motions a firm runs at the same buyer at once, such as direct sales alongside wholesale partners, or DTC e-commerce alongside retail shelves. Without coordinated pricing the buyer hears two offers from one firm and the firm loses pricing power inside its own customer base.">parallel channels</span>. When two negotiators worked the same kidnappers on different terms in one 2001 case, the captors played the tracks against each other and the leverage collapsed.<sup class="cite" data-cite="ref-7"></sup> The business version is the same: marketing nurtures a lead while a rep cold-calls the same prospect at a different price, and the firm loses pricing power. The remedy is one shared definition, one shared metric, and one source of truth.</p>
 
 <figure class="sketch" aria-label="Two parallel arrows aimed at the same target, with the target playing them against each other and the leverage line snapping in the middle.">
-  <div class="mount" id="sk-burnham-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-burnham-mount" data-w="720" data-h="240"></div>
   <figcaption>The parallel-track diagnosis. Two negotiators talking to the same counterpart with different offers destroys leverage. Same pattern when sales and marketing run uncoordinated motions at the same prospect.</figcaption>
 </figure>
 
@@ -630,7 +678,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 </figure>
 
 <figure class="sketch" aria-label="Two disputed handoffs on the pipeline: marketing's qualified meets sales's qualified at the BDR seam, and closed-won meets retention-ready at the CSM seam.">
-  <div class="mount" id="sk-pipeline-seams-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-pipeline-seams-mount" data-w="720" data-h="300"></div>
   <figcaption>The two disputed handoffs are the only places revenue gets dropped. Marketing&rsquo;s &ldquo;qualified&rdquo; meets sales&rsquo;s &ldquo;qualified&rdquo; at the BDR seam, and &ldquo;closed-won&rdquo; meets &ldquo;retention-ready&rdquo; at the CSM seam. A definition both sides wrote down turns each fence into a gate.</figcaption>
 </figure>
 
@@ -652,7 +700,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 </div>
 
 <figure class="sketch" aria-label="A coral fence between two yards. On the left the MQL yard is full of leads with form-fill icons; on the right the SQL yard has fewer leads each marked with B-A-N-T checks.">
-  <div class="mount" id="sk-mql-sql-mount" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-mql-sql-mount" data-w="720" data-h="260"></div>
   <figcaption>MQL and SQL as two yards across a fence. Marketing tends the left by lead-scoring; sales tends the right by BANT discovery. A written shared definition is what turns the fence into a gate.</figcaption>
 </figure>
 
@@ -719,7 +767,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <aside class="sn"><span class="sn-num">6.</span> The empirical anchor comes from outside hostage work. In a 2002 study, waiters who repeated the customer&rsquo;s order back verbatim earned tips averaging 70 percent more than waiters who used positive reinforcement.<sup class="cite" data-cite="ref-20"></sup> The customer recognized herself and rewarded the recognition, which is the salesperson&rsquo;s whole job: show the buyer you heard what she already cares about.</aside>
 
 <figure class="sketch" aria-label="A speech bubble with a long buyer sentence on one side; an arrow loops back the last three words to a salesperson stick figure on the other side, who echoes them as a question.">
-  <div class="mount" id="sk-mirroring-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-mirroring-mount" data-w="720" data-h="240"></div>
   <figcaption>The mirror as the smallest tool. Three words, repeated as a question, with silence after. The buyer fills the silence with the actual obstacle. No pitch, no redirect; just space to keep talking.</figcaption>
 </figure>
 
@@ -729,7 +777,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <aside class="sn"><span class="sn-num">7.</span> A 2007 UCLA fMRI study found that labeling an emotion in a face moved activity from the amygdala (panic, threat detection) to the right ventrolateral prefrontal cortex (deliberation), a result since replicated.<sup class="cite" data-cite="ref-21"></sup> Labeling reduces the buyer&rsquo;s limbic load, which is why a named fear negotiates more calmly than an unspoken one.</aside>
 
 <figure class="sketch" aria-label="A buyer figure with a coral cloud labeled FEAR over their head. A salesperson speaks the words IT SEEMS LIKE… and the cloud is replaced by a coral box labeled NAMED CONSTRAINT.">
-  <div class="mount" id="sk-labeling-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-labeling-mount" data-w="720" data-h="240"></div>
   <figcaption>Labeling moves fear from the limbic system to the prefrontal cortex by naming it. The buyer now has a constraint they can negotiate over rather than a fear to suppress. Three seconds, no bargaining chips.</figcaption>
 </figure>
 
@@ -737,7 +785,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <p data-focused style="display:none">The third move is the <span class="term" data-tt="Calibrated questions are open-ended &lsquo;how&rsquo; and &lsquo;what&rsquo; questions that give the buyer a feeling of control while steering toward the rep's objective. Avoid yes/no stems (can, is, are, do, will), which train the buyer to say no.">calibrated question</span>, which gives the buyer a feeling of control while steering toward the rep&rsquo;s objective.<sup class="cite" data-cite="ref-7"></sup> Drop the yes/no stems <em>can</em>, <em>is</em>, <em>do</em>, and <em>will</em>, and use <em>how</em> and <em>what</em> instead. <em>&ldquo;Can you give us a discount?&rdquo;</em> invites refusal, while <em>&ldquo;how am I supposed to make that work?&rdquo;</em> hands the problem back and makes her test whether the constraint is real.<sup class="cite" data-cite="ref-22"></sup></p>
 
 <figure class="sketch" aria-label="A coral matrix with banned stems (CAN, IS, ARE, DO, WILL) on the left in faded text and the four canonical calibrated stems (WHAT, HOW, WHY) on the right in bold coral.">
-  <div class="mount" id="sk-calibrated-q-mount" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-calibrated-q-mount" data-w="720" data-h="260"></div>
   <figcaption>The grammar of a calibrated question. Replace yes/no stems with how-and-what. The buyer thinks through a problem and produces information the salesperson can act on. The reverse trains the buyer to say no.</figcaption>
 </figure>
 
@@ -745,7 +793,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <p data-focused style="display:none">The fourth move is the recognized summary, and it turns on two phrases that sound identical.<sup class="cite" data-cite="ref-7"></sup> <em>&ldquo;You&rsquo;re right&rdquo;</em> is what a buyer says to end the conversation, and it concedes nothing. <em>&ldquo;That&rsquo;s right&rdquo;</em> is what she says when the rep has summarized her situation so accurately that she recognizes herself in it. The task is to summarize her world so completely that <em>that&rsquo;s right</em> is the only honest answer. The summary is the work, and the recognition is the reward.</p>
 
 <figure class="sketch" aria-label="Two speech bubbles. Left: YOU&rsquo;RE RIGHT in faded gray with a strikethrough. Right: THAT&rsquo;S RIGHT in coral with a check mark. A small caption reads: one is a brush-off, one is recognition.">
-  <div class="mount" id="sk-thats-right-mount" data-w="720" data-h="220"></div>
+  <div class="mount" aria-hidden="true" id="sk-thats-right-mount" data-w="720" data-h="220"></div>
   <figcaption>Two phrases that look identical and behave nothing alike. <em>You&rsquo;re right</em> tells the salesperson to leave. <em>That&rsquo;s right</em> is the buyer recognizing themselves in the summary. Summary is the work; recognition is the reward.</figcaption>
 </figure>
 
@@ -818,7 +866,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 </figure>
 
 <figure class="sketch" aria-label="A staircase with four steps labeled 65, 85, 95, 100 climbing from lower-left to upper-right. The top step is labeled with a precise non-round number rather than 100.">
-  <div class="mount" id="sk-ackerman-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-ackerman-mount" data-w="720" data-h="300"></div>
   <figcaption>Ackerman as a staircase. Step size is the message. Shrinkage signals the floor; the non-round final number signals arithmetic the buyer can rely on.</figcaption>
 </figure>
 
@@ -826,7 +874,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <p data-focused style="display:none">The deepest read of the buyer is her <span class="term" data-tt="Religion, in this metaphor, is the small set of words a buyer uses repeatedly that carry her worldview. The rep reads her mission statement, earnings-call phrases, and priorities, then speaks the offer back in that exact vocabulary.">religion</span>, the small set of words she uses again and again that carry her worldview.<sup class="cite" data-cite="ref-7"></sup> One consulting negotiation turned on a single word, <em>stewardship</em>; the negotiator spoke it back and the CEO hired him on the spot. An identical offer reads differently in the buyer&rsquo;s own language, so you can now ask an AI to read the account&rsquo;s artifacts and hand you those words before you dial, the move the next widget runs live.</p>
 
 <figure class="sketch" aria-label="Two figures across a table. The buyer has a thought bubble with the word STEWARDSHIP. The seller&rsquo;s speech bubble repeats the same word back, and a coral connecting line shows recognition.">
-  <div class="mount" id="sk-stewardship-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-stewardship-mount" data-w="720" data-h="240"></div>
   <figcaption>The religion lesson. The buyer&rsquo;s worldview-organizing word was already in the room; the negotiator&rsquo;s job was to recognize it and speak it back. The deal closed on the recognition, not the proposal.</figcaption>
 </figure>
 
@@ -864,7 +912,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
       <button type="button" class="wc-go" id="wc-cqg-go"><span class="wc-dot"></span>Generate three questions</button>
       <span class="wc-cost" id="wc-cqg-cost"></span>
     </div>
-    <div class="wc-out" id="wc-cqg-out"></div>
+    <div class="wc-out" id="wc-cqg-out" aria-live="polite" aria-atomic="false"></div>
 
     <div class="wc-vs">
       <p class="wc-vslead">Now watch the <b>question</b> change the answer. Same model, same cost.</p>
@@ -883,11 +931,11 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
       <div class="wc-vsgrid">
         <div class="wc-col vague" id="wc-cqg-colVague">
           <div class="wc-colhead"><span class="wc-ct">Vague ask</span><span class="wc-cost2" id="wc-cqg-costVague"></span></div>
-          <ul class="wc-list" id="wc-cqg-listVague"><li class="wc-ph">Press the vague ask above.</li></ul>
+          <ul class="wc-list" id="wc-cqg-listVague" aria-live="polite" aria-atomic="false"><li class="wc-ph">Press the vague ask above.</li></ul>
         </div>
         <div class="wc-col sharp" id="wc-cqg-colSharp">
           <div class="wc-colhead"><span class="wc-ct">Sharp ask</span><span class="wc-cost2" id="wc-cqg-costSharp"></span></div>
-          <ul class="wc-list" id="wc-cqg-listSharp"><li class="wc-ph">Press the sharp ask above.</li></ul>
+          <ul class="wc-list" id="wc-cqg-listSharp" aria-live="polite" aria-atomic="false"><li class="wc-ph">Press the sharp ask above.</li></ul>
         </div>
       </div>
       <div class="wc-verdict" id="wc-cqg-verdict"></div>
@@ -918,7 +966,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
       </button>
     </div>
     <div class="wt-costrow"><span class="wt-cost" id="wt-cost"></span></div>
-    <div class="wt-out" id="wt-out"><p class="wt-ph">Pick the vague ask or the sharp ask. The model reads the transcript above and returns its notes.</p></div>
+    <div class="wt-out" id="wt-out" aria-live="polite" aria-atomic="false"><p class="wt-ph">Pick the vague ask or the sharp ask. The model reads the transcript above and returns its notes.</p></div>
     <div class="wt-verdict" id="wt-verdict"></div>
     <p class="wt-foot">In production this runs on your real call recordings, with the model reading transcripts straight out of a tool like Gong or Salesforce and a scheduled agent posting the audit to the team channel. Chapter 24 builds that wiring.</p>
   </div>
@@ -950,7 +998,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <p data-focused style="display:none">The SLA, the volume commitment, and the audit cadence move a firm up the <span class="term" data-tt="The Kotler-Rackham-Krishnaswamy ladder (HBR, 2006) has four rungs: Undefined (the functions barely talk), Defined (written down but separate scorecards), Aligned (one shared weighted metric), and Integrated (one operating system).">Kotler-Rackham-Krishnaswamy four-rung ladder</span>: Undefined (no shared documents), Defined (both written down but on separate scorecards), Aligned (a shared scorecard with weighted metrics on both sides), and Integrated (one operating system across the two).<sup class="cite" data-cite="ref-27"></sup> Most firms plateau at Defined, because the climb to Aligned means changing the compensation plan, the lever firms least want to touch. The useful question is not &ldquo;are we aligned?&rdquo; but &ldquo;which rung do our documents actually describe?&rdquo;</p>
 
 <figure class="sketch" aria-label="A four-rung staircase labeled Undefined, Defined, Aligned, Integrated, with a small figure parked on the Defined step and a dotted line marking the hard climb up to Aligned.">
-  <div class="mount" id="sk-krk-ladder-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-krk-ladder-mount" data-w="720" data-h="280"></div>
   <figcaption>The four-rung alignment climb. Most firms park at Defined because the next step, Aligned, means merging at least one number across the two scorecards, which is the comp-plan lever firms least want to touch.</figcaption>
 </figure>
 
@@ -1041,7 +1089,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 </figure>
 
 <figure class="sketch" aria-label="A handoff baton being passed from a marketing figure to a sales figure to a CSM figure across a coral track, with each handoff zone labeled with a written agreement.">
-  <div class="mount" id="sk-handoff-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-handoff-mount" data-w="720" data-h="240"></div>
   <figcaption>The pipeline as a relay. Handoffs are where revenue gets dropped; the SLA is the harness that prevents the drop. Not a personality problem, an absence-of-design problem.</figcaption>
 </figure>
 
@@ -1087,7 +1135,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 </div>
 
 <figure class="sketch" aria-label="Two columns labeled PHILOSOPHY and DATABASE. The philosophy column chooses the right customers and defines the metric; the database column tracks it. A bridge between them labeled ALIGNMENT carries the metric definition, and without it the database tracks the wrong number perfectly.">
-  <div class="mount" id="sk-crm-layers-mount" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-crm-layers-mount" data-w="720" data-h="260"></div>
   <figcaption>CRM as two layers. The philosophy chooses the right customers and defines the metric. The database tracks it. Without the bridge, the database tracks the wrong number perfectly.</figcaption>
 </figure>
 
@@ -1114,7 +1162,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <p data-focused style="display:none">Using that AI layer well follows four steps that climb from a question to an automation. First you ask, typing an account question into a chat assistant. Second you package the question as a Skill, a saved instruction like <code>/bant-qualifier</code>. Third you connect the data through an <span class="term" data-tt="The Model Context Protocol (MCP) is an open standard (late 2024) that lets an AI assistant read from and write to your existing tools through one uniform interface, the way a USB-C port lets any device plug into any laptop.">MCP</span> connector, so the model reads last week&rsquo;s Gong transcripts with no copy-paste. Fourth you schedule an agent that runs the audit each week before the forecast call. This is Chapter 23&rsquo;s rung on the AI ladder, the move from asking a question to using a capability on your own work.</p>
 
 <figure class="sketch" aria-label="A short four-rung ladder: ask in chat, package as a Skill, connect the data via MCP, schedule an agent. Each rung removes one piece of human labor while the marketer keeps the decision over what ships. The same model, given a different Skill and a different data connection, becomes a different agent.">
-  <div class="mount" id="sk-ai-tiers-mount" data-w="720" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-ai-tiers-mount" data-w="720" data-h="320"></div>
   <figcaption>The AI cadence as one climb: ask in chat, package the ask as a Skill, connect the data through MCP, schedule an agent. Each rung removes one piece of human labor, and the marketer keeps the decision over what ships. The same model, given a different Skill and a different data connection, becomes a different agent.</figcaption>
 </figure>
 
@@ -1126,7 +1174,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <p data-focused style="display:none">The stack misses one structural fact: the firm on the other side is building a mirror-image AI stack that runs earlier in the cycle. A 2025 report finds 94 percent of buying groups rank their shortlist before any seller makes contact, and a Gartner forecast puts 90 percent of B2B buying through AI-agent intermediation by 2028.<sup class="cite" data-cite="ref-9"></sup><sup class="cite" data-cite="ref-43"></sup> Marketing&rsquo;s 2026 job is to be the source that agent retrieves, because a missed citation loses a deal the seller never finds out existed.</p>
 
 <figure class="sketch" aria-label="The 2x2 IDST contingency: profit lift in the consultative cell, zero lift in the transactional cell">
-  <div class="mount" id="sk-idst-contingency-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-idst-contingency-mount" data-w="720" data-h="280"></div>
   <figcaption>The four IDST cells, plotted against product complexity and customer-need complexity. The consultative cell (top-right) is where the sensing and linking classes are multiplicatively complementary, and the transactional cell (bottom-left) is where the same two classes pay back nothing.</figcaption>
 </figure>
 
@@ -1143,7 +1191,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <h2 id="brands">Three brands that skip the fight</h2>
 
 <figure class="sketch" aria-label="Three doors opening onto one room, each door a different route to the same alignment outcome: rewrite the economics, share the values, share the voice.">
-  <div class="mount" id="sk-three-routes-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-three-routes-mount" data-w="720" data-h="300"></div>
   <figcaption>Three routes to the same room. Costco rewrites the economics, Patagonia shares the values, and Liquid Death shares the voice. None of the three needs a stronger culture, because the business model removes the reason to fight.</figcaption>
 </figure>
 
@@ -1154,7 +1202,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <p data-focused style="display:none">Costco runs the cleanest alignment because of where it collects its money. Most of its operating profit comes from the annual membership fee, not the markup on what members carry out.<sup class="cite" data-cite="ref-3"></sup> Paid for renewal rather than volume, every bonus rolls up to the renewal rate, so an employee who pushes an unwanted product moves the only metric that matters the wrong way. Costco needs no SLA, because the model already reports both functions to one number.</p>
 
 <figure class="sketch" aria-label="A balance arm where pushing an unwanted product tips the renewal rate down, so the incentive to oversell disappears at the source.">
-  <div class="mount" id="sk-costco-flip-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-costco-flip-mount" data-w="720" data-h="280"></div>
   <figcaption>How membership economics rewrite the bonus formula. When the firm is paid for renewal, not markup, pushing an unwanted product moves the only metric that matters the wrong way, so the incentive to oversell disappears at its source.</figcaption>
 </figure>
 
@@ -1170,7 +1218,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <aside class="sn"><span class="sn-num">16.</span> The five failure modes are not independent. The MQL/SQL drift on the marketing side reliably triggers a parallel-track silo on the sales side within two quarters, because reps stop trusting the lead feed and start prospecting from their own lists. A working alignment audit catches the upstream drift before it turns into the downstream silo.</aside>
 
 <figure class="sketch" aria-label="The five failure modes as one labeled map: three on the sales side, one on operations, one on marketing, all pinned to one root in the center.">
-  <div class="mount" id="sk-five-failures-mount" data-w="720" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-five-failures-mount" data-w="720" data-h="320"></div>
   <figcaption>The five failure modes pinned to one root. Three sit on the sales side, one on operations, and one on marketing, and every mode is one firm paying for a number the relationship does not actually track.</figcaption>
 </figure>
 
@@ -1193,7 +1241,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <p data-focused style="display:none"><strong>MQL/SQL definition drift.</strong> This mode sits on the marketing side and is most often misread as a sales problem. Marketing&rsquo;s MQL score and sales&rsquo;s SQL discovery drift apart over a year because each team updates its criteria without re-syncing. The acceptance rate slides from ninety-two percent to seventy-one, and the forecast meeting becomes a fight about whether the leads or the reps are the problem. The fix is the quarterly re-sync the SLA was supposed to enforce.</p>
 
 <figure class="sketch" aria-label="Two lines labeled marketing's qualified and sales's qualified starting together and quietly diverging, with the acceptance rate falling from 92 percent to 71 percent, and a quarterly re-sync clamp pulling them back together.">
-  <div class="mount" id="sk-definition-drift-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-definition-drift-mount" data-w="720" data-h="300"></div>
   <figcaption>MQL/SQL drift as a slow split. Two definitions start together and quietly diverge, the acceptance rate slides from 92 percent to 71 percent, and the quarterly re-sync is the clamp that pulls them back together.</figcaption>
 </figure>
 
@@ -1265,7 +1313,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <aside class="sn"><span class="sn-num">17.</span> One structural case the domestic frame underspecifies: an industrial supplier in fifteen countries runs a layered salesforce, with small accounts through inside sales or distributors, regional accounts through territory reps, national accounts under formal plans, and <span class="term" data-tt="Multinational accounts are customers whose buying spans several countries and whose procurement teams expect coordinated pricing and service everywhere, so the supplier assigns one global account team working a single shared plan.">multinational accounts</span> through global teams. Marketing inputs and rep metrics differ tier by tier, so firm-level alignment is the wrong unit of analysis, and the audit-and-offset rule the Wells Fargo aftermath certified transfers to each tier of the AI-copilot stack.<sup class="cite" data-cite="ref-47"></sup></aside>
 
 <figure class="sketch" aria-label="The chapter spine as one labeled strip of five linked beats, with the opening Wells Fargo puzzle resolved at the end: the branch now reports to a complaint-weighted metric, not a raw count.">
-  <div class="mount" id="sk-ch23-recap-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-ch23-recap-mount" data-w="720" data-h="280"></div>
   <figcaption>The chapter in one strip. Pay both functions for one number, write the SLA, run the conversation on listening, keep the database honest with its philosophy, and be the source the buyer&rsquo;s AI cites. The opening Wells Fargo puzzle resolves at the end: the branch now reports to a complaint-weighted metric, not a raw count.</figcaption>
 </figure>
 
@@ -1273,7 +1321,7 @@ details.casestudy > p:first-of-type { margin-top: 4px; }
 <p data-focused style="display:none">The chapter opened with a teller whose one number, eight products per household, trained a whole branch to forge accounts. That branch now reports to a complaint-weighted metric instead of a raw count, which is the chapter in one move. Chapter 24 takes up the layer one floor above, where the SLA decides which leads count and the closed-loop plan decides what the firm spends to make them. Alignment is the kind of problem people spend whole careers learning to hold steady, because the moment the metric drifts the fight starts again.</p>
 
 <figure class="sketch" aria-label="A turn-arrow from the SLA that decides which leads count to the closed-loop marketing plan that decides what the firm spends to make them.">
-  <div class="mount" id="sk-turn-ch24-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-turn-ch24-mount" data-w="720" data-h="240"></div>
   <figcaption>From the handoff seam to the whole-firm plan. The SLA decides which leads count and how fast they move; Chapter 24 takes up the closed-loop plan that decides what the firm spends to make them and how the result reads against the year&rsquo;s target.</figcaption>
 </figure>
 <div class="references-data" style="display:none;" aria-hidden="true">
@@ -1474,6 +1522,7 @@ return '$' + usd.toFixed(4);
 var pop = document.createElement('div');
  pop.className = 'tt-pop';
  pop.setAttribute('role', 'tooltip');
+ pop.setAttribute('aria-hidden', 'true'); /* a11y: this single reusable popup is never referenced by aria-describedby and is empty until hover; keep it out of the a11y tree (the .term text + visible popup remain) so an empty role=tooltip does not trip aria-tooltip-name. Matches the book-wide tooltip pattern. */
  pop.innerHTML = '<span class="tt-cap"></span><span class="tt-body"></span>';
  document.body.appendChild(pop);
  var popCap = pop.querySelector('.tt-cap');

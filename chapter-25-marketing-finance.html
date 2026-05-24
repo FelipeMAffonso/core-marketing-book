@@ -323,6 +323,37 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<!-- ============================================================
+     A11Y CONTRAST FIX (Ch25) — appended LAST in <head> so it wins source order
+     over both the chapter's scoped widget CSS and _accessibility.css.
+     Diagnosis: the two AI widgets (#w257, #w257b) define their OWN scoped
+     --w7-ink-3 / --w7b-ink-3 (#888) which bypass the global _accessibility.css
+     :root{--ink-3:#6b6b6b}. All small grey widget text (chips, field/preset
+     labels, q/p tags, placeholders, disclaimer, card titles) inherited #888 and
+     failed AA (3.35-3.54:1). Fixes below, doubled-id/class specificity + !important:
+       (a) re-point the widgets' scoped muted ink #888 -> #6b6b6b (>=4.5:1 small text);
+       (b) Run buttons: white-on-#DA7756 was 3.1:1 -> darken BG to #a8472a (5.83:1),
+           keep white text; hover #8f3c23; disabled stays dimmed/grey;
+       (c) #lc-verdict bold + coral chip "live" small text: coral-deep #B8553A (4.2-4.4:1)
+           -> #a8472a (>=4.5:1 on cream/white). Bright coral #DA7756 left untouched where
+           it is a border/stroke/marker (meets 3:1). No prose/geometry changed. -->
+<style>
+  /* (a) widget muted ink #888 -> #6b6b6b — fixes all small grey text in both widgets */
+  #w257#w257 { --w7-ink-3: #6b6b6b !important; }
+  #w257b#w257b { --w7b-ink-3: #6b6b6b !important; }
+
+  /* (b) Run buttons: darken coral BACKGROUND so white text clears 4.5:1 */
+  #w257#w257 .w7-run.w7-run { background: #a8472a !important; border-color: #a8472a !important; color: #fff !important; }
+  #w257#w257 .w7-run.w7-run:hover { background: #8f3c23 !important; border-color: #8f3c23 !important; }
+  #w257b#w257b .w7b-run.w7b-run { background: #a8472a !important; border-color: #a8472a !important; color: #fff !important; }
+  #w257b#w257b .w7b-run.w7b-run:hover { background: #8f3c23 !important; border-color: #8f3c23 !important; }
+
+  /* (c) small coral-deep text that fails on cream/white -> #a8472a */
+  #lc-explorer#lc-explorer .lc-verdict b { color: #a8472a !important; }
+  #lc-explorer#lc-explorer .lc-verdict.win { color: #a8472a !important; }
+  #w257#w257 .w7-chip.live { color: #a8472a !important; }
+  #w257b#w257b .w7b-chip.live { color: #a8472a !important; }
+</style>
 </head>
 <body data-chapter-num="25">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -334,6 +365,19 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of"); injected SVG
+         mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 25 (review; Haiku can hallucinate).
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-25-marketing-finance.html  (target 0 serious/critical)
+     ============================================================ -->
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 25</p>
   <h1 class="title">Marketing Finance and Budget Defense</h1>
@@ -372,7 +416,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 </figure>
 
 <figure class="sketch" aria-label="The P&amp;G budget-defense puzzle: one firm defended its 2009 budget with payback math and gained share, three cutters lost it.">
-  <div class="mount" id="sk-pg-cut-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-pg-cut-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>The opening puzzle. Two kinds of firm hit the same 2009 recession. P&amp;G defended its budget with customer-payback math and grew 1.4 share points over the three years that followed. Three competitors cut media spend by 30 percent or more and all lost share. The difference was not the marketing, it was the language in the room where the cuts were decided.</figcaption>
 </figure>
 
@@ -394,7 +438,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>That difference is a matter of income-statement timing. Marketing spend sits on the income statement as an immediate operating expense, appearing on this quarter&rsquo;s profit-and-loss statement the moment the dollar is committed. The revenue it produces arrives in two pieces: a contemporaneous piece, this quarter&rsquo;s direct-response lift from the campaign that just ran, and a deferred piece spread over many later quarters, the mental availability a brand campaign built and the customer-base asset a loyalty program protected. The deferred piece is real revenue, but it shows up later than the dollar that paid for it. The Institute of Practitioners in Advertising analyzed 996 case studies of award-winning campaigns since 1980 and documented the timing: brand-building campaigns peak in revenue impact at roughly two years after they run and contribute for as much as four, while activation campaigns peak inside one quarter and decay almost as quickly.<sup class="cite" data-cite="ref-9"></sup></p>
 
 <figure class="sketch" aria-label="IPA 996-case timing of revenue: activation peaks in one quarter and decays; brand-building peaks at month 24 and contributes for four years.">
-  <div class="mount" id="sk-ipa-timing-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-ipa-timing-mount" data-w="720" data-h="260" aria-hidden="true"></div>
   <figcaption>The IPA effectiveness archive&rsquo;s headline finding plotted across the same horizontal time axis. Activation revenue spikes inside one quarter and decays almost as quickly. Brand-building revenue climbs slowly, peaks near month 24, and continues to contribute through year four. The CFO closing this quarter sees only the activation line, which is the visual reason the brand line gets cut first.</figcaption>
 </figure>
 
@@ -407,7 +451,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 </div>
 
 <figure class="sketch" aria-label="Marketing budgets cut sharpest during recessions; brand spend cut deepest within marketing.">
-  <div class="mount" id="sk-recession-mount" data-w="700" data-h="240"></div>
+  <div class="mount" id="sk-recession-mount" data-w="700" data-h="240" aria-hidden="true"></div>
   <figcaption>Across recessions since 1973, marketing budgets fall faster than other operating-expense lines, and within marketing the brand-building line falls faster than the activation line.</figcaption>
 </figure>
 
@@ -509,7 +553,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 </div>
 
 <figure class="sketch" aria-label="Gross margin versus contribution margin: gross margin subtracts COGS only, contribution margin subtracts all variable costs.">
-  <div class="mount" id="sk-margins-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-margins-mount" data-w="720" data-h="240" aria-hidden="true"></div>
   <figcaption>Gross margin (revenue minus COGS) is what a finance review usually shows. Contribution margin (revenue minus all variable costs) is what a marketer needs to know to size acquisition spend without making each new customer loss-making.</figcaption>
 </figure>
 
@@ -518,7 +562,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none;">Two ratios recur in every finance conversation. The first is the marketing-to-revenue ratio, near 7.7 percent on average, software near 11, manufacturing near 5.<sup class="cite" data-cite="ref-5"></sup> The second is the EBITDA margin, the proxy for operating cash flow, because a CFO protecting a 20 percent margin will not approve a budget that grows faster than revenue without proof. In 2026 only 3 percent of CMOs can show marketing ROI above 50 percent of spend, so the CFO arrives prepared to cut.<sup class="cite" data-cite="ref-15"></sup></p>
 
 <figure class="sketch" aria-label="On a thin margin, a 1 percent move in price or cost swings profit by about a third.">
-  <div class="mount" id="sk-leverage-mount" data-w="720" data-h="295"></div>
+  <div class="mount" id="sk-leverage-mount" data-w="720" data-h="295" aria-hidden="true"></div>
   <figcaption>The 1-percent-leverage arithmetic on a thin margin. On $100 of revenue against $97 of cost, the $3 of profit is a 3 percent margin. A 1 percent move, raising price to $101 or cutting cost to $96, swings profit from $3 to $4, a 33 percent jump. The marketing line is usually the easiest 1 percent of cost to grab inside the quarter, which is why it gets cut first.</figcaption>
 </figure>
 
@@ -602,7 +646,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>The canonical decomposition splits customer equity into three drivers a marketing investment can move. <em>Value equity</em> is the customer&rsquo;s rational assessment of price, quality, and convenience, the part that price cuts, product improvements, and distribution upgrades change. <em>Brand equity</em> is the customer&rsquo;s emotional and reputational attachment, the part that advertising, public-relations work, and corporate-citizenship investments move. <em>Relationship equity</em> is the structural switching cost the customer has accumulated, including loyalty programs, learning curves on the firm&rsquo;s product, and social bonds with the brand community. Because each driver is moved by a different kind of marketing dollar, the decomposition is the diagnostic the budget defense uses to name what each line is buying.</p>
 
 <figure class="sketch" data-complete aria-label="Customer equity decomposes into three drivers: value equity, brand equity, relationship equity, each moved by a different kind of marketing dollar.">
-  <div class="mount" id="sk-equity-mount" data-w="720" data-h="270"></div>
+  <div class="mount" id="sk-equity-mount" data-w="720" data-h="270" aria-hidden="true"></div>
   <figcaption><span class="fnum" data-cap="figure"></span> Customer equity decomposed into three drivers, each with the marketing investments that move it. Value equity responds to price, quality, and distribution. Brand equity responds to advertising, public relations, and purpose work. Relationship equity responds to loyalty programs and switching-cost investment. A budget memo that names which driver each line is buying is a memo the CFO can compare to the discounted-cash-flow logic the firm already uses.</figcaption>
 </figure>
 
@@ -679,7 +723,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>The gap is what trips marketers up. Suppose a campaign produces a ROAS of 4.0 on a product whose gross margin is thirty percent, and the marketer reports the 4.0 to a CFO who translates it into ROI on the spot. Each ad dollar produced four dollars of revenue, but only the margin portion (thirty percent of four, or $1.20) is gross profit the firm keeps. Subtract the one dollar of ad spend and the firm is left with twenty cents per dollar, a marketing ROI of twenty percent before any other operating cost runs against the campaign. The same 4.0 looks like a winner in the platform dashboard and a marginal campaign on the actual P&amp;L. A marketer who quotes ROAS when the CFO asked for ROI signals either that they do not know the difference or that they hope the CFO does not, and both cost credibility. The defense is to lead with the margin-adjusted ROI number and quote ROAS only as the channel-level diagnostic that produced it.<sup class="cite" data-cite="ref-11"></sup></p>
 
 <figure class="sketch" aria-label="ROI vs ROAS: ROAS is revenue-divided-by-spend (gross, channel-level), ROI is gross-profit-divided-by-spend (margin-adjusted, corporate).">
-  <div class="mount" id="sk-roi-roas-mount" data-w="700" data-h="240"></div>
+  <div class="mount" id="sk-roi-roas-mount" data-w="700" data-h="240" aria-hidden="true"></div>
   <figcaption>ROAS = revenue / spend. ROI = (incremental gross profit) / spend. Same campaign, two numbers, different conversation. Always know which one the room is asking about.</figcaption>
 </figure>
 
@@ -748,12 +792,12 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <aside class="sn"><span class="sn-num">6.</span> The brand-equity damage in the 3G deployments is the cautionary half of the ZBB record. Because a blank-page review rewards lines with visible same-quarter return, several portfolio brands took close to a decade to rebuild the awareness and preference they had run down. The lesson is not that ZBB is wrong but that its rigor has to be paired with the Section 25.3 customer-economics math, so the brand line&rsquo;s deferred return is on the page when finance evaluates the cut.</aside>
 
 <figure class="sketch" aria-label="Four budget-setting frameworks ranked by analytical rigor and administrative cost.">
-  <div class="mount" id="sk-frameworks-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-frameworks-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>Four frameworks. Percent-of-revenue is the cheapest to run and the most analytically empty. Competitive parity copies a competitor&rsquo;s ratio without doing independent work. Objective-and-task forces the marketer to estimate response per task. Zero-based forces every line to re-justify itself from zero each year.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="The 2026 blend: objective-and-task tied to LTV:CAC, calibrated against a parity check, stress-tested under a zero-based scenario.">
-  <div class="mount" id="sk-blend-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-blend-mount" data-w="720" data-h="260" aria-hidden="true"></div>
   <figcaption>The blend the marketer actually ships. The budget is built objective-and-task tied to the LTV:CAC and payback math, calibrated against a competitive-parity check, then stress-tested under a zero-based scenario, so the marketer ships one number backed by three lenses rather than inheriting last year&rsquo;s ratio.</figcaption>
 </figure>
 
@@ -786,7 +830,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <aside class="sn"><span class="sn-num">7.</span> The meta-analysis reports a caveat the CFO reaches for first. Only 53 percent of the underlying estimates are statistically significant, so the average elasticity is real but the variance around it is large, and which side of the average a firm sits on depends on three moderators the study names: how durable the good is (toothpaste versus refrigerators), where the category sits in its lifecycle (new versus mature), and how often the data is sampled (weekly versus annual). Suppose a vendor-fitted media-mix model returns an elasticity of 0.45 for a mature nondurable consumer-packaged good where the meta-analytic prior is about 0.10, more than four times the prior, a gap a numerate CFO challenges on sight. The defense is not to insist the vendor is right but to walk through which moderators its specification handles differently, and to commit to a holdout test that will confirm or shrink the estimate inside the next quarter. The 2026 vendor stack (Robyn, Meridian, Mutinex) all build the meta-analytic prior in as a <span class="term" data-tt="A Bayesian regularizer is a statistical safeguard that pulls a model's estimate toward what is already known about the world whenever the firm's own data is too thin or too noisy to settle the question on its own. The prior the model is pulled toward here comes from a meta-analysis (a pooled summary of many separate studies), which reports that the average advertising elasticity across mature nondurable categories sits at about 0.10. The practical result is that the model still returns a sensible number when the firm has only a few years of marketing history, because the regularizer borrows statistical strength from the broader research literature whenever the firm's own sample cannot carry the estimate alone.">Bayesian regularizer</span>, so a 0.45 that survives that pull is a real claim the marketer still has to defend.</aside>
 
 <figure class="sketch" aria-label="Advertising elasticity short-term 0.12 versus long-term 0.24: two independent evidence bases converge on the same long-and-short pattern.">
-  <div class="mount" id="sk-elasticity-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-elasticity-mount" data-w="720" data-h="260" aria-hidden="true"></div>
   <figcaption>The Sethuraman-Tellis-Briesch meta-analysis short-term and long-term elasticities, plotted beside the Binet-Field IPA finding. Two independent evidence bases, one drawn from 56 econometric studies and the other from 996 award-winning campaigns, land on the same long-to-short ratio of roughly 2.0, so the CFO cannot dismiss the long-term claim as one consulting firm's opinion.</figcaption>
 </figure>
 
@@ -835,7 +879,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>Both heuristics assume the firm is buying paid media at all, which makes the cleanest counter-case the firm that barely does. Costco runs almost no traditional advertising, holding marketing-to-revenue near 0.5 percent against a category average of 2 to 4 percent. The lesson is not the zero-advertising posture itself, because Costco competes against Sam's Club and BJ's Wholesale, both of which run substantial paid-media programs. The question Costco's finance team answers at every review is exact: at one-fifth the category's advertising, what are you doing instead that keeps the customer asset growing? The answer is three substitutes. Membership renewal runs near 92 percent in the United States and Canada and about 90 percent worldwide, so Costco need not advertise to replace customers who do not churn.<sup class="cite" data-cite="ref-23"></sup> The footprint of more than 900 warehouses turns each store into a permanent physical reminder, mental availability bought through real estate rather than paid media. The third is word-of-mouth, measured by the dunnhumby Retailer Preference Index, the cross-grocery benchmark scoring how strongly each retailer's customers recommend the store, which Costco has led multiple years running.</p>
 
 <figure class="sketch" data-complete aria-label="Costco substitution flywheel: 92 percent renewals, 900-plus warehouses, and word-of-mouth replace the paid-media spend competitors use.">
-  <div class="mount" id="sk-costco-mount" data-w="720" data-h="334"></div>
+  <div class="mount" id="sk-costco-mount" data-w="720" data-h="334" aria-hidden="true"></div>
   <figcaption>Costco's substitution flywheel. Three structural assets do the work a competitor pays paid media to do. The 92 percent renewal rate keeps the customer base from leaking. The 900-plus-warehouse footprint buys mental availability through real estate rather than through television. The dunnhumby-leading word-of-mouth refreshes the brand in conversations rather than commercials. A marketer copying Costco's 0.5 percent posture has to build all three substitutes first.</figcaption>
 </figure>
 
@@ -848,7 +892,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none;">Allocation also has a temporal dimension, because next year&rsquo;s budget must survive a revenue trajectory the firm does not yet know. The fix is scenario planning: replace the single best-guess plan with a base case, an upside case, and a recession case 10 to 25 percent below plan, each naming ahead of time which lines get cut, frozen, or grown. When revenue softens, the team executes a plan it wrote with a cold head, having already decided brand-building was not the first line to cut.<sup class="cite" data-cite="ref-24"></sup></p>
 
 <figure class="sketch" aria-label="Three-scenario budget plan: base case, recession case, deep-cut case, with named cuts pre-committed.">
-  <div class="mount" id="sk-scenarios-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-scenarios-mount" data-w="720" data-h="240" aria-hidden="true"></div>
   <figcaption>Three scenarios, written before the revenue trajectory is known. The recession case pre-commits which lines get cut first, which protects the brand-building line from the panic-cut pattern that produces long-term damage.</figcaption>
 </figure>
 
@@ -921,7 +965,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none;">CFO pushback follows a stable pattern, which lets the marketer pre-write four slides.<sup class="cite" data-cite="ref-8"></sup> Brand-building cannot be measured, answered with the IPA archive and the firm&rsquo;s brand-tracker. Scale up the campaign that worked, answered with the diminishing-return curve, because doubling spend rarely doubles return once a channel saturates. Cut the agency, answered with the equivalent burdened in-house cost. And the hardest, take 15 percent out next quarter, answered with the pre-committed recession scenario, which is what P&amp;G&rsquo;s 2008 reset did.</p>
 
 <figure class="sketch" aria-label="The four standard CFO pushbacks, each paired with its pre-written defense slide.">
-  <div class="mount" id="sk-pushback-mount" data-w="720" data-h="360"></div>
+  <div class="mount" id="sk-pushback-mount" data-w="720" data-h="360" aria-hidden="true"></div>
   <figcaption>The four CFO pushbacks the Bain waves catalog, each paired with the defense the marketer brings as a prepared slide. Brand-cannot-be-measured is answered by the IPA archive plus the firm's brand-tracker; scale-the-winner by the diminishing-return curve; cut-the-agency by the burdened in-house cost math; and take-15-percent by the pre-committed scenario plan. The defense is a deck written in advance, not an improvisation in the room.</figcaption>
 </figure>
 
@@ -934,7 +978,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none;">The templates cover what the CFO asks about marketing&rsquo;s spend. The deeper question is what the CFO trusts about marketing&rsquo;s reporting, and the literature names the failure mode the <span class="term" data-tt="The CFO trust gap is the finding that CFOs discount marketing-team metrics relative to finance-team metrics from the same warehouse, simply because the marketing numbers carry no audit trail back to the income statement. The fix is to publish each metric in the format finance already uses, so the number the marketer cites is the one the CFO can pull and verify.">CFO trust gap</span>: a CFO who cannot verify the marketer&rsquo;s retention number marks it down.<sup class="cite" data-cite="ref-25"></sup> The fix is the metric handover, publishing every marketing metric in the format finance already uses, from the same SQL view and the same definitions.</p>
 
 <figure class="sketch" aria-label="The metric handover: marketing dashboard and finance warehouse pull from the same shared SQL view, so the CFO can verify the marketer's number on the spot.">
-  <div class="mount" id="sk-handover-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-handover-mount" data-w="720" data-h="260" aria-hidden="true"></div>
   <figcaption>The metric handover. Two teams, two dashboards, but one warehouse and one SQL view underneath. The marketer's retention survival curve and the finance team's churn-cohort decay table are the same number presented in two vocabularies, drawn from the same source. The CFO can verify the marketer's claim against the warehouse on the spot, which removes the trust discount the marketing-accountability literature documents.</figcaption>
 </figure>
 
@@ -971,7 +1015,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none;">The marquee 2026 example is Hershey, which spends roughly two billion dollars a year on the combined media and trade-marketing line. Until 2026 it refit its media-mix model three times a year, planning on data eighteen months old.<sup class="cite" data-cite="ref-29"></sup> To close the gap it paired <span class="term" data-tt="An Australian marketing-mix-modeling platform that runs as a system of specialized AI agents (built on Claude and Gemini) rather than one model. Specializing the agents lets it refit and explain its models in hours rather than weeks.">Mutinex</span>, which runs as specialized agents, with <span class="term" data-tt="A marketing-data-cleanup platform that standardizes the fragmented data a large firm holds across marketing platforms, retail systems, and the finance warehouse, so the modeling layer reads consistent inputs.">Tracer</span>, which standardizes its data, refitting monthly. The firm projects a four-to-five-percent lift on the spend line, roughly eighty to one hundred million dollars a year from the measurement upgrade alone. That number defends itself, because it needs only the case for measuring more often, not for the advertising.</p>
 
 <figure class="sketch" aria-label="Hershey measurement cadence: 2018 vendor annual refit lags by 18 months versus the 2026 Mutinex plus Tracer monthly refit cadence.">
-  <div class="mount" id="sk-hershey-mount" data-w="720" data-h="270"></div>
+  <div class="mount" id="sk-hershey-mount" data-w="720" data-h="270" aria-hidden="true"></div>
   <figcaption><span class="fnum" data-cap="figure"></span> Hershey&rsquo;s measurement cadence, 2018 versus 2026. The legacy annual vendor refit produced one MMM readout a year, leaving spending decisions to run on data that was already eighteen months stale by the time the plan went live. The Mutinex plus Tracer 2026 stack refits twelve times a year, closing the gap to roughly four weeks and unlocking a projected four-to-five percent revenue lift on the same two-billion-dollar spend.</figcaption>
 </figure>
 
@@ -987,7 +1031,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none;">The companion capability is real-time reallocation at the campaign level. A campaign whose <span class="term" data-tt="A model trained on past randomized ad tests that scores new, non-randomized campaigns at close to experiment accuracy. On a Meta benchmark of 2,226 experiments it explained 88 percent of the real variation in impact, against 19 percent for last-click, which is why it is the 2026 default for reallocation.">predicted incrementality</span>, its true sales lift, drops below threshold for two consecutive weeks no longer waits for the quarterly review. The agent moves spend to the next-best channel inside a policy the marketer pre-authorized.<sup class="cite" data-cite="ref-31"></sup> The 2018 marketer ran the reallocation by hand; the 2026 marketer writes the policy it runs inside.</p>
 
 <figure class="sketch" aria-label="Four 2026 AI tiers applied to marketing finance: Tier 1 chat audit, Tier 2 budget-defense Skill, Tier 3 finance MCP server, Tier 4 scheduled defense pipeline.">
-  <div class="mount" id="sk-tiers-mount" data-w="720" data-h="290"></div>
+  <div class="mount" id="sk-tiers-mount" data-w="720" data-h="290" aria-hidden="true"></div>
   <figcaption>The same four-tier stack from Chapter 1, applied to marketing finance. Tier 1 audits last quarter. Tier 2 packages the audit as a Skill. Tier 3 connects to the finance warehouse via MCP. Tier 4 schedules the pipeline.</figcaption>
 </figure>
 
@@ -1034,7 +1078,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>The second mode is the slow drift toward <span class="term" data-tt="Numbers that are easy to move and look good in a dashboard but do not map to revenue, contribution margin, or customer asset value, so they signal nothing about whether the firm is making more money.">vanity metrics</span>. The usual suspects are total impressions, total reach, follower count, and sentiment score, and none of them maps cleanly to revenue or contribution margin. A defense built on impression growth gets cut the moment the CFO asks what the revenue impact was, while a defense built on cohort LTV growth gets approved because the answer to the revenue question is already built into the metric. The fix is to anchor every reported metric to a line that eventually reaches the P&amp;L.<sup class="cite" data-cite="ref-12"></sup></p>
 
 <figure class="sketch" aria-label="Three failure modes: last-click overweighting, vanity metrics, attribution shopping.">
-  <div class="mount" id="sk-fail-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-fail-mount" data-w="720" data-h="240" aria-hidden="true"></div>
   <figcaption>Three failure modes that break the budget defense. Each has a structural fix that costs less than the failure costs.</figcaption>
 </figure>
 
@@ -1044,7 +1088,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 
 
 <figure class="sketch" aria-label="Last-click overweighting: the buyer path runs through brand, consideration, and branded search, but last-click credits only the final touch.">
-  <div class="mount" id="sk-last-click-mount" data-w="720" data-h="250"></div>
+  <div class="mount" id="sk-last-click-mount" data-w="720" data-h="250" aria-hidden="true"></div>
   <figcaption>Why last-click overstates. A buyer passes through brand-building and consideration before the final branded-search click, yet last-click hands all the credit to that last touch and none to the upstream work that did the convincing.</figcaption>
 </figure>
 
@@ -1060,7 +1104,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none;">A task inside that horizon becomes scheduling-eligible: the agent runs it and the human reviews the diff. The chapter&rsquo;s three workflows sit at different distances. Composing the quarterly defense memo is a few hours of human time, comfortably inside the horizon. Scenario planning takes a few weeks, approaching it, so a human still reviews each scenario the agent generates. Negotiating the budget is a multi-quarter relationship of reading the room, and it stays outside, because that does not decompose into subtasks the way a memo does.</p>
 
 <figure class="sketch" aria-label="METR task horizon: three marketing-finance workflows mapped against the agent-completion frontier that doubles every four months.">
-  <div class="mount" id="sk-metr-horizon-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-metr-horizon-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>Workflows arranged by human-completion time, against an agent frontier doubling every four months. The memo (a few hours) sits comfortably inside the horizon and is now agent-eligible; scenario planning (a few weeks) is approaching; CFO negotiation stays outside indefinitely because the relationship dimension does not decompose into subtasks.</figcaption>
 </figure>
 
@@ -1079,7 +1123,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none;">The opener resolves here. The P&amp;G CFO who told every line to justify itself is the room every marketer eventually enters, and the firm that answered with customer-payback math grew 1.4 share points while three rivals that cut media 30 percent lost share.<sup class="cite" data-cite="ref-1"></sup> The spine is the answer that firm had ready: read the P&amp;L on its six lines, express spend as customer-payback math, allocate with the evidence behind 70/20/10 and 60/40, defend with a pre-written five-movement arc, and route around the three failure modes. What you hold now is the working machinery to read a P&amp;L, defend a budget, and run the audit AI has made possible.</p>
 
 <figure class="sketch" aria-label="The chapter on one strip: read the P&L, express spend as customer-payback math, allocate, defend, route around the failure modes, bring the AI-drafted defense to the room.">
-  <div class="mount" id="sk-ch25-recap-mount" data-w="720" data-h="250"></div>
+  <div class="mount" id="sk-ch25-recap-mount" data-w="720" data-h="250" aria-hidden="true"></div>
   <figcaption>The chapter on one strip. Read the firm's money, express every dollar as customer-payback math, allocate with the evidence, defend with a pre-written arc, and route around the three failure modes, the sequence that let one firm grow share through a recession while its rivals cut and lost.</figcaption>
 </figure>
 
@@ -1088,7 +1132,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none;">Chapter 26 takes up where the agentic budget meets its hardest boundary. A memo an agent drafts in thirty seconds still decided which segments the firm funded and which customer data it collected. Chapter 26 walks the privacy floor (GDPR, CCPA, the EU AI Act, the 2025 state laws), the manipulation line regulators began drawing in 2024, and the human-fallback path. The finance room is where the marketer defends the budget; Chapter 26 is where the marketer defends the conduct.</p>
 
 <figure class="sketch" aria-label="From the budget room to the conduct room: the same agent that drafts the defense chose which segments to fund and which data to collect, which Chapter 26 takes up.">
-  <div class="mount" id="sk-turn-ch26-mount" data-w="720" data-h="230"></div>
+  <div class="mount" id="sk-turn-ch26-mount" data-w="720" data-h="230" aria-hidden="true"></div>
   <figcaption>From the budget room to the conduct room. The same agent that drafts the defense chose which segments to fund and which data to collect, which is the territory Chapter 26 takes up.</figcaption>
 </figure>
 
@@ -2675,7 +2719,7 @@ sketches['sk-turn-ch26-mount'] = function(svg) {
   root.innerHTML =
     '<div class="w7-head">' +
       '<span class="w7-title">Audit a real firm\'s budget defense</span>' +
-      '<span class="w7-chip" id="w7-chip">AI runs on click</span>' +
+      '<span class="w7-chip" id="w7-chip" aria-live="polite" aria-atomic="true">AI runs on click</span>' +
     '</div>' +
     '<p class="w7-sub">Type any real firm or category you know. The AI reads its current marketing-to-revenue position live, then names the one argument and the one pushback to expect.</p>' +
     '<div class="w7-inputrow">' +
@@ -2691,7 +2735,7 @@ sketches['sk-turn-ch26-mount'] = function(svg) {
     '<div class="w7-presets" id="w7-presets">' +
       SAMPLES.map(s => '<button class="w7-preset" data-firm="'+s.firm+'">'+s.label+'</button>').join('') +
     '</div>' +
-    '<div class="w7-result" id="w7-result"><span class="w7-ph">The firm\'s marketing-to-revenue read, its strongest argument, the one pushback to expect, and the sentence to open the meeting with appear here.</span></div>' +
+    '<div class="w7-result" id="w7-result" aria-live="polite" aria-atomic="false"><span class="w7-ph">The firm\'s marketing-to-revenue read, its strongest argument, the one pushback to expect, and the sentence to open the meeting with appear here.</span></div>' +
     '<p class="w7-disc">Read from a live search, not an audited filing. Treat it as a fast read, not a verified number.</p>' +
     '<div class="w7-vs">' +
       '<p class="w7-vslead">Now ask the <b>same firm</b> two ways. Same model, same cost; only the precision of the question changes.</p>' +
@@ -2699,7 +2743,7 @@ sketches['sk-turn-ch26-mount'] = function(svg) {
         '<button class="w7-qbtn vague" id="w7-qvague"><span class="w7-qtag">Vague question</span><span class="w7-qtext">"How do I defend a marketing budget?"</span></button>' +
         '<button class="w7-qbtn sharp" id="w7-qsharp"><span class="w7-qtag">Specific question</span><span class="w7-qtext">"For THIS firm, read its marketing-to-revenue against its category and name the one argument and pushback, using its current numbers."</span></button>' +
       '</div>' +
-      '<div class="w7-meta" id="w7-meta"></div>' +
+      '<div class="w7-meta" id="w7-meta" aria-live="polite" aria-atomic="false"></div>' +
     '</div>';
 
   const firmEl   = root.querySelector('#w7-firm');
@@ -2883,7 +2927,7 @@ sketches['sk-turn-ch26-mount'] = function(svg) {
   root.innerHTML =
     '<div class="w7b-head">' +
       '<span class="w7b-title">Same memo, two models</span>' +
-      '<span class="w7b-chip" id="w7b-chip">AI runs on click</span>' +
+      '<span class="w7b-chip" id="w7b-chip" aria-live="polite" aria-atomic="true">AI runs on click</span>' +
     '</div>' +
     '<p class="w7b-sub">The cheap model writes a competent defense. The deeper model leans on the specific numbers to anticipate more pushback. Same brief, run on both at once.</p>' +
     '<p class="w7b-presetlab">The brief, two ways</p>' +
@@ -2899,15 +2943,15 @@ sketches['sk-turn-ch26-mount'] = function(svg) {
     '<div class="w7b-grid">' +
       '<div class="w7b-card cheap" id="w7b-card-cheap">' +
         '<div class="w7b-cardhead"><span class="w7b-ct">Cheap arm · Haiku 4.5</span><span class="w7b-cost" id="w7b-cost-cheap"></span></div>' +
-        '<div class="w7b-out" id="w7b-out-cheap"><span class="w7b-ph">The cheap model’s defense memo appears here.</span></div>' +
+        '<div class="w7b-out" id="w7b-out-cheap" aria-live="polite" aria-atomic="false"><span class="w7b-ph">The cheap model’s defense memo appears here.</span></div>' +
       '</div>' +
       '<div class="w7b-card deep" id="w7b-card-deep">' +
         '<div class="w7b-cardhead"><span class="w7b-ct">Deep arm · Opus 4.7</span><span class="w7b-cost" id="w7b-cost-deep"></span></div>' +
-        '<div class="w7b-out" id="w7b-out-deep"><span class="w7b-ph">The deeper model’s defense memo appears here.</span></div>' +
+        '<div class="w7b-out" id="w7b-out-deep" aria-live="polite" aria-atomic="false"><span class="w7b-ph">The deeper model’s defense memo appears here.</span></div>' +
       '</div>' +
     '</div>' +
-    '<div class="w7b-metarow" id="w7b-metarow"></div>' +
-    '<div class="w7b-verdict" id="w7b-verdict"></div>';
+    '<div class="w7b-metarow" id="w7b-metarow" aria-live="polite" aria-atomic="false"></div>' +
+    '<div class="w7b-verdict" id="w7b-verdict" aria-live="polite" aria-atomic="false"></div>';
 
   const presetsEl = root.querySelector('#w7b-presets');
   const inputEl   = root.querySelector('#w7b-input');

@@ -881,6 +881,39 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<style>
+/* ============================================================
+   A11Y CONTRAST FIXES (WCAG 2.1 AA) — Ch9. Last style block in <head> so it wins
+   source-order ties; doubled-class specificity beats the chapter's own !important.
+   Bright coral #DA7756 stays on headings/markers/rules/borders/SVG strokes (>=3:1);
+   only small coral TEXT and white-on-coral BUTTONS are darkened, and the .wv-col
+   "inactive" dim is moved off text-opacity onto a muted bg/border so text stays full-opacity.
+   ============================================================ */
+
+/* (1) Gap-explorer "knowledge/standards/..." mini-label: coral #DA7756 @9px on white = 3.1:1.
+       Darken the SMALL TEXT only (the big "1..5" numeral keeps coral-deep, which already passes). */
+.gx-explorer.gx-explorer .gx-gap .gx-num small { color: #a8472a !important; }
+
+/* (2) White-on-coral RUN buttons / active toggles: darken the BACKGROUND to #a8472a (5.83:1),
+       keep white text; hover #8f3c23; disabled stays at a neutral grey. */
+.cmp-box .cmp-go.cmp-go { background: #a8472a !important; color: #fff !important; }
+.cmp-box .cmp-go.cmp-go:hover { background: #8f3c23 !important; }
+.cmp-box .cmp-go.cmp-go:disabled { background: #6b6b6b !important; }
+#w93 .wv-preset.sel.sel, #w94 .wv-preset.sel.sel { background: #a8472a !important; color: #fff !important; border-color: #a8472a !important; }
+
+/* (3) vague/sharp answer cards: the inactive state used opacity:.5, which axe blends the
+       inner text (#888 / #B8553A) down to ~2.0:1. Remove the text-washing opacity and signal
+       "inactive" with a muted bg + softer border instead; text renders at FULL opacity
+       (#888 body =5.3:1, #B8553A coral-deep =4.8:1 on the lighter ground). The .live state
+       restores the brighter white card so the active reveal still reads. */
+#w93 .wv-col.wv-col, #w94 .wv-col.wv-col { opacity: 1 !important; background: #faf7f3; border-color: #efe7da; }
+#w93 .wv-col.live.live, #w94 .wv-col.live.live { background: #fff; }
+#w93 .wv-col.sharp.live.live, #w94 .wv-col.sharp.live.live { border-color: var(--coral-soft); }
+/* The sharp column's coral-deep label (#B8553A) lands at 4.47:1 on the muted ground, a hair
+   under 4.5; darken just that small uppercase label + its question tag to #a8472a (~4.9:1). */
+#w93 .wv-col.sharp .wv-ct.wv-ct, #w94 .wv-col.sharp .wv-ct.wv-ct { color: #a8472a !important; }
+#w93 .wv-qbtn.sharp .qtag.qtag, #w94 .wv-qbtn.sharp .qtag.qtag { color: #a8472a !important; }
+</style>
 </head>
 <body data-chapter-num="9">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -892,6 +925,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of");
+         injected SVG mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 9.
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-09-services.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 9 &middot; The Mix Layer</p>
@@ -914,7 +960,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Carnival could not pull the broken cruise off the shelf and swap it, because the product was consumed at the moment it was produced, with the buyer inside the production for five days. What was left was the memory of having lived through it. That is what makes a service different from a product: the buyer is on the factory floor.</p>
 
 <figure class="sketch" aria-label="The Carnival Triumph puzzle as a worked-failure hook: a service consumed across five days of production with the buyer inside it, no spare cruise to swap in when the engine-room fire hit, so what is left is the memory of having lived through it.">
-  <div class="mount" id="sk-carnival-hook-mount" data-w="760" data-h="290"></div>
+  <div class="mount" aria-hidden="true" id="sk-carnival-hook-mount" data-w="760" data-h="290"></div>
   <figcaption>The Carnival puzzle that runs through the chapter. The cruise was produced and consumed in the same five days with the buyer inside it, so when the engine room failed there was no finished product to pull off a shelf and swap, only the memory the passenger carried home.</figcaption>
 </figure>
 
@@ -1012,7 +1058,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </figure>
 
 <figure class="sketch" aria-label="Four IIVP icons sketched in coral.">
-  <div class="mount" id="sk-iivp-mount" data-w="720" data-h="210"></div>
+  <div class="mount" aria-hidden="true" id="sk-iivp-mount" data-w="720" data-h="210"></div>
   <figcaption>A cloud you cannot grasp. A factory floor with the buyer on it. A line that wobbles. A clock with seats falling off the edge.</figcaption>
 </figure>
 
@@ -1029,7 +1075,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete><strong>Inseparability last.</strong> The service is produced and consumed at the same moment by the same two people, the customer and the front-line employee, in the same room or on the same phone or chat window. The encounter is the product, so a friendly flight attendant produces a different flight from a tired one even when the plane, route, and menu are identical. The discipline that absorbs inseparability is <span class="term" data-tt="Internal marketing is the work the firm does on its own employees to prepare them to keep the promises the firm&rsquo;s external advertising has already made to customers. Picture a coffee-shop barista trained on the recipe, scheduled with enough staff alongside her to handle the morning rush, given the room to comp a drink when an order goes wrong, and paid well enough to stay on the job for years. It is called marketing rather than human resources because in a service the front-line employee is part of the product the customer pays for, so investment in the employee produces brand value at the encounter the way advertising spend produces brand value before it."><strong>internal marketing</strong></span>, the hiring, training, scheduling, scripting, and empowerment that prepare the front-line employee to be the marketer at the encounter.</p>
 
 <figure class="sketch" aria-label="The four-traits-to-four-disciplines engine: variability points to the service blueprint, perishability to yield pricing, intangibility to physical evidence, inseparability to internal marketing, each trait also pointing at the later section that absorbs it.">
-  <div class="mount" id="sk-traits-to-disciplines-mount" data-w="720" data-h="350"></div>
+  <div class="mount" aria-hidden="true" id="sk-traits-to-disciplines-mount" data-w="720" data-h="350"></div>
   <figcaption>The engine that drives the rest of the chapter. Each of the four traits forces one operating discipline, and each discipline gets its own section: variability to the blueprint (9.4), perishability to yield pricing (9.9), intangibility to physical evidence (9.2), inseparability to internal marketing (9.3).</figcaption>
 </figure>
 
@@ -1042,12 +1088,12 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">4.</span> A sorting toolkit sits underneath IIVP and does a different kind of work, because IIVP names what every service shares while the toolkit names how services differ inside that shared structure. Lovelock&rsquo;s 1983 <span class="term" data-tt="Nature-of-act-and-recipient is Christopher Lovelock&rsquo;s 1983 two-by-two for sorting services into operationally different cells. One axis asks whether the service performs a tangible action (a surgery, a haircut) or an intangible one (an accounting audit). The other asks whether the recipient is a person (a passenger) or a possession (a package). The four cells are people-processing, possession-processing, mental-stimulus-processing, and information-processing, each with its own playbook because the operational problems differ.">nature-of-act-and-recipient</span> matrix, four more 1983 matrices (customer-relationship, customization-and-judgment, demand-and-supply, delivery-method), and a 2004 follow-up arguing that non-ownership transfer distinguishes services better than intangibility round out the <span class="term" data-tt="The service process matrix is Roger Schmenner&rsquo;s 1986 two-by-two that sorts service firms by labor intensity crossed with customer interaction and customization. The four quadrants are the service factory (low-low, like airlines and hotels), the service shop (low-high, like auto repair and most healthcare), mass service (high-low, like retail banking and big-box stores), and professional service (high-high, like law firms and consulting). Each quadrant has its own cluster of operating problems.">service process matrix</span> cut. Reach for the toolkit when sorting an established category, and the non-ownership frame for a subscription or access business the 1983 matrices were not built to cover. The <span class="term" data-tt="The experience economy is Joseph Pine and James Gilmore&rsquo;s 1998 Harvard Business Review argument that economic value progresses through four stages, each commanding an order of magnitude more in price: commodities (raw flour and sugar), goods (a boxed cake mix), services (a decorated bakery cake), experiences (a Chuck E. Cheese party where the cake is part of a staged event). The home-baked cake costs pennies, the boxed mix a dollar or two, the bakery cake ten to fifteen dollars, the staged party over a hundred dollars per child.">experience economy</span> argument adds that a service reframed as a staged experience can charge dramatically more for the same core.<sup class="cite" data-cite="ref-6"></sup></aside>
 
 <figure class="sketch" aria-label="Lovelock nature-of-act-and-recipient matrix: tangible vs intangible action crossed with person vs possession recipient yields four cells.">
-  <div class="mount" id="sk-lovelock-noar-mount" data-w="720" data-h="360"></div>
+  <div class="mount" aria-hidden="true" id="sk-lovelock-noar-mount" data-w="720" data-h="360"></div>
   <figcaption>Lovelock&rsquo;s nature-of-act-and-recipient grid. Same word &ldquo;service,&rdquo; four operationally different businesses. A surgeon and a flight attendant share marketing problems an accountant does not have, even though all three industries are tagged as &ldquo;service.&rdquo;</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="Schmenner service-process matrix: labor intensity crossed with customer interaction and customization yields service factory, service shop, mass service, and professional service quadrants.">
-  <div class="mount" id="sk-schmenner-mount" data-w="720" data-h="360"></div>
+  <div class="mount" aria-hidden="true" id="sk-schmenner-mount" data-w="720" data-h="360"></div>
   <figcaption>The Schmenner service-process grid. The firm&rsquo;s position on the grid determines whether the marketing dollar pays for yield pricing, intake design, branch standardization, or talent recruiting. Same word &ldquo;service,&rdquo; four playbooks.</figcaption>
 </figure>
 
@@ -1075,14 +1121,14 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The framework that pulls the seven levers into one picture is the <span class="term" data-tt="The service-marketing triangle has three vertices (company, employees, customers) joined by three legs: external marketing (company to customer), internal marketing (company to employee), and interactive marketing (employee to customer).">service-marketing triangle</span>. <strong>External marketing</strong> runs company to customer, the advertising and price tags, none of which the buyer actually consumes. <strong>Internal marketing</strong> runs company to employee, the training and scripts that prepare staff to keep the promise. <strong>Interactive marketing</strong> runs employee to customer, the only leg the buyer feels: the encounter at the counter, the apology after the spill. External promises get kept only through interactive moments, and those get good only through internal preparation, so a firm cannot win on external marketing alone.<sup class="cite" data-cite="ref-8"></sup> The seven Ps and the triangle say where the firm pulls, but not yet where quality breaks, the diagnostic Section 9.3 builds next.</p>
 
 <figure class="sketch" aria-label="Service-marketing triangle: company at top, employees and customers at the base, connected by external, internal, and interactive marketing legs.">
-  <div class="mount" id="sk-svctri-mount" data-w="720" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-svctri-mount" data-w="720" data-h="320"></div>
   <figcaption>The service-marketing triangle. Three vertices, three legs. External marketing makes the promise, internal marketing prepares the employee to keep it, interactive marketing is the encounter where the promise gets kept or broken. A leg left empty is a quiet way to lose money the firm has already spent on the other two.</figcaption>
 </figure>
 
 <p data-complete>One last premise changes how the rest of the chapter reads. <span class="term" data-tt="Service-dominant logic is Stephen Vargo and Robert Lusch&rsquo;s 2004 Journal of Marketing reframing, refined twice through 2016, arguing that every economic transaction is ultimately a service exchange even when a physical good is involved. A buyer who pays for a car is paying for the transportation service the car delivers over years, with the metal shell as the vehicle for that service. A box of cereal is a breakfast-preparation service the buyer finishes assembling at home. Once value is understood as co-produced with the buyer in the moment of use, the seven-Ps and triangle apparatus stops being a special case for restaurants and airlines and becomes the general operating system every firm runs.">service-dominant logic</span> treats every economic exchange as fundamentally a service exchange, so a car is a transportation service delivered through a metal shell and a box of cereal is a breakfast-preparation service the buyer finishes in her kitchen.<sup class="cite" data-cite="ref-12"></sup> If the framing holds, the seven Ps and the triangle are the general operating system every firm runs. They tell the firm where to pull, but not yet where service quality actually breaks, the diagnostic Section 9.3 builds next.</p>
 
 <figure class="sketch" aria-label="The 7Ps of services marketing: 4Ps plus people, process, physical evidence.">
-  <div class="mount" id="sk-iivp-mount-people" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-iivp-mount-people" data-w="720" data-h="260"></div>
   <figcaption>The 7Ps. The original 4Ps plus three additions once the buyer is inside the production: people (the employee is part of the product), process (the journey as a designed system), physical evidence (the room read as proof).</figcaption>
 </figure>
 <span class="ax">03 // the five gaps</span>
@@ -1115,7 +1161,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="The five-gap model drawn as one vertical stack: gaps 1 through 4 sit inside the firm and each feeds gap 5, the only band the buyer crosses.">
-  <div class="mount" id="sk-five-gaps-model" data-w="720" data-h="380"></div>
+  <div class="mount" aria-hidden="true" id="sk-five-gaps-model" data-w="720" data-h="380"></div>
   <figcaption>The five gaps as one stack. Gaps 1 through 4 live inside the firm (knowledge, standards, delivery, communication). Each one feeds Gap 5, the perception gap, which is the only band the buyer crosses. Close the upstream four and Gap 5 closes with them.</figcaption>
 </figure>
 
@@ -1203,7 +1249,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The 2024 to 2026 record gives two worked examples in public. <strong>Klarna opened Gap 4.</strong> In February 2024 the buy-now-pay-later firm shipped an AI front door that read account data and ran refunds, and said it already did the work of about 700 agents.<sup class="cite" data-cite="ref-15"></sup> By May 2025 the new CEO walked it back, citing service-quality cost. The AI handled routine inquiries but could not safely own recovery, because an upset buyer reads template empathy as performative once the pattern shows. The no-humans-required promise outran what the operation could honor, which is Gap 4. The fix was a hybrid: AI keeps the throughput, an empowered human queue takes recovery, and a written threshold forces a handoff below a set confidence.</p>
 
 <figure class="sketch" aria-label="Two 2024-2026 service failures tagged by SERVQUAL gap: Klarna (gap 4) and Amazon Just Walk Out (gap 2).">
-  <div class="mount" id="sk-servqual-cases-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-servqual-cases-mount" data-w="720" data-h="280"></div>
   <figcaption>Two 2024-2026 failures, each tagged to the gap that opened. Klarna is Gap 4 (advertising got ahead of delivery). Amazon Just Walk Out is Gap 2 (the operating spec did not match what the firm thought the buyer expected).</figcaption>
 </figure>
 
@@ -1298,11 +1344,11 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="wv-grid">
     <div class="wv-col vague" id="w93-col-vague">
       <div class="wv-colhead"><span class="wv-ct">Generic, you knew this already</span><span class="wv-cost" id="w93-cost-vague"></span></div>
-      <div class="wv-ans" id="w93-ans-vague"><span class="ph">Press the vague question above.</span></div>
+      <div class="wv-ans" id="w93-ans-vague" aria-live="polite" aria-atomic="false"><span class="ph">Press the vague question above.</span></div>
     </div>
     <div class="wv-col sharp" id="w93-col-sharp">
       <div class="wv-colhead"><span class="wv-ct">Named gap + the fix</span><span class="wv-cost" id="w93-cost-sharp"></span></div>
-      <div class="wv-ans" id="w93-ans-sharp"><span class="ph">Press the specific question above.</span></div>
+      <div class="wv-ans" id="w93-ans-sharp" aria-live="polite" aria-atomic="false"><span class="ph">Press the specific question above.</span></div>
     </div>
   </div>
   <div class="wv-verdict" id="w93-verdict"></div>
@@ -1373,11 +1419,11 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <figcaption><span class="fnum" data-cap="figure"></span> The five SERVQUAL dimensions in descending importance plus the zone of tolerance. Reliability matters most, tangibles least, the inverse of most service-firm budgets.</figcaption>
 </figure>
 <figure class="sketch" aria-label="The RATER hierarchy as a stack with reliability at top.">
-  <div class="mount" id="sk-rater-mount" data-w="840" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-rater-mount" data-w="840" data-h="240"></div>
   <figcaption>RATER stack. Reliability at top, tangibles at bottom.</figcaption>
 </figure>
 <figure class="sketch" aria-label="The zone of tolerance as a band between desired and adequate service.">
-  <div class="mount" id="sk-zone-mount" data-w="820" data-h="220"></div>
+  <div class="mount" aria-hidden="true" id="sk-zone-mount" data-w="820" data-h="220"></div>
   <figcaption>The zone of tolerance. The band between desired and adequate service.</figcaption>
 </figure>
 
@@ -1405,7 +1451,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The same single diagram earns its keep because it does four jobs. The first is <strong>diagnosis.</strong> When a service is failing in ways the feedback channel cannot pin down, the team walks a real customer order through the diagram one swimlane at a time, and the step where the conversation slows is the step where the gap lives, so a Chick-fil-A drive-through losing minutes at Tuesday lunch finds that order confirmation at the second window takes seventy seconds because the headset cuts out at the corner of the lot. The second job is <strong>design.</strong> When a firm is launching a service, the blueprint forces every interaction to be specified in advance, so the planning talk moves from &ldquo;the buyer picks up their order&rdquo; to &ldquo;the line cook stages the bag within ninety seconds of order entry,&rdquo; raising questions a team would otherwise hit only after the first live weekend. The third job is <strong>training</strong>, because a blueprint with every action labeled lets a new hire see not just their own task but where it sits inside the rest of the operation. The fourth job is <strong>recovery design.</strong> When a service fails at a visible step, the blueprint shows which back-stage system supports it, which is why a Ritz-Carlton blueprint that names the housekeeping handoff behind room readiness lets the front desk, when a room is not ready, route the recovery to the right team under the $2,000 cap rather than improvise under stress.<sup class="cite" data-cite="ref-2"></sup><sup class="cite" data-cite="ref-10"></sup></p>
 
 <figure class="sketch" aria-label="A coffee shop service blueprint with five swimlanes.">
-  <div class="mount" id="sk-blueprint-mount" data-w="720" data-h="380"></div>
+  <div class="mount" aria-hidden="true" id="sk-blueprint-mount" data-w="720" data-h="380"></div>
   <figcaption>A coffee shop blueprint. Two failure points circled: queue-greeting and drink-handoff.</figcaption>
 </figure>
 
@@ -1441,11 +1487,11 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="wv-grid">
     <div class="wv-col vague" id="w94-col-vague">
       <div class="wv-colhead"><span class="wv-ct">Generic three-box flow</span><span class="wv-cost" id="w94-cost-vague"></span></div>
-      <div class="wv-ans" id="w94-ans-vague"><span class="ph">Press the vague question above.</span></div>
+      <div class="wv-ans" id="w94-ans-vague" aria-live="polite" aria-atomic="false"><span class="ph">Press the vague question above.</span></div>
     </div>
     <div class="wv-col sharp" id="w94-col-sharp">
       <div class="wv-colhead"><span class="wv-ct">Blueprint you can debug</span><span class="wv-cost" id="w94-cost-sharp"></span></div>
-      <div class="wv-ans" id="w94-ans-sharp"><span class="ph">Press the specific question above.</span></div>
+      <div class="wv-ans" id="w94-ans-sharp" aria-live="polite" aria-atomic="false"><span class="ph">Press the specific question above.</span></div>
     </div>
   </div>
   <div class="wv-verdict" id="w94-verdict"></div>
@@ -1458,7 +1504,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The top swimlane, physical evidence, is the row most teams treat as decoration when the buyer reads it first. Its academic name is the <span class="term" data-tt="The servicescape (Bitner 1992) is the physical environment of a service, read through three dimensions: ambient conditions (temperature, lighting, scent), spatial layout (queue routing, equipment placement), and signs, symbols, and artifacts (the explicit message of the room).">servicescape</span>, which Bitner modeled as a stimulus the buyer reads through three dimensions: <strong>ambient conditions</strong> like temperature and scent, <strong>spatial layout</strong> like queue routing, and the <strong>signs, symbols, and artifacts</strong> that carry the room&rsquo;s explicit message. A blueprint that leaves that row to whatever the facilities team picks is a blueprint with one swimlane left to chance, and that chance shows up in the Gap 5 reading.</p>
 
 <figure class="sketch" aria-label="The Bitner servicescape as a stimulus-organism-response loop: the physical environment is the stimulus, the buyer's and employee's internal states are the organism, and approach or avoidance is the response.">
-  <div class="mount" id="sk-servicescape" data-w="720" data-h="340"></div>
+  <div class="mount" aria-hidden="true" id="sk-servicescape" data-w="720" data-h="340"></div>
   <figcaption>The servicescape as a stimulus-organism-response loop. The physical environment (ambient conditions, spatial layout, signs and symbols) is the stimulus, the buyer's and the employee's internal states are the organism, and approach or avoidance is the response. Physical evidence is the blueprint's top swimlane, not decoration.</figcaption>
 </figure>
 
@@ -1475,7 +1521,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">SAS made the case with arithmetic. Most firms staff the front line as the cheapest delivery layer, so the encounters where the buyer meets the brand stay underpowered while the budget goes to assets the buyer never sees. SAS reversed that, authorizing front-line staff to solve problems without manager approval. Roughly ten million customers a year, each meeting about five employees for fifteen seconds, came to about fifty million fifteen-second moments of truth, more brand exposure than any television budget of the era. The airline turned a $17 million loss into a $54 million profit in the first year.<sup class="cite" data-cite="ref-20"></sup><sup class="cite" data-cite="ref-22"></sup></p>
 
 <figure class="sketch" aria-label="The SAS moments-of-truth arithmetic: ten million customers times five employees times fifteen seconds equals about fifty million fifteen-second brand-exposure moments a year, several times more than any TV budget of the era.">
-  <div class="mount" id="sk-sas-moments-mount" data-w="720" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-sas-moments-mount" data-w="720" data-h="320"></div>
   <figcaption>The arithmetic that made the SAS case legible to the board. The encounters were already happening, so the only real question was whether the front line was being staffed and resourced like the brand-building events it already was.</figcaption>
 </figure>
 
@@ -1492,7 +1538,8 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">These three moments run in sequence, and SAS made them into brand-building events when they went right, so the next section takes the harder case of what the firm does when a moment goes wrong.</p>
 
 <figure class="sketch" aria-label="Three moments of truth on a buyer-journey timeline (ZMOT, FMOT, SMOT) with cumulative decision-formed percentage at each moment and the marketing tactic that owns each one.">
-  <div class="mount" id="sk-mot-timeline-mount" data-w="720" data-h="340"></div>
+  <!-- role="img" intentionally omitted on this one figure: its figcaption carries a <sup class="cite"> citation backlink (an interactive <a>), and role="img" would make that a nested-interactive WCAG violation. As a figure-with-aria-label the takeaway is still announced, the SVG mount stays aria-hidden, and the citation link stays reachable. -->
+  <div class="mount" aria-hidden="true" id="sk-mot-timeline-mount" data-w="720" data-h="340"></div>
   <figcaption>The three moments of truth on the buyer-journey timeline. The cumulative-decision percentage above the arc is the part the prose tends to bury, because by the time the buyer reaches the shelf the choice is mostly already formed, so the budget that decides whether the SMOT review is written for or against the brand is the budget the firm spends on ZMOT visibility and FMOT package proof, and the budget devoted to shelf placement alone is doing less work than its line-item size suggests.<sup class="cite" data-cite="ref-21"></sup></figcaption>
 </figure>
 
@@ -1537,7 +1584,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="The Ritz-Carlton $2,000 cap as the recovery system itself: rarely hit, but the floor knowing it exists is what lets the line cook, valet, or housekeeper fix a failure at the encounter without manager approval.">
-  <div class="mount" id="sk-ritz-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-ritz-mount" data-w="720" data-h="240"></div>
   <figcaption>The Ritz-Carlton $2,000 cap as the recovery system itself. The cap is rarely hit; the floor knowing it exists is what lets the line cook, valet, or housekeeper fix a failure at the encounter without manager approval.</figcaption>
 </figure>
 
@@ -1546,7 +1593,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The most-told version is the stained coat: a guest stained it at dinner, the coat-check hostess noticed, housekeeping cleaned it, and it came back to the room with a note before checkout, a forty-dollar transaction retold for a decade.<sup class="cite" data-cite="ref-2"></sup> The counter-case is the chapter&rsquo;s opener. Carnival Triumph passengers got a uniform $500-plus-refund package from corporate after the fact, with no front-line authority during the four days adrift.<sup class="cite" data-cite="ref-1"></sup></p>
 
 <figure class="sketch" aria-label="The Carnival Triumph recovery as the wrong shape for the magnitude of failure: a uniform after-the-fact package, no front-line authority during the four days adrift, so a severe failure outside the recoverable band does not reverse with a generous refund.">
-  <div class="mount" id="sk-carnival-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-carnival-mount" data-w="720" data-h="240"></div>
   <figcaption>Carnival Triumph: the wrong shape of recovery for the magnitude of failure. A severe failure outside the recoverable band does not reverse with a generous after-the-fact refund.</figcaption>
 </figure>
 
@@ -1559,17 +1606,17 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <div class="cmp-box" id="cmp-recovery">
   <p class="cmp-title">Run a recovery ticket on two model tiers</p>
   <p class="cmp-sub">A real recovery ticket. Fast model = the 2024 tier-1 bot. Deep model = the post-walkback escalation tier. Edit the ticket or paste your own, then run it on both and read the two memos side by side. Each card shows its own live cost.</p>
-  <textarea class="cmp-prompt" id="cmp-recovery-prompt" rows="4">Customer: bought a $480 dishwasher on Klarna Pay-in-4 last month. The retailer shipped the wrong model and refused the return. Klarna already took two installments. I have called four times. Each time the bot said an agent would call back. Nobody has. I am about to file a chargeback and close my Klarna account.</textarea>
+  <textarea class="cmp-prompt" id="cmp-recovery-prompt" rows="4" aria-label="Recovery ticket to run on both model tiers">Customer: bought a $480 dishwasher on Klarna Pay-in-4 last month. The retailer shipped the wrong model and refused the return. Klarna already took two installments. I have called four times. Each time the bot said an agent would call back. Nobody has. I am about to file a chargeback and close my Klarna account.</textarea>
   <button class="cmp-go" id="cmp-recovery-go">Run on both</button>
   <div class="cmp-grid">
     <div class="cmp-pane">
       <span class="cmp-label">claude-haiku-4-5 (fast tier-1)</span>
-      <div class="cmp-out" id="cmp-recovery-haiku"></div>
+      <div class="cmp-out" id="cmp-recovery-haiku" aria-live="polite" aria-atomic="false"></div>
       <span class="cmp-cost" id="cmp-recovery-haiku-cost"></span>
     </div>
     <div class="cmp-pane">
       <span class="cmp-label cmp-smart">claude-opus-4-7 (deep tier-2)</span>
-      <div class="cmp-out" id="cmp-recovery-opus"></div>
+      <div class="cmp-out" id="cmp-recovery-opus" aria-live="polite" aria-atomic="false"></div>
       <span class="cmp-cost" id="cmp-recovery-opus-cost"></span>
     </div>
   </div>
@@ -1595,7 +1642,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" id="sn-B" data-complete><span class="sn-num">B.</span> Singapore Airlines has placed in the top three of every major global airline ranking for more than thirty years, including #2 World, Best Airline in Asia, World&rsquo;s Best Cabin Crew, and World&rsquo;s Best First Class at the Skytrax 2025 World Airline Awards.<sup class="cite" data-cite="ref-2"></sup></aside>
 
 <figure class="sketch" aria-label="Singapore Airlines training pipeline: a four-month induction at about twice the industry length, a 40-30-30 resource split, and thirty-plus years of top-three rankings as the output.">
-  <div class="mount" id="sk-singapore-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-singapore-mount" data-w="720" data-h="240"></div>
   <figcaption>Singapore Airlines: variability suppressed through people investment. A four-month induction, about twice the industry; a 40-30-30 resource split; thirty-plus years of top-three rankings, and 2025 Skytrax #2 World and Best Airline in Asia.</figcaption>
 </figure>
 
@@ -1608,14 +1655,14 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" id="sn-C" data-complete><span class="sn-num">C.</span> Worn Wear revenue was roughly $13 million against about $1.47 billion in total company revenue, near one percent of the top line, and the repair network spans in-store benches, mobile vans, and a mail-in facility. (Build re-verify: the $13M / 1% / $1.47B figures were not independently corroborated at the 2026-05-20 pass; the 174,799-garments and 110+-repair-center figures align with the locked Ch6/Ch8 and Patagonia&rsquo;s own 2025 progress report.) The figure is small in dollars and large as a signal, because a one-percent line growing forty percent a year while pulling in a younger cohort is the diagnostic that the service layer, not the jacket alone, is doing the brand work.</aside>
 
 <figure class="sketch" aria-label="The Worn Wear loop: a jacket is sold, then repaired or bought back, refurbished, and resold, which keeps the buyer on the Patagonia operating system and pulls in a younger cohort.">
-  <div class="mount" id="sk-wornwear-loop" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-wornwear-loop" data-w="720" data-h="260"></div>
   <figcaption>Worn Wear turns the jacket into a service the buyer keeps paying into. A jacket is sold, then repaired or bought back, refurbished, and resold, which keeps the buyer on the operating system and reaches a younger cohort the new-jacket margin cannot.</figcaption>
 </figure>
 
 <h3 id="costco" data-no-num>Costco: the membership IS the service</h3>
 
 <figure class="sketch" aria-label="The Costco membership-as-service loop: the annual fee gates the buyer in, the markup cap keeps the price feeling like a deal, the curated assortment is what the markup pays for, and the renewal rate is how the market judges the service.">
-  <div class="mount" id="sk-membership-loop" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-membership-loop" data-w="720" data-h="260"></div>
   <figcaption>Costco turns perishability into a renewable annual product. The annual fee gates the buyer in, the markup cap keeps the price feeling like a deal, the curated assortment is what the markup pays for, and the 92.3 percent renewal is how the membership market judges the service.</figcaption>
 </figure>
 
@@ -1676,7 +1723,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="The five-gap diagnostic worked backwards on one case: a complaint about the food points past the surface symptom to a candidate gap (the call button) and then to a no-capital fix, while the $2 million kitchen is what the firm spends when it reads the complaint forward.">
-  <div class="mount" id="sk-gap-backwards" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-gap-backwards" data-w="720" data-h="240"></div>
   <figcaption>The diagnostic runs backward in the wild. A complaint about the food points past the surface symptom to a candidate gap (the call button) and then to the no-capital fix; the $2 million kitchen is what the firm spends when it reads the complaint forward instead.</figcaption>
 </figure>
 
@@ -1685,7 +1732,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">You can run this backward diagnostic with no setup: paste one complaint into a chat assistant and ask it to name the most likely SERVQUAL gap, the no-capital fix a floor manager could make tomorrow, and the wrong fix the firm would try instead, which is what Widget 9.3 walks live. Wiring that into a reusable <span class="term" data-tt="A reusable instruction file you save once so an AI assistant runs the same multi-step task on demand; the install is covered in Chapter 18.">Skill</span> is a Chapter 18 step, so here the assistant stays a paste-one-complaint move you run by hand.</p>
 
 <figure class="sketch" aria-label="The surface-fix loop drawn across all five cases: the named complaint is a proxy, the firm spends on the proxy, the spend hides the real gap for another quarter, and the complaint returns until the backward diagnostic cuts the loop at the gap.">
-  <div class="mount" id="sk-surface-fix-loop" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-surface-fix-loop" data-w="720" data-h="260"></div>
   <figcaption>The surface-fix loop, drawn across all five cases. The named complaint is a proxy, the firm spends on the proxy, the spend hides the real gap for another quarter, and the complaint returns, until the backward diagnostic cuts the loop at the gap and leaves the symptom alone.</figcaption>
 </figure>
 
@@ -1722,7 +1769,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Carnival&rsquo;s broken cruise, Klarna&rsquo;s walked-back AI front door, Singapore Airlines&rsquo; training line, Costco&rsquo;s renewal rate, and the Ritz-Carlton&rsquo;s recovery cap are one structural fact in different clothes. The buyer sits inside the production, so quality variance is the risk the firm carries every day. You now have the machinery for that fact: decompose any offer on its four IIVP traits, diagnose a failure to the gap that produced it, blueprint the encounter so an invisible service becomes fixable, and size a recovery to the failure&rsquo;s severity, frequency, and locus.</p>
 
 <figure class="sketch" aria-label="A left-to-right strip recapping the chapter spine: a service is intangible, inseparable, variable, and perishable; the seven Ps add people, process, and physical evidence; the five gaps locate where quality breaks; the blueprint makes the encounter fixable; the moments of truth are where the brand lives; and a recovery calibrated to the failure band can raise loyalty, with the opening Carnival puzzle resolved because the buyer was inside the production for five days.">
-  <div class="mount" id="sk-ch9-recap" data-w="720" data-h="200"></div>
+  <div class="mount" aria-hidden="true" id="sk-ch9-recap" data-w="720" data-h="200"></div>
   <figcaption>The chapter&rsquo;s spine, in one line. The opening Carnival puzzle resolved at the end: the buyer was on the factory floor for five days, so the broken cruise could not be swapped off a shelf.</figcaption>
 </figure>
 
@@ -1731,7 +1778,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Once the firm has engineered the encounter, the next decision is what to charge for it, and pricing behaves differently for a service. A hotel room not sold tonight is gone and an empty seat at takeoff is gone, which makes services pricing a <span class="term" data-tt="In a yield problem the firm prices to fill perishable capacity that expires unsold, so an empty seat is lost revenue, not just a thinner margin. Chapter 10 develops this.">yield problem</span> before it is a margin problem. Chapter 10 takes up the pricing methods, price as a quality signal when the buyer cannot inspect the offer first, and the AI tools that move the same seat through different prices across the day. What you hold now is enough to read a service, find where it breaks, and fix it.</p>
 
 <figure class="sketch" aria-label="A turn arrow handing off from a service that has been engineered, the encounter designed and the five gaps closed, to the next decision of what to charge for it, a yield problem because the perishable seat expires unsold, the work of Chapter 10.">
-  <div class="mount" id="sk-turn-ch10" data-w="720" data-h="210"></div>
+  <div class="mount" aria-hidden="true" id="sk-turn-ch10" data-w="720" data-h="210"></div>
   <figcaption>The turn from Chapter 9 to Chapter 10: from designing the encounter to pricing the perishable seat, where a seat or hour that goes unsold is revenue the firm can never recover.</figcaption>
 </figure>
 

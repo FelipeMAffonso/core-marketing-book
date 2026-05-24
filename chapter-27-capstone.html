@@ -503,6 +503,48 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<!-- ============================================================
+     A11Y CONTRAST FIXES (WCAG 2.1 AA) — appended LAST in <head> so it overrides
+     both the chapter <style> and _accessibility.css. Doubled-class/id specificity
+     + !important target only nodes axe-core flagged as failing color-contrast.
+     Bright coral #DA7756 is intentionally preserved where it is a heading / marker /
+     rule / border / SVG stroke (those meet 3:1). Only SMALL TEXT that fails is darkened,
+     and the only opacity-washed control (.rc-rung) is re-dimmed without washing the text.
+     NOTE: the literal ${{ }} CI/template code shown in this chapter is INTENTIONAL content.
+     ============================================================ -->
+<style>
+/* --- White-on-coral action buttons: 3.1:1 -> darken background to #a8472a (white on it = 5.83:1).
+       Hover #8f3c23; disabled keeps full-contrast grey #6b6b6b (white on it = 5.74:1). --- */
+.mcp-go.mcp-go, .grader-go.grader-go, .eo-go.eo-go, .cb-go.cb-go, .rc-go.rc-go,
+.demo-button.demo-button, .cmp-go.cmp-go, .ap-go.ap-go, .up-go.up-go, .par-go.par-go,
+.cb-chip .cb-chip-x {
+  background: #a8472a !important; color: #ffffff !important;
+}
+.mcp-go.mcp-go:hover, .grader-go.grader-go:hover, .eo-go.eo-go:hover:not(:disabled),
+.cb-go.cb-go:hover:not(:disabled), .rc-go.rc-go:hover:not(:disabled),
+.demo-button.demo-button:hover, .cmp-go.cmp-go:hover, .ap-go.ap-go:hover, .up-go.up-go:hover,
+.par-go.par-go:hover:not(:disabled) {
+  background: #8f3c23 !important;
+}
+.eo-go.eo-go:disabled, .cb-go.cb-go:disabled, .rc-go.rc-go:disabled, .par-go.par-go:disabled {
+  background: #6b6b6b !important; color: #ffffff !important;
+}
+
+/* --- Rung classifier cards: the inactive card was washed by opacity:0.4, which axe blends
+       the text below 4.5:1. Remove the text-washing opacity; dim with a muted background +
+       softer border instead, keeping all text at FULL opacity. The .pick state restores the
+       bright active card. --- */
+.rc-rung.rc-rung { opacity: 1 !important; background: #faf7f3 !important; border-color: #efe7da !important; }
+.rc-rung.rc-rung.pick { background: #fff7f0 !important; border-color: var(--coral) !important; }
+.rc-rung.rc-rung .rc-rung-cap  { color: #a8472a !important; }   /* coral cap -> ~5:1 */
+.rc-rung.rc-rung .rc-rung-name { color: #1a1a1a !important; }   /* full-opacity ink */
+.rc-rung.rc-rung .rc-rung-cost { color: #6b6b6b !important; }   /* mono cost -> 5.74:1 */
+
+/* --- Small bright-coral inline text on cream/white that fails (the .kq "// here" marker and
+       coral inline code) -> darken to #a8472a (~5:1). Headings/markers/strokes untouched. --- */
+.kq-grid.kq-grid .kq strong span { color: #a8472a !important; }
+strong code, ol.num-steps strong code { color: #a8472a !important; }
+</style>
 </head>
 <body data-chapter-num="27">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -514,6 +556,19 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of"); injected SVG
+         mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 27 (review; Haiku can hallucinate).
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-27-capstone.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 27 &middot; Capstone</p>
@@ -555,7 +610,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
   A workflow is a hard-coded sequence where the code decides the order; an agent decides its own order at runtime. Workflows are cheaper and right for most marketing tasks, so use an agent only when the steps cannot be known in advance.
 </div>
 
-<figure id="fig-process" class="sketch" style="margin: 36px 0 28px 0;">
+<figure id="fig-process" class="sketch" style="margin: 36px 0 28px 0;" aria-label="The five-component agent architecture: prompt, planner, tool-caller, executor, and a reflector whose loop back to the planner is what makes an agent agentic rather than a one-way workflow">
   <div class="mount" id="process-mount" data-w="820" data-h="320" aria-hidden="true"></div>
   <figcaption>The five-component architecture: prompt, planner, tool-caller, executor, reflector. The reflector's loop back to the planner is what makes an agent agentic; without it, it's a workflow.</figcaption>
 </figure>
@@ -583,7 +638,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none">The prompt is the highest-leverage component, because a weak system prompt produces vague, hedge-everywhere drafts while a strong one produces drafts a marketing director would sign off on. The <code>CLAUDE.md</code> file the team writes in Waypoint 2 lives in this same system slot, just brand-specific and far smaller.<sup class="cite" data-cite="ref-3"></sup></p>
 
 <figure class="sketch" aria-label="Prompt + tool spec wiring">
-  <div class="mount" id="sk-prompt-tool-mount" data-w="700" data-h="280"></div>
+  <div class="mount" id="sk-prompt-tool-mount" data-w="700" data-h="280" aria-hidden="true"></div>
   <figcaption>The prompt has two slots: system prompt = always-on voice constitution; user prompt = this run's variable part. The tool spec is a JSON schema describing each tool's name, parameters, types.</figcaption>
 </figure>
 
@@ -614,7 +669,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-focused style="display:none">The argument behind it is the <span class="term" data-tt="Without a shared standard, every (AI app, tool) pairing needs a custom adapter, so M apps times N tools costs roughly M times N pieces of glue. MCP collapses that to M plus N because each app and each tool speaks the protocol once, which is why one MCP server reuses across Claude Desktop, Cursor, and Codex without rewriting the integration.">M-by-N problem</span> in the sidenote, and it made MCP the de-facto standard within twelve months.<sup class="cite" data-cite="ref-6"></sup></p>
 
 <figure class="sketch" aria-label="The M-by-N argument: before and after MCP">
-  <div class="mount" id="sk-mcp-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-mcp-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>Before MCP, every (app, tool) pair was a custom connector. After MCP, each app and each tool speaks the protocol once. M*N drops to M+N.</figcaption>
 </figure>
 
@@ -649,7 +704,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 <p data-complete>The richer layer is a <span class="term" data-tt="A knowledge graph is a storage layer outside the model where the agent's accumulated facts are kept as entities (Liquid Death, Stanley, the cup-craze redirect) connected by relations (Stanley's citation share rose six points week over week, driven by the Wikipedia redirect), so the agent can retrieve a connected slice of context on demand rather than re-reading a flat file. The reference implementation is Anthropic's MCP Memory server, which exposes a query tool the agent calls at the start of each run and an add tool the agent calls at the end to record what it just learned.">knowledge graph</span> of facts the agent has accumulated about the brand, customers, and past projects, walked in detail in Section 27.3.<sup class="cite" data-cite="ref-6"></sup></p>
 
 <figure class="sketch" aria-label="Memory and state across runs">
-  <div class="mount" id="sk-memory-state-mount" data-w="700" data-h="260"></div>
+  <div class="mount" id="sk-memory-state-mount" data-w="700" data-h="260" aria-hidden="true"></div>
   <figcaption>Memory is external. The model loads CLAUDE.md or the knowledge-graph snapshot at the start of each call, runs, then writes new facts back. The model holds nothing between calls.</figcaption>
 </figure>
 
@@ -682,7 +737,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
   <div class="aw-grid">
     <div class="aw-col">
       <span class="aw-cap">model</span>
-      <select class="aw-pick" data-key="model">
+      <select class="aw-pick" data-key="model" aria-label="Agent model">
         <option value="haiku">claude-haiku-4-5 (fast, cheap)</option>
         <option value="sonnet" selected>claude-sonnet-4-6 (balanced)</option>
         <option value="opus">claude-opus-4-7 (deepest reasoning)</option>
@@ -690,7 +745,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
     </div>
     <div class="aw-col">
       <span class="aw-cap">skill</span>
-      <select class="aw-pick" data-key="skill">
+      <select class="aw-pick" data-key="skill" aria-label="Agent Skill">
         <option value="weekly-digest" selected>/weekly-competitor-digest</option>
         <option value="citation-probe">/citation-share-probe</option>
         <option value="brand-lint">/brand-voice-lint</option>
@@ -706,14 +761,14 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
     </div>
     <div class="aw-col">
       <span class="aw-cap">trigger</span>
-      <select class="aw-pick" data-key="trigger">
+      <select class="aw-pick" data-key="trigger" aria-label="Agent trigger">
         <option value="oneshot">run once now</option>
         <option value="weekly" selected>every monday 9am</option>
         <option value="event">on new survey response</option>
       </select>
     </div>
   </div>
-  <div class="aw-readout" id="agent-builder-out"></div>
+  <div class="aw-readout" id="agent-builder-out" aria-live="polite" aria-atomic="false"></div>
 </div>
 
 <span class="ax">02 // tools and tool-calling</span>
@@ -723,7 +778,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 
 <p>You wrote <code>read_url(url)</code> in Ch 1 as the canonical first tool. Each tool description is a JSON Schema object naming the tool, what it does, and the arguments it accepts with their types, as in the schema below, and the return value comes back as a <em>tool result</em> message.<sup class="cite" data-cite="ref-2"></sup></p>
 
-<pre class="code">{
+<pre class="code" tabindex="0" role="region" aria-label="Tool definition JSON for a competitor-search tool">{
   "name": "search_competitors",
   "description": "Returns the top 10 brands in a category with weekly review velocity",
   "parameters": {
@@ -762,7 +817,7 @@ figure svg path.reveal, figure svg line.reveal, figure svg polyline.reveal, figu
 
 <p data-focused style="display:none">The capstone in Section 27.9 includes a ~30-line <span class="term" data-tt="FastMCP is the open-source Python library (author Jeremiah Lowin) that makes writing an MCP server about as easy as writing a function. The team writes one Python function, marks it with @mcp.tool, and FastMCP handles the rest of the plumbing the runtime needs at startup.">FastMCP</span> Python server exposing the brand's voice rules plus a lint tool, where the team writes the function and FastMCP handles the plumbing. The whole server fits on this page:</p>
 
-<pre class="code">from fastmcp import FastMCP
+<pre class="code" tabindex="0" role="region" aria-label="FastMCP brand-voice server, Python source">from fastmcp import FastMCP
 
 mcp = FastMCP("brand-voice")
 
@@ -854,7 +909,7 @@ The full loop takes about ten minutes the first time and four after: steps one t
 <p data-complete>Failing runs should teach the agent to do better, which is the <span class="term" data-tt="Reflexion is the 2023 paper by Noah Shinn and five co-authors (arXiv:2303.11366, NeurIPS 2023) that named the reflection architecture every 2026 agent runtime now copies. Three components: the Actor (the agent doing the work), the Evaluator (the LLM-as-judge call returning a rubric score), and the Self-Reflection model (a separate model call that reads the failing trace plus the score and writes a 150-to-200-word critique stored in a JSON-lines log bounded to the last one-to-three entries). Weights never update; the verbal critique is the entire learning signal.">Reflexion</span> architecture (Shinn et al., 2023): the agent reads its failing run, writes a paragraph of critique, and loads it back on the next attempt, so the text in a small JSON-lines file is the entire learning signal. The capstone scales it to one eval folder, where a separate Sonnet 4.6 call reads each failing trace, writes a 150-200-word critique tagged with one of five failure modes, appends it to <code>.evals/reflections.jsonl</code>, and every subsequent run reads back the last three entries. The block below extends the <code>run_evals.py</code> file Waypoint 8 builds.<sup class="cite" data-cite="ref-14"></sup></p>
 
 
-<pre class="code" data-complete># reflexion.py — extend run_evals.py with a critique writer
+<pre class="code" data-complete tabindex="0" role="region" aria-label="reflexion.py, a critique-writer extension to the eval harness"># reflexion.py — extend run_evals.py with a critique writer
 import os, json, datetime
 from anthropic import Anthropic
 client = Anthropic()
@@ -913,7 +968,7 @@ def last_three_critiques():
 <p data-complete>tau-bench is one benchmark in one task class, and the eval harness picks the one matching the agent's task. An open-web research agent is shaped like <span class="term" data-tt="GAIA (General AI Assistants) is a benchmark published by Grégoire Mialon and co-authors in 2023 for testing how well an AI agent answers open-web research questions a real assistant would be asked, with every answer unambiguous so scoring is mechanical. 450 questions in three levels against a 92 percent human baseline; the leaderboard moved from 30 percent (GPT-4 plugins) at release to 74.55 percent (HAL Princeton on Sonnet 4.5, September 2025).">GAIA</span> (tiered by difficulty with exact-match answers, the shape a GEO citation tracker copies), and a marketing-specific harness follows <span class="term" data-tt="Xbench is the profession-aligned agent benchmark suite Chen and co-authors proposed in June 2025 (arXiv:2506.13651), built on the claim that benchmarks tied to real professional work predict production success better than synthetic tool-use micro-benchmarks. Its inaugural Marketing benchmark scores agents across 50 advertiser briefs against an 836-candidate influencer pool, judged by alignment with the advertiser's actual selection.">xbench</span>, which a team clones offline by writing twenty briefs with senior-planner-graded golden rankings and tracking top-3 hit rate.<sup class="cite" data-cite="ref-18"></sup><sup class="cite" data-cite="ref-19"></sup></p>
 
 <figure class="sketch" aria-label="The eval harness: golden set, LLM-as-judge, human spot-check">
-  <div class="mount" id="sk-eval-harness-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-eval-harness-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>Eval harness, three layers: hand-written golden set, LLM-as-judge scoring against a rubric, sampled human spot-check on failures and customer-facing runs. None alone is sufficient.</figcaption>
 </figure>
 
@@ -934,7 +989,7 @@ top 3 brands by mention velocity:
 OUTPUT 2: ...
 OUTPUT 3: ..."></textarea>
   <button class="grader-go" id="grader-go">run the judge</button>
-  <div class="grader-stream demo-stream" id="grader-stream" hidden></div>
+  <div class="grader-stream demo-stream" id="grader-stream" hidden aria-live="polite" aria-atomic="false"></div>
   <div class="grader-rubric" id="grader-rubric" hidden>
     <div class="grader-row"><div class="grader-criterion">correctness</div><div class="grader-score" id="g-correct">&ndash;</div><div class="grader-note" id="g-correct-note"></div></div>
     <div class="grader-row"><div class="grader-criterion">completeness</div><div class="grader-score" id="g-complete">&ndash;</div><div class="grader-note" id="g-complete-note"></div></div>
@@ -956,7 +1011,7 @@ OUTPUT 3: ..."></textarea>
 <p data-complete>Two cost levers stack to ~95 percent off list: <span class="term" data-tt="Prompt caching stores the stable parts of a system prompt (brand-voice rules, persona, audience) on the vendor's servers so the model does not re-read those tokens every call. After the first call writes the cache, subsequent reads of the same prefix pay roughly ten percent of the standard input price.">prompt caching</span> (90 percent off cached input; Anthropic 1.25x writes / 0.1x reads, OpenAI automatic) and the <span class="term" data-tt="The Batch API is the asynchronous mode both Anthropic and OpenAI ship: the team queues requests and the vendor returns results within twenty-four hours rather than instantly, discounting both input and output fifty percent. Right for any task that does not need a real-time answer, such as an overnight classification job over a million reviews.">Batch API</span> (50 percent off input + output).<sup class="cite" data-cite="ref-21"></sup></p>
 
 <figure class="sketch" aria-label="Cost curve as a function of model tier and lever stack">
-  <div class="mount" id="sk-cost-curve-mount" data-w="720" data-h="290"></div>
+  <div class="mount" id="sk-cost-curve-mount" data-w="720" data-h="290" aria-hidden="true"></div>
   <figcaption>Cost per run by model tier + lever stack. Caching + batching cuts ~95 percent off list. Sonnet at list ~$3/run; with both levers, $0.15.</figcaption>
 </figure>
 
@@ -1075,7 +1130,7 @@ OUTPUT 3: ..."></textarea>
 <p data-focused style="display:none">Prompt chaining hard-codes a fixed sequence and runs one model call per step (outline, draft, clarity edit, brand-voice pass), with the program running validity checks between calls. In Anthropic's narrow definition this is not even agentic, because the code decides the order, and that is the point: the simplest tool that produces the result is almost always right.<sup class="cite" data-cite="ref-2"></sup></p>
 
 <figure class="sketch" aria-label="Prompt chaining as four sequenced model calls">
-  <div class="mount" id="sk-prompt-chaining-mount" data-w="700" data-h="200"></div>
+  <div class="mount" id="sk-prompt-chaining-mount" data-w="700" data-h="200" aria-hidden="true"></div>
   <figcaption>Prompt chaining: brief, outline, draft, polish. One model call per step with code-level validation between. Simplest pattern, often right.</figcaption>
 </figure>
 
@@ -1086,7 +1141,7 @@ OUTPUT 3: ..."></textarea>
 <p data-focused style="display:none">Routing sends different inputs to different models: a short question to Haiku 4.5, a hard one to Opus 4.7, with a small router model reserving the expensive model for the 10 percent that needs it.<sup class="cite" data-cite="ref-2"></sup></p>
 
 <figure class="sketch" aria-label="Routing to specialists by input class">
-  <div class="mount" id="sk-routing-mount" data-w="700" data-h="244"></div>
+  <div class="mount" id="sk-routing-mount" data-w="700" data-h="244" aria-hidden="true"></div>
   <figcaption>Routing: a small classifier reads the input and dispatches to the specialist for that class. Routine path stays cheap; hard path gets the deep model.</figcaption>
 </figure>
 
@@ -1097,7 +1152,7 @@ OUTPUT 3: ..."></textarea>
 <p data-focused style="display:none">Parallelization fans the same task out across many independent inputs at once. Because the API charges by token, not by call, parallel costs the same as serial while running 50-100x faster.<sup class="cite" data-cite="ref-2"></sup></p>
 
 <figure class="sketch" aria-label="Parallelization: same prompt, many inputs, run concurrent">
-  <div class="mount" id="sk-parallelization-mount" data-w="700" data-h="238"></div>
+  <div class="mount" id="sk-parallelization-mount" data-w="700" data-h="238" aria-hidden="true"></div>
   <figcaption>Parallelization: one prompt, many inputs, fan out and merge. A 1M-row review classification that costs an analyst six weeks completes in 20 minutes on the Batch API, under $50.</figcaption>
 </figure>
 
@@ -1110,12 +1165,12 @@ OUTPUT 3: ..."></textarea>
 <p data-complete>The worker inside the orchestrator-workers pattern runs the same three-step micro-loop on every turn, named <span class="term" data-tt="ReAct is the prompting pattern Shunyu Yao and his co-authors introduced in 2022 (Reasoning and Acting), which interleaves three things inside one trace: a free-form Thought where the model reasons out loud about what it intends to do, an Action where it calls one tool with one set of arguments, and an Observation where the tool's result is read back. Every 2026 agent framework emits this trace, which is why a capstone eval harness scores the trace step-by-step rather than only the terminal answer. ReAct's absolute success-rate lift was 34 points on ALFWorld and 10 points on WebShop.">ReAct</span>: a plain-English <strong>Thought</strong>, an <strong>Action</strong> naming one tool, and an <strong>Observation</strong> fed back into the context window, after which the loop runs again. The consequence for a capstone is the rubric choice, because scoring only the terminal answer reduces a thirty-step trajectory to one boolean and discards the diagnostic information the team needs, which is why the 2026 standard scores each trace step. ReAct names the runtime contract; its training-time complement is <span class="term" data-tt="Toolformer is a 2023 paper by Timo Schick and his Meta AI co-authors that taught a base model how to call external APIs through a self-supervised pipeline: the model writes candidate tool calls into ordinary sentences, runs each call, and keeps the calls where seeing the tool's return value drops the model's next-token perplexity below a threshold. Its four learning signals map onto every tool descriptor a team writes today: which tool (the name), when to call it (the description), what arguments to pass (the inputSchema), and how to incorporate the result (the return shape). A verb-first name retrieves more reliably than a verb-last one, and a schema without an examples array forces the model to guess the format.">Toolformer</span> (Schick et al., 2023), whose four learning signals are the four fields of every tool descriptor today.<sup class="cite" data-cite="ref-17"></sup><sup class="cite" data-cite="ref-23"></sup></p>
 
 <figure class="sketch" data-complete aria-label="The Thought-Action-Observation loop ReAct named in 2022 and every 2026 agent emits">
-  <div class="mount" id="sk-react-loop-mount" data-w="720" data-h="296"></div>
+  <div class="mount" id="sk-react-loop-mount" data-w="720" data-h="296" aria-hidden="true"></div>
   <figcaption>The three-step ReAct loop. Scoring only the terminal answer collapses the whole trajectory to one boolean; scoring each step is the diagnostic surface that lets the team fix what actually failed.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="Orchestrator-workers: one planner, many specialists, one synthesizer">
-  <div class="mount" id="sk-orchestrator-mount" data-w="700" data-h="272"></div>
+  <div class="mount" id="sk-orchestrator-mount" data-w="700" data-h="272" aria-hidden="true"></div>
   <figcaption>Orchestrator-workers: one orchestrator plans, specialist workers execute (each with its own system prompt), orchestrator merges. The architecture under HubSpot Breeze, Salesforce Agentforce, Stripe DocsGPT, most Claude Code subagent flows.</figcaption>
 </figure>
 
@@ -1129,7 +1184,7 @@ OUTPUT 3: ..."></textarea>
 <p data-focused style="display:none">One model generates a draft and a second evaluates it against a rubric, so when the draft fails the critique becomes the next prompt and the loop runs until the output passes or hits an iteration limit. This is the reflection layer of any production agent, and the eval harness you build below.<sup class="cite" data-cite="ref-8"></sup></p>
 
 <figure class="sketch" aria-label="Evaluator-optimizer: generator, judge, revise loop">
-  <div class="mount" id="sk-evaluator-mount" data-w="700" data-h="220"></div>
+  <div class="mount" id="sk-evaluator-mount" data-w="700" data-h="220" aria-hidden="true"></div>
   <figcaption>Evaluator-optimizer: generator drafts; judge scores against the rubric; if the draft fails, the critique becomes the next prompt. The reflection layer of any production agent.</figcaption>
 </figure>
 
@@ -1144,15 +1199,15 @@ OUTPUT 3: ..."></textarea>
   </div>
   <div class="eo-iter" id="eo-iter-1">
     <p class="eo-iter-cap"><span>Pass 1: first draft + judge</span><span class="eo-status" id="eo-status-1">waiting</span></p>
-    <div class="eo-draft" id="eo-draft-1">&hellip;</div>
-    <pre class="eo-judge" id="eo-judge-1">&hellip;</pre>
+    <div class="eo-draft" id="eo-draft-1" aria-live="polite" aria-atomic="false">&hellip;</div>
+    <pre class="eo-judge" id="eo-judge-1" aria-live="polite" aria-atomic="false">&hellip;</pre>
   </div>
   <div class="eo-iter" id="eo-iter-2" hidden>
     <p class="eo-iter-cap"><span>Pass 2: critique becomes the next prompt</span><span class="eo-status" id="eo-status-2">waiting</span></p>
-    <div class="eo-draft" id="eo-draft-2">&hellip;</div>
-    <pre class="eo-judge" id="eo-judge-2">&hellip;</pre>
+    <div class="eo-draft" id="eo-draft-2" aria-live="polite" aria-atomic="false">&hellip;</div>
+    <pre class="eo-judge" id="eo-judge-2" aria-live="polite" aria-atomic="false">&hellip;</pre>
   </div>
-  <div class="eo-verdict" id="eo-verdict" hidden></div>
+  <div class="eo-verdict" id="eo-verdict" hidden aria-live="polite" aria-atomic="false"></div>
 </div>
 
 <p data-complete>Quality is a product of the rubric, not the model: swap the rubric and the same generator returns a different shape of output, and tighten it and pass-rate falls until the generator is forced to solve the problem the rubric describes. The load-bearing rule across the published agentic-AI guidance is to start with the simplest pattern that produces the result and add complexity only when the simpler one measurably underperforms, and the capstone deliverable for any pattern is one paragraph per primitive written before any code.<sup class="cite" data-cite="ref-2"></sup><sup class="cite" data-cite="ref-7"></sup><sup class="cite" data-cite="ref-22"></sup><sup class="cite" data-cite="ref-27"></sup></p>
@@ -1166,8 +1221,8 @@ OUTPUT 3: ..."></textarea>
   <textarea class="cmp-prompt" id="cmp-asset-prompt" rows="3" placeholder="suggest 3 distinctive assets a craft soda brand should defend">suggest 3 distinctive assets a craft soda brand should defend</textarea>
   <button class="cmp-go" id="cmp-asset-go">run on both</button>
   <div class="cmp-grid">
-    <div class="cmp-pane"><span class="cmp-label">claude-haiku-4-5  ($1/M in)</span><div class="cmp-out demo-stream" id="cmp-asset-haiku"></div></div>
-    <div class="cmp-pane"><span class="cmp-label cmp-smart">claude-opus-4-7 ($5/M in)</span><div class="cmp-out demo-stream" id="cmp-asset-opus"></div></div>
+    <div class="cmp-pane"><span class="cmp-label">claude-haiku-4-5  ($1/M in)</span><div class="cmp-out demo-stream" id="cmp-asset-haiku" aria-live="polite" aria-atomic="false"></div></div>
+    <div class="cmp-pane"><span class="cmp-label cmp-smart">claude-opus-4-7 ($5/M in)</span><div class="cmp-out demo-stream" id="cmp-asset-opus" aria-live="polite" aria-atomic="false"></div></div>
   </div>
 </div>
 
@@ -1352,7 +1407,7 @@ OUTPUT 3: ..."></textarea>
     <span class="cc-title">~/marketing/liquid-death</span>
     <span class="cc-model">claude-sonnet-4-6</span>
   </div>
-  <div class="cc-body" id="cc-stack-body">
+  <div class="cc-body" id="cc-stack-body" aria-live="polite" aria-atomic="false">
     <div class="cc-line"><span class="cc-prompt">&gt;</span> <span class="cc-cmd">claude</span></div>
     <div class="cc-line cc-out">Claude Code v2.4 ready. Reading CLAUDE.md...</div>
     <div class="cc-line cc-out">Loaded 4 MCP servers: qualtrics, snowflake, slack, conductor.</div>
@@ -1367,7 +1422,7 @@ OUTPUT 3: ..."></textarea>
 </div>
 
 <figure class="sketch" aria-label="Claude Code CLI screenshot, drawn">
-  <div class="mount" id="sk-claude-code-mount" data-w="720" data-h="344"></div>
+  <div class="mount" id="sk-claude-code-mount" data-w="720" data-h="344" aria-hidden="true"></div>
   <figcaption>What the terminal looks like during a real Claude Code session: the model echoes the slash command, lists tools it will call, runs them in sequence (each tool call printed in coral), prints the final answer with a left border. The CLI is the agent runtime; the slash command is the Skill.</figcaption>
 </figure>
 
@@ -1376,7 +1431,7 @@ OUTPUT 3: ..."></textarea>
 <p data-focused style="display:none">The four rungs read as a sequence, but a working marketing AI stack is five layers stacked vertically: the brand surface, the agent runtime, the procurable Skills-plus-MCP layer, the foundation models, and the governance plane. Naming each layer before drafting the README prevents the most common 2026 failure, scaffolding tools without deciding which model and runtime the team pays for.<sup class="cite" data-cite="ref-22"></sup><sup class="cite" data-cite="ref-31"></sup></p>
 
 <figure class="sketch" aria-label="The 2026 AI marketing stack, five layers stacked vertically">
-  <div class="mount" id="sk-stack-arch-mount" data-w="720" data-h="344"></div>
+  <div class="mount" id="sk-stack-arch-mount" data-w="720" data-h="344" aria-hidden="true"></div>
   <figcaption>The five layers of a 2026 marketing AI stack. Brand surface = what the marketer sees; governance plane = what the CIO signs off on; the three middle layers are the procurable tooling. A capstone names a vendor at every layer before any code gets written. Vendors are interchangeable inside a layer; the layers themselves are not.</figcaption>
 </figure>
 
@@ -1395,7 +1450,7 @@ OUTPUT 3: ..."></textarea>
     <div class="rc-rung" data-rung="3"><span class="rc-rung-cap">TIER 3</span><div class="rc-rung-name">MCP server</div><div class="rc-rung-cost">cents / call</div></div>
     <div class="rc-rung" data-rung="4"><span class="rc-rung-cap">TIER 4</span><div class="rc-rung-name">scheduled agent</div><div class="rc-rung-cost">$1-5 / run</div></div>
   </div>
-  <div class="rc-out" id="rc-out" hidden></div>
+  <div class="rc-out" id="rc-out" hidden aria-live="polite" aria-atomic="false"></div>
 </div>
 
 <p data-complete>Rung selection is task-shape work, not technology-stack work: a one-question lookup stays at Tier 1 even with a Claude Code license, and the right rung is the one all three knobs (live data, repetition, unattended run) push toward, not the one the team is most comfortable with.<sup class="cite" data-cite="ref-22"></sup><sup class="cite" data-cite="ref-29"></sup></p>
@@ -1439,7 +1494,7 @@ OUTPUT 3: ..."></textarea>
   </label>
   <textarea class="up-text" id="upload-brief-text" placeholder="...or paste text here (last week's competitor mentions, a survey export, a brand-tracker pull)" rows="4"></textarea>
   <button class="up-go" id="upload-brief-go">generate brief</button>
-  <div class="up-out demo-stream" id="upload-brief-out"></div>
+  <div class="up-out demo-stream" id="upload-brief-out" aria-live="polite" aria-atomic="false"></div>
 </div>
 
 <h3 id="ex4-geo" data-no-num>Example 4: the GEO citation-tracker (Tier 4 capstone)</h3>
@@ -1463,7 +1518,7 @@ OUTPUT 3: ..."></textarea>
 <p data-focused style="display:none">The five cover distinct rung-plus-pattern combinations: HubSpot Breeze is orchestrator-workers at Tier 4, Stripe DocsGPT is single-step RAG at Tier 3, Claude Code is Tier 2 climbing to Tier 3, the GEO tracker is parallelization at Tier 4, and the FastMCP server is single-tool-plus-guard at Tier 3. A capstone that maps onto none of these is probably the wrong shape.</p>
 
 <figure class="sketch" aria-label="Four procurement defaults: the runtime a 2026 capstone team picks is determined by which trust boundary the data already sits inside">
-  <div class="mount" id="sk-procurement-mount" data-w="720" data-h="320"></div>
+  <div class="mount" id="sk-procurement-mount" data-w="720" data-h="320" aria-hidden="true"></div>
   <figcaption>Four 2026 procurement defaults. The right runtime is not the one with the best benchmark score; it is the one whose identity and audit-logging primitives the client's data already lives inside.</figcaption>
 </figure>
 
@@ -1481,7 +1536,7 @@ OUTPUT 3: ..."></textarea>
   <div class="ap-grid">
     <div class="ap-col">
       <span class="ap-cap">model</span>
-      <select class="ap-pick" data-key="model">
+      <select class="ap-pick" data-key="model" aria-label="Capstone agent model">
         <option value="opus" selected>Claude Opus 4.7</option>
         <option value="sonnet">Claude Sonnet 4.6</option>
         <option value="haiku">Claude Haiku 4.5</option>
@@ -1491,7 +1546,7 @@ OUTPUT 3: ..."></textarea>
     </div>
     <div class="ap-col">
       <span class="ap-cap">skill</span>
-      <select class="ap-pick" data-key="skill">
+      <select class="ap-pick" data-key="skill" aria-label="Capstone agent Skill">
         <option value="distinct" selected>/distinctive-asset-audit</option>
         <option value="channel">/channel-mix-audit</option>
         <option value="geo">/geo-content-scorer</option>
@@ -1501,7 +1556,7 @@ OUTPUT 3: ..."></textarea>
     </div>
     <div class="ap-col">
       <span class="ap-cap">mcp server</span>
-      <select class="ap-pick" data-key="mcp">
+      <select class="ap-pick" data-key="mcp" aria-label="Capstone agent MCP server">
         <option value="hubspot" selected>hubspot.mcp.local</option>
         <option value="agentforce">agentforce.mcp.local</option>
         <option value="kantar">kantar.mcp.local</option>
@@ -1513,7 +1568,7 @@ OUTPUT 3: ..."></textarea>
     </div>
     <div class="ap-col">
       <span class="ap-cap">trigger</span>
-      <select class="ap-pick" data-key="trigger">
+      <select class="ap-pick" data-key="trigger" aria-label="Capstone agent trigger">
         <option value="daily">cron: daily 9 AM</option>
         <option value="weekly" selected>cron: weekly Monday</option>
         <option value="monthly">cron: monthly 1st</option>
@@ -1551,7 +1606,7 @@ OUTPUT 3: ..."></textarea>
     </svg>
   </div>
   <button class="ap-go" id="ap-go">run sample workflow</button>
-  <div class="ap-log" id="ap-log" aria-live="polite"></div>
+  <div class="ap-log" id="ap-log" aria-live="polite" aria-atomic="false"></div>
 </div>
 <figcaption><span class="fnum" data-cap="figure"></span> Pick the four primitives (model, Skill, MCP server, trigger); watch the wire diagram redraw. The four picks specify an agent; the sample workflow log is its first run.</figcaption>
 </figure>
@@ -1586,7 +1641,7 @@ OUTPUT 3: ..."></textarea>
 <h3 id="sunsets" data-no-num>Case 4: the platform is sunsetting</h3>
 
 <figure class="sketch" aria-label="Sunsetted tools to avoid">
-  <div class="mount" id="sk-sunset-list-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-sunset-list-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>Five 2024-2025 tools students will see in articles but should not build on in 2026. Dates + replacements in the paragraph below.</figcaption>
 </figure>
 
@@ -1605,7 +1660,7 @@ OUTPUT 3: ..."></textarea>
 <p data-focused style="display:none">A class of category reads productive in vendor decks but fails in practice: synthetic users that miss the long tail, chat-to-SQL bots without a semantic layer, sentiment analysis taken at face value, and personalization without an incrementality test. The procurement question is <em>where is the holdout, the rubric, and the rolling pass-rate number?</em> A vendor that cannot answer is selling a demo.<sup class="cite" data-cite="ref-8"></sup></p>
 
 <figure class="sketch" data-complete aria-label="The five-mode failure taxonomy mapped to canonical 2024-2025 production failures">
-  <div class="mount" id="sk-failure-taxonomy-mount" data-w="720" data-h="300"></div>
+  <div class="mount" id="sk-failure-taxonomy-mount" data-w="720" data-h="300" aria-hidden="true"></div>
   <figcaption>Five failure modes, five defenses, none sufficient alone. Each canonical case names which layer of the loop produced the failure, and the risk-review checklist runs through all five before the agent is allowed to ship.</figcaption>
 </figure>
 
@@ -1620,14 +1675,14 @@ OUTPUT 3: ..."></textarea>
 <p data-focused style="display:none">Run length matters because of a coherence ceiling. The <span class="term" data-tt="The autonomous task horizon is the length of a human-expert task a frontier model completes end-to-end at 50 percent reliability without supervision. The post-2023 doubling rate is roughly 4.3 months.">autonomous task horizon</span> METR measures puts a frontier model at the 50-percent reliability point at 320 minutes of expert work in early 2026. Since 50 percent is as likely to fail as succeed, a capstone ships at roughly half that and re-baselines it every semester.<sup class="cite" data-cite="ref-40"></sup></p>
 
 <figure class="sketch" aria-label="METR time-horizon doubling curve, 2019 to 2026">
-  <div class="mount" id="sk-metr-curve-mount" data-w="820" data-h="340"></div>
+  <div class="mount" id="sk-metr-curve-mount" data-w="820" data-h="340" aria-hidden="true"></div>
   <figcaption>METR's measured time-horizon at 50 percent reliability, plotted on a log y-axis. GPT-2 in 2019: two seconds. GPT-4 in early 2023: five minutes. Claude 3.7 Sonnet crossed the one-hour line in February 2025. Claude Opus 4.5 hit 320 minutes in November 2025. The post-2023 doubling tightened to 4.3 months. The capstone-scope rule takes half the current ceiling and redraws it every semester.</figcaption>
 </figure>
 
 <p data-complete>The horizon is not flat across task type, since METR's July 2025 cross-domain study found GUI tasks lag software-and-reasoning by 40-100x on absolute time, so a browser-driving capstone has narrower defensible scope than an API-driving one. The April 2025 <em>Era of Experience</em> warning applies too, because a campaign that looks successful by clicks while damaging trust is optimizing against a short-horizon reward, so write two signals into every agent: one short-horizon signal the agent reacts to immediately and one long-horizon signal a human reviews before redeploying.<sup class="cite" data-cite="ref-40"></sup><sup class="cite" data-cite="ref-41"></sup></p>
 
 <figure class="sketch" data-complete aria-label="Apollo Research scheming rates before and after deliberative-alignment training, plotted on a 0-15 percent scale">
-  <div class="mount" id="sk-apollo-scheming-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-apollo-scheming-mount" data-w="720" data-h="260" aria-hidden="true"></div>
   <figcaption>Apollo Research's December 2024 evaluation found five of six frontier models demonstrated covert behavior across at least one of six scheming categories. Deliberative-alignment training cut o3's covert-action rate from 13.0 percent to 0.4 percent, a 30x reduction. The residual 0.4 percent on a model handling millions of customer interactions is the number the capstone deployment must be designed around.</figcaption>
 </figure>
 
@@ -1754,12 +1809,12 @@ OUTPUT 3: ..."></textarea>
 
 <ol class="num-steps" data-complete>
   <li><strong>On Mac or Linux (cron).</strong> Open a terminal, type <code>crontab -e</code> to open the per-user crontab file, add one line, then save and close. The syntax is five fields (minute, hour, day-of-month, month, day-of-week) followed by the command. The example below fires at 9:00 every Monday: the hour field is <code>9</code>, the day and month fields are <code>*</code> (any), and the weekday field is <code>1</code> (Monday in cron's zero-through-six numbering). The redirect at the end writes both normal and error output to a log file, so the team can read on Tuesday what happened if Monday's run silently failed.
-<pre class="code"># crontab -e, then add this one line:
+<pre class="code" tabindex="0" role="region" aria-label="Crontab line that runs the weekly digest agent every Monday"># crontab -e, then add this one line:
 0 9 * * 1 cd ~/capstone &amp;&amp; /usr/local/bin/claude --skill /weekly-digest "run this Monday's competitor digest" &gt;&gt; logs/cron.log 2&gt;&amp;1</pre>
   </li>
   <li><strong>On Windows (Task Scheduler).</strong> Open the Start menu, type <em>Task Scheduler</em>, and click <em>Create Basic Task</em>. Name it, pick <em>Weekly</em> as the trigger, set Monday at 9:00 a.m. On the action page pick <em>Start a program</em>, fill in <em>Program</em> as <code>claude</code> and <em>Add arguments</em> as <code>--skill /weekly-digest "run this Monday's competitor digest"</code>, and paste the project folder path in <em>Start in</em>. Finish the wizard and right-click the task &gt; <em>Run</em> once to confirm it fires. Task Scheduler is the Windows GUI equivalent of cron, clicked rather than typed.</li>
   <li><strong>In the cloud (GitHub Actions).</strong> Inside the repository, create <code>.github/workflows/weekly-digest.yml</code> with the contents below. The <code>.yml</code> ending is <span class="term" data-tt="YAML (rhymes with camel; stands for YAML Ain't Markup Language, the recursive joke included) is a plain-text config format that uses indentation to show which lines belong inside which sections, the way a bullet-pointed Word outline uses sub-bullets. Most cloud tools (GitHub Actions, Docker, Kubernetes) read it because it is easier on human eyes than JSON.">YAML</span>, a plain-text config format with one rule to remember (spaces for indentation, never tabs). The <code>cron</code> string uses the same five-field syntax (<em>0 9 * * 1</em> means 9:00 UTC every Monday; adjust for timezone). The <code>secrets.ANTHROPIC_API_KEY</code> reference reads the key from the repo's Settings &gt; Secrets and variables &gt; Actions page, the cloud equivalent of the <code>.env</code> file from Chapter 1 Section 1.2. Never paste the key into the YAML itself; a committed key is a compromised key.
-<pre class="code"># .github/workflows/weekly-digest.yml
+<pre class="code" tabindex="0" role="region" aria-label="GitHub Actions workflow that runs the weekly digest on a schedule"># .github/workflows/weekly-digest.yml
 name: Weekly competitor digest
 on:
   schedule:
@@ -1800,7 +1855,7 @@ For a Tier 4 capstone, write the schedule on a Friday, smoke-test it the same da
 
 <ol class="num-steps" data-complete>
   <li><strong>Create the folder and the five test cases.</strong> Inside the project folder, make a subfolder called <code>evals/</code> and create five files named <code>case-01.json</code> through <code>case-05.json</code>. Each is a JSON object with three named fields. The shape below is the template for a brand-voice-lint case; the team adapts the inputs to whatever the agent actually does. Pick five real situations the agent will face on Monday, not made-up edge cases, and write the ideal output the team would produce without the agent.
-<pre class="code">// evals/case-01.json
+<pre class="code" tabindex="0" role="region" aria-label="Eval case in JSON: an input prompt and its expected output">// evals/case-01.json
 {
   "input": "We unlock synergy at scale to leverage our customer base.",
   "expected_contains": ["unlock", "synergy", "leverage"],
@@ -1809,7 +1864,7 @@ For a Tier 4 capstone, write the schedule on a Friday, smoke-test it the same da
   </li>
   <li><strong>Install the Anthropic Python SDK.</strong> Open a terminal in the project folder and type <code>pip install anthropic python-dotenv</code>. The first package is the official Python library for talking to Claude; the second reads the API key out of the <code>.env</code> file so the script does not have to hardcode it. Both packages install in under a minute and print <em>Successfully installed</em> when they finish.</li>
   <li><strong>Save the runner script.</strong> In the project folder (not inside <code>evals/</code>), save the file below as <code>run_evals.py</code>. The script loops every JSON file inside <code>evals/</code>, sends each input to Claude with the brand-voice system prompt, asks a second Claude call to grade whether the response satisfies the pass criteria, and prints PASS or FAIL for each case. The two Claude calls are the generator-plus-judge shape Pattern 5 named in Section 27.5; the script here is the smallest working version of that pattern.
-<pre class="code"># run_evals.py
+<pre class="code" tabindex="0" role="region" aria-label="run_evals.py, the eval-harness runner script"># run_evals.py
 import os, json, glob
 from dotenv import load_dotenv
 from anthropic import Anthropic
@@ -1937,7 +1992,7 @@ Run the six-step checklist as the final pre-ship gate, not the first line of the
   <figcaption><span class="fnum" data-cap="figure"></span> Skill folder, four files. <code>SKILL.md</code> is the entrypoint the runtime loads as system prompt. <code>references/styleguide.md</code> is the voice corpus the agent reads on every run. <code>evals/voice-pass.json</code> is the reflection rubric the judge call (waypoint 6) and the eval harness (waypoint 8) both consult. Optional <code>scripts/lint.py</code> sits next to them for code-side guards. The folder is the unit of distribution; one folder ships across Claude Desktop, Claude Code, Cursor, Codex, and the Marketplace.</figcaption>
 </figure>
 
-<pre class="code">---
+<pre class="code" tabindex="0" role="region" aria-label="brand-voice-lint Skill definition with YAML front matter">---
 name: brand-voice-lint
 description: Lints a draft against the brand voice. Use when the user pastes a draft, asks for a voice check, or types /brand-voice-lint. Returns ISSUES (banned words, off-tone sentences) and a NEUTRAL REWRITE.
 ---
@@ -2064,7 +2119,7 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
     </div>
   </div>
 
-  <div class="cb-summary" id="cb-summary" aria-live="polite"></div>
+  <div class="cb-summary" id="cb-summary" aria-live="polite" aria-atomic="false"></div>
 
   <button type="button" class="cb-go" id="cb-go" aria-label="Run sample workflow">run sample workflow</button>
 
@@ -2074,7 +2129,7 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
       <span class="cb-trace-title" id="cb-trace-title">~/capstone/agent</span>
       <span class="cb-trace-status" id="cb-trace-status">running</span>
     </div>
-    <div class="cb-trace-body" id="cb-trace-body" aria-live="polite"></div>
+    <div class="cb-trace-body" id="cb-trace-body" aria-live="polite" aria-atomic="false"></div>
     <div class="cb-digest-fence" id="cb-digest-fence" hidden>
       <div class="cb-digest" id="cb-digest">
         <span class="cb-digest-cap">slack digest <span class="cb-digest-channel" id="cb-digest-channel">#marketing</span></span>

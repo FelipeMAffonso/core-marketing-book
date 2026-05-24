@@ -639,6 +639,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of");
+         injected SVG mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 2.
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-02-what-marketing-is.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 2 &middot; The Foundation</p>
@@ -802,11 +815,11 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     <div class="w22-grid">
       <div class="w22-col vague" id="w22-colVague">
         <div class="w22-colhead"><span class="ct2">Vague request</span><span class="cost2" id="w22-costVague"></span></div>
-        <div class="ans" id="w22-ansVague"><span class="ph">Press the vague request above.</span></div>
+        <div class="ans" id="w22-ansVague" aria-live="polite" aria-atomic="false"><span class="ph">Press the vague request above.</span></div>
       </div>
       <div class="w22-col sharp" id="w22-colSharp">
         <div class="w22-colhead"><span class="ct2">Specific request</span><span class="cost2" id="w22-costSharp"></span></div>
-        <div class="ans" id="w22-ansSharp"><span class="ph">Press the specific request above.</span></div>
+        <div class="ans" id="w22-ansSharp" aria-live="polite" aria-atomic="false"><span class="ph">Press the specific request above.</span></div>
       </div>
     </div>
     <div class="w22-verdict" id="w22-verdict"></div>
@@ -3132,6 +3145,51 @@ sketches['sk-five-recap-mount'] = function(svg) {
 #w23 .w23-verdict{font:15px/1.55 var(--serif);color:var(--ink);background:var(--cream);border-left:3px solid var(--coral);border-radius:0 6px 6px 0;padding:11px 14px;margin-bottom:14px;}
 #w23 .w23-verdict b{font-weight:600;}
 #w23 .w23-reset{margin:0;}
+
+/* ============================================================
+   A11Y (WCAG 2.1 AA) — additive contrast fixes, source-of-truth.
+   Doubled-class specificity + !important to beat the chapter's
+   own coral rules and the JS inline coral backgrounds. Bright
+   coral #DA7756 is kept everywhere it is a heading/marker/rule/
+   stroke (>=3:1); only SMALL coral/white-on-coral TEXT and
+   opacity-washed text are darkened to reach >=4.5:1.
+   ============================================================ */
+
+/* (1) White-on-coral TEXT surfaces -> darken BACKGROUND to #a8472a (white = 5.83:1).
+   .w-tog.active (vague/sharp toggles incl. #w24-vague/#w25-vague/.is-on state),
+   the #gate-controls demo-button "ON" state (background set inline by JS to var(--coral)),
+   and the w22 active chip / type-in chip. Text stays #fff. */
+.w-tog.w-tog.active{background:#a8472a !important;border-color:#a8472a !important;}
+#gate-controls .demo-button.demo-button[aria-pressed="true"]{background:#a8472a !important;border-color:#a8472a !important;color:#fff !important;}
+#w22 .w22-chip.w22-chip.is-on{background:#a8472a !important;border-color:#a8472a !important;}
+#w22 .w22-type.w22-type.is-on{background:#a8472a !important;border-color:#a8472a !important;}
+/* The shared coral run/score/reset buttons (.demo-button: #w23-reset, #w24-go, #w25-go, etc.)
+   were white-on-#DA7756 (3.1:1). Darken the coral BACKGROUND to #a8472a (white = 5.83:1);
+   keep white text. The :disabled state keeps its own non-coral background.
+   #gate-controls OFF toggles set #fff inline (inline beats this), so they stay white. */
+.demo-button.demo-button{background:#a8472a;}
+.demo-button.demo-button:hover{background:#8f3c23;}
+.demo-button.demo-button:disabled{background:#6b6b6b;}  /* preserve the non-coral "wait" state (white on #6b6b6b ~5:1) */
+
+/* (2) Opacity-washed text in the w22 idle (not-.live) auditor columns.
+   Parent .w22-col{opacity:.5} blends the column-head label (.ct2) and the
+   answer placeholder (.ph) below 4.5:1 (axe read #b5b5b5 / #dcaa9d on white).
+   Remove the text-washing opacity; dim the idle card with a muted cream
+   surface + a softer border instead, keeping all text at FULL opacity.
+   The .live state already restores the white card + bright labels. */
+#w22 .w22-col.w22-col{opacity:1 !important;background:#faf7f3;border-color:#efe7da;}
+#w22 .w22-col.w22-col.live{background:#fff;border-color:var(--line);}
+#w22 .w22-col.sharp.live{border-color:var(--coral-soft);}
+#w22 .ans .ph.ph{color:#6b6b6b !important;}            /* idle placeholder, full opacity, 5.74:1 on #faf7f3 */
+#w22 .w22-col.vague .ct2.ct2{color:#6b6b6b !important;} /* vague col-head label */
+#w22 .w22-col.sharp .ct2.ct2{color:#a8472a !important;} /* sharp col-head label, coral darkened to ~5:1 */
+
+/* (3) Bud Light cascade timeline: pending rows used opacity:.45 on #555 text,
+   which blends to ~#b3b3b3 on white (2.09:1). Drop the text-washing opacity;
+   keep the pending/active visual hierarchy via COLOR + weight, not opacity.
+   Pending rows -> #6b6b6b (5.74:1); the .bl-tl-on active row stays full ink. */
+#budlight-widget .bl-tl-row.bl-tl-row{opacity:1 !important;color:#6b6b6b;}
+#budlight-widget .bl-tl-row.bl-tl-on.bl-tl-on{color:var(--ink);font-weight:600;}
 </style>
 <script>
 (function(){

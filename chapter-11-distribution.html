@@ -717,6 +717,40 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<style>
+/* ============================================================
+   A11Y CONTRAST FIXES (WCAG 2.1 AA) — appended last so it wins the cascade
+   over the chapter's own !important rules (doubled-class specificity).
+   Fixes the 10 color-contrast failures axe found in Comprehensive depth:
+     (a) white-on-coral run buttons (#w113-go, #omni-seam-go): 3.1:1 -> darken bg to #a8472a = 5.83:1.
+     (b) widget vague/sharp cards (#w113/#w115 .wv-col) used opacity:.5 which WASHED the
+         #888/#B8553A label + placeholder text below 4.5:1 (axe blended them to #b5b5b5 / #dcaa9d).
+         Remove the text-washing opacity; dim the resting card with a muted cream bg + softer
+         border instead, keeping ALL text at full opacity. The .live state restores the white card.
+     (c) card label / placeholder text at full opacity: #6b6b6b body (5.0:1) / #a8472a coral (5.0:1).
+   Bright coral #DA7756 is left untouched where it is a heading/marker/rule/border/SVG stroke (>=3:1).
+   ============================================================ */
+/* (a) coral run buttons -> AA-safe background, white text kept */
+.demo-button.demo-button { background: #a8472a !important; color: #fff !important; }
+.demo-button.demo-button:hover { background: #8f3c23 !important; }
+.demo-button.demo-button:disabled { background: #6b6b6b !important; }
+
+/* (b) replace opacity-washing on the vague/sharp cards with a non-opacity dim */
+#w113 .wv-col.wv-col, #w115 .wv-col.wv-col {
+  opacity: 1 !important;
+  background: #faf7f3 !important;
+  border-color: #efe7da !important;
+}
+#w113 .wv-col.wv-col.live, #w115 .wv-col.wv-col.live {
+  background: #fff !important;
+  border-color: var(--coral-soft) !important;
+}
+
+/* (c) card label + placeholder text at FULL opacity, AA-safe colors on both bg states */
+#w113 .wv-ct.wv-ct, #w115 .wv-ct.wv-ct,
+#w113 .wv-ans .ph, #w115 .wv-ans .ph { color: #6b6b6b !important; }
+#w113 .wv-col.sharp .wv-ct.wv-ct, #w115 .wv-col.sharp .wv-ct.wv-ct { color: #a8472a !important; }
+</style>
 </head>
 <body data-chapter-num="11">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -728,6 +762,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of");
+         injected SVG mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 11.
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-11-distribution.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 11 &middot; The Mix Layer</p>
@@ -749,7 +796,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p>What Walmart got wrong in Germany was distribution, the work of being available to the buyer in the place, time, and form they expect, with a system that makes the transaction feel ordinary. This chapter runs on one principle: <strong>a buyer who cannot find you cannot buy you</strong>, and finding-you is a system, not an address.<sup class="cite" data-cite="ref-2"></sup></p>
 
 <figure class="sketch" aria-label="The Walmart-Germany hook: three things Walmart got right (price, layout, supply chain) above a failure node, with four local preconditions that each broke one piece (cheaper local discounters, eight-hour-shift labor law, residential zoning, the banned morning chant).">
-  <div class="mount" id="sk-walmart-germany-hook-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-walmart-germany-hook-mount" data-w="720" data-h="280"></div>
   <figcaption>Walmart had the price, the layout, and the supply chain right, and Germany still broke each piece. The miss was distribution, not the product.</figcaption>
 </figure>
 
@@ -777,7 +824,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">A coffee bean roasted in Buffalo reaches a buyer in Tulsa three days later as a cup with cream. Four gaps separate making a thing from using it, and a working channel closes all four. <span class="term" data-tt="Place utility is the value a channel creates by making the product available where the buyer actually is, rather than where the factory happens to be.">Place utility</span> closes geography, <span class="term" data-tt="Time utility is the value a channel creates by making the product available at the moment the buyer wants it, rather than days or weeks later.">time utility</span> closes timing, <span class="term" data-tt="Form utility is the value a channel creates by turning the raw production output into the configuration the buyer can actually use, such as a brewed cup rather than a sack of green beans.">form utility</span> closes configuration, and <span class="term" data-tt="Possession utility is the value a channel creates by transferring legal ownership to the buyer and letting payment change hands.">possession utility</span> closes ownership and payment.<sup class="cite" data-cite="ref-3"></sup> A channel that closes all four is invisible, because the cup is just there at 7 a.m.</p>
 
 <figure class="sketch" aria-label="Four utilities the channel produces: place, time, form, possession. Each closes a gap between production and consumption.">
-  <div class="mount" id="sk-place-utility-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-place-utility-mount" data-w="720" data-h="240"></div>
   <figcaption>The four utilities a working channel produces. The buyer notices the absence of any one, never the presence.</figcaption>
 </figure>
 
@@ -785,7 +832,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Distribution is the physical twin of mental availability. <span class="term" data-tt="Mental availability is the share of buyers who can call the brand to mind quickly when a need-cue arises; the concept comes from Sharp and the Ehrenberg-Bass Institute.">Mental availability</span> is what the buyer calls to mind in the moment of need (Chapter 6), and <span class="term" data-tt="Physical availability is the share of buying occasions where the brand is present and easy to buy; a brand can be first to mind and still lose the sale if it is not on the shelf the buyer walks to.">physical availability</span> is whether the brand is on the shelf when she gets there.<sup class="cite" data-cite="ref-2"></sup> Across 15 categories, growing brands gain on both at once and declining brands lose the shelf first, because a delisting is immediate while mental availability decays slowly.<sup class="cite" data-cite="ref-2"></sup></p>
 
 <figure class="sketch" aria-label="The availability twin: two axes, mental availability and physical availability. The growing brand moves up and to the right on both at once, while the declining brand slides down the physical axis first.">
-  <div class="mount" id="sk-availability-twin-mount" data-w="720" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-availability-twin-mount" data-w="720" data-h="320"></div>
   <figcaption>Mental availability is what comes to mind; physical availability is whether the brand is on the shelf. Growing brands gain on both, and declining brands lose the shelf first.</figcaption>
 </figure>
 
@@ -890,13 +937,13 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Channel length trades reach against control. <strong>Apple</strong> runs 500-plus owned stores with sales per square foot beating Tiffany and Best Buy, because the product carries the margin and the pull to fill a store that stocks no one else&rsquo;s computers.<sup class="cite" data-cite="ref-3"></sup> A thin-margin snack-food brand trying the same thing would burn cash before the second city.</p>
 
 <figure class="sketch" aria-label="A channel-length thermometer with reach axis on one side and control axis on the other, showing the trade-off graphically.">
-  <div class="mount" id="sk-channel-length-mount" data-w="700" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-channel-length-mount" data-w="700" data-h="260"></div>
   <figcaption>Reach and control trade against one another along channel length. The right number of tiers is the smallest that puts the brand on the shelves buyers walk past.</figcaption>
 </figure>
 
 <p data-complete>Reach-versus-control stops short of the diagnostic question, which is what the buyer needs the channel to do. The methods literature names six <span class="term" data-tt="Service outputs are the buyer-side benefits that a marketing channel must produce, and the framework names six of them. Coughlan, Anderson, Stern, and El-Ansary catalog the six as bulk-breaking (the ability to buy in small quantities rather than full truckloads), spatial convenience (closeness to where the buyer lives or works), waiting and delivery time (the speed with which the buyer can get the product), assortment and variety (depth and breadth of choice on the shelf), customer service (pre-sale advice and post-sale support), and information provision (comparison, education, and recommendation). The channel-design problem then becomes a question of which outputs each buyer segment actually needs, and at what cost the channel can produce them.">service outputs</span> the channel exists to produce: <strong>bulk-breaking</strong>, <strong>spatial convenience</strong>, <strong>waiting and delivery time</strong>, <strong>assortment and variety</strong>, <strong>customer service</strong>, and <strong>information provision</strong>.<sup class="cite" data-cite="ref-6"></sup> The marketer asks which outputs each segment requires and derives the channel that delivers them at minimum cost. Built from scratch as if no infrastructure existed, this is a <em>zero-based channel</em>, then compared back against the actual one to expose service-output gaps.<sup class="cite" data-cite="ref-6"></sup></p>
 <figure class="sketch" data-complete aria-label="Coughlan service-output cost ladder. Six rows, one per service output. Each row pairs a coral bar showing buyer-side demand for the named segment against an ink bar showing the channel cost of producing that output. Higher service output costs more to produce, so the channel that fits matches the demand bar without overpaying for outputs the segment will not value.">
-  <div class="mount" id="sk-service-output-mount" data-w="720" data-h="364"></div>
+  <div class="mount" aria-hidden="true" id="sk-service-output-mount" data-w="720" data-h="364"></div>
   <figcaption>Each service output has a buyer-side demand that varies by segment and a channel-side cost of production. The fit channel matches one to the other without paying to produce outputs the segment refuses to value.</figcaption>
 </figure>
 
@@ -986,7 +1033,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </figure>
 
 <figure class="sketch" aria-label="A coral ladder with three rungs labeled exclusive, selective, intensive, with a brand example on each rung.">
-  <div class="mount" id="sk-intensity-ladder-mount" data-w="700" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-intensity-ladder-mount" data-w="700" data-h="280"></div>
   <figcaption>Three rungs. Most brand-equity work happens on the middle one, because that is where the trade-off between coverage and control is actively managed rather than fixed by the architecture.</figcaption>
 </figure>
 
@@ -994,7 +1041,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The drift up the ladder is constant. A salesperson under quota wants the next account, a private-label retailer wants onto the list, and a board wants distribution growth because it is the easiest revenue lever. <strong>Nike</strong> pulled out of Sears in 2004 to protect its higher-end positioning.<sup class="cite" data-cite="ref-3"></sup> The drift runs one way at speed, because equity lost to over-distribution is slow to win back.<sup class="cite" data-cite="ref-9"></sup></p>
 
 <figure class="sketch" aria-label="A force diagram: three arrows labeled quota-bound salesperson, private-label retailer, and quarterly board target push a brand chip toward intensive, while a slow dashed arrow labeled equity erosion points back the other way.">
-  <div class="mount" id="sk-drift-pressure-mount" data-w="700" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-drift-pressure-mount" data-w="700" data-h="300"></div>
   <figcaption>Three forces push a brand up the ladder toward intensive; only a slow, costly equity-erosion arrow points back. Holding the chosen rung is what defense looks like.</figcaption>
 </figure>
 
@@ -1014,11 +1061,11 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="wv-grid">
     <div class="wv-col vague" id="w113-col-bare">
       <div class="wv-colhead"><span class="wv-ct">claude-haiku-4-5 (no chapter context)</span><span class="wv-cost" id="w113-cost-bare"></span></div>
-      <div class="wv-ans" id="w113-ans-bare"><span class="ph">Press &ldquo;run on both&rdquo; above.</span></div>
+      <div class="wv-ans" id="w113-ans-bare" aria-live="polite" aria-atomic="false"><span class="ph">Press &ldquo;run on both&rdquo; above.</span></div>
     </div>
     <div class="wv-col sharp" id="w113-col-smart">
       <div class="wv-colhead"><span class="wv-ct">claude-haiku-4-5 (checklist loaded)</span><span class="wv-cost" id="w113-cost-smart"></span></div>
-      <div class="wv-ans" id="w113-ans-smart"><span class="ph">Press &ldquo;run on both&rdquo; above.</span></div>
+      <div class="wv-ans" id="w113-ans-smart" aria-live="polite" aria-atomic="false"><span class="ph">Press &ldquo;run on both&rdquo; above.</span></div>
     </div>
   </div>
   <div class="wv-verdict" id="w113-verdict"></div>
@@ -1037,7 +1084,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The third decision is who creates demand. A <strong>push strategy</strong> spends on channel members through trade promotion, <span class="term" data-tt="Slotting fees are one-time payments a manufacturer makes to a retailer to secure shelf space for a new product.">slotting fees</span>, and co-op allowances, so the paid retailer pushes the product to the buyer. A <strong>pull strategy</strong> spends on the buyer through advertising and search, so the primed buyer asks for it. Most brands run both, and the proportions are the decision, because in <span class="term" data-tt="Consumer packaged goods (CPG) are fast-moving, frequently repurchased products sold through grocery and mass retail, a category that lives or dies on shelf presence.">CPG</span> trade budgets often beat ad budgets outside the top three brands.<sup class="cite" data-cite="ref-3"></sup></p>
 
 <figure class="sketch" aria-label="A diagram with the manufacturer at one end and the buyer at the other; push arrows move money toward the channel members, pull arrows move attention from the buyer back toward the channel.">
-  <div class="mount" id="sk-push-pull-mount" data-w="700" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-push-pull-mount" data-w="700" data-h="280"></div>
   <figcaption>Push spends on the channel members, pull spends on the buyer, and both move demand at the shelf from different links of the chain.</figcaption>
 </figure>
 
@@ -1049,7 +1096,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The strongest push is a <span class="term" data-tt="A vertical marketing system (VMS) is a channel where the producer, wholesaler, and retailer act as one unified system rather than independent firms, running an estimated 70 to 80 percent of the U.S. consumer marketplace.">vertical marketing system</span>, where producer, wholesaler, and retailer act as one system.<sup class="cite" data-cite="ref-3"></sup> It takes three forms: corporate VMS is single ownership (Sherwin-Williams owns 4,800-plus stores), administered VMS is dominance without ownership (Frito-Lay commands shelf space), and contractual VMS is integration by contract (the McDonald&rsquo;s franchise model). <strong>Disney</strong> is the corporate case, routing the same characters through theaters, Disney+, owned stores, and the parks, each producing a benefit a licensed alternative cannot match.<sup class="cite" data-cite="ref-3"></sup><sup class="cite" data-cite="ref-10"></sup></p>
 
 <figure class="sketch" aria-label="Three forms of vertical marketing system drawn as cards: corporate (single ownership), administered (dominant brand power), and contractual (integrated by contract).">
-  <div class="mount" id="sk-vms-mount" data-w="700" data-h="220"></div>
+  <div class="mount" aria-hidden="true" id="sk-vms-mount" data-w="700" data-h="220"></div>
   <figcaption>Three ways one firm pulls a channel into a single system. Corporate owns it outright, administered commands it through brand power, and contractual binds it by agreement.</figcaption>
 </figure>
 
@@ -1158,7 +1205,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-complete><strong>Horizontal conflict</strong> runs sideways between members at the same level, the way Pizza Inn franchisees in the early 1990s skimped on cheese to defend per-unit margin and dropped chain-wide quality perception enough to hurt everyone&rsquo;s traffic. Each franchisee is locally rational while the brand-level cost is paid by all the others, so the fix has to act at the system level through sourcing clauses, mystery-shopper audits, and territorial protection. <strong>Vertical conflict</strong> runs between manufacturer and retailer, the way department stores cut Clinique&rsquo;s shelf space when Estée Lauder launched it online in the late 1990s and read the move as the manufacturer competing with the channel it had asked them to build, so the fix is to design the direct channel so retailer overlap stays small. <strong>Multichannel conflict</strong> runs across two channels of the same brand, the way Goodyear compressed its independent dealers&rsquo; margin by layering Sears, Walmart, and Discount Tire on top of the dealer network, where the textbook fix is channel-specific assortment so the same SKU cannot be price-shopped across retailers. None of the three is caused by malice, so the question is how to manage the conflict, not how to eliminate it.</p>
 <figure class="sketch" aria-label="Three conflict loci drawn as a map: horizontal between same-level members, vertical between manufacturer and retailer, and multichannel between two channels of one brand.">
-  <div class="mount" id="sk-channel-conflict-mount" data-w="700" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-channel-conflict-mount" data-w="700" data-h="280"></div>
   <figcaption>All three forms of channel conflict are structural, sitting at a different link of the chain. The goal is to manage them, not to eliminate them.</figcaption>
 </figure>
 
@@ -1187,7 +1234,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="An omni-channel diagram: store, web, app, social, last-mile delivery all connected to a single brand, single customer record, single inventory.">
-  <div class="mount" id="sk-omni-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-omni-mount" data-w="720" data-h="280"></div>
   <figcaption>The omni-channel fabric. Store, web, app, social-commerce, and last-mile delivery all connect to one brand, one customer record, one inventory pool. The seam is invisible when integration is well done, and painful when it is not.</figcaption>
 </figure>
 
@@ -1207,7 +1254,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The companion read is the <span class="term" data-tt="The strategic profit model is a retailing-finance framework that decomposes a retailer&rsquo;s return on equity into three multipliers: net margin, asset turnover, and financial leverage. The first two multipliers together separate retailers who earn their return on markup (Nordstrom and Tiffany take a wide margin on each transaction but turn inventory slowly) from retailers who earn their return on velocity (Costco and Walmart take a thin margin on each transaction but turn inventory many times a year). The decomposition is the cleanest way to see why two retailers with the same net margin can earn very different returns on the same asset base.">strategic profit model</span>, which separates retailers who earn their return on markup from those who earn it on velocity. Costco posted a 3.0 percent net margin in FY2025, but turning its assets 3.5 times lifts its return on assets to 10.5 percent and its return on equity to roughly 27 percent. Nordstrom ran a comparable 2.0 percent margin, but turnover of only 1.6 held its return on assets to 3.2 percent. The same single-digit margin reads as a velocity machine at one retailer and a thin-margin trap at the other.<sup class="cite" data-cite="ref-25"></sup><sup class="cite" data-cite="ref-22"></sup></p>
 
 <figure class="sketch" aria-label="A two-path diagram of the strategic profit model: Costco reaches a high return on equity through a thin margin and fast turnover; Nordstrom reaches a lower return through a similar margin and slow turnover.">
-  <div class="mount" id="sk-velocity-markup-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-velocity-markup-mount" data-w="720" data-h="280"></div>
   <figcaption>Two routes to a return. Costco takes a thin margin and spins inventory fast, the velocity path. Nordstrom takes a similar margin and turns slowly, funded by assortment depth and service, the markup path. The same net margin produces very different returns.</figcaption>
 </figure>
 
@@ -1219,7 +1266,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none"><span class="term" data-tt="Direct-to-consumer (DTC) is the 2010s relabeling of the zero-tier channel: the brand sells straight to the buyer through its own site, app, or stores and pays to acquire every buyer itself.">Direct-to-consumer</span> (DTC) is the 2010s relabeling of the zero-tier channel, keeping the full margin but paying to acquire every buyer itself. In 2018 the math worked, because an ad delivered a buyer at a <span class="term" data-tt="Customer-acquisition cost (CAC) is the spend needed to convert one new buyer; the DTC model works only while gross margin per unit covers it.">customer-acquisition cost</span> below the gross margin on the first order. Three shifts broke that at once: Apple&rsquo;s 2021 App Tracking Transparency raised paid-social CAC 30 to 60 percent, the 2022&ndash;2023 rate cycle cut DTC valuations 40 to 60 percent, and in trial-driven categories buyers drifted back to stores.<sup class="cite" data-cite="ref-26"></sup></p>
 
 <figure class="sketch" aria-label="A DTC margin bridge: full DTC gross margin minus rising paid-social CAC compared against the lower wholesale margin that carries no per-buyer acquisition cost; the cohort failed when CAC crossed gross margin.">
-  <div class="mount" id="sk-dtc-bridge-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-dtc-bridge-mount" data-w="720" data-h="280"></div>
   <figcaption>The DTC margin bridge. Full DTC margin minus rising paid-social CAC, set against the lower wholesale margin that carries no per-buyer acquisition cost. The cohort failed when CAC crossed gross margin (Casper, Allbirds) and survived when a wholesale buffer was built early (Warby Parker, Glossier).</figcaption>
 </figure>
 
@@ -1286,11 +1333,11 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="wv-grid">
     <div class="wv-col vague" id="w115-col-vague">
       <div class="wv-colhead"><span class="wv-ct">Generic, a yes or no you already had</span><span class="wv-cost" id="w115-cost-vague"></span></div>
-      <div class="wv-ans" id="w115-ans-vague"><span class="ph">Press the vague question above.</span></div>
+      <div class="wv-ans" id="w115-ans-vague" aria-live="polite" aria-atomic="false"><span class="ph">Press the vague question above.</span></div>
     </div>
     <div class="wv-col sharp" id="w115-col-sharp">
       <div class="wv-colhead"><span class="wv-ct">Current mix, rung, and the one move</span><span class="wv-cost" id="w115-cost-sharp"></span></div>
-      <div class="wv-ans" id="w115-ans-sharp"><span class="ph">Press the specific question above.</span></div>
+      <div class="wv-ans" id="w115-ans-sharp" aria-live="polite" aria-atomic="false"><span class="ph">Press the specific question above.</span></div>
     </div>
   </div>
   <div class="wv-verdict" id="w115-verdict"></div>
@@ -1408,7 +1455,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">10.</span> The mid-market is where most of the retail attrition of the 2020s happened. JCPenney filed for bankruptcy in May 2020, Sears went through Chapter 11 in 2018, and Bed Bath &amp; Beyond liquidated in 2023. The hourglass pattern of growth at both ends and attrition in the middle is the dominant retail story of the decade.</aside>
 
 <figure class="sketch" aria-label="The retail hourglass: growth at the high end and the low end, attrition in the middle.">
-  <div class="mount" id="sk-hourglass-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-hourglass-mount" data-w="720" data-h="300"></div>
   <figcaption>The retail hourglass. U.S. retail has grown at the high end and the low end while losing the middle, so a brand aiming at the mid-distribution buyer is choosing among formats that are closing.</figcaption>
 </figure>
 
@@ -1419,7 +1466,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">What predicts which low-end entrant rises next is the <span class="term" data-tt="The wheel of retailing is a four-stage hypothesis: a format enters cheap, adds services and assortment, drifts up in price, and leaves an opening beneath it for the next low-margin entrant.">wheel of retailing</span>, a four-stage arc that still holds. A format enters at the lowest price its infrastructure allows (Costco in 1983), the base grows, it adds services and assortment, its price drifts up, and a newer low-margin entrant slides beneath the umbrella the trade-up created.<sup class="cite" data-cite="ref-38"></sup></p>
 
 <figure class="sketch" aria-label="The wheel of retailing: a four-stage succession arc from low-margin entry through trade-up to a new entrant sliding beneath.">
-  <div class="mount" id="sk-wheel-retailing-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-wheel-retailing-mount" data-w="720" data-h="300"></div>
   <figcaption>The wheel of retailing. A format enters cheap, adds services and assortment, drifts up the price scale, and leaves an opening beneath it for the next low-margin entrant. Aldi is turning the wheel on the conventional supermarket now.</figcaption>
 </figure>
 
@@ -1434,7 +1481,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Behind every format sits one quiet question of where the buyer&rsquo;s purchase history lives and who may read it, and the 2026 answer is a thin data fabric that stitches the buyer&rsquo;s many identifiers into one persistent record the brand&rsquo;s tools all read in the same shape.</p>
 
 <aside class="sn" data-complete><span class="sn-num">N.</span> The data fabric is graduate-grade martech, sketched here and built in your digital marketing course. A CDP sits between the six places a buyer&rsquo;s events are recorded (server, web and app, store POS, call center, loyalty swipe, partner feeds) and the four places they get used (email, paid media, on-site personalization, the warehouse). Pricing enters the channel-design conversation, because a mid-market apparel brand running 100K monthly buyers across Shopify, Instagram, and one wholesaler spends roughly $200K a year, while a national retailer at Costco or Walmart scale spends $3M to $5M and staffs a small engineering team to run it. The clean-room standard use is brand-plus-retailer reach-and-frequency measurement on a retail-media campaign, and the post-cookie shift toward identity graphs (RampID, Unified ID 2.0) is what forces brands without one into smaller addressable audiences and looser attribution.<sup class="cite" data-cite="ref-40"></sup>
-<figure class="sketch" aria-label="A CDP architecture diagram: six data sources flow into a customer data platform at center, four destinations flow out."><div class="mount" id="sk-cdp-architecture-mount" data-w="720" data-h="392"></div><figcaption>The customer data platform: one persistent identity per buyer across server, client, store, call center, loyalty card, and partner feeds.</figcaption></figure></aside>
+<figure class="sketch" aria-label="A CDP architecture diagram: six data sources flow into a customer data platform at center, four destinations flow out."><div class="mount" aria-hidden="true" id="sk-cdp-architecture-mount" data-w="720" data-h="392"></div><figcaption>The customer data platform: one persistent identity per buyer across server, client, store, call center, loyalty card, and partner feeds.</figcaption></figure></aside>
 
 <p data-complete>The data fabric matters most when it sits under a loyalty program, because loyalty is the longest-running first-party data asset most brands own. Sephora Beauty Insider, Costco&rsquo;s membership file, and Target Circle each read tens of millions of members as one record, and the mechanics behind those headlines run on five numbers a marketer can compute in an afternoon.</p>
 <p data-focused style="display:none">The data fabric matters most under a <span class="term" data-tt="A loyalty program rewards repeat buyers with points, tiers, or perks in exchange for identifying themselves at each purchase. That swipe turns anonymous transactions into a named, trackable customer record.">loyalty program</span>, the longest-running first-party data asset most brands own. Sephora Beauty Insider, Costco&rsquo;s membership file, and Target Circle each read tens of millions of members as one record, which is what turns anonymous baskets into a named buyer the brand can keep. The same fit logic runs forward, from the data layer to the channel itself, in the selector below.</p>
@@ -1506,7 +1553,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">N.</span> The Q1 FY2026 print shows the file&rsquo;s current condition: 81.4 million paid memberships (about two cardholders per household), 39.7 million Executive memberships paying $130 a year for a 2 percent reward and growing about 9 percent year over year, $1.329 billion in quarterly fee revenue (after backing out the September 2024 step from $60 to $65 on Gold Star and $120 to $130 on Executive), and a 92.2 percent U.S./Canada renewal rate that held through the fee step. The September 2024 amendment extending the Costco-Citibank-Visa agreement through June 19, 2029 retired trade-press speculation that Costco would switch issuers the way it left American Express in 2016.<sup class="cite" data-cite="ref-25"></sup></aside>
 
 <figure class="sketch" aria-label="A Costco warehouse cross-section: membership gate at the entrance, highest-margin items at the back, food court at the front.">
-  <div class="mount" id="sk-costco-warehouse-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-costco-warehouse-mount" data-w="720" data-h="280"></div>
   <figcaption>The Costco warehouse as designed experience. The membership gate sits up front, the treasure-hunt aisles in the middle, and the highest-margin items at the back, so foot traffic pulls the buyer past what pays the rent.</figcaption>
 </figure>
 
@@ -1526,7 +1573,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The financial signature of the four decisions locking together is revenue per square foot. Trader Joe&rsquo;s produces roughly $2,000 to $2,100 a year against an industry average near $600, a spread no single decision produces alone.<sup class="cite" data-cite="ref-36"></sup> Retail-format economics are not the sum of independent feature choices; they are one interlocking system, and the format that pays its rent is the one whose pieces lock together so tightly that pulling any one out breaks the rest.</p>
 
 <figure class="sketch" aria-label="A Trader Joe's store beside a conventional supermarket, drawn to scale, with private-label share shown as shelf proportion.">
-  <div class="mount" id="sk-trader-joes-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-trader-joes-mount" data-w="720" data-h="280"></div>
   <figcaption>Trader Joe&rsquo;s beside the conventional supermarket: same buyer, same category, opposite operating choices. Narrow assortment is the moat.</figcaption>
 </figure>
 
@@ -1552,7 +1599,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="The Dial-A-Mattress arc: thirty years of profitable zero-tier direct selling, followed by a fifty-store expansion that produced bankruptcy because the secondary locations could not cover their fixed cost.">
-  <div class="mount" id="sk-dial-mattress-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-dial-mattress-mount" data-w="720" data-h="240"></div>
   <figcaption>The Dial-A-Mattress arc. Channel additions do not multiply demand on their own.</figcaption>
 </figure>
 
@@ -1562,7 +1609,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="The Walmart Germany failure mode: the U.S. Supercenter playbook transplanted into a German retail ecosystem already served by Aldi and Lidl, breaking at every joint.">
-  <div class="mount" id="sk-walmart-germany-mount" data-w="720" data-h="276"></div>
+  <div class="mount" aria-hidden="true" id="sk-walmart-germany-mount" data-w="720" data-h="276"></div>
   <figcaption>Walmart Germany. The channel was wrong for the market, and no amount of pricing rigor could fix it.</figcaption>
 </figure>
 
@@ -1572,7 +1619,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="Apple as channel conflict: the Apple Store competing with authorized resellers in geographies where both operated, managed through price parity and Genius-Bar service exclusivity.">
-  <div class="mount" id="sk-apple-conflict-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-apple-conflict-mount" data-w="720" data-h="240"></div>
   <figcaption>Apple as channel conflict. Vertical integration captured full margin but turned authorized resellers into competitors, so the mechanism managing the conflict was deliberate.</figcaption>
 </figure>
 
@@ -1590,7 +1637,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="JIT fragility under COVID: a six-link supply chain from raw materials to the shelf, with a single broken link in the middle stopping the whole chain and emptying the shelf.">
-  <div class="mount" id="sk-jit-covid-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-jit-covid-mount" data-w="720" data-h="240"></div>
   <figcaption>JIT under COVID stress. One weak link can stop the entire chain, so resilience is a deliberate cost, not a free byproduct.</figcaption>
 </figure>
 
@@ -1608,7 +1655,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     </label>
     <button class="demo-button" id="omni-seam-go">Find the seams</button>
   </div>
-  <div class="demo-stream" id="omni-seam-out" aria-live="polite"></div>
+  <div class="demo-stream" id="omni-seam-out" aria-live="polite" aria-atomic="false"></div>
   <span class="omni-cost" id="omni-seam-cost"></span>
   <p class="omni-note">A candidate read on the channels you describe, not a pull from the brand&rsquo;s internal systems. Live search is on, so treat the read as current and verify any figure before you act.</p>
 </div>
@@ -1617,7 +1664,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <h2 id="ahead">Looking Ahead</h2>
 
 <figure class="sketch" aria-label="A left-to-right strip recapping the chapter spine: a channel closes four gaps of place, time, form, and possession; the intensity ladder has three rungs of exclusive, selective, and intensive; push spends on the channel while pull spends on the buyer; omni-channel is the 2026 default; the retail format is mostly which neighbors a brand accepts; and the channel that survives variance is agile, adaptable, and aligned, with the opening Walmart Germany puzzle resolved because a four-piece system broke at every joint.">
-  <div class="mount" id="sk-ch11-recap-mount" data-w="760" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-ch11-recap-mount" data-w="760" data-h="240"></div>
   <figcaption>The chapter on one strip. Walmart Germany broke because four interlocking innovations were transplanted into a market that broke each one.</figcaption>
 </figure>
 
@@ -1627,7 +1674,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p>Chapter 12 takes up retail, where the channel decision moves from how the product travels to what the buyer sees on the shelf. Distribution and retail open onto logistics, supply-chain management, and retail operations, a field people spend whole careers inside, and what you hold now is enough to design a channel, score its seams, and read where it will break.</p>
 
 <figure class="sketch" aria-label="A turn arrow handing off from how the product travels to the buyer, the channel pipe, to what the buyer sees on the shelf, the retail floor and its eight decisions, the work of Chapter 12.">
-  <div class="mount" id="sk-turn-ch12-mount" data-w="720" data-h="220"></div>
+  <div class="mount" aria-hidden="true" id="sk-turn-ch12-mount" data-w="720" data-h="220"></div>
   <figcaption>From the route to market to the eight decisions on the floor. Chapter 12 turns the channel the buyer never sees into the shelf the buyer reads.</figcaption>
 </figure>
 <aside class="sn jobaid" data-complete aria-label="Job Aid: the one-page channel audit">

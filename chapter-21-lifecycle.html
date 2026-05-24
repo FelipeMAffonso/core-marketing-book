@@ -696,6 +696,58 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<style>
+/* ============================================================
+   A11Y CONTRAST FIXES (WCAG 2.1 AA) — appended LAST in <head> so it wins
+   over _accessibility.css. Doubled-class / id+class specificity + !important.
+   Bright coral #DA7756 is LEFT ALONE where it is a heading/marker/rule/border/
+   SVG stroke (those meet 3:1). Only small TEXT that fails as <4.5:1 is darkened:
+     - coral-deep small text  #B8553A -> #a8472a  (>=5:1 on cream/white)
+     - muted small text       #888    -> #6b6b6b  (>=5:1 on cream/white)
+     - white-on-coral buttons : background -> #a8472a (5.83:1), hover #8f3c23
+   Source colors were #B8553A (--coral-deep / --la-coral-deep) and #888
+   (--la-ink-3) on cream (#f5f0e8 / #fbf8f5) or white; see contrast_detail.js.
+   ============================================================ */
+
+/* --- coral-deep SMALL TEXT -> #a8472a (RFM widget) --- */
+#w-rfm-to-drip .rd-cell.rd-cell,
+#w-rfm-to-drip .rd-seg.rd-seg,
+#w-rfm-to-drip .rd-out.rd-out,
+#w-rfm-to-drip .rd-readout.rd-readout b { color: #a8472a !important; }
+
+/* --- coral-deep SMALL TEXT -> #a8472a (lifecycle-audit widget) --- */
+#w-lifecycle-audit .la-chip.live.live,
+#w-lifecycle-audit .la-tab.on.on,
+#w-lifecycle-audit .la-tab.on.on .la-taglet,
+#w-lifecycle-audit .la-tab.la-tab:hover,
+#w-lifecycle-audit .la-tab.la-tab:hover .la-taglet,
+#w-lifecycle-audit .la-qbtn.sharp .la-qtag.la-qtag,
+#w-lifecycle-audit .la-verdict .la-verdict li b,
+#w-lifecycle-audit .la-verdict .la-rewrite .la-rwlab.la-rwlab { color: #a8472a !important; }
+
+/* --- coral-deep SMALL TEXT -> #a8472a (retention-lift + drip-builder readouts) --- */
+#w-retention-lift .wrl-readout-inline.wrl-readout-inline,
+#w-retention-lift .wrl-cap.wrl-cap,
+#w-retention-lift .wrl-row span:last-child,
+#w-retention-lift .wrl-verdict.jump.jump,
+#w-drip-builder .db-readout.db-readout b,
+#w-drip-builder .db-msg.db-msg { color: #a8472a !important; }
+
+/* --- muted SMALL TEXT #888 -> #6b6b6b (lifecycle-audit widget) --- */
+#w-lifecycle-audit .la-chip.la-chip,
+#w-lifecycle-audit .la-label.la-label,
+#w-lifecycle-audit .la-tab .la-taglet.la-taglet,
+#w-lifecycle-audit .la-qbtn.vague .la-qtag.la-qtag,
+#w-lifecycle-audit .la-verdict .la-ph.la-ph,
+#w-lifecycle-audit .la-ph.la-ph { color: #6b6b6b !important; }
+/* keep the off-tab unselected taglet readable on white too */
+#w-lifecycle-audit .la-tab .la-taglet.la-taglet { color: #6b6b6b !important; }
+
+/* --- white-on-coral BUTTONS: darken background to #a8472a (white text = 5.83:1) --- */
+#w-lifecycle-audit .la-run.la-run { background: #a8472a !important; border-color: #a8472a !important; color: #fff !important; }
+#w-lifecycle-audit .la-run.la-run:hover { background: #8f3c23 !important; border-color: #8f3c23 !important; }
+#w-lifecycle-audit .la-run.la-run[disabled] { background: #6b6b6b !important; border-color: #6b6b6b !important; opacity: 1 !important; }
+</style>
 </head>
 <body data-chapter-num="21">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -707,6 +759,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of"); injected SVG
+         mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 21 (review; Haiku can hallucinate).
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-21-lifecycle.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 21</p>
@@ -729,14 +794,14 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p class="lede" data-focused style="display:none">That lift came from nine emails and two texts over the 60 days after purchase, none a discount, all scheduled through Klaviyo on a trigger-by-trigger basis. The work was clerical, not creative. A 200-buyer Etsy candle shop runs a humbler version of the same mechanic, and the gap between the brand and the student is the gap this chapter sets out to close.</p>
 
 <figure class="sketch" aria-label="The compounding-contribution math: 100,000 buyers, 2 orders per year, 40 dollar average order, 35 percent contribution margin">
-  <div class="mount" id="sk-contribution-math-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-contribution-math-mount" data-w="720" data-h="240"></div>
   <figcaption>The compounding-contribution napkin math. Each row strips one cost layer off the cohort, so the team can see why a one-percentage-point retention lift produces 280,000 dollars of contribution against an acquisition cut the auction would not have surrendered.</figcaption>
 </figure>
 
 <p data-complete><strong>Lifecycle marketing is the practice of designing the brand&rsquo;s communication with each buyer to match where that buyer currently is in the relationship: prospect, first-time buyer, activated user, regular, lapsed, and won-back.</strong><sup class="cite" data-cite="ref-2"></sup> The word <em>designing</em> rules out the daily blast that treats every recipient the same. The phrase <em>match where they are</em> says timing matters more than copy. The phrase <em>each buyer</em> is what requires a <span class="term" data-tt="CRM stands for Customer Relationship Management, the database the brand uses as its system of record for everything it knows about each buyer: name, email, phone, full purchase history, every logged engagement. Without it, the program cannot tell a first-time buyer from a lapsed regular, and stage-aware communication collapses back into one newsletter for everyone.">CRM</span> underneath the program, because without a system of record, &ldquo;each buyer&rdquo; reduces back to &ldquo;the list.&rdquo;</p>
 <p data-focused style="display:none"><strong>Lifecycle marketing is the practice of designing the brand&rsquo;s communication with each buyer to match where that buyer currently is in the relationship: prospect, first-time buyer, activated user, regular, lapsed, and won-back.</strong><sup class="cite" data-cite="ref-2"></sup> The word <em>designing</em> rules out the daily blast, and <em>match where they are</em> says timing matters more than copy. Talking to <em>each buyer</em> by stage requires a <span class="term" data-tt="CRM stands for Customer Relationship Management, the database the brand uses as its system of record for everything it knows about each buyer: name, email, phone, purchase history, every logged engagement. Without it, the program cannot tell a first-time buyer from a lapsed regular.">CRM</span> underneath, because without a system of record &ldquo;each buyer&rdquo; reduces back to &ldquo;the list.&rdquo;</p>
 
-<figure id="fig-lifecycle" class="sketch" style="margin: 36px 0 28px 0;">
+<figure id="fig-lifecycle" class="sketch" style="margin: 36px 0 28px 0;" aria-label="The customer lifecycle is a wheel, not a funnel: a buyer moves through prospect, first purchase, onboarding, active, at-risk, lapsed, and won-back, then loops, with a different message at each stage.">
   <div class="mount" id="lifecycle-mount" aria-hidden="true">
     <svg id="lifecycle-svg" viewBox="0 0 720 345" role="img" aria-labelledby="lct" xmlns="http://www.w3.org/2000/svg">
       <title id="lct">The lifecycle wheel: prospect, first purchase, onboarding, active, at-risk, lapsed, won-back. A continuous loop, not a funnel.</title>
@@ -762,7 +827,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">That last mechanism is what accountants call <span class="term" data-tt="To amortize is to spread a single up-front cost across many transactions, the way a mortgage spreads a house across 360 payments. A 60-dollar acquisition cost on one purchase usually makes it a loss; across ten purchases it is 6 dollars per order.">amortize</span>: a 60-dollar acquisition cost is a loss on one order but 6 dollars an order across ten. The more a category runs on referrals and repeat orders, the more each retention point is worth.</p>
 
 <figure class="sketch" aria-label="CAC amortization across orders: cumulative contribution overtakes acquisition cost by purchase 3">
-  <div class="mount" id="sk-clv-amortize-mount" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-clv-amortize-mount" data-w="720" data-h="260"></div>
   <figcaption>The same 60-dollar acquisition cost spread across one purchase, three purchases, and ten purchases. The cumulative-contribution stair only clears the acquisition line once retention has produced repeat orders, which is the mechanical reason every retention point compounds into the lifetime value figure.</figcaption>
 </figure>
 
@@ -774,7 +839,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">2.</span> A subscription version anchors the same formula. A coffee subscription that generates 8 dollars of margin a month at a 95 percent monthly retention rate and a 1 percent monthly discount rate is worth roughly 145 dollars in lifetime value, which is the figure the firm compares against its 30-dollar acquisition cost when deciding whether the channel pays back. Bain&rsquo;s 2003 follow-up extended the original finding into the <span class="term" data-tt="Net Promoter Score, or NPS, is a loyalty metric built from one survey question (&lsquo;how likely are you to recommend us, 0 to 10?&rsquo;). Scores of 9&ndash;10 are promoters, 0&ndash;6 are detractors, and the score is the percent of promoters minus the percent of detractors, ranging from minus 100 to plus 100. Reichheld introduced it in a 2003 HBR article; later research has qualified the predictive claim, but it remains the most common loyalty proxy because it is cheap to run.">Net Promoter Score</span> framework, arguing that promoters both retain at higher rates and refer new buyers, so the same retention dollar buys two streams of value at once.</aside>
 
 <figure class="sketch" aria-label="Retention math: a 1-point lift in retention multiplies into CLV">
-  <div class="mount" id="sk-retention-mount" data-w="720" data-h="252"></div>
+  <div class="mount" aria-hidden="true" id="sk-retention-mount" data-w="720" data-h="252"></div>
   <figcaption>One percentage point of retention compounded across a cohort produces a non-linear lift in customer-lifetime value. The right-most bar is the same 100,000 buyers at 75 percent retention instead of 70 percent.</figcaption>
 </figure>
 
@@ -810,7 +875,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Patagonia runs that principle as infrastructure rather than a campaign. Its Worn Wear program operates more than 110 repair centers worldwide, and each repair is a touch-point that costs no paid media because the customer asked for it.<sup class="cite" data-cite="ref-5"></sup> The wheel only spins, though, when the messages actually reach the buyer, which an infrastructure layer underneath the dashboard decides.</p>
 
 <figure class="sketch" aria-label="Post-cookie CAC has roughly doubled since 2020 across DTC categories">
-  <div class="mount" id="sk-cac-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-cac-mount" data-w="720" data-h="240"></div>
   <figcaption>Post-cookie CAC math: targeting infrastructure eroded between April 2021 and Q4 2025, and the lift in retention had to make up the difference.</figcaption>
 </figure>
 
@@ -837,7 +902,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The threshold sounds like it applies only to large brands, and it does not. A brand sending one weekly campaign to 35,000 names crosses the 5,000-a-day line the moment the campaign hits the queue, because the whole list usually delivers inside one 24-hour window. The Etsy candle shop is safe at first on a starter Klaviyo setup that handles all three protocols automatically, then the list crosses 5,000 active subscribers and the brand schedules a weekly send. If all three records are correct, nothing changes. If any one is misconfigured (a typo in the SPF record, a missing DKIM key after a domain migration, a DMARC policy still set to <em>none</em>), the whole campaign goes dark on the first big send, every message rejected until the records are fixed. Getting it right on day one costs about an hour; discovering it is wrong on the morning of a launch costs the launch.</p>
 
 <figure class="sketch" aria-label="The three email authentication protocols: SPF, DKIM, DMARC">
-  <div class="mount" id="sk-spf-dkim-dmarc-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-spf-dkim-dmarc-mount" data-w="720" data-h="240"></div>
   <figcaption>The three protocols a marketing email must pass before any open-rate question becomes meaningful.</figcaption>
 </figure>
 
@@ -848,7 +913,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The 2025 Litmus State of Email research reports that the share of opens a marketer can attribute to a real human eye fell from roughly 70 percent in 2020 to under 40 percent in 2025, so most of a typical dashboard&rsquo;s open counts are phantom.<sup class="cite" data-cite="ref-10"></sup> The industry demoted open rate and promoted <span class="term" data-tt="Click-through rate is the share of recipients who clicked any link inside the email, computed as clicks divided by delivered messages (not opens). A click requires a real tap that survives Apple&rsquo;s pre-fetching, so it has become the primary email engagement metric.">click-through rate</span>, because a click still needs a real tap that pre-fetching does not produce. The brand still reading open rate is reading the wrong number.</p>
 
 <figure class="sketch" aria-label="Apple Mail Privacy Protection inflates open counts with phantom opens, so click-through rate replaces open rate">
-  <div class="mount" id="sk-open-rate-broken-mount" data-w="720" data-h="250"></div>
+  <div class="mount" aria-hidden="true" id="sk-open-rate-broken-mount" data-w="720" data-h="250"></div>
   <figcaption>Apple&rsquo;s Mail Privacy Protection pre-loads the tracking pixel on every message whether the recipient opened it or not, so the dashboard fills with phantom opens. That is why click-through rate, which still needs a real tap, replaced open rate as the metric that matters.</figcaption>
 </figure>
 
@@ -919,7 +984,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="The five drip-campaign patterns aligned to lifecycle stages">
-  <div class="mount" id="sk-drips-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-drips-mount" data-w="720" data-h="280"></div>
   <figcaption>Five drip patterns that cover the lifecycle wheel, each tied to a trigger and a buyer question.</figcaption>
 </figure>
 
@@ -936,7 +1001,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Abandoned cart is triggered when a buyer adds an item but does not check out, often 1, 24, and 72 hours for the three messages. It is the highest-converting lifecycle drip, because the buyer has already declared intent. Klaviyo&rsquo;s benchmark across more than 100,000 brands reports a median <span class="term" data-tt="The abandoned-cart recovery rate is the share of buyers who left items in a cart and finished after the drip arrived. Published medians sit between 3 and 10 percent by category; brands running no drip recover only about half a percent, so turning it on multiplies recovery six to twenty times.">abandoned-cart recovery rate</span> of 3 to 10 percent against a no-drip baseline near 0.5 percent, and the lift usually pays for the platform subscription on its own.<sup class="cite" data-cite="ref-14"></sup></p>
 
 <figure class="sketch" aria-label="A concrete abandoned-cart sequence: three messages, three triggers">
-  <div class="mount" id="sk-cart-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-cart-mount" data-w="720" data-h="240"></div>
   <figcaption>The three-message abandoned-cart sequence. None are discount messages; the third is the only one that mentions urgency.</figcaption>
 </figure>
 
@@ -950,7 +1015,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="db-body">
     <div class="db-controls">
       <label>Trigger
-        <select id="db-trigger">
+        <select id="db-trigger" aria-label="Lifecycle trigger event">
           <option value="signup">Signup (no purchase yet)</option>
           <option value="purchase" selected>First purchase</option>
           <option value="abandoned">Abandoned cart</option>
@@ -959,7 +1024,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
         </select>
       </label>
       <label>Brand context
-        <select id="db-brand">
+        <select id="db-brand" aria-label="Brand context">
           <option value="dtc" selected>DTC e-commerce (Stanley, Liquid Death)</option>
           <option value="app">Mobile app (Duolingo)</option>
           <option value="service">Service (campus tutoring)</option>
@@ -967,7 +1032,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
         </select>
       </label>
     </div>
-    <div id="db-readout" class="db-readout" aria-live="polite"></div>
+    <div id="db-readout" class="db-readout" aria-live="polite" aria-atomic="false"></div>
   </div>
   <figcaption><span class="fnum" data-cap="figure"></span> Drip-sequence builder. Switch the trigger and the recommended cadence and copy change on the action; switch the brand and only the channel and stack note change. The principle the builder reveals is that <em>cadence is dictated by the trigger, not by the brand&rsquo;s preference</em>.</figcaption>
 </figure>
@@ -994,7 +1059,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="TCPA opt-in flow: three steps and the penalty schedule">
-  <div class="mount" id="sk-tcpa-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-tcpa-mount" data-w="720" data-h="240"></div>
   <figcaption>The TCPA-compliant SMS opt-in. Skip any of the three steps and a single buyer can sue for statutory damages.</figcaption>
 </figure>
 
@@ -1011,7 +1076,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The choice turns on which vendor matches the brand&rsquo;s storefront, channel mix, list size, and engineering depth, not on which wins the feature comparison in the abstract.<sup class="cite" data-cite="ref-16"></sup></p>
 
 <figure class="sketch" aria-label="The four lifecycle automation vendors compared on positioning and target buyer">
-  <div class="mount" id="sk-vendors-mount" data-w="720" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-vendors-mount" data-w="720" data-h="240"></div>
   <figcaption>The four 2026 lifecycle vendors, plotted against target buyer and channel breadth.</figcaption>
 </figure>
 
@@ -1035,7 +1100,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">That rule is <span class="term" data-tt="RFM segmentation scores each buyer on three axes: Recency (how long since the last purchase), Frequency (how many purchases over the trailing 12 months), and Monetary (dollars spent in that window). The platform splits the list into quintiles on each axis, so the top fifth scores 5 and the bottom 1, and the scores concatenate into a cell label such as R5/F5/M5 (best buyer). Formalized in a 1995 Marketing Science paper by Bult and Wansbeek.">RFM segmentation</span>, for Recency, Frequency, and Monetary: how long since the last purchase, how often over the trailing year, and how many dollars spent. The platform splits each axis into five quintiles, so the top fifth scores 5 and the bottom 1. The 125 possible cells collapse into six to ten named segments: Champions, Loyal, At Risk, Hibernating, and Lost.<sup class="cite" data-cite="ref-19"></sup></p>
 
 <figure id="fig-2" class="sketch" aria-label="The RFM grid: recency frequency monetary and the named segments">
-  <div class="mount" id="sk-rfm-mount" data-w="720" data-h="328"></div>
+  <div class="mount" aria-hidden="true" id="sk-rfm-mount" data-w="720" data-h="328"></div>
   <figcaption><span class="fnum" data-cap="figure"></span> RFM segmentation grid. Champions (R5/F5/M5) get retention messages; At Risk (R2/F4/M4) get re-engagement; Hibernating (R1/F2/M2) get the win-back sequence. Each cell maps to a different drip pattern.</figcaption>
 </figure>
 
@@ -1046,16 +1111,16 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <figure id="w-rfm-to-drip" class="rfm-drip" aria-label="Interactive: score one buyer on Recency, Frequency, and Monetary value to see the named segment and the one drip it triggers">
   <div class="rd-controls">
     <label>Days since last order <span id="rd-r-out" class="rd-out">20</span>
-      <input type="range" id="rd-recency" min="1" max="400" step="1" value="20">
+      <input type="range" id="rd-recency" min="1" max="400" step="1" value="20" aria-label="Recency: days since last order">
     </label>
     <label>Orders in the last year <span id="rd-f-out" class="rd-out">4</span>
-      <input type="range" id="rd-frequency" min="1" max="12" step="1" value="4">
+      <input type="range" id="rd-frequency" min="1" max="12" step="1" value="4" aria-label="Frequency: orders in the last year">
     </label>
     <label>Total spent this year <span id="rd-m-out" class="rd-out">$220</span>
-      <input type="range" id="rd-monetary" min="20" max="600" step="10" value="220">
+      <input type="range" id="rd-monetary" min="20" max="600" step="10" value="220" aria-label="Monetary: total spent this year, in dollars">
     </label>
   </div>
-  <div id="rd-readout" class="rd-readout" aria-live="polite"></div>
+  <div id="rd-readout" class="rd-readout" aria-live="polite" aria-atomic="false"></div>
   <figcaption><span class="fnum" data-cap="figure"></span> RFM-to-drip scorer. Each slider scores this buyer against a fixed 200-buyer reference list, the three quintile scores concatenate into a cell, and the cell maps to exactly one drip. Drag &ldquo;days since last order&rdquo; from 20 toward 200 and watch the buyer walk from Champion to Lost while the recommended drip swaps from an early-access offer to one win-back, then suppress. The arithmetic runs in your browser; no model is involved.</figcaption>
 </figure>
 
@@ -1063,7 +1128,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The other half is when to send it, and every platform exposes the answer as <span class="term" data-tt="Send-time optimization sends each buyer a message at the hour that buyer is most likely to open it, instead of one universal best time. The platform learns from when a recipient opened past messages and schedules the next for that personal window. Klaviyo calls it Smart Send Time, Iterable calls it Send Time Optimization. The reported click-through lift runs 5 to 15 percent and is close to free.">send-time optimization</span>: the platform learns each recipient&rsquo;s most consistent open hour and schedules the next message for that window, so the brand never picks one time for the whole list. The reported click-through lift runs 5 to 15 percent, close to free once the platform has a month or two of open history.<sup class="cite" data-cite="ref-20"></sup></p>
 
 <figure class="sketch" aria-label="Send-time optimization: same email, two delivery times, different open rates by buyer cohort">
-  <div class="mount" id="sk-sto-mount" data-w="720" data-h="220"></div>
+  <div class="mount" aria-hidden="true" id="sk-sto-mount" data-w="720" data-h="220"></div>
   <figcaption>Send-time optimization: each buyer&rsquo;s personal best hour, learned from prior opens, beats one universal send time across the list.</figcaption>
 </figure>
 
@@ -1074,7 +1139,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">One tight walk shows why the function pays for itself. Lifetime value is a buyer&rsquo;s annual contribution divided by one minus the retention rate, so 41 dollars over 0.28 is about 146. Lift retention from 72 to 75 percent with a sharper onboarding flow and it rises to about 164, a 12 percent lift with no extra acquisition spend that compounds across 100,000 buyers into roughly 1.8 million dollars, enough to fund the platform and the analyst&rsquo;s salary.</p>
 
 <figure class="sketch" aria-label="Cohort retention heatmap: buyers acquired in each quarter, retained through subsequent quarters">
-  <div class="mount" id="sk-cohort-heatmap-mount" data-w="720" data-h="292"></div>
+  <div class="mount" aria-hidden="true" id="sk-cohort-heatmap-mount" data-w="720" data-h="292"></div>
   <figcaption>Four acquisition cohorts walked across eight quarters. Each row is one cohort; each cell is the share of that cohort still active at the end of that quarter, shaded darker where the share is higher. A lifecycle program that lifts retention three percentage points keeps each row darker for longer, which is the visual translation of the $1.8 million compounding lift.</figcaption>
 </figure>
 
@@ -1087,7 +1152,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">A lifecycle program is work you set up once and let run on a trigger, which makes it the natural place to hand the clerical half of the job to an AI: the agent drafts copy, builds segments, picks send times, and posts the weekly diff. The marketer keeps the editorial half, reading the draft before it goes live and catching the brand-voice slip the agent cannot see.</p>
 
 <figure class="sketch" aria-label="The lifecycle job split into a clerical half handed to the agent and an editorial half kept by the marketer">
-  <div class="mount" id="sk-clerical-editorial-mount" data-w="720" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-clerical-editorial-mount" data-w="720" data-h="320"></div>
   <figcaption>The lifecycle job split in two. The clerical half (draft copy, build segments, pick send times, post the diff) moves to the agent; the editorial half (review the draft, approve the launch, catch the brand-voice slip) stays with the marketer. The work was relocated, not reduced.</figcaption>
 </figure>
 
@@ -1105,7 +1170,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">6.</span> The cost climbs gently across the four steps. A one-off chat audit costs whatever the marketer's subscription already covers. A packaged Skill runs a few cents per call, because the cached brand context bills at a fraction of the standard rate. A connected, live-data pull runs around a dollar, and a scheduled agent runs one to five dollars per run. The time saved is hours a week of staring at dashboards, which is the trade that justifies climbing past the free first step.</aside>
 
 <figure class="sketch" aria-label="The four-step AI cadence drawn as a ladder a marketer climbs, each rung removing one piece of clerical labor">
-  <div class="mount" id="sk-ai-tiers-mount" data-w="720" data-h="332"></div>
+  <div class="mount" aria-hidden="true" id="sk-ai-tiers-mount" data-w="720" data-h="332"></div>
   <figcaption>The four-step AI cadence as a ladder a marketer climbs: paste into chat, package as a Skill, connect live data, schedule an agent. Each rung names the one piece of clerical labor it removes, and the marketer still decides what ships at every rung.</figcaption>
 </figure>
 
@@ -1147,7 +1212,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="The list-burn curve: engagement drops as send frequency exceeds the list&rsquo;s tolerance">
-  <div class="mount" id="sk-burn-mount" data-w="720" data-h="220"></div>
+  <div class="mount" aria-hidden="true" id="sk-burn-mount" data-w="720" data-h="220"></div>
   <figcaption>The list-burn curve. Engagement holds and grows up to a frequency ceiling, then drops sharply as fatigue accumulates.</figcaption>
 </figure>
 
@@ -1166,7 +1231,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="Three consent regimes plotted as a strictness ladder from CAN-SPAM to GDPR">
-  <div class="mount" id="sk-three-regimes-mount" data-w="760" data-h="304"></div>
+  <div class="mount" aria-hidden="true" id="sk-three-regimes-mount" data-w="760" data-h="304"></div>
   <figcaption>Three consent regimes, fifteen years apart, each stricter than the last. They layer rather than replace each other, so a brand selling across borders complies with the strictest rung that touches any recipient.</figcaption>
 </figure>
 
@@ -1190,7 +1255,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The third force is the most speculative and consequential. AI agents that read email for the recipient (Apple Intelligence, Gmail&rsquo;s Help Me Read) compress the subject line into a one-sentence summary the buyer reads instead of the message, so a welcome email distilled into &ldquo;Patagonia welcome email&rdquo; loses the whole reason it would have moved her. The brands that saw this coming put the value reason in the first 80 characters and add structured data the agent can parse.<sup class="cite" data-cite="ref-27"></sup></p>
 
 <figure class="sketch" aria-label="Win-back funnel: lapsed cohort narrowed by each successive privacy and AI filter">
-  <div class="mount" id="sk-winback-funnel-mount" data-w="860" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-winback-funnel-mount" data-w="860" data-h="300"></div>
   <figcaption>The win-back funnel for one thousand lapsed buyers, narrowed at each successive 2026 filter. The list shrinks at deliverability, again at Apple Mail Privacy Protection, again at AI inbox summarization, and again at the click step, which is the structural reason a lifecycle program built on open rate is no longer one built on truth.</figcaption>
 </figure>
 
@@ -1203,12 +1268,12 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Chapter 22 takes up the reputation layer that runs alongside the cadence, because a brand&rsquo;s standing can move faster than its email schedule. Bud Light&rsquo;s 2023 boycott and Tylenol&rsquo;s 1982 recall sit on one axis, where a brand&rsquo;s earned-media standing decides which lifecycle list still believes it by the time the next email goes out.</p>
 
 <figure class="sketch" aria-label="The chapter on one strip: keeping a buyer beats winning one, then deliverability, drips, SMS, RFM, AI, and the failure watch">
-  <div class="mount" id="sk-ch21-recap-mount" data-w="860" data-h="248"></div>
+  <div class="mount" aria-hidden="true" id="sk-ch21-recap-mount" data-w="860" data-h="248"></div>
   <figcaption>The chapter on one strip. A channel that loses twenty-five dollars on the first order is worth keeping because the buyer returns nine more times, and everything from deliverability to RFM to the AI assistant exists to raise the odds those returns happen.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="A turn-arrow from the lifecycle list to the reputation that decides whether the list still believes the brand">
-  <div class="mount" id="sk-turn-ch22-mount" data-w="760" data-h="220"></div>
+  <div class="mount" aria-hidden="true" id="sk-turn-ch22-mount" data-w="760" data-h="220"></div>
   <figcaption>From the message you send to the trust behind it. Chapter 22 takes up the public-relations and crisis layer that decides whether the list the brand built still believes it.</figcaption>
 </figure>
 
@@ -3090,7 +3155,7 @@ return '$' + usd.toFixed(4);
         '<button class="la-run" id="la-runB"><span class="la-dot"></span>Read this brand’s cadence</button>'+
       '</div>'+
     '</div>'+
-    '<div class="la-verdict" id="la-verdict"><span class="la-ph">The audit appears here. In the draft mode, the flagged issues and a neutral rewrite; in the brand mode, this week’s read on the brand’s program.</span></div>'+
+    '<div class="la-verdict" id="la-verdict" aria-live="polite" aria-atomic="false"><span class="la-ph">The audit appears here. In the draft mode, the flagged issues and a neutral rewrite; in the brand mode, this week’s read on the brand’s program.</span></div>'+
     '<div class="la-meta" id="la-meta"></div>';
 
   const tabA     = root.querySelector("#la-tabA");

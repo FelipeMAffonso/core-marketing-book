@@ -757,6 +757,40 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<!-- ============================================================
+     A11Y CONTRAST FIXES (Ch13) - appended LAST in <head> so it wins over
+     the chapter <style> AND _accessibility.css. Doubled-class specificity
+     (.foo.foo) + !important. Each rule traces to a contrast_detail.js node.
+     SOURCE DIAGNOSIS: --ink-3 resolves to #6b6b6b (set by _accessibility.css,
+     passes), so the ONLY contrast failures were (a) the #w137 .wv-col cards
+     starting at opacity:.5, which washed their #6b6b6b / #B8553A small text
+     down to #b5b5b5 / #dcaa9d (~2:1), and (b) two white-on-coral #w138
+     buttons (#fff on #DA7756 = 3.1:1). Fixes: replace the text-washing
+     opacity with a non-opacity muted treatment (kept text at full opacity);
+     darken the small coral-deep column label to #a8472a; darken the coral
+     button backgrounds to #a8472a (white text -> 5.83:1). Bright coral
+     #DA7756 is untouched where it is a heading / marker / rule / border /
+     SVG stroke (those meet 3:1 per Felipe's directive).
+     ============================================================ -->
+<style id="ch13-a11y-contrast">
+  /* (a) #w137 comparison columns: kill the opacity:.5 text-wash; dim the
+     pre-live card with a muted surface + softer border instead, text full opacity. */
+  #w137 .wv-col.wv-col{ opacity:1 !important; background:#faf7f3 !important; border-color:#efe7da !important; }
+  #w137 .wv-col.wv-col.live{ background:#fff !important; border-color:var(--line) !important; }
+  #w137 .wv-col.sharp.wv-col.live{ border-color:var(--coral-soft) !important; }
+  /* small column text + placeholder: full-opacity colors that clear 4.5:1 on BOTH #faf7f3 and #fff */
+  #w137 .wv-col.vague .wv-ct.wv-ct{ color:#6b6b6b !important; }   /* 4.99 / 5.33 */
+  #w137 .wv-col.sharp .wv-ct.wv-ct{ color:#a8472a !important; }  /* coral-deep small text -> 5.46 / 5.83 */
+  #w137 .wv-ans .ph.ph{ color:#6b6b6b !important; }              /* placeholder -> 4.99 / 5.33 */
+  #w137 .wv-cost.wv-cost{ color:#6b6b6b !important; }            /* per-pane cost chip on muted card */
+
+  /* (b) #w138 white-on-coral controls: darken background to #a8472a (white text = 5.83:1),
+     hover #8f3c23 (7.4:1), disabled stays a neutral #6b6b6b (white = 5.33:1). */
+  #w138 .cm-brief.sel.sel{ background:#a8472a !important; border-color:#a8472a !important; color:#fff !important; }
+  #w138 .cm-go.cm-go{ background:#a8472a !important; color:#fff !important; }
+  #w138 .cm-go.cm-go:hover{ background:#8f3c23 !important; }
+  #w138 .cm-go.cm-go[disabled]{ background:#6b6b6b !important; opacity:1 !important; }
+</style>
 </head>
 <body data-chapter-num="13">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -768,6 +802,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of");
+         injected SVG mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 13.
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-13-dtc-ecommerce.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 13</p>
@@ -786,7 +833,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p class="lede first" data-focused style="display:none">In February 2020 a mattress company called <span>Casper</span> rang the opening bell at the New York Stock Exchange at $12 a share, six years into arguing that a mattress sold online, in a box, with a 100-night trial was a category-defining idea. The filing told the rest of the story. From 2017 through 2019 Casper spent $423 million on marketing to produce $439 million in 2019 revenue, a dollar of marketing for every dollar of sales, and still lost $89 million. The November 2021 buyout cleared at $6.90 a share.<sup class="cite" data-cite="ref-1"></sup></p>
 
 <figure class="sketch" aria-label="The Casper price arc from the $12 IPO to the $6.90 take-private">
-  <div class="mount" id="sk-casper-arc-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-casper-arc-mount" data-w="720" data-h="280"></div>
   <figcaption>Casper's share price from the $12 IPO in February 2020 to the $6.90 take-private in November 2021. The company spent roughly a dollar on marketing for every dollar of revenue and still lost $89 million in 2019, because the cost of acquiring each customer outran the value that customer returned.</figcaption>
 </figure>
 
@@ -800,7 +847,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-focused style="display:none">Five brands keep the numbers concrete. Allbirds is the cautionary case, with the textbook Shopify stack and the acquisition spiral that followed; Liquid Death is the contrast, selling through Whole Foods and Target while its site builds the brand. Patagonia and Costco return as retention-led counterexamples, and an undergraduate Etsy candle store is the running example you build across the chapter. The chapter walks the stack in the order an operator faces it, then closes on the marketplace mix and the agent-shopping frontier.</p>
 
-<figure id="fig-process" class="sketch" style="margin: 36px 0 28px 0;">
+<figure id="fig-process" class="sketch" aria-label="The DTC stack as separate vendor layers for storefront, payments, email, retention, and support, tied together by the customer data the brand owns." style="margin: 36px 0 28px 0;">
   <div class="mount" id="process-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>The DTC stack in one diagram. Storefront, payments, email, retention, and support sit as separate vendor layers; the data that ties them together is the asset the brand actually owns.</figcaption>
 </figure>
@@ -824,7 +871,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The third claim was that the brand owned the data. Every discount-code email, every browse, and every abandoned cart logged against one customer identity the brand controlled, and that asset was supposed to compound into a moat, because the brand could build lookalike audiences from its best buyers and segment its email down to behavioral cohorts a retail brand never sees.<sup class="cite" data-cite="ref-3"></sup></p>
 
 <figure class="sketch" aria-label="The three DTC claims that priced the 2014-2020 cycle, paired with the three 2021-2024 events that broke each claim.">
-  <div class="mount" id="sk-three-claims-mount" data-w="720" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-three-claims-mount" data-w="720" data-h="320"></div>
   <figcaption>Three claims priced the 2014-2020 cycle. Three events broke them inside three years. The reckoning was the synchronized failure, not any single brand or founder.</figcaption>
 </figure>
 
@@ -846,7 +893,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Wave three was a consequence. By 2024 the venture tap had closed and brands priced at six to ten times revenue were repriced at one to two times. The data-ownership claim turned out to depend on the retargeting from the first claim, because a first-party email list is valuable only if the brand can profitably reach it, and that profit had depended on the retargeting ATT just broke. The survivors stopped relying on any one claim alone.<sup class="cite" data-cite="ref-5"></sup></p>
 
 <figure class="sketch" aria-label="The DTC customer-acquisition-cost spiral from 2018 to 2024">
-  <div class="mount" id="sk-cac-spiral-mount" data-w="700" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-cac-spiral-mount" data-w="700" data-h="260"></div>
   <figcaption>Customer-acquisition cost on Meta and Google, indexed to early 2018, across consumer-DTC categories. The IDFA shock in mid-2021 and the rate-cycle shock in late 2022 are visible as kinks rather than gradual drift.</figcaption>
 </figure>
 
@@ -916,7 +963,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>What the stack costs the merchant depends on order volume, not on the architecture, which stays identical across every scale. The candle-store student on the 39-dollar Basic plan deals with the same seven layers Allbirds deals with on the 2,300-dollar Plus tier, only at a different order volume and bill, and each layer is replaceable on its own. The candle store pays roughly 180 dollars a month for its full stack, about 10 percent of an 1,800-dollar-a-month side business, which is why the student watches every per-layer subscription, while Allbirds at scale pays roughly 28,000 dollars for the same seven layers, 0.3 percent of a 10-million-dollar-a-year brand and invisible to the unit economics. The same architecture is a meaningful cost center at one volume and a rounding error at another.</p>
 
 <figure class="sketch" aria-label="The seven layers diagrammed as a stack with the buyer on top and the warehouse on bottom">
-  <div class="mount" id="sk-stack-mount" data-w="700" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-stack-mount" data-w="700" data-h="300"></div>
   <figcaption>The same architecture from Allbirds at 100 million in revenue down to a student candle store at 1,800 dollars a month. The vendors and the prices are the variables; the architecture is the constant.</figcaption>
 </figure>
 
@@ -925,7 +972,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Email and SMS are the layer the student touches first, because they earn a second purchase from a buyer already paid for. Klaviyo runs five flows every brand starts with: the welcome series turns a signup into a first order, the browse-abandon and cart-abandon sequences chase the buyer who looked or added but did not buy, the post-purchase flow sets up the next order, and the win-back campaign reactivates the quiet buyer.<sup class="cite" data-cite="ref-7"></sup> Running on triggers, they earn roughly a quarter to a third of email revenue. The candle store runs all five free with three <span class="term" data-tt="Behavioral segmentation groups customers by their actions in real time: a buyer enters a flow the moment she abandons a cart and exits it the moment she buys.">behavioral segments</span>; Allbirds runs the same five with fifty.</p>
 
 <figure class="sketch" aria-label="Klaviyo behavioral flows: welcome, browse-abandonment, cart-abandonment, post-purchase, win-back">
-  <div class="mount" id="sk-flows-mount" data-w="800" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-flows-mount" data-w="800" data-h="240"></div>
   <figcaption>The five Klaviyo flows every DTC brand runs from day one. Together they convert roughly 25 to 35 percent of total email-program revenue, against 65 to 75 percent from broadcast campaigns.</figcaption>
 </figure>
 
@@ -951,7 +998,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="The conversion-leverage arithmetic as two bars, orders rising from 1,500 to 2,000 on the same traffic">
-  <div class="mount" id="sk-cro-arithmetic-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-cro-arithmetic-mount" data-w="720" data-h="300"></div>
   <figcaption>The same 100,000 visitors and the same media budget, with the order count rising from 1,500 to 2,000 as the conversion rate moves half a point from 1.5 to 2.0 percent. The extra revenue comes from the fraction of traffic that completes, not from buying more visitors.</figcaption>
 </figure>
 
@@ -961,7 +1008,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 
 <figure class="sketch" data-complete aria-label="The four-question landing-page framework as a vertical funnel">
-  <div class="mount" id="sk-eisenberg-mount" data-w="700" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-eisenberg-mount" data-w="700" data-h="320"></div>
   <figcaption>The four-question landing-page framework, applied as a top-to-bottom audit of every page. The page that loses the visitor loses on a specific question; the test is to identify which.</figcaption>
 </figure>
 
@@ -977,7 +1024,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     <button class="cq-step" data-k="friction">Adds to cart but never starts checkout</button>
     <button class="cq-step" data-k="anxiety">Starts checkout but never finishes</button>
   </div>
-  <div class="cq-card" id="w133-card">
+  <div class="cq-card" id="w133-card" aria-live="polite" aria-atomic="false">
     <div class="cq-card-ph" id="w133-ph">Pick a funnel step above to see which question is failing.</div>
     <div class="cq-card-body" id="w133-body">
       <div class="cq-row"><span class="cq-label">Failing question</span><span class="cq-q" id="w133-q"></span></div>
@@ -1014,7 +1061,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The dollar value follows from a short calculation. A store with 10,000 visitors a month at 1.5 percent conversion and a $50 average order ships 150 orders, while 70 percent abandonment leaves roughly 350 abandoned carts. Recovering 25 percent of those on a three-message sequence pulls back about 88 orders and $4,400 with no added acquisition spend, lifting monthly revenue 59 percent on the same ad budget. That is why the recovery flow is the highest-return build of the first quarter.</p>
 
 <figure class="sketch" aria-label="Recovery economics as a funnel into a pool: 10,000 visitors, 150 completed orders, about 350 abandoned carts, about 88 recovered by the three-message sequence">
-  <div class="mount" id="sk-recovery-math-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-recovery-math-mount" data-w="720" data-h="300"></div>
   <figcaption>The recovery-economics funnel on the candle store. Of 10,000 monthly visitors, 150 complete an order and roughly 350 abandon a cart. A tight three-message sequence recovers about a quarter of that pool, roughly 88 orders, which lifts monthly revenue 59 percent on traffic the brand already paid to acquire.</figcaption>
 </figure>
 
@@ -1082,7 +1129,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The discount ladder separates patient operators from impatient ones. A brand that leads with a 15 percent discount in message one trains the buyer to abandon every future cart waiting for it, while a brand that holds the discount for message three, after the reminder and the social-proof play have failed, keeps 8 to 14 percentage points more contribution margin per recovered customer with no drop in total recovery.<sup class="cite" data-cite="ref-12"></sup></p>
 
 <figure class="sketch" aria-label="The discount-incentive ladder: the impatient brand leads with a discount in message one and trains abandonment, while the patient brand reserves it for message three and keeps more margin">
-  <div class="mount" id="sk-discount-ladder-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-discount-ladder-mount" data-w="720" data-h="300"></div>
   <figcaption>The same three-message sequence, two discount policies. The impatient brand leads with a 15 percent discount and trains buyers to abandon for it every time. The patient brand reserves the discount for message three, recovers the same share of carts, and keeps 8 to 14 percentage points more contribution margin on each recovered customer.</figcaption>
 </figure>
 
@@ -1113,7 +1160,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 
 <figure class="sketch" aria-label="The LTV-from-churn identity as a dial: per-shipment margin held constant while the churn dial moves and LTV swings from $500 to $250 as churn doubles">
-  <div class="mount" id="sk-churn-lever-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-churn-lever-mount" data-w="720" data-h="280"></div>
   <figcaption>The churn dial against the other two levers. Holding the $30 per-shipment margin constant, doubling churn from 6 to 12 percent cuts lifetime value from $500 to $250. A 10 percent lift in order value or frequency moves lifetime value only 10 percent, which is why the churn lever pays back hardest.</figcaption>
 </figure>
 
@@ -1122,7 +1169,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">11.</span> The candle-store subscription on Recharge starts at roughly 14 percent quarterly churn, a 7-quarter expected LTV. A pause-and-skip flow added in month three through Recharge's standard portal cuts churn to 9 percent and lifts the expected LTV to 11 quarters of contribution, a 57 percent revenue lift on the existing base at no software cost and no added acquisition.</aside>
 
 <figure class="sketch" aria-label="Subscription churn cohort decay across two retention treatments">
-  <div class="mount" id="sk-cohort-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-cohort-mount" data-w="720" data-h="280"></div>
   <figcaption>Two cohorts of subscribers, identical at signup, differ only in whether the brand runs a pause-and-skip retention flow. After 12 months the no-flow cohort retains 11 percent of starters and the flow cohort retains 30 percent. The flow itself costs nothing in software because Recharge includes the portal as standard, so it costs only the operator's time to write three onboarding emails and one win-back sequence.</figcaption>
 </figure>
 
@@ -1202,7 +1249,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The four numbers describe the business at one moment. The number that ties them together over time is the <span class="term" data-tt="The payback period is the months between acquiring a customer and the moment her cumulative contribution margin equals what she cost to acquire. Shorter payback recycles acquisition capital faster; longer payback needs cheaper capital or higher margins.">payback period</span>: how many months until each buyer has paid back what she cost to acquire. That waiting time decides whether the business scales on its own cash flow or has to borrow against future revenue.</p>
 
 <figure class="sketch" aria-label="The payback curve: the buyer starts $33.60 underwater at month 1, climbs with each repeat order, and crosses the $45 break-even line at month 9">
-  <div class="mount" id="sk-payback-curve-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-payback-curve-mount" data-w="720" data-h="300"></div>
   <figcaption>The single buyer's payback timeline. She starts $33.60 underwater the month she is acquired, climbs with each repeat order at months three, six, and nine, and crosses the $45 break-even line on the fourth order at month nine. Every order after that is pure margin against the fixed cost of running the store.</figcaption>
 </figure>
 
@@ -1249,7 +1296,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
       </g>
     </svg>
   </div>
-  <div id="ltv-verdict" class="ltv-verdict">drag the sliders to begin.</div>
+  <div id="ltv-verdict" class="ltv-verdict" aria-live="polite" aria-atomic="false">drag the sliders to begin.</div>
   <figcaption><span class="fnum" data-cap="figure"></span> Drag the four levers and watch the LTV-to-CAC ratio cross the 3-to-1 line that separates healthy DTC businesses from structural losers. The readout updates only when you release a slider. A high CAC is not a problem when AOV and contribution margin are high, and a low CAC is not enough when repeat purchases never materialize, because no single number is the answer and the four move together.</figcaption>
 </figure>
 
@@ -1258,7 +1305,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Patagonia is the contrast. It spends roughly 8 percent of revenue on paid acquisition against a 22-to-28 percent median, but the mechanism is the opposite of cheap clicks: a first jacket is followed by a second piece within about fourteen months, and word of mouth brings others in free. The Worn Wear resale program turns a one-time buyer into a multi-cycle one without a second acquisition dollar.<sup class="cite" data-cite="ref-16"></sup> The payback looks easy not because CAC is low but because LTV is high: Patagonia is retention-led where Casper was acquisition-led.</p>
 
 <figure class="sketch" aria-label="The Casper, Patagonia, and Costco spectrum on one axis: acquisition-led at one end, retention-led in the middle, negative-CAC at the far end">
-  <div class="mount" id="sk-retention-vs-acquisition-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-retention-vs-acquisition-mount" data-w="720" data-h="280"></div>
   <figcaption>Three brands on one axis of unit-economics health. Casper sits at the acquisition-led end, where CAC outran LTV. Patagonia sits in the retention-led middle, where an unusually high LTV makes the payback easy. Costco sits at the negative-CAC extreme, where the buyer pays a membership fee before buying anything, so the brand is paid to acquire her.</figcaption>
 </figure>
 
@@ -1279,7 +1326,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The <strong>objection-handler</strong> sits at the bottom and answers the specific reasons this brand's own buyers have walked away before, built from the brand's <span class="term" data-tt="The voice-of-customer corpus is the body of actual language buyers use to describe a product, gathered from product reviews, support tickets, and post-purchase survey responses. A product-page-audit Skill loads this corpus so the audit is grounded in what THIS brand's buyers actually say, rather than in what a model assumes buyers in general might say. The candle-store student builds the corpus from the last 200 Shopify reviews, the last quarter of Gorgias support tickets, and whatever post-purchase survey responses Klaviyo has collected.">voice-of-customer corpus</span> of return-reason data, support tickets, and abandoned-cart reply emails. This fifth job is where most operators leave money on the table, because writing it well means reading what buyers actually said instead of guessing what they might say.</p>
 
 <figure class="sketch" data-complete aria-label="The five elements of a product-page audit, in order from top of page to bottom.">
-  <div class="mount" id="sk-pdp-audit-mount" data-w="720" data-h="400"></div>
+  <div class="mount" aria-hidden="true" id="sk-pdp-audit-mount" data-w="720" data-h="400"></div>
   <figcaption>The five jobs every product page does, in the order the buyer reads them. A page that holds this order, each element answering the question the buyer asks next, converts at roughly 1.4 to 1.7 times a page that scrambles it.</figcaption>
 </figure>
 
@@ -1288,7 +1335,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The objection-handler is the element with the most money in it, and Allbirds is the worked case. Reading its own 2018-to-2020 data, the brand found its top three abandonment reasons were sizing uncertainty, return-shipping-cost concern, and durability skepticism, gave each a dedicated section (a brand-specific sizing guide, a free-returns banner, a video of the shoes worn for a year), and saw per-product conversion rise 24 percent. The lift came from naming the brand&rsquo;s own objections, which is work that reading the voice-of-customer corpus does and guessing does not.</p>
 
 <figure class="sketch" data-complete aria-label="Allbirds product-page redesign: the three objections addressed and the conversion lift.">
-  <div class="mount" id="sk-allbirds-pdp-mount" data-w="740" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-allbirds-pdp-mount" data-w="740" data-h="240"></div>
   <figcaption>Allbirds&rsquo;s 2019 redesign answered the three objections its own data named as the top abandonment reasons. The 24 percent lift is about what an objection-handler section produces on a page that previously had none.</figcaption>
 </figure>
 
@@ -1325,14 +1372,14 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="wv-grid">
     <div class="wv-col vague" id="w137-col-vague">
       <div class="wv-colhead"><span class="wv-ct">Generic, you knew this already</span><span class="wv-cost" id="w137-cost-vague"></span></div>
-      <div class="wv-ans" id="w137-ans-vague"><span class="ph">Press the vague question above.</span></div>
+      <div class="wv-ans" id="w137-ans-vague" aria-live="polite" aria-atomic="false"><span class="ph">Press the vague question above.</span></div>
     </div>
     <div class="wv-col sharp" id="w137-col-sharp">
       <div class="wv-colhead"><span class="wv-ct">Five-element scorecard + one fix</span><span class="wv-cost" id="w137-cost-sharp"></span></div>
-      <div class="wv-ans" id="w137-ans-sharp"><span class="ph">Press the specific question above.</span></div>
+      <div class="wv-ans" id="w137-ans-sharp" aria-live="polite" aria-atomic="false"><span class="ph">Press the specific question above.</span></div>
     </div>
   </div>
-  <div class="wv-verdict" id="w137-verdict"></div>
+  <div class="wv-verdict" id="w137-verdict" aria-live="polite" aria-atomic="false"></div>
   <div class="wv-note">A candidate read of the live page from the model, not a measured A/B test. The model searches the web, so a real 2026 store gets a current read of its actual page; treat it as a first pass and verify any figure, name, or date before you act.</div>
 </div>
 
@@ -1348,7 +1395,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete><strong>Validate before you build.</strong> The seller who survives validates the niche first, then picks the product the niche supports, because a niche worth entering has both real demand and beatable competition. The number that anchors the read is <span class="term" data-tt="Best Sellers Rank, or BSR, is the ranking Amazon publishes for every product inside its category. It counts up from the top, so lower is better: a BSR of 100 in Home and Kitchen outsells a BSR of 50,000 in the same category by a wide margin. Research tools convert a product's BSR into an estimated monthly unit-sales number using a calibrated seller panel.">BSR</span>, where lower means more sales, and a research assistant pulls the demand, the competition, and the review counts to tell you whether the niche is worth a production run. The candle-store student runs the check on soy candle gift sets, reads a clear opportunity (the top Amazon listings run roughly $14,000 to $22,000 a month with no Amazon-Basics product in the top results), and decides on three scents in a 9oz amber jar at $28.</p>
 
 <figure class="sketch" data-complete aria-label="Validate the niche before you pick the product.">
-  <div class="mount" id="sk-validate-first-mount" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-validate-first-mount" data-w="720" data-h="260"></div>
   <figcaption>Two sellers, opposite order. One picks the product first and hopes the demand is there, while the other validates the niche first, then picks the product the niche will support. Demand plus beatable competition is the gate that decides.</figcaption>
 </figure>
 
@@ -1357,7 +1404,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete><strong>Sourcing is a trade-off between cost, speed, and control.</strong> Who makes the product is the next gate, and the paths sit on one spectrum that the playbook runs in sequence rather than in parallel. You validate one unit on <span class="term" data-tt="AliExpress is the consumer-facing arm of the Alibaba group, serving single-unit and small-batch orders. The minimum order is often as low as one unit, which makes it the right tool to validate quality and ship time before committing capital, and the same path doubles as the dropshipping source. The trade-off is a higher per-unit cost than a factory-direct quote and 10-to-30-day ship times from China.">AliExpress</span> for quality and ship time, run the first batch through a domestic maker like Maker&rsquo;s Row so the eight-week turnaround lets you iterate on the formula and the label within a semester, then move to <span class="term" data-tt="Alibaba is the dominant business-to-business sourcing platform, giving sellers factory-direct contact with manufacturers. The Trade Assurance program provides payment protection (not supplier verification, which is a separate paid inspection). Minimum order quantities, or MOQ, commonly run 100 to 500 units for private-label candles, lower MOQs are negotiable against a higher per-unit price, and lead times run longer than a domestic order. This is the path for scale once the SKU shows predictable demand.">Alibaba</span> factory-direct for the second run, cheapest at scale but with the longest lead time and the highest minimum order, once the SKU produces predictable revenue.</p>
 
 <figure class="sketch" data-complete aria-label="The five-step build flow from idea to first sale.">
-  <div class="mount" id="sk-build-flow-mount" data-w="740" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-build-flow-mount" data-w="740" data-h="300"></div>
   <figcaption>The applied flow from a product idea to the first sale, in five gates: validate the niche, build the store, source the supplier, launch the ads, and read the unit economics. Each gate has to clear before the next one is worth running.</figcaption>
 </figure>
 
@@ -1383,15 +1430,15 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="cm-grid">
     <div class="cm-pane" id="w138-pane-haiku">
       <div class="cm-panehead"><span class="cm-label">claude-haiku-4-5 &middot; cheap, fast</span><span class="cm-cost" id="w138-cost-haiku"></span></div>
-      <div class="cm-out" id="w138-out-haiku"><span class="ph">Press run on both.</span></div>
+      <div class="cm-out" id="w138-out-haiku" aria-live="polite" aria-atomic="false"><span class="ph">Press run on both.</span></div>
     </div>
     <div class="cm-pane" id="w138-pane-opus">
       <div class="cm-panehead"><span class="cm-label cm-deep">claude-opus-4-7 &middot; deeper tier</span><span class="cm-cost" id="w138-cost-opus"></span></div>
-      <div class="cm-out" id="w138-out-opus"><span class="ph">Press run on both.</span></div>
+      <div class="cm-out" id="w138-out-opus" aria-live="polite" aria-atomic="false"><span class="ph">Press run on both.</span></div>
     </div>
   </div>
   <div class="cm-meta">Read the two listings against four tests. <strong>Keyword density</strong>: does the primary keyword appear in the first bullet and one other without stuffing? <strong>Readability</strong>: is each bullet scannable in under three seconds, benefit before feature? <strong>Persuasive triggers</strong>: how many of scarcity, social proof, sensory detail, or use-occasion does each version place? <strong>Cost</strong>: the per-listing dollar cost on the live chip, which becomes the budget question once you are writing five thousand listings rather than one.</div>
-  <div class="cm-verdict" id="w138-verdict"></div>
+  <div class="cm-verdict" id="w138-verdict" aria-live="polite" aria-atomic="false"></div>
   <div class="cm-note">Candidate listings on live web data, not a verified panel. Judge them on the four tests above, not on which one reads more smoothly.</div>
 </div>
 
@@ -1428,12 +1475,12 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The choice is a six-axis comparison she can run in about an hour: the <strong>customer-acquisition cost</strong> to reach buyers there, the <strong>take-rate</strong> against each order (from under 3 percent to more than 20 percent), the <strong>brand control</strong> over whether she speaks in her own voice or competes inside the algorithm, the <strong>fulfillment burden</strong> of shipping each order, the <strong>contribution margin</strong> the channel leaves, and the <strong>scale ceiling</strong> the channel alone can carry.</p>
 
 <figure class="sketch" aria-label="The six-axis comparison every marketplace decision runs against, drawn as six labeled bars: customer-acquisition cost, take-rate, brand control, fulfillment burden, contribution margin, and scale ceiling.">
-  <div class="mount" id="sk-six-axes-mount" data-w="720" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-six-axes-mount" data-w="720" data-h="320"></div>
   <figcaption>The six axes the marketplace decision runs against. The brand asks the same six questions of every platform and weights them against its own category, buyer, and cash position. No platform wins on all six.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="Take-rate as a percentage of order value across the six 2026 marketplaces, drawn as a single-axis bar chart with Shopify lowest.">
-  <div class="mount" id="sk-take-rates-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-take-rates-mount" data-w="720" data-h="280"></div>
   <figcaption>Take-rate as a percentage of order value across the six 2026 marketplaces. Shopify is the lowest of the six (card processing only) because the platform delivers zero pre-existing demand and the brand pays its own customer-acquisition cost. Faire, Amazon, eBay, Etsy, and TikTok Shop charge higher take-rates because they each deliver pre-existing demand to the brand's listing in exchange for the percentage.</figcaption>
 </figure>
 
@@ -1525,7 +1572,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 
 <figure class="sketch" aria-label="The same product page drawn twice side by side and read by two populations: the human eye traces the hero image and the brand story, while the agent reads the schema, the spec table, and the one-click checkout.">
-  <div class="mount" id="sk-two-readers-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-two-readers-mount" data-w="720" data-h="300"></div>
   <figcaption>The same product page read by two populations. The person reads the hero image and the brand story; the agent reads the Product and Offer schema, the spec table, and the one-click checkout, and skips the photography. The page has to satisfy both at once.</figcaption>
 </figure>
 
@@ -1534,7 +1581,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The buyer-agent became a working economic actor in four pieces. <strong><span class="term" data-tt="The Stripe Agent Toolkit, released November 2024, hands an agent a single-use virtual card it can issue, charge, and route to a merchant on Stripe's rails, where it looks like an ordinary charge.">Stripe's Agent Toolkit</span></strong>, in November 2024, hands an agent a single-use virtual card on the same rails a human checkout uses. <strong><span class="term" data-tt="Visa Intelligent Commerce and Mastercard's Agent Pay, both April 2025, let the card networks authorize an agent inside the cardholder's pre-set spending rules.">Visa Intelligent Commerce</span></strong> and Mastercard's <strong>Agent Pay</strong>, both April 2025, let the networks authorize an agent inside the cardholder's pre-set rules, reaching broad US availability by early 2026. <strong><span class="term" data-tt="ChatGPT Shopping, April 2025, is a cross-merchant search inside ChatGPT that completes the purchase in the chat. Perplexity and Microsoft Copilot run the same path.">ChatGPT Shopping</span></strong>, also April 2025, closed the discovery side with a cross-merchant search that completes the purchase in the chat, Perplexity and Microsoft Copilot running the same path.</p>
 
 <figure class="sketch" aria-label="The four pieces of agent-commerce plumbing drawn as labeled blocks on a timeline from November 2024 to April 2025: Stripe Agent Toolkit, Visa Intelligent Commerce and Mastercard Agent Pay, and ChatGPT Shopping.">
-  <div class="mount" id="sk-agentic-plumbing-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-agentic-plumbing-mount" data-w="720" data-h="300"></div>
   <figcaption>Four pieces launched between November 2024 and April 2025. Together they turned the buyer-agent from a thought experiment into a functioning economic actor placing real orders at real merchants.</figcaption>
 </figure>
 
@@ -1554,7 +1601,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Casper opened this chapter and Liquid Death closes it. Casper's arc from a $12 IPO to a $6.90 take-private is what happens when a brand pushes everything through one channel and that channel breaks. Liquid Death runs the inverse: it keeps an excellent storefront, yet most of its $263 million in 2023 sales runs through Whole Foods, 7-Eleven, and Target.<sup class="cite" data-cite="ref-24"></sup> The real question was named in Chapter 11: when owning the storefront is the right answer and when the job needs the wholesale shelf. The answer is rarely all direct or all retail, but the mix that matches the brand's margin and repeat-purchase pattern. Casper missed that mix, and the student walking out of this chapter has the math to read it before the share price does.</p>
 
 <figure class="sketch" aria-label="The chapter spine drawn as a labeled left-to-right strip from the cost to acquire through the seven-layer stack, conversion-rate optimization, the abandoned cart, churn, the four numbers, the five-job page, building it, the marketplace mix, and the agent buyer.">
-  <div class="mount" id="sk-ch13-recap-mount" data-w="760" data-h="404"></div>
+  <div class="mount" aria-hidden="true" id="sk-ch13-recap-mount" data-w="760" data-h="404"></div>
   <figcaption>The chapter in one strip. The cost to acquire set the price of growth, the stack is seven layers, conversion is the cheapest leverage, the abandoned cart is the highest-return recovery, churn is the leveraged subscription metric, four numbers and payback decide the business, the page does five jobs, building it means reading the economics, the marketplace mix is a take-rate-versus-CAC trade-off, and the buyer is increasingly an agent. Casper pushed everything through one channel, and the channel broke.</figcaption>
 </figure>
 
@@ -1563,7 +1610,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Chapter 14 takes up the mobile-and-app version of the same operator question. The storefront the student just launched runs in a browser, but most of a 2026 buyer's discovery and checkout happens inside a native app on a phone, and the install graph that feeds those apps obeys different mechanics than the web funnel. The Duolingo product manager reads App Store Optimization, the push channel, and the paywall the way the candle student reads Klaviyo flows, and the agent surface reaches into the phone too, through Apple App Intents and Google App Actions.</p>
 
 <figure class="sketch" aria-label="A turn-arrow handing off from the store running in a browser, with its web-acquisition funnel, to most discovery and checkout happening inside a native app on a phone, with its install graph and paywall.">
-  <div class="mount" id="sk-turn-ch14-mount" data-w="720" data-h="200"></div>
+  <div class="mount" aria-hidden="true" id="sk-turn-ch14-mount" data-w="720" data-h="200"></div>
   <figcaption>The turn into Chapter 14. The store runs in a browser today, with the web-acquisition funnel and the Klaviyo flows, and most discovery and checkout in 2026 happens inside a native app on a phone, where the install graph, App Store Optimization, and the paywall set the rules.</figcaption>
 </figure>
 

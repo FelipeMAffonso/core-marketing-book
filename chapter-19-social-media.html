@@ -839,6 +839,87 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<style>
+/* ============================================================
+   A11Y CONTRAST FIXES (Ch19) — appended LAST in <head> so it wins
+   over _accessibility.css and the chapter's own scoped widget CSS.
+   Doubled-class specificity (.foo.foo) + !important beats the
+   id-scoped widget rules. WCAG 2.1 AA: small text >=4.5:1.
+   Bright coral #DA7756 is KEPT on headings/markers/rules/SVG
+   strokes (>=3:1); only what axe flags as small text/UI is moved.
+   ------------------------------------------------------------
+   1) Opacity-dimmed result cards washed their ink-3 / coral-deep
+      labels and (once filled) their #1a1a1a answer text below
+      4.5:1. Replace the text-washing opacity with a non-opacity
+      "resting" treatment: muted cream bg + softer border, text at
+      FULL opacity. The .live state restores the bright white card.
+   ------------------------------------------------------------ */
+#cmp-tiktok-script .cmp-pane.cmp-pane {
+  opacity: 1 !important;
+  background: #faf7f3 !important;
+  border-color: #efe7da !important;
+}
+#cmp-tiktok-script .cmp-pane.live.live {
+  background: #ffffff !important;
+  border-color: var(--line) !important;
+}
+#cmp-tiktok-script .cmp-pane.smart.live.live {
+  border-color: var(--coral-soft) !important;
+}
+#will-it-travel .wv-col.wv-col {
+  opacity: 1 !important;
+  background: #faf7f3 !important;
+  border-color: #efe7da !important;
+}
+#will-it-travel .wv-col.live.live {
+  background: #ffffff !important;
+  border-color: var(--line) !important;
+}
+#will-it-travel .wv-col.sharp.live.live {
+  border-color: var(--coral-soft) !important;
+}
+
+/* 2) White-on-bright-coral interactive controls (run/score buttons,
+      active toggles, selected chips, on-dots) measure 3.1:1 — fails
+      4.5:1 for the white label. Darken the BACKGROUND to #a8472a
+      (white-on-#a8472a = 5.83:1); hover #8f3c23; keep white text.
+      Covers both the chapter's two <style> blocks and both depths. */
+#cmp-tiktok-script .cmp-go.cmp-go {
+  background: #a8472a !important;
+  border-color: #a8472a !important;
+  color: #ffffff !important;
+}
+#cmp-tiktok-script .cmp-go.cmp-go:hover { background: #8f3c23 !important; border-color: #8f3c23 !important; }
+.inf-audit .ia-preset.active.active {
+  background: #a8472a !important;
+  color: #ffffff !important;
+}
+#will-it-travel .wv-preset.sel.sel {
+  background: #a8472a !important;
+  border-color: #a8472a !important;
+  color: #ffffff !important;
+}
+#stepps-fig .ss-dot.on.on,
+.stepps-scorer .ss-dot.on.on {
+  background: #a8472a !important;
+  border-color: #a8472a !important;
+  color: #ffffff !important;
+}
+.stepps-scorer .ss-letter .ss-b.active.active {
+  background: #a8472a !important;
+  color: #ffffff !important;
+}
+
+/* 3) Small coral-deep (#B8553A) labels that now sit on the #faf7f3
+      resting card land at 4.47:1, a hair under 4.5:1. Route these
+      small coral labels to #a8472a (>=5:1 on cream and white). */
+#cmp-tiktok-script .cmp-label.cmp-smart.cmp-smart {
+  color: #a8472a !important;
+}
+#will-it-travel .wv-col.sharp .wv-ct.wv-ct {
+  color: #a8472a !important;
+}
+</style>
 </head>
 <body data-chapter-num="19">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -850,6 +931,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of"); injected SVG
+         mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 19 (review; Haiku can hallucinate).
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-19-social-media.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 19 &middot; The Mix Layer</p>
@@ -869,15 +963,15 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">The post was not luck. It was the third time in eighteen months Duolingo had "killed" its mascot, and each time the team asked one question first: does sharing this make the sharer look good? This book calls that the <span class="term" data-tt="The diagnostic a post has to pass to travel. Does forwarding it make the sharer look good to the people they care about? If yes, it travels, because each forward delivers status to the sharer. If no, it sits.">share-or-sit filter</span>. The research name for it is <span class="term" data-tt="The value a person gets out of sharing a piece of content, the way regular currency is the value of an exchange of money. A forward earns the sharer a reputation for being smart, funny, in-the-know, or affiliated with the right tribe. A post that pays that return travels; one that does not, sits.">social currency</span>, the status a person earns by sharing something good. People share what makes them look good, and every other lever in this chapter sits downstream of that one.</p>
 
 <figure class="sketch" aria-label="The opener puzzle: Duolingo's green owl dies under a Cybertruck and the 22-second video earns 1.7 billion impressions in 14 days with no paid push on the launch post">
-  <div class="mount" id="sk-duo-cybertruck-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-duo-cybertruck-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>The February 11, 2025 Duolingo Cybertruck stunt. A 22-second video, an absurd brand-mascot death, and a two-week parody arc earned about 1.7 billion impressions in 14 days, with no paid amplification on the launch post.</figcaption>
 </figure>
 
 <p data-complete>Before any case applies, the channel needs a working definition. <strong>Social media marketing is the use of platform-native posting, paid amplification, and earned sharing to build awareness, drive consideration, and convert demand at a cost traditional broadcast cannot match.</strong> The cost gap is the reason the chapter spends most of its time on the earned side. A boosted Instagram post buys <span class="term" data-tt="The number of unique people who saw a post at least once, as distinct from impressions (the total times it was displayed) and engagement (likes, comments, shares, saves). A brief that confuses impressions for reach overstates the audience.">reach</span> at four to eight dollars per thousand views, and a Super Bowl spot buys it at roughly sixty dollars per thousand. Earned sharing, when a post travels, buys it at close to zero on every extra share. Duolingo's owl reached its 1.7 billion at about six cents per thousand, a thousand times cheaper than the broadcast rate. Duolingo carries this chapter as the engineered-earned-media case, Liquid Death as the fifteen-hundred-dollar video that funded a category, and Stanley as the brand that replied to a customer in a day, while Costco, Patagonia, and Trader Joe's return in later chapters.</p>
 <p data-focused style="display:none;">First, a working definition. <strong>Social media marketing is the use of platform-native posting, paid amplification, and earned sharing to build awareness, drive consideration, and convert demand at a cost traditional broadcast cannot match.</strong> That cost gap is why the chapter spends most of its time on the earned side: a boosted post buys <span class="term" data-tt="The number of unique people who saw a post at least once, as distinct from impressions (the total times it was displayed) and engagement (likes, comments, shares, saves). A brief that confuses impressions for reach overstates the audience.">reach</span> at a fixed price per view, while earned sharing costs close to zero on every extra share, which is how Duolingo's owl reached 1.7 billion for less than one 30-second spot.</p>
 
-<figure id="fig-process" class="sketch" style="margin: 36px 0 28px 0;">
-  <div class="mount" id="process-mount" data-w="720" data-h="280"></div>
+<figure id="fig-process" class="sketch" style="margin: 36px 0 28px 0;" aria-label="Why a post travels: four factors compound, audience fit, content that clears the share-or-sit filter, platform-format match, and timing, and the brand fully controls only the content, which is where STEPPS lives">
+  <div class="mount" id="process-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>Why a post travels. Four factors compound: audience fit, content that clears the share-or-sit filter, platform-format match, and timing inside the audience's awake window. The brand fully controls only the second, which is where STEPPS lives.</figcaption>
 </figure>
 <span class="ax">01 // why social media is a different channel</span>
@@ -889,7 +983,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">Three properties change the math, and the first is <strong>speed</strong>. A legacy creative ramps over weeks on a media schedule. On social media the timescale shrinks to hours, and a post that clears its first batch of viewers can go from zero to a million views before the team has finished lunch.<sup class="cite" data-cite="ref-2"></sup> The campus version is the dorm-room clip with 800,000 plays the afternoon it was filmed.</p>
 
 <figure class="sketch" aria-label="The speed property: a social post ramps from zero to a million views in an afternoon rather than over a multi-week media schedule">
-  <div class="mount" id="sk-speed-cascade-mount" data-w="720" data-h="250"></div>
+  <div class="mount" id="sk-speed-cascade-mount" data-w="720" data-h="250" aria-hidden="true"></div>
   <figcaption>The speed property. A legacy creative ramps over weeks on a media schedule, while a social post that clears its first batch jumps stage to stage inside hours, from a few hundred viewers to a million the same afternoon.</figcaption>
 </figure>
 
@@ -934,7 +1028,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">The third property works at the level of the firm. Social media is <strong>public by default</strong>. A television spot airs once and disappears, but a social post lives with a link and timestamp in a database competitors, journalists, and angry customers can quote back for years. When a passenger was dragged off a United flight in 2017, the phone video erased about 1.4 billion dollars of market value in 24 hours.<sup class="cite" data-cite="ref-3"></sup> The property that makes the asset also makes the liability.</p>
 
 <figure class="sketch" aria-label="The public-by-default property: a social post lives with a timestamp in a database competitors, journalists, and lawyers can quote back for years, so a hostile clip can erase value in a day">
-  <div class="mount" id="sk-public-permanent-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-public-permanent-mount" data-w="720" data-h="260" aria-hidden="true"></div>
   <figcaption>The public-by-default property. A television spot airs once and disappears, while a social post stays in a searchable database with a timestamp, so the United video that erased about 1.4 billion dollars of market value in a day is still quotable years later.</figcaption>
 </figure>
 
@@ -948,7 +1042,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <h2 id="stepps">What Makes Content Travel: The Six STEPPS Levers</h2>
 
 <figure class="sketch" aria-label="The share-or-sit filter every post passes before a real human hits share: a hand holds a post that must pass through a gate asking does this make me look good">
-  <div class="mount" id="sk-stepps-hand-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-stepps-hand-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>The share-or-sit filter. Before a real person hits share, the post passes one gate: does forwarding this make me look good to the people I care about? Yes travels, no sits, and follower count never enters it.</figcaption>
 </figure>
 
@@ -1005,7 +1099,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;"><strong>Public</strong> is the fourth lever. Behaviors people can see get copied more than private ones, so the question is whether a stranger over a friend's shoulder can identify the brand in three seconds. A brand pulls it two ways: a product that advertises itself, like Apple's white earbuds in 2003 when every rival's were black, or <span class="term" data-tt="The visible trace a behavior leaves behind after the act is over. A yellow Livestrong wristband stays on after the donation; a Lululemon bag advertises across the walk home; the 2026 version is the share-card, the badge, the I-voted sticker, the Spotify Wrapped screenshot.">behavioral residue</span>, the trace a behavior leaves once it is done, like the Livestrong wristband that sold 85 million units while advertising the affiliation for months.<sup class="cite" data-cite="ref-11"></sup></p>
 
 <figure class="sketch" aria-label="Behavioral residue as one Public-lever example: friends turn an invisible affiliation into a visible one by wearing a trace that advertises the cause after the act is over">
-  <div class="mount" id="sk-movember-mount" data-w="720" data-h="272"></div>
+  <div class="mount" id="sk-movember-mount" data-w="720" data-h="272" aria-hidden="true"></div>
   <figcaption>Behavioral residue, one worked Public-lever example. A donation is invisible, but a moustache grown over November, a Livestrong wristband, or a share-card turns the act into a visible trace that advertises the affiliation long after the moment has passed.</figcaption>
 </figure>
 
@@ -1022,7 +1116,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">Section 19.2 held the Emotion lever back, because most teams get it backwards. Positive-versus-negative is the wrong axis. The axis that moves sharing is <span class="term" data-tt="Arousal is the amount of energy a feeling carries, separate from whether the feeling is pleasant or unpleasant. Awe, anger, anxiety, and amusement are high-arousal; sadness and contentment are low-arousal. A 2012 study of the New York Times most-emailed list found that high-arousal feelings drive sharing and low-arousal feelings suppress it, whatever their valence.">arousal</span>, the energy a feeling carries. A 2012 study of the <em>New York Times</em> most-emailed list found awe raised the odds of going viral about 30 percent and anger about 34, while sadness ran 16 percent below baseline, the one feeling that suppressed sharing.<sup class="cite" data-cite="ref-10"></sup> A calm video and an awe-inspiring one are not two flavors of the same bet: the high-energy one travels and the calm one stalls whatever its valence.</p>
 
 <figure class="sketch" aria-label="The arousal axis: six emotions plotted on a one-dimensional intensity scale with their empirical sharing rates; awe and anger sit high, sadness sits below baseline">
-  <div class="mount" id="sk-arousal-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-arousal-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>The arousal axis. Six emotions plotted on a one-dimensional intensity scale, with empirical sharing rates from the <em>NYT</em> dataset. Awe and anger sit at the top of the share distribution; sadness sits below baseline. It is high energy versus calm, not positive versus negative, that moves a post.</figcaption>
 </figure>
 
@@ -1086,7 +1180,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-complete>What makes Cluely a teaching case is the protocol the founder later described, which the team calls the <strong>100-to-1 content factory</strong>. The first move makes 100 short videos on one theme in a compressed window, on the working assumption that 99 will sit and 1 will travel. The second move takes the one winner and reposts it across 100 fresh, low-traction accounts, because the platform routes those reposts to audiences the original never reached, which typically squeezes 20 to 30 more viral clips out of the same creative.<sup class="cite" data-cite="ref-15"></sup> Virality is a volume bet, not a forecast. The team cannot predict which clip wins, so it manufactures enough attempts that the win becomes likely, then re-runs the winner to find new rooms.</p>
 <figure class="sketch" data-complete aria-label="The Cluely 100-to-1 content factory: 100 short videos on one theme where 99 sit and 1 travels, then the one winner reposted across fresh accounts to reach new audiences">
-  <div class="mount" id="sk-100-to-1-mount" data-w="720" data-h="322"></div>
+  <div class="mount" id="sk-100-to-1-mount" data-w="720" data-h="322" aria-hidden="true"></div>
   <figcaption>The Cluely content-factory protocol. Make 100 short videos on one theme expecting 99 to sit and 1 to travel, then repost the one winner across fresh accounts to reach audiences the original never touched. Virality is a volume bet, not a creative forecast.</figcaption>
 </figure>
 
@@ -1164,7 +1258,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </figure>
 
 <figure class="sketch" aria-label="Paid versus earned diagram: paid reach is a flat line scaling with dollars; earned reach is a curve that bends sharply upward when STEPPS clears the filter">
-  <div class="mount" id="sk-paid-vs-earned-mount" data-w="720" data-h="310"></div>
+  <div class="mount" id="sk-paid-vs-earned-mount" data-w="720" data-h="310" aria-hidden="true"></div>
   <figcaption>Paid versus earned, plotted as a function of marketing spend. Paid reach scales linearly with dollars: more money buys more impressions. Earned reach is shaped by content quality: it sits near zero until STEPPS clears the share-or-sit filter, then bends sharply upward into a long tail.</figcaption>
 </figure>
 
@@ -1186,7 +1280,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="ia-head">
     <strong>Audit an influencer before you sign</strong>
     A big follower count is not the same as effective reach. Effective reach is followers times engagement times how well the audience matches the brand, and it collapses once a creator is over-saturated with sponsored posts. Pick a preset creator or move the four sliders, and read the grade.
-    <div class="ia-presets" role="tablist" aria-label="Preset creators">
+    <div class="ia-presets" role="group" aria-label="Preset creators">
       <button type="button" class="ia-preset active" data-preset="macro">1.2M macro creator</button>
       <button type="button" class="ia-preset" data-preset="micro">50K micro creator</button>
       <button type="button" class="ia-preset" data-preset="nano">8K nano creator</button>
@@ -1232,7 +1326,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The same logic explains where new information enters your life at all. New things almost never reach you through the friends you talk to daily, because they already know what you know.<sup class="cite" data-cite="ref-5"></sup> They reach you through people you barely talk to, who sit inside other circles, what one classic study named the <span class="term" data-tt="The strength of weak ties is Mark Granovetter's 1973 finding that news of new jobs, products, and ideas arrives through acquaintances, not close friends, because close friends share the information you already have while acquaintances sit in other clusters and carry what yours lacks. A 2022 LinkedIn experiment on 20 million users confirmed it causally: moderately weak ties produced the biggest job-mobility gains.">strength of weak ties</span>. A 2022 LinkedIn experiment on twenty million users showed the link is causal rather than a coincidence, because people nudged toward moderately weak acquaintances found more new opportunities than those nudged toward close friends or total strangers. The reach also has a hard ceiling no content can lift. Influence travels one handshake out, then two, then three, and dies at four, what researchers call the <span class="term" data-tt="The three-degrees-of-influence rule comes from a 2009 re-analysis of a 12,067-person network: behaviors travel about 10 to 20 percent at one handshake, 6 to 10 percent at two, 3 to 6 percent at three, then vanish at four. Earned reach has a structural ceiling, so to reach a new cluster the brand must seed a separate post there rather than hope the first one travels further.">three-degrees-of-influence rule</span>.<sup class="cite" data-cite="ref-26"></sup> A Stanley hydration craze that catches inside one cluster of twenty-somethings travels to the friend-of-a-friend and then stops. To reach a different cluster, the brand has to seed a fresh post there.</p>
 
 <figure class="sketch" data-complete aria-label="The reach ceiling: a behavior travels one handshake, then two, then three, then disappears at four">
-  <div class="mount" id="sk-three-degrees-mount" data-w="720" data-h="264"></div>
+  <div class="mount" id="sk-three-degrees-mount" data-w="720" data-h="264" aria-hidden="true"></div>
   <figcaption>The reach ceiling. A behavior travels one handshake (about 10 to 20 percent), then two (about 6 to 10 percent), then three (about 3 to 6 percent), then disappears at four. Earned reach has a hard structural ceiling, so a new cluster needs its own seeded post.</figcaption>
 </figure>
 
@@ -1246,7 +1340,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">Every owned and paid channel on social media is rented. The brand does not own TikTok or Instagram or X, it rents space, and the host can change the rules, reprice the rental, or shut the doors with little warning. When the brand-safety climate on X soured, the top hundred US advertisers cut their X spend about sixty percent in under two years, and any brand that had concentrated its budget there watched the audience walk.<sup class="cite" data-cite="ref-29"></sup></p>
 
 <figure class="sketch" aria-label="Platforms are rented infrastructure: a brand built on one platform sits on the same tower Vine sat on in 2014, so the rule is at least two platforms with different audiences">
-  <div class="mount" id="sk-rented-platform-mount" data-w="720" data-h="290"></div>
+  <div class="mount" id="sk-rented-platform-mount" data-w="720" data-h="290" aria-hidden="true"></div>
   <figcaption>Platforms are rented infrastructure. A brand built entirely on one platform sits on the same tower Vine sat on in 2014, and the host can reprice or revoke the rental, so the working rule is at least two platforms with different audiences.</figcaption>
 </figure>
 
@@ -1254,7 +1348,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">The sharpest warning came from TikTok. On January 18, 2025, it went dark for US users for several hours under a federal law forcing its owner to sell or be banned.<sup class="cite" data-cite="ref-29"></sup> The app came back and spun off into an American-owned company in 2026, but for a full year every brand resting on TikTok alone learned the platform's availability was a regulatory variable, not a fixed asset, the way brands built entirely on Vine vanished in 2017. The answer is to spread across more than one platform, organized into tiers by the job each does.</p>
 
 <figure class="sketch" aria-label="The three-tier platform portfolio: mass-discovery, text-and-journalist, and community tiers, with distinctive assets crossposting across all three">
-  <div class="mount" id="sk-platform-tiers-mount" data-w="720" data-h="300"></div>
+  <div class="mount" id="sk-platform-tiers-mount" data-w="720" data-h="300" aria-hidden="true"></div>
   <figcaption>The three-tier portfolio. Tier 1 is mass discovery, where the algorithm pushes a post past the brand's own followers; Tier 2 is text and journalists, which carries quotable lines and press; Tier 3 is community, the deepest cohort but a bounded ceiling. The brand's distinctive assets crosspost across all three tiers in hours.</figcaption>
 </figure>
 
@@ -1297,11 +1391,11 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="cmp-grid">
     <div class="cmp-pane">
       <div class="cmp-panehead"><span class="cmp-label">Claude Haiku 4.5 (fast, cheap)</span><span class="cmp-cost" id="cmp-tiktok-script-cost-haiku"></span></div>
-      <div class="cmp-out" id="cmp-tiktok-script-haiku"><span class="cmp-ph">Press run to draft on the fast model.</span></div>
+      <div class="cmp-out" id="cmp-tiktok-script-haiku" aria-live="polite" aria-atomic="false"><span class="cmp-ph">Press run to draft on the fast model.</span></div>
     </div>
     <div class="cmp-pane">
       <div class="cmp-panehead"><span class="cmp-label cmp-smart">Claude Opus 4.7 (deeper reasoning)</span><span class="cmp-cost" id="cmp-tiktok-script-cost-opus"></span></div>
-      <div class="cmp-out" id="cmp-tiktok-script-opus"><span class="cmp-ph">Press run to draft on the deeper model.</span></div>
+      <div class="cmp-out" id="cmp-tiktok-script-opus" aria-live="polite" aria-atomic="false"><span class="cmp-ph">Press run to draft on the deeper model.</span></div>
     </div>
   </div>
   <div class="cmp-note">Two live drafts on real models, side by side. The fast model is built for the bulk work; the deeper model is held back for the few posts where reading the moment wrong is expensive.</div>
@@ -1323,7 +1417,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">Stanley's 750-million-dollar revenue arc, opened in Chapters 4 and 5, ran on the TikTok morning-fill ritual, which cleared three letters at once: public, because the cup is visible across a kitchen; triggers, because the morning fill is a daily cue; and social currency, because limited color drops let the sharer claim insider status on the rare color.<sup class="cite" data-cite="ref-38"></sup></p>
 
 <figure class="sketch" aria-label="Stanley's TikTok morning water-bottle-fill ritual on a kitchen counter, the Quencher silhouette identifiable as the load-bearing visual">
-  <div class="mount" id="sk-stanley-tiktok-mount" data-w="720" data-h="300"></div>
+  <div class="mount" id="sk-stanley-tiktok-mount" data-w="720" data-h="300" aria-hidden="true"></div>
   <figcaption>Stanley's morning-fill loop hitting three STEPPS letters at once. The daily fill is a category cue (triggers), the Quencher is recognizable from across a kitchen (public), and the limited color drops let the sharer claim insider status on which color was rare that week (social currency).</figcaption>
 </figure>
 
@@ -1336,7 +1430,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 
 <p data-complete>The MrBeast content engine reduces to four production rules, and each one answers a constraint this chapter has already named. The <span class="term" data-tt="The four-second hook is the opener that has to stop the thumb before the viewer swipes away. In the leaked handbook the rule is a 65-percent retention floor on the first cohort of viewers: if fewer than 65 percent are still watching at the four-second mark, the opener gets rewritten, sometimes up to fifty times, until it clears the floor.">four-second hook</span> opens every video with a question, a threat, or a visual jolt the viewer cannot resolve without watching, because the platform gives a producer only a couple of seconds before the thumb swipes. The <span class="term" data-tt="The retention curve is the share of viewers still watching at each second of a video. The handbook builds a long video as eight to twelve nested mini-stories with a small payoff every 90 to 120 seconds and aims to hold the curve above roughly 75 to 80 percent through the climax, because a single long arc loses viewers faster than a chain of small ones.">retention curve</span> builds a long video as eight to twelve nested mini-stories with a small payoff every 90 to 120 seconds, because a single 18-minute arc is more than a viewer's attention can hold. The <span class="term" data-tt="The thumbnail test makes 16 thumbnails per video and runs them against real subscribers on a small sample before launch, then ships the winner. The handbook's working click-through rate runs around 12 to 14 percent on the best thumbnails, far above a typical channel, and the winners almost always reduce to one face, one number, and one staged contrast.">thumbnail test</span> makes 16 thumbnails per video, runs them against real subscribers before launch, and picks the winner on one face, one number, and one staged contrast. <span class="term" data-tt="Format rotation cycles a handful of proven video shapes so the audience never sees the same structure five times in a row. A read of the catalog sorts the videos into four recurring archetypes (roughly 38 percent stakes-and-spectacle, 21 percent endurance, 18 percent generosity, 15 percent industrial-scale), and the channel rotates among them to keep the feed varied without inventing a new format every week.">Format rotation</span> cycles four proven video formats so the audience never sees the same shape five times in a row.<sup class="cite" data-cite="ref-40"></sup> Each rule maps onto a STEPPS letter, so the architecture is the same content theory the chapter teaches, built for the platform.</p>
 <figure class="sketch" data-complete aria-label="Four-component MrBeast production architecture: four-second hook, retention curve, 16-thumbnail test, four-format rotation, each band mapped to a STEPPS dimension">
-  <div class="mount" id="sk-mrbeast-architecture-mount" data-w="720" data-h="320"></div>
+  <div class="mount" id="sk-mrbeast-architecture-mount" data-w="720" data-h="320" aria-hidden="true"></div>
   <figcaption>Four production rules that add up to the MrBeast view-curve, copyable at any scale. Each band carries the STEPPS letter it activates: the hook drives emotion, the thumbnail's number drives practical value and stakes, the staged contrast drives public and stories. The architecture is not a separate skill but the same content theory the chapter teaches, built for the platform. A first-year student filming a gaming stream applies the same four rules at dorm-room scale.</figcaption>
 </figure>
 
@@ -1346,7 +1440,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">AI is how a small team, or one student, gets close to that cadence, climbing in four steps that each remove one piece of labor while you keep the decision over what ships. First, you ask in chat, pasting a draft for the model to score on the six STEPPS letters and name the one edit that lifts the weakest. Second, you save that as a <span class="term" data-tt="A Skill is a saved folder of instructions and reference files that an AI model loads on demand when you type a short command. Picture a folder that holds a one-page STEPPS rubric, the brand's voice notes, and its last fifty travel-tested posts. Install it once, and from then on the model scores any draft against the brand's actual library instead of a generic rule. Building and installing a Skill is covered in the digital-marketing chapter; here the point is what it gives you, a repeatable audit in the brand's own voice.">Skill</span> loaded with the brand's last fifty posts, so it scores in the brand's voice. Third, you connect your analytics through an <span class="term" data-tt="MCP, the Model Context Protocol, is the open standard that lets an AI model plug into outside tools and data without custom code, the way a USB-C port lets one cable connect many devices. With it, a Skill can read your TikTok and Instagram numbers directly, or pull live trend data from a search service, instead of you copying figures by hand. Wiring an MCP connection is covered in the digital-marketing chapter; here the point is that it lets the model see live numbers.">MCP</span> connection so it reads the numbers itself. Fourth, you schedule it as a weekly agent that posts next week's recommendations before anyone arrives.</p>
 
 <figure class="sketch" aria-label="A four-rung ladder: ask in chat, save as a Skill, connect analytics via MCP, schedule a weekly agent, with the human decision point marked at the top">
-  <div class="mount" id="sk-ai-production-loop-mount" data-w="720" data-h="340"></div>
+  <div class="mount" id="sk-ai-production-loop-mount" data-w="720" data-h="340" aria-hidden="true"></div>
   <figcaption>The four steps from asking AI a question to running a weekly job. Each rung removes one piece of repeated human labor: chat answers the one-off question, a Skill remembers the brand's voice so you stop re-explaining it, an MCP connection feeds in live numbers so you stop copying them by hand, and a scheduled agent runs the whole thing on a timer. You keep the decision over what ships at every rung; the ladder removes the busywork under it. The build itself is the digital-marketing chapter; this is what it gets you.</figcaption>
 </figure>
 
@@ -1386,14 +1480,14 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
   <div class="wv-grid">
     <div class="wv-col vague" id="wit-col-vague">
       <div class="wv-colhead"><span class="wv-ct">Generic, you knew this already</span><span class="wv-cost" id="wit-cost-vague"></span></div>
-      <div class="wv-ans" id="wit-ans-vague"><span class="ph">Press the vague question above.</span></div>
+      <div class="wv-ans" id="wit-ans-vague" aria-live="polite" aria-atomic="false"><span class="ph">Press the vague question above.</span></div>
     </div>
     <div class="wv-col sharp" id="wit-col-sharp">
       <div class="wv-colhead"><span class="wv-ct">Scored, with the one edit</span><span class="wv-cost" id="wit-cost-sharp"></span></div>
-      <div class="wv-ans" id="wit-ans-sharp"><span class="ph">Press the sharp question above.</span></div>
+      <div class="wv-ans" id="wit-ans-sharp" aria-live="polite" aria-atomic="false"><span class="ph">Press the sharp question above.</span></div>
     </div>
   </div>
-  <div class="wv-verdict" id="wit-verdict"></div>
+  <div class="wv-verdict" id="wit-verdict" aria-live="polite" aria-atomic="false"></div>
   <div class="wv-note">A candidate read from the model on live web data, not a verified social audit. The model searches the web, so a real 2026 brand gets a current read of its presence; treat it as a first pass and verify any figure, name, or date before you act.</div>
 </div>
 
@@ -1432,7 +1526,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="Platform monoculture: a brand on one tall single-platform tower, beside the same brand on a wide three-platform base">
-  <div class="mount" id="sk-platform-monoculture-mount" data-w="720" data-h="296"></div>
+  <div class="mount" id="sk-platform-monoculture-mount" data-w="720" data-h="296" aria-hidden="true"></div>
   <figcaption>Platform monoculture as the structural risk it is. A brand built entirely on TikTok in 2026 stands on the same single tower that Vine stood on in 2014, and one policy change or shutdown takes the whole audience with it. The working rule is at least two platforms with different audiences, with the brand voice adapted for each rather than copied across all of them.</figcaption>
 </figure>
 
@@ -1440,7 +1534,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">The fifth failure is the most expensive, because it only shows up when a campaign works. A viral spike is a signal, and a brand needs the <span class="term" data-tt="Zeynep Tufekci's 2017 book Twitter and Tear Gas separates a movement's, or a brand's, visible turnout (the signal) from the machinery needed to convert that turnout into lasting results (the capacity). Networked attention makes the signal cheap, so movements and brands generate signal first and routinely fail to build the capacity behind it before the moment passes. For a brand, the capacity is the factory, the warehouse, the customer-service team, and the legal team that have to absorb a sudden surge in demand.">capacity</span> behind it, the factory, retailers, and service teams, to turn the burst into anything lasting. Stanley already had the manufacturing chassis when its Quencher went viral in early 2024 and grew about 275 percent; Bud Light had a flood of attention with no way to absorb the backlash. The fix is to stress-test the operation for a tenfold spike before launch.</p>
 
 <figure class="sketch" aria-label="A tall attention spike on one side and the operational chassis that has to catch it on the other">
-  <div class="mount" id="sk-capacity-vs-signal-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-capacity-vs-signal-mount" data-w="720" data-h="280" aria-hidden="true"></div>
   <figcaption>The spike and the chassis that has to catch it. The signal is the burst of attention a viral post creates. The capacity is everything that turns the burst into lasting business: the factory that can make more, the retailers that can stock it, the customer-service and legal teams that can handle a sudden surge. Stanley had the chassis when the Quencher went viral and grew about 275 percent. A brand with the spike and no chassis watches the moment pass, or worse, breaks under it.</figcaption>
 </figure>
 
@@ -1453,7 +1547,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     Paste a draft post. Rate each of the six STEPPS letters from 0 to 3. Watch the total score and the verdict update.
   </div>
   <div class="ss-body">
-    <textarea id="ss-input" rows="2">RIP Duo. Tragic accident. Cause of death TBD.</textarea>
+    <textarea id="ss-input" rows="2" aria-label="Paste a draft post to score on the six STEPPS letters">RIP Duo. Tragic accident. Cause of death TBD.</textarea>
     <div class="ss-grid" id="ss-grid"></div>
   </div>
   <div class="ss-total">
@@ -1523,7 +1617,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">The failure modes all assume a human writes the post, and that is changing fastest. A generative model can now write a different version of the same campaign for every viewer, tuned to the profile data the platform holds, at a cost that rounds to nothing. The open question is whether per-user persuasion at that scale crosses the line the EU drew when its AI Act banned <span class="term" data-tt="Manipulative AI, in the EU AI Act, means an AI system that uses hidden or deceptive techniques to materially distort a person's choices in a way that causes harm. Article 5's ban on it has applied since early 2025, so the legal floor exists now rather than in some future version of the rules.">manipulative AI</span>.<sup class="cite" data-cite="ref-41"></sup> That floor is in force today, and Chapter 26 returns to how a brand operates above it.</p>
 
 <figure class="sketch" aria-label="One source post fanning out into many tailored versions, one per viewer, drawn to show that a generative model can rewrite a single campaign for every reader at almost no extra cost, which is what pushes per-user persuasion up against the manipulation line the EU drew.">
-  <div class="mount" id="sk-ai-persuasion-mount" data-w="720" data-h="300"></div>
+  <div class="mount" id="sk-ai-persuasion-mount" data-w="720" data-h="300" aria-hidden="true"></div>
   <figcaption>One brief, many viewers. A generative model rewrites a single campaign into a tailored version for each reader at almost no extra cost per person, so the persuasion stack scales in a way a human copywriting team never could. That scale is what pushes the practice up against the manipulation line the EU AI Act now enforces.</figcaption>
 </figure>
 
@@ -1539,7 +1633,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">Three recent studies sketch where the channel is heading. AI-written misinformation on X traveled farther than the human kind, because the algorithm promotes a post for being high-energy, not believable.<sup class="cite" data-cite="ref-42"></sup> AI-run bots started passing for real users after seeing only a handful of real posts to imitate, so counting on the platform to filter them out is a short-lived defense.<sup class="cite" data-cite="ref-43"></sup> And reranking real feeds during the 2024 US campaign moved users&rsquo; warmth toward the other party in four weeks by what national surveys take three to four years to produce.<sup class="cite" data-cite="ref-44"></sup> The recommender&rsquo;s choice of what to amplify is itself a lever on how the audience feels, so branded content inherits the mood of the feed around it.</p>
 
 <figure class="sketch" aria-label="A feeling thermometer that a feed-reranking dial is quietly nudging, drawn to show that pushing partisan-animosity content higher in the feed moved real users' warmth toward the other party in four weeks by what ordinary society takes three to four years to drift.">
-  <div class="mount" id="sk-reranking-emotion-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-reranking-emotion-mount" data-w="720" data-h="260" aria-hidden="true"></div>
   <figcaption>The feed dial is an emotion lever. Pushing partisan-animosity content higher in the feed moved real users&rsquo; warmth toward the other party in four weeks by what ordinary society takes three to four years to drift. The platform&rsquo;s optimization target is itself a lever on the audience&rsquo;s emotional state.</figcaption>
 </figure>
 
@@ -1552,7 +1646,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">The green owl that opened this chapter reached 1.7 billion people for less than the cost of one TV spot, and the reason was not luck. Duolingo&rsquo;s team had built the Social Currency engine, the multi-day arc, the saved Skill that scored every draft, and the chassis to handle the surge before the launch post went out. The reach looked like a stunt, but it was the output of a system assembled in advance.</p>
 
 <figure class="sketch" aria-label="The chapter spine drawn as one labeled left-to-right strip: people share what makes them look good, the six STEPPS levers predict whether a post travels, high-energy feelings travel and calm ones sit, earned beats paid on leverage, every platform is rented, and the production loop is automated, with the opening Cybertruck puzzle resolved at the foot.">
-  <div class="mount" id="sk-ch19-recap-mount" data-w="760" data-h="272"></div>
+  <div class="mount" id="sk-ch19-recap-mount" data-w="760" data-h="272" aria-hidden="true"></div>
   <figcaption>The chapter in one strip. People share what makes them look good, the six STEPPS levers predict whether a post travels, high-energy feelings travel while calm ones sit, earned media beats paid on leverage so a brand seeds many small creators, every platform is rented so a brand spreads across tiers, and the production loop is automated. The owl reached 1.7 billion because the engine, the arc, the Skill stack, and the chassis were built first.</figcaption>
 </figure>
 
@@ -1563,7 +1657,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none;">The next chapter takes up the layer on top of all of it. A brand owns its own channels but also rents reach from creators whose audiences it will never touch directly. Chapter 20 works through that creator-economy layer: when to amplify through a creator, the pay math from nano to mega, and who owns the post afterward.</p>
 
 <figure class="sketch" aria-label="A turn-arrow handing off from the reach the chapter engineered on channels the brand owns to the creators whose audiences the brand rents, labeled as the move from owning the channel to renting the audience, with the Chapter 20 surfaces previewed.">
-  <div class="mount" id="sk-turn-ch20-mount" data-w="720" data-h="210"></div>
+  <div class="mount" id="sk-turn-ch20-mount" data-w="720" data-h="210" aria-hidden="true"></div>
   <figcaption>The turn into Chapter 20. The brand moves from owning the channel to renting the audience, handing off to the creators whose followers it will never reach directly, where the pay tiers, the contract terms, and the synthetic-creator floor decide the deal.</figcaption>
 </figure>
 
@@ -2856,7 +2950,7 @@ return '$' + usd.toFixed(4);
     cell.className = 'ss-letter';
     cell.innerHTML = '<span class="ss-cap">' + letter.code + '</span>' +
                      '<div class="ss-name">' + letter.name + '</div>' +
-                     '<div style="font-size:11px;color:#888;margin-top:2px;">' + letter.help + '</div>' +
+                     '<div style="font-size:11px;color:#6b6b6b;margin-top:2px;">' + letter.help + '</div>' +
                      '<div class="ss-buttons">' +
                        '<button class="ss-b" data-v="0">0</button>' +
                        '<button class="ss-b" data-v="1">1</button>' +

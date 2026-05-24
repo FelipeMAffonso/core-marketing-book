@@ -275,7 +275,7 @@ figure.sketch .lab { font-family: var(--sans); font-size: 12px; fill: var(--ink-
 .cltv .cltv-rcap { font-size: 10.5px; font-weight: 700; color: var(--ink-2); letter-spacing: 1.1px; text-transform: uppercase; }
 .cltv .cltv-rval { font-family: var(--mono); font-size: 18px; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
 .cltv .cltv-rval.win { color: var(--coral-deep); }
-.cltv .cltv-rval.warn { color: #888; }
+.cltv .cltv-rval.warn { color: #6b6b6b; }
 .cltv .cltv-bar-wrap { margin-top: 14px; padding: 12px 16px; background: var(--cream); border: 1px solid var(--line); border-left: 3px solid var(--coral); border-radius: 3px; }
 .cltv .cltv-bar-cap { font-size: 11px; font-weight: 700; color: var(--coral-deep); letter-spacing: 1.1px; text-transform: uppercase; margin-bottom: 8px; display: block; }
 .cltv .cltv-bar-track { position: relative; height: 14px; background: #fff; border: 1px solid var(--line); border-radius: 2px; overflow: hidden; }
@@ -284,7 +284,7 @@ figure.sketch .lab { font-family: var(--sans); font-size: 12px; fill: var(--ink-
 .cltv .cltv-bar-tick-lab { position: absolute; top: 18px; font-family: var(--mono); font-size: 10.5px; font-weight: 600; color: var(--ink-2); transform: translateX(-50%); white-space: nowrap; }
 .cltv .cltv-verdict { font-family: var(--sans); font-size: 13.5px; line-height: 1.55; color: var(--ink); margin-top: 12px; padding: 10px 14px; border-radius: 3px; background: var(--cream); border: 1px solid var(--line); border-left: 3px solid var(--coral); }
 .cltv .cltv-verdict.healthy { border-left-color: var(--coral-deep); background: #fff7f0; }
-.cltv .cltv-verdict.unhealthy { border-left-color: #888; background: #f8f9fa; }
+.cltv .cltv-verdict.unhealthy { border-left-color: #6b6b6b; background: #f8f9fa; }
 .cltv .cltv-verdict b { color: var(--coral-deep); font-weight: 700; }
 
 /* CLV cohort heatmap (rows = signup cohort, cols = months since signup, fill = retained-spend per active customer). */
@@ -460,6 +460,61 @@ details.depth > p:first-of-type { margin-top: 4px; }
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<!-- ============================================================
+     A11Y CONTRAST OVERRIDES (WCAG 2.1 AA). Appended LAST in <head>, after
+     _accessibility.css, so these win. Doubled-class/id specificity + !important.
+     Fixes ONLY small TEXT and white-on-coral BUTTON backgrounds that fall below
+     4.5:1. Bright coral #DA7756 is preserved everywhere it is a heading / marker /
+     rule / border / SVG stroke / chart fill / slider thumb (those meet 3:1).
+     Source colours diagnosed via _orchestration/a11y/contrast_detail.js.
+     ============================================================ -->
+<style id="a11y-contrast-ch24">
+  /* (A) White-on-coral interactive buttons: coral bg (3.1:1) -> #a8472a (5.83:1),
+         keeping white text. Hover #8f3c23. Disabled stays neutral grey.
+         Covers every active toggle / preset / model / run button in the chapter. */
+  .demo-button.demo-button,
+  .mcp-go.mcp-go, .up-go.up-go,
+  .rcf-mode button.active.active, .atc .atc-mbtn.active.active,
+  .adsat-fbtn.active.active, .adsat-pbtn.active.active,
+  .cltv .cltv-pbtn.active.active, .chm .chm-btn.active.active,
+  #w-loop-check .wlc-el.active.active,
+  #w-mmm-shapes .wms-pbtn.active.active,
+  #w-rcf .wrcf-btn.active.active,
+  #w246 .w246-mbtn.active.active,
+  #w247-cltv .cltv2-pbtn.active.active,
+  #w247 .w247-go.w247-go { background: #a8472a !important; color: #fff !important; }
+  .demo-button.demo-button:hover,
+  .mcp-go.mcp-go:hover, .up-go.up-go:hover,
+  #w-loop-check .wlc-el.active.active:hover,
+  #w-mmm-shapes .wms-pbtn.active.active:hover,
+  #w-rcf .wrcf-btn.active.active:hover,
+  #w246 .w246-mbtn.active.active:hover,
+  #w247-cltv .cltv2-pbtn.active.active:hover,
+  #w247 .w247-go.w247-go:hover { background: #8f3c23 !important; color: #fff !important; }
+  #w247 .w247-go.w247-go[disabled] { background: #6b6b6b !important; }
+
+  /* (B) Small coral eyebrow text on cream/white (#DA7756 -> #a8472a, ~5:1). */
+  #w246 .w246-eyebrow.w246-eyebrow,
+  #w247-cltv .cltv2-eyebrow.cltv2-eyebrow,
+  #w247 .w247-eyebrow.w247-eyebrow { color: #a8472a !important; }
+
+  /* (C) Small grey labels below 4.5:1 (#888 -> #6b6b6b). The Greek MMM-shape
+         caption falls back to #888 because --ink3 is undefined; pin it. */
+  #w-mmm-shapes .wms-greek.wms-greek { color: #6b6b6b !important; }
+
+  /* (D) Opacity-washed w247 vague/sharp comparison cards. The card sat at
+         opacity:.5, which blended its text (#888 / coral-deep) below 4.5:1.
+         Remove the text-washing opacity; dim the *inactive* card with a muted
+         background + softer border instead, keeping text at FULL opacity. The
+         .live state restores the bright white card (handled by the base rule). */
+  #w247 .w247-col.w247-col { opacity: 1 !important; background: #faf7f3 !important; border-color: #efe7da !important; }
+  #w247 .w247-col.live.live { background: #fff !important; border-color: var(--line) !important; }
+  #w247 .w247-col.sharp.live.live { border-color: var(--coral-soft) !important; }
+  /* Inner small text now at full opacity must itself pass on white: */
+  #w247 .w247-ph.w247-ph { color: #6b6b6b !important; }
+  #w247 .w247-col.vague .w247-ct.w247-ct { color: #6b6b6b !important; }
+  #w247 .w247-col.sharp .w247-ct.w247-ct { color: #a8472a !important; }
+</style>
 </head>
 <body data-chapter-num="24">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -471,6 +526,19 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of"); injected SVG
+         mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 24 (review; Haiku can hallucinate).
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-24-plan-analytics.html  (target 0 serious/critical)
+     ============================================================ -->
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 24 &middot; Synthesis</p>
   <h1 class="title">Marketing Plan and Analytics</h1>
@@ -489,7 +557,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <aside class="sn" data-complete><span class="sn-num">1.</span> The 70/20/10 read, worked. Seventy percent of the base leaves at 6 percent a year (average lifetime 1 / 0.06, almost 17 years), a middle 20 percent leaves at 35 percent (about 3 years), and a high-risk 10 percent leaves at 65 percent (near 18 months). Weight the three lifetimes by group size rather than averaging the rates and the base-wide average is 12.4 years, against the 5.6 years the single aggregate rate implied. The gap is the survival dynamic the average flattens: once the high-risk tenth has churned out, the survivors are the long-stay majority.</aside>
 
 <figure class="sketch" aria-label="One churn rate read two ways: 5.6 years as an average, 12.4 years as three risk groups.">
-  <div class="mount" id="sk-vodafone-two-reads-mount" data-w="900" data-h="260"></div>
+  <div class="mount" id="sk-vodafone-two-reads-mount" aria-hidden="true" data-w="900" data-h="260"></div>
   <figcaption>The opener puzzle. One churn rate read as one average says 5.6 years; read as three risk groups it says 12.4 years. The average is the thing hiding the value, not a faithful summary of it.</figcaption>
 </figure>
 
@@ -514,7 +582,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <p data-focused style="display:none;">The breakage shows up two ways: the budget-plus-calendar collapse, dollars and dates with the goal unstated and control left to &ldquo;we will see in November,&rdquo; and the heuristic-bound budget, sized by a rule of thumb rather than by what each channel returns. A 2014 survey of 1,000 managers found <span id="anno-72pct">72 percent allocate</span> by heuristics rather than attribution, a share that has barely moved.<sup class="cite" data-cite="ref-3"></sup><sup class="cite" data-cite="ref-2"></sup></p>
 
 <figure class="sketch" aria-label="A budget-plus-calendar plan with goal, instrumentation, and control missing.">
-  <div class="mount" id="sk-budget-calendar-fail-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-budget-calendar-fail-mount" aria-hidden="true" data-w="720" data-h="240"></div>
   <figcaption>Budget-plus-calendar collapse. Tactics on paper; goal, instrumentation, control missing. The grid balances; the loop does not close.</figcaption>
 </figure>
 
@@ -525,7 +593,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 
 <p data-complete>The closed loop only runs on a substrate the firm has built, and that substrate has measurable maturity. Some firms run on patchy data that lives in spreadsheets on a manager&rsquo;s laptop. Others run on an integrated warehouse the CFO and the CMO read the same way at the same cadence. The difference between those two firms is a capability difference, not a budget difference, and the literature names it with a <span class="term" data-tt="The five stages of analytical maturity describe how far a firm has built the data, organizational, and leadership scaffolding to run on numbers rather than gut. Stage 1 (&lsquo;Analytically Impaired&rsquo;) cannot pull the same number two ways and get the same answer. Stage 5 (&lsquo;Analytical Competitors&rsquo;) has analytics as its competitive advantage. Most firms cluster at Stage 2 or 3, and reaching Stage 5 takes about a decade of sustained CEO-level commitment.">five-stage maturity staircase</span>. It runs from Stage 1, where the firm cannot pull the same number two ways and get the same answer, up to Stage 5, where analytics is the firm&rsquo;s competitive advantage. Most firms sit at Stage 2 or 3, and reaching the top takes about a decade of CEO-level commitment.<sup class="cite" data-cite="ref-4"></sup> The climb is what decides whether a plan can size its budget by attribution at all or has to fall back on the rules of thumb the survey measured.</p>
 <figure class="sketch" data-complete aria-label="The five-stage analytical-maturity staircase, climbed over years.">
-  <div class="mount" id="sk-maturity-staircase-mount" data-w="720" data-h="320"></div>
+  <div class="mount" id="sk-maturity-staircase-mount" aria-hidden="true" data-w="720" data-h="320"></div>
   <figcaption>The analytical-maturity staircase. The firm climbs from &ldquo;cannot pull the same number two ways&rdquo; to &ldquo;analytics is the competitive advantage,&rdquo; a capability built over years, not a budget bought in a quarter.</figcaption>
 </figure>
 
@@ -571,12 +639,12 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <aside class="sn" data-complete><span class="sn-num">3.</span> How to read a CLV number. The simplified contractual formula is <code>CLV = (M &minus; C) / (1 + d &minus; r) &minus; A</code>. <em>M</em> is the annual margin one customer produces (revenue minus the cost of serving them); <em>C</em> is the annual cost of keeping them (retention emails, loyalty offers, service contact); the numerator <em>(M &minus; C)</em> is one year&rsquo;s worth after the marketing to hold them. The denominator <em>(1 + d &minus; r)</em> turns that into a perpetuity-style total, where <em>r</em> is the annual retention rate and <em>d</em> is the <span class="term" data-tt="The discount rate is the annual percentage by which a future dollar is worth less than a dollar today, used to convert future cash flows into present-value terms. A discount rate of 5 percent (d = 0.05) means a dollar a year out is worth about 95 cents today, two years out about 90 cents, five years out about 78 cents. It is a standard corporate-finance input, usually set by the CFO from the firm&rsquo;s cost of capital.">discount rate</span>. The final <em>&minus; A</em> subtracts the acquisition cost paid once. A cable customer with M = $100, C = $10, r = 0.65, d = 0.05, and A = $65 returns about $235 in present-value terms. The full formula lives in the Job Aid; the spine keeps the plain &ldquo;one customer&rsquo;s yearly profit, projected forward, minus what you paid to win them.&rdquo;</aside>
 
 <figure class="sketch" aria-label="The simplified CLV formula as four levers: margin, marketing cost, retention, acquisition.">
-  <div class="mount" id="sk-clv-formula-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-clv-formula-mount" aria-hidden="true" data-w="720" data-h="240"></div>
   <figcaption>Four levers and one rate: M (margin/yr), C (cost to serve), r (retention), A (acquisition); d is the market discount. The plan moves the four.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="Customer equity (old label) vs customer asset value (new label nets fixed costs).">
-  <div class="mount" id="sk-customer-asset-mount" data-w="720" data-h="220"></div>
+  <div class="mount" id="sk-customer-asset-mount" aria-hidden="true" data-w="720" data-h="220"></div>
   <figcaption>Customer equity sums CLVs; customer asset value (2020 renaming) nets fixed costs, honest about bottom-decile cost to serve.</figcaption>
 </figure>
 
@@ -595,7 +663,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <h2 id="strategy">Strategy: Win Them, Grow Them, Keep Them</h2>
 
 <figure class="sketch" aria-label="The AER ladder: acquisition, expansion, retention with migration arrows.">
-  <div class="mount" id="sk-aer-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-aer-mount" aria-hidden="true" data-w="720" data-h="280"></div>
   <figcaption>AER as a ladder. Acquisition carries the buyer to a first purchase; expansion widens the relationship; retention defends against attrition. Shorting one stage breaks the others.</figcaption>
 </figure>
 
@@ -619,7 +687,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <p data-complete>The position sets the AER posture, but a second question still has to be answered before the strategy is operational, and that is where the firm should expect its growth to come from. The marketing-science literature gives an answer that looks contradictory until the two halves are read separately. One body of evidence says growth comes from acquiring new buyers, almost regardless of category. A second body of evidence says profit inside the existing base comes from concentrating on the high-value customers rather than spreading attention thin. Both findings are real, and they appear to clash only because they answer different questions.</p>
 
 <figure class="sketch" aria-label="The penetration-versus-concentration resolution: growth comes from acquiring buyers, profit comes from concentrating on the top deciles.">
-  <div class="mount" id="sk-penetration-concentration-mount" data-w="720" data-h="300"></div>
+  <div class="mount" id="sk-penetration-concentration-mount" aria-hidden="true" data-w="720" data-h="300"></div>
   <figcaption>Two findings, two levers. Growth comes from acquiring more buyers (the penetration lever, sized by double-jeopardy); profit in the existing base comes from concentrating retention on the high-CLV deciles (the allocation lever). They answer different questions.</figcaption>
 </figure>
 
@@ -633,7 +701,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <h2 id="tactics">Tactics: Where The Next Dollar Goes</h2>
 
 <figure class="sketch" aria-label="Advertising elasticity 0.12 vs sales-force elasticity 0.31 visualized as two bars on a coral baseline.">
-  <div class="mount" id="sk-elasticity-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-elasticity-mount" aria-hidden="true" data-w="720" data-h="240"></div>
   <figcaption>Pooled short-term elasticities: advertising 0.12, sales-force 0.31. The gap argues for sales-force investment where a salesperson can carry the offer near the moment of decision.</figcaption>
 </figure>
 
@@ -645,7 +713,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 
 <p data-complete>The reason the two elasticities differ by that much is structural, and the structure tells the planner which channel to reach for in which situation. Picture the buyer&rsquo;s path to a purchase as a ladder, climbing from no idea the brand exists up through awareness, knowledge, liking, preference, and conviction, and finally onto the rung where the buyer actually buys. The <span class="term" data-tt="The hierarchy of effects is a classical six-rung ladder describing the stages a buyer climbs from first awareness of a brand through final purchase. The rungs are awareness, knowledge, liking, preference, conviction, and purchase. The ladder is grouped into three stages: cognitive (awareness and knowledge, the head-level rungs), affective (liking and preference, the heart-level rungs), and conative (conviction and purchase, the action-level rungs). The ladder is planning vocabulary rather than a literal sequence: real buyers skip rungs and revisit rungs constantly. The framework is still useful for matching channels to the rung they actually move.">hierarchy of effects</span> is the planning vocabulary for that ladder, and its rungs group into a cognitive stage, an affective stage, and a conative stage.<sup class="cite" data-cite="ref-15"></sup></p>
 <figure class="sketch" data-complete aria-label="Lavidge-Steiner hierarchy of effects: six rungs grouped in three stages with channels mapped.">
-  <div class="mount" id="sk-hierarchy-mount" data-w="720" data-h="300"></div>
+  <div class="mount" id="sk-hierarchy-mount" aria-hidden="true" data-w="720" data-h="300"></div>
   <figcaption>Hierarchy of effects. Cognitive rungs (awareness, knowledge) carry long-term elasticity; conative rungs (conviction, purchase) carry short-term. A mix sized only by short-term lift starves the cognitive rungs that feed it.</figcaption>
 </figure>
 
@@ -666,7 +734,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 
 <p data-focused style="display:none;">MMM is the 2026 budget spine. Open-source libraries like Google&rsquo;s <span class="term" data-tt="Google Meridian is an open-source marketing-mix modeling library that Google released in March 2024 and made generally available in January 2025. It runs a hierarchical Bayesian regression across 50 or more geographic markets at once and returns a posterior distribution (a range of plausible values, not a single point estimate) for each channel&rsquo;s return on investment.">Meridian</span> made the method free, and a managed weekly platform fills the tier between those libraries and the agentic stack a Hershey-scale firm pays for. The call is to pick the tier the firm can act on, not the one it can technically afford.<sup class="cite" data-cite="ref-17"></sup><sup class="cite" data-cite="ref-18"></sup></p>
 <figure class="sketch" aria-label="Response-model media mix vs percentage-of-sales heuristic mix.">
-  <div class="mount" id="sk-media-mix-mount" data-w="720" data-h="262"></div>
+  <div class="mount" id="sk-media-mix-mount" aria-hidden="true" data-w="720" data-h="262"></div>
   <figcaption>Two pies, same total spend: the response-model split against the percentage-of-sales heuristic. Reallocation moves dollars to the high-elasticity inputs and is forecast to lift profit with no new headcount.</figcaption>
 </figure>
 
@@ -722,7 +790,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <h2 id="instrument">Instrumentation: the audit is not the dashboard</h2>
 
 <figure class="sketch" aria-label="Audit and dashboard side by side: audit (quarterly, structural, customer-level), dashboard (daily, operational, channel-level).">
-  <div class="mount" id="sk-audit-vs-dashboard-mount" data-w="720" data-h="285"></div>
+  <div class="mount" id="sk-audit-vs-dashboard-mount" aria-hidden="true" data-w="720" data-h="285"></div>
   <figcaption>Audit and dashboard are complementary. Audit: structural, quarterly, customer-unit. Dashboard: operational, daily, channel-unit. Conflating them loses both pictures, because the daily channel view never reorganizes the base by who the customers actually are.</figcaption>
 </figure>
 
@@ -754,7 +822,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <p data-focused style="display:none;">The other two are sharper. Sixty-nine percent of the base sat below the company average on both spend and profit, the dimensions retention spending defends. The headline is the <span class="term" data-tt="A decile is one of ten equal slices of a ranked population. Sorting customers into ten ordered buckets by profit and reading each bucket separately, rather than collapsing everyone into one average, exposes the spread the average hides: the top decile and the bottom decile can sit on opposite sides of profitability even though the dashboard reports them inside one &lsquo;active customers&rsquo; count.">decile</span> spine: the <span id="anno-madrigal-top10">top 10 percent by profit produced 40 percent of total profit</span>, the top 20 percent 58 percent, the bottom 10 percent just 1 percent.<sup class="cite" data-cite="ref-20"></sup> The base is a small high-value spine, a long flat middle, and a thick unprofitable tail, averaged into one dashboard tile.</p>
 
 <figure class="sketch" aria-label="The Madrigal top-decile arithmetic as a profit-share shape: top 10% of customers is 40% of profit, top 20% is 58%, bottom 10% is 1%.">
-  <div class="mount" id="sk-madrigal-pie-mount" data-w="720" data-h="285"></div>
+  <div class="mount" id="sk-madrigal-pie-mount" aria-hidden="true" data-w="720" data-h="285"></div>
   <figcaption>The Madrigal base reported as 3.2 million &ldquo;active customers&rdquo; is really a high-value spine (top 10% makes 40% of profit), a long flat middle, and a thick unprofitable tail (bottom 10% makes 1%).</figcaption>
 </figure>
 
@@ -893,7 +961,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <aside class="sn"><span class="sn-num">14.</span> The 2021 to 2024 privacy reset (Apple's tracking prompt, Chrome's third-party-cookie retirement, the EU consent regime) collapsed click-based multi-touch attribution faster than the academic literature anticipated, which is why the 2026 firm-scale stack moved its causal spine onto marketing-mix modeling and incrementality even where click tracking is technically still available.</aside>
 
 <figure class="sketch" aria-label="The four attribution methods on a single horizontal spectrum.">
-  <div class="mount" id="sk-attribution-spectrum-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-attribution-spectrum-mount" aria-hidden="true" data-w="720" data-h="240"></div>
   <figcaption>Four methods on one line. Last-click and multi-touch score the touchpoints a tracker saw; marketing-mix modeling and incrementality estimate the causal lift a campaign produced. Cost and causal accuracy rise together, so the plan picks marketing-mix modeling as the spine and incrementality as the cross-check.</figcaption>
 </figure>
 
@@ -901,7 +969,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <p data-focused style="display:none;">Control compares what the plan promised against what the firm got, fast enough to revise inside the horizon. That forces a question that sounds easy, which marketing dollars caused which sales? The natural answer credits the last click, and it is wrong most of the time, because most customers see several touches before they buy and the last one is rarely the cause.</p>
 
 <figure class="sketch" aria-label="One customer journey where last-click hands all credit to the final touch.">
-  <div class="mount" id="sk-last-touch-bias-mount" data-w="720" data-h="250"></div>
+  <div class="mount" id="sk-last-touch-bias-mount" aria-hidden="true" data-w="720" data-h="250"></div>
   <figcaption>One journey, drawn left to right: a TV spot three weeks out, an Instagram view, an email click, then the paid-search click an hour before buying. Last-click hands all the credit to the search click at the end, so it over-credits the bottom-funnel channels that close the customer the top-funnel channels actually produced.</figcaption>
 </figure>
 
@@ -1019,7 +1087,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
       <button type="button" class="w246-mbtn" data-model="ushape">U-Shaped</button>
       <button type="button" class="w246-mbtn" data-model="mmm">Marketing-Mix</button>
     </div>
-    <div class="w246-bars" id="w246-bars-box" aria-live="polite">
+    <div class="w246-bars" id="w246-bars-box" aria-live="polite" aria-atomic="false">
       <div class="w246-row" data-ch="google">
         <span class="w246-name">Google Search</span>
         <span class="w246-track"><span class="w246-fill" style="width: 0%"></span></span>
@@ -1157,7 +1225,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 <aside class="sn"><span class="sn-num">17.</span> Patagonia's fiscal-2025 Worn Wear program: about 92,000 garment and bag repairs through 110-plus repair centers worldwide. The 2022 purpose-trust transfer was valued at roughly $3 billion, a fixed historical figure.</aside>
 
 <figure class="sketch" data-complete aria-label="Patagonia trust triad: ability, benevolence, integrity feeding customer asset value at the twenty-year horizon">
-  <div class="mount" id="sk-patagonia-trust-mount" data-w="720" data-h="285"></div>
+  <div class="mount" id="sk-patagonia-trust-mount" aria-hidden="true" data-w="720" data-h="285"></div>
   <figcaption>Trust decomposes into ability, benevolence, and integrity. Each component leads customer-asset value by months, so a twenty-year plan watches trust as a leading indicator rather than reading customer-asset value after the fact.</figcaption>
 </figure>
 
@@ -1172,7 +1240,7 @@ details.depth > p:first-of-type { margin-top: 4px; }
 </div>
 
 <figure class="sketch" aria-label="Duolingo cohort retention curves stacked: newer cohorts decay slower.">
-  <div class="mount" id="sk-cohort-curve-mount" data-w="720" data-h="260"></div>
+  <div class="mount" id="sk-cohort-curve-mount" aria-hidden="true" data-w="720" data-h="260"></div>
   <figcaption>Stacked cohort curves. Each line is one cohort's retention over the months since signup; a healthy product pushes each newer cohort above the older one. The plan's goal is next quarter's curve sitting above this quarter's.</figcaption>
 </figure>
 
@@ -1231,7 +1299,7 @@ cust_003, 2024-04, 70</textarea>
       <button type="button" class="w247-go" id="w247-go"><span class="w247-dot"></span>Read the base</button>
       <span class="w247-cost" id="w247-cost"></span>
     </div>
-    <div class="w247-out" id="w247-out" aria-live="polite">
+    <div class="w247-out" id="w247-out" aria-live="polite" aria-atomic="false">
       <p class="w247-ph">The read returns four parts: which deciles make the profit, the shape of the retention curve, the one highest-impact budget move, and what the dashboard would have missed.</p>
     </div>
     <p class="w247-honest">Reads from a sample or a live search, not a verified audit panel.</p>
@@ -1252,11 +1320,11 @@ cust_003, 2024-04, 70</textarea>
       <div class="w247-grid">
         <div class="w247-col vague" id="w247-colVague">
           <div class="w247-colhead"><span class="w247-ct">Vague question</span><span class="w247-cost2" id="w247-costVague"></span></div>
-          <div class="w247-coltext" id="w247-listVague"><p class="w247-ph">Press the vague question above.</p></div>
+          <div class="w247-coltext" id="w247-listVague" aria-live="polite" aria-atomic="false"><p class="w247-ph">Press the vague question above.</p></div>
         </div>
         <div class="w247-col sharp" id="w247-colSharp">
           <div class="w247-colhead"><span class="w247-ct">Sharp question</span><span class="w247-cost2" id="w247-costSharp"></span></div>
-          <div class="w247-coltext" id="w247-listSharp"><p class="w247-ph">Press the sharp question above.</p></div>
+          <div class="w247-coltext" id="w247-listSharp" aria-live="polite" aria-atomic="false"><p class="w247-ph">Press the sharp question above.</p></div>
         </div>
       </div>
       <div class="w247-verdict" id="w247-verdict"></div>
@@ -1295,12 +1363,12 @@ cust_003, 2024-04, 70</textarea>
 <aside class="sn"><span class="sn-num">18.</span> Why &ldquo;members buy more than non-members&rdquo; is not a program effect: the comparison reads two effects at once, a selection effect (members were already heavier buyers when they joined) and a moderation effect (heavier buyers regress harder toward the mean than lighter ones), and neither is the program effect the retention spend was supposed to produce. The correct evaluation is an experimental holdout against matched non-members. A related well-measured regularity is that defection rates run mostly with brand share and category dynamics rather than retention spend, so a line item promising to &ldquo;halve our churn&rdquo; is constrained by the category the firm sits inside.<sup class="cite" data-cite="ref-12"></sup></aside>
 
 <figure class="sketch" aria-label="Six failure modes as a vertical list.">
-  <div class="mount" id="sk-crm-failure-mount" data-w="720" data-h="280"></div>
+  <div class="mount" id="sk-crm-failure-mount" aria-hidden="true" data-w="720" data-h="280"></div>
   <figcaption>Each failure is a missing element of the closed loop: na&iuml;ve retention loses goal precision; equity-without-fixed-costs flatters the goal; dashboard-without-audit loses the structural picture; last-click loses causal grip; CRM-as-database loses instrumentation; decile-without-moderation budgets a reverting base.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="Each failure mode points back to one element of the closed loop.">
-  <div class="mount" id="sk-failure-to-loop-mount" data-w="720" data-h="300"></div>
+  <div class="mount" id="sk-failure-to-loop-mount" aria-hidden="true" data-w="720" data-h="300"></div>
   <figcaption>The diagnostic move: each failure points back to one element of the loop being missing or misread. Na&iuml;ve retention and equity-without-costs hit the goal layer, dashboard-without-audit hits instrumentation, and last-click hits control, so naming the failure names the layer that needs the next dollar.</figcaption>
 </figure>
 
@@ -1316,12 +1384,12 @@ cust_003, 2024-04, 70</textarea>
 <p data-focused style="display:none;">Chapter 25 takes up the marketing-finance layer between the plan and the CFO who funds it, who speaks contribution margin and payback period, not the LTV-to-CAC dashboard. The Vodafone director who opened this chapter now reads her base as a survival curve, not one flat average, and that single shift is the whole discipline in miniature. Planning and analytics is a field people spend whole careers inside, and what you hold now is the working machinery.</p>
 
 <figure class="sketch" aria-label="The chapter spine as one left-to-right strip.">
-  <div class="mount" id="sk-ch24-recap-mount" data-w="720" data-h="240"></div>
+  <div class="mount" id="sk-ch24-recap-mount" aria-hidden="true" data-w="720" data-h="240"></div>
   <figcaption>The chapter spine in one strip: denominate the goal in customer-asset value, split the budget across acquisition, expansion, and retention, size tactics by elasticity, instrument the audit beside the dashboard, pick one attribution method, then close the loop and revise. The opening Vodafone puzzle resolves at the end, where one churn rate read two ways doubled the customer-asset value.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="From the marketing plan to the budget defense.">
-  <div class="mount" id="sk-turn-ch25-mount" data-w="720" data-h="220"></div>
+  <div class="mount" id="sk-turn-ch25-mount" aria-hidden="true" data-w="720" data-h="220"></div>
   <figcaption>From the marketing plan to the budget defense: the closed-loop plan this chapter built has to be funded in the CFO&rsquo;s room, where the LTV-to-CAC dashboard meets contribution margin and payback. Chapter 25 makes that hand-off.</figcaption>
 </figure>
 
@@ -2873,7 +2941,7 @@ sketches['sk-failure-to-loop-mount'] = function(svg) {
 #w247-cltv .cltv2-rcap{display:block;font:600 9px var(--mono);color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
 #w247-cltv .cltv2-rval{display:block;font:700 18px var(--sans);color:var(--ink)}
 #w247-cltv .cltv2-rval.win{color:var(--coral-deep)}
-#w247-cltv .cltv2-rval.warn{color:#888}
+#w247-cltv .cltv2-rval.warn{color:#6b6b6b}
 #w247-cltv .cltv2-bar-wrap{margin-bottom:14px}
 #w247-cltv .cltv2-bar-cap{display:block;font:600 11px var(--sans);color:var(--ink-2);margin-bottom:7px}
 #w247-cltv .cltv2-bar-track{position:relative;height:22px;background:var(--cream);border-radius:4px;overflow:hidden}
@@ -2882,7 +2950,7 @@ sketches['sk-failure-to-loop-mount'] = function(svg) {
 #w247-cltv .cltv2-bar-tick-lab{position:absolute;top:-16px;left:2px;font:600 9px var(--mono);color:var(--coral-deep);white-space:nowrap}
 #w247-cltv .cltv2-verdict{font:13.5px/1.55 var(--sans);color:var(--ink);margin-top:12px;padding:10px 14px;border-radius:6px;background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--coral)}
 #w247-cltv .cltv2-verdict.healthy{border-left-color:var(--coral-deep);background:#fff7f0}
-#w247-cltv .cltv2-verdict.unhealthy{border-left-color:#888;background:#f8f9fa}
+#w247-cltv .cltv2-verdict.unhealthy{border-left-color:#6b6b6b;background:#f8f9fa}
 #w247-cltv .cltv2-verdict b{color:var(--coral-deep);font-weight:700}
 
 /* ===== w247 (§24.7 FLAGSHIP real-AI customer-base reader; web_search ON, NO model key, neutral chip) ===== */

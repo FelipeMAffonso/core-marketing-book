@@ -837,6 +837,46 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </style>
 <link rel="stylesheet" href="_accessibility.css">
 <script src="_accessibility.js" defer></script>
+<style>
+/* ============================================================
+   A11Y CONTRAST REMEDIATION (WCAG 2.1 AA) — additive, surgical.
+   Last <style> in <head>; doubled-class + !important to beat the chapter's
+   own !important rules and the body-level widget <style> blocks.
+   Bright coral #DA7756 is kept on headings/markers/rules/strokes (large/UI,
+   meets 3:1). Only SMALL coral TEXT and white-on-coral BUTTONS are darkened.
+   ============================================================ */
+
+/* --- White-on-coral buttons / active toggles: darken BG to #a8472a (white = 5.83:1) --- */
+#w73 .aiw-chip.is-on.is-on,
+#w74 .djw-chip.is-on.is-on{ background:#a8472a !important; border-color:#a8472a !important; color:#fff !important; }
+#w74 .djw-check.djw-check{ background:#a8472a !important; border-color:#a8472a !important; color:#fff !important; }
+#w74 .djw-check.djw-check:hover:not([disabled]){ background:#8f3c23 !important; border-color:#8f3c23 !important; }
+#widget-7-1 .w71-toggle.w71-toggle{ background:#a8472a !important; color:#fff !important; }
+#widget-7-1 .w71-toggle.w71-toggle:hover{ background:#8f3c23 !important; }
+#widget-7-1 .w71-toggle.w71-toggle[aria-pressed="true"]{ background:#8f3c23 !important; }
+
+/* --- Opacity-washed AI columns: remove text-washing opacity; dim with a muted
+       background + softer border instead, keeping text at FULL opacity. The
+       .live (answered) state restores the brighter white card. --- */
+#widget-7-2 .w72-col.w72-col{ opacity:1 !important; background:#faf7f3 !important; border-color:#efe7da !important; }
+#widget-7-2 .w72-col.w72-col.live{ background:#fff !important; }
+#widget-7-2 .w72-col.w72-col.sharp.live{ border-color:var(--coral-soft) !important; }
+#w73 .aiw-col.aiw-col{ opacity:1 !important; background:#faf7f3 !important; border-color:#efe7da !important; }
+#w73 .aiw-col.aiw-col.live{ background:#fff !important; }
+#w73 .aiw-col.aiw-col.sharp.live{ border-color:var(--coral-soft) !important; }
+
+/* --- Small muted text inside those cards: #888 fails 4.5:1 even at full opacity
+       -> #6b6b6b body-muted (>=4.8:1 on the cream/white card). --- */
+#widget-7-2 .w72-col.w72-col.vague .w72-ct,
+#widget-7-2 .w72-ans.w72-ans .ph,
+#w73 .aiw-col.aiw-col.vague .aiw-ct,
+#w73 .aiw-ans.aiw-ans .aiw-ph{ color:#6b6b6b !important; }
+
+/* --- Small coral-deep TEXT on cream/white -> #a8472a (~5:1). Strokes/markers untouched. --- */
+#widget-7-2 .w72-col.w72-col.sharp .w72-ct,
+#w73 .aiw-col.aiw-col.sharp .aiw-ct,
+#w76 .w76-ask.w76-ask{ color:#a8472a !important; }
+</style>
 </head>
 <body data-chapter-num="7">
 <!-- === CHAPTER-TOC INJECTED === -->
@@ -848,6 +888,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <main id="main" class="col">
+<!-- ============================================================
+     A11Y MAINTENANCE CONTRACT (WCAG 2.1 AA - this book ships compliant by default).
+     If you ADD or EDIT an SVG / figure / widget / image in this chapter you MUST:
+       - ALT TEXT: <figure aria-label="..."> with the figure's TAKEAWAY (not "image of");
+         injected SVG mount aria-hidden="true"; decorative -> aria-hidden. Run _orchestration/a11y/gen_alt.py 7.
+       - CONTRAST: text >=4.5:1 (>=3:1 for large >=24px / UI / SVG strokes). Bright coral #DA7756 is
+         large/marker/stroke only; small coral text -> #a8472a; coral buttons use a >=4.5:1 background.
+       - KEYBOARD: every control focusable + operable, visible focus ring, no trap.
+       - WIDGETS: live AI output in aria-live="polite"; <select>/inputs labeled; show a sample
+         response when the proxy is offline.
+       - SCALING: respects large-text + dyslexia toggles; reflows at 320px.
+     VERIFY: node _orchestration/a11y/axe_audit.js chapter-07-brands.html  (target 0 serious/critical)
+     ============================================================ -->
 
 <header class="hero">
   <p class="eyebrow">Core Marketing &middot; Chapter 7 &middot; The Strategy Layer</p>
@@ -870,7 +923,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Johnson &amp; Johnson did the opposite. It pulled 31 million capsules in eight days at a recall cost above 100 million dollars, put the chairman on television, and shipped tamper-evident packaging within months. Most advisers thought the brand was finished, yet its share fell to about 7 percent and then climbed back to roughly 30 percent within a year, near pre-crisis by the end of 1983.<sup class="cite" data-cite="ref-1"></sup> That recovery is the running puzzle: what does a brand have to be, in the buyer's head and on the books, for a 30-point drop to reverse inside a year while another brand with the same fast response never recovers? Tylenol had spent two decades building something the crisis could damage but not erase.</p>
 
 <figure class="sketch" aria-label="Tylenol category share over 1982 and 1983: a 37 percent leader that falls to 7 percent in the crisis, returns to about 30 percent within a year, and reaches near 37 percent by the end of 1983">
-  <div class="mount" id="sk-tylenol-hook-mount" data-w="720" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-tylenol-hook-mount" data-w="720" data-h="320"></div>
   <figcaption>Tylenol's share over the crisis. A 37 percent leader falls to about 7 percent during the 1982 cyanide scare, returns to roughly 30 percent within a year, and reaches near its pre-crisis level by the end of 1983. The shape this chapter explains.</figcaption>
 </figure>
 
@@ -898,7 +951,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </div>
 
 <figure class="sketch" aria-label="A brand as a coral network with eight memory connection nodes">
-  <div class="mount" id="sk-network-mount" data-w="700" data-h="360"></div>
+  <div class="mount" aria-hidden="true" id="sk-network-mount" data-w="700" data-h="360"></div>
   <figcaption>A brand network with eight connections of varying strength. The center is the name; surrounding nodes are categories of connection that recur across most brands.</figcaption>
 </figure>
 
@@ -915,7 +968,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>If the brand is a network, a fair next question is whether some parts of it have to be built before others. One framework draws the build as a ladder you cannot skip floors on.<sup class="cite" data-cite="ref-5"></sup> <span class="term" data-tt="Customer-based brand equity is Kevin Lane Keller's framework, which defines a brand's value through what buyers know and feel about it, drawn as a four-level pyramid. The levels rise from salience (does the brand come to mind in the category) through performance and imagery, then judgments and feelings, to resonance at the apex, where buyers actively recommend the brand. Each level depends on the ones below it holding, which is why a brand cannot skip the base and jump to resonance.">Customer-based brand equity</span> starts at the bottom with <span class="term" data-tt="Salience is the base level of the Keller pyramid: does the brand come to mind at all when the buyer thinks about the category. The Ehrenberg-Bass tradition renames this block 'mental availability' and argues it is the only floor that matters for growth.">salience</span>. It rises through specific associations and quality, then likeability and trust, up to <span class="term" data-tt="Resonance is the top of the Keller pyramid: the buyer is attached to the brand, recommends it, repurchases without weighing alternatives, and pays a premium. Resonance is the outcome of years of consistent execution at every lower level, which is why a single campaign cannot manufacture it.">resonance</span>. The friend who would never let anyone bad-mouth Stanley cups sits at resonance, while the friend who knows the Stanley name but grabs a Yeti on sale sits at the base. A brand cannot buy its way to loyalty before it has earned a place in memory. The base block, whether you call it salience or mental availability, is where the next section starts, because it is the floor that decides whether the brand even gets considered.</p>
 
 <figure class="sketch" data-complete aria-label="Keller's CBBE pyramid: four levels of brand knowledge, six blocks, salience at the base and resonance at the apex">
-  <div class="mount" id="sk-cbbe-pyramid-mount" data-w="720" data-h="380"></div>
+  <div class="mount" aria-hidden="true" id="sk-cbbe-pyramid-mount" data-w="720" data-h="380"></div>
   <figcaption>Keller's CBBE pyramid: four levels rise from <em>salience</em> (does the brand come to mind) through <em>performance</em> and <em>imagery</em>, then <em>judgments</em> and <em>feelings</em>, to <em>resonance</em> at the apex. The base is the empirical primary; the apex is the outcome that arrives only when execution at every lower block holds for years.<sup class="cite" data-cite="ref-5"></sup></figcaption>
 </figure>
 
@@ -929,7 +982,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
       <p style="font-family:var(--sans);font-size:12.5px;color:var(--ink-2);margin:0 0 10px;">Pick a cue a buyer might meet:</p>
       <div id="w71-chips" class="w71-chips" role="group" aria-label="Cue chips"></div>
     </div>
-    <div class="w71-stage" aria-live="polite">
+    <div class="w71-stage" aria-live="polite" aria-atomic="false">
       <div id="w71-bubble" class="w71-bubble">
         <span class="w71-bubble-cap">comes to mind</span>
         <span id="w71-brand" class="w71-brand"></span>
@@ -1012,7 +1065,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 </figure>
 
 <figure class="sketch" aria-label="A CEP wheel with spoke length proportional to connection strength">
-  <div class="mount" id="sk-cep-wheel-mount" data-w="700" data-h="330"></div>
+  <div class="mount" aria-hidden="true" id="sk-cep-wheel-mount" data-w="700" data-h="330"></div>
   <figcaption>A CEP wheel where spoke length encodes connection strength. This brand connects strongly to two situations, weakly to several. The strategic question is which untapped situation to add next.</figcaption>
 </figure>
 
@@ -1021,7 +1074,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Most category buyers are not paying attention in any given week, which changes where brand money should go. A 2021 study, since extended across categories, put the share at about 5 percent in-market and 95 percent out-of-market at any moment.<sup class="cite" data-cite="ref-8"></sup> A campaign aimed only at the active 5 percent reaches buyers who have mostly decided, while the same spend on the other 95 percent plants the brand in memory for the next cycle, because the memory has to be there before the moment arrives.</p>
 
 <figure class="sketch" aria-label="A grid of 100 category buyers: about 5 are in-market this week and about 95 are out-of-market; a 5-percent-only campaign reaches a sliver while brand work plants memory in the 95 percent">
-  <div class="mount" id="sk-95-5-mount" data-w="600" data-h="440"></div>
+  <div class="mount" aria-hidden="true" id="sk-95-5-mount" data-w="600" data-h="440"></div>
   <figcaption>The category in any given week. About 5 of every 100 buyers are in-market now; the other 95 are out-of-market. A campaign aimed only at the 5 percent reaches a sliver, while brand work plants memory in the 95 percent for the cycle when they come in.</figcaption>
 </figure>
 
@@ -1067,11 +1120,11 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     <div class="w72-grid">
       <div class="w72-col vague" id="w72-colVague">
         <div class="w72-colhead"><span class="w72-ct">Broad question</span><span class="w72-cost" id="w72-costVague"></span></div>
-        <div class="w72-ans" id="w72-ansVague"><span class="ph">Press the broad question.</span></div>
+        <div class="w72-ans" id="w72-ansVague" aria-live="polite" aria-atomic="false"><span class="ph">Press the broad question.</span></div>
       </div>
       <div class="w72-col sharp" id="w72-colSharp">
         <div class="w72-colhead"><span class="w72-ct">Sharp question</span><span class="w72-cost" id="w72-costSharp"></span></div>
-        <div class="w72-ans" id="w72-ansSharp"><span class="ph">Press the sharp question.</span></div>
+        <div class="w72-ans" id="w72-ansSharp" aria-live="polite" aria-atomic="false"><span class="ph">Press the sharp question.</span></div>
       </div>
     </div>
     <div class="w72-verdict" id="w72-verdict"></div>
@@ -1154,7 +1207,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">4.</span> The Lanham Act of 1946 set the US legal bar: a color, sound, or shape qualifies for trademark protection only when the firm proves &ldquo;acquired distinctiveness,&rdquo; usually through a survey showing roughly 50 percent of category buyers attribute the cue to one brand without prompting. Owens-Corning's pink fiberglass insulation (1985) was the first US color registration; UPS brown (2000) and Tiffany blue (1998) followed.</aside>
 
 <figure class="sketch" aria-label="The Fame by Uniqueness 2x2 with four verdicts">
-  <div class="mount" id="sk-fame-uniqueness-mount" data-w="720" data-h="430"></div>
+  <div class="mount" aria-hidden="true" id="sk-fame-uniqueness-mount" data-w="720" data-h="430"></div>
   <figcaption>Every cue sorts into one of four verdicts once you score it on fame (across) and uniqueness (up): lock the strong corner, invest behind the rising one, retire the category cliche, drop the decoration.</figcaption>
 </figure>
 
@@ -1201,11 +1254,11 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     <div class="aiw-grid">
       <div class="aiw-col vague" id="w73-colVague">
         <div class="aiw-colhead"><span class="aiw-ct">Vague question</span><span class="aiw-cost" id="w73-costVague"></span></div>
-        <div class="aiw-ans" id="w73-ansVague"><span class="aiw-ph">Press the vague question above.</span></div>
+        <div class="aiw-ans" id="w73-ansVague" aria-live="polite" aria-atomic="false"><span class="aiw-ph">Press the vague question above.</span></div>
       </div>
       <div class="aiw-col sharp" id="w73-colSharp">
         <div class="aiw-colhead"><span class="aiw-ct">Specific question</span><span class="aiw-cost" id="w73-costSharp"></span></div>
-        <div class="aiw-ans" id="w73-ansSharp"><span class="aiw-ph">Press the specific question above.</span></div>
+        <div class="aiw-ans" id="w73-ansSharp" aria-live="polite" aria-atomic="false"><span class="aiw-ph">Press the specific question above.</span></div>
       </div>
     </div>
     <div class="aiw-verdict" id="w73-verdict"></div>
@@ -1223,7 +1276,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">A distinctive asset is judged on two tests. <span class="term" data-tt="Fame is the share of category buyers who recognize a cue at all when shown it. A low-fame cue may be beautiful in the brand book but invisible at the shelf.">Fame</span> asks how many category buyers recognize the cue; <span class="term" data-tt="Uniqueness is the share of buyers who recognize a cue and attribute it to this brand alone. A low-uniqueness cue retrieves a category but no specific brand.">Uniqueness</span> asks how many of those name this brand and not a competitor.<sup class="cite" data-cite="ref-15"></sup> Plot Fame against Uniqueness on a 2x2 and every cue sorts into four verdicts: lock the high-on-both corner, invest behind the rising cue, retire the category cliche, and drop the decoration. You lock the strong corner because every exposure deepens the same link while a redesign starts the count over, so vary the executions but keep the load-bearing cue where it is.</p>
 
 <figure class="sketch" aria-label="The shape-first audit: a stripped silhouette shown for 1.5 seconds against a 50 percent pass line">
-  <div class="mount" id="sk-shape-audit-mount" data-w="720" data-h="360"></div>
+  <div class="mount" aria-hidden="true" id="sk-shape-audit-mount" data-w="720" data-h="360"></div>
   <figcaption>The cheapest field test. Strip the cue to a bare silhouette, flash it for 1.5 seconds, and ask &ldquo;which brand?&rdquo; The Coke bottle clears the 50 percent pass line at 89; the Stanley tumbler sits at 43, below the line.</figcaption>
 </figure>
 
@@ -1391,7 +1444,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">5.</span> The Ehrenberg-Bass Institute (University of South Australia) has audited consumer-panel data across roughly 15 categories, 50 countries, and three decades.</aside>
 
 <figure class="sketch" aria-label="The double-jeopardy line: twelve brands on a penetration by frequency line">
-  <div class="mount" id="sk-double-jeopardy-mount" data-w="720" data-h="360"></div>
+  <div class="mount" aria-hidden="true" id="sk-double-jeopardy-mount" data-w="720" data-h="360"></div>
   <figcaption>Twelve brands sit on one gently rising line. Penetration runs across, frequency runs up. The only path off the line is up and to the right at once: win more buyers, and higher frequency follows.</figcaption>
 </figure>
 
@@ -1475,7 +1528,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
     </div>
     <button class="djw-check" id="w74-check" type="button" disabled>Click the line to place it first</button>
   </div>
-  <div class="djw-readout" id="w74-readout">Pick a brand, then click on the chart where you think it sits.</div>
+  <div class="djw-readout" id="w74-readout" aria-live="polite" aria-atomic="false">Pick a brand, then click on the chart where you think it sits.</div>
 </div>
 
 <p data-complete>The third pattern is the <span class="term" data-tt="The duplication-of-purchase law says a brand's buyers also buy other brands in proportion to those brands' market shares, not in proportion to how similar the brands are. If a competitor holds 30% of the category, about 30% of your buyers also bought it.">duplication of purchase</span> law. Your buyers also buy your competitors, and the rate tracks each competitor's market share, not how similar the products feel. About seventy-two percent of Pepsi buyers also bought Coca-Cola in a year, because Coke is big, not because the two taste alike. The &ldquo;Fanta segment&rdquo; is mostly the Coke segment that happened to grab a Fanta last week. There are no brand tribes, only one shared pool of category buyers picking on the day, so you plan your media against the whole category.<sup class="cite" data-cite="ref-21"></sup></p>
@@ -1483,12 +1536,12 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">A third pattern is the <span class="term" data-tt="The duplication-of-purchase law says a brand's buyers also buy other brands in proportion to those brands' market shares, not how similar the brands are. If a competitor holds 30% of the category, about 30% of your buyers also bought it.">duplication of purchase</span> law: your buyers also buy your competitors at a rate that tracks each competitor's market share, not how similar the products feel. About seventy-two percent of Pepsi buyers also bought Coca-Cola in a year because Coke is big, not because the two taste alike, so the "Fanta segment" is mostly the Coke segment that grabbed a Fanta last week. There are no brand tribes, only one shared pool of category buyers picking on the day, so plan media against the whole category.<sup class="cite" data-cite="ref-21"></sup></p>
 
 <figure class="sketch" aria-label="Coke and Pepsi 72 percent buyer overlap as overlapping circles">
-  <div class="mount" id="sk-coke-pepsi-mount" data-w="700" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-coke-pepsi-mount" data-w="700" data-h="260"></div>
   <figcaption>Coca-Cola and Pepsi as overlapping circles, because the buyers are mostly the same people choosing on the day.</figcaption>
 </figure>
 
 <figure class="sketch" data-complete aria-label="Duplication of purchase as a heatmap-style coral table">
-  <div class="mount" id="sk-duplication-mount" data-w="720" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-duplication-mount" data-w="720" data-h="260"></div>
   <figcaption>Duplication-of-purchase heatmap: read down the leader's column to see the proportion of buyers shared, scaling with category share rather than perceived similarity.</figcaption>
 </figure>
 
@@ -1497,7 +1550,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">5c.</span> The category range runs from about 42 percent for shampoo to 64 percent for soft drinks, but it sits well below the 80 percent folklore in every category measured.<sup class="cite" data-cite="ref-22"></sup></aside>
 
 <figure class="sketch" data-complete aria-label="50 over 20 distribution as a bar chart correcting the 80 over 20 rule">
-  <div class="mount" id="sk-pareto-mount" data-w="700" data-h="260"></div>
+  <div class="mount" aria-hidden="true" id="sk-pareto-mount" data-w="700" data-h="260"></div>
   <figcaption>Buyer-decile revenue contribution: the top 20 percent gives about 50 percent, the bottom 50 percent about 19 percent.<sup class="cite" data-cite="ref-22"></sup></figcaption>
 </figure>
 
@@ -1569,7 +1622,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The brand moves three levers on that calculation. It raises <span class="term" data-tt="Willingness to pay is the most a buyer would hand over before walking away to the alternative; a Stanley buyer's WTP ran near $45 against $12 for the identical unbranded cup.">willingness to pay</span>, so the Stanley tumbler pays $35 against a $12 thermally identical generic. It lowers <span class="term" data-tt="Customer acquisition cost is what the firm spends to win one new buyer; branded firms run $20 to $80 while private-label firms spend $80 to $200 buying each conversion through performance media.">customer acquisition cost</span>, since Coca-Cola need not convince a buyer that cola exists. It extends <span class="term" data-tt="Retention is the share of buyers who keep buying period after period; the higher the rate, the longer the average customer's lifetime and the higher the CLV booked.">retention</span>, so Patagonia keeps outerwear buyers about fifteen years against an industry mean near six. Sum the three deltas, discount to present value, and the result is the equity number on the rankings.</p>
 
 <figure class="sketch" aria-label="The three levers by which the brand moves customer lifetime value: willingness to pay rises, customer acquisition cost falls, retention period stretches, then the three are summed and discounted to present value">
-  <div class="mount" id="sk-brand-equity-levers-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-brand-equity-levers-mount" data-w="720" data-h="280"></div>
   <figcaption>The three customer-ledger levers the brand moves. Sum the three deltas across the customer base, discount to today's dollars, and the total is the equity number on the rankings.</figcaption>
 </figure>
 
@@ -1582,7 +1635,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The dollar figures disagree by hundreds of billions for the same brand on the same day, because three firms each answer a different question. <span class="term" data-tt="Interbrand starts inside audited operating profit, isolates the slice a model attributes to the brand, and capitalizes it, so its audited totals run most conservative.">Interbrand</span> asks what the brand earns now, so its totals run smallest. <span class="term" data-tt="Kantar BrandZ starts from a base near Interbrand's, then multiplies it by a Meaningful-Different-Salient buyer-power score, so its forward-looking totals run highest.">Kantar BrandZ</span> amplifies that base by a buyer-power score, so its totals run highest. <span class="term" data-tt="Brand Finance uses royalty-relief, estimating what the firm would pay to license its own brand, with totals between the other two.">Brand Finance</span> asks what it would cost to rent the brand. All three comply with <span class="term" data-tt="ISO 10668 is the 2010 brand-valuation standard; it sets disclosure rules but does not force one equation, which is why compliant firms still disagree.">ISO 10668</span>, so track one publisher's year-on-year delta, not the cross-publisher absolute level.<sup class="cite" data-cite="ref-26"></sup><sup class="cite" data-cite="ref-27"></sup></p>
 
 <figure class="sketch" aria-label="The same brand valued by three ISO 10668-compliant firms producing a roughly twofold spread, each labeled with its question: what the brand earns now, what it might earn, what it would cost to rent">
-  <div class="mount" id="sk-valuation-triad-mount" data-w="720" data-h="360"></div>
+  <div class="mount" aria-hidden="true" id="sk-valuation-triad-mount" data-w="720" data-h="360"></div>
   <figcaption>Apple 2024 valued by three ISO 10668-compliant firms; the ~2x spread reflects three different questions (earns now, might earn, costs to rent). Track one publisher's YoY delta for three years before reading the absolute level.<sup class="cite" data-cite="ref-28"></sup></figcaption>
 </figure>
 
@@ -1595,7 +1648,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The brand on the balance sheet is not the brand in the buyer's head. Brand equity is the dollar figure summed across the base, while brand power is the per-encounter force the name exerts in front of an offer. Nissan's equity beats Porsche's because it sells far more cars, yet Porsche's power is larger because every encounter lifts willingness to pay more. Equity sets the price and the M&amp;A term sheet; power sets the budget, so the team weights media toward brands whose power is climbing.<sup class="cite" data-cite="ref-29"></sup><sup class="cite" data-cite="ref-30"></sup><sup class="cite" data-cite="ref-31"></sup></p>
 
 <figure class="sketch" aria-label="Brand equity as a vertical stack of buyer-lifetime-margin blocks with the brand portion shaded inside each block">
-  <div class="mount" id="sk-clv-attribution-mount" data-w="700" data-h="296"></div>
+  <div class="mount" aria-hidden="true" id="sk-clv-attribution-mount" data-w="700" data-h="296"></div>
   <figcaption>Brand equity as the sum of CLV attributable to the brand: each block is one buyer's lifetime margin, and the shaded brand portion is the network in the buyer's head.</figcaption>
 </figure>
 
@@ -1604,19 +1657,19 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The Tylenol-versus-Perrier contrast makes equity concrete. Both faced a contamination crisis and responded fast. Tylenol had spent two decades building reinforcing layers of memory, from doctor recommendation to tamper-evident packaging, so its share climbed back to roughly thirty percent within a year. Perrier's 1990 benzene contamination ran through a largely transactional connection with no endorsement layer, so a year later its share sat at less than half pre-crisis and in 1992 it sold itself to Nestlé. Same response speed, opposite outcomes, because Tylenol had banked twenty years of memory depth before it had to spend any.<sup class="cite" data-cite="ref-32"></sup><sup class="cite" data-cite="ref-33"></sup></p>
 
 <figure class="sketch" data-complete aria-label="The Brand-Offering-Relationship stack as three horizontal layers, with consumer packaged goods leaning on the brand layer, business-to-business on the offering layer, and subscriptions on the relationship layer">
-  <div class="mount" id="sk-bor-stack-mount" data-w="700" data-h="240"></div>
+  <div class="mount" aria-hidden="true" id="sk-bor-stack-mount" data-w="700" data-h="240"></div>
   <figcaption>The <span class="term" data-tt="BOR stands for Brand, Offering, and Relationship. The framework decomposes any customer relationship into three additive layers: the brand in the buyer's head, the actual product the firm delivers, and the ongoing touchpoints the firm maintains. Coca-Cola leans on brand, an industrial machinery firm on offering, Costco on relationship.">BOR</span> stack as three layers. CPG leans on the brand layer, B2B on the offering layer, and subscriptions like Costco on the relationship layer; the figure shows which layer carries the work and which is neglected.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="Tylenol's 1982 recall and recovery curve as a timeline from a roughly 37 percent pre-crisis share, down to about 7 percent during the crisis, recovering to about 30 percent within a year and near pre-crisis by the end of 1983">
-  <div class="mount" id="sk-tylenol-recovery-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-tylenol-recovery-mount" data-w="720" data-h="280"></div>
   <figcaption>Tylenol 1982: pre-crisis share ~37 percent, the cyanide crisis cuts it to ~7 percent, and the recall plus tamper-evident packaging plus a $100M response return it to ~30 percent within a year and near pre-crisis (~37 percent) by the end of 1983. The two-decade network made recovery possible; Perrier's shallow network did not.</figcaption>
 </figure>
 
 <p data-complete>For day-to-day management, David Aaker's 1991 four-dimension model is the working dashboard most teams have used for thirty years. The four pillars are <span class="term" data-tt="Brand awareness is the buyer's ability to recognize or recall the brand in the category. It is the entry pillar because a buyer who cannot retrieve the brand at all cannot act on any of the other three.">brand awareness</span>, <span class="term" data-tt="Perceived quality is the buyer's overall quality judgment relative to alternatives, which justifies a premium. It is distinct from technical quality, because a brand can be technically superior and still lose if the buyer cannot tell at the point of choice.">perceived quality</span>, <span class="term" data-tt="Brand associations are the mental links the buyer has built to the brand's attributes, imagery, and occasions: the rich content of the memory network, such as Coca-Cola's links to red, Christmas, and a shared barbecue.">brand associations</span>, and <span class="term" data-tt="Brand loyalty is the depth of attachment and the propensity to repurchase under competitive pressure. It matters less for growth than older theory assumed but still buys time against a new entrant or a price war.">brand loyalty</span>. The four are independent, so Apple's premium against equivalent Android phones reads as perceived quality without a meaningful spec advantage. A single composite number hides which pillar is climbing and which is slipping, so the manager keeps all four visible.<sup class="cite" data-cite="ref-34"></sup></p>
 
 <figure class="sketch" data-complete aria-label="Aaker's four brand-equity pillars drawn as four independently measurable bars: awareness, perceived quality, associations, loyalty">
-  <div class="mount" id="sk-aaker-equity-mount" data-w="720" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-aaker-equity-mount" data-w="720" data-h="320"></div>
   <figcaption>Aaker's four pillars as four independently measurable bars. Awareness anchors retrieval, perceived quality justifies the premium, associations supply reasons to buy, and loyalty buys time against threats.<sup class="cite" data-cite="ref-34"></sup></figcaption>
 </figure>
 
@@ -1625,7 +1678,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>A multi-product firm has to decide how visibly the parent brand shows up on each offering, and Aaker and Joachimsthaler's <span class="term" data-tt="The brand relationship spectrum is the portfolio framework Aaker and Joachimsthaler proposed in Brand Leadership (2000) for how visible a parent brand should be on each offering. It runs across four positions from branded house (parent name dominates) to house of brands (parent name is invisible), with sub-brand and endorsed brand in between; the firm picks one position per offering based on whether master and offering enhance each other.">brand relationship spectrum</span> (2000) names four positions. A <strong>branded house</strong> carries every offering under the parent (Apple's iPhone, iPad, Watch). A <strong>sub-brand</strong> borrows parent credibility but has its own name (Toyota Camry, Sony PlayStation). An <strong>endorsed brand</strong> leads with the offering and the parent endorses underneath (Courtyard by Marriott). A <strong>house of brands</strong> keeps the parent invisible (P&amp;G behind Tide, Crest, Pampers). The decision rule is whether master and offering enhance or damage each other. Toyota's 1989 Lexus launch is the textbook rightward move: a Toyota-branded luxury sedan would have failed on the economy-car identity, so Toyota shipped Lexus with no visible parent connection and reached Mercedes parity within a decade. An undergrad running a main account, a study-tips niche, and a design portfolio faces the same choice: cross-link, endorse softly, or keep them separate.<sup class="cite" data-cite="ref-38"></sup><sup class="cite" data-cite="ref-39"></sup></p>
 
 <figure class="sketch" data-complete aria-label="The brand relationship spectrum as four positions on a line from branded house to house of brands, named by who carries the work">
-  <div class="mount" id="sk-spectrum-mount" data-w="720" data-h="280"></div>
+  <div class="mount" aria-hidden="true" id="sk-spectrum-mount" data-w="720" data-h="280"></div>
   <figcaption>The brand relationship spectrum as four positions named by who carries the work. Move right when master and offering would damage each other; the Lexus arrow moves right.</figcaption>
 </figure>
 
@@ -1655,7 +1708,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The chapter has named what a brand is and what makes it grow. The playbook turns those ideas into four steps a brand team runs in order. The four steps form a loop, because the last step feeds the first the next time around.</p>
 
 <figure class="sketch" data-complete aria-label="The four-step brand-building playbook drawn as a loop">
-  <div class="mount" id="sk-playbook-loop-mount" data-w="720" data-h="300"></div>
+  <div class="mount" aria-hidden="true" id="sk-playbook-loop-mount" data-w="720" data-h="300"></div>
   <figcaption>The playbook is a loop. Audit the assets, audit the category entry points, lock the strong cues while refreshing the weak ones, then expand into the highest-volume untapped doorways. The fourth step feeds back into the first, so the audit runs again every quarter.</figcaption>
 </figure>
 
@@ -1683,7 +1736,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>Pairing the brand with the right situation is only half of what makes a message stick. The team writing the message is not the audience hearing it, and the gap between the two is wider than the team believes. A 1990 experiment measured it. Tappers knew the rhythms of twenty-five songs every adult could sing, tapped each one on a table, and predicted that about 50 percent of listeners would name the song. Listeners actually named it 2.5 percent of the time, because the tappers heard the melody in their heads while the listeners heard only the bare taps.<sup class="cite" data-cite="ref-57"></sup> That 47-point gap is the <span class="term" data-tt="The finding that experts cannot simulate not knowing what they already know. A brand team steeped in its own strategy hears its own messages as obvious and assumes outsiders will hear them the same way. The 1990 tapper experiment measured the gap: tappers predicted 50 percent recognition, listeners reached 2.5 percent. The lesson for brand copy is that the team's sense of how clearly a message reads is too optimistic.">curse of knowledge</span>, and a brand team steeped in its own strategy hears premium hydration as obvious while outsiders hear nothing.</p>
 
 <figure class="sketch" data-complete aria-label="The curse of knowledge: the tapper experiment">
-  <div class="mount" id="sk-tapper-mount" data-w="720" data-h="330"></div>
+  <div class="mount" aria-hidden="true" id="sk-tapper-mount" data-w="720" data-h="330"></div>
   <figcaption>The curse of knowledge. The tapper hears the whole song in her head, so the rhythm feels obvious and she predicts about half of listeners will name it. The listener hears only bare taps and names it 2.5 percent of the time. A brand team hears its own message the way the tapper hears the tune.</figcaption>
 </figure>
 
@@ -1692,7 +1745,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>One failure mode slips past even a high-scoring message. A campaign can go viral on views while doing nothing for sales, because viewers retell the campaign without retelling the brand. The <span class="term" data-tt="A one-question screen for any shared content: can the story be told without naming the brand? If yes, the brand is a sponsor sticker on someone else's content, and every share refreshes the content's network rather than the brand's. If no, the brand is integral, and every share refreshes the brand. Integral virality grows brands; sponsor-sticker virality produces view counts and no brand memory.">valuable-virality test</span> asks one yes-or-no question: can the story be told without naming the brand? Evian's 2009 "Roller Babies" reached about 50 million views, yet Evian's bottled-water share fell roughly 25 percent during the window. You could retell the dancing babies to a friend with no mention of Evian, so every share traveled without the brand.<sup class="cite" data-cite="ref-56"></sup> Blendtec's "Will It Blend?" is the opposite, because you cannot describe the video without naming the blender. If a friend can retell your campaign without your brand in it, the campaign is buying reach you will not see at the shelf.</p>
 
 <figure class="sketch" data-complete aria-label="The valuable-virality test as a fork">
-  <div class="mount" id="sk-virality-mount" data-w="720" data-h="310"></div>
+  <div class="mount" aria-hidden="true" id="sk-virality-mount" data-w="720" data-h="310"></div>
   <figcaption>The valuable-virality test. Ask one question of any shared content: can the story be told without naming the brand? Evian's dancing babies travel away from the brand, so the views never reach the shelf. Blendtec and the Subway-Jared story carry the brand inside the share, so every retelling refreshes it.</figcaption>
 </figure>
 
@@ -1734,7 +1787,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
         <span class="w76-ask">ask</span>
       </button>
       <div class="w76-tag w76-tag-muted">vague brief, you cannot check the answer</div>
-      <div id="w76-vague-out" class="w76-out"></div>
+      <div id="w76-vague-out" class="w76-out" aria-live="polite" aria-atomic="false"></div>
       <div id="w76-vague-cost" class="w76-cost"></div>
     </div>
     <div class="w76-col" id="w76-sharp-col">
@@ -1743,7 +1796,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
         <span class="w76-ask">ask</span>
       </button>
       <div class="w76-tag w76-tag-sharp">sharp brief, the swap test makes it auditable</div>
-      <div id="w76-sharp-out" class="w76-out"></div>
+      <div id="w76-sharp-out" class="w76-out" aria-live="polite" aria-atomic="false"></div>
       <div id="w76-sharp-cost" class="w76-cost"></div>
     </div>
   </div>
@@ -1770,7 +1823,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">Each decision lights up the whole network the earlier ones built, and a buyer who saw the 2011 ad and remembered the 1985 pledge read them as one coherent brand. The lesson is that a distinctive asset can be behavioral, not just visual.</p>
 
 <figure class="sketch" aria-label="Patagonia's four-decision behavioral arc">
-  <div class="mount" id="sk-patagonia-arc-mount" data-w="720" data-h="310"></div>
+  <div class="mount" aria-hidden="true" id="sk-patagonia-arc-mount" data-w="720" data-h="310"></div>
   <figcaption>Patagonia's behavioral asset. The 1972 piton decision, the 1985 pledge, the 2011 "Don't Buy This Jacket" ad, and the 2022 ownership transfer form one pattern, and each new decision lights up the network the earlier ones built. The asset is the pattern, not any single decision.</figcaption>
 </figure>
 
@@ -1796,7 +1849,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">A typical Costco household visits 30 to 40 times a year, so each visit refreshes the six cues with no media spend behind it, and after a year of membership the cue stack is locked in a way no competitor's advertising can dislodge. Costco is the chapter's counter-example to the assumption that brand strength requires media spending.</p>
 
 <figure class="sketch" aria-label="Costco's six operational cues">
-  <div class="mount" id="sk-costco-cues-mount" data-w="730" data-h="340"></div>
+  <div class="mount" aria-hidden="true" id="sk-costco-cues-mount" data-w="730" data-h="340"></div>
   <figcaption>Costco's mental availability is built by the operating model, not advertising. Six cues, the membership card, the concrete-floor interior, Kirkland Signature, the rotisserie station deep in the back, the receipt-checker, and the $1.50 hot-dog combo, get refreshed on every one of the 30 to 40 annual visits, with no media spend behind them.</figcaption>
 </figure>
 
@@ -1813,7 +1866,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <aside class="sn" data-complete><span class="sn-num">12.</span> The founding video drew about 3 million views in three months for its $1,500 cost. Founder Mike Cessario plays the visible-founder role the 1997 "Building Brands Without Mass Media" article named, alongside its other four no-advertising levers (coordinated touchpoints, value-matched sponsorship, experiential sampling, and earned-amplification publicity stunts). The 2017-onward direct-to-consumer cohort runs the 1997 playbook on a 2026 stack of TikTok, Instagram, and live events.</aside>
 
 <figure class="sketch" aria-label="Liquid Death's seven-year story-before-product arc">
-  <div class="mount" id="sk-liquiddeath-arc-mount" data-w="720" data-h="320"></div>
+  <div class="mount" aria-hidden="true" id="sk-liquiddeath-arc-mount" data-w="720" data-h="320"></div>
   <figcaption>Liquid Death's story-before-product entry. A $1,500 video in 2017 planted three cues, the can, the skull, and the voice, before any shelf accepted the product. Across seven years to a roughly $1.4 billion valuation in 2024, the brand added category entry points beneath those cues while never changing the cues themselves.</figcaption>
 </figure>
 
@@ -1822,7 +1875,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <h2 id="failure-modes" data-complete>Five ways brand management fails</h2>
 
 <figure class="sketch" data-complete aria-label="Line-extension trap: brand stretches and meaning thins">
-  <div class="mount" id="sk-line-extension-mount" data-w="700" data-h="256"></div>
+  <div class="mount" aria-hidden="true" id="sk-line-extension-mount" data-w="700" data-h="256"></div>
   <figcaption>The line-extension trap. As the brand stretches across categories, the meaning of the central node thins. Bic perfume, Cadillac Cimarron, and Heinz baby food all hit this curve.</figcaption>
 </figure>
 
@@ -1841,7 +1894,7 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-complete>The fifth mistake is fixating on a narrow segment that does not really exist. It is the differentiation mistake one floor up, at the media plan instead of the brief. A brand decides its buyers are &ldquo;women 25 to 45 who care about wellness&rdquo; and aims all its media there. The duplication-of-purchase law from Section 7.4 says a brand's buyers are mostly the same people who buy its rivals, so the invented segment is mostly an artifact of the brief. <span class="term" data-tt="Yorkie is a Nestlé chocolate bar sold mainly in the UK. Its 2002 'It's Not For Girls' campaign targeted men, yet Kantar panel data showed about half its buyers were women, a standard example of a brand misreading its own base.">Yorkie</span>, a Nestlé chocolate bar, ran a 2002 campaign tagged &ldquo;It's Not For Girls&rdquo; and built its whole pitch around men, yet panel data showed about half its buyers were women, so the brand had been talking past half its own base. Plan media against category buyers, and check any segment claim against panel data before the plan ships.<sup class="cite" data-cite="ref-66"></sup></p>
 
 <figure class="sketch" data-complete aria-label="Distinctive-asset retirement: a fashion refresh drops fame 20 to 40 points, then takes 24 to 36 months to recover">
-  <div class="mount" id="sk-rebrand-decay-mount" data-w="720" data-h="298"></div>
+  <div class="mount" aria-hidden="true" id="sk-rebrand-decay-mount" data-w="720" data-h="298"></div>
   <figcaption>Distinctive-asset retirement. A ten-year logo sits near eighty percent fame; a fashion-driven refresh drops it twenty to forty points within eighteen months, and then takes twenty-four to thirty-six months of media to climb back. The fix is to lock the load-bearing cues and vary the campaigns, not the cues.</figcaption>
 </figure>
 
@@ -1857,12 +1910,12 @@ figure svg polygon.reveal { transition: stroke-dashoffset 1400ms cubic-bezier(0.
 <p data-focused style="display:none">The Tylenol manager who opened the chapter walks back to her dashboard a year later and sees the share line near its pre-crisis level, the work of two decades of memory. You now hold the machinery that built it: a brand is a network of memory structures, mental availability is the number that predicts its health, distinctive assets are the cues that retrieve it, and growth comes from reaching more buyers in more situations. Chapter 8 turns from the brand to the offer, because the product now has to deliver what the memory promised, and the duplication-of-purchase law becomes a forecasting tool there.</p>
 
 <figure class="sketch" aria-label="A left-to-right strip recapping the chapter: a brand is a network, mental availability is the number, distinctive assets retrieve it, growth follows panel-data rules, equity is the dollar value, and the playbook builds and defends it">
-  <div class="mount" id="sk-ch7-recap-mount" data-w="720" data-h="200"></div>
+  <div class="mount" aria-hidden="true" id="sk-ch7-recap-mount" data-w="720" data-h="200"></div>
   <figcaption>The chapter's spine, in one line. The opening Tylenol puzzle resolved at the end: the brand climbed back near its pre-crisis share because two decades of memory held under the shock.</figcaption>
 </figure>
 
 <figure class="sketch" aria-label="A turn arrow handing off from the brand promise built into memory to the offer that must now deliver it, the work of Chapter 8">
-  <div class="mount" id="sk-turn-ch8-mount" data-w="720" data-h="210"></div>
+  <div class="mount" aria-hidden="true" id="sk-turn-ch8-mount" data-w="720" data-h="210"></div>
   <figcaption>The turn from Chapter 7 to Chapter 8: from the promise the brand built into the buyer's memory to the offer that now has to keep it.</figcaption>
 </figure>
 
@@ -3618,20 +3671,20 @@ return '$' + usd.toFixed(4);
 #w76 .w76-col{border:1px solid #e4ddd5;border-radius:8px;padding:12px;background:#fff;transition:border-color .2s;}
 #w76 .w76-col.live{border-color:#DA7756;}
 #w76 .w76-ask-btn{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;cursor:pointer;border:1px solid #d8cfc6;border-radius:6px;background:#f4ece5;padding:9px 11px;font:600 .86rem/1.25 'Inter',sans-serif;color:#1a1a1a;}
-#w76 .w76-ask-sharp{background:#fff1ea;border-color:#e8a488;}
+#w76 .w76-ask-sharp{background:#fff1ea;border-color:#b8553a;}
 #w76 .w76-ask-btn:disabled{cursor:default;opacity:.92;}
 #w76 .w76-ask{font-size:.72rem;color:#B8553A;white-space:nowrap;}
 #w76 .w76-tag{margin:8px 0 6px;font-size:.74rem;letter-spacing:.02em;}
-#w76 .w76-tag-muted{color:#888;}
+#w76 .w76-tag-muted{color:#6b6b6b;}
 #w76 .w76-tag-sharp{color:#B8553A;font-weight:600;}
 #w76 .w76-out{min-height:46px;font-size:.9rem;line-height:1.5;color:#1a1a1a;white-space:pre-wrap;}
-#w76 .w76-ph{color:#999;font-style:italic;}
-#w76 .w76-off{color:#888;font-style:italic;}
+#w76 .w76-ph{color:#6b6b6b;font-style:italic;}
+#w76 .w76-off{color:#6b6b6b;font-style:italic;}
 #w76 .w76-cost{margin-top:8px;font:600 .72rem/1 'Inter',sans-serif;color:#555;}
 #w76 .w76-cost.w76-err{color:#a23;}
 #w76 .w76-verdict{margin-top:16px;font-size:.9rem;line-height:1.5;color:#1a1a1a;background:#fff7f0;border-left:3px solid #DA7756;padding:10px 12px;border-radius:0 6px 6px 0;display:none;}
 #w76 .w76-verdict.show{display:block;}
-#w76 .w76-foot{margin:14px 0 0;font-size:.78rem;line-height:1.45;color:#888;}
+#w76 .w76-foot{margin:14px 0 0;font-size:.78rem;line-height:1.45;color:#6b6b6b;}
 @media (max-width:680px){#w76 .w76-grid{grid-template-columns:1fr;}}
 </style>
 <script>
