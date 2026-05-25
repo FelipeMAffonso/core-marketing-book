@@ -3157,9 +3157,13 @@ sketches['sk-positioning-mount'] = function (svg) {
       const c = CONDITIONS.find(x => x.key === btn.dataset.key);
       const on = state[c.key];
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      btn.style.background = on ? 'var(--coral)' : '#fff';
-      btn.style.color = on ? '#fff' : 'var(--coral-deep)';
-      btn.style.border = '1.5px solid var(--coral)';
+      // Explicit hex, not var(--coral): when the CSS var fails to resolve in the
+      // inline-style context the button fell back to its light default, leaving
+      // white text on a near-white background. #a8472a (coral-deep) gives white
+      // text 5.8:1, and the OFF state is coral-deep text on white.
+      btn.style.background = on ? '#a8472a' : '#fff';
+      btn.style.color = on ? '#fff' : '#a8472a';
+      btn.style.border = '1.5px solid #a8472a';
       btn.textContent = (on ? 'ON  ·  ' : 'OFF  ·  ') + (on ? c.on : c.off);
     });
   }
