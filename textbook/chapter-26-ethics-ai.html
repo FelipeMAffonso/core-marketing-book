@@ -3391,7 +3391,7 @@ section two to four lines, with one named owner per section.</pre>
     const userPrompt = 'Privacy policy excerpt:\n\n' + policy;
     step('Composing the audit and remediations...', 'thinking');
     try {
-      const resp = await fetch('http://localhost:8787/api/exhibit/generic', {
+      const resp = await fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ system: systemPrompt, user: userPrompt, model: 'claude-haiku-4-5', max_tokens: 500 }),
@@ -3401,7 +3401,7 @@ section two to four lines, with one named owner per section.</pre>
       if (!data.ok) throw new Error(data.error || 'proxy error');
       step(data.data.text.trim(), 'answer');
     } catch (err) {
-      step('Live AI requires `python core-course/scripts/proxy_server.py` running on localhost:8787. Showing a sample audit:', 'error');
+      step('Live AI is temporarily unavailable. Showing a sample audit:', 'error');
       step('RED FLAGS:\n- GDPR ART 6: bundles consent for marketing emails AND data-sharing with 200+ partners; not specific.\n- GDPR ART 7: withdrawal requires postal letter, not as easy as giving consent (must be one-click).\n- GDPR ART 13: "any purpose related to our business interests" is not a specified purpose; transparency obligation unmet.\n- GDPR ART 5: indefinite retention violates storage-limitation principle.\n- DARK PATTERN: Privacy Zuckering by bundling 200+ partners into one agreement.\n\nREMEDIATIONS:\n- Split the consent into two purpose-specific switches: marketing emails, partner data-sharing.\n- Add a one-click email/in-app withdrawal mechanism that mirrors the consent flow.\n- Specify each purpose in plain English with a retention period bound to that purpose.\n- Remove the indefinite-retention clause; replace with purpose-bound retention.\n- List the 200+ partners with explicit per-partner consent or remove the bulk-sharing clause.', 'answer');
     }
     btn.disabled = false;
@@ -3452,7 +3452,7 @@ section two to four lines, with one named owner per section.</pre>
     await new Promise(r => setTimeout(r, 600));
     const sysPrompt = 'You are running the /privacy-policy-audit Skill in Claude Code. Map a privacy policy against Solove\'s 16-category harm taxonomy (collection: surveillance, interrogation; processing: aggregation, identification, insecurity, secondary use, exclusion; dissemination: breach of confidentiality, disclosure, exposure, increased accessibility, blackmail, appropriation, distortion; invasion: intrusion, decisional interference). Return 3-5 lines with the category names matched, one line per match, then a HUMAN-FALLBACK verdict (yes/no Article 22 path is engineered).';
     try {
-      const resp = await fetch('http://localhost:8787/api/exhibit/generic', {
+      const resp = await fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ system: sysPrompt, user: cmd, model: 'claude-haiku-4-5', max_tokens: 260 })
@@ -3487,7 +3487,7 @@ section two to four lines, with one named owner per section.</pre>
   async function callOne(target, model, prompt) {
     target.innerHTML = '<div class="demo-step thinking">' + model + ' thinking...</div>';
     try {
-      const resp = await fetch('http://localhost:8787/api/exhibit/generic', {
+      const resp = await fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ system: sysPrompt, user: prompt, model: model, max_tokens: 280 })
       });
@@ -3529,7 +3529,7 @@ section two to four lines, with one named owner per section.</pre>
   async function callOne(target, model, prompt) {
     target.innerHTML = '<div class="demo-step thinking">' + model + ' thinking...</div>';
     try {
-      const resp = await fetch('http://localhost:8787/api/exhibit/generic', {
+      const resp = await fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ system: sysPrompt, user: prompt, model: model, max_tokens: 280 })
       });

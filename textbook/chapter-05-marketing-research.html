@@ -2042,8 +2042,8 @@ attention-check answers confirm.</pre>
 <!-- proxy helper PORTED verbatim from LOCKED Ch1 (window.__callGeneric__/__fmtCost__/__PROXY_BASE__/__FALLBACK_MSG__); ABSENT in Ch5. NO vision helper (all 3 live widgets are text). -->
 <script>
 (function(){
-window.__PROXY_BASE__ = 'http://localhost:8787';
-window.__FALLBACK_MSG__ = 'Live AI requires `python core-course/scripts/proxy_server.py` running on port 8787.';
+window.__PROXY_BASE__ = 'https://core-course-proxy.webmarinelli.workers.dev';
+window.__FALLBACK_MSG__ = 'Live AI is temporarily unavailable. Showing a sample answer so you can see the shape of the result.';
 window.__callGeneric__ = async function(systemText,userText,opts){
 opts = opts ||{};
 const body ={
@@ -3770,7 +3770,7 @@ sketches['sk-turn-ch6-mount'] = function(svg) {
       if (costEl) { costEl.className = 'ss-cost'; costEl.textContent = 'Haiku · ' + window.__fmtCost__(cost); }  // visible cost chip every call
     } catch (err) {
       // proxy-offline fallback: local Cochran answer, chip paused honestly.
-      step('[proxy offline, showing the local computation. ' + (window.__FALLBACK_MSG__ || 'Live AI requires `python core-course/scripts/proxy_server.py` running on port 8787.') + ']', 'error');
+      step('[proxy offline, showing the local computation. ' + (window.__FALLBACK_MSG__ || 'Live AI is temporarily unavailable. Showing a sample answer so you can see the shape of the result.') + ']', 'error');
       step('You need at least ' + n + ' completed responses to estimate a proportion of ' + prop + ' to within ' + moe + ' percentage points at ' + conf + '% confidence. In practice, target 1.3 to 2 times this number to absorb non-response and dropout. The biggest threat to this number is sampling bias: a perfectly sized sample drawn from the wrong population is still wrong.', 'answer');
       if (costEl) { costEl.className = 'ss-cost err'; costEl.textContent = 'cost paused (proxy off)'; }
     }

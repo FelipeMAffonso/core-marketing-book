@@ -3442,7 +3442,7 @@ No preamble, no closer.</pre>
     const userPrompt = 'Brand: ' + brand + '\nCategory: ' + cat + '\n\nProduce the CEP audit.';
     step('Composing the CEP audit...', 'thinking');
     try {
-      const resp = await fetch('http://localhost:8787/api/exhibit/generic', {
+      const resp = await fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ system: systemPrompt, user: userPrompt, model: 'claude-haiku-4-5', max_tokens: 600 }),
@@ -3452,7 +3452,7 @@ No preamble, no closer.</pre>
       if (!data.ok) throw new Error(data.error || 'proxy error');
       step(data.data.text.trim(), 'answer');
     } catch (err) {
-      step('Live AI requires `python core-course/scripts/proxy_server.py` running on localhost:8787. Showing a sample CEP audit so you can see the shape of the answer:', 'error');
+      step('Live AI is temporarily unavailable. Showing a sample CEP audit so you can see the shape of the answer:', 'error');
       step('CEPs (top 8):\n1. Morning hydration: starting the day with cold water at home.\n2. Desk-side hydration: a refillable cup at the office.\n3. School drop-off: a parent grabbing a cup on the way out.\n4. Gym bag: hydration during/after a workout.\n5. Hiking and outdoors: a durable cup for the trail.\n6. Road trip: a cup that fits the cup holder.\n7. Color-as-personality-statement: a visible cup as accessory.\n8. Gift exchange: a cup as a thoughtful gift.\n\nBRAND SCORE:\nMorning hydration | STRONG | brand is in many homes already.\nDesk-side hydration | STRONG | flagship usage situation.\nSchool drop-off | MODERATE | growing among parent demographic.\nGym bag | MODERATE | competitor brands lead here.\nHiking and outdoors | WEAK | originally was the brand\u2019s heartland but has eroded.\nRoad trip | STRONG | cup-holder fit.\nColor-as-personality-statement | STRONG | limited-edition drops.\nGift exchange | STRONG | viral as a gift item since 2022.\n\nUNTAPPED:\n- Hiking and outdoors: heritage CEP being lost to rivals; reclaim with field-tested communications.\n- Gym bag: competitor brands hold this CEP; counter with co-branded fitness partnerships.', 'answer');
     }
     btn.disabled = false;
@@ -3495,7 +3495,7 @@ No preamble, no closer.</pre>
     const userPrompt = 'Draft question: ' + q;
     step('Composing the audit and a behavioral alternative...', 'thinking');
     try {
-      const resp = await fetch('http://localhost:8787/api/exhibit/generic', {
+      const resp = await fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ system: systemPrompt, user: userPrompt, model: 'claude-haiku-4-5', max_tokens: 360 }),
@@ -3505,7 +3505,7 @@ No preamble, no closer.</pre>
       if (!data.ok) throw new Error(data.error || 'proxy error');
       step(data.data.text.trim(), 'answer');
     } catch (err) {
-      step('Live AI requires `python core-course/scripts/proxy_server.py` running on localhost:8787. Showing a sample audit so you can see the shape of the answer:', 'error');
+      step('Live AI is temporarily unavailable. Showing a sample audit so you can see the shape of the answer:', 'error');
       step('MEASUREMENT TYPE:\nSTATED PREFERENCE: the buyer is asked to rate how important sustainability is in the abstract, in a context where social-desirability bias rewards saying it is important.\n\nWHY IT MATTERS:\nStated importance ratings on sustainability typically predict purchase behavior weakly because buyers say what they think a researcher wants to hear and discount real trade-offs (price, color, availability) at the moment of choice.\n\nBEHAVIORAL ALTERNATIVE:\nRun an A/B test on the product page that varies the prominence of sustainability claims (control: no claim; treatment: claim above the price). Measure conversion lift on actual purchases. The lift, not the rating, is the buyer\u2019s revealed preference.', 'answer');
     }
     btn.disabled = false;
@@ -3574,7 +3574,7 @@ No preamble, no closer.</pre>
         emit('cc-tool', 'Bash(jq .reviews | head -200)');
         await new Promise(function(r){setTimeout(r,460);});
         try{
-          var r = await fetch('http://localhost:8787/api/exhibit/generic', {
+          var r = await fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -3614,7 +3614,7 @@ No preamble, no closer.</pre>
       setHTML(target, '');
       step(target, 'thinking', model + ' thinking');
       try{
-        var r = await fetch('http://localhost:8787/api/exhibit/generic', {
+        var r = await fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -3689,13 +3689,13 @@ No preamble, no closer.</pre>
       function step(cls,txt){var d=document.createElement('div');d.className='demo-step '+cls;d.textContent=txt;out.appendChild(d)}
       step('thinking','reading transcript');
       try{
-        var r=await fetch('http://localhost:8787/api/exhibit/generic',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system:'You audit a buyer recall transcript. Return three labeled blocks: BRANDS NAMED (frequency table, first-mention vs total mentions), ATTRIBUTES USED (mark each SALIENT-DIAGNOSTIC, SALIENT-NOT-DIAGNOSTIC, DIAGNOSTIC-NOT-SALIENT, or NEITHER, with one quoted phrase as evidence), CHEAPEST GROWTH MOVE (the diagnostic-not-salient attribute the brand could move into salient-diagnostic, with named asset and one-sentence expected effect on first-recall share). No preamble, no closer.',user:t,model:'claude-haiku-4-5',max_tokens:500})});
+        var r=await fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system:'You audit a buyer recall transcript. Return three labeled blocks: BRANDS NAMED (frequency table, first-mention vs total mentions), ATTRIBUTES USED (mark each SALIENT-DIAGNOSTIC, SALIENT-NOT-DIAGNOSTIC, DIAGNOSTIC-NOT-SALIENT, or NEITHER, with one quoted phrase as evidence), CHEAPEST GROWTH MOVE (the diagnostic-not-salient attribute the brand could move into salient-diagnostic, with named asset and one-sentence expected effect on first-recall share). No preamble, no closer.',user:t,model:'claude-haiku-4-5',max_tokens:500})});
         if(!r.ok)throw new Error('proxy '+r.status);
         var d=await r.json();
         if(!d.ok)throw new Error(d.error||'proxy err');
         step('answer',(d.data.text||'').trim());
       }catch(e){
-        step('error','Live AI requires `python core-course/scripts/proxy_server.py` running on localhost:8787. Showing a sample audit so you can see the shape of the answer:');
+        step('error','Live AI is temporarily unavailable. Showing a sample audit so you can see the shape of the answer:');
         step('answer','BRANDS NAMED: Stanley 7 of 10 first-mention; Yeti 2 of 10 first-mention; Hydro Flask 1 of 10 first-mention; Owala 0 first-mention but 4 of 10 total.\n\nATTRIBUTES USED: color-as-personality SALIENT-DIAGNOSTIC ("the cosmo pink one matches my car"); 11-hour cold retention DIAGNOSTIC-NOT-SALIENT ("I assume they all keep ice all day"); leak-proof lid SALIENT-NOT-DIAGNOSTIC ("everyone says it leaks a little"); price NEITHER ("I do not really compare prices, I pick the color").\n\nCHEAPEST GROWTH MOVE: 11-hour cold retention is diagnostic-not-salient. The brand owns the spec but buyers do not retrieve it. Asset: a one-second TikTok cut showing ice cubes intact eleven hours later, no voiceover. Expected effect: lifts cold-retention from diagnostic-not-salient toward salient-diagnostic and breaks the color-only association lock-in.');
       }
       btn.disabled=false;
@@ -3762,7 +3762,7 @@ No preamble, no closer.</pre>
         emit('cc-pa-tool', 'Bash(jq .relationship_form brand-brief.json)');
         await new Promise(function(r){setTimeout(r,460);});
         try{
-          var r = await fetch('http://localhost:8787/api/exhibit/generic', {
+          var r = await fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -3795,7 +3795,7 @@ No preamble, no closer.</pre>
   // Shared proxy call. Returns the model's text, or throws on failure.
   async function callProxy(system, user, opts){
     opts = opts || {};
-    var resp = await fetch('http://localhost:8787/api/exhibit/generic', {
+    var resp = await fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -3922,7 +3922,7 @@ No preamble, no closer.</pre>
           );
           step(askOut, 'answer', text);
         } catch (e) {
-          step(askOut, 'error', 'Live AI requires `python core-course/scripts/proxy_server.py` running on localhost:8787. Sample answer:');
+          step(askOut, 'error', 'Live AI is temporarily unavailable. Sample answer:');
           step(askOut, 'answer',
             '1. 8:14 a.m. dash to class: the empty thermos cue. A visible drive-through line carries retrieval.\n' +
             '2. The Sunday pour-over ritual: the bean-grinder cue. Packaging design and a story-of-the-bean blurb carry retrieval.\n' +
@@ -4043,7 +4043,7 @@ No preamble, no closer.</pre>
           );
           step(askOut, 'answer', text);
         } catch (e) {
-          step(askOut, 'error', 'Live AI requires `python core-course/scripts/proxy_server.py` running on localhost:8787. Sample answer:');
+          step(askOut, 'error', 'Live AI is temporarily unavailable. Sample answer:');
           step(askOut, 'answer',
             '1. Recent movers in the last 60 days: the move event opens an 8-12 week window. Detectable signal: USPS change-of-address feed, or any in-app prompt asking for a new shipping address.\n' +
             '2. Parents in the first 90 days postpartum: a new-baby event opens a 10-16 week window for snack and beverage routines. Detectable signal: subscription sign-up to a diaper service.\n' +
@@ -4166,7 +4166,7 @@ No preamble, no closer.</pre>
           );
           step(askOut, 'answer', text);
         } catch (e) {
-          step(askOut, 'error', 'Live AI requires `python core-course/scripts/proxy_server.py` running on localhost:8787. Sample answer:');
+          step(askOut, 'error', 'Live AI is temporarily unavailable. Sample answer:');
           step(askOut, 'answer',
             'MODE: EPS (extensive problem solving).\n' +
             'MAO: motivation high (long-term financial commitment), ability moderate (numbers are checkable but jargon is opaque), opportunity moderate (a 90-day enrollment window).\n' +
@@ -4215,7 +4215,7 @@ No preamble, no closer.</pre>
         step(outS, 'answer', both[1]);
       } catch (e) {
         outV.innerHTML = ''; outS.innerHTML = '';
-        step(outV, 'error', 'Live AI requires `python core-course/scripts/proxy_server.py` running on localhost:8787. Sample answers:');
+        step(outV, 'error', 'Live AI is temporarily unavailable. Sample answers:');
         step(outV, 'answer', FALLBACK_VAGUE);
         step(outS, 'answer', FALLBACK_SHARP);
       }
@@ -4259,7 +4259,7 @@ No preamble, no closer.</pre>
         step(outS, 'answer', both[1]);
       } catch (e) {
         outV.innerHTML = ''; outS.innerHTML = '';
-        step(outV, 'error', 'Live AI requires `python core-course/scripts/proxy_server.py` running on localhost:8787. Sample answers:');
+        step(outV, 'error', 'Live AI is temporarily unavailable. Sample answers:');
         step(outV, 'answer', FALLBACK_V);
         step(outS, 'answer', FALLBACK_S);
       }

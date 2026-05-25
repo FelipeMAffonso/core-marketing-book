@@ -3429,7 +3429,7 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
           }, 700);
         }
         function callModel() {
-          fetch('http://localhost:8787/api/exhibit/generic', {
+          fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -3538,7 +3538,7 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
       var sysPrompt = 'You are a marketing analyst writing a brief for the brand manager. Write the brief directly from the input; do not search the web and do not say you will search. Be concise. Output 4-6 short bullet points: top movers, citation share change, biggest miss, recommended action. No fluff.';
       setTimeout(function() {
         step('tool', 'Composing the brief against the brand-voice rubric...');
-        fetch('http://localhost:8787/api/exhibit/generic', {
+        fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ system: sysPrompt, user: text, model: 'claude-haiku-4-5', max_tokens: 400 })
         }).then(function(resp) {
@@ -3569,7 +3569,7 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
     var opusOut = panes[1];
     function callOne(target, model, prompt) {
       target.innerHTML = '<div class="demo-step thinking">' + model + ' thinking...</div>';
-      return fetch('http://localhost:8787/api/exhibit/generic', {
+      return fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ system: 'You are a marketing strategist. Answer directly from your own knowledge; do not search the web and do not say you will search. Be specific. Output 3 bullets max, each under 18 words.', user: prompt, model: model, max_tokens: 220 })
       }).then(function(resp) {
@@ -3713,7 +3713,7 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
     stream.hidden = false; stream.innerHTML = '';
     emit('judge', 'Second model call. Same Sonnet, different system prompt.');
     var thinking = emit('thinking', 'Reading outputs and scoring against the 5-dimension rubric...');
-    fetch('http://localhost:8787/api/exhibit/generic', {
+    fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -3858,7 +3858,7 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
         : 'claude-sonnet-4-6';
       var sysPrompt = 'You are a marketing analyst writing a 4-line agent report posted to a Slack channel. The Skill loaded is /' + skillSlug + '. The brand is Liquid Death. Output exactly 4 short bullet lines, each prefixed with the bullet character. No headers, no preamble, no closing line. Each bullet under 22 words. Cite a number where the data supports one.';
       var userPrompt = 'Skill brief: ' + brief + '\n\nLive data from MCP server ' + mcp.host + ':\n' + mcp.returns + '\n\nWrite the 4-bullet report now.';
-      fetch('http://localhost:8787/api/exhibit/generic', {
+      fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ system: sysPrompt, user: userPrompt, model: apiModel, max_tokens: 280 })
@@ -3875,7 +3875,7 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
         emit('t', 'step 6: claude-haiku-4-5 self-grades the report against the eval rubric. (LLM-as-judge call)');
         var judgeSys = 'You are an evaluator scoring a marketing agent report against a 5-criterion rubric: correctness (1-5), completeness (1-5), specificity (1-5), action-orientation (1-5), brevity (1-5). Output exactly 5 lines, format: criterion: score / 5 - one-line note. Then a final line: total: N / 25 - verdict (shippable / one more iteration / redesign).';
         var judgeUser = 'Skill: /' + skillSlug + '\n\nReport to grade:\n' + reportText;
-        return fetch('http://localhost:8787/api/exhibit/generic', {
+        return fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ system: judgeSys, user: judgeUser, model: 'claude-haiku-4-5', max_tokens: 240 })
@@ -3959,7 +3959,7 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
         }, fakeMs);
       });
     }
-    return fetch('http://localhost:8787/api/exhibit/generic', {
+    return fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ system: SYSTEMS[engine], user: q, model: 'claude-haiku-4-5', max_tokens: 80 })
@@ -3985,7 +3985,7 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
     var preflight = new Promise(function(resolve) {
       var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
       var timer = setTimeout(function() { if (ctrl) ctrl.abort(); resolve(false); }, 2500);
-      fetch('http://localhost:8787/api/exhibit/generic', {
+      fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ system: 'reply with the single word ok', user: 'ping', model: 'claude-haiku-4-5', max_tokens: 4 }),
@@ -4070,7 +4070,7 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
     judge2: { voice: { score: 5, note: 'on-brand' }, banned: { score: 5, note: 'clean' }, cadence: { score: 4, note: 'short, concrete-first' }, concrete: { score: 5, note: 'flavor named, sensory image present' }, pass: true, revise_note: 'Ship.', total: 19 }
   };
   function callProxy(system, user) {
-    return fetch('http://localhost:8787/api/exhibit/generic', {
+    return fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ system: system, user: user, model: 'claude-haiku-4-5', max_tokens: 280 })
     }).then(function(resp) {
@@ -4237,7 +4237,7 @@ Before shipping, run the eval set at <code>evals/voice-pass.json</code>. If any 
     btn.disabled = true;
     out.hidden = false;
     out.innerHTML = '<span class="rc-thinking">classifying task against the four-tier ladder...</span>';
-    fetch('http://localhost:8787/api/exhibit/generic', {
+    fetch('https://core-course-proxy.webmarinelli.workers.dev/api/exhibit/generic', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
