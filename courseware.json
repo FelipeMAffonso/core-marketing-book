@@ -28,7 +28,7 @@
     {
       "id": "build",
       "title": "Build",
-      "blurb": "Go further: stand up your own AI teaching assistant on the course corpus."
+      "blurb": "Go further: use AI to build your own course tools, from a teaching assistant to a Canvas dashboard and live LMS access."
     }
   ],
   "components": [
@@ -186,15 +186,6 @@
       "meta": "draft"
     },
     {
-      "id": "whats-new",
-      "group": "adopt-deploy",
-      "title": "What's New / Roadmap",
-      "blurb": "What just shipped and what's coming next, so you always know the state of the package.",
-      "status": "available",
-      "href": "whats-new.html",
-      "meta": "shipped + coming soon"
-    },
-    {
       "id": "ai-teaching-assistant",
       "group": "build",
       "title": "Build an AI Teaching Assistant",
@@ -202,6 +193,24 @@
       "status": "planned",
       "href": null,
       "meta": null
+    },
+    {
+      "id": "build-canvas-dashboard",
+      "group": "build",
+      "title": "Build an Interactive Dashboard on Canvas",
+      "blurb": "Use AI to build a single-page course dashboard and embed it in Canvas with one iframe, so a large, multi-section course feels navigable instead of overwhelming.",
+      "status": "planned",
+      "href": null,
+      "meta": "Canvas embed"
+    },
+    {
+      "id": "canvas-mcp",
+      "group": "build",
+      "title": "Canvas MCP",
+      "blurb": "An MCP server that gives AI coding agents full access to Canvas LMS, so Claude, Cursor, Codex, and 40+ other agents manage assignments, grades, and modules in plain language.",
+      "status": "planned",
+      "href": null,
+      "meta": "MCP server · 90+ tools"
     }
   ]
 }
