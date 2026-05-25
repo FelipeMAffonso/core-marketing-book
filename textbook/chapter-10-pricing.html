@@ -123,12 +123,22 @@
 #w102 .wv-cost.wv-cost{color:#6b6b6b !important;}
 #w102 .wv-ans .ph.ph{color:#6b6b6b !important;}
 #w102 .wv-note.wv-note{color:#6b6b6b !important;}
-/* (2) White-on-coral run/toggle buttons: darken the background, keep white text (5.83:1); hover deeper. */
-.dd-designer .ddw-btn.ddw-btn{background:#a8472a !important;color:#ffffff !important;}
-.dd-designer .ddw-btn.ddw-btn:hover{background:#8f3c23 !important;}
-.cmp-box .cmp-go.cmp-go{background:#a8472a !important;color:#ffffff !important;}
-.cmp-box .cmp-go.cmp-go:hover{background:#8f3c23 !important;}
+/* (2) White-on-coral run/toggle buttons standardized to coral-deep #B8553A
+   (4.65:1 with white text, passes AA, cleaner than the old muddy #a8472a);
+   hover one step darker. Applies to every AI-widget button in the chapter so
+   they read as one consistent control. */
+.dd-designer .ddw-btn.ddw-btn{background:#B8553A !important;color:#ffffff !important;}
+.dd-designer .ddw-btn.ddw-btn:hover{background:#a8472a !important;}
+.cmp-box .cmp-go.cmp-go{background:#B8553A !important;color:#ffffff !important;}
+.cmp-box .cmp-go.cmp-go:hover{background:#a8472a !important;}
 .cmp-box .cmp-go.cmp-go:disabled{background:#6b6b6b !important;}
+.demo-button{background:#B8553A;}
+.demo-button:hover{background:#a8472a;}
+/* Two-tier competitor audit: make the deep-tier pane visually distinct from
+   the fast tier so the contrast Felipe asked for reads at a glance. */
+.cmp-box .cmp-pane-deep{border-left:3px solid var(--coral);background:#fffaf7;}
+.cmp-box .cmp-tier{display:inline-block;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1px;padding:2px 6px;border-radius:3px;background:var(--cream);color:var(--ink-2);margin-right:7px;vertical-align:middle;}
+.cmp-box .cmp-tier-deep{background:var(--coral);color:#fff;}
 /* (3) Small coral-deep text on cream -> #a8472a (~5:1). Narration emphasis in the decoy + freemium widgets. */
 .dd-designer .ddw-narrate strong.ddw-narrate-s,.dd-designer .ddw-narrate strong{color:#a8472a !important;}
 .fm-calc .fm-narrate strong{color:#a8472a !important;}
@@ -557,6 +567,8 @@
 
 <p data-focused style="display:none">Value-based pricing is only as good as the firm's read of <span class="term" data-tt="Willingness to pay (WTP) is the most a specific buyer would pay before walking away. It varies across buyers, and that variation is what gives the demand curve its downward slope.">willingness to pay</span> (WTP), the most a buyer would pay before walking away. A marketer who pays $35 for a Stanley tumbler still has to price for a buyer who pays $20 and one who pays $60. That spread across buyers is what gives the demand curve its downward slope.<sup class="cite" data-cite="ref-2"></sup></p>
 
+<aside class="sn sn-ai"><span class="sn-ai-cap">AI tip</span>Before you survey anyone, ask Claude or ChatGPT to run a synthetic price test: <em>"Act as eight buyers for my product, each with a one-line persona, and answer the four Van Westendorp questions with a dollar amount."</em> You get a rough acceptable band in two minutes, which you then treat as a hypothesis to check against real buyers rather than as the survey itself.</aside>
+
 <figure class="sketch" aria-label="A willingness-to-pay distribution: each customer has a different maximum price, so demand spreads across a range rather than sitting at one number, which is why a single posted price leaves money on both sides.">
   <div class="mount" id="sk-wtp-distribution-mount" data-w="700" data-h="240" aria-hidden="true"></div>
 </figure>
@@ -625,54 +637,70 @@
 <p data-focused style="display:none">The answers aggregate into cumulative curves that cross at four landmark prices, plotted in Figure 10.2. Where <em>too cheap</em> meets <em>too expensive</em> is the <strong>optimal price point</strong>, the center of the band. The crossings with <em>bargain</em> mark the band's upper and lower edges, below which the product reads as cheap and stops reading as a deal.<sup class="cite" data-cite="ref-17"></sup></p>
 
 <figure id="fig-2">
-  <svg viewBox="0 0 720 460" role="img" aria-labelledby="fig2-t" xmlns="http://www.w3.org/2000/svg">
-    <title id="fig2-t">Van Westendorp PSM: four cumulative curves bounding the acceptable range.</title>
+  <svg viewBox="0 0 720 440" role="img" aria-labelledby="fig2-t" xmlns="http://www.w3.org/2000/svg">
+    <title id="fig2-t">Van Westendorp PSM: four cumulative curves cross at three landmark prices. Too cheap and too expensive cross at the optimal price point OPP of $3.00. Too cheap and bargain cross at the point of marginal cheapness PMC of $2.00, the lower bound. Too expensive and bargain cross at the point of marginal expensiveness PME of $3.50, the upper bound. The acceptable range is the band from $2.00 to $3.50.</title>
     <defs>
       <linearGradient id="psm-fill" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#DA7756" stop-opacity="0.14"/>
+        <stop offset="0%" stop-color="#DA7756" stop-opacity="0.13"/>
         <stop offset="100%" stop-color="#DA7756" stop-opacity="0.03"/>
       </linearGradient>
     </defs>
-    <g font-family="Inter, sans-serif" font-size="12" fill="#555">
+    <g font-family="Inter, sans-serif">
+      <!-- Acceptable-range band: PMC ($2 = x225) to PME ($3.5 = x442) -->
+      <rect x="225" y="40" width="217" height="340" fill="url(#psm-fill)"/>
+      <text x="333" y="34" text-anchor="middle" fill="#B8553A" font-size="11" font-weight="700" letter-spacing="0.04em">ACCEPTABLE RANGE</text>
+
+      <!-- Axes -->
       <line x1="80" y1="380" x2="660" y2="380" stroke="#1a1a1a" stroke-width="1.2"/>
       <line x1="80" y1="40" x2="80" y2="380" stroke="#1a1a1a" stroke-width="1.2"/>
       <text x="370" y="420" text-anchor="middle" fill="#1a1a1a" font-size="12" font-weight="600">price ($)</text>
-      <text x="40" y="210" text-anchor="middle" transform="rotate(-90 40 210)" fill="#1a1a1a" font-size="12" font-weight="600">cumulative % of respondents</text>
+      <text x="34" y="210" text-anchor="middle" transform="rotate(-90 34 210)" fill="#1a1a1a" font-size="12" font-weight="600">cumulative % of respondents</text>
       <g fill="#888" font-size="10">
-        <line x1="80" y1="380" x2="80" y2="390" stroke="#888"/><text x="80" y="400" text-anchor="middle">$1</text>
-        <line x1="225" y1="380" x2="225" y2="390" stroke="#888"/><text x="225" y="400" text-anchor="middle">$2</text>
-        <line x1="370" y1="380" x2="370" y2="390" stroke="#888"/><text x="370" y="400" text-anchor="middle">$3</text>
-        <line x1="515" y1="380" x2="515" y2="390" stroke="#888"/><text x="515" y="400" text-anchor="middle">$4</text>
-        <line x1="660" y1="380" x2="660" y2="390" stroke="#888"/><text x="660" y="400" text-anchor="middle">$5</text>
-        <line x1="80" y1="380" x2="71" y2="380" stroke="#888"/><text x="68" y="384" text-anchor="end">0%</text>
-        <line x1="80" y1="210" x2="71" y2="210" stroke="#888"/><text x="68" y="214" text-anchor="end">50%</text>
-        <line x1="80" y1="40" x2="71" y2="40" stroke="#888"/><text x="68" y="44" text-anchor="end">100%</text>
+        <line x1="80" y1="380" x2="80" y2="389" stroke="#888"/><text x="80" y="400" text-anchor="middle">$1</text>
+        <line x1="225" y1="380" x2="225" y2="389" stroke="#888"/><text x="225" y="400" text-anchor="middle">$2</text>
+        <line x1="370" y1="380" x2="370" y2="389" stroke="#888"/><text x="370" y="400" text-anchor="middle">$3</text>
+        <line x1="515" y1="380" x2="515" y2="389" stroke="#888"/><text x="515" y="400" text-anchor="middle">$4</text>
+        <line x1="660" y1="380" x2="660" y2="389" stroke="#888"/><text x="660" y="400" text-anchor="middle">$5</text>
+        <line x1="80" y1="380" x2="71" y2="380" stroke="#888"/><text x="66" y="384" text-anchor="end">0%</text>
+        <line x1="80" y1="210" x2="71" y2="210" stroke="#888"/><text x="66" y="214" text-anchor="end">50%</text>
+        <line x1="80" y1="40" x2="71" y2="40" stroke="#888"/><text x="66" y="44" text-anchor="end">100%</text>
       </g>
-      <rect x="290" y="40" width="160" height="340" fill="url(#psm-fill)"/>
-      <text x="370" y="56" text-anchor="middle" fill="#B8553A" font-size="11" font-weight="700">ACCEPTABLE RANGE</text>
-      <text x="370" y="70" text-anchor="middle" fill="#B8553A" font-size="9.5" font-style="italic">[ PMC, PME ]</text>
-      <line x1="370" y1="40" x2="370" y2="380" stroke="#B8553A" stroke-width="1.4" stroke-dasharray="5,4" opacity="0.85"/>
-      <text x="378" y="148" fill="#B8553A" font-size="10" font-style="italic" opacity="0.85">optimal-price line</text>
-      <path d="M 80 380 Q 200 350 290 280 Q 380 200 515 100 Q 600 60 660 40" fill="none" stroke="#B8553A" stroke-width="2"/>
-      <text x="630" y="50" fill="#B8553A" font-size="11" font-weight="600" text-anchor="end">too expensive</text>
-      <path d="M 80 40 Q 200 80 290 130 Q 380 200 515 290 Q 600 340 660 380" fill="none" stroke="#DA7756" stroke-width="2"/>
-      <text x="100" y="60" fill="#DA7756" font-size="11" font-weight="600">too cheap</text>
-      <path d="M 80 380 Q 180 360 270 320 Q 360 270 460 200 Q 560 140 660 80" fill="none" stroke="#B8553A" stroke-width="2" stroke-dasharray="5,4" opacity="0.55"/>
-      <text x="500" y="170" fill="#B8553A" font-size="11" font-weight="600" opacity="0.7">getting expensive</text>
-      <path d="M 80 60 Q 180 100 270 150 Q 360 220 460 290 Q 560 340 660 360" fill="none" stroke="#DA7756" stroke-width="2" stroke-dasharray="5,4" opacity="0.55"/>
-      <text x="200" y="115" fill="#DA7756" font-size="11" font-weight="600" opacity="0.75">bargain</text>
-      <circle cx="370" cy="200" r="5" fill="#B8553A"/>
-      <text x="370" y="188" text-anchor="middle" fill="#B8553A" font-size="11" font-weight="700">OPP $3.00</text>
-      <text x="370" y="170" text-anchor="middle" fill="#555" font-size="10">optimal price</text>
-      <circle cx="290" cy="280" r="4" fill="#1a1a1a"/>
-      <text x="240" y="296" text-anchor="middle" fill="#1a1a1a" font-size="10" font-weight="600">PMC $2.00</text>
-      <text x="240" y="314" text-anchor="middle" fill="#555" font-size="9.5">point of marginal cheapness</text>
-      <circle cx="450" cy="190" r="4" fill="#1a1a1a"/>
-      <text x="560" y="187" text-anchor="middle" fill="#1a1a1a" font-size="10" font-weight="600">PME $3.50</text>
-      <text x="560" y="205" text-anchor="middle" fill="#555" font-size="9.5">point of marginal expensiveness</text>
+
+      <!-- OPP vertical guide -->
+      <line x1="370" y1="40" x2="370" y2="380" stroke="#B8553A" stroke-width="1.3" stroke-dasharray="5,4" opacity="0.7"/>
+
+      <!-- Four cumulative curves (smooth cubics passing exactly through the landmark crossings) -->
+      <!-- too expensive (ascending, solid) -->
+      <path d="M 80 360 C 160 325 250 265 370 210 C 400 196 425 185 442 176 C 500 150 580 105 660 60" fill="none" stroke="#B8553A" stroke-width="2.2"/>
+      <!-- too cheap (descending, solid) -->
+      <path d="M 80 68 C 130 88 180 112 225 135 C 270 158 330 188 370 210 C 430 240 520 300 660 360" fill="none" stroke="#DA7756" stroke-width="2.2"/>
+      <!-- bargain (descending, dashed, lighter) -->
+      <path d="M 80 101 C 130 114 180 126 225 135 C 290 148 380 165 442 176 C 510 188 580 212 660 244" fill="none" stroke="#DA7756" stroke-width="1.8" stroke-dasharray="5,4" opacity="0.6"/>
+      <!-- getting expensive (ascending, dashed, lighter) -->
+      <path d="M 80 319 C 180 290 280 255 370 224 C 470 200 570 165 660 135" fill="none" stroke="#B8553A" stroke-width="1.8" stroke-dasharray="5,4" opacity="0.6"/>
+
+      <!-- Curve labels, stacked clear of one another at the curve ends (white halo for legibility) -->
+      <g font-size="11" font-weight="600" paint-order="stroke" stroke="#fff" stroke-width="3.5" stroke-linejoin="round">
+        <text x="92" y="62" fill="#DA7756">too cheap</text>
+        <text x="652" y="52" text-anchor="end" fill="#B8553A">too expensive</text>
+        <text x="652" y="120" text-anchor="end" fill="#B8553A" opacity="0.85">getting expensive</text>
+        <text x="652" y="256" text-anchor="end" fill="#DA7756" opacity="0.9">bargain</text>
+      </g>
+
+      <!-- Landmark crossings: dots on the true intersections, short codes with white halo -->
+      <!-- PMC $2.00 = too cheap x bargain at (225,135) -->
+      <circle cx="225" cy="135" r="4.5" fill="#1a1a1a"/>
+      <text x="217" y="124" text-anchor="end" fill="#1a1a1a" font-size="11" font-weight="700" paint-order="stroke" stroke="#fff" stroke-width="3.5">PMC $2.00</text>
+      <!-- OPP $3.00 = too cheap x too expensive at (370,210) -->
+      <circle cx="370" cy="210" r="5.5" fill="#B8553A"/>
+      <text x="379" y="200" fill="#555" font-size="10" paint-order="stroke" stroke="#fff" stroke-width="3">optimal price</text>
+      <text x="379" y="215" fill="#B8553A" font-size="11.5" font-weight="700" paint-order="stroke" stroke="#fff" stroke-width="3.5">OPP $3.00</text>
+      <!-- PME $3.50 = too expensive x bargain at (442,176) -->
+      <circle cx="442" cy="176" r="4.5" fill="#1a1a1a"/>
+      <text x="451" y="172" fill="#1a1a1a" font-size="11" font-weight="700" paint-order="stroke" stroke="#fff" stroke-width="3.5">PME $3.50</text>
     </g>
   </svg>
-  <figcaption><span class="fnum" data-cap="figure"></span> Van Westendorp PSM on a canned-water product priced $1-5.</figcaption>
+  <figcaption><span class="fnum" data-cap="figure"></span> Van Westendorp PSM on a canned-water product priced $1 to $5. The four cumulative curves cross at three landmark prices: the optimal price point (OPP, where <em>too cheap</em> meets <em>too expensive</em>), the point of marginal cheapness (PMC, the lower bound where <em>too cheap</em> meets <em>bargain</em>), and the point of marginal expensiveness (PME, the upper bound where <em>too expensive</em> meets <em>bargain</em>). The shaded band from PMC to PME is the acceptable range.</figcaption>
 </figure>
 
 <p data-complete>The widget below turns those four crossings into something you can move. Each slider is the median answer to one PSM question, so dragging a slider redraws the four cumulative curves and recomputes where they cross at OPP, IPP, PMC, and PME. Drag <em>too expensive</em> to the right and the band widens, while dragging <em>bargain</em> to the left lifts the lower bound. The point the widget makes is narrow and worth holding onto: the four medians are the four PSM questions, and the band is whatever their crossings say it is.</p>
@@ -767,6 +795,8 @@
 <p data-complete>Buyers read every price through a comparison lens. The <span class="term" data-tt="A reference price is the internal benchmark, stored in the buyer's long-term memory, that the buyer uses to judge whether any new posted price feels high, low, or about right. Kent Monroe formalized the concept across three editions of his pricing textbook.">reference price</span> is the internal benchmark each new price gets measured against, and it is a weighted moving average of recent exposures rather than a single fixed number.<sup class="cite" data-cite="ref-21"></sup> A buyer's reference for a latte moves with the last several lattes they bought plus competitor menus, so a $600 dress reads moderate next to a $1,200 sibling and expensive next to a $200 one. Buyers also miss small changes, because the <span class="term" data-tt="The just-noticeable-difference (JND) is the Weber-Fechner law applied to price: the smallest price change a buyer perceives is a roughly constant fraction of the original price (5 to 15 percent across consumer categories), not a constant dollar amount. Below the JND fraction the change is invisible and the firm captures the full increase as margin.">just-noticeable-difference</span> runs 5 to 15 percent across consumer categories, so a change below that fraction is invisible and the firm keeps the full increase as margin. Around that reference sits a <span class="term" data-tt="The latitude of acceptance is a band of prices around the buyer's reference price within which the buyer accepts the posted price without searching for alternatives. The upper edge is too expensive to buy; the lower edge is too cheap to be any good, which is the structural reason price-quality inference exists.">latitude of acceptance</span>, the band inside which a buyer accepts the price without bothering to compare. The lower edge matters as much as the upper one, because a boutique cutting from $60 to $35 to drive volume can watch volume fall when the lower price recodes the product as not the real thing.</p>
 
 <p data-focused style="display:none">Buyers read every price through a comparison lens. The <span class="term" data-tt="A reference price is the internal benchmark in the buyer's memory used to judge whether a new price feels high, low, or right; a moving average of recent exposures.">reference price</span> is the benchmark each price is measured against, so a $600 dress reads moderate next to a $1,200 sibling and expensive next to a $200 one.<sup class="cite" data-cite="ref-21"></sup> Buyers miss small changes, because the <span class="term" data-tt="The just-noticeable-difference is the smallest price change a buyer perceives, roughly 5 to 15 percent; below it the change is invisible margin.">just-noticeable-difference</span> runs 5 to 15 percent. Around it sits a <span class="term" data-tt="The latitude of acceptance is the band around the reference within which a buyer accepts the price without searching; its lower edge is the price-quality floor.">latitude of acceptance</span>, whose lower edge matters too: a boutique cutting from $60 to $35 can lose volume when the price recodes the product as not the real thing.</p>
+
+<aside class="sn sn-ai"><span class="sn-ai-cap">AI tip</span>Claude, ChatGPT, and Gemini all read images. Screenshot any checkout page or restaurant menu, paste it in, and ask <em>"which pricing tactics are at work here, anchor, decoy, charm ending, or partitioned price, and what one change would push more buyers toward the option the seller wants?"</em> You learn to name the tactics this section covers and to read the lever behind a real price screen.</aside>
 
 <figure class="sketch" aria-label="Anchoring in action: the same item reads as cheap or expensive depending on the reference set placed beside it, so the surrounding options, not the item alone, set the buyer's read of the price.">
   <div class="mount" id="sk-anchor-mount" data-w="700" data-h="220" aria-hidden="true"></div>
@@ -948,6 +978,8 @@
 <p data-complete>Chapter 9 closed on the constraint that makes services-pricing its own problem, because a hotel room not sold tonight is gone and an empty seat at takeoff is gone, so pricing a service is a yield problem rather than a margin problem. The pricing approaches so far in this chapter, cost-plus, competitor-match, and value-based, all assume the firm sets one price and lives with it until the next planning cycle. <span class="term" data-tt="Dynamic pricing is changing the posted price in real time against observed demand, time of day, segment, channel, or inventory, rather than holding one price until the next planning cycle.">Dynamic pricing</span> drops that assumption, letting the price change minute to minute, channel to channel, even buyer to buyer, as the algorithm reads demand and inventory and quotes a number near each buyer's willingness to pay at that moment.<sup class="cite" data-cite="ref-2"></sup> Charging each buyer closer to their personal willingness to pay captures more of the surplus a single posted price leaves on the table.</p>
 
 <p data-focused style="display:none">The approaches so far all assume the firm sets one price and lives with it until the next planning cycle. <span class="term" data-tt="Dynamic pricing changes the posted price in real time against demand, time of day, segment, channel, or inventory, rather than holding one price.">Dynamic pricing</span> drops that assumption, letting the price change minute to minute, even buyer to buyer, as the algorithm reads demand and quotes a number near each buyer's willingness to pay.<sup class="cite" data-cite="ref-2"></sup> Charging closer to each buyer's number captures surplus a single price leaves on the table.</p>
+
+<aside class="sn sn-ai"><span class="sn-ai-cap">AI tip</span>Ask Perplexity, or Claude with web search on, <em>"find three dynamic-pricing rollouts from the last two years that drew customer backlash, and quote the line where each company admitted what went wrong."</em> You build a current fairness case library the textbook cannot keep, and you practice reading a live price move through the dual-entitlement lens this chapter closes on.</aside>
 
 <p data-complete>The 2024 to 2026 academic record points to one practical limit, and it is governance rather than computing power. A 2025 thirteen-author <em>IJRM</em> consensus paper bounds the practice with two regulatory ceilings, antitrust on algorithmic collusion and consumer-protection on unlawful discrimination, and surveys 71 pricing managers drawn from a 25,000-professional panel.<sup class="cite" data-cite="ref-27"></sup> The reported barrier is not technical capability. Managers hold back because the model's recommendation is a black box they cannot defend to a regulator, and because the fairness exposure runs through their brand. A 2026 dynamic-pricing decision is a brand-and-governance decision wrapped around an algorithm.</p>
 
@@ -1285,12 +1317,12 @@
   <button class="cmp-go" id="cmp-competitor-go">Run on both models</button>
   <div class="cmp-grid">
     <div class="cmp-pane">
-      <span class="cmp-label">claude-haiku-4-5 (fast tier)</span>
+      <span class="cmp-label"><span class="cmp-tier">FAST TIER</span>claude-haiku-4-5</span>
       <div class="cmp-out demo-stream" id="cmp-competitor-haiku" aria-live="polite" aria-atomic="false"></div>
       <span class="cmp-cost" id="cmp-competitor-haiku-cost"></span>
     </div>
-    <div class="cmp-pane">
-      <span class="cmp-label cmp-smart">claude-opus-4-7 (deep tier)</span>
+    <div class="cmp-pane cmp-pane-deep">
+      <span class="cmp-label cmp-smart"><span class="cmp-tier cmp-tier-deep">DEEP TIER</span>claude-opus-4-7</span>
       <div class="cmp-out demo-stream" id="cmp-competitor-opus" aria-live="polite" aria-atomic="false"></div>
       <span class="cmp-cost" id="cmp-competitor-opus-cost"></span>
     </div>
@@ -1335,34 +1367,26 @@
   <div class="demo" id="w110-monitor">
     <div class="demo-head">
       <span class="demo-title"><span class="cap-num" data-cap="interactive"></span>Try it now &middot; live price monitor</span>
-      Edit the four fields below and press <em>Check prices</em>. The model searches the live web for each competitor's current price, then in one short reply names whether you should hold, raise, or cut, with the pricing lever the recommendation rests on. Same call your scheduled script will make every week.
+      Edit the fields and press <em>Check prices</em>. The model searches the live web for each competitor's current price, then names whether to hold, raise, or cut, with the pricing lever behind the call. This is the same request your scheduled task runs every week.
     </div>
-    <div class="wv-input">
-      <label>Your product
+    <div class="demo-controls">
+      <label style="grid-column:1 / -1;">Your product
         <input id="w110-product" type="text" value="Stanley quencher 40oz tumbler">
       </label>
       <label>Your current price (USD)
         <input id="w110-price" type="number" value="45" min="1" step="0.01">
       </label>
-      <label>Three real competitors (comma separated)
+      <label>Your buyer, in one sentence
+        <input id="w110-buyer" type="text" value="college students buying it as a gift">
+      </label>
+      <label style="grid-column:1 / -1;">Three real competitors (comma separated)
         <input id="w110-comps" type="text" value="Hydro Flask 32oz, Yeti Rambler 36oz, Owala FreeSip 40oz">
       </label>
-      <label>Your buyer in one sentence
-        <input id="w110-buyer" type="text" value="college students buying it as a gift for a roommate">
-      </label>
+      <button class="demo-button" id="w110-go">Check prices</button>
     </div>
-    <div class="wv-qbtns">
-      <button class="wv-qbtn sharp" id="w110-go">
-        <span class="qtag">Run now</span>
-        <span class="qtext">Search the live web, read each competitor's current price, and recommend hold / raise / cut with the lever the recommendation rests on.</span>
-        <span class="qask">Check prices</span>
-      </button>
-    </div>
-    <div class="wv-col sharp" id="w110-col">
-      <div class="wv-colhead"><span class="wv-ct">live web search + recommendation</span><span class="wv-cost" id="w110-cost"></span></div>
-      <div class="wv-ans" id="w110-ans" aria-live="polite" aria-atomic="false"><span class="ph">Press <em>Check prices</em> to run.</span></div>
-    </div>
-    <div class="wv-note">A candidate read from the model, which calls the same web-search tool your scheduled script would call. Treat its prices as current, then verify each one on the source link before acting on the recommendation.</div>
+    <div class="demo-stream" id="w110-ans" aria-live="polite" aria-atomic="false"><span style="color:var(--ink-3);font-style:italic;">Press Check prices to run.</span></div>
+    <div class="demo-foot"><span id="w110-cost"></span></div>
+    <div class="demo-foot">A candidate read from the model, which calls the same web-search tool your scheduled task would. Treat its prices as current, then verify each one on the source link before acting.</div>
   </div>
 
   <h4 style="margin-top:28px;">Step 1, about five minutes &middot; do it once in chat</h4>
@@ -1591,8 +1615,77 @@ if(!usd)return '$0';
 if(usd < 0.001)return '$' + usd.toFixed(6);
 return '$' + usd.toFixed(4);
 };
+/* Render the model's markdown into clean HTML so widget answers read like a
+   real chat reply instead of showing raw **asterisks** and 1. list markers.
+   HTML entities are escaped FIRST, then a small set of markdown tokens are
+   converted, so model output can never inject markup. Handles: bold, italic,
+   inline code, #/##/### headings, - and 1. lists, --- rules, ALL-CAPS
+   "LABEL:" lines (the four-section pricing output), and blank-line paragraphs. */
+window.__mdToHtml__ = function(src){
+  if(!src) return '';
+  var esc = function(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); };
+  var inline = function(s){
+    return s
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>')
+      .replace(/(^|[\s(])_([^_\n]+)_(?=[\s.,;:!?)]|$)/g, '$1<em>$2</em>');
+  };
+  var lines = String(src).replace(/\r\n?/g,'\n').split('\n');
+  var out = '', listType = null;
+  function closeList(){ if(listType){ out += '</' + listType + '>'; listType = null; } }
+  for(var i=0;i<lines.length;i++){
+    var t = lines[i].trim();
+    if(!t){ closeList(); continue; }
+    if(/^(-{3,}|_{3,}|\*{3,})$/.test(t)){ closeList(); out += '<hr>'; continue; }
+    var h = t.match(/^(#{1,6})\s+(.*)$/);
+    if(h){ closeList(); out += '<p class="md-h"><strong>' + inline(esc(h[2])) + '</strong></p>'; continue; }
+    var ol = t.match(/^\d+[.)]\s+(.*)$/);
+    if(ol){ if(listType!=='ol'){ closeList(); out += '<ol>'; listType='ol'; } out += '<li>' + inline(esc(ol[1])) + '</li>'; continue; }
+    var ul = t.match(/^[-*+]\s+(.*)$/);
+    if(ul){ if(listType!=='ul'){ closeList(); out += '<ul>'; listType='ul'; } out += '<li>' + inline(esc(ul[1])) + '</li>'; continue; }
+    closeList();
+    var lab = t.match(/^([A-Z][A-Z /]{2,30}):\s*(.*)$/);
+    if(lab){ out += '<p><strong>' + inline(esc(lab[1])) + ':</strong> ' + inline(esc(lab[2])) + '</p>'; continue; }
+    out += '<p>' + inline(esc(t)) + '</p>';
+  }
+  closeList();
+  return out;
+};
 })();
 </script>
+<style>
+/* Chat-style rendering for AI widget answers (rendered by __mdToHtml__). */
+.wv-ans .md, .demo-step.answer .md { display:block; font-family:var(--sans); font-size:13.5px; color:var(--ink); }
+.wv-ans .md p, .demo-step.answer .md p { margin:0 0 10px 0; line-height:1.55; }
+.wv-ans .md p:last-child, .demo-step.answer .md p:last-child { margin-bottom:0; }
+.wv-ans .md p.md-h, .demo-step.answer .md p.md-h { margin:14px 0 6px 0; }
+.wv-ans .md ul, .wv-ans .md ol, .demo-step.answer .md ul, .demo-step.answer .md ol { margin:6px 0 12px 0; padding-left:22px; }
+.wv-ans .md li, .demo-step.answer .md li { margin:0 0 5px 0; line-height:1.5; }
+.wv-ans .md strong, .demo-step.answer .md strong { color:var(--ink); font-weight:600; }
+.wv-ans .md code, .demo-step.answer .md code { font-family:var(--mono); font-size:0.9em; background:var(--cream); padding:1px 5px; border-radius:3px; }
+.wv-ans .md hr, .demo-step.answer .md hr { border:0; border-top:1px solid var(--line); margin:12px 0; }
+.wv-ans .md.fade-in, .demo-step.answer .md.fade-in { animation:md-fade 320ms cubic-bezier(0.16,1,0.3,1); }
+@keyframes md-fade { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
+@media (prefers-reduced-motion:reduce){ .wv-ans .md.fade-in, .demo-step.answer .md.fade-in { animation:none; } }
+/* Muted footnote lines under a widget (cost readout, verify-the-source note). */
+.demo-foot { padding:8px 18px 0; font:italic 11.5px/1.5 var(--sans); color:var(--ink-3); }
+.demo-foot:last-child { padding-bottom:16px; }
+.demo-foot:empty { display:none; }
+/* AI-tip sidenote: a margin note that gives the reader one thing to try with a
+   chat assistant, badged so it reads as a hands-on tip rather than a citation. */
+.sn-ai .sn-ai-cap { display:inline-block; font-family:var(--mono); font-size:9px; font-weight:700;
+  letter-spacing:1.2px; text-transform:uppercase; color:#fff; background:var(--coral-deep);
+  border-radius:3px; padding:2px 7px; margin-bottom:7px; }
+.sn-ai .sn-ai-cap::before { content:"\2728"; margin-right:5px; } /* sparkle */
+.sn-ai code { font-family:var(--mono); font-size:0.92em; background:var(--cream); padding:0 3px; border-radius:2px; }
+@media (min-width:1000px){
+  .sn-ai { background:#fdf3ee; border-radius:5px; padding:11px 13px; box-sizing:border-box;
+    width:calc(var(--side) + 8px); margin-right:calc(-1 * (var(--side) + var(--gap)) + 0px); }
+  .sn-ai::before { display:none; } /* replace the coral tick with the badge */
+}
+@media (max-width:999px){ .sn-ai { background:#fdf3ee; border-left-color:var(--coral-deep); } }
+</style>
 <script>
 /* Module 0a: tooltips, citations, atlas eyebrows, sidenote fade, stroke-dash */
 (function() {
@@ -3196,11 +3289,11 @@ return '$' + usd.toFixed(4);
     var user = kind === 'vague'
       ? 'What should this cost?\n\n' + brand
       : 'Which of the four pricing approaches fits this brand and segment, and what is the dollar reasoning and a sample band?\n\n' + brand;
-    window.__callGeneric__(sys, user, { model: 'claude-haiku-4-5', max_tokens: kind === 'vague' ? 220 : 460 })
+    window.__callGeneric__(sys, user, { model: 'claude-haiku-4-5', max_tokens: kind === 'vague' ? 700 : 900 })
       .then(function (r) {
         if (!r || r.ok === false) throw new Error((r && r.error) || 'AI error');
         var text = (r.data && r.data.text) || '(empty response)';
-        typeOut(q.ans, text);
+        q.ans.innerHTML = '<div class="md fade-in">' + window.__mdToHtml__(text) + '</div>';
         var cost = (r.usage && r.usage.cost_usd) || 0;
         q.cost.className = 'wv-cost';
         q.cost.textContent = 'Haiku · ' + window.__fmtCost__(cost);
@@ -3210,8 +3303,9 @@ return '$' + usd.toFixed(4);
       })
       .catch(function () {
         q.cost.className = 'wv-cost err';
-        q.cost.textContent = 'proxy offline';
-        q.ans.textContent = '[proxy offline, showing a sample read]\n\n' + fallback(kind);
+        q.cost.textContent = 'sample';
+        q.ans.innerHTML = '<div class="md fade-in"><p><em>Live AI is temporarily unavailable, showing a sample read.</em></p>'
+          + window.__mdToHtml__(fallback(kind)) + '</div>';
         q.btn.dataset.done = '1';
         ran++;
         if (ran >= 2) showVerdict();
@@ -3402,18 +3496,18 @@ return '$' + usd.toFixed(4);
     step(out, 'thinking', model + ' searching the web and reading the prices...');
     try {
       // Pass NO tools so the proxy keeps web_search on by default (2026-current shelf prices).
-      const r = await window.__callGeneric__(sys, prompt, { model: model, max_tokens: 320 });
+      const r = await window.__callGeneric__(sys, prompt, { model: model, max_tokens: 700 });
       if(!r || r.ok === false || r.error) throw new Error((r && r.error) || 'no response');
       const text = ((r.data && r.data.text) || '(empty response)').trim();
       out.innerHTML = '';
-      step(out, 'answer', esc(text).replace(/\n/g, '<br>'));
+      step(out, 'answer', '<div class="md">' + window.__mdToHtml__(text) + '</div>');
       const cost = (r.usage && r.usage.cost_usd) || 0;
       costEl.textContent = model + '  ·  ' + window.__fmtCost__(cost);
       costEl.classList.add('live');
     } catch(e) {
       out.innerHTML = '';
-      step(out, 'error', '[proxy offline, showing a sample read]');
-      step(out, 'answer', esc(fb).replace(/\n/g, '<br>'));
+      step(out, 'error', 'Live AI is temporarily unavailable, showing a sample read.');
+      step(out, 'answer', '<div class="md">' + window.__mdToHtml__(fb) + '</div>');
       costEl.textContent = window.__FALLBACK_MSG__;
     }
   }
@@ -3472,18 +3566,18 @@ return '$' + usd.toFixed(4);
     step(out, 'thinking', 'searching the web for each competitor\'s current price...');
     try {
       // Pass no tools list so the proxy keeps web_search on by default.
-      const r = await window.__callGeneric__(sys, userPrompt, { model: 'claude-sonnet-4-5', max_tokens: 600 });
+      const r = await window.__callGeneric__(sys, userPrompt, { model: 'claude-sonnet-4-5', max_tokens: 900 });
       if(!r || r.ok === false || r.error) throw new Error((r && r.error) || 'no response');
       const text = ((r.data && r.data.text) || '(empty response)').trim();
       out.innerHTML = '';
-      step(out, 'answer', esc(text).replace(/\n/g, '<br>'));
+      step(out, 'answer', '<div class="md">' + window.__mdToHtml__(text) + '</div>');
       const cost = (r.usage && r.usage.cost_usd) || 0;
       costEl.textContent = 'claude-sonnet-4-5  ·  ' + window.__fmtCost__(cost);
       costEl.classList.add('live');
     } catch(e) {
       out.innerHTML = '';
-      step(out, 'error', '[proxy offline, showing a sample read for ' + esc(product) + ']');
-      step(out, 'answer', esc(fbSample).replace(/\n/g, '<br>'));
+      step(out, 'error', 'Live AI is temporarily unavailable, showing a sample read for ' + esc(product) + '.');
+      step(out, 'answer', '<div class="md">' + window.__mdToHtml__(fbSample) + '</div>');
       costEl.textContent = window.__FALLBACK_MSG__;
     }
     btn.disabled = false;
