@@ -185,7 +185,7 @@
     }
     .status-legend span { display: inline-flex; align-items: center; gap: 6px; }
     .status-legend i { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
-    .lg-avail { background: var(--coral-soft); }
+    .lg-avail { background: #34d399; }
     .lg-wip { background: #d8cab2; }
     .lg-planned { background: rgba(255,255,255,0.4); }
 
@@ -257,22 +257,19 @@
       transform: translateY(-3px); text-decoration: none;
     }
     @media (prefers-reduced-motion: reduce) { a.tile:hover { transform: none; } }
-    /* Planned/WIP tiles read as "not yet available" via the dashed border + muted
-       surface + muted icon — NOT via opacity. (Opacity-dimming text composites the
-       colour against the page and drops it below AA, so it is removed; all muted
-       greys below independently meet 4.5:1.) */
-    .tile.is-planned, .tile.is-wip {
+    /* Only PLANNED tiles read as "not yet available": the dashed border, muted
+       surface, and muted icon do that, NOT opacity. (Opacity-dimming text
+       composites the colour against the page and drops it below AA, so it is
+       removed; all muted greys below independently meet 4.5:1.) In-progress
+       (wip) tiles are NOT grayed. They keep the normal card surface and are
+       distinguished only by their "In progress" pill, since a draft is real
+       work the reader can open. */
+    .tile.is-planned {
       background: var(--bg-2); border-style: dashed; box-shadow: none; cursor: default;
     }
-    .tile.is-planned .tile-title, .tile.is-wip .tile-title { color: var(--ink-2); }
-    .tile.is-planned .tile-blurb, .tile.is-wip .tile-blurb { color: var(--ink-2); }
-    .tile.is-planned .tile-icon, .tile.is-wip .tile-icon { color: var(--ink-3); background: var(--bg-3); border-color: var(--border-strong); }
-    /* A wip tile that has a real draft artifact is a reachable link: it keeps the
-       dashed "draft" surface but becomes openable (pointer + coral hover + lift).
-       The icon brightens back to coral on hover so the draft still feels live. */
-    a.tile.is-wip.is-clickable { cursor: pointer; }
-    a.tile.is-wip.is-clickable:hover { border-color: var(--coral); box-shadow: var(--shadow-3); }
-    a.tile.is-wip.is-clickable:hover .tile-icon { color: var(--coral-deep); background: var(--coral-tint); border-color: var(--border); }
+    .tile.is-planned .tile-title { color: var(--ink-2); }
+    .tile.is-planned .tile-blurb { color: var(--ink-2); }
+    .tile.is-planned .tile-icon { color: var(--ink-3); background: var(--bg-3); border-color: var(--border-strong); }
 
     .tile-top { display: flex; align-items: center; gap: 12px; margin-bottom: 13px; }
     .tile-icon {
@@ -293,7 +290,7 @@
       padding: 4px 9px; border-radius: 6px; border: 1px solid;
     }
     .pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-    .pill.available { color: var(--coral-text); border-color: rgba(184,85,58,0.3); background: var(--coral-tint); }
+    .pill.available { color: #15803d; border-color: #b6e0c4; background: #fff; }
     .pill.wip { color: #6f6149; border-color: #ddd0ba; background: #faf6ee; }
     .pill.planned { color: var(--ink-3); border-color: var(--border); background: var(--bg-2); }
 
@@ -773,10 +770,11 @@
 
     function tile(c) {
       var label = STATUS_LABEL[c.status] || "Planned";
-      // A tile is reachable whenever it has a real href — available OR a draft
+      // A tile is reachable whenever it has a real href: available, or a draft
       // (wip) deliverable that already exists. Planned tiles (href null) stay
-      // non-clickable and grayed. WIP tiles keep their dashed/grayed surface +
-      // "In progress" pill, so a draft still reads as a draft, but is openable.
+      // non-clickable and grayed. WIP tiles are NOT grayed; they render as a
+      // normal openable card and read as a draft only through the "In progress"
+      // pill.
       var clickable = !!c.href && (c.status === "available" || c.status === "wip");
       var metaHtml = c.meta ? '<div class="tile-meta">' + esc(c.meta) + "</div>" : "";
       var pill = '<span class="pill ' + esc(c.status) + '">' + esc(label) + "</span>";
