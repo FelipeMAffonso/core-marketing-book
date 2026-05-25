@@ -202,8 +202,128 @@
   </div>
 </figure>
 
-<span class="ax">01 // why pricing exists</span>
-<h2 id="why">Asymmetric Leverage</h2>
+<span class="ax">01 // pricing fundamentals</span>
+<h2 id="why">Pricing Fundamentals</h2>
+
+<p data-complete>Before any of the four approaches make sense, the chapter rests on four pieces of cost arithmetic that decide how much room a price move has to lift profit. The first is <span class="term" data-tt="Variable cost is the cost a firm incurs only when it sells one more unit, like the wholesale cost of the next can of soda on the shelf, the next minute of cloud compute, or the next bag of coffee beans roasted. Variable cost scales linearly with volume and drops to zero if the firm sells nothing this period.">variable cost</span>, the cost a firm pays only when it sells one more unit, so the wholesale cost of the next can of soda or the next bag of coffee beans counts as variable, and the cost goes to zero if the firm sells nothing this period. The second is <span class="term" data-tt="Fixed cost is the cost a firm pays whether it sells one unit or a million, like a long-term store lease, the salary of a brand manager, or a year-end software subscription. Fixed cost does not scale with volume in the short run, which is why a firm with high fixed costs has more to lose from a single bad quarter.">fixed cost</span>, the cost the firm carries whether it sells one unit or a million, including a long-term lease, a brand-manager salary, or a year-end software subscription, and a firm's exposure to a slow quarter rises with the share of its costs that sit in this bucket.</p>
+
+<p data-focused style="display:none">Four pieces of cost arithmetic decide how much room a price move has. <span class="term" data-tt="Variable cost is the cost the firm pays only when it sells one more unit. It scales linearly with volume.">Variable cost</span> is paid only when one more unit is sold, while <span class="term" data-tt="Fixed cost is the cost the firm pays whether it sells one unit or a million, like rent or a salaried brand manager. It does not scale with volume in the short run.">fixed cost</span> is paid whether the firm sells one unit or a million, and the share of costs sitting in the fixed bucket is the firm's exposure to a slow quarter.</p>
+
+<p data-complete>The third piece is <span class="term" data-tt="Contribution margin is the dollar amount each unit contributes to fixed cost and profit after its own variable cost is paid. The unit version is price minus variable cost per unit (e.g. $4 latte minus $0.80 in beans, milk, and cup = $3.20 contribution margin per latte). The percentage version is contribution margin per unit divided by price. A higher contribution margin means each extra unit sold leaves more dollars to cover fixed cost and turn into profit.">contribution margin</span>, the dollars each unit contributes toward fixed cost and profit after the unit's own variable cost has been paid, calculated as price minus variable cost per unit. A $4 latte that costs the shop $0.80 in beans, milk, and a cup carries a contribution margin of $3.20 per latte, and the percentage version, contribution margin divided by price, runs about 80 percent for that latte and closer to 5 percent for a can of soda at a convenience store. The fourth piece is the <span class="term" data-tt="Breakeven volume is the number of units a firm must sell at a given price to cover its fixed cost, calculated as fixed cost divided by contribution margin per unit. A cafe with $4,000 a month in fixed cost and a $3.20 contribution margin per latte breaks even at 1,250 lattes a month, after which every additional latte adds $3.20 of profit.">breakeven volume</span>, the number of units the firm has to sell at a given price to cover its fixed cost, calculated as fixed cost divided by contribution margin per unit. A cafe with $4,000 a month in fixed cost breaks even at 1,250 lattes a month at that $3.20 contribution margin, and a price cut to $3.50 drops the contribution margin to $2.70, which lifts the breakeven volume to roughly 1,481 lattes a month.</p>
+
+<p data-focused style="display:none"><span class="term" data-tt="Contribution margin is price minus variable cost per unit, the dollars each unit contributes to fixed cost and profit.">Contribution margin</span> is price minus variable cost per unit, so a $4 latte that costs the shop $0.80 in beans, milk, and cup carries a $3.20 contribution margin and runs about 80 percent on price. <span class="term" data-tt="Breakeven volume is fixed cost divided by contribution margin per unit, the unit count needed to cover fixed cost at a given price.">Breakeven volume</span> is fixed cost divided by contribution margin per unit, so a cafe with $4,000 a month in fixed cost breaks even at 1,250 lattes at that margin, and a price cut to $3.50 lifts the breakeven to roughly 1,481.</p>
+
+<figure id="fig-fundamentals-margin" aria-labelledby="fig-margin-t">
+  <svg viewBox="0 0 720 280" role="img" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif" font-size="13" fill="#1a1a1a">
+    <title id="fig-margin-t">Contribution margin in two products: an $4 latte carries 80 percent contribution margin while a $0.50 can of soda at a convenience store carries 5 percent, because the variable cost of beans and milk is small relative to price while the wholesale cost of the soda eats most of the dollar.</title>
+    <defs>
+      <linearGradient id="margin-coral-fill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#DA7756" stop-opacity="0.85"/>
+        <stop offset="100%" stop-color="#DA7756" stop-opacity="0.70"/>
+      </linearGradient>
+    </defs>
+    <text x="360" y="28" text-anchor="middle" font-weight="700" font-size="14">what one dollar of price actually buys</text>
+    <text x="360" y="46" text-anchor="middle" fill="#555" font-style="italic" font-size="12">price = variable cost per unit + contribution margin</text>
+
+    <!-- Latte bar -->
+    <text x="80" y="84" font-weight="600">$4 latte</text>
+    <text x="80" y="102" fill="#555" font-size="11">variable cost: $0.80 in beans, milk, cup</text>
+    <g transform="translate(80,118)">
+      <!-- variable cost segment: 0.80/4.00 = 20% of 560px wide bar = 112px -->
+      <rect x="0" y="0" width="112" height="46" fill="#e6dfd2" stroke="#888" stroke-width="1"/>
+      <text x="56" y="28" text-anchor="middle" fill="#1a1a1a" font-weight="600" font-size="12">$0.80</text>
+      <text x="56" y="62" text-anchor="middle" fill="#555" font-size="10">variable cost</text>
+      <!-- contribution margin segment: 3.20/4.00 = 80% = 448px -->
+      <rect x="112" y="0" width="448" height="46" fill="url(#margin-coral-fill)" stroke="#B8553A" stroke-width="1"/>
+      <text x="336" y="28" text-anchor="middle" fill="#fff" font-weight="700" font-size="13">contribution margin $3.20  (80%)</text>
+      <text x="336" y="62" text-anchor="middle" fill="#B8553A" font-size="10">covers fixed cost and profit</text>
+    </g>
+
+    <!-- Soda bar -->
+    <text x="80" y="194" font-weight="600">$0.50 can of soda at a convenience store</text>
+    <text x="80" y="212" fill="#555" font-size="11">variable cost: $0.475 wholesale + cup</text>
+    <g transform="translate(80,228)">
+      <!-- variable cost segment: 0.475/0.50 = 95% = 532px -->
+      <rect x="0" y="0" width="532" height="32" fill="#e6dfd2" stroke="#888" stroke-width="1"/>
+      <text x="266" y="20" text-anchor="middle" fill="#1a1a1a" font-weight="600" font-size="12">$0.475 variable cost</text>
+      <!-- contribution margin segment: 0.025/0.50 = 5% = 28px -->
+      <rect x="532" y="0" width="28" height="32" fill="url(#margin-coral-fill)" stroke="#B8553A" stroke-width="1"/>
+      <text x="595" y="20" fill="#B8553A" font-weight="600" font-size="11">$0.025  (5%)</text>
+    </g>
+  </svg>
+  <figcaption><span class="fnum" data-cap="figure"></span> Contribution margin in two products. A $4 latte keeps about 80 percent of each dollar to cover fixed cost and turn into profit, while a $0.50 can of soda at a convenience store keeps only about 5 percent, which is why a small wholesale shock can wipe out a soda margin entirely while a latte shop can absorb it.</figcaption>
+</figure>
+
+<figure id="fig-fundamentals-breakeven" aria-labelledby="fig-breakeven-t">
+  <svg viewBox="0 0 720 360" role="img" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif" font-size="12" fill="#1a1a1a">
+    <title id="fig-breakeven-t">Breakeven chart for a coffee shop with $4,000 monthly fixed cost selling lattes priced at $4 with $0.80 in variable cost: the revenue line starts at zero and slopes up steeply, the total cost line starts at $4,000 and slopes up gently with variable cost per unit, and the two cross at 1,250 lattes, the breakeven volume.</title>
+    <text x="360" y="26" text-anchor="middle" font-weight="700" font-size="14">where does the shop start making profit?</text>
+    <text x="360" y="44" text-anchor="middle" fill="#555" font-style="italic" font-size="11.5">$4,000 monthly fixed cost · $4 latte · $0.80 variable cost per latte</text>
+
+    <!-- axes (plot area: x 90 to 660, y 90 to 300) -->
+    <line x1="90" y1="300" x2="660" y2="300" stroke="#888" stroke-width="1"/>
+    <line x1="90" y1="90" x2="90" y2="300" stroke="#888" stroke-width="1"/>
+
+    <!-- x ticks at 0, 500, 1000, 1250 (BE), 1500, 2000 -->
+    <g font-size="10.5" fill="#555" text-anchor="middle">
+      <line x1="90"  y1="300" x2="90"  y2="306" stroke="#888"/><text x="90"  y="320">0</text>
+      <line x1="232" y1="300" x2="232" y2="306" stroke="#888"/><text x="232" y="320">500</text>
+      <line x1="374" y1="300" x2="374" y2="306" stroke="#888"/><text x="374" y="320">1,000</text>
+      <line x1="445" y1="300" x2="445" y2="306" stroke="#DA7756" stroke-width="1.5"/><text x="445" y="320" fill="#B8553A" font-weight="700">1,250</text>
+      <line x1="517" y1="300" x2="517" y2="306" stroke="#888"/><text x="517" y="320">1,500</text>
+      <line x1="660" y1="300" x2="660" y2="306" stroke="#888"/><text x="660" y="320">2,000</text>
+      <text x="375" y="342" font-weight="600" fill="#1a1a1a">lattes sold per month</text>
+    </g>
+
+    <!-- y ticks at $0, $2k, $4k, $5k, $6k, $8k -->
+    <g font-size="10.5" fill="#555" text-anchor="end">
+      <line x1="84"  y1="300" x2="90"  y2="300" stroke="#888"/><text x="80" y="304">$0</text>
+      <line x1="84"  y1="248" x2="90"  y2="248" stroke="#888"/><text x="80" y="252">$2,000</text>
+      <line x1="84"  y1="195" x2="90"  y2="195" stroke="#888"/><text x="80" y="199">$4,000</text>
+      <line x1="84"  y1="169" x2="90"  y2="169" stroke="#DA7756" stroke-width="1.5"/><text x="80" y="173" fill="#B8553A" font-weight="700">$5,000</text>
+      <line x1="84"  y1="143" x2="90"  y2="143" stroke="#888"/><text x="80" y="147">$6,000</text>
+      <line x1="84"  y1="90"  x2="90"  y2="90"  stroke="#888"/><text x="80" y="94">$8,000</text>
+    </g>
+
+    <!-- Fixed cost line: horizontal at $4,000 (y=195) -->
+    <line x1="90" y1="195" x2="660" y2="195" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="568" y="190" fill="#555" font-size="11" font-style="italic">fixed cost $4,000</text>
+
+    <!-- Total cost line: y at x=0 is $4,000 (y=195), slope of $0.80 per latte -->
+    <!-- At 2000 lattes, total cost = $4,000 + $1,600 = $5,600 → y ≈ 153 -->
+    <line x1="90" y1="195" x2="660" y2="153" stroke="#888" stroke-width="2"/>
+    <text x="535" y="148" fill="#555" font-weight="600" font-size="11.5">total cost</text>
+
+    <!-- Revenue line: from origin (90, 300) sloping at $4/latte. -->
+    <!-- At 2000 lattes, revenue = $8,000 → y = 90. -->
+    <line x1="90" y1="300" x2="660" y2="90" stroke="#DA7756" stroke-width="2.5"/>
+    <text x="535" y="100" fill="#B8553A" font-weight="700" font-size="12">revenue</text>
+
+    <!-- Breakeven point (1250 lattes, $5,000): x=445, y=169 -->
+    <circle cx="445" cy="169" r="5" fill="#B8553A" stroke="#fff" stroke-width="2"/>
+    <line x1="445" y1="300" x2="445" y2="169" stroke="#DA7756" stroke-width="1" stroke-dasharray="3,3"/>
+    <line x1="90"  y1="169" x2="445" y2="169" stroke="#DA7756" stroke-width="1" stroke-dasharray="3,3"/>
+
+    <!-- Breakeven label box -->
+    <g transform="translate(265,108)">
+      <rect x="0" y="0" width="170" height="46" fill="#fff7f0" stroke="#DA7756" stroke-width="1.5" rx="3"/>
+      <text x="85" y="20" text-anchor="middle" font-weight="700" fill="#B8553A" font-size="12">breakeven</text>
+      <text x="85" y="38" text-anchor="middle" fill="#1a1a1a" font-size="11.5">1,250 lattes · $5,000 revenue</text>
+    </g>
+    <line x1="350" y1="154" x2="438" y2="167" stroke="#B8553A" stroke-width="1"/>
+
+    <!-- Loss / profit zones -->
+    <text x="240" y="270" fill="#888" font-size="11" font-style="italic">loss zone</text>
+    <text x="560" y="240" fill="#B8553A" font-size="11" font-style="italic" font-weight="600">profit zone</text>
+  </svg>
+  <figcaption><span class="fnum" data-cap="figure"></span> Breakeven chart for a coffee shop with $4,000 a month in fixed cost and a $3.20 contribution margin per latte. The shop crosses into profit at 1,250 lattes a month, after which every additional latte adds $3.20 of profit, and a price cut to $3.50 (a $2.70 contribution margin) lifts the breakeven volume to roughly 1,481.</figcaption>
+</figure>
+
+<p data-complete>These four numbers carry the rest of the chapter, because every pricing approach reads them differently. Cost-based pricing starts from variable cost plus a target markup and lets contribution margin and breakeven fall out of the calculation. Competitor-based pricing pins price against a rival and lets the contribution margin take whatever shape the rival's number allows. Value-based pricing reads the buyer's willingness to pay first and then walks back to confirm the contribution margin is positive enough to cover fixed cost. The arithmetic also explains why the same one-cent move can be trivial for a grocery store and existential for a software firm, because a grocery store's contribution margin per unit is so thin that a small variable-cost shock erases it, while a software firm's variable cost per copy rounds to zero and almost any price clears the breakeven.</p>
+
+<p data-focused style="display:none">These four numbers carry the chapter, because every pricing approach reads them differently. Cost-based pricing starts from variable cost plus a markup, competitor-based pins to a rival and accepts whatever contribution margin falls out, and value-based reads willingness to pay first and walks back to check the margin covers fixed cost.</p>
+
+<h3 id="leverage-payoff" data-no-num>Asymmetric leverage, the payoff of the arithmetic</h3>
 
 <p id="anno-leverage" data-complete>Picture a firm with $100 of revenue and $97 of cost. The $3 left over is profit, a 3 percent <span class="term" data-tt="Net margin is the share of revenue that a firm keeps as profit after every cost, not just the cost of goods sold. A firm with $100 of revenue and $97 of cost keeps $3, a 3 percent net margin. U.S. grocery chains run on roughly 3 percent, Apple's hardware closer to 25 percent, and pure-software businesses 30 to 50 percent because the cost of one more copy rounds to zero.">net margin</span>, the thin sliver grocery chains and warehouse clubs live with every quarter. Now suppose the firm raises its price by just 1 percent and holds cost constant. Revenue rises to $101, cost stays at $97, and profit jumps from $3 to $4. That is a 33 percent increase in profit on a 1 percent change in price, and it is what people mean when they call pricing the highest-leverage decision in marketing.<sup class="cite" data-cite="ref-2"></sup> Matching that same dollar of profit through volume would take 33 percent more units, because every extra unit drags its proportional share of marketing, distribution, and operations cost. <strong>A 1 percent price move beats a 1 percent volume move by an order of magnitude</strong>, yet most pricing teams are paid to manage volume.<sup class="cite" data-cite="ref-3"></sup></p>
 
@@ -293,9 +413,8 @@
 <p data-focused style="display:none"><span class="term" data-tt="Cost-based pricing adds a markup to what the unit cost the firm. A $60 cost with a 50 percent markup reads $90. It is easy to defend but ignores what the buyer would pay.">Cost-based pricing</span> adds a markup to unit cost, so a $60 unit at a 50 percent markup reads $90.<sup class="cite" data-cite="ref-2"></sup> It survives because cost is easier to estimate than demand, but it leaves the ceiling unread, because buyers pay for what a product is worth to them, not what it cost the firm. Regulated utilities are its honest home, where the price is worked backward from a return the regulator allows.<sup class="cite" data-cite="ref-2"></sup></p>
 
 
-<p data-complete>Cost-based pricing also answers a survival question the other approaches skip. Before a price can be fair or competitive it has to clear the firm's costs, and the tool that finds the floor is <span class="term" data-tt="Breakeven analysis finds the sales volume at which total revenue equals total cost, so the firm makes neither a profit nor a loss. Below that volume the firm loses money on the product; above it, every additional unit adds its contribution margin straight to profit. It is the first sanity check on any launch price: can we realistically sell enough units at this price to clear our fixed costs?">breakeven analysis</span>. Costs split into two kinds. <span class="term" data-tt="Fixed costs do not change with how many units the firm sells in the period: the lease on the kitchen, the salaried staff, the software subscription, the cost of designing the product. The firm pays them whether it sells one unit or ten thousand.">Fixed costs</span> stay the same no matter how many units sell, like the lease and the salaried staff. <span class="term" data-tt="Variable costs rise with each additional unit the firm makes or sells: the ingredients in one drink, the fabric in one shirt, the payment-processing fee on one order. Total variable cost is the per-unit variable cost times the number of units sold.">Variable costs</span> rise with each unit, like the ingredients in one drink.<sup class="cite" data-cite="ref-2"></sup></p>
-<p data-complete>The gap between the price and the per-unit variable cost is the <span class="term" data-tt="Contribution margin is the price of one unit minus the variable cost of that one unit. It is the dollars each sale contributes toward covering fixed costs, and once fixed costs are covered, toward profit. A $5 drink with $1.50 of ingredients has a $3.50 contribution margin. The name is literal: it is what each unit contributes before fixed costs are paid.">contribution margin</span>, the dollars each sale contributes to covering fixed costs. Divide total fixed costs by that per-unit margin and you get the <span class="term" data-tt="Breakeven volume is total fixed costs divided by the per-unit contribution margin. It is the number of units the firm must sell just to cover its fixed costs at a given price. Raise the price or cut the variable cost and the contribution margin widens, so the breakeven volume falls and the firm clears its fixed costs sooner.">breakeven volume</span>, the number of units that must sell just to cover the fixed costs.<sup class="cite" data-cite="ref-2"></sup> Suppose your campus drink sells for $5 and costs $1.50 to make, so each cup contributes $3.50. If the semester's fixed costs run $7,000, you break even at 2,000 cups, and cup 2,001 is the first one that earns a profit. The lesson the formula carries is that the contribution margin, not the headline price, sets how hard the volume target is. A $6 price lifts the margin to $4.50 and drops breakeven to about 1,556 cups, while a $4 price thins the margin to $2.50 and pushes it to 2,800. A small move in price swings the volume you must sell by a lot, which is the same asymmetry Section 10.1 opened with, read from the cost floor instead of the profit line.</p>
-<p data-focused style="display:none">Before a price can be fair or competitive it has to clear the firm's costs, and the tool that finds the floor is <span class="term" data-tt="Breakeven analysis finds the sales volume at which total revenue equals total cost. Below it the firm loses money; above it, each unit adds its contribution margin to profit.">breakeven analysis</span>. Costs split in two. <span class="term" data-tt="Fixed costs stay the same no matter how many units sell: the lease, salaried staff, the software subscription.">Fixed costs</span> stay flat, like the lease; <span class="term" data-tt="Variable costs rise with each unit: ingredients, fabric, the processing fee on one order.">variable costs</span> rise per unit, like ingredients.<sup class="cite" data-cite="ref-2"></sup> The price minus the per-unit variable cost is the <span class="term" data-tt="Contribution margin is the price of one unit minus its variable cost: the dollars each sale contributes to covering fixed costs, then to profit.">contribution margin</span>. Total fixed costs divided by that margin gives the <span class="term" data-tt="Breakeven volume is fixed costs divided by per-unit contribution margin: the units that must sell just to cover fixed costs.">breakeven volume</span>.<sup class="cite" data-cite="ref-2"></sup> A $5 campus drink that costs $1.50 contributes $3.50, so $7,000 of fixed costs breaks even at 2,000 cups. The lesson is that the margin, not the headline price, sets how hard the volume target is. A $6 price drops breakeven to about 1,556 cups, a $4 price pushes it to 2,800, the same asymmetry Section 10.1 opened with, read from the cost floor.</p>
+<p data-complete>Cost-based pricing also answers a survival question the other approaches skip, because it is the natural lens for running the <a href="#why">§10.1 fundamentals</a> as a sensitivity check on a proposed price. Suppose your campus drink sells for $5 and costs $1.50 in ingredients to make, so each cup contributes $3.50 toward the semester's $7,000 of fixed costs, and you break even at 2,000 cups. Cup 2,001 is the first one that earns a profit, and the breakeven volume swings sharply with the headline price. A $6 price lifts the contribution margin to $4.50 and drops breakeven to about 1,556 cups, while a $4 price thins it to $2.50 and pushes breakeven to 2,800. A small move in price swings the volume you must sell by a lot, which is the same asymmetry §10.1 opened with, read from the cost floor instead of the profit line.</p>
+<p data-focused style="display:none">Cost-based pricing is the natural lens for running the <a href="#why">§10.1 fundamentals</a> as a sensitivity check on a proposed price. A $5 campus drink that costs $1.50 to make contributes $3.50, so $7,000 of fixed costs breaks even at 2,000 cups. A $6 price drops breakeven to about 1,556 cups, while a $4 price pushes it to 2,800, the same asymmetry §10.1 opened with, read from the cost floor.</p>
 <figure class="sketch" aria-label="Breakeven chart: a flat fixed-cost line, a total-cost line rising by the variable cost per unit, and a steeper total-revenue line rising by the price; the revenue and total-cost lines cross at the breakeven volume, after which the gap between them is profit. A second, fainter revenue line at a lower price shows breakeven shifting to the right because the thinner contribution margin makes the firm sell more units to clear the same fixed cost.">
   <div class="mount" id="sk-breakeven-mount" data-w="700" data-h="340" aria-hidden="true"></div>
   <figcaption>The breakeven chart. Total revenue climbs by the price per cup and total cost by the variable cost per cup, and the two lines cross where fixed costs are just covered. The contribution margin is the wedge that opens between them, so a higher price steepens revenue and pulls breakeven left, while a lower price flattens it and pushes breakeven right. The chart shows a principle: breakeven volume is set by the margin, not the sticker.</figcaption>
@@ -631,9 +750,21 @@
 <span class="ax">04 // psychological pricing</span>
 <h2 id="psych">Psychological Pricing</h2>
 
-<p data-complete>Measuring willingness to pay gives the firm a number, but what the buyer does with that number on the shelf is a separate problem. Buyers read prices in <span class="term" data-tt="System 1 is the fast, automatic, pattern-matching mode of cognition Kahneman named in Thinking, Fast and Slow. Most price-tag reading is System 1, which is why layout, ordering, formatting, and context matter at least as much as the number itself.">System 1</span> mode, comparing each price against a stored reference point and the choice the firm lays out around it.<sup class="cite" data-cite="ref-2"></sup> Four behavioral foundations carry the rest of this section. <span class="term" data-tt="Prospect theory, Kahneman and Tversky's 1979 Econometrica paper, says buyers judge prices as gains or losses against an internal reference point rather than as absolute amounts, and a loss feels roughly twice as painful as an equivalent gain.">Prospect theory</span> says a loss feels about twice as painful as an equal gain, so a price increase needs careful framing while a comparable cut rarely produces backlash. <span class="term" data-tt="Mental accounting, named by Richard Thaler, is the habit of splitting money into separate mental buckets (rent, groceries, fun, savings) and treating the same dollar differently depending on which bucket it sits in. The bucket the firm's product gets filed under shapes price tolerance more than the dollar amount alone.">Mental accounting</span> sorts the same dollar into different buckets, so the category a product gets filed under shapes its price tolerance. The <span class="term" data-tt="The endowment effect, documented by Kahneman, Knetsch, and Thaler in 1990, is the pattern where simply owning something raises a buyer's perceived value of it. The Cornell mug experiments found owners demanded roughly twice the price non-owners would pay for the same mug.">endowment effect</span> raises a buyer's reference price the moment they own something, which a 1990 <em>JPE</em> study pinned to a number, because Cornell undergraduates given a $6 mug demanded a median <strong>$7.12</strong> to give it up while a separate group paid only a median <strong>$2.87</strong> to acquire the same mug.<sup class="cite" data-cite="ref-19"></sup> Ownership lifts the reference price instantly, so free trials raise conversion because cancelling now reads as a loss, and trade-ins outperform equal cash rebates.<sup class="cite" data-cite="ref-20"></sup> The fourth foundation, the fairness heuristic, runs through Section 10.7.</p>
+<p data-complete>Measuring willingness to pay gives the firm a number, but what the buyer does with that number on the shelf is a separate problem. Buyers read prices in <span class="term" data-tt="System 1 is the fast, automatic, pattern-matching mode of cognition Kahneman named in Thinking, Fast and Slow. Most price-tag reading is System 1, which is why layout, ordering, formatting, and context matter at least as much as the number itself.">System 1</span> mode, comparing each new price against a stored reference point and the choice the firm lays out around it.<sup class="cite" data-cite="ref-2"></sup> Three behavioral foundations explain why two products with identical engineering and identical costs can clear at very different prices, and the fairness heuristic that closes the section runs through Section 10.7.</p>
 
-<p data-focused style="display:none">Measuring willingness to pay gives the firm a number, but what the buyer does with it on the shelf is a separate problem. Buyers read prices in <span class="term" data-tt="System 1 is the fast, automatic mode of cognition. Most price-tag reading is System 1, so layout and context matter as much as the number.">System 1</span> mode, against a stored reference point.<sup class="cite" data-cite="ref-2"></sup> Three behavioral foundations carry this section. <span class="term" data-tt="Prospect theory says buyers judge prices as gains or losses against a reference point, and a loss feels about twice as painful as an equal gain.">Prospect theory</span> says a loss feels twice as painful as an equal gain, so an increase needs careful framing. The <span class="term" data-tt="The endowment effect: owning something raises its perceived value. Cornell owners of a $6 mug demanded about twice what non-owners would pay.">endowment effect</span> raises a buyer's reference price the moment they own something, which is why free trials lift conversion and trade-ins beat cash rebates.<sup class="cite" data-cite="ref-20"></sup> The third foundation, the fairness heuristic, runs through Section 10.7.</p>
+<p data-focused style="display:none">Measuring willingness to pay gives the firm a number, but what the buyer does with it on the shelf is a separate problem. Buyers read prices in <span class="term" data-tt="System 1 is the fast, automatic mode of cognition. Most price-tag reading is System 1, so layout and context matter as much as the number.">System 1</span> mode, against a stored reference point.<sup class="cite" data-cite="ref-2"></sup> Three behavioral foundations explain why two products with identical engineering can clear at different prices, and the fairness heuristic running through Section 10.7 closes the set.</p>
+
+<p data-complete><span class="term" data-tt="Prospect theory, Kahneman and Tversky's 1979 Econometrica paper, says buyers judge prices as gains or losses against an internal reference point rather than as absolute amounts, and a loss feels roughly twice as painful as an equivalent gain.">Prospect theory</span> is the first foundation, because Kahneman and Tversky's 1979 paper showed that buyers do not read each dollar as an absolute amount but as a gain or loss measured against an internal reference point, and a loss of a given size feels roughly twice as painful as an equivalent gain. The practical consequence for the firm is that an increase from $9.99 to $10.99 carries more pain than the dollar arithmetic suggests, while a cut from $10.99 to $9.99 carries less pleasure than the same arithmetic would predict. A firm raising price therefore frames the move as preserving quality or absorbing inflation, while a firm cutting price rarely produces the loyalty bump a managerial intuition expects, because the cut registers as merely returning to fair.<sup class="cite" data-cite="ref-2"></sup></p>
+
+<p data-focused style="display:none"><span class="term" data-tt="Prospect theory: buyers judge prices as gains or losses against a reference point, and a loss feels about twice as painful as an equal gain.">Prospect theory</span> says a buyer reads each price as a gain or loss against an internal reference, and a loss feels roughly twice as painful as an equivalent gain. A firm raising price therefore frames the move as preserving quality or absorbing inflation, while a firm cutting price rarely produces the loyalty bump a managerial intuition expects.</p>
+
+<p data-complete>The <span class="term" data-tt="The endowment effect, documented by Kahneman, Knetsch, and Thaler in 1990, is the pattern where simply owning something raises a buyer's perceived value of it. The Cornell mug experiments found owners demanded roughly twice the price non-owners would pay for the same mug.">endowment effect</span> is the second foundation, and the cleanest demonstration is the 1990 mug experiment that Kahneman, Knetsch, and Thaler ran at Cornell. Half the students received a $6 university mug and half received nothing, after which the two groups traded the mug in an open market. The owners demanded a median of <strong>$7.12</strong> to part with the mug, while the buyers offered a median of only <strong>$2.87</strong> for the identical mug, so the act of ownership lifted the reference price by roughly a factor of two within minutes of receiving the object.<sup class="cite" data-cite="ref-19"></sup> The result generalizes directly to pricing decisions, because a free trial converts at a higher rate than the same product offered for a small fee since cancelling now reads as giving up a possession, and a trade-in offer outperforms an equal cash rebate because the trade-in lets the buyer realize the endowment value of what they own.<sup class="cite" data-cite="ref-20"></sup></p>
+
+<p data-focused style="display:none">The <span class="term" data-tt="The endowment effect: owning something raises its perceived value. Cornell owners demanded about twice what non-owners would pay for the same mug.">endowment effect</span> is the second foundation. In the 1990 Cornell mug experiment, owners of a $6 mug demanded a median <strong>$7.12</strong> to give it up while buyers paid only a median <strong>$2.87</strong> for the same mug, so ownership lifted the reference price by roughly two within minutes.<sup class="cite" data-cite="ref-19"></sup> The result generalizes to free trials that convert because cancelling now reads as a loss, and to trade-ins that outperform equal cash rebates because the trade-in lets the buyer realize the endowment value.<sup class="cite" data-cite="ref-20"></sup></p>
+
+<p data-complete><span class="term" data-tt="Mental accounting, named by Richard Thaler, is the habit of splitting money into separate mental buckets (rent, groceries, fun, savings) and treating the same dollar differently depending on which bucket it sits in. The bucket the firm's product gets filed under shapes price tolerance more than the dollar amount alone.">Mental accounting</span>, the third foundation, is Thaler's observation that buyers split money into separate mental buckets and treat the same dollar differently depending on which bucket it sits in. Most households carry distinct buckets for groceries, rent, fun, and savings, and the bucket a firm's product gets filed under shapes the buyer's price tolerance more than the dollar amount alone. A $4 latte that registers as a routine treat does not erode the savings bucket, while a $4 monthly fee that registers as recurring overhead can trigger a cancellation the latte never would. The pricing implication is that the firm can move a product across buckets by changing the frame, presenting a $600 annual gym membership as $50 a month moves it from the savings bucket to the routine-expense bucket and softens the resistance the lump sum would have triggered.</p>
+
+<p data-focused style="display:none"><span class="term" data-tt="Mental accounting: buyers split money into separate mental buckets and treat the same dollar differently by bucket.">Mental accounting</span> is the third foundation. A $600 annual gym membership presented as $50 a month moves the cost from the savings bucket to the routine-expense bucket and softens the resistance the lump sum would have triggered.</p>
 
 <h3 id="anchoring" data-no-num>Reference prices and anchoring</h3>
 
@@ -1201,16 +1332,56 @@
 <h2 id="apply" data-no-num data-complete>Apply What You Have Learned</h2>
 
 <div class="callout" data-complete>
-  <span class="ccap">Do this, about fifteen minutes</span>
-  <h3>Price a real product with an assistant</h3>
-  <p>Pick a real product you buy, or one you would actually launch, like a Greek-life co-branded drink or an Etsy item you would sell. Open Claude or ChatGPT and run the chapter's machinery on it one move at a time, so the ideas become a workflow you keep.</p>
-  <ol>
-    <li><strong>Ask the model to pick the approach and a band.</strong> Name the product and the buyer it is for, then ask which of the four approaches fits (cost-based, competitor-based, value-based, customer-determined) and a sample price band with the reason. A vague product gets a generic verdict, while a sharp product plus a named segment gets an anchored read.</li>
-    <li><strong>Write the four Van Westendorp questions and run them on five friends.</strong> Ask at what price the product is too expensive to consider, too cheap to trust, getting expensive but worth it, and a bargain. Five answers each give you a rough acceptable band you can read off the crossings.</li>
-    <li><strong>Ask for a three-option lineup that steers the choice.</strong> Have the model design a good, better, best lineup that uses the decoy effect or the compromise effect to push buyers toward the option you want, and make it explain which option is the decoy and why nobody picks it.</li>
-    <li><strong>Run the sharp competitor audit, then the vague one.</strong> Ask: <em>&ldquo;audit my $X against these three competitors, name the two or three levers the recommendation rests on (decoy, Veblen signaling, the fairness ceiling, elasticity, an anchor), and give me the price to hold next quarter using current shelf prices from the web.&rdquo;</em> Then ask the lazy version, <em>&ldquo;is my price good?&rdquo;</em>, and compare.</li>
-  </ol>
-  <p>The gap between those last two answers is most of the lesson. The sharp question returns a defensible recommendation tied to named levers, while the vague one returns advice you could have guessed, from the same assistant at the same cost of a few cents. The assistant will also search the live web for the competitors' current prices and category facts, so treat its read as current, then verify any figure, name, or date it gives you before you act on it.</p>
+  <span class="ccap">About thirty minutes, three steps</span>
+  <h3>Build a pricing analyst, then automate it</h3>
+  <p>Pick a real product you buy or would launch, name three real competitors you can look up online, your current price, and the buyer in one sentence. The widget below runs the whole flow in your browser as a preview, and the three steps under it show how to do it yourself, save it for re-use, and then schedule it so the machine checks for you.</p>
+
+  <div class="demo" id="w110-monitor">
+    <div class="demo-head">
+      <span class="demo-title"><span class="cap-num" data-cap="interactive"></span>Try it now &middot; live price monitor</span>
+      Edit the four fields below and press <em>Check prices</em>. The model searches the live web for each competitor's current price, then in one short reply names whether you should hold, raise, or cut, with the pricing lever the recommendation rests on. Same call your scheduled script will make every week.
+    </div>
+    <div class="wv-input">
+      <label>Your product
+        <input id="w110-product" type="text" value="Stanley quencher 40oz tumbler">
+      </label>
+      <label>Your current price (USD)
+        <input id="w110-price" type="number" value="45" min="1" step="0.01">
+      </label>
+      <label>Three real competitors (comma separated)
+        <input id="w110-comps" type="text" value="Hydro Flask 32oz, Yeti Rambler 36oz, Owala FreeSip 40oz">
+      </label>
+      <label>Your buyer in one sentence
+        <input id="w110-buyer" type="text" value="college students buying it as a gift for a roommate">
+      </label>
+    </div>
+    <div class="wv-qbtns">
+      <button class="wv-qbtn sharp" id="w110-go">
+        <span class="qtag">Run now</span>
+        <span class="qtext">Search the live web, read each competitor's current price, and recommend hold / raise / cut with the lever the recommendation rests on.</span>
+        <span class="qask">Check prices</span>
+      </button>
+    </div>
+    <div class="wv-col sharp" id="w110-col">
+      <div class="wv-colhead"><span class="wv-ct">live web search + recommendation</span><span class="wv-cost" id="w110-cost"></span></div>
+      <div class="wv-ans" id="w110-ans" aria-live="polite" aria-atomic="false"><span class="ph">Press <em>Check prices</em> to run.</span></div>
+    </div>
+    <div class="wv-note">A candidate read from the model, which calls the same web-search tool your scheduled script would call. Treat its prices as current, then verify each one on the source link before acting on the recommendation.</div>
+  </div>
+
+  <h4 style="margin-top:28px;">Step 1, about five minutes &middot; do it once in chat</h4>
+  <p>Open Claude or ChatGPT directly and run the chapter's moves on your product one at a time. Name the product and the buyer in the first message, then ask the model to pick the pricing approach and a band, write the four Van Westendorp questions you would run on five friends, design a three-option lineup that uses the decoy or compromise effect to steer the choice, and audit your price against the three named competitors with current prices it pulls from the web. Compare the sharp version of the audit, which names two or three pricing levers, against the lazy version, <em>&ldquo;is my price good?&rdquo;</em>, and the gap between the two answers is most of the lesson.</p>
+
+  <h4 style="margin-top:24px;">Step 2, about ten minutes &middot; save it as an assistant</h4>
+  <p>Open Claude Projects or a Custom GPT and create a new one named after your product. In its system instructions, paste a short brief that names the brand, the buyer segment, the three competitors, the four pricing approaches with one sentence each, and a rule that says <em>&ldquo;search the web for current competitor prices before recommending, and name the lever the recommendation rests on.&rdquo;</em> The assistant now persists with that brief, so every later question runs against the same context without you re-typing it, and you can come back next week and ask <em>&ldquo;has anything moved?&rdquo;</em> and it will check again.</p>
+
+  <h4 style="margin-top:24px;">Step 3, about five minutes &middot; have the chat schedule itself</h4>
+  <p>Both ChatGPT and Claude added a feature in 2025 and 2026 that lets you turn any prompt into a recurring task the model runs on its own, with no code, no command line, and nothing to install. The model handles the schedule for you, and the only thing you do is write the prompt in plain English the way you would write a normal message.</p>
+  <p>In <a href="https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt" target="_blank" rel="noopener">ChatGPT Tasks</a> (available on the Plus, Pro, and Team plans), click your profile icon, choose <em>Tasks</em>, and type a prompt that names the schedule inline. For example: <em>&ldquo;Every Monday at 9am, search the web for the current shelf prices of Hydro Flask 32oz, Yeti Rambler 36oz, and Owala FreeSip 40oz, compare them against my $45 Stanley quencher, and tell me whether to hold, raise, or cut, with the pricing lever the recommendation rests on.&rdquo;</em> ChatGPT parses the cadence, sets up the recurring run, and posts each Monday's answer back into your chat history. ChatGPT currently caps active tasks at ten, so you can run ten of these in parallel before retiring one.</p>
+  <p><a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork" target="_blank" rel="noopener">Claude Cowork's scheduled tasks</a> work the same way on the Pro plan and above. Open Claude on the web, paste the same prompt into a scheduled task, pick weekly, and Claude runs the search at the cadence you set, with web access and any project connectors you have configured. The Gemini app has caught up with its own scheduled actions if your campus uses Google Workspace, and they work on the same paste-the-prompt-and-pick-a-cadence pattern.</p>
+  <p>After a semester, the chat thread grows by one entry a week with three competitor prices and a recommendation each time, which gives you a real time-series of how the category moves that almost no working pricing analyst bothers to collect. Treat any number, name, or date the assistant returns as a candidate read rather than a verified fact, click through to the source link before acting on a recommendation, and keep the human in the loop for the final call.</p>
+
+  <p>The progression from chat to saved assistant to scheduled task is the AI move that lifts pricing out of <em>ask once and forget</em> and into <em>ask itself every week, log the answer, surface only the moves that matter</em>. The Python and cron version exists for students who want to wire it into a deployed product, but for the chapter exercise the three-step path above gets you a working price monitor in about thirty minutes with no code written.</p>
 </div>
 
 <h2 id="takeaways" data-no-num data-complete>Key Takeaways</h2>
@@ -3259,6 +3430,66 @@ return '$' + usd.toFixed(4);
       callOne(hOut, hCost, 'claude-haiku-4-5', prompt, fbH),
       callOne(oOut, oCost, 'claude-opus-4-7', prompt, fbO)
     ]);
+    btn.disabled = false;
+  });
+})();
+
+/* Widget 10.10 (Apply-box live price monitor; web_search on; __callGeneric__).
+   Same call shape as the scheduled Python script the Apply box ships, so the
+   reader sees in the browser exactly what the cron job will produce. */
+(function(){
+  const box = document.getElementById('w110-monitor');
+  if(!box) return;
+  const prodEl  = document.getElementById('w110-product');
+  const priceEl = document.getElementById('w110-price');
+  const compsEl = document.getElementById('w110-comps');
+  const buyerEl = document.getElementById('w110-buyer');
+  const btn     = document.getElementById('w110-go');
+  const out     = document.getElementById('w110-ans');
+  const costEl  = document.getElementById('w110-cost');
+
+  const sys = 'You are a marketing strategist running a weekly price-monitor task for an undergraduate student. The student names their product, current price, three competitors, and the buyer in one sentence. You must search the live web for the current shelf price of each named competitor and return exactly four short blocks. Block 1, COMPETITORS: one bullet per competitor in the form "name: $price (source link, date)". Block 2, READ: one sentence on what the competitor band looks like (cheap / mid / premium and where the student sits in it). Block 3, RECOMMEND: hold, raise, or cut, with the new dollar number if changing. Block 4, LEVER: the single pricing lever the recommendation rests on (elasticity, decoy, anchor, fairness ceiling, Veblen signaling, or contribution margin). No preamble, no headings beyond those four labels.';
+
+  const fbSample = 'COMPETITORS:\n- Hydro Flask 32oz: $40 (source unavailable in fallback, 2026-05)\n- Yeti Rambler 36oz: $42 (source unavailable in fallback, 2026-05)\n- Owala FreeSip 40oz: $35 (source unavailable in fallback, 2026-05)\nREAD: the student sits at the premium end of the band, $3 above the highest competitor and $10 above the cheapest.\nRECOMMEND: hold at $45.\nLEVER: Veblen signaling, because cutting would surrender the social-identity premium the brand is built on while a Yeti match would erase the contribution margin.';
+
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function step(target, cls, content){
+    const d = document.createElement('div');
+    d.className = 'demo-step ' + cls;
+    d.innerHTML = content;
+    target.appendChild(d);
+  }
+
+  btn.addEventListener('click', async function(){
+    const product = (prodEl.value || '').trim() || 'a tumbler';
+    const price = (priceEl.value || '').trim() || '45';
+    const comps = (compsEl.value || '').trim() || 'three real competitors';
+    const buyer = (buyerEl.value || '').trim() || 'a real buyer segment';
+    const userPrompt = 'PRODUCT: ' + product + '\nCURRENT PRICE: $' + price
+      + '\nCOMPETITORS: ' + comps + '\nBUYER: ' + buyer
+      + '\nSearch the web for each competitor\'s current shelf price, then return the four-block answer.';
+
+    btn.disabled = true;
+    out.innerHTML = '';
+    costEl.textContent = '';
+    costEl.classList.remove('live');
+    step(out, 'thinking', 'searching the web for each competitor\'s current price...');
+    try {
+      // Pass no tools list so the proxy keeps web_search on by default.
+      const r = await window.__callGeneric__(sys, userPrompt, { model: 'claude-sonnet-4-5', max_tokens: 600 });
+      if(!r || r.ok === false || r.error) throw new Error((r && r.error) || 'no response');
+      const text = ((r.data && r.data.text) || '(empty response)').trim();
+      out.innerHTML = '';
+      step(out, 'answer', esc(text).replace(/\n/g, '<br>'));
+      const cost = (r.usage && r.usage.cost_usd) || 0;
+      costEl.textContent = 'claude-sonnet-4-5  ·  ' + window.__fmtCost__(cost);
+      costEl.classList.add('live');
+    } catch(e) {
+      out.innerHTML = '';
+      step(out, 'error', '[proxy offline, showing a sample read for ' + esc(product) + ']');
+      step(out, 'answer', esc(fbSample).replace(/\n/g, '<br>'));
+      costEl.textContent = window.__FALLBACK_MSG__;
+    }
     btn.disabled = false;
   });
 })();
