@@ -1848,6 +1848,23 @@
       if (cb) cb.innerHTML = (ed === 'beginner') ? '&#10003;' : '&nbsp;';
       if (ca) ca.innerHTML = (ed === 'advanced') ? '&#10003;' : '&nbsp;';
       postEditionToFrame();
+      // The edition toggle swaps which sections are visible (beginner vs advanced),
+      // so the chapter TOC must rebuild to the now-visible headings, exactly as the
+      // depth toggle does. Wait for the frame to process the ccEdition postMessage and
+      // relay out before rereading headings; preserve an open TOC panel.
+      try {
+        var ef = document.getElementById('content-frame');
+        if (ef && ef.contentWindow) setTimeout(function () {
+          try { if (typeof ef.contentWindow.__reannotate__ === 'function') ef.contentWindow.__reannotate__(); } catch (e) {}
+          try {
+            var ifd = ef.contentDocument;
+            var navEl = ifd && ifd.querySelector('nav.chapter-toc');
+            var wasOpen = !!(navEl && navEl.classList.contains('cc-open'));
+            if (ifd) applyChapterToc(ifd, readerState.chtoc);
+            if (wasOpen) { var n2 = ifd.querySelector('nav.chapter-toc'); if (n2) n2.classList.add('cc-open'); }
+          } catch (e) {}
+        }, 280);
+      } catch (e) {}
     }
     if (editionBtn) editionBtn.addEventListener('click', function (e) {
       e.stopPropagation();
