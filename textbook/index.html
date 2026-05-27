@@ -1990,6 +1990,14 @@
     function mapBg(hex, rt, isDark) {
       var acc = mapAccentFamily(hex);
       if (acc !== null) return acc;
+      // A SATURATED fill (a coral/accent fill, e.g. the AA-safe coral-deep #a8472a used
+      // by the widget ON/active states) is meant to carry LIGHT text. Mapping it by
+      // luminance washes it to a light neutral (#a8472a, lum~97 -> rt.bgAlt), leaving
+      // white-on-near-white across the interactives. Keep such fills on the deep accent
+      // so the white text stays readable in every mode; the contrast guard keeps the
+      // foreground light to match. (Near-white neutrals are not saturated fills, so plain
+      // surfaces still map normally and the dark-mode recolor is unaffected.)
+      if (isSaturatedFill(hex)) return rt.accentDeep || rt.accent;
       var lum = hexLum(hex);
       if (!isDark) {
         if (lum >= 245) return rt.bg;
@@ -2130,6 +2138,20 @@
         if (!el.hasAttribute('data-rs-orig-style')) el.setAttribute('data-rs-orig-style', style);
         var orig = el.getAttribute('data-rs-orig-style');
         var keepLightInline = blockBgIsAccent(orig);
+        if (!keepLightInline) {
+          // The accent BACKGROUND may come from a CSS rule, not this element's own inline style
+          // (e.g. .w-tog.active{background:#a8472a} + an inline color). rewriteStyleBlocks already
+          // ran, so the COMPUTED background reflects the final fill: if it is dark, light inline
+          // text must stay light (white-on-dark), not be darkened to dark-on-dark.
+          try {
+            var cbg = edoc.defaultView.getComputedStyle(el).backgroundColor;
+            var mb = cbg && cbg.match(/(\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?/);
+            if (mb && !(mb[4] !== undefined && parseFloat(mb[4]) === 0)) {
+              var cbl = (parseInt(mb[1]) * 299 + parseInt(mb[2]) * 587 + parseInt(mb[3]) * 114) / 1000;
+              if (cbl < 140) keepLightInline = true;
+            }
+          } catch (e) {}
+        }
         var newStyle = orig.replace(/([\w-]+)\s*:\s*([^;]*(?:#[0-9a-fA-F]{3,8}|\bwhite\b|\bblack\b|\brgba?\s*\()[^;]*)/gi, function(full, prop, value) {
           var p = prop.toLowerCase(), fn = null;
           if (p === 'background' || p === 'background-color') fn = mapBg;
@@ -2158,6 +2180,30 @@
     function restoreInlineStyles(edoc) {
       var els = edoc.querySelectorAll('[data-rs-orig-style]');
       for (var i = 0; i < els.length; i++) { els[i].setAttribute('style', els[i].getAttribute('data-rs-orig-style')); els[i].removeAttribute('data-rs-orig-style'); }
+    }
+
+    // Post-remap CONTRAST SAFETY (systemic widget-legibility guard). Some widget states
+    // declare their accent BACKGROUND and their light TEXT in SEPARATE CSS rules (e.g.
+    // .demo-button{background:#a8472a} in one rule, color:#fff in another or inline). The
+    // per-block contrast guard cannot pair them, so after the remap the text can end up
+    // dark-on-dark (on a now-dark accent fill) or white-on-white (on a washed-light fill).
+    // Walk the interactive controls and force the foreground to actually contrast with the
+    // COMPUTED background; inline !important wins the cascade, so this is the final word.
+    function fixWidgetContrast(edoc, rt) {
+      try {
+        var win = edoc.defaultView; if (!win) return;
+        function lumOf(str){ var m = str && str.match(/(\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?/); if(!m) return null; if(m[4] !== undefined && parseFloat(m[4]) === 0) return null; return (parseInt(m[1])*299 + parseInt(m[2])*587 + parseInt(m[3])*114) / 1000; }
+        var els = edoc.querySelectorAll('.demo-button, .demo-controls button, [aria-pressed], .w-tog, .w22-chip, .w22-type, .chip, .pill, .toggle');
+        for (var i = 0; i < els.length; i++) {
+          var el = els[i];
+          var cs = win.getComputedStyle(el);
+          var bl = lumOf(cs.backgroundColor); if (bl === null) continue;   // transparent bg inherits -> skip
+          var fl = lumOf(cs.color); if (fl === null) continue;
+          if (Math.abs(bl - fl) < 90) {                                    // too little separation = illegible
+            el.style.setProperty('color', bl < 140 ? '#ffffff' : rt.text, 'important');
+          }
+        }
+      } catch (e) {}
     }
 
     // Remap the color-bearing declarations inside ONE CSS declaration block (the
@@ -2766,6 +2812,12 @@
         // and any element that explicitly paints text in the accent on the page surface keeps the
         // accent only if it is large; small accent text on the surface is darkened for contrast.
         css += 'figure svg text[fill="#DA7756"], figure svg text[fill="#da7756"], .mount svg text[fill="#DA7756"], .mount svg text[fill="#da7756"] { fill: ' + rt.accentDeep + ' !important; }\n';
+        // WIDGET LEGIBILITY GUARD: the coral-FILL control states get a deep-accent background via
+        // mapBg, but their text colour often lives in a SEPARATE rule, so the per-block contrast
+        // guard misses it and it can end up dark-on-dark. This shell-injected rule (appended last,
+        // not subject to the chapter-rewrite cycle) forces white text on the FILLED states only.
+        // OFF / unfilled states (light bg) are excluded so they keep their dark coral text.
+        css += '.demo-button:not([aria-pressed]), .demo-button[aria-pressed="true"], .w-tog.active, .w22-chip.is-on, .w22-type.is-on, [data-on="true"].demo-button { color:#fff !important; }\n';
         // The gear-controlled "Chapter contents" is the single chapter TOC — hide any author-placed
         // in-chapter TOC callout so there is never a duplicate TOC (Felipe: "why an extra TOC").
         css += '.callout:has(> .ic-toc), .ic-toc { display: none !important; }\n';
@@ -2802,6 +2854,10 @@
         rewriteStyleBlocks(doc, rt, docIsDark);
         rewriteSVGAttributes(doc, rt, docIsDark);
         rewriteInlineStyles(doc, rt, docIsDark);
+        // Widget legibility now comes from PAIRED bg+text CSS rules on each filled state (gate,
+        // .w-tog, .w22-chip/-type) — the reliable mechanism. The earlier element-level pass mis-set
+        // dark ink on a coral fill whose computed bg was still the lighter #DA7756 at run-time, so
+        // it is removed; the paired rules + the per-block contrast guard now do the job in both themes.
 
         // (5) Nested same-origin exhibit iframes (interactive labs).
         injectExhibitThemes(doc, rt);
