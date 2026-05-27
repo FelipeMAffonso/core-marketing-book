@@ -320,28 +320,52 @@ main:has(.docs-layout){max-width:none;padding:0;}
 </style>
 
 <style>
+.asg-eyebrow{display:block;font-family:Inter,system-ui,sans-serif;font-size:13px;
+  font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#B8553A;margin:0 0 10px;}
 .asg-badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px;padding:0;list-style:none;}
 .asg-badge{display:inline-flex;align-items:center;gap:6px;font-family:Inter,system-ui,sans-serif;
   font-size:13px;font-weight:600;line-height:1;color:#5a3527;background:#FBEEE8;
   border:1px solid #EBC9B9;border-radius:999px;padding:8px 14px;white-space:nowrap;}
 .asg-badge .asg-badge-k{font-weight:500;color:#8a6a5c;}
-.asg-whatyouneed{margin:30px 0;padding:22px 22px 20px;border:1px solid #e6ebf1;
+/* The instructor control panel: two selectors that tailor the student handout. */
+.asg-studio{margin:30px 0;padding:22px 22px 20px;border:1px solid #e6ebf1;
   border-radius:12px;background:#fcfbfa;}
-.asg-whatyouneed > h3{margin:0 0 4px;font-size:1.18rem;}
-.asg-wyn-sub{margin:0 0 16px;color:#666;font-size:.95rem;}
-.asg-wyn-chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px;padding:0;}
-.asg-wyn-chip{font-family:Inter,system-ui,sans-serif;font-size:14px;font-weight:600;
+.asg-studio-lead{margin:0 0 4px;font-size:1.18rem;font-weight:700;font-family:Inter,system-ui,sans-serif;
+  color:#1a1a1a;}
+.asg-studio-sub{margin:0 0 18px;color:#666;font-size:.95rem;}
+.asg-selector{margin:0 0 16px;}
+.asg-selector-label{display:block;font-family:Inter,system-ui,sans-serif;font-size:13px;
+  font-weight:700;color:#5a3527;margin:0 0 8px;}
+.asg-chips{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;}
+.asg-chip{font-family:Inter,system-ui,sans-serif;font-size:14px;font-weight:600;
   color:#3a2a22;background:#fff;border:1.5px solid #d9cfc8;border-radius:10px;
-  padding:11px 16px;cursor:pointer;transition:border-color .12s,background .12s,color .12s;}
-.asg-wyn-chip:hover{border-color:#B8553A;}
-.asg-wyn-chip:focus-visible{outline:3px solid #DA7756;outline-offset:2px;}
-.asg-wyn-chip[aria-pressed="true"]{background:#DA7756;border-color:#B8553A;color:#fff;}
-.asg-wyn-panel{display:none;border-top:1px solid #ece3dd;padding-top:16px;
-  color:#333;line-height:1.6;}
-.asg-wyn-panel.is-active{display:block;}
-.asg-wyn-panel .asg-wyn-req{font-weight:600;color:#5a3527;margin:0 0 6px;}
-.asg-wyn-note{margin:0;}
-.asg-wyn-foot{margin:16px 0 0;font-size:.9rem;color:#777;font-style:italic;}
+  padding:10px 16px;cursor:pointer;transition:border-color .12s,background .12s,color .12s;}
+.asg-chip:hover{border-color:#B8553A;}
+.asg-chip:focus-visible{outline:3px solid #DA7756;outline-offset:2px;}
+.asg-chip[aria-pressed="true"]{background:#DA7756;border-color:#B8553A;color:#fff;}
+/* The single student-facing handout, assembled from the two selections. */
+.asg-handout{margin:24px 0 30px;border:1.5px solid #EBC9B9;border-radius:12px;
+  background:#fff;overflow:hidden;}
+.asg-handout-head{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  flex-wrap:wrap;padding:14px 20px;background:#FBEEE8;border-bottom:1px solid #EBC9B9;}
+.asg-handout-title{font-family:Inter,system-ui,sans-serif;font-weight:700;font-size:1rem;
+  color:#5a3527;margin:0;}
+.asg-handout-meta{font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#8a6a5c;
+  margin:2px 0 0;}
+.asg-copy{font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#fff;
+  background:#B8553A;border:none;border-radius:8px;padding:9px 16px;cursor:pointer;
+  transition:background .12s;white-space:nowrap;}
+.asg-copy:hover{background:#9f4630;}
+.asg-copy:focus-visible{outline:3px solid #DA7756;outline-offset:2px;}
+.asg-copy.is-copied{background:#5a3527;}
+.asg-handout-body{padding:18px 22px 20px;color:#222;line-height:1.6;}
+.asg-handout-body > :first-child{margin-top:0;}
+.asg-handout-scope{margin:14px 0 0;padding:12px 16px;background:#fcfbfa;
+  border-left:3px solid #DA7756;border-radius:0 8px 8px 0;}
+.asg-handout-scope .asg-scope-k{display:block;font-family:Inter,system-ui,sans-serif;
+  font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#B8553A;
+  margin:0 0 4px;}
+.asg-handout-submit{margin:16px 0 0;}
 details.asg-fold{margin:30px 0;border:1px solid #e6ebf1;border-radius:12px;
   background:#fcfbfa;overflow:hidden;}
 details.asg-fold > summary{cursor:pointer;list-style:none;padding:16px 20px;
@@ -362,19 +386,86 @@ details.asg-fold > .asg-fold-body > :first-child{margin-top:14px;}
   function ready(fn){ if(document.readyState!=="loading"){fn();}
     else{document.addEventListener("DOMContentLoaded",fn);} }
   ready(function(){
-    document.querySelectorAll(".asg-whatyouneed").forEach(function(box){
-      var chips=box.querySelectorAll(".asg-wyn-chip");
-      var panels=box.querySelectorAll(".asg-wyn-panel");
-      function select(idx){
-        chips.forEach(function(c,i){ c.setAttribute("aria-pressed", i===idx?"true":"false"); });
-        panels.forEach(function(p,i){ p.classList.toggle("is-active", i===idx); });
+    document.querySelectorAll(".asg-studio").forEach(function(studio){
+      var handout=studio.parentNode.querySelector(".asg-handout");
+      if(!handout){return;}
+      // The .md content for each option lives in hidden template blocks read by id.
+      function frag(id){ var el=studio.querySelector('[data-asg-frag="'+id+'"]');
+        return el?el.innerHTML:""; }
+      var coreHtml=frag("core");
+      var submitHtml=frag("submit");
+      var slotMain=handout.querySelector(".asg-handout-access");
+      var slotScope=handout.querySelector(".asg-handout-scope-body");
+      var titleEl=handout.querySelector(".asg-handout-title");
+      var sel={access:studio.getAttribute("data-default-access")||"",
+               diff:studio.getAttribute("data-default-diff")||""};
+      function labelFor(group,val){
+        var b=studio.querySelector('.asg-chip[data-group="'+group+'"][data-val="'+val+'"]');
+        return b?b.getAttribute("data-label"):val;
       }
-      chips.forEach(function(c,i){ c.addEventListener("click", function(){ select(i); }); });
-      // default to the chip pre-marked in the markup (the free-account tier),
-      // falling back to the first chip.
-      var def=0;
-      chips.forEach(function(c,i){ if(c.getAttribute("data-default")==="1"){def=i;} });
-      select(def);
+      function render(){
+        if(slotMain){ slotMain.innerHTML=coreHtml+(sel.access?frag("access:"+sel.access):""); }
+        if(slotScope){ slotScope.innerHTML=sel.diff?frag("diff:"+sel.diff):""; }
+        if(titleEl){ titleEl.textContent="Student instructions"; }
+      }
+      function wire(group){
+        var chips=studio.querySelectorAll('.asg-chip[data-group="'+group+'"]');
+        function pick(val,focusIt){
+          sel[group==="access"?"access":"diff"]=val;
+          chips.forEach(function(c){
+            var on=c.getAttribute("data-val")===val;
+            c.setAttribute("aria-pressed",on?"true":"false");
+            c.tabIndex=on?0:-1;
+            if(on&&focusIt){c.focus();}
+          });
+          render();
+        }
+        chips.forEach(function(c,i){
+          c.addEventListener("click",function(){ pick(c.getAttribute("data-val"),false); });
+          c.addEventListener("keydown",function(e){
+            var k=e.key; var n=chips.length;
+            if(k==="ArrowRight"||k==="ArrowDown"){e.preventDefault();
+              pick(chips[(i+1)%n].getAttribute("data-val"),true);}
+            else if(k==="ArrowLeft"||k==="ArrowUp"){e.preventDefault();
+              pick(chips[(i-1+n)%n].getAttribute("data-val"),true);}
+          });
+        });
+        // initial: the data-default chip, else the first.
+        var def=studio.querySelector('.asg-chip[data-group="'+group+'"][aria-pressed="true"]');
+        pick(def?def.getAttribute("data-val"):
+          (chips[0]?chips[0].getAttribute("data-val"):""),false);
+      }
+      if(studio.querySelector('.asg-chip[data-group="access"]')){ wire("access"); }
+      if(studio.querySelector('.asg-chip[data-group="diff"]')){ wire("diff"); }
+      render();
+      // Copy: assemble the visible handout as PLAIN TEXT (core + access + scope + submit).
+      var btn=handout.querySelector(".asg-copy");
+      if(btn){
+        btn.addEventListener("click",function(){
+          var parts=[];
+          var body=handout.querySelector(".asg-handout-access");
+          if(body&&body.innerText.trim()){parts.push(body.innerText.trim());}
+          var scopeWrap=handout.querySelector(".asg-handout-scope");
+          var scopeBody=handout.querySelector(".asg-handout-scope-body");
+          if(scopeBody&&scopeBody.innerText.trim()){
+            parts.push("Scope ("+labelFor("diff",sel.diff)+"): "+scopeBody.innerText.trim());
+          }
+          var sub=handout.querySelector(".asg-handout-submit");
+          if(sub&&sub.innerText.trim()){parts.push(sub.innerText.trim());}
+          var text=parts.join("\n\n");
+          var done=function(){var o=btn.textContent;btn.textContent="Copied";
+            btn.classList.add("is-copied");
+            setTimeout(function(){btn.textContent=o;btn.classList.remove("is-copied");},1600);};
+          if(navigator.clipboard&&navigator.clipboard.writeText){
+            navigator.clipboard.writeText(text).then(done,function(){done();});
+          }else{
+            var ta=document.createElement("textarea");ta.value=text;
+            document.body.appendChild(ta);ta.select();
+            try{document.execCommand("copy");}catch(e){}
+            document.body.removeChild(ta);done();
+          }
+        });
+      }
     });
   });
 })();
@@ -392,53 +483,25 @@ details.asg-fold > .asg-fold-body > :first-child{margin-top:14px;}
 </header>
 <main id="main">
 <div class="docs-layout"><aside class="docs-rail" aria-label="Section navigation"><div class="rail-group"><h3>Assignments</h3><ul class="rail-list"><li><span class="rail-soon"><span class="rail-num">Ch 01</span><span class="rail-label">AI for Marketers</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 02</span><span class="rail-label">What Marketing Is</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 03</span><span class="rail-label">The Marketing Environment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 04</span><span class="rail-label">How Buyers Buy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 05</span><span class="rail-label">Marketing Research</span></span></li><li><a class="" href="index.html#ch06"><span class="rail-num">Ch 06</span><span class="rail-label">Segmentation, Targeting &amp; Positioning</span></a></li><li><a class="" href="index.html#ch07"><span class="rail-num">Ch 07</span><span class="rail-label">Brands &amp; Brand Equity</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 08</span><span class="rail-label">Product Management</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 09</span><span class="rail-label">Services Marketing</span></span></li><li><a class="is-active" href="index.html#ch10"><span class="rail-num">Ch 10</span><span class="rail-label">Pricing</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 11</span><span class="rail-label">Distribution Channels</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 12</span><span class="rail-label">Retail</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 13</span><span class="rail-label">DTC &amp; E-commerce</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 14</span><span class="rail-label">Mobile &amp; App Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 15</span><span class="rail-label">International Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 16</span><span class="rail-label">Promotions</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 17</span><span class="rail-label">Content Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 18</span><span class="rail-label">Digital Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 19</span><span class="rail-label">Social Media</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 20</span><span class="rail-label">Creator Economy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 21</span><span class="rail-label">Customer Lifecycle</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 22</span><span class="rail-label">PR &amp; Crisis</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 23</span><span class="rail-label">Sales Alignment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 24</span><span class="rail-label">Marketing Plan &amp; Analytics</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 25</span><span class="rail-label">Marketing Finance</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 26</span><span class="rail-label">Ethics &amp; Responsible AI</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 27</span><span class="rail-label">Capstone</span></span></li></ul></div></aside><section class="docs-main"><details class="docs-rail-mobile"><summary>Browse this section</summary><div class="rail-group"><h3>Assignments</h3><ul class="rail-list"><li><span class="rail-soon"><span class="rail-num">Ch 01</span><span class="rail-label">AI for Marketers</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 02</span><span class="rail-label">What Marketing Is</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 03</span><span class="rail-label">The Marketing Environment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 04</span><span class="rail-label">How Buyers Buy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 05</span><span class="rail-label">Marketing Research</span></span></li><li><a class="" href="index.html#ch06"><span class="rail-num">Ch 06</span><span class="rail-label">Segmentation, Targeting &amp; Positioning</span></a></li><li><a class="" href="index.html#ch07"><span class="rail-num">Ch 07</span><span class="rail-label">Brands &amp; Brand Equity</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 08</span><span class="rail-label">Product Management</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 09</span><span class="rail-label">Services Marketing</span></span></li><li><a class="is-active" href="index.html#ch10"><span class="rail-num">Ch 10</span><span class="rail-label">Pricing</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 11</span><span class="rail-label">Distribution Channels</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 12</span><span class="rail-label">Retail</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 13</span><span class="rail-label">DTC &amp; E-commerce</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 14</span><span class="rail-label">Mobile &amp; App Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 15</span><span class="rail-label">International Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 16</span><span class="rail-label">Promotions</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 17</span><span class="rail-label">Content Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 18</span><span class="rail-label">Digital Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 19</span><span class="rail-label">Social Media</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 20</span><span class="rail-label">Creator Economy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 21</span><span class="rail-label">Customer Lifecycle</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 22</span><span class="rail-label">PR &amp; Crisis</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 23</span><span class="rail-label">Sales Alignment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 24</span><span class="rail-label">Marketing Plan &amp; Analytics</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 25</span><span class="rail-label">Marketing Finance</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 26</span><span class="rail-label">Ethics &amp; Responsible AI</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 27</span><span class="rail-label">Capstone</span></span></li></ul></div></details><nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Courseware</a><span class="sep">›</span><a href="../../index.html#assess">Assess</a><span class="sep">›</span><a href="index.html">Assignments</a><span class="sep">›</span><span class="current">Ch 10 Pricing</span></nav><p class="page-overview">Graded individual assignment for Chapter 10 (Pricing), mapped to the chapter's learning objectives and AACSB outcomes.</p><div class="doc-body"><h1>Analyzing Cost and Price Structures with Claude in Excel</h1>
-<p><em>Chapter 10 individual assignment. You are the new analyst at a direct-to-consumer brand, handed a spreadsheet of its product line. Use the Claude for Excel add-in to turn raw operating data into a cost-and-price-structure analysis: which products actually make money, where each one breaks even, and which price should change. Then do the part the add-in cannot: catch what it got wrong and decide what to recommend. Done alone.</em></p>
-<ul class="asg-badges" aria-label="Assignment at a glance"><li class="asg-badge"><span class="asg-badge-k">Type</span><span class="asg-badge-v">Individual</span></li><li class="asg-badge"><span class="asg-badge-k">Time</span><span class="asg-badge-v">~2 hrs</span></li><li class="asg-badge"><span class="asg-badge-k">Points</span><span class="asg-badge-v">100 pts</span></li><li class="asg-badge"><span class="asg-badge-k">Chapter</span><span class="asg-badge-v">Ch 10</span></li></ul>
-<blockquote><p><strong>What&#x27;s included.</strong> This is the <strong>advanced (Tier 3) hands-on</strong> companion to &quot;Price a Real Product with AI&quot;: it needs a paid Claude plan for the Excel add-in, with a free-account fallback. It ships the task, a <strong>grading rubric</strong> below, and a <strong>grading guide for instructors</strong> (<code>ch10-cost-price-structures-claude-excel-grading-guide.md</code>) that says what to look for row by row, the answer key for this dataset, the failure modes, and score bands. Grade it by hand, with TAs, or with the Ch10 pricing grading skill adapted to this rubric.</p></blockquote>
+<p><em>Chapter 10 individual assignment. The student is the new analyst at a direct-to-consumer brand, handed a spreadsheet of its product line. Use Claude to turn raw operating data into a cost-and-price-structure analysis: which products make money, where each breaks even, and which price should change. Then do the part the tool cannot: catch what it got wrong and decide what to recommend. This is the advanced, hands-on companion to &quot;Price a Real Product with AI.&quot; Done alone.</em></p>
+<span class="asg-eyebrow">Instructor assignment &middot; Ch 10</span><ul class="asg-badges" aria-label="Assignment at a glance"><li class="asg-badge"><span class="asg-badge-k">Type</span><span class="asg-badge-v">Individual</span></li><li class="asg-badge"><span class="asg-badge-k">Time</span><span class="asg-badge-v">~2 hrs</span></li><li class="asg-badge"><span class="asg-badge-k">Points</span><span class="asg-badge-v">100 pts</span></li><li class="asg-badge"><span class="asg-badge-k">Chapter</span><span class="asg-badge-v">Ch 10</span></li></ul><section class="asg-studio" data-default-access="free account" data-default-diff="medium" aria-label="Tailor the student instructions"><p class="asg-studio-lead">Build the student handout</p><p class="asg-studio-sub">Set the two levers for your class. The panel below is the only student-facing part; copy it into your LMS.</p><div class="asg-selector"><span class="asg-selector-label" id="asg-acc-lbl">Student access</span><div class="asg-chips" role="group" aria-labelledby="asg-acc-lbl"><button type="button" class="asg-chip" data-group="access" data-val="free account" data-label="Free account" aria-pressed="true" tabindex="0">Free account</button><button type="button" class="asg-chip" data-group="access" data-val="paid plan" data-label="Paid plan" aria-pressed="false" tabindex="-1">Paid plan</button></div></div><div class="asg-selector"><span class="asg-selector-label" id="asg-diff-lbl">Difficulty Level</span><div class="asg-chips" role="group" aria-labelledby="asg-diff-lbl"><button type="button" class="asg-chip" data-group="diff" data-val="low" data-label="Low" aria-pressed="false" tabindex="-1">Low</button><button type="button" class="asg-chip" data-group="diff" data-val="medium" data-label="Medium" aria-pressed="true" tabindex="0">Medium</button><button type="button" class="asg-chip" data-group="diff" data-val="high" data-label="High" aria-pressed="false" tabindex="-1">High</button></div></div><div style="display:none" aria-hidden="true"><div data-asg-frag="core"><p>Download <strong><a href="data/trailhead-supply-product-line.csv">trailhead-supply-product-line.csv</a></strong>: one quarter of operating data for <em>Trailhead Supply Co.</em>, a DTC outdoor-gear brand. Twelve SKUs, each with units sold, unit price, unit variable cost, stock on hand, and returns. The company&#x27;s fixed cost is $128,000 per quarter. The data is fictional and public; use it freely.</p>
+<p>Run the chapter&#x27;s cost arithmetic and make the tool write the formulas so every number traces to a cell. Compute the contribution margin per SKU and sort by it. Compute each product&#x27;s breakeven volume and the line&#x27;s overall breakeven against the $128,000 fixed cost, and say which SKUs sold above breakeven last quarter. Add a markup column and a margin column on every SKU and confirm they are not the same number (markup is on cost and can pass 100%; margin is on price and never can). Model one price change on a product you pick and show the new contribution margin and the new breakeven. Add a chart or pivot that makes the structure visible.</p>
+<p>The grade is mostly the judgment pass. One SKU in this file loses money on every unit it sells: name it, show the arithmetic, and say what you would do. Name an item that does not belong in a product breakeven at all and why including it distorts the line. Catch and fix one formula or framing error (a markup reported as a margin, the fixed cost spread the wrong way, a breakeven that ignored returns). Then name the one price or product you would change first, and the number to move it to. The analysis is the tool&#x27;s; the judgment and the call are yours.</p></div><div data-asg-frag="submit">one PDF plus the workbook (or a shared link): the finished Excel file or a screenshot of the analysis sheet with formulas visible; a one-page memo to the founder (the products that make the most and least sense, the loss-making SKU and your fix, your highest-priority price change with its new breakeven); and the AI transcript with the errors or blind spots you caught and corrected.</div><div data-asg-frag="access:free account"><p>Make a free account at claude.ai or chatgpt.com and upload the CSV. Have it run the same analysis in its data-analysis (code) sandbox: contribution margin, breakeven against the $128,000 fixed cost, markup versus margin, one price scenario, and a chart. The work and the judgment are identical to the paid path; you only lose the live in-sheet editing. Paste the chat as your transcript.</p></div><div data-asg-frag="access:paid plan"><p>Install the Claude for Excel add-in: in Excel, open Home, then Add-ins, then More Add-ins, search &quot;Claude by Anthropic,&quot; click Add, and sign in. The sidebar reads your open workbook, writes real formulas into cells, and cites the cells it used (Ctrl+Alt+C on Windows, Ctrl+Option+C on Mac; requires a paid Claude plan). Direct it through the same analysis, but have it write the formulas into the sheet so every number traces to a cell. Hand in the finished workbook.</p></div><div data-asg-frag="diff:low"><p>Run only the core analysis: contribution margin and breakeven per SKU and for the line, plus the markup-versus-margin columns. For the judgment pass, find the one SKU that loses money on every unit, show the arithmetic, and say what you would do about it. You may skip the price scenario and the chart.</p></div><div data-asg-frag="diff:medium"><p>Run the full analysis (contribution margin, breakeven, markup versus margin, one price scenario, and a chart), then do the full judgment pass: the loss-making SKU, the item that does not belong, one formula or framing error you fixed, and the price you would change first.</p></div><div data-asg-frag="diff:high"><p>Do the Medium task, then add rigor. Model two price scenarios on different SKUs and compare which does more for the line&#x27;s overall breakeven. Defend your highest-priority price change in a short memo paragraph that answers the strongest objection a founder could raise to it.</p></div></div></section><section class="asg-handout" aria-label="Student instructions"><div class="asg-handout-head"><div><p class="asg-handout-title">Student instructions</p><p class="asg-handout-meta">The one student-facing block &middot; reflects the selections above</p></div><button type="button" class="asg-copy">Copy</button></div><div class="asg-handout-body"><div class="asg-handout-access"></div><div class="asg-handout-scope"><span class="asg-scope-k">Your scope</span><div class="asg-handout-scope-body"></div></div><p class="asg-handout-submit"><strong>Submit:</strong>one PDF plus the workbook (or a shared link): the finished Excel file or a screenshot of the analysis sheet with formulas visible; a one-page memo to the founder (the products that make the most and least sense, the loss-making SKU and your fix, your highest-priority price change with its new breakeven); and the AI transcript with the errors or blind spots you caught and corrected.</p></div></section>
 <hr>
-<h3>The dataset</h3>
-<p>Download <strong><a href="data/trailhead-supply-product-line.csv">trailhead-supply-product-line.csv</a></strong>: one quarter of operating data for <em>Trailhead Supply Co.</em>, a DTC outdoor-gear brand. Twelve SKUs, each with units sold, unit price, unit variable cost, stock on hand, and returns. The company&#x27;s <strong>fixed cost is $128,000 per quarter</strong> (salaries, rent, software, and overhead, not tied to any single product). Open the file in Excel.</p>
-<h3>Set up Claude for Excel</h3>
-<p>Install the add-in: in Excel, open <strong>Home → Add-ins → More Add-ins</strong>, search <strong>&quot;Claude by Anthropic,&quot;</strong> click <strong>Add</strong>, and sign in with your Claude account. The sidebar opens on the right (shortcut Ctrl+Alt+C on Windows, Ctrl+Option+C on Mac). It reads your open workbook automatically, writes real formulas into cells, and cites the cells it used. Claude for Excel runs on a paid Claude plan (Pro, Max, Team, or Enterprise).</p>
-<p><strong>No paid plan?</strong> Upload the CSV to claude.ai or ChatGPT and have it run the same analysis in its data-analysis (code) sandbox. The work and the judgment are identical; you only lose the live in-sheet editing.</p>
-<h3>Run the analysis with Claude</h3>
-<p>Direct the assistant through the chapter&#x27;s cost arithmetic, and make it <strong>write the formulas in the sheet</strong> so every number traces to a cell:</p>
-<ol>
-<li><strong>Contribution margin</strong> per SKU (unit price minus unit variable cost) and the contribution-margin ratio. Sort the products by it.</li>
-<li><strong>Breakeven.</strong> Each product&#x27;s breakeven volume, and the line&#x27;s overall breakeven against the $128,000 fixed cost. Which SKUs sold above breakeven last quarter, and which did not?</li>
-<li><strong>Markup versus margin.</strong> A column for each on every SKU; confirm they are not the same number. Markup is on cost and can pass 100%; margin is on price and never can.</li>
-<li><strong>One pricing scenario.</strong> Pick a product, have Claude model a price change (a raise or a cut), and show the new contribution margin and the new breakeven volume. Is the change worth it?</li>
-<li><strong>A chart or pivot</strong> that makes the structure visible: contribution by SKU, or margin against volume.</li>
-</ol>
-<h3>The graded core: out-judge the analysis</h3>
-<p>Claude produces all of that in minutes, confidently, and <strong>some of it will be wrong or beside the point.</strong> Your real work, and most of the grade, is the judgment pass. Find and write up, in your own words:</p>
+
+<details class="asg-fold"><summary><span>What this assesses <span class="asg-fold-sub">&mdash; learning objectives, instructor only</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><p>These are the Chapter 10 objectives the work exercises. The rubric scores against them.</p>
 <ul>
-<li><strong>A product the model treats as healthy that is not.</strong> One SKU in this file loses money on every unit it sells. Name it, show the arithmetic, and say what you would do.</li>
-<li><strong>An item that does not belong in a product breakeven at all,</strong> and why including it distorts the line.</li>
-<li><strong>One formula or framing error you caught and fixed:</strong> a markup reported as a margin, the fixed cost spread the wrong way, a breakeven that ignored returns, a cell the model misread.</li>
-<li><strong>The call Claude will not make for you:</strong> the single price or product you would change first, and the number to move it to.</li>
+<li><strong>LO 10.2</strong> Choose the right pricing approach for a context and reason about a price change against the line.</li>
+<li><strong>LO 10.3</strong> Apply contribution-margin, breakeven, and markup-versus-margin arithmetic to a real product line.</li>
+<li><strong>LO 10.6</strong> Judge AI output about a cost-and-price analysis, saying which figures hold up and which the tool got wrong.</li>
 </ul>
-<p>Then give the founder three recommendations. The analysis is Claude&#x27;s; the judgment and the call are yours.</p>
-<h3>Hand in</h3>
-<p>One PDF plus the workbook:</p>
-<ol>
-<li>The <strong>finished Excel file</strong> (or a screenshot of the analysis sheet with the formulas visible).</li>
-<li>A <strong>one-page memo</strong> to the founder: the products that make the most and least sense, the loss-making SKU and your fix, and your highest-priority price change with its new breakeven.</li>
-<li>The <strong>AI transcript and your judgment pass</strong>: the prompts you gave Claude and the errors or blind spots you caught and corrected. This is your disclosure, and it is graded.</li>
-</ol>
-<hr>
-<details class="asg-fold"><summary><span>How you&rsquo;re graded <span class="asg-fold-sub">&mdash; the grading rubric</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><p>100 points. Levels describe observable work, not effort.</p>
-<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table><thead><tr><th>Criterion (LOs)</th><th>Excellent</th><th>Proficient</th><th>Developing</th><th>Not yet</th><th>Pts</th></tr></thead><tbody><tr><td><strong>Judgment pass</strong> (AI-use policy, LO 10.3)</td><td>Catches the negative-contribution SKU with arithmetic; flags the item that does not belong; fixes a real formula or framing error; names the price to change and the number</td><td>Catches the loss-making SKU and one other issue, with some correction</td><td>Repeats Claude&#x27;s output with little checking; misses the loss-making SKU</td><td>No judgment pass, or unverified output handed in as the student&#x27;s own</td><td>30</td></tr><tr><td><strong>Contribution margin and breakeven</strong> (LO 10.3)</td><td>Both correct for every SKU and for the line, written as cell formulas against the $128,000 fixed cost; above/below-breakeven read correctly</td><td>Mostly correct; one formula or breakeven figure off</td><td>A clear arithmetic error, or breakeven not computed against fixed cost</td><td>Missing or wrong throughout</td><td>24</td></tr><tr><td><strong>Markup versus margin</strong> (LO 10.3)</td><td>Both shown per SKU and clearly distinguished; markup never reported as margin</td><td>Both shown; the distinction is shaky on an edge case</td><td>Only one shown, or the two are conflated</td><td>Absent</td><td>14</td></tr><tr><td><strong>Pricing scenario</strong> (LO 10.2, 10.3)</td><td>Models a real price change, shows the new margin and breakeven, and judges whether it is worth it</td><td>Models the change but the read is thin</td><td>Changes a number without showing the breakeven effect</td><td>No scenario</td><td>14</td></tr><tr><td><strong>Memo and disclosure</strong></td><td>One-page memo gives three defensible calls a founder could act on; discloses the prompts and what was corrected</td><td>Clear memo and disclosure; minor gaps</td><td>Memo restates numbers without a recommendation, or thin disclosure</td><td>Unclear memo or no disclosure</td><td>18</td></tr><tr><td><strong>Total</strong></td><td></td><td></td><td></td><td></td><td><strong>100</strong></td></tr></tbody></table></div>
-<p>The judgment pass is the heaviest row on purpose: the add-in does the arithmetic, so the graded skill is catching what it gets wrong and owning the decision.</p>
+<p>The AI step trains the chapter&#x27;s tested misfire. Working a cost-and-price analysis, a current assistant produces all of it confidently in minutes, and some of it is wrong or beside the point: it intermittently reports a markup as if it were a margin, can spread the fixed cost the wrong way, and can treat a loss-making SKU as healthy. The student&#x27;s job is to catch what it got wrong and own the decision.</p>
 </div></details><hr>
-<h3>Submission notes</h3>
-<ul>
-<li><strong>Submit</strong> one PDF plus the workbook (or a shared link) to the course dropbox. <strong>[ADAPT: due date / time for your section.]</strong></li>
-<li><strong>The data is fictional and public.</strong> Trailhead Supply Co. is a teaching dataset; use it freely. If you bring in any real figure, label it and cite it, and never paste confidential or personal data into a public AI tool.</li>
-<li><strong>Academic integrity.</strong> The judgment, the corrections, and the memo are yours. Using Claude as the analyst is expected and disclosed; handing in its unverified output as your own work is a violation. <strong>[ADAPT: late-work and resubmission policy and your institution&#x27;s integrity code, reconciled in favor of the stricter institutional rule.]</strong></li>
-</ul>
-<hr>
-<p><em>Grounded in Chapter 10 (<code>book/v7/chapter-10-pricing.html</code>): contribution margin, breakeven, and markup-versus-margin arithmetic (§10.2), and the chapter&#x27;s AI standard, make the model run the math as code or in real cells and verify every figure before you act. The Claude for Excel add-in (Anthropic, paid Claude plans) reads the open workbook, writes cell formulas, and cites cells; install it from Excel&#x27;s Add-ins gallery. Dataset authored for this assignment.</em></p><details class="asg-fold"><summary><span>For instructors <span class="asg-fold-sub">&mdash; grading guide, AI grader, sample answer</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><p>Everything here opens in your browser. Grade however works for you: by hand, with teaching assistants, or with the AI grader. The grading skill is the one file you download, because you paste it into an AI.</p><ul><li><a href="ch10-cost-price-structures-claude-excel-grading-guide.html">Grading guide</a> &mdash; How to grade this by hand, with TAs, or with AI, with what to look for and score bands.</li></ul></div></details></div><nav class="prev-next" aria-label="Pagination"><a class="pn-prev" href="ch07-brands-assignment.html"><span class="pn-eyebrow">← Previous</span><span class="pn-title">Ch 07 Brands &amp; Brand Equity</span></a><a class="pn-next" href="ch06-stp-assignment.html"><span class="pn-eyebrow">Next →</span><span class="pn-title">Ch 06 Segmentation, Targeting &amp; Positioning</span></a></nav></section><aside class="docs-right" aria-label="On this page and related"><div class="doc-toc"></div><div class="related-block"><h3>Related — Ch 10</h3><ul class="related-list"><li><a href="../../textbook/index.html#chapter-10-pricing.html">Textbook chapter<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../materials/test-bank/ch10-pricing-test-bank.html">Test bank<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../materials/teaching-notes/ch10-pricing-teaching-notes.html">Teaching notes<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../slides/ch10/index.html">Slide deck<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../videos/index.html">Lecture video<span class="rel-arrow" aria-hidden="true">→</span></a></li></ul></div></aside></div>
+<details class="asg-fold"><summary><span>Grading rubric <span class="asg-fold-sub">&mdash; instructor only; scoring out of 100</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><p>100 points. Levels describe observable work, not effort.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table><thead><tr><th>Criterion (LOs)</th><th>Excellent</th><th>Proficient</th><th>Developing</th><th>Not yet</th><th>Pts</th></tr></thead><tbody><tr><td><strong>Judgment pass</strong> (AI-use policy, LO 10.3)</td><td>Catches the negative-contribution SKU with arithmetic; flags the item that does not belong; fixes a real formula or framing error; names the price to change and the number</td><td>Catches the loss-making SKU and one other issue, with some correction</td><td>Repeats Claude&#x27;s output with little checking; misses the loss-making SKU</td><td>No judgment pass, or unverified output handed in as the student&#x27;s own</td><td>30</td></tr><tr><td><strong>Contribution margin and breakeven</strong> (LO 10.3)</td><td>Both correct for every SKU and for the line, written as cell formulas against the $128,000 fixed cost; above/below-breakeven read correctly</td><td>Mostly correct; one formula or breakeven figure off</td><td>A clear arithmetic error, or breakeven not computed against fixed cost</td><td>Missing or wrong throughout</td><td>24</td></tr><tr><td><strong>Markup versus margin</strong> (LO 10.3)</td><td>Both shown per SKU and clearly distinguished; markup never reported as margin</td><td>Both shown; the distinction is shaky on an edge case</td><td>Only one shown, or the two are conflated</td><td>Absent</td><td>14</td></tr><tr><td><strong>Pricing scenario</strong> (LO 10.2, 10.3)</td><td>Models a real price change, shows the new margin and breakeven, and judges whether it is worth it</td><td>Models the change but the read is thin</td><td>Changes a number without showing the breakeven effect</td><td>No scenario</td><td>14</td></tr><tr><td><strong>Memo and disclosure</strong></td><td>One-page memo gives three defensible calls a founder could act on; discloses the prompts and what was corrected</td><td>Clear memo and disclosure; minor gaps</td><td>Memo restates numbers without a recommendation, or thin disclosure</td><td>Unclear memo or no disclosure</td><td>18</td></tr><tr><td><strong>Total</strong></td><td></td><td></td><td></td><td></td><td><strong>100</strong></td></tr></tbody></table></div>
+<p>The judgment pass is the heaviest row on purpose: the tool does the arithmetic, so the graded skill is catching what it gets wrong and owning the decision.</p>
+</div></details><hr>
+<p><em>Grounded in Chapter 10 (<code>book/v7/chapter-10-pricing.html</code>): contribution margin, breakeven, and markup-versus-margin arithmetic (§10.2), and the chapter&#x27;s AI standard, make the model run the math as code or in real cells and verify every figure before you act, plus the failure modes it names (an intermittent markup-as-margin slip, the fixed cost spread wrong, a loss-making SKU treated as healthy). The Claude for Excel add-in (Anthropic, paid Claude plans) reads the open workbook, writes cell formulas, and cites cells; install it from Excel&#x27;s Add-ins gallery. Dataset authored for this assignment.</em></p><details class="asg-fold"><summary><span>For instructors <span class="asg-fold-sub">&mdash; grading guide, AI grader, sample answer</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><p>Everything here opens in your browser. Grade however works for you: by hand, with teaching assistants, or with the AI grader. The grading skill is the one file you download, because you paste it into an AI.</p><ul><li><a href="ch10-cost-price-structures-claude-excel-grading-guide.html">Grading guide</a> &mdash; How to grade this by hand, with TAs, or with AI, with what to look for and score bands.</li></ul></div></details></div><nav class="prev-next" aria-label="Pagination"><a class="pn-prev" href="ch07-brands-assignment.html"><span class="pn-eyebrow">← Previous</span><span class="pn-title">Ch 07 Brands &amp; Brand Equity</span></a><a class="pn-next" href="ch06-stp-assignment.html"><span class="pn-eyebrow">Next →</span><span class="pn-title">Ch 06 Segmentation, Targeting &amp; Positioning</span></a></nav></section><aside class="docs-right" aria-label="On this page and related"><div class="doc-toc"></div><div class="related-block"><h3>Related — Ch 10</h3><ul class="related-list"><li><a href="../../textbook/index.html#chapter-10-pricing.html">Textbook chapter<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../materials/test-bank/ch10-pricing-test-bank.html">Test bank<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../materials/teaching-notes/ch10-pricing-teaching-notes.html">Teaching notes<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../slides/ch10/index.html">Slide deck<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../videos/index.html">Lecture video<span class="rel-arrow" aria-hidden="true">→</span></a></li></ul></div></aside></div>
 <script>
 (function(){
   "use strict";

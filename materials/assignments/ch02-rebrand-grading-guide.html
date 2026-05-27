@@ -320,28 +320,52 @@ main:has(.docs-layout){max-width:none;padding:0;}
 </style>
 
 <style>
+.asg-eyebrow{display:block;font-family:Inter,system-ui,sans-serif;font-size:13px;
+  font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#B8553A;margin:0 0 10px;}
 .asg-badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px;padding:0;list-style:none;}
 .asg-badge{display:inline-flex;align-items:center;gap:6px;font-family:Inter,system-ui,sans-serif;
   font-size:13px;font-weight:600;line-height:1;color:#5a3527;background:#FBEEE8;
   border:1px solid #EBC9B9;border-radius:999px;padding:8px 14px;white-space:nowrap;}
 .asg-badge .asg-badge-k{font-weight:500;color:#8a6a5c;}
-.asg-whatyouneed{margin:30px 0;padding:22px 22px 20px;border:1px solid #e6ebf1;
+/* The instructor control panel: two selectors that tailor the student handout. */
+.asg-studio{margin:30px 0;padding:22px 22px 20px;border:1px solid #e6ebf1;
   border-radius:12px;background:#fcfbfa;}
-.asg-whatyouneed > h3{margin:0 0 4px;font-size:1.18rem;}
-.asg-wyn-sub{margin:0 0 16px;color:#666;font-size:.95rem;}
-.asg-wyn-chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px;padding:0;}
-.asg-wyn-chip{font-family:Inter,system-ui,sans-serif;font-size:14px;font-weight:600;
+.asg-studio-lead{margin:0 0 4px;font-size:1.18rem;font-weight:700;font-family:Inter,system-ui,sans-serif;
+  color:#1a1a1a;}
+.asg-studio-sub{margin:0 0 18px;color:#666;font-size:.95rem;}
+.asg-selector{margin:0 0 16px;}
+.asg-selector-label{display:block;font-family:Inter,system-ui,sans-serif;font-size:13px;
+  font-weight:700;color:#5a3527;margin:0 0 8px;}
+.asg-chips{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;}
+.asg-chip{font-family:Inter,system-ui,sans-serif;font-size:14px;font-weight:600;
   color:#3a2a22;background:#fff;border:1.5px solid #d9cfc8;border-radius:10px;
-  padding:11px 16px;cursor:pointer;transition:border-color .12s,background .12s,color .12s;}
-.asg-wyn-chip:hover{border-color:#B8553A;}
-.asg-wyn-chip:focus-visible{outline:3px solid #DA7756;outline-offset:2px;}
-.asg-wyn-chip[aria-pressed="true"]{background:#DA7756;border-color:#B8553A;color:#fff;}
-.asg-wyn-panel{display:none;border-top:1px solid #ece3dd;padding-top:16px;
-  color:#333;line-height:1.6;}
-.asg-wyn-panel.is-active{display:block;}
-.asg-wyn-panel .asg-wyn-req{font-weight:600;color:#5a3527;margin:0 0 6px;}
-.asg-wyn-note{margin:0;}
-.asg-wyn-foot{margin:16px 0 0;font-size:.9rem;color:#777;font-style:italic;}
+  padding:10px 16px;cursor:pointer;transition:border-color .12s,background .12s,color .12s;}
+.asg-chip:hover{border-color:#B8553A;}
+.asg-chip:focus-visible{outline:3px solid #DA7756;outline-offset:2px;}
+.asg-chip[aria-pressed="true"]{background:#DA7756;border-color:#B8553A;color:#fff;}
+/* The single student-facing handout, assembled from the two selections. */
+.asg-handout{margin:24px 0 30px;border:1.5px solid #EBC9B9;border-radius:12px;
+  background:#fff;overflow:hidden;}
+.asg-handout-head{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  flex-wrap:wrap;padding:14px 20px;background:#FBEEE8;border-bottom:1px solid #EBC9B9;}
+.asg-handout-title{font-family:Inter,system-ui,sans-serif;font-weight:700;font-size:1rem;
+  color:#5a3527;margin:0;}
+.asg-handout-meta{font-family:Inter,system-ui,sans-serif;font-size:12.5px;color:#8a6a5c;
+  margin:2px 0 0;}
+.asg-copy{font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:600;color:#fff;
+  background:#B8553A;border:none;border-radius:8px;padding:9px 16px;cursor:pointer;
+  transition:background .12s;white-space:nowrap;}
+.asg-copy:hover{background:#9f4630;}
+.asg-copy:focus-visible{outline:3px solid #DA7756;outline-offset:2px;}
+.asg-copy.is-copied{background:#5a3527;}
+.asg-handout-body{padding:18px 22px 20px;color:#222;line-height:1.6;}
+.asg-handout-body > :first-child{margin-top:0;}
+.asg-handout-scope{margin:14px 0 0;padding:12px 16px;background:#fcfbfa;
+  border-left:3px solid #DA7756;border-radius:0 8px 8px 0;}
+.asg-handout-scope .asg-scope-k{display:block;font-family:Inter,system-ui,sans-serif;
+  font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#B8553A;
+  margin:0 0 4px;}
+.asg-handout-submit{margin:16px 0 0;}
 details.asg-fold{margin:30px 0;border:1px solid #e6ebf1;border-radius:12px;
   background:#fcfbfa;overflow:hidden;}
 details.asg-fold > summary{cursor:pointer;list-style:none;padding:16px 20px;
@@ -362,19 +386,86 @@ details.asg-fold > .asg-fold-body > :first-child{margin-top:14px;}
   function ready(fn){ if(document.readyState!=="loading"){fn();}
     else{document.addEventListener("DOMContentLoaded",fn);} }
   ready(function(){
-    document.querySelectorAll(".asg-whatyouneed").forEach(function(box){
-      var chips=box.querySelectorAll(".asg-wyn-chip");
-      var panels=box.querySelectorAll(".asg-wyn-panel");
-      function select(idx){
-        chips.forEach(function(c,i){ c.setAttribute("aria-pressed", i===idx?"true":"false"); });
-        panels.forEach(function(p,i){ p.classList.toggle("is-active", i===idx); });
+    document.querySelectorAll(".asg-studio").forEach(function(studio){
+      var handout=studio.parentNode.querySelector(".asg-handout");
+      if(!handout){return;}
+      // The .md content for each option lives in hidden template blocks read by id.
+      function frag(id){ var el=studio.querySelector('[data-asg-frag="'+id+'"]');
+        return el?el.innerHTML:""; }
+      var coreHtml=frag("core");
+      var submitHtml=frag("submit");
+      var slotMain=handout.querySelector(".asg-handout-access");
+      var slotScope=handout.querySelector(".asg-handout-scope-body");
+      var titleEl=handout.querySelector(".asg-handout-title");
+      var sel={access:studio.getAttribute("data-default-access")||"",
+               diff:studio.getAttribute("data-default-diff")||""};
+      function labelFor(group,val){
+        var b=studio.querySelector('.asg-chip[data-group="'+group+'"][data-val="'+val+'"]');
+        return b?b.getAttribute("data-label"):val;
       }
-      chips.forEach(function(c,i){ c.addEventListener("click", function(){ select(i); }); });
-      // default to the chip pre-marked in the markup (the free-account tier),
-      // falling back to the first chip.
-      var def=0;
-      chips.forEach(function(c,i){ if(c.getAttribute("data-default")==="1"){def=i;} });
-      select(def);
+      function render(){
+        if(slotMain){ slotMain.innerHTML=coreHtml+(sel.access?frag("access:"+sel.access):""); }
+        if(slotScope){ slotScope.innerHTML=sel.diff?frag("diff:"+sel.diff):""; }
+        if(titleEl){ titleEl.textContent="Student instructions"; }
+      }
+      function wire(group){
+        var chips=studio.querySelectorAll('.asg-chip[data-group="'+group+'"]');
+        function pick(val,focusIt){
+          sel[group==="access"?"access":"diff"]=val;
+          chips.forEach(function(c){
+            var on=c.getAttribute("data-val")===val;
+            c.setAttribute("aria-pressed",on?"true":"false");
+            c.tabIndex=on?0:-1;
+            if(on&&focusIt){c.focus();}
+          });
+          render();
+        }
+        chips.forEach(function(c,i){
+          c.addEventListener("click",function(){ pick(c.getAttribute("data-val"),false); });
+          c.addEventListener("keydown",function(e){
+            var k=e.key; var n=chips.length;
+            if(k==="ArrowRight"||k==="ArrowDown"){e.preventDefault();
+              pick(chips[(i+1)%n].getAttribute("data-val"),true);}
+            else if(k==="ArrowLeft"||k==="ArrowUp"){e.preventDefault();
+              pick(chips[(i-1+n)%n].getAttribute("data-val"),true);}
+          });
+        });
+        // initial: the data-default chip, else the first.
+        var def=studio.querySelector('.asg-chip[data-group="'+group+'"][aria-pressed="true"]');
+        pick(def?def.getAttribute("data-val"):
+          (chips[0]?chips[0].getAttribute("data-val"):""),false);
+      }
+      if(studio.querySelector('.asg-chip[data-group="access"]')){ wire("access"); }
+      if(studio.querySelector('.asg-chip[data-group="diff"]')){ wire("diff"); }
+      render();
+      // Copy: assemble the visible handout as PLAIN TEXT (core + access + scope + submit).
+      var btn=handout.querySelector(".asg-copy");
+      if(btn){
+        btn.addEventListener("click",function(){
+          var parts=[];
+          var body=handout.querySelector(".asg-handout-access");
+          if(body&&body.innerText.trim()){parts.push(body.innerText.trim());}
+          var scopeWrap=handout.querySelector(".asg-handout-scope");
+          var scopeBody=handout.querySelector(".asg-handout-scope-body");
+          if(scopeBody&&scopeBody.innerText.trim()){
+            parts.push("Scope ("+labelFor("diff",sel.diff)+"): "+scopeBody.innerText.trim());
+          }
+          var sub=handout.querySelector(".asg-handout-submit");
+          if(sub&&sub.innerText.trim()){parts.push(sub.innerText.trim());}
+          var text=parts.join("\n\n");
+          var done=function(){var o=btn.textContent;btn.textContent="Copied";
+            btn.classList.add("is-copied");
+            setTimeout(function(){btn.textContent=o;btn.classList.remove("is-copied");},1600);};
+          if(navigator.clipboard&&navigator.clipboard.writeText){
+            navigator.clipboard.writeText(text).then(done,function(){done();});
+          }else{
+            var ta=document.createElement("textarea");ta.value=text;
+            document.body.appendChild(ta);ta.select();
+            try{document.execCommand("copy");}catch(e){}
+            document.body.removeChild(ta);done();
+          }
+        });
+      }
     });
   });
 })();
