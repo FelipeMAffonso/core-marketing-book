@@ -74,6 +74,19 @@
     allowed: ['complete', 'focused'],
     'default': 'complete',
     storageKey: 'cc-density',
+    /* EDITION axis (audience/voice), ORTHOGONAL to DEPTH (length). An element
+     * tagged data-edition="X" shows only in edition X; untagged shows in all.
+     * Default = advanced-only, so chapters with no data-edition tags behave
+     * EXACTLY as before (the 27 shipped chapters are unaffected). A deployment
+     * that ships the Beginner edition sets allowedEditions + defaultEdition via
+     * DEPTH_CONFIG; the build can also lock a single edition per product. */
+    editions: {
+      advanced: { label: 'Marketing Management', short: 'Advanced' },
+      beginner: { label: 'Principles',           short: 'Beginner' }
+    },
+    allowedEditions: ['advanced'],
+    defaultEdition: 'advanced',
+    editionStorageKey: 'cc-edition',
     chapterMap: null,
     accent: '#c2410c' /* Core coral-deep; only used for inline link color */
   };
@@ -85,6 +98,10 @@
       allowed: (c.allowed && c.allowed.length) ? c.allowed : DEFAULTS.allowed,
       defaultDepth: c['default'] || DEFAULTS['default'],
       storageKey: c.storageKey || DEFAULTS.storageKey,
+      editions: c.editions || DEFAULTS.editions,
+      allowedEditions: (c.allowedEditions && c.allowedEditions.length) ? c.allowedEditions : DEFAULTS.allowedEditions,
+      defaultEdition: c.defaultEdition || DEFAULTS.defaultEdition,
+      editionStorageKey: c.editionStorageKey || DEFAULTS.editionStorageKey,
       chapterMap: c.chapterMap || global.CHAPTER_MAP || DEFAULTS.chapterMap,
       accent: c.accent || DEFAULTS.accent
     };
@@ -94,7 +111,10 @@
    * persistence, but the engine keeps a normalized copy so its passes agree on
    * what "focused" means. Normalize anything that is not 'focused' to 'complete'
    * (MRV does the same: Complete is the conservative default). */
-  var state = { depth: getConfig().defaultDepth === 'focused' ? 'focused' : 'complete' };
+  var state = {
+    depth: getConfig().defaultDepth === 'focused' ? 'focused' : 'complete',
+    edition: getConfig().defaultEdition
+  };
 
   function setDepth(mode) {
     state.depth = (mode === 'focused') ? 'focused' : 'complete';
@@ -102,6 +122,16 @@
   }
   function getDepth() { return state.depth; }
   function isFocused() { return state.depth === 'focused'; }
+
+  /* EDITION state. Normalize an unknown edition to the configured default so the
+   * engine is always valid. The shell owns the UI/persistence; the engine keeps
+   * a normalized copy so every pass agrees on the current edition. */
+  function setEdition(ed) {
+    var cfg = getConfig();
+    state.edition = (cfg.editions && cfg.editions[ed]) ? ed : cfg.defaultEdition;
+    return state.edition;
+  }
+  function getEdition() { return state.edition; }
 
   /* --------------------------------------------------------------------------
    * 1. VISIBILITY PREDICATE
@@ -125,6 +155,31 @@
       node = node.parentElement;
     }
     return false;
+  }
+
+  /* EDITION visibility: a node is edition-hidden iff it (or an ancestor up to
+   * <body>) carries data-edition set to a DIFFERENT edition than the current one.
+   * Untagged nodes show in every edition. This is independent of depth and applies
+   * in BOTH Comprehensive and Focused. */
+  function isEditionHidden(el, doc) {
+    var cur = state.edition;
+    var node = el;
+    var body = doc.body;
+    while (node && node !== body) {
+      if (node.nodeType === 1 && node.getAttribute) {
+        var ed = node.getAttribute('data-edition');
+        if (ed && ed !== cur) return true;
+      }
+      node = node.parentElement;
+    }
+    return false;
+  }
+
+  /* Combined predicate used by every renumbering pass: hidden if off-edition OR
+   * depth-hidden. (Sections/citations/captions must skip BOTH so the visible set
+   * renumbers gap-free in each of the four edition x depth cells.) */
+  function isHidden(el, doc) {
+    return isEditionHidden(el, doc) || isDepthHidden(el, doc);
   }
 
   /* --------------------------------------------------------------------------
@@ -224,7 +279,7 @@
       allH2.forEach(function (h2) {
         snapshotHeading(h2);
 
-        var hiddenHere = focused && (h2.hasAttribute('data-complete') || h2.hasAttribute('data-verbose') ||
+        var hiddenHere = isEditionHidden(h2, doc) || focused && (h2.hasAttribute('data-complete') || h2.hasAttribute('data-verbose') ||
                           (h2.closest && h2.closest('[data-complete],[data-verbose]')));
         if (hiddenHere) {
           // Hidden in Focused: strip number (it would be wrong / invisible anyway)
@@ -275,7 +330,7 @@
 
   function applyH3(h3, doc, chNum, sectionCount, subCount, focused, forceBare) {
     snapshotHeading(h3);
-    var hidden = focused && (h3.hasAttribute('data-complete') || h3.hasAttribute('data-verbose') ||
+    var hidden = isEditionHidden(h3, doc) || focused && (h3.hasAttribute('data-complete') || h3.hasAttribute('data-verbose') ||
                   (h3.closest && h3.closest('[data-complete],[data-verbose]')));
     var unnumbered = h3.hasAttribute('data-no-num');
     if (forceBare || hidden || unnumbered || !chNum || !sectionCount) {
@@ -340,7 +395,7 @@
       allCites.forEach(function (el) {
         var key = el.getAttribute('data-cite');
         if (!key) return;
-        if (isDepthHidden(el, doc)) { hiddenCites.push(el); return; }
+        if (isHidden(el, doc)) { hiddenCites.push(el); return; }
         if (!keyToNum[key]) {
           keyToNum[key] = nextNum;
           numToKey[nextNum] = key;
@@ -440,7 +495,7 @@
       var keyToNum = {};
       var counts = {};   // SEPARATE sequence per label (Figure vs Interactive), textbook-style
       caps.forEach(function (el) {
-        if (isDepthHidden(el, doc)) { el.textContent = ''; return; }  // blank stale hidden
+        if (isHidden(el, doc)) { el.textContent = ''; return; }  // blank stale hidden
         var kind = el.getAttribute('data-cap');
         var label = (kind === 'interactive') ? 'Interactive' : 'Figure';
         counts[label] = (counts[label] || 0) + 1;
@@ -458,7 +513,7 @@
         }
       });
       doc.querySelectorAll('[data-figref]').forEach(function (r) {
-        if (isDepthHidden(r, doc)) { r.textContent = ''; return; }
+        if (isHidden(r, doc)) { r.textContent = ''; return; }
         r.textContent = keyToNum[r.getAttribute('data-figref')] || '';
       });
       return { count: n };
@@ -481,7 +536,7 @@
         id: h.id,
         level: h.tagName === 'H3' ? 3 : 2,
         text: h.textContent.trim(),
-        hidden: isDepthHidden(h, doc) || (isFocused() &&
+        hidden: isHidden(h, doc) || (isFocused() &&
                  (h.hasAttribute('data-complete') || h.hasAttribute('data-verbose')))
       });
     });
@@ -501,6 +556,8 @@
     try {
       var prev = doc.getElementById('cc-depth-style');
       if (prev) prev.remove();
+      var prevEd = doc.getElementById('cc-edition-style');
+      if (prevEd) prevEd.remove();
       var standalone = doc.getElementById('cc-standalone-density') ||
                        doc.getElementById('rs-standalone-density');
       if (standalone) standalone.remove();
@@ -514,6 +571,24 @@
         style.id = 'cc-depth-style';
         style.textContent = css;
         (doc.head || doc.documentElement).appendChild(style);
+      }
+
+      // EDITION visibility — a SEPARATE <style>, appended AFTER the depth style so
+      // off-edition hiding wins even over the [data-focused] reveal above (a
+      // beginner-focused block must stay hidden in the advanced edition). Applies
+      // in BOTH depths: hide every edition that is not the current one.
+      var ecfg = getConfig();
+      if (ecfg.editions) {
+        var ecss = '';
+        Object.keys(ecfg.editions).forEach(function (ed) {
+          if (ed !== state.edition) ecss += '[data-edition="' + ed + '"]{display:none !important;}';
+        });
+        if (ecss) {
+          var estyle = doc.createElement('style');
+          estyle.id = 'cc-edition-style';
+          estyle.textContent = ecss;
+          (doc.head || doc.documentElement).appendChild(estyle);
+        }
       }
     } catch (e) {}
   }
@@ -551,22 +626,34 @@
    * TOC resync/prune is left to the caller (shell) via ccVisibleHeadings(),
    * because the shell owns the TOC DOM. Returns the citation mapping for tests.
    * ------------------------------------------------------------------------ */
-  function applyDepth(mode, doc) {
+  function applyView(edition, mode, doc) {
     doc = doc || document;
     var cfg = getConfig();
-    // Respect the allowed list: if a deployment does not allow the requested
-    // depth, fall back to its default. (Professor-configurable, per VISION 2b.)
-    if (cfg.allowed.indexOf(mode) === -1) mode = cfg.defaultDepth;
-    setDepth(mode);
-    try { global.localStorage && global.localStorage.setItem(cfg.storageKey, state.depth); } catch (e) {}
+    if (edition != null) setEdition(edition);
+    if (mode != null) {
+      // Respect the allowed list: if a deployment does not allow the requested
+      // depth, fall back to its default. (Professor-configurable, per VISION 2b.)
+      if (cfg.allowed.indexOf(mode) === -1) mode = cfg.defaultDepth;
+      setDepth(mode);
+    }
+    try {
+      if (global.localStorage) {
+        global.localStorage.setItem(cfg.storageKey, state.depth);
+        global.localStorage.setItem(cfg.editionStorageKey, state.edition);
+      }
+    } catch (e) {}
 
-    injectDepthCSS(doc);   // 2
-    ccAutoNumber(doc);     // 3
-    var citeInfo = ccAutoCitations(doc); // 4
-    ccAutoCaptions(doc);                 // 5  (figure/interactive caption numbering)
-    setupRefsAutoExpand(doc);            // 6  (in-text cite click -> open References details)
+    injectDepthCSS(doc);   // visibility: edition + depth
+    ccAutoNumber(doc);     // sections from the visible set
+    var citeInfo = ccAutoCitations(doc); // citations + References rebuild
+    ccAutoCaptions(doc);                 // figure/interactive caption numbering
+    setupRefsAutoExpand(doc);            // in-text cite click -> open References details
     return citeInfo;
   }
+
+  // Thin wrappers (back-compat): set one axis, keep the other as-is.
+  function applyDepth(mode, doc) { return applyView(null, mode, doc); }
+  function applyEdition(edition, doc) { return applyView(edition, null, doc); }
 
   /* --------------------------------------------------------------------------
    * 8. init(doc)  —  convenience boot for IN-PAGE (non-iframe) usage
@@ -578,17 +665,25 @@
   function init(doc) {
     doc = doc || document;
     var cfg = getConfig();
-    var saved = null;
-    try { saved = global.localStorage && global.localStorage.getItem(cfg.storageKey); } catch (e) {}
-    var mode = (saved === 'focused' || saved === 'complete') ? saved : cfg.defaultDepth;
-    return applyDepth(mode, doc);
+    var savedD = null, savedE = null;
+    try {
+      if (global.localStorage) {
+        savedD = global.localStorage.getItem(cfg.storageKey);
+        savedE = global.localStorage.getItem(cfg.editionStorageKey);
+      }
+    } catch (e) {}
+    var mode = (savedD === 'focused' || savedD === 'complete') ? savedD : cfg.defaultDepth;
+    var ed = (cfg.editions && cfg.editions[savedE]) ? savedE : cfg.defaultEdition;
+    return applyView(ed, mode, doc);
   }
 
   /* --------------------------------------------------------------------------
    * 9. PUBLIC API
    * ------------------------------------------------------------------------ */
   var DepthEngine = {
+    applyView: applyView,
     applyDepth: applyDepth,
+    applyEdition: applyEdition,
     ccAutoNumber: ccAutoNumber,
     ccAutoCitations: ccAutoCitations,
     ccAutoCaptions: ccAutoCaptions,
@@ -596,8 +691,12 @@
     ccVisibleHeadings: ccVisibleHeadings,
     getChapterNum: getChapterNum,
     isDepthHidden: isDepthHidden,
+    isEditionHidden: isEditionHidden,
+    isHidden: isHidden,
     getDepth: getDepth,
     setDepth: setDepth,
+    getEdition: getEdition,
+    setEdition: setEdition,
     isFocused: isFocused,
     getConfig: getConfig,
     init: init
