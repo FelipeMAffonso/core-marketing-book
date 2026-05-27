@@ -318,6 +318,68 @@ main:has(.docs-layout){max-width:none;padding:0;}
   .page-overview { font-size: 15px; }
 }
 </style>
+
+<style>
+.asg-badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px;padding:0;list-style:none;}
+.asg-badge{display:inline-flex;align-items:center;gap:6px;font-family:Inter,system-ui,sans-serif;
+  font-size:13px;font-weight:600;line-height:1;color:#5a3527;background:#FBEEE8;
+  border:1px solid #EBC9B9;border-radius:999px;padding:8px 14px;white-space:nowrap;}
+.asg-badge .asg-badge-k{font-weight:500;color:#8a6a5c;}
+.asg-whatyouneed{margin:30px 0;padding:22px 22px 20px;border:1px solid #e6ebf1;
+  border-radius:12px;background:#fcfbfa;}
+.asg-whatyouneed > h3{margin:0 0 4px;font-size:1.18rem;}
+.asg-wyn-sub{margin:0 0 16px;color:#666;font-size:.95rem;}
+.asg-wyn-chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px;padding:0;}
+.asg-wyn-chip{font-family:Inter,system-ui,sans-serif;font-size:14px;font-weight:600;
+  color:#3a2a22;background:#fff;border:1.5px solid #d9cfc8;border-radius:10px;
+  padding:11px 16px;cursor:pointer;transition:border-color .12s,background .12s,color .12s;}
+.asg-wyn-chip:hover{border-color:#B8553A;}
+.asg-wyn-chip:focus-visible{outline:3px solid #DA7756;outline-offset:2px;}
+.asg-wyn-chip[aria-pressed="true"]{background:#DA7756;border-color:#B8553A;color:#fff;}
+.asg-wyn-panel{display:none;border-top:1px solid #ece3dd;padding-top:16px;
+  color:#333;line-height:1.6;}
+.asg-wyn-panel.is-active{display:block;}
+.asg-wyn-panel .asg-wyn-req{font-weight:600;color:#5a3527;margin:0 0 6px;}
+.asg-wyn-note{margin:0;}
+.asg-wyn-foot{margin:16px 0 0;font-size:.9rem;color:#777;font-style:italic;}
+details.asg-fold{margin:30px 0;border:1px solid #e6ebf1;border-radius:12px;
+  background:#fcfbfa;overflow:hidden;}
+details.asg-fold > summary{cursor:pointer;list-style:none;padding:16px 20px;
+  font-family:Inter,system-ui,sans-serif;font-weight:700;font-size:1.05rem;color:#1a1a1a;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;}
+details.asg-fold > summary::-webkit-details-marker{display:none;}
+details.asg-fold > summary:focus-visible{outline:3px solid #DA7756;outline-offset:-3px;}
+details.asg-fold > summary .asg-fold-sub{font-weight:400;font-size:.9rem;color:#777;}
+details.asg-fold > summary .asg-fold-caret{flex:0 0 auto;color:#B8553A;font-size:.85rem;
+  transition:transform .15s;}
+details.asg-fold[open] > summary .asg-fold-caret{transform:rotate(90deg);}
+details.asg-fold > .asg-fold-body{padding:4px 20px 18px;border-top:1px solid #ece3dd;}
+details.asg-fold > .asg-fold-body > :first-child{margin-top:14px;}
+</style>
+<script>
+(function(){
+  "use strict";
+  function ready(fn){ if(document.readyState!=="loading"){fn();}
+    else{document.addEventListener("DOMContentLoaded",fn);} }
+  ready(function(){
+    document.querySelectorAll(".asg-whatyouneed").forEach(function(box){
+      var chips=box.querySelectorAll(".asg-wyn-chip");
+      var panels=box.querySelectorAll(".asg-wyn-panel");
+      function select(idx){
+        chips.forEach(function(c,i){ c.setAttribute("aria-pressed", i===idx?"true":"false"); });
+        panels.forEach(function(p,i){ p.classList.toggle("is-active", i===idx); });
+      }
+      chips.forEach(function(c,i){ c.addEventListener("click", function(){ select(i); }); });
+      // default to the chip pre-marked in the markup (the free-account tier),
+      // falling back to the first chip.
+      var def=0;
+      chips.forEach(function(c,i){ if(c.getAttribute("data-default")==="1"){def=i;} });
+      select(def);
+    });
+  });
+})();
+</script>
+
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -341,13 +403,13 @@ main:has(.docs-layout){max-width:none;padding:0;}
 <li><strong>Frame (what competitors charge):</strong> Full-grain leather laptop sleeves in the direct-to-consumer space cluster between roughly $65 and $120. Three named comparisons: <strong>Bellroy</strong> lists its leather laptop sleeve at <strong>$89</strong>, <strong>Harber London</strong> sells a comparable full-grain sleeve at <strong>$99</strong>, and <strong>Cuyana</strong> offers a leather laptop case at <strong>$78</strong>. Your product sits in premium-handmade territory, above mass-market neoprene but below luxury fashion houses.</li>
 <li><strong>Ceiling (the most a buyer would pay):</strong> A buyer who already shops Bellroy or Harber London for a full-grain sleeve will pay up to about <strong>$110–$120</strong> for a comparable handmade product with a strong brand story, especially if the leather and stitching read as higher quality in photos.</li>
 </ul>
-<p><strong>Your price at a 40% margin:</strong> You asked for a 40% margin on your $40 cost. That gives you a price of <strong>$56.00</strong> ($40 cost plus 40% = $40 &amp;times; 1.40 = $56). This sits comfortably below your competitors, which gives you room to win on price while still earning a healthy 40% margin.</p>
+<p><strong>Your price at a 40% margin:</strong> You asked for a 40% margin on your $40 cost. That gives you a price of <strong>$56.00</strong> ($40 cost plus 40% = $40 &times; 1.40 = $56). This sits comfortably below your competitors, which gives you room to win on price while still earning a healthy 40% margin.</p>
 <p><strong>Markup and margin on the $56 price:</strong></p>
 <ul>
 <li><strong>Margin: 40%.</strong> You are earning a 40% margin on every sleeve.</li>
 <li><strong>Markup: 40%.</strong> The markup is also 40%, since you added 40% to your cost.</li>
 </ul>
-<p><strong>Contribution margin:</strong> Price minus variable cost = $56 &amp;minus; $40 = <strong>$16 per sleeve.</strong></p>
+<p><strong>Contribution margin:</strong> Price minus variable cost = $56 &minus; $40 = <strong>$16 per sleeve.</strong></p>
 <p><strong>Breakeven against $9,000 of fixed cost:</strong> $9,000 / $16 = <strong>562.5, so 563 sleeves</strong> to cover your launch costs.</p>
 <p><strong>Is your price fair?</strong> Yes. At $56 you are well below the $78–$99 competitors charge, so buyers are getting premium full-grain leather at a noticeably lower price. A cost-based 40% margin is a transparent, defensible way to price, and undercutting the frame this much makes the value obvious. This is a fair and competitive price.</p>
 <hr>
@@ -356,15 +418,15 @@ main:has(.docs-layout){max-width:none;padding:0;}
 <p><em>This section is for instructor use only. Do not share with students before they submit.</em></p>
 <hr>
 <h2>Planted error 1: A markup labeled as a margin (the headline error)</h2>
-<p><strong>The claim:</strong> &quot;You asked for a 40% margin on your $40 cost. That gives you a price of $56.00 ($40 cost plus 40% = $40 &amp;times; 1.40 = $56)... You are earning a 40% margin on every sleeve.&quot;</p>
+<p><strong>The claim:</strong> &quot;You asked for a 40% margin on your $40 cost. That gives you a price of $56.00 ($40 cost plus 40% = $40 &times; 1.40 = $56)... You are earning a 40% margin on every sleeve.&quot;</p>
 <p><strong>Why it is wrong:</strong> This is the exact AI Misfire Chapter 10 trains, and it is the most important thing a Tier 1 student must catch. The student asked for a 40% <strong>margin</strong>, but the model computed a 40% <strong>markup</strong> and then labeled it a margin. The two are not the same:</p>
 <ul>
-<li><strong>Markup</strong> is measured against <strong>cost</strong>: a 40% markup on a $40 cost is $40 &amp;times; 1.40 = <strong>$56</strong>. The margin on a $56 price is only ($56 &amp;minus; $40) / $56 = <strong>28.6%</strong>, not 40%.</li>
-<li><strong>Margin</strong> is measured against <strong>price</strong>: a true 40% margin on a $40 cost requires a price of $40 / (1 &amp;minus; 0.40) = <strong>$66.67</strong>. At $66.67 the markup is ($66.67 &amp;minus; $40) / $40 = <strong>66.7%</strong>.</li>
+<li><strong>Markup</strong> is measured against <strong>cost</strong>: a 40% markup on a $40 cost is $40 &times; 1.40 = <strong>$56</strong>. The margin on a $56 price is only ($56 &minus; $40) / $56 = <strong>28.6%</strong>, not 40%.</li>
+<li><strong>Margin</strong> is measured against <strong>price</strong>: a true 40% margin on a $40 cost requires a price of $40 / (1 &minus; 0.40) = <strong>$66.67</strong>. At $66.67 the markup is ($66.67 &minus; $40) / $40 = <strong>66.7%</strong>.</li>
 </ul>
 <p>So the model&#x27;s own claim that &quot;the markup is also 40%, the margin is also 40%&quot; is impossible. Markup and margin are never equal (except at a zero markup). The $56 price the AI produced earns a 28.6% margin, well short of the 40% the student wanted. To actually hit a 40% margin, the price must be <strong>$66.67</strong>.</p>
 <p><strong>The type of error:</strong> Arithmetic-by-guessing plus a definitional mix-up, stated with total confidence. The model added a percentage to cost (a markup) and called the result a margin, the single most common pricing mistake the chapter names.</p>
-<p><strong>What a student should write:</strong> Something like &quot;The AI gave me $56 and called it a 40% margin, but that is a 40% <em>markup</em>. The margin on $56 is only 28.6%. To get a real 40% margin on my $40 cost I need $40 / (1 &amp;minus; 0.40) = $66.67. I re-ran both numbers as a quick calculation: at $66.67 the markup is 66.7% and the margin is 40%. I am charging $66.67, not $56.&quot;</p>
+<p><strong>What a student should write:</strong> Something like &quot;The AI gave me $56 and called it a 40% margin, but that is a 40% <em>markup</em>. The margin on $56 is only 28.6%. To get a real 40% margin on my $40 cost I need $40 / (1 &minus; 0.40) = $66.67. I re-ran both numbers as a quick calculation: at $66.67 the markup is 66.7% and the margin is 40%. I am charging $66.67, not $56.&quot;</p>
 <hr>
 <h2>Planted error 2: An invented competitor price stated as fact (Where it sells / the frame)</h2>
 <p><strong>The claim:</strong> &quot;Cuyana offers a leather laptop case at $78.&quot;</p>

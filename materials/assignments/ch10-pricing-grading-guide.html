@@ -318,6 +318,68 @@ main:has(.docs-layout){max-width:none;padding:0;}
   .page-overview { font-size: 15px; }
 }
 </style>
+
+<style>
+.asg-badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px;padding:0;list-style:none;}
+.asg-badge{display:inline-flex;align-items:center;gap:6px;font-family:Inter,system-ui,sans-serif;
+  font-size:13px;font-weight:600;line-height:1;color:#5a3527;background:#FBEEE8;
+  border:1px solid #EBC9B9;border-radius:999px;padding:8px 14px;white-space:nowrap;}
+.asg-badge .asg-badge-k{font-weight:500;color:#8a6a5c;}
+.asg-whatyouneed{margin:30px 0;padding:22px 22px 20px;border:1px solid #e6ebf1;
+  border-radius:12px;background:#fcfbfa;}
+.asg-whatyouneed > h3{margin:0 0 4px;font-size:1.18rem;}
+.asg-wyn-sub{margin:0 0 16px;color:#666;font-size:.95rem;}
+.asg-wyn-chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px;padding:0;}
+.asg-wyn-chip{font-family:Inter,system-ui,sans-serif;font-size:14px;font-weight:600;
+  color:#3a2a22;background:#fff;border:1.5px solid #d9cfc8;border-radius:10px;
+  padding:11px 16px;cursor:pointer;transition:border-color .12s,background .12s,color .12s;}
+.asg-wyn-chip:hover{border-color:#B8553A;}
+.asg-wyn-chip:focus-visible{outline:3px solid #DA7756;outline-offset:2px;}
+.asg-wyn-chip[aria-pressed="true"]{background:#DA7756;border-color:#B8553A;color:#fff;}
+.asg-wyn-panel{display:none;border-top:1px solid #ece3dd;padding-top:16px;
+  color:#333;line-height:1.6;}
+.asg-wyn-panel.is-active{display:block;}
+.asg-wyn-panel .asg-wyn-req{font-weight:600;color:#5a3527;margin:0 0 6px;}
+.asg-wyn-note{margin:0;}
+.asg-wyn-foot{margin:16px 0 0;font-size:.9rem;color:#777;font-style:italic;}
+details.asg-fold{margin:30px 0;border:1px solid #e6ebf1;border-radius:12px;
+  background:#fcfbfa;overflow:hidden;}
+details.asg-fold > summary{cursor:pointer;list-style:none;padding:16px 20px;
+  font-family:Inter,system-ui,sans-serif;font-weight:700;font-size:1.05rem;color:#1a1a1a;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;}
+details.asg-fold > summary::-webkit-details-marker{display:none;}
+details.asg-fold > summary:focus-visible{outline:3px solid #DA7756;outline-offset:-3px;}
+details.asg-fold > summary .asg-fold-sub{font-weight:400;font-size:.9rem;color:#777;}
+details.asg-fold > summary .asg-fold-caret{flex:0 0 auto;color:#B8553A;font-size:.85rem;
+  transition:transform .15s;}
+details.asg-fold[open] > summary .asg-fold-caret{transform:rotate(90deg);}
+details.asg-fold > .asg-fold-body{padding:4px 20px 18px;border-top:1px solid #ece3dd;}
+details.asg-fold > .asg-fold-body > :first-child{margin-top:14px;}
+</style>
+<script>
+(function(){
+  "use strict";
+  function ready(fn){ if(document.readyState!=="loading"){fn();}
+    else{document.addEventListener("DOMContentLoaded",fn);} }
+  ready(function(){
+    document.querySelectorAll(".asg-whatyouneed").forEach(function(box){
+      var chips=box.querySelectorAll(".asg-wyn-chip");
+      var panels=box.querySelectorAll(".asg-wyn-panel");
+      function select(idx){
+        chips.forEach(function(c,i){ c.setAttribute("aria-pressed", i===idx?"true":"false"); });
+        panels.forEach(function(p,i){ p.classList.toggle("is-active", i===idx); });
+      }
+      chips.forEach(function(c,i){ c.addEventListener("click", function(){ select(i); }); });
+      // default to the chip pre-marked in the markup (the free-account tier),
+      // falling back to the first chip.
+      var def=0;
+      chips.forEach(function(c,i){ if(c.getAttribute("data-default")==="1"){def=i;} });
+      select(def);
+    });
+  });
+})();
+</script>
+
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -348,8 +410,8 @@ main:has(.docs-layout){max-width:none;padding:0;}
 <h3>What to look for, row by row</h3>
 <p><strong>Judgment pass: caught what the AI got wrong (28 pts) — the heaviest row, grade it first.</strong></p>
 <ul>
-<li><em>Strong:</em> the student caught a real AI error and corrected it. The three errors to watch for, in order of how reliably the model makes them: (1) a <strong>competitor price the model invented</strong> and stated as fact (it does this on almost every run), (2) a <strong>markup reported as a margin</strong> (the model returns cost &amp;times; 1.40 and calls it a 40% margin; an intermittent slip that surfaces inside a long multi-part prompt), (3) a breakeven or contribution-margin figure the model fumbled. The student names the line, shows the right arithmetic or the real price, and sets a final price.</li>
-<li><em>Look for the catch.</em> The single best signal of a strong paper is a named, corrected AI error. &quot;The AI said a 40% margin on my $40 cost meant a $56 price, but that is the markup. The real margin price is $40 / (1 &amp;minus; 0.40) = $66.67, so I raised it&quot; is the assignment working.</li>
+<li><em>Strong:</em> the student caught a real AI error and corrected it. The three errors to watch for, in order of how reliably the model makes them: (1) a <strong>competitor price the model invented</strong> and stated as fact (it does this on almost every run), (2) a <strong>markup reported as a margin</strong> (the model returns cost &times; 1.40 and calls it a 40% margin; an intermittent slip that surfaces inside a long multi-part prompt), (3) a breakeven or contribution-margin figure the model fumbled. The student names the line, shows the right arithmetic or the real price, and sets a final price.</li>
+<li><em>Look for the catch.</em> The single best signal of a strong paper is a named, corrected AI error. &quot;The AI said a 40% margin on my $40 cost meant a $56 price, but that is the markup. The real margin price is $40 / (1 &minus; 0.40) = $66.67, so I raised it&quot; is the assignment working.</li>
 <li><em>Weak:</em> &quot;The AI did all the math and it looked right, so I used its price.&quot; No verification, no catch. That is the Developing/Not-yet band no matter how polished the rest is.</li>
 </ul>
 <p><strong>Value stick (18 pts).</strong></p>
@@ -399,7 +461,7 @@ main:has(.docs-layout){max-width:none;padding:0;}
 </ul>
 <hr>
 <h3>A note for graders on the AI itself</h3>
-<p>If you run any student&#x27;s transcript yourself, expect the model to be confidently wrong about specific numbers: a markup it calls a margin, a competitor price that does not exist, a breakeven that ignored a cost the student gave it. That is not a reason to distrust the student; it is the exact thing the assignment trains them to catch. Reward the catch. The fastest way to verify a paper is to re-run the markup and the margin on the student&#x27;s own price: markup is (price &amp;minus; cost) / cost, margin is (price &amp;minus; cost) / price, and they are never the same number. A student who noticed the AI mixed them up and fixed it has done more pricing thinking than one whose AI happened to be right and who checked nothing.</p></div><nav class="prev-next" aria-label="Pagination"><a class="pn-prev" href="ch07-brands-assignment.html"><span class="pn-eyebrow">← Previous</span><span class="pn-title">Ch 07 Brands &amp; Brand Equity</span></a><a class="pn-next" href="ch06-stp-assignment.html"><span class="pn-eyebrow">Next →</span><span class="pn-title">Ch 06 Segmentation, Targeting &amp; Positioning</span></a></nav></section><aside class="docs-right" aria-label="On this page and related"><div class="doc-toc"></div><div class="related-block"><h3>Related — Ch 10</h3><ul class="related-list"><li><a href="../../textbook/index.html#chapter-10-pricing.html">Textbook chapter<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../materials/test-bank/ch10-pricing-test-bank.html">Test bank<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../materials/teaching-notes/ch10-pricing-teaching-notes.html">Teaching notes<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../slides/ch10/index.html">Slide deck<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../videos/index.html">Lecture video<span class="rel-arrow" aria-hidden="true">→</span></a></li></ul></div></aside></div>
+<p>If you run any student&#x27;s transcript yourself, expect the model to be confidently wrong about specific numbers: a markup it calls a margin, a competitor price that does not exist, a breakeven that ignored a cost the student gave it. That is not a reason to distrust the student; it is the exact thing the assignment trains them to catch. Reward the catch. The fastest way to verify a paper is to re-run the markup and the margin on the student&#x27;s own price: markup is (price &minus; cost) / cost, margin is (price &minus; cost) / price, and they are never the same number. A student who noticed the AI mixed them up and fixed it has done more pricing thinking than one whose AI happened to be right and who checked nothing.</p></div><nav class="prev-next" aria-label="Pagination"><a class="pn-prev" href="ch07-brands-assignment.html"><span class="pn-eyebrow">← Previous</span><span class="pn-title">Ch 07 Brands &amp; Brand Equity</span></a><a class="pn-next" href="ch06-stp-assignment.html"><span class="pn-eyebrow">Next →</span><span class="pn-title">Ch 06 Segmentation, Targeting &amp; Positioning</span></a></nav></section><aside class="docs-right" aria-label="On this page and related"><div class="doc-toc"></div><div class="related-block"><h3>Related — Ch 10</h3><ul class="related-list"><li><a href="../../textbook/index.html#chapter-10-pricing.html">Textbook chapter<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../materials/test-bank/ch10-pricing-test-bank.html">Test bank<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../materials/teaching-notes/ch10-pricing-teaching-notes.html">Teaching notes<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../slides/ch10/index.html">Slide deck<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../videos/index.html">Lecture video<span class="rel-arrow" aria-hidden="true">→</span></a></li></ul></div></aside></div>
 <script>
 (function(){
   "use strict";

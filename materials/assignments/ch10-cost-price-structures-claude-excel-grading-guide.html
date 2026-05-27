@@ -318,6 +318,68 @@ main:has(.docs-layout){max-width:none;padding:0;}
   .page-overview { font-size: 15px; }
 }
 </style>
+
+<style>
+.asg-badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px;padding:0;list-style:none;}
+.asg-badge{display:inline-flex;align-items:center;gap:6px;font-family:Inter,system-ui,sans-serif;
+  font-size:13px;font-weight:600;line-height:1;color:#5a3527;background:#FBEEE8;
+  border:1px solid #EBC9B9;border-radius:999px;padding:8px 14px;white-space:nowrap;}
+.asg-badge .asg-badge-k{font-weight:500;color:#8a6a5c;}
+.asg-whatyouneed{margin:30px 0;padding:22px 22px 20px;border:1px solid #e6ebf1;
+  border-radius:12px;background:#fcfbfa;}
+.asg-whatyouneed > h3{margin:0 0 4px;font-size:1.18rem;}
+.asg-wyn-sub{margin:0 0 16px;color:#666;font-size:.95rem;}
+.asg-wyn-chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px;padding:0;}
+.asg-wyn-chip{font-family:Inter,system-ui,sans-serif;font-size:14px;font-weight:600;
+  color:#3a2a22;background:#fff;border:1.5px solid #d9cfc8;border-radius:10px;
+  padding:11px 16px;cursor:pointer;transition:border-color .12s,background .12s,color .12s;}
+.asg-wyn-chip:hover{border-color:#B8553A;}
+.asg-wyn-chip:focus-visible{outline:3px solid #DA7756;outline-offset:2px;}
+.asg-wyn-chip[aria-pressed="true"]{background:#DA7756;border-color:#B8553A;color:#fff;}
+.asg-wyn-panel{display:none;border-top:1px solid #ece3dd;padding-top:16px;
+  color:#333;line-height:1.6;}
+.asg-wyn-panel.is-active{display:block;}
+.asg-wyn-panel .asg-wyn-req{font-weight:600;color:#5a3527;margin:0 0 6px;}
+.asg-wyn-note{margin:0;}
+.asg-wyn-foot{margin:16px 0 0;font-size:.9rem;color:#777;font-style:italic;}
+details.asg-fold{margin:30px 0;border:1px solid #e6ebf1;border-radius:12px;
+  background:#fcfbfa;overflow:hidden;}
+details.asg-fold > summary{cursor:pointer;list-style:none;padding:16px 20px;
+  font-family:Inter,system-ui,sans-serif;font-weight:700;font-size:1.05rem;color:#1a1a1a;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;}
+details.asg-fold > summary::-webkit-details-marker{display:none;}
+details.asg-fold > summary:focus-visible{outline:3px solid #DA7756;outline-offset:-3px;}
+details.asg-fold > summary .asg-fold-sub{font-weight:400;font-size:.9rem;color:#777;}
+details.asg-fold > summary .asg-fold-caret{flex:0 0 auto;color:#B8553A;font-size:.85rem;
+  transition:transform .15s;}
+details.asg-fold[open] > summary .asg-fold-caret{transform:rotate(90deg);}
+details.asg-fold > .asg-fold-body{padding:4px 20px 18px;border-top:1px solid #ece3dd;}
+details.asg-fold > .asg-fold-body > :first-child{margin-top:14px;}
+</style>
+<script>
+(function(){
+  "use strict";
+  function ready(fn){ if(document.readyState!=="loading"){fn();}
+    else{document.addEventListener("DOMContentLoaded",fn);} }
+  ready(function(){
+    document.querySelectorAll(".asg-whatyouneed").forEach(function(box){
+      var chips=box.querySelectorAll(".asg-wyn-chip");
+      var panels=box.querySelectorAll(".asg-wyn-panel");
+      function select(idx){
+        chips.forEach(function(c,i){ c.setAttribute("aria-pressed", i===idx?"true":"false"); });
+        panels.forEach(function(p,i){ p.classList.toggle("is-active", i===idx); });
+      }
+      chips.forEach(function(c,i){ c.addEventListener("click", function(){ select(i); }); });
+      // default to the chip pre-marked in the markup (the free-account tier),
+      // falling back to the first chip.
+      var def=0;
+      chips.forEach(function(c,i){ if(c.getAttribute("data-default")==="1"){def=i;} });
+      select(def);
+    });
+  });
+})();
+</script>
+
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -338,11 +400,11 @@ main:has(.docs-layout){max-width:none;padding:0;}
 <hr>
 <h3>The answer key for this dataset (Trailhead Supply Co.)</h3>
 <p>The fixed cost is <strong>$128,000 per quarter</strong>. Contribution margin per unit is unit price minus unit variable cost; breakeven volume is $128,000 divided by that contribution margin.</p>
-<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table><thead><tr><th>SKU</th><th>Product</th><th>CM / unit</th><th>CM ratio</th><th>Breakeven units</th><th>Note</th></tr></thead><tbody><tr><td>TS-101</td><td>Trail Daypack 22L</td><td>$37.50</td><td>47.5%</td><td>3,413</td><td>Healthy</td></tr><tr><td>TS-102</td><td>Summit Pack 45L</td><td>$71.00</td><td>44.7%</td><td>1,803</td><td>Highest CM/unit</td></tr><tr><td>TS-110</td><td>Insulated Bottle 24oz</td><td>$16.20</td><td>67.5%</td><td>7,901</td><td>Volume workhorse</td></tr><tr><td>TS-111</td><td>Camp Mug 12oz</td><td>$7.80</td><td>55.7%</td><td>16,410</td><td>Thin CM/unit</td></tr><tr><td>TS-120</td><td>Merino Hiking Sock</td><td>$8.90</td><td>49.4%</td><td>14,382</td><td>High returns (140)</td></tr><tr><td>TS-121</td><td>Base Layer Top</td><td>$31.00</td><td>48.4%</td><td>4,129</td><td>High returns (88)</td></tr><tr><td>TS-130</td><td>Down Sweater</td><td>$68.00</td><td>36.0%</td><td>1,882</td><td>Low CM ratio, high $</td></tr><tr><td>TS-140</td><td>Trekking Poles</td><td>$37.00</td><td>41.6%</td><td>3,460</td><td>Healthy</td></tr><tr><td>TS-141</td><td>Headlamp 400lm</td><td>$14.50</td><td>42.6%</td><td>8,828</td><td>Healthy</td></tr><tr><td><strong>TS-150</strong></td><td><strong>Trail Snack Box 12pk</strong></td><td><strong>&amp;minus;$1.40</strong></td><td><strong>&amp;minus;6.7%</strong></td><td><strong>none (negative)</strong></td><td><strong>Loses money on every unit</strong></td></tr><tr><td>TS-151</td><td>Electrolyte Mix 30ct</td><td>$16.25</td><td>56.0%</td><td>7,877</td><td>Healthy</td></tr><tr><td>TS-160</td><td>Gift Card $50</td><td>$48.50</td><td>97.0%</td><td>(does not belong)</td><td>Not a product</td></tr></tbody></table></div>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table><thead><tr><th>SKU</th><th>Product</th><th>CM / unit</th><th>CM ratio</th><th>Breakeven units</th><th>Note</th></tr></thead><tbody><tr><td>TS-101</td><td>Trail Daypack 22L</td><td>$37.50</td><td>47.5%</td><td>3,413</td><td>Healthy</td></tr><tr><td>TS-102</td><td>Summit Pack 45L</td><td>$71.00</td><td>44.7%</td><td>1,803</td><td>Highest CM/unit</td></tr><tr><td>TS-110</td><td>Insulated Bottle 24oz</td><td>$16.20</td><td>67.5%</td><td>7,901</td><td>Volume workhorse</td></tr><tr><td>TS-111</td><td>Camp Mug 12oz</td><td>$7.80</td><td>55.7%</td><td>16,410</td><td>Thin CM/unit</td></tr><tr><td>TS-120</td><td>Merino Hiking Sock</td><td>$8.90</td><td>49.4%</td><td>14,382</td><td>High returns (140)</td></tr><tr><td>TS-121</td><td>Base Layer Top</td><td>$31.00</td><td>48.4%</td><td>4,129</td><td>High returns (88)</td></tr><tr><td>TS-130</td><td>Down Sweater</td><td>$68.00</td><td>36.0%</td><td>1,882</td><td>Low CM ratio, high $</td></tr><tr><td>TS-140</td><td>Trekking Poles</td><td>$37.00</td><td>41.6%</td><td>3,460</td><td>Healthy</td></tr><tr><td>TS-141</td><td>Headlamp 400lm</td><td>$14.50</td><td>42.6%</td><td>8,828</td><td>Healthy</td></tr><tr><td><strong>TS-150</strong></td><td><strong>Trail Snack Box 12pk</strong></td><td><strong>&minus;$1.40</strong></td><td><strong>&minus;6.7%</strong></td><td><strong>none (negative)</strong></td><td><strong>Loses money on every unit</strong></td></tr><tr><td>TS-151</td><td>Electrolyte Mix 30ct</td><td>$16.25</td><td>56.0%</td><td>7,877</td><td>Healthy</td></tr><tr><td>TS-160</td><td>Gift Card $50</td><td>$48.50</td><td>97.0%</td><td>(does not belong)</td><td>Not a product</td></tr></tbody></table></div>
 <p><strong>The line as a whole:</strong> total contribution last quarter was about <strong>$507,630</strong> against the <strong>$128,000</strong> fixed cost, so the line cleared roughly <strong>$379,630</strong> in contribution above fixed cost. The line is healthy overall; the problems are inside it.</p>
 <p><strong>The two things every strong submission finds:</strong></p>
 <ol>
-<li><strong>TS-150 Trail Snack Box 12pk loses money on every unit.</strong> Its $21.00 price is below its $22.40 variable cost, so the contribution margin is <strong>&amp;minus;$1.40 per unit</strong>. It has no breakeven (you cannot cover fixed cost with a negative contribution). Worse, it sold the most units of any SKU (6,100), so it drained about <strong>$8,540</strong> of contribution last quarter. The fix is to raise the price above $22.40 (at minimum), cut the cost, or discontinue it.</li>
+<li><strong>TS-150 Trail Snack Box 12pk loses money on every unit.</strong> Its $21.00 price is below its $22.40 variable cost, so the contribution margin is <strong>&minus;$1.40 per unit</strong>. It has no breakeven (you cannot cover fixed cost with a negative contribution). Worse, it sold the most units of any SKU (6,100), so it drained about <strong>$8,540</strong> of contribution last quarter. The fix is to raise the price above $22.40 (at minimum), cut the cost, or discontinue it.</li>
 <li><strong>TS-160 Gift Card $50 does not belong in a product breakeven.</strong> A gift card is deferred revenue, not a product with a real variable cost or shelf inventory (note its $0 returns and zero units in stock). Treating its near-zero &quot;cost&quot; as a 97% margin inflates the line&#x27;s apparent health and distorts any &quot;most profitable SKU&quot; ranking. It should be set aside before the product analysis, not ranked among the sleeves and packs.</li>
 </ol>
 <p><strong>A subtler point worth credit:</strong> the contribution margins above ignore <strong>returns</strong>, and two SKUs have heavy ones (TS-120 Merino Sock at 140 returns, TS-121 Base Layer Top at 88). A student who notes that a returns-adjusted contribution margin would pull those two down is doing real analysis the add-in skipped.</p>
@@ -359,7 +421,7 @@ main:has(.docs-layout){max-width:none;padding:0;}
 <h3>What to look for, row by row</h3>
 <p><strong>Judgment pass (30 pts) — the heaviest row, grade it first.</strong></p>
 <ul>
-<li><em>Strong:</em> the student caught <strong>TS-150</strong> with the arithmetic ($21 price below $22.40 cost, &amp;minus;$1.40 contribution), flagged <strong>TS-160</strong> as not belonging in a product breakeven, fixed a real formula or framing error, and named the single price to change first with a target number.</li>
+<li><em>Strong:</em> the student caught <strong>TS-150</strong> with the arithmetic ($21 price below $22.40 cost, &minus;$1.40 contribution), flagged <strong>TS-160</strong> as not belonging in a product breakeven, fixed a real formula or framing error, and named the single price to change first with a target number.</li>
 <li><em>Look for the catch.</em> The single best signal of a strong paper is the loss-maker named with its negative contribution. &quot;TS-150 sells for $21 but costs $22.40, so it loses $1.40 every time and there is no breakeven; at 6,100 units that is roughly $8,540 gone, I would raise it to at least $26 or drop it&quot; is the assignment working.</li>
 <li><em>Weak:</em> &quot;Claude analyzed all twelve SKUs and they look healthy.&quot; No catch of TS-150. That is the Developing/Not-yet band no matter how clean the formulas are.</li>
 </ul>
