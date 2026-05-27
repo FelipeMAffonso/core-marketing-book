@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Grading Skill — Rebrand a Boring Product — instructor courseware for Principles of Marketing.">
+<title>Grading Skill — Rebrand a Boring Product · Principles of Marketing</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23DA7756' width='100' height='100' rx='12'/><text x='50' y='68' font-family='system-ui' font-size='36' font-weight='bold' fill='white' text-anchor='middle'>PM</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --coral:#DA7756; --coral-deep:#B8553A; --coral-soft:#E8A488;
+  --coral-text:#a8472a; --coral-tint:#fdf3ee;
+  --ink:#1a1a1a; --ink-2:#43474f; --ink-3:#5a5f67;
+  --bg:#ffffff; --bg-2:#f7f8fa; --bg-3:#f1f2f5;
+  --border:#e6e6ea; --border-strong:#d7dae0;
+  --font:'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif;
+  --font-serif:'EB Garamond',Georgia,serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Consolas,monospace;
+  --rail-w: 240px;
+  --right-w: 220px;
+  --topbar-h: 58px;
+}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.62;
+  -webkit-font-smoothing:antialiased;}
+a{color:var(--coral-text);text-decoration:none;}
+a:hover{text-decoration:underline;text-underline-offset:3px;}
+a:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;border-radius:4px;}
+.skip-link{position:absolute;left:-999px;top:0;z-index:2000;background:var(--ink);
+  color:#fff;padding:10px 16px;border-radius:0 0 6px 0;font-size:14px;font-weight:600;}
+.skip-link:focus{left:0;text-decoration:none;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.9);
+  backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);}
+.topbar-inner{max-width:1320px;margin:0 auto;padding:0 28px;height:58px;display:flex;
+  align-items:center;gap:14px;}
+.topbar .mark{width:28px;height:28px;border-radius:7px;flex-shrink:0;background:var(--coral-deep);
+  color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;
+  letter-spacing:-0.5px;}
+.topbar .doc-title{font-size:14.5px;font-weight:600;color:var(--ink);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.topbar .back{margin-left:auto;font-size:13.5px;font-weight:600;color:var(--coral-text);
+  padding:7px 13px;border-radius:7px;border:1px solid var(--border);white-space:nowrap;}
+.topbar .back:hover{background:var(--bg-2);text-decoration:none;}
+main{max-width:860px;margin:0 auto;padding:44px 28px 96px;}
+.kicker{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--coral-text);margin-bottom:10px;}
+main h1{font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-0.02em;
+  line-height:1.12;color:var(--ink);margin:0 0 8px;}
+main h2{font-size:clamp(21px,2.8vw,26px);font-weight:700;letter-spacing:-0.015em;color:var(--ink);
+  margin:42px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+main h3{font-size:19px;font-weight:650;color:var(--ink);margin:30px 0 10px;}
+main h4{font-size:16px;font-weight:650;color:var(--ink-2);margin:24px 0 8px;}
+main h5,main h6{font-size:14px;font-weight:650;color:var(--ink-2);margin:20px 0 6px;
+  text-transform:uppercase;letter-spacing:0.04em;}
+main p{margin:0 0 16px;color:var(--ink);font-size:17px;}
+main ul,main ol{margin:0 0 18px;padding-left:26px;}
+main li{margin:0 0 7px;color:var(--ink);font-size:17px;}
+main li>ul,main li>ol{margin:7px 0 0;}
+main blockquote{margin:0 0 18px;padding:4px 18px;border-left:3px solid var(--coral);
+  background:var(--coral-tint);color:var(--ink-2);border-radius:0 6px 6px 0;}
+main blockquote p{margin:8px 0;}
+main hr{border:0;border-top:1px solid var(--border);margin:34px 0;}
+main strong{font-weight:700;color:var(--ink);}
+main em{font-style:italic;}
+main code{font-family:var(--font-mono);font-size:0.88em;background:var(--bg-3);
+  padding:2px 6px;border-radius:4px;color:var(--coral-text);border:1px solid var(--border);
+  word-break:break-word;overflow-wrap:break-word;}
+main pre{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;
+  padding:16px 18px;overflow-x:auto;margin:0 0 18px;}
+main pre:focus-visible{outline:2px solid var(--coral);outline-offset:2px;}
+main pre code{background:none;border:0;padding:0;color:var(--ink);font-size:13.5px;
+  line-height:1.55;}
+main .table-wrap{overflow-x:auto;margin:0 0 22px;border:1px solid var(--border);
+  border-radius:6px;}
+main .table-wrap:focus-visible{outline:2px solid var(--coral);outline-offset:2px;}
+main table{width:100%;border-collapse:collapse;font-size:15px;}
+main thead th{background:var(--bg-2);text-align:left;font-weight:650;color:var(--ink);
+  padding:9px 13px;border:1px solid var(--border-strong);white-space:nowrap;}
+main tbody td{padding:9px 13px;border:1px solid var(--border);color:var(--ink-2);
+  vertical-align:top;}
+main tbody tr:nth-child(even){background:var(--bg-2);}
+main a{color:var(--coral-text);font-weight:500;}
+.toc-note{font-size:14px;color:var(--ink-3);margin-bottom:30px;}
+footer{border-top:1px solid var(--border);background:var(--bg-2);padding:28px 0;
+  margin-top:60px;}
+footer .inner{max-width:860px;margin:0 auto;padding:0 28px;font-size:12.5px;color:var(--ink-3);}
+/* card grid — chapter decks + materials, echoing the dashboard tiles */
+.ccards{display:grid;grid-template-columns:repeat(auto-fill,minmax(212px,1fr));gap:14px;
+  margin:6px 0 34px;list-style:none;padding:0;}
+.ccard{display:flex;flex-direction:column;gap:7px;padding:15px 16px;min-height:108px;
+  border:1px solid var(--border);border-radius:10px;background:var(--bg);text-decoration:none;
+  transition:border-color 150ms var(--ease-coral,ease),box-shadow 150ms,transform 150ms;}
+a.ccard:hover{border-color:var(--coral);box-shadow:0 6px 20px rgba(218,119,86,0.13);
+  transform:translateY(-2px);text-decoration:none;}
+a.ccard:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;}
+.ccard .ci-num{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.08em;
+  color:var(--coral-text);}
+.ccard .ci-title{font-size:15px;font-weight:650;color:var(--ink);line-height:1.28;}
+.ccard .ci-meta{font-size:12px;color:var(--ink-3);margin-top:auto;}
+.ccard.soon{background:var(--bg-2);border-style:dashed;cursor:default;}
+.ccard.soon .ci-title{color:var(--ink-3);font-weight:600;}
+.ci-pill{align-self:flex-start;font-size:9.5px;font-weight:700;letter-spacing:0.07em;
+  text-transform:uppercase;padding:2px 8px;border-radius:10px;background:var(--coral-tint);
+  color:var(--coral-text);}
+.ccard.soon .ci-pill{background:var(--bg-3);color:var(--ink-3);}
+.group-blurb{font-size:14px;color:var(--ink-3);margin:0 0 14px;}
+@media (max-width:600px){
+  main{padding:30px 18px 64px;}
+  .topbar-inner{padding:0 18px;}
+  .ccards{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+}
+
+/* ── DOCS-STYLE 3-COLUMN LAYOUT (left rail + main + right rail) ──────────
+   Used by every materials/reference/cartridge/videos page. The classic
+   API-reference docs feel: sticky left rail of siblings, sticky right rail
+   of in-page TOC + related materials, breadcrumb + prev/next around the
+   main column. Responsive collapse at 1080px (right rail hides) and 720px
+   (left rail collapses into a dropdown disclosure at top of main). */
+/* override main's narrow column when the docs layout is in use */
+main:has(.docs-layout){max-width:none;padding:0;}
+.docs-layout {
+  display: grid;
+  grid-template-columns: var(--rail-w) minmax(0, 1fr) var(--right-w);
+  gap: 36px;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 28px 28px 80px;
+  align-items: start;
+}
+.docs-rail {
+  position: sticky;
+  top: calc(var(--topbar-h) + 16px);
+  max-height: calc(100vh - var(--topbar-h) - 32px);
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.docs-rail::-webkit-scrollbar { width: 6px; }
+.docs-rail::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+.docs-rail .rail-eyebrow {
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral-text);
+  margin: 0 0 10px;
+}
+.docs-rail .rail-group {
+  margin-bottom: 22px;
+}
+.docs-rail .rail-group h3 {
+  font-size: 11.5px; font-weight: 650; color: var(--ink); text-transform: uppercase;
+  letter-spacing: 0.06em; margin: 0 0 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.docs-rail .rail-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 1px;
+}
+.docs-rail .rail-list a, .docs-rail .rail-list .rail-soon {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 5px 10px; border-radius: 6px;
+  font-size: 13px; color: var(--ink-2); text-decoration: none;
+  line-height: 1.32;
+  border-left: 2px solid transparent;
+}
+.docs-rail .rail-list a:hover {
+  background: var(--bg-2); color: var(--ink); text-decoration: none;
+}
+.docs-rail .rail-list a.is-active {
+  color: var(--coral-text); font-weight: 600;
+  background: var(--coral-tint);
+  border-left-color: var(--coral);
+}
+.docs-rail .rail-list .rail-soon {
+  color: var(--ink-3); cursor: default;
+}
+.docs-rail .rail-list .rail-soon .rail-num {
+  color: var(--ink-3);
+}
+.docs-rail .rail-num {
+  font-family: var(--font-mono); font-size: 11px; color: var(--ink-3);
+  flex-shrink: 0; min-width: 24px; letter-spacing: 0.04em;
+}
+.docs-rail .rail-list a.is-active .rail-num {
+  color: var(--coral-text);
+}
+.docs-rail .rail-soon::after {
+  content: "soon"; font-size: 9.5px; font-family: var(--font-mono);
+  color: var(--ink-3); margin-left: auto;
+  padding: 1px 5px; border-radius: 3px; background: var(--bg-3);
+  letter-spacing: 0.04em; flex-shrink: 0;
+}
+
+/* Mobile/tablet — left rail collapses to a dropdown disclosure */
+.docs-rail-mobile {
+  display: none;
+  margin-bottom: 16px;
+}
+.docs-rail-mobile summary {
+  font-size: 13px; font-weight: 600; color: var(--ink-2);
+  padding: 10px 14px; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 7px;
+  background: var(--bg-2);
+  list-style: none;
+}
+.docs-rail-mobile summary::after { content: " ▾"; color: var(--ink-3); float: right; }
+.docs-rail-mobile[open] summary::after { content: " ▴"; }
+.docs-rail-mobile .rail-group { margin: 12px 0; }
+
+/* Right rail (in-page TOC + related) */
+.docs-right .toc-eyebrow {
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral-text);
+  margin: 0 0 10px;
+}
+.docs-right .toc-list {
+  list-style: none; padding: 0; margin: 0 0 28px;
+  border-left: 2px solid var(--border);
+  display: flex; flex-direction: column; gap: 1px;
+}
+.docs-right .toc-list a {
+  display: block; padding: 4px 12px; font-size: 12.5px; color: var(--ink-3);
+  text-decoration: none; line-height: 1.4; margin-left: -2px;
+  border-left: 2px solid transparent;
+}
+.docs-right .toc-list a:hover { color: var(--ink); text-decoration: none; }
+.docs-right .toc-list a.is-current {
+  color: var(--coral-text); font-weight: 600;
+  border-left-color: var(--coral);
+}
+.docs-right .toc-list .toc-h3 { padding-left: 24px; font-size: 12px; }
+.docs-right .related-block {
+  margin-top: 20px;
+}
+.docs-right .related-block h3 {
+  font-size: 11.5px; font-weight: 650; color: var(--ink); text-transform: uppercase;
+  letter-spacing: 0.06em; margin: 0 0 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.docs-right .related-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.docs-right .related-list a {
+  display: flex; align-items: baseline; gap: 7px;
+  padding: 5px 10px; border-radius: 6px;
+  font-size: 12.5px; color: var(--ink-2); text-decoration: none;
+  line-height: 1.32;
+}
+.docs-right .related-list a:hover {
+  background: var(--bg-2); color: var(--coral-text); text-decoration: none;
+}
+.docs-right .related-list .rel-arrow {
+  color: var(--coral); font-weight: 700;
+}
+
+/* Main column */
+.docs-main { min-width: 0; }
+.breadcrumb {
+  font-size: 12.5px; color: var(--ink-3); margin: 0 0 18px;
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  font-family: var(--font);
+}
+.breadcrumb a {
+  color: var(--ink-3); text-decoration: none; font-weight: 500;
+  padding: 2px 6px; border-radius: 4px;
+}
+.breadcrumb a:hover { color: var(--coral-text); background: var(--bg-2); }
+.breadcrumb .sep { color: var(--ink-3); font-size: 11px; opacity: 0.5; }
+.breadcrumb .current { color: var(--ink); font-weight: 600; padding: 2px 6px; }
+
+.page-overview {
+  font-size: 16.5px; color: var(--ink-2); line-height: 1.55;
+  padding: 16px 0 6px; margin: 0 0 30px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Prev / Next footer */
+.prev-next {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  margin-top: 48px; padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.prev-next a {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px;
+  color: var(--ink-2); text-decoration: none;
+  transition: border-color 140ms ease, background 140ms ease;
+}
+.prev-next a:hover {
+  border-color: var(--coral); color: var(--coral-text); background: var(--bg-2);
+  text-decoration: none;
+}
+.prev-next .pn-eyebrow {
+  font-size: 11px; color: var(--ink-3); letter-spacing: 0.04em;
+}
+.prev-next .pn-title {
+  font-size: 14px; font-weight: 600; color: inherit;
+}
+.prev-next .pn-next { text-align: right; }
+.prev-next .pn-empty { visibility: hidden; pointer-events: none; }
+
+@media (max-width: 1100px) {
+  .docs-layout { grid-template-columns: var(--rail-w) minmax(0, 1fr); gap: 28px; }
+  .docs-right { display: none; }
+}
+@media (max-width: 760px) {
+  .docs-layout {
+    grid-template-columns: 1fr; padding: 16px 18px 60px; gap: 14px;
+  }
+  .docs-rail { display: none; }
+  .docs-rail-mobile { display: block; }
+  .topbar-inner { padding: 0 18px; }
+  .prev-next { grid-template-columns: 1fr; }
+  .page-overview { font-size: 15px; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="mark" aria-hidden="true">PM</span>
+    <span class="doc-title">Grading Skill — Rebrand a Boring Product</span>
+    <a class="back" href="../../index.html">&larr; Back to courseware</a>
+  </div>
+</header>
+<main id="main">
+<div class="docs-layout"><aside class="docs-rail" aria-label="Section navigation"><div class="rail-group"><h3>Assignments</h3><ul class="rail-list"><li><span class="rail-soon"><span class="rail-num">Ch 01</span><span class="rail-label">AI for Marketers</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 02</span><span class="rail-label">What Marketing Is</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 03</span><span class="rail-label">The Marketing Environment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 04</span><span class="rail-label">How Buyers Buy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 05</span><span class="rail-label">Marketing Research</span></span></li><li><a class="" href="index.html#ch06"><span class="rail-num">Ch 06</span><span class="rail-label">Segmentation, Targeting &amp; Positioning</span></a></li><li><a class="" href="index.html#ch07"><span class="rail-num">Ch 07</span><span class="rail-label">Brands &amp; Brand Equity</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 08</span><span class="rail-label">Product Management</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 09</span><span class="rail-label">Services Marketing</span></span></li><li><a class="" href="index.html#ch10"><span class="rail-num">Ch 10</span><span class="rail-label">Pricing</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 11</span><span class="rail-label">Distribution Channels</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 12</span><span class="rail-label">Retail</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 13</span><span class="rail-label">DTC &amp; E-commerce</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 14</span><span class="rail-label">Mobile &amp; App Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 15</span><span class="rail-label">International Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 16</span><span class="rail-label">Promotions</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 17</span><span class="rail-label">Content Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 18</span><span class="rail-label">Digital Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 19</span><span class="rail-label">Social Media</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 20</span><span class="rail-label">Creator Economy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 21</span><span class="rail-label">Customer Lifecycle</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 22</span><span class="rail-label">PR &amp; Crisis</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 23</span><span class="rail-label">Sales Alignment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 24</span><span class="rail-label">Marketing Plan &amp; Analytics</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 25</span><span class="rail-label">Marketing Finance</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 26</span><span class="rail-label">Ethics &amp; Responsible AI</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 27</span><span class="rail-label">Capstone</span></span></li></ul></div></aside><section class="docs-main"><details class="docs-rail-mobile"><summary>Browse this section</summary><div class="rail-group"><h3>Assignments</h3><ul class="rail-list"><li><span class="rail-soon"><span class="rail-num">Ch 01</span><span class="rail-label">AI for Marketers</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 02</span><span class="rail-label">What Marketing Is</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 03</span><span class="rail-label">The Marketing Environment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 04</span><span class="rail-label">How Buyers Buy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 05</span><span class="rail-label">Marketing Research</span></span></li><li><a class="" href="index.html#ch06"><span class="rail-num">Ch 06</span><span class="rail-label">Segmentation, Targeting &amp; Positioning</span></a></li><li><a class="" href="index.html#ch07"><span class="rail-num">Ch 07</span><span class="rail-label">Brands &amp; Brand Equity</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 08</span><span class="rail-label">Product Management</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 09</span><span class="rail-label">Services Marketing</span></span></li><li><a class="" href="index.html#ch10"><span class="rail-num">Ch 10</span><span class="rail-label">Pricing</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 11</span><span class="rail-label">Distribution Channels</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 12</span><span class="rail-label">Retail</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 13</span><span class="rail-label">DTC &amp; E-commerce</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 14</span><span class="rail-label">Mobile &amp; App Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 15</span><span class="rail-label">International Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 16</span><span class="rail-label">Promotions</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 17</span><span class="rail-label">Content Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 18</span><span class="rail-label">Digital Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 19</span><span class="rail-label">Social Media</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 20</span><span class="rail-label">Creator Economy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 21</span><span class="rail-label">Customer Lifecycle</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 22</span><span class="rail-label">PR &amp; Crisis</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 23</span><span class="rail-label">Sales Alignment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 24</span><span class="rail-label">Marketing Plan &amp; Analytics</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 25</span><span class="rail-label">Marketing Finance</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 26</span><span class="rail-label">Ethics &amp; Responsible AI</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 27</span><span class="rail-label">Capstone</span></span></li></ul></div></details><nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Courseware</a><span class="sep">›</span><a href="../../index.html#assess">Assess</a><span class="sep">›</span><a href="index.html">Assignments</a><span class="sep">›</span><span class="current">Ch 02 What Marketing Is</span></nav><p class="page-overview">Graded individual assignment for Chapter 2 (What Marketing Is), mapped to the chapter's learning objectives and AACSB outcomes.</p><div class="doc-body"><p style="margin:0 0 26px;"><a href="ch02-rebrand-grading-skill.md" download style="display:inline-block;background:#B8553A;color:#fff;text-decoration:none;font-weight:600;padding:11px 20px;border-radius:8px;">Download this grading skill</a><span style="color:#666;font-size:14px;margin-left:10px;">Paste it into a free Claude or ChatGPT account, then paste a student&rsquo;s work under it.</span></p><h1>Grading Skill — Rebrand a Boring Product</h1>
+<p><em>Chapter 2 individual assignment. This file lets you grade a student&#x27;s submission with the help of a free AI account, even if you have never used one. You paste a block of instructions into Claude, paste the student&#x27;s work under it, and read back a score for each part of the rubric with a sentence of feedback. You stay in charge: the AI gives you a first-pass score, you decide the grade. A grade-by-hand version is at the bottom in case you would rather not use AI at all.</em></p>
+<hr>
+<h2>Part 1 — If you have never used AI before, start here</h2>
+<p>You do not need to install anything or pay anything. This takes about five minutes the first time and under two minutes per student after that.</p>
+<ol>
+<li><strong>Open a web browser</strong> (Chrome, Safari, Edge, whatever you use) and go to <strong>claude.ai</strong>. (ChatGPT at <strong>chatgpt.com</strong> works the same way if you prefer it.)</li>
+<li><strong>Make a free account.</strong> Click <strong>Sign up</strong>, enter your email, and follow the steps. A free account is enough. You will not be charged.</li>
+<li><strong>Start a new chat.</strong> After you log in you will see a box that says something like <em>&quot;How can I help you today?&quot;</em> That box is where you type. A &quot;chat&quot; is just a conversation with the AI, like texting.</li>
+<li><strong>Copy the grader instructions.</strong> In Part 2 below, everything inside the gray box is one block. Select it all, copy it, and paste it into the chat box. Do not press send yet.</li>
+<li><strong>Add the student&#x27;s work underneath.</strong> Press Enter twice to make space, then paste the student&#x27;s full submission, including their three brands, their judgment pass, and their AI transcript, right below the instructions, in the same message.</li>
+<li><strong>Send it.</strong> Press Enter (or click the arrow). The AI will read both and reply with a score for each of the five rubric rows, a total out of 100, and a short note for each row.</li>
+<li><strong>Read the score and decide.</strong> The AI&#x27;s score is a <strong>first draft for you to approve, change, or override.</strong> You are the grader of record. If a score looks off, trust your own read, the grading guide (<code>ch02-rebrand-grading-guide.md</code>) tells you what each row is really worth.</li>
+<li><strong>Grade the next student.</strong> Click <strong>New chat</strong> and repeat from step 4. A fresh chat each time keeps one student&#x27;s work from bleeding into the next.</li>
+</ol>
+<p>That is the whole process. The block in Part 2 does the work; you paste, read, and sign off.</p>
+<hr>
+<h2>Part 2 — The grader block (copy everything in the gray box)</h2>
+<blockquote><p>You are helping an instructor grade a second-year marketing student&#x27;s individual assignment. The student gave an AI a plain, boring product (canned water, a notebook, a white t-shirt, and so on), had the AI invent <strong>three different brands for three different buyers</strong> from it, and was then asked to judge which brand is a real marketing idea and which is just a louder way of saying &quot;buy this.&quot; Your job is to score their submission against the rubric below and give short, kind, specific feedback. This is a first-year-friendly course; reward honest judgment over polish, and remember the clever brand names came from the AI, not the student, so credit the student&#x27;s <em>judgment</em> of those brands, not the names themselves.</p>
+<p><strong>Background you need (the chapter&#x27;s framework):</strong></p>
+<ul>
+<li>The <strong>marketing concept</strong> means understanding one specific buyer so well that the product almost sells itself to her. A real marketing idea picks a buyer and lines up all <strong>five decisions</strong> behind her: what to make, who to serve, what to charge, where to sell it, how to talk about it.</li>
+<li>The <strong>selling concept</strong> means pushing harder on a product nobody specifically asked for. A &quot;louder buy-this&quot; brand is the same plain product with a hyped-up voice, a buyer of &quot;everyone,&quot; and four of the five decisions unchanged, only the talking got louder. Telling these two apart is the central skill being graded.</li>
+<li>The five decisions <strong>multiply, they do not add</strong>, so one slot that contradicts another (a premium price sold in a dollar store, a rebel brand aimed at &quot;busy professionals&quot;) would break the whole brand. The student was asked to find one such contradiction.</li>
+<li>The <strong>four value types</strong> are money saved, performance, an experience, and belonging. A strong brand clearly leads with one. A good <strong>positioning statement</strong> names a real buyer and one benefit; &quot;high quality&quot; is filler any rival could claim.</li>
+</ul>
+<p><strong>How to score.</strong> Give a number for each of the five criteria below, then add them for a total out of 100. For each, write one sentence saying why, and one sentence the student could act on. Be specific and encouraging. If something required is missing, say so plainly and score it low, do not invent credit.</p>
+<ol>
+<li><strong>Real idea vs. louder &quot;buy this&quot; (30 points).</strong> Did the student correctly pick which brand is the real marketing idea and which is just hype, AND name the tell using the marketing-concept-versus-selling-concept difference (buyer-led with five decisions agreeing, versus volume on a product nobody asked for)? Low marks for picking a &quot;favorite&quot; with no reasoning, or repeating the AI&#x27;s brands as the answer.</li>
+<li><strong>Five-decision coherence + the contradiction (24 points).</strong> Did the student walk the five decisions for their chosen brand and show they agree, AND find one slot that contradicts another in one of the three brands, with what it would break? Low marks for listing the decisions without checking coherence, or finding no contradiction.</li>
+<li><strong>Value type and positioning (18 points).</strong> Did the student name what each brand leads with (money saved / performance / experience / belonging) and write a one-line positioning that names a real buyer and one benefit? Deduct for confused value types or filler positioning.</li>
+<li><strong>The build call (16 points).</strong> Did the student commit to one brand to build, name its buyer and lead benefit, and give two sound sentences on why (or reject all three and fix the best)? Low marks for hedging across all three or not committing to a buyer.</li>
+<li><strong>Judgment write-up and disclosure (12 points).</strong> Is the write-up clear and plain, with the prompts and AI output disclosed?</li>
+</ol>
+<p><strong>Watch for these failure patterns and score them down (with a kind note):</strong> picking the brand with the best-sounding name and stopping; calling all three &quot;great&quot; and refusing to choose; starting with a product that is already exciting so the branding does no work; handing in a pile of campaign tactics instead of judging which idea is real (the exact mistake the chapter warns about); repeating AI-invented market sizes or competitors as if they were facts.</p>
+<p><strong>Do not penalize</strong> disclosed AI use, even heavy use, that is expected here. The brands are <em>supposed</em> to come from the AI. Only the absence of real judgment is penalized. If there is no AI-Use Note or transcript at all and the writing looks like an unedited AI dump, flag it for the instructor as a possible disclosure issue rather than scoring it, that is a human decision.</p>
+<p><strong>Output format:</strong></p>
+<ul>
+<li><strong>Criterion 1 — Real idea vs. louder buy-this: __/30</strong> — (why) — (one tip)</li>
+<li><strong>Criterion 2 — Five-decision coherence + contradiction: __/24</strong> — (why) — (one tip)</li>
+<li><strong>Criterion 3 — Value type and positioning: __/18</strong> — (why) — (one tip)</li>
+<li><strong>Criterion 4 — The build call: __/16</strong> — (why) — (one tip)</li>
+<li><strong>Criterion 5 — Write-up and disclosure: __/12</strong> — (why) — (one tip)</li>
+<li><strong>Total: __/100</strong></li>
+<li><strong>One-line summary for the student:</strong> (warm, specific, what to do next time)</li>
+</ul>
+<p>The student&#x27;s submission follows below this line.</p></blockquote>
+<hr>
+<h2>Part 3 — Reading and trusting the result</h2>
+<ul>
+<li>The AI returns five scores, a total, and short notes. <strong>Skim the notes first</strong>, they tell you whether the AI actually understood the submission. If the notes match what you saw when you read the work, the total is trustworthy.</li>
+<li><strong>You can push back.</strong> Type a follow-up in the same chat, for example <em>&quot;The student did commit to one brand and explain why, look again at Criterion 4&quot;</em> or <em>&quot;Be stricter on Criterion 1, they picked a favorite without the marketing-vs-selling reasoning.&quot;</em> The AI will re-score. You are calibrating it, not obeying it.</li>
+<li><strong>The first row is the one to double-check yourself.</strong> It is worth the most and it carries the whole point of the assignment: did the student tell the real marketing idea from the louder sales pitch? If they did, with the chapter&#x27;s reasoning, it is a strong paper even if a later row is thin.</li>
+<li><strong>Remember the names are the AI&#x27;s.</strong> Do not let a vivid brand name inflate the score, credit the student&#x27;s judgment of it. Tell the AI grader this in a follow-up if its notes seem swayed by a catchy name.</li>
+<li><strong>Keep a fresh chat per student</strong> so submissions do not blur together.</li>
+<li>Framing for any feedback you pass on: <em>the instructor grades; the AI assists.</em> The score is yours.</li>
+</ul>
+<hr>
+<h2>Part 4 — Grade by hand instead (no AI at all)</h2>
+<p>If you would rather not use AI, grade straight from the rubric. Read each submission once, then score the five rows:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table><thead><tr><th>Criterion</th><th>Points</th><th>What earns full marks</th></tr></thead><tbody><tr><td><strong>Real idea vs. louder &quot;buy this&quot;</strong></td><td>30</td><td>Correctly picks the real marketing idea and the loud one, and names the tell (marketing concept vs. selling concept)</td></tr><tr><td><strong>Five-decision coherence + the contradiction</strong></td><td>24</td><td>Walks the five decisions and shows they agree; finds one slot that contradicts another and says what it would break</td></tr><tr><td><strong>Value type and positioning</strong></td><td>18</td><td>Names the value each brand leads with; one-line positioning names a real buyer and one benefit</td></tr><tr><td><strong>The build call</strong></td><td>16</td><td>Commits to one brand, names its buyer and lead benefit, two sound sentences (or rejects all three and fixes the best)</td></tr><tr><td><strong>Judgment write-up and disclosure</strong></td><td>12</td><td>Clear, plain write-up; prompts and AI output disclosed</td></tr><tr><td><strong>Total</strong></td><td><strong>100</strong></td><td></td></tr></tbody></table></div>
+<p><strong>Fast bands:</strong> 90–100 separates real from loud with the marketing-vs-selling reasoning, finds a real contradiction, names value types and a sharp positioning, commits to a build call; 80–89 a genuine call and a five-decision read with one thin row; 70–79 present but leaned on the AI (praised the brands with no distinction, listed decisions without checking coherence, hedged the call); 60–69 a beauty contest or &quot;all three are great,&quot; no real discrimination; below 60 or integrity flag for a missing deliverable, an undisclosed AI dump, or a product too exciting to judge (handle disclosure through your integrity process, not the rubric).</p>
+<p>The single fastest signal of a strong paper: <strong>the student can say why one brand is a real reason to choose and another is just a louder pitch at no one.</strong> That value-versus-volume judgment is the whole assignment. Full details and failure modes are in <code>ch02-rebrand-grading-guide.md</code>.</p></div></section><aside class="docs-right" aria-label="On this page and related"><div class="doc-toc"></div><div class="related-block"><h3>Related — Ch 02</h3><ul class="related-list"><li><a href="../../textbook/index.html#chapter-02-what-marketing-is.html">Textbook chapter<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../materials/test-bank/ch02-what-marketing-is-test-bank.html">Test bank<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../materials/teaching-notes/ch02-what-marketing-is-teaching-notes.html">Teaching notes<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../slides/ch02/index.html">Slide deck<span class="rel-arrow" aria-hidden="true">→</span></a></li></ul></div></aside></div>
+<script>
+(function(){
+  "use strict";
+  function slugify(t) {
+    return String(t||"").toLowerCase()
+      .replace(/[^a-z0-9 \-]/g, "")
+      .replace(/\s+/g, "-").replace(/^-+|-+$/g, "")
+      .slice(0, 60) || "section";
+  }
+  var doc = document.querySelector(".doc-body");
+  var tocHost = document.querySelector(".doc-toc");
+  if (!doc || !tocHost) return;
+  var hs = doc.querySelectorAll("h2, h3");
+  if (!hs.length) { tocHost.style.display = "none"; return; }
+  // ensure each heading has an id
+  var seen = {};
+  var items = [];
+  hs.forEach(function(h){
+    var id = h.id || slugify(h.textContent);
+    if (seen[id]) { id = id + "-" + (++seen[id]); } else { seen[id] = 1; }
+    h.id = id;
+    items.push({ el: h, id: id, text: h.textContent.replace(/\s+/g, " ").trim(),
+                 tag: h.tagName.toLowerCase() });
+  });
+  // build TOC
+  var html = '<p class="toc-eyebrow">On this page</p><ul class="toc-list">';
+  items.forEach(function(it){
+    var cls = it.tag === "h3" ? "toc-h3" : "";
+    html += '<li><a class="' + cls + '" href="#' + it.id + '" data-toc-id="' + it.id + '">' +
+      it.text.replace(/[<>&]/g, function(c){return {"<":"&lt;",">":"&gt;","&":"&amp;"}[c];}) +
+      '</a></li>';
+  });
+  html += '</ul>';
+  tocHost.innerHTML = html + tocHost.innerHTML;
+
+  // active-section spy
+  var links = {};
+  tocHost.querySelectorAll("a[data-toc-id]").forEach(function(a){
+    links[a.getAttribute("data-toc-id")] = a;
+  });
+  if ("IntersectionObserver" in window) {
+    var current = null;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var id = e.target.id;
+        if (!id || !links[id]) return;
+        if (e.isIntersecting) {
+          if (current) current.classList.remove("is-current");
+          current = links[id];
+          current.classList.add("is-current");
+        }
+      });
+    }, { rootMargin: "-80px 0px -70% 0px", threshold: 0 });
+    items.forEach(function(it){ io.observe(it.el); });
+  }
+})();
+</script>
+</main>
+<footer><div class="inner">Principles of Marketing: An AI-Integrated Approach &middot; instructor courseware.</div></footer>
+</body>
+</html>

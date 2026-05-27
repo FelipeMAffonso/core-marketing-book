@@ -27,6 +27,14 @@
  *       data-verbose        legacy synonym for data-complete (treated identically)
  *       data-focused        Focused-only bridge prose (hidden by default via inline
  *                           style="display:none"; the visibility CSS reveals it)
+ *       data-complete-<edition>  EDITION-SCOPED depth drop: hidden ONLY in that
+ *                           edition's Focused read (e.g. data-complete-beginner drops
+ *                           from beginner-Focused but stays in advanced-Focused AND
+ *                           both Comprehensive reads). Lets the four cells cut
+ *                           INDEPENDENTLY, and lets a SHARED figure leave one
+ *                           edition's short read without orphaning the other's.
+ *                           Pair with data-focused data-edition="<edition>" to add a
+ *                           reorganized bridge that shows only in that short read.
  *     Shared teaching prose carries NO attribute and shows in both depths.
  *   - Citations (key-based, NO baked number):
  *       inline marker   <sup class="cite" data-cite="key"></sup>   (empty)
@@ -147,9 +155,11 @@
     if (!isFocused()) return false;          // Complete mode: nothing is depth-hidden
     var node = el;
     var body = doc.body;
+    var edAttr = 'data-complete-' + state.edition;  // edition-scoped drop (e.g. data-complete-beginner)
     while (node && node !== body) {
       if (node.nodeType === 1 && node.hasAttribute &&
-          (node.hasAttribute('data-complete') || node.hasAttribute('data-verbose'))) {
+          (node.hasAttribute('data-complete') || node.hasAttribute('data-verbose') ||
+           node.hasAttribute(edAttr))) {
         return true;
       }
       node = node.parentElement;
@@ -280,7 +290,8 @@
         snapshotHeading(h2);
 
         var hiddenHere = isEditionHidden(h2, doc) || focused && (h2.hasAttribute('data-complete') || h2.hasAttribute('data-verbose') ||
-                          (h2.closest && h2.closest('[data-complete],[data-verbose]')));
+                          h2.hasAttribute('data-complete-' + state.edition) ||
+                          (h2.closest && h2.closest('[data-complete],[data-verbose],[data-complete-' + state.edition + ']')));
         if (hiddenHere) {
           // Hidden in Focused: strip number (it would be wrong / invisible anyway)
           // and DO NOT advance the counter, so survivors stay gap-free.
@@ -331,7 +342,8 @@
   function applyH3(h3, doc, chNum, sectionCount, subCount, focused, forceBare) {
     snapshotHeading(h3);
     var hidden = isEditionHidden(h3, doc) || focused && (h3.hasAttribute('data-complete') || h3.hasAttribute('data-verbose') ||
-                  (h3.closest && h3.closest('[data-complete],[data-verbose]')));
+                  h3.hasAttribute('data-complete-' + state.edition) ||
+                  (h3.closest && h3.closest('[data-complete],[data-verbose],[data-complete-' + state.edition + ']')));
     var unnumbered = h3.hasAttribute('data-no-num');
     if (forceBare || hidden || unnumbered || !chNum || !sectionCount) {
       writeHeadingNumber(h3, null);
@@ -537,7 +549,8 @@
         level: h.tagName === 'H3' ? 3 : 2,
         text: h.textContent.trim(),
         hidden: isHidden(h, doc) || (isFocused() &&
-                 (h.hasAttribute('data-complete') || h.hasAttribute('data-verbose')))
+                 (h.hasAttribute('data-complete') || h.hasAttribute('data-verbose') ||
+                  h.hasAttribute('data-complete-' + state.edition)))
       });
     });
     return out;
@@ -566,6 +579,7 @@
         var css =
           '[data-verbose]{display:none !important;}\n' +
           '[data-complete]{display:none !important;}\n' +
+          '[data-complete-' + state.edition + ']{display:none !important;}\n' +
           '[data-focused]{display:block !important;}\n';
         var style = doc.createElement('style');
         style.id = 'cc-depth-style';
