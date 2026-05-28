@@ -1,10 +1,10 @@
-# Grading Skill — Price a Real Product with AI
+# Grading Skill: Price a Real Product with AI
 
 *Chapter 10 individual assignment. This file lets you grade a student's submission with the help of a free AI account, even if you have never used one. You paste a block of instructions into Claude, paste the student's work under it, and read back a score for each part of the rubric with a sentence of feedback. You stay in charge: the AI gives you a first-pass score, you decide the grade. A grade-by-hand version is at the bottom in case you would rather not use AI at all.*
 
 ---
 
-## Part 1 — If you have never used AI before, start here
+## Part 1. If you have never used AI before, start here
 
 You do not need to install anything or pay anything. This takes about five minutes the first time and under two minutes per student after that.
 
@@ -23,7 +23,7 @@ That is the whole process. The block in Part 2 does the work; you paste, read, a
 
 ---
 
-## Part 2 — The grader block (copy everything in the gray box)
+## Part 2. The grader block (copy everything in the gray box)
 
 > You are helping an instructor grade a second-year marketing student's individual assignment. The student picked one real, public product, used an AI assistant to price it end to end, and was then asked to judge the AI's output and set the final price themselves. Your job is to score their submission against the rubric below and give short, kind, specific feedback. This is a first-year-friendly course; reward honest judgment over polish.
 >
@@ -49,12 +49,12 @@ That is the whole process. The block in Part 2 does the work; you paste, read, a
 > **Do not penalize** disclosed AI use, even heavy use, that is expected here. Only the *absence* of a judgment pass is penalized, not the use of AI. If there is no AI-Use Note or transcript at all and the writing looks like an unedited AI dump, flag it for the instructor as a possible disclosure issue rather than scoring it, that is a human decision.
 >
 > **Output format:**
-> - **Criterion 1 — Judgment pass: __/28** — (why) — (one tip)
-> - **Criterion 2 — Value stick: __/18** — (why) — (one tip)
-> - **Criterion 3 — Approach and code arithmetic: __/18** — (why) — (one tip)
-> - **Criterion 4 — Willingness to pay: __/14** — (why) — (one tip)
-> - **Criterion 5 — Fairness check: __/12** — (why) — (one tip)
-> - **Criterion 6 — Defense and writing: __/10** — (why) — (one tip)
+> - **Criterion 1, Judgment pass: __/28** (why) (one tip)
+> - **Criterion 2, Value stick: __/18** (why) (one tip)
+> - **Criterion 3, Approach and code arithmetic: __/18** (why) (one tip)
+> - **Criterion 4, Willingness to pay: __/14** (why) (one tip)
+> - **Criterion 5, Fairness check: __/12** (why) (one tip)
+> - **Criterion 6, Defense and writing: __/10** (why) (one tip)
 > - **Total: __/100**
 > - **One-line summary for the student:** (warm, specific, what to do next time)
 >
@@ -62,7 +62,7 @@ That is the whole process. The block in Part 2 does the work; you paste, read, a
 
 ---
 
-## Part 3 — Reading and trusting the result
+## Part 3. Reading and trusting the result
 
 - The AI returns six scores, a total, and short notes. **Skim the notes first**, they tell you whether the AI actually understood the submission. If the notes match what you saw when you read the work, the total is trustworthy.
 - **You can push back.** Type a follow-up in the same chat, for example *"The student did catch a markup the AI labeled a margin, look again at Criterion 1"* or *"Re-run the breakeven yourself and check the arithmetic row."* The AI will re-score. You are calibrating it, not obeying it.
@@ -73,20 +73,20 @@ That is the whole process. The block in Part 2 does the work; you paste, read, a
 
 ---
 
-## Part 4 — Grade by hand instead (no AI at all)
+## Part 4. Grade by hand instead (no AI at all)
 
 If you would rather not use AI, grade straight from the rubric. Read each submission once, then score the six rows:
 
 | Criterion | Points | What earns full marks |
 |---|---|---|
 | **Judgment pass: caught what the AI got wrong** | 28 | Catches and corrects a real AI error (a markup labeled a margin, an invented competitor price, a fumbled breakeven); sets the final price and explains any change |
-| **Value stick** | 18 | Floor, frame (2–3 real rivals), and ceiling all named with verified evidence; the student's price placed on the stick |
+| **Value stick** | 18 | Floor, frame (2 to 3 real rivals), and ceiling all named with verified evidence; the student's price placed on the stick |
 | **Approach and code arithmetic** | 18 | Approach fits; contribution margin, breakeven, AND both markup and margin correct and run as code, not guessed |
 | **Willingness to pay** | 14 | Van Westendorp's four questions correct, five-plus real respondents, band read off the crossings, price checked against it |
 | **Fairness check** | 12 | Dual-entitlement principle applied correctly; category tolerance judged; says whether the price clears the ceiling |
 | **Defense and writing** | 10 | One paragraph ties approach, stick, WTP, and fairness into an argument finance could act on; plain, correct terms |
 | **Total** | **100** | |
 
-**Fast bands:** 90–100 a complete stick with a real ceiling, correct code-run arithmetic with markup and margin distinct, a WTP band read off real responses, a sound fairness read, and a real caught-and-corrected AI error; 80–89 solid work with one thin row; 70–79 present but mostly trusted the AI (tidy stick, little checking, a markup-margin wobble, no real catch); 60–69 face-value AI with no catch or a markup reported as a margin and never noticed; below 60 or integrity flag for a missing deliverable or an undisclosed AI dump (handle disclosure through your integrity process, not the rubric).
+**Fast bands:** 90 to 100 a complete stick with a real ceiling, correct code-run arithmetic with markup and margin distinct, a WTP band read off real responses, a sound fairness read, and a real caught-and-corrected AI error; 80 to 89 solid work with one thin row; 70 to 79 present but mostly trusted the AI (tidy stick, little checking, a markup-margin wobble, no real catch); 60 to 69 face-value AI with no catch or a markup reported as a margin and never noticed; below 60 or integrity flag for a missing deliverable or an undisclosed AI dump (handle disclosure through your integrity process, not the rubric).
 
 The single fastest signal of a strong paper: **a named, corrected AI error.** If the student caught the model reporting a markup as a margin or quoting a competitor price that does not exist, and fixed it, the assignment worked. The ten-second check that settles the markup-versus-margin question: markup = (price minus cost) / cost, margin = (price minus cost) / price, and the two are never equal. Full details and failure modes are in `ch10-pricing-grading-guide.md`.

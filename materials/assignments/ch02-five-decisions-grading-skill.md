@@ -1,10 +1,10 @@
-# Grading Skill — Read a Brand's Five Decisions with AI
+# Grading Skill: Read a Brand's Five Decisions with AI
 
 *Chapter 2 individual assignment. This file lets you grade a student's submission with the help of a free AI account, even if you have never used one. You paste a block of instructions into Claude, paste the student's work under it, and read back a score for each part of the rubric with a sentence of feedback. You stay in charge: the AI gives you a first-pass score, you decide the grade. A grade-by-hand version is at the bottom in case you would rather not use AI at all.*
 
 ---
 
-## Part 1 — If you have never used AI before, start here
+## Part 1. If you have never used AI before, start here
 
 You do not need to install anything or pay anything. This takes about five minutes the first time and under two minutes per student after that.
 
@@ -21,7 +21,7 @@ That is the whole process. The block in Part 2 does the work; you paste, read, a
 
 ---
 
-## Part 2 — The grader block (copy everything in the gray box)
+## Part 2. The grader block (copy everything in the gray box)
 
 > You are helping an instructor grade a second-year marketing student's individual assignment. The student picked one real, public brand, used an AI assistant to map the brand's **five marketing decisions** from public information, and was then asked to judge the AI's output. Your job is to score their submission against the rubric below and give short, kind, specific feedback. This is a first-year-friendly course; reward honest judgment over polish.
 >
@@ -44,11 +44,11 @@ That is the whole process. The block in Part 2 does the work; you paste, read, a
 > **Do not penalize** disclosed AI use, even heavy use, that is expected here. Only the *absence* of a judgment pass is penalized, not the use of AI. If there is no AI-Use Note or transcript at all and the writing looks like an unedited AI dump, flag it for the instructor as a possible disclosure issue rather than scoring it, that is a human decision.
 >
 > **Output format:**
-> - **Criterion 1 — Judgment pass: __/30** — (why) — (one tip)
-> - **Criterion 2 — Five-decision map: __/22** — (why) — (one tip)
-> - **Criterion 3 — Decision that breaks the rest: __/20** — (why) — (one tip)
-> - **Criterion 4 — Positioning and exchange: __/16** — (why) — (one tip)
-> - **Criterion 5 — Takeaway and writing: __/12** — (why) — (one tip)
+> - **Criterion 1, Judgment pass: __/30** (why) (one tip)
+> - **Criterion 2, Five-decision map: __/22** (why) (one tip)
+> - **Criterion 3, Decision that breaks the rest: __/20** (why) (one tip)
+> - **Criterion 4, Positioning and exchange: __/16** (why) (one tip)
+> - **Criterion 5, Takeaway and writing: __/12** (why) (one tip)
 > - **Total: __/100**
 > - **One-line summary for the student:** (warm, specific, what to do next time)
 >
@@ -56,7 +56,7 @@ That is the whole process. The block in Part 2 does the work; you paste, read, a
 
 ---
 
-## Part 3 — Reading and trusting the result
+## Part 3. Reading and trusting the result
 
 - The AI returns five scores, a total, and short notes. **Skim the notes first**, they tell you whether the AI actually understood the submission. If the notes match what you saw when you read the work, the total is trustworthy.
 - **You can push back.** Type a follow-up in the same chat, for example *"The student did catch a wrong price in their transcript, look again at Criterion 1"* or *"Be stricter on the map row, three slots are generic."* The AI will re-score. You are calibrating it, not obeying it.
@@ -66,7 +66,7 @@ That is the whole process. The block in Part 2 does the work; you paste, read, a
 
 ---
 
-## Part 4 — Grade by hand instead (no AI at all)
+## Part 4. Grade by hand instead (no AI at all)
 
 If you would rather not use AI, grade straight from the rubric. Read each submission once, then score the five rows:
 
@@ -79,6 +79,6 @@ If you would rather not use AI, grade straight from the rubric. Read each submis
 | **Takeaway and writing** | 12 | One clear sentence on what holds the brand together or breaks it; plain, correct terms |
 | **Total** | **100** | |
 
-**Fast bands:** 90–100 specific map plus a real verified-versus-guessed catch and the breaking decision named with its knock-on; 80–89 solid work with one thin row; 70–79 present but mostly trusted the AI (tidy map, little checking, weak conflict, or an "everyone" buyer); 60–69 face-value AI with no catch, or a book report; below 60 or integrity flag for a missing deliverable or an undisclosed AI dump (handle disclosure through your integrity process, not the rubric).
+**Fast bands:** 90 to 100 specific map plus a real verified-versus-guessed catch and the breaking decision named with its knock-on; 80 to 89 solid work with one thin row; 70 to 79 present but mostly trusted the AI (tidy map, little checking, weak conflict, or an "everyone" buyer); 60 to 69 face-value AI with no catch, or a book report; below 60 or integrity flag for a missing deliverable or an undisclosed AI dump (handle disclosure through your integrity process, not the rubric).
 
 The single fastest signal of a strong paper: **a named, corrected AI error.** If the student caught the model in a wrong price or an invented competitor and fixed it, the assignment worked. Full details and failure modes are in `ch02-five-decisions-grading-guide.md`.
