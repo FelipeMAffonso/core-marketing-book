@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Assignment bank for Chapter 2 (What Marketing Is): filter by student access and difficulty, then expand a card for the full assignment and its rubric.">
+<title>What Marketing Is assignments · Principles of Marketing</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23DA7756' width='100' height='100' rx='12'/><text x='50' y='68' font-family='system-ui' font-size='36' font-weight='bold' fill='white' text-anchor='middle'>PM</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --coral:#DA7756; --coral-deep:#B8553A; --coral-soft:#E8A488;
+  --coral-text:#a8472a; --coral-tint:#fdf3ee;
+  --ink:#1a1a1a; --ink-2:#43474f; --ink-3:#5a5f67;
+  --bg:#ffffff; --bg-2:#f7f8fa; --bg-3:#f1f2f5;
+  --border:#e6e6ea; --border-strong:#d7dae0;
+  --font:'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif;
+  --font-serif:'EB Garamond',Georgia,serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Consolas,monospace;
+  --rail-w: 240px;
+  --right-w: 220px;
+  --topbar-h: 58px;
+}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.62;
+  -webkit-font-smoothing:antialiased;}
+a{color:var(--coral-text);text-decoration:none;}
+a:hover{text-decoration:underline;text-underline-offset:3px;}
+a:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;border-radius:4px;}
+.skip-link{position:absolute;left:-999px;top:0;z-index:2000;background:var(--ink);
+  color:#fff;padding:10px 16px;border-radius:0 0 6px 0;font-size:14px;font-weight:600;}
+.skip-link:focus{left:0;text-decoration:none;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.9);
+  backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);}
+.topbar-inner{max-width:1320px;margin:0 auto;padding:0 28px;height:58px;display:flex;
+  align-items:center;gap:14px;}
+.topbar .mark{width:28px;height:28px;border-radius:7px;flex-shrink:0;background:var(--coral-deep);
+  color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;
+  letter-spacing:-0.5px;}
+.topbar .doc-title{font-size:14.5px;font-weight:600;color:var(--ink);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.topbar .back{margin-left:auto;font-size:13.5px;font-weight:600;color:var(--coral-text);
+  padding:7px 13px;border-radius:7px;border:1px solid var(--border);white-space:nowrap;}
+.topbar .back:hover{background:var(--bg-2);text-decoration:none;}
+main{max-width:860px;margin:0 auto;padding:44px 28px 96px;}
+.kicker{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--coral-text);margin-bottom:10px;}
+main h1{font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-0.02em;
+  line-height:1.12;color:var(--ink);margin:0 0 8px;}
+main h2{font-size:clamp(21px,2.8vw,26px);font-weight:700;letter-spacing:-0.015em;color:var(--ink);
+  margin:42px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+main h3{font-size:19px;font-weight:650;color:var(--ink);margin:30px 0 10px;}
+main h4{font-size:16px;font-weight:650;color:var(--ink-2);margin:24px 0 8px;}
+main h5,main h6{font-size:14px;font-weight:650;color:var(--ink-2);margin:20px 0 6px;
+  text-transform:uppercase;letter-spacing:0.04em;}
+main p{margin:0 0 16px;color:var(--ink);font-size:17px;}
+main ul,main ol{margin:0 0 18px;padding-left:26px;}
+main li{margin:0 0 7px;color:var(--ink);font-size:17px;}
+main li>ul,main li>ol{margin:7px 0 0;}
+main blockquote{margin:0 0 18px;padding:4px 18px;border-left:3px solid var(--coral);
+  background:var(--coral-tint);color:var(--ink-2);border-radius:0 6px 6px 0;}
+main blockquote p{margin:8px 0;}
+main hr{border:0;border-top:1px solid var(--border);margin:34px 0;}
+main strong{font-weight:700;color:var(--ink);}
+main em{font-style:italic;}
+main code{font-family:var(--font-mono);font-size:0.88em;background:var(--bg-3);
+  padding:2px 6px;border-radius:4px;color:var(--coral-text);border:1px solid var(--border);
+  word-break:break-word;overflow-wrap:break-word;}
+main pre{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;
+  padding:16px 18px;overflow-x:auto;margin:0 0 18px;}
+main pre:focus-visible{outline:2px solid var(--coral);outline-offset:2px;}
+main pre code{background:none;border:0;padding:0;color:var(--ink);font-size:13.5px;
+  line-height:1.55;}
+main .table-wrap{overflow-x:auto;margin:0 0 22px;border:1px solid var(--border);
+  border-radius:6px;}
+main .table-wrap:focus-visible{outline:2px solid var(--coral);outline-offset:2px;}
+main table{width:100%;border-collapse:collapse;font-size:15px;}
+main thead th{background:var(--bg-2);text-align:left;font-weight:650;color:var(--ink);
+  padding:9px 13px;border:1px solid var(--border-strong);white-space:nowrap;}
+main tbody td{padding:9px 13px;border:1px solid var(--border);color:var(--ink-2);
+  vertical-align:top;}
+main tbody tr:nth-child(even){background:var(--bg-2);}
+main a{color:var(--coral-text);font-weight:500;}
+.toc-note{font-size:14px;color:var(--ink-3);margin-bottom:30px;}
+footer{border-top:1px solid var(--border);background:var(--bg-2);padding:28px 0;
+  margin-top:60px;}
+footer .inner{max-width:860px;margin:0 auto;padding:0 28px;font-size:12.5px;color:var(--ink-3);}
+/* card grid — chapter decks + materials, echoing the dashboard tiles */
+.ccards{display:grid;grid-template-columns:repeat(auto-fill,minmax(212px,1fr));gap:14px;
+  margin:6px 0 34px;list-style:none;padding:0;}
+.ccard{display:flex;flex-direction:column;gap:7px;padding:15px 16px;min-height:108px;
+  border:1px solid var(--border);border-radius:10px;background:var(--bg);text-decoration:none;
+  transition:border-color 150ms var(--ease-coral,ease),box-shadow 150ms,transform 150ms;}
+a.ccard:hover{border-color:var(--coral);box-shadow:0 6px 20px rgba(218,119,86,0.13);
+  transform:translateY(-2px);text-decoration:none;}
+a.ccard:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;}
+.ccard .ci-num{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.08em;
+  color:var(--coral-text);}
+.ccard .ci-title{font-size:15px;font-weight:650;color:var(--ink);line-height:1.28;}
+.ccard .ci-meta{font-size:12px;color:var(--ink-3);margin-top:auto;}
+.ccard.soon{background:var(--bg-2);border-style:dashed;cursor:default;}
+.ccard.soon .ci-title{color:var(--ink-3);font-weight:600;}
+.ci-pill{align-self:flex-start;font-size:9.5px;font-weight:700;letter-spacing:0.07em;
+  text-transform:uppercase;padding:2px 8px;border-radius:10px;background:var(--coral-tint);
+  color:var(--coral-text);}
+.ccard.soon .ci-pill{background:var(--bg-3);color:var(--ink-3);}
+.group-blurb{font-size:14px;color:var(--ink-3);margin:0 0 14px;}
+@media (max-width:600px){
+  main{padding:30px 18px 64px;}
+  .topbar-inner{padding:0 18px;}
+  .ccards{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+}
+
+/* ── DOCS-STYLE 3-COLUMN LAYOUT (left rail + main + right rail) ──────────
+   Used by every materials/reference/cartridge/videos page. The classic
+   API-reference docs feel: sticky left rail of siblings, sticky right rail
+   of in-page TOC + related materials, breadcrumb + prev/next around the
+   main column. Responsive collapse at 1080px (right rail hides) and 720px
+   (left rail collapses into a dropdown disclosure at top of main). */
+/* override main's narrow column when the docs layout is in use */
+main:has(.docs-layout){max-width:none;padding:0;}
+.docs-layout {
+  display: grid;
+  grid-template-columns: var(--rail-w) minmax(0, 1fr) var(--right-w);
+  gap: 36px;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 28px 28px 80px;
+  align-items: start;
+}
+.docs-rail {
+  position: sticky;
+  top: calc(var(--topbar-h) + 16px);
+  max-height: calc(100vh - var(--topbar-h) - 32px);
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.docs-rail::-webkit-scrollbar { width: 6px; }
+.docs-rail::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+.docs-rail .rail-eyebrow {
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral-text);
+  margin: 0 0 10px;
+}
+.docs-rail .rail-group {
+  margin-bottom: 22px;
+}
+.docs-rail .rail-group h3 {
+  font-size: 11.5px; font-weight: 650; color: var(--ink); text-transform: uppercase;
+  letter-spacing: 0.06em; margin: 0 0 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.docs-rail .rail-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 1px;
+}
+.docs-rail .rail-list a, .docs-rail .rail-list .rail-soon {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 5px 10px; border-radius: 6px;
+  font-size: 13px; color: var(--ink-2); text-decoration: none;
+  line-height: 1.32;
+  border-left: 2px solid transparent;
+}
+.docs-rail .rail-list a:hover {
+  background: var(--bg-2); color: var(--ink); text-decoration: none;
+}
+.docs-rail .rail-list a.is-active {
+  color: var(--coral-text); font-weight: 600;
+  background: var(--coral-tint);
+  border-left-color: var(--coral);
+}
+.docs-rail .rail-list .rail-soon {
+  color: var(--ink-3); cursor: default;
+}
+.docs-rail .rail-list .rail-soon .rail-num {
+  color: var(--ink-3);
+}
+.docs-rail .rail-num {
+  font-family: var(--font-mono); font-size: 11px; color: var(--ink-3);
+  flex-shrink: 0; min-width: 24px; letter-spacing: 0.04em;
+}
+.docs-rail .rail-list a.is-active .rail-num {
+  color: var(--coral-text);
+}
+.docs-rail .rail-soon::after {
+  content: "soon"; font-size: 9.5px; font-family: var(--font-mono);
+  color: var(--ink-3); margin-left: auto;
+  padding: 1px 5px; border-radius: 3px; background: var(--bg-3);
+  letter-spacing: 0.04em; flex-shrink: 0;
+}
+
+/* Mobile/tablet — left rail collapses to a dropdown disclosure */
+.docs-rail-mobile {
+  display: none;
+  margin-bottom: 16px;
+}
+.docs-rail-mobile summary {
+  font-size: 13px; font-weight: 600; color: var(--ink-2);
+  padding: 10px 14px; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 7px;
+  background: var(--bg-2);
+  list-style: none;
+}
+.docs-rail-mobile summary::after { content: " ▾"; color: var(--ink-3); float: right; }
+.docs-rail-mobile[open] summary::after { content: " ▴"; }
+.docs-rail-mobile .rail-group { margin: 12px 0; }
+
+/* Right rail (in-page TOC + related) */
+.docs-right .toc-eyebrow {
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral-text);
+  margin: 0 0 10px;
+}
+.docs-right .toc-list {
+  list-style: none; padding: 0; margin: 0 0 28px;
+  border-left: 2px solid var(--border);
+  display: flex; flex-direction: column; gap: 1px;
+}
+.docs-right .toc-list a {
+  display: block; padding: 4px 12px; font-size: 12.5px; color: var(--ink-3);
+  text-decoration: none; line-height: 1.4; margin-left: -2px;
+  border-left: 2px solid transparent;
+}
+.docs-right .toc-list a:hover { color: var(--ink); text-decoration: none; }
+.docs-right .toc-list a.is-current {
+  color: var(--coral-text); font-weight: 600;
+  border-left-color: var(--coral);
+}
+.docs-right .toc-list .toc-h3 { padding-left: 24px; font-size: 12px; }
+.docs-right .related-block {
+  margin-top: 20px;
+}
+.docs-right .related-block h3 {
+  font-size: 11.5px; font-weight: 650; color: var(--ink); text-transform: uppercase;
+  letter-spacing: 0.06em; margin: 0 0 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.docs-right .related-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.docs-right .related-list a {
+  display: flex; align-items: baseline; gap: 7px;
+  padding: 5px 10px; border-radius: 6px;
+  font-size: 12.5px; color: var(--ink-2); text-decoration: none;
+  line-height: 1.32;
+}
+.docs-right .related-list a:hover {
+  background: var(--bg-2); color: var(--coral-text); text-decoration: none;
+}
+.docs-right .related-list .rel-arrow {
+  color: var(--coral); font-weight: 700;
+}
+
+/* Main column */
+.docs-main { min-width: 0; }
+.breadcrumb {
+  font-size: 12.5px; color: var(--ink-3); margin: 0 0 18px;
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  font-family: var(--font);
+}
+.breadcrumb a {
+  color: var(--ink-3); text-decoration: none; font-weight: 500;
+  padding: 2px 6px; border-radius: 4px;
+}
+.breadcrumb a:hover { color: var(--coral-text); background: var(--bg-2); }
+.breadcrumb .sep { color: var(--ink-3); font-size: 11px; opacity: 0.5; }
+.breadcrumb .current { color: var(--ink); font-weight: 600; padding: 2px 6px; }
+
+.page-overview {
+  font-size: 16.5px; color: var(--ink-2); line-height: 1.55;
+  padding: 16px 0 6px; margin: 0 0 30px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Prev / Next footer */
+.prev-next {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  margin-top: 48px; padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.prev-next a {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px;
+  color: var(--ink-2); text-decoration: none;
+  transition: border-color 140ms ease, background 140ms ease;
+}
+.prev-next a:hover {
+  border-color: var(--coral); color: var(--coral-text); background: var(--bg-2);
+  text-decoration: none;
+}
+.prev-next .pn-eyebrow {
+  font-size: 11px; color: var(--ink-3); letter-spacing: 0.04em;
+}
+.prev-next .pn-title {
+  font-size: 14px; font-weight: 600; color: inherit;
+}
+.prev-next .pn-next { text-align: right; }
+.prev-next .pn-empty { visibility: hidden; pointer-events: none; }
+
+@media (max-width: 1100px) {
+  .docs-layout { grid-template-columns: var(--rail-w) minmax(0, 1fr); gap: 28px; }
+  .docs-right { display: none; }
+}
+@media (max-width: 760px) {
+  .docs-layout {
+    grid-template-columns: 1fr; padding: 16px 18px 60px; gap: 14px;
+  }
+  .docs-rail { display: none; }
+  .docs-rail-mobile { display: block; }
+  .topbar-inner { padding: 0 18px; }
+  .prev-next { grid-template-columns: 1fr; }
+  .page-overview { font-size: 15px; }
+}
+</style>
+
+<style>
+.asg-eyebrow{display:block;font-family:Inter,system-ui,sans-serif;font-size:13px;
+  font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#B8553A;margin:0 0 10px;}
+.asg-badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px;padding:0;list-style:none;}
+.asg-badge{display:inline-flex;align-items:center;gap:6px;font-family:Inter,system-ui,sans-serif;
+  font-size:13px;font-weight:600;line-height:1;color:#5a3527;background:#FBEEE8;
+  border:1px solid #EBC9B9;border-radius:999px;padding:8px 14px;white-space:nowrap;}
+.asg-badge .asg-badge-k{font-weight:500;color:#8a6a5c;}
+/* ── The per-chapter ASSIGNMENT BOARD: overview + two filter rows + variant cards.
+   Instructor-facing, coral #DA7756 / coral-deep #B8553A + neutrals only, AA, no emojis. */
+.asg-board-overview{margin:0 0 22px;color:#43474f;font-size:1.02rem;line-height:1.6;}
+.asg-filters{margin:0 0 10px;padding:18px 20px 14px;border:1px solid #e6ebf1;border-radius:12px;
+  background:#fcfbfa;}
+.asg-filter-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 12px;}
+.asg-filter-row:last-of-type{margin-bottom:0;}
+.asg-filter-label{flex:0 0 96px;font-family:Inter,system-ui,sans-serif;font-size:13px;
+  font-weight:700;color:#5a3527;}
+.asg-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;}
+.asg-chip{display:inline-flex;align-items:center;gap:6px;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;
+  color:#3a2a22;background:#fff;border:1.5px solid #d9cfc8;border-radius:999px;
+  padding:6px 13px;cursor:pointer;transition:border-color .12s,background .12s,color .12s;}
+.asg-chip:hover{border-color:#B8553A;}
+.asg-chip:focus-visible{outline:3px solid #DA7756;outline-offset:2px;}
+.asg-chip[aria-pressed="true"]{background:#B8553A;border-color:#B8553A;color:#fff;}
+.asg-chip svg{flex:0 0 auto;color:#B8553A;}
+.asg-chip[aria-pressed="true"] svg{color:#fff;}
+.asg-count{margin-left:auto;font-family:Inter,system-ui,sans-serif;font-size:13px;
+  font-weight:600;color:#8a6a5c;white-space:nowrap;}
+.asg-cards{margin:22px 0 8px;display:flex;flex-direction:column;gap:14px;}
+.asg-card{border:1px solid #EBC9B9;border-radius:12px;background:#fff;overflow:hidden;}
+.asg-card.is-hidden{display:none;}
+.asg-card-head{width:100%;display:flex;align-items:flex-start;gap:14px;text-align:left;
+  background:#FBEEE8;border:none;border-bottom:1px solid #EBC9B9;padding:16px 20px;
+  cursor:pointer;font-family:inherit;}
+.asg-card[aria-collapsed] .asg-card-head{border-bottom:none;}
+.asg-card-head:hover{background:#f8e4d9;}
+.asg-card-head:focus-visible{outline:3px solid #DA7756;outline-offset:-3px;}
+.asg-card-main{flex:1 1 auto;min-width:0;}
+.asg-card-title{font-family:Inter,system-ui,sans-serif;font-weight:700;font-size:1.08rem;
+  color:#3a2a22;margin:0 0 6px;line-height:1.3;}
+.asg-card-tags{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 8px;padding:0;list-style:none;}
+.asg-tag{display:inline-flex;align-items:center;justify-content:center;gap:5px;
+  background:#FBEEE8;border:1px solid #E8A488;border-radius:999px;padding:4px 10px;
+  min-height:26px;color:#B8553A;}
+.asg-tag svg{display:block;}
+.asg-card-blurb{margin:0;color:#5a5f67;font-size:.95rem;line-height:1.5;}
+.asg-card-caret{flex:0 0 auto;color:#B8553A;font-size:.95rem;line-height:1.9;
+  transition:transform .15s;}
+.asg-card-head[aria-expanded="true"] .asg-card-caret{transform:rotate(90deg);}
+.asg-card-panel{padding:6px 22px 20px;}
+.asg-card-panel[hidden]{display:none;}
+.asg-card-panel > :first-child{margin-top:14px;}
+/* Folded instructor sections (rubric, what-this-assesses, grading kit) inside a panel. */
+details.asg-fold{margin:22px 0 0;border:1px solid #e6ebf1;border-radius:10px;
+  background:#fcfbfa;overflow:hidden;}
+details.asg-fold > summary{cursor:pointer;list-style:none;padding:14px 18px;
+  font-family:Inter,system-ui,sans-serif;font-weight:700;font-size:1rem;color:#1a1a1a;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;}
+details.asg-fold > summary::-webkit-details-marker{display:none;}
+details.asg-fold > summary:focus-visible{outline:3px solid #DA7756;outline-offset:-3px;}
+details.asg-fold > summary .asg-fold-sub{font-weight:400;font-size:.88rem;color:#777;}
+details.asg-fold > summary .asg-fold-caret{flex:0 0 auto;color:#B8553A;font-size:.82rem;
+  transition:transform .15s;}
+details.asg-fold[open] > summary .asg-fold-caret{transform:rotate(90deg);}
+details.asg-fold > .asg-fold-body{padding:2px 18px 16px;border-top:1px solid #ece3dd;}
+details.asg-fold > .asg-fold-body > :first-child{margin-top:12px;}
+@media (max-width:600px){
+  .asg-filter-label{flex-basis:100%;}
+  .asg-count{margin-left:0;flex-basis:100%;}
+}
+</style>
+<script>
+(function(){
+  "use strict";
+  function ready(fn){ if(document.readyState!=="loading"){fn();}
+    else{document.addEventListener("DOMContentLoaded",fn);} }
+  ready(function(){
+    // ── Inline accordion: each card header toggles its panel (aria-expanded).
+    document.querySelectorAll(".asg-card-head").forEach(function(head){
+      var card=head.closest(".asg-card");
+      var panel=card?card.querySelector(".asg-card-panel"):null;
+      if(!panel){return;}
+      head.addEventListener("click",function(){
+        var open=head.getAttribute("aria-expanded")==="true";
+        head.setAttribute("aria-expanded",open?"false":"true");
+        if(open){panel.setAttribute("hidden","");card.setAttribute("aria-collapsed","");}
+        else{panel.removeAttribute("hidden");card.removeAttribute("aria-collapsed");}
+      });
+    });
+    // ── Filters: access + difficulty + format chip rows AND together; "Any" = no
+    //    filter on that axis. Cards carry data-access / data-difficulty / data-format.
+    //    Generic over data-group, so another filter row needs no JS change.
+    document.querySelectorAll(".asg-board").forEach(function(board){
+      var cards=Array.prototype.slice.call(board.querySelectorAll(".asg-card"));
+      var total=cards.length;
+      var sel={};
+      var countEl=board.querySelector(".asg-count");
+      function apply(){
+        var shown=0;
+        cards.forEach(function(c){
+          var ok=true;
+          for(var g in sel){
+            if(sel[g]!=="any"&&(c.getAttribute("data-"+g)||"")!==sel[g]){ok=false;break;}
+          }
+          if(ok){c.classList.remove("is-hidden");shown++;}
+          else{c.classList.add("is-hidden");}
+        });
+        if(countEl){countEl.textContent="showing "+shown+" of "+total;}
+      }
+      board.querySelectorAll(".asg-chip[data-group]").forEach(function(chip){
+        chip.addEventListener("click",function(){
+          var group=chip.getAttribute("data-group");
+          var val=chip.getAttribute("data-val");
+          sel[group]=val;
+          board.querySelectorAll('.asg-chip[data-group="'+group+'"]').forEach(function(c){
+            c.setAttribute("aria-pressed",c===chip?"true":"false");
+          });
+          apply();
+        });
+      });
+      apply();
+    });
+  });
+})();
+</script>
+
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="mark" aria-hidden="true">PM</span>
+    <span class="doc-title">What Marketing Is assignments</span>
+    <a class="back" href="../../index.html">&larr; Back to courseware</a>
+  </div>
+</header>
+<main id="main">
+<div class="docs-layout"><aside class="docs-rail" aria-label="Section navigation"><div class="rail-group"><h3>Take-home Assignments</h3><ul class="rail-list"><li><span class="rail-soon"><span class="rail-num">Ch 01</span><span class="rail-label">AI for Marketers</span></span></li><li><a class="is-active" href="ch02.html"><span class="rail-num">Ch 02</span><span class="rail-label">What Marketing Is</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 03</span><span class="rail-label">The Marketing Environment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 04</span><span class="rail-label">How Buyers Buy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 05</span><span class="rail-label">Marketing Research</span></span></li><li><a class="" href="ch06.html"><span class="rail-num">Ch 06</span><span class="rail-label">Segmentation, Targeting &amp; Positioning</span></a></li><li><a class="" href="ch07.html"><span class="rail-num">Ch 07</span><span class="rail-label">Brands &amp; Brand Equity</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 08</span><span class="rail-label">Product Management</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 09</span><span class="rail-label">Services Marketing</span></span></li><li><a class="" href="ch10.html"><span class="rail-num">Ch 10</span><span class="rail-label">Pricing</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 11</span><span class="rail-label">Distribution Channels</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 12</span><span class="rail-label">Retail</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 13</span><span class="rail-label">DTC &amp; E-commerce</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 14</span><span class="rail-label">Mobile &amp; App Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 15</span><span class="rail-label">International Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 16</span><span class="rail-label">Promotions</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 17</span><span class="rail-label">Content Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 18</span><span class="rail-label">Digital Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 19</span><span class="rail-label">Social Media</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 20</span><span class="rail-label">Creator Economy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 21</span><span class="rail-label">Customer Lifecycle</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 22</span><span class="rail-label">PR &amp; Crisis</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 23</span><span class="rail-label">Sales Alignment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 24</span><span class="rail-label">Marketing Plan &amp; Analytics</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 25</span><span class="rail-label">Marketing Finance</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 26</span><span class="rail-label">Ethics &amp; Responsible AI</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 27</span><span class="rail-label">Capstone</span></span></li></ul></div></aside><section class="docs-main"><details class="docs-rail-mobile"><summary>Browse this section</summary><div class="rail-group"><h3>Take-home Assignments</h3><ul class="rail-list"><li><span class="rail-soon"><span class="rail-num">Ch 01</span><span class="rail-label">AI for Marketers</span></span></li><li><a class="is-active" href="ch02.html"><span class="rail-num">Ch 02</span><span class="rail-label">What Marketing Is</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 03</span><span class="rail-label">The Marketing Environment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 04</span><span class="rail-label">How Buyers Buy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 05</span><span class="rail-label">Marketing Research</span></span></li><li><a class="" href="ch06.html"><span class="rail-num">Ch 06</span><span class="rail-label">Segmentation, Targeting &amp; Positioning</span></a></li><li><a class="" href="ch07.html"><span class="rail-num">Ch 07</span><span class="rail-label">Brands &amp; Brand Equity</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 08</span><span class="rail-label">Product Management</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 09</span><span class="rail-label">Services Marketing</span></span></li><li><a class="" href="ch10.html"><span class="rail-num">Ch 10</span><span class="rail-label">Pricing</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 11</span><span class="rail-label">Distribution Channels</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 12</span><span class="rail-label">Retail</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 13</span><span class="rail-label">DTC &amp; E-commerce</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 14</span><span class="rail-label">Mobile &amp; App Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 15</span><span class="rail-label">International Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 16</span><span class="rail-label">Promotions</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 17</span><span class="rail-label">Content Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 18</span><span class="rail-label">Digital Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 19</span><span class="rail-label">Social Media</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 20</span><span class="rail-label">Creator Economy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 21</span><span class="rail-label">Customer Lifecycle</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 22</span><span class="rail-label">PR &amp; Crisis</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 23</span><span class="rail-label">Sales Alignment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 24</span><span class="rail-label">Marketing Plan &amp; Analytics</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 25</span><span class="rail-label">Marketing Finance</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 26</span><span class="rail-label">Ethics &amp; Responsible AI</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 27</span><span class="rail-label">Capstone</span></span></li></ul></div></details><nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Courseware</a><span class="sep">›</span><a href="../../index.html#assess">Assess</a><span class="sep">›</span><a href="index.html">Take-home Assignments</a><span class="sep">›</span><span class="current">Ch 02 What Marketing Is</span></nav><div class="doc-body"><h1>What Marketing Is &middot; take-home assignments</h1><p class="asg-board-overview">There are 2 What Marketing Is assignments, spanning student-access levels, difficulty, and solo or team formats. Filter to what your class can run, then open a card for the full assignment and its rubric.</p><div class="asg-board"><div class="asg-filters" aria-label="Filter assignments"><div class="asg-filter-row"><span class="asg-filter-label">Minimum AI Tool Requirement</span><div class="asg-chips" role="group" aria-label="Minimum AI Tool Requirement"><button type="button" class="asg-chip" data-group="access" data-val="any" aria-pressed="true"><span class="asg-chip-label">Any</span></button><button type="button" class="asg-chip" data-group="access" data-val="Free account" aria-pressed="false"><svg class="asg-icon-ai" width="16" height="16" viewBox="0 0 24 24" role="img" aria-label="Minimum AI Tool Requirement: Free account"><line x1="12" y1="3" x2="12" y2="6" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="2.6" r="1" fill="currentColor"/><rect x="5" y="6" width="14" height="13" rx="2.5" fill="currentColor" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="12" r="1.3" fill="#FBEEE8"/><circle cx="15" cy="12" r="1.3" fill="#FBEEE8"/><line x1="9.5" y1="16" x2="14.5" y2="16" stroke="#FBEEE8" stroke-width="1.6" stroke-linecap="round"/></svg><span class="asg-chip-label">Free account</span></button></div></div><div class="asg-filter-row"><span class="asg-filter-label">Difficulty</span><div class="asg-chips" role="group" aria-label="Difficulty"><button type="button" class="asg-chip" data-group="difficulty" data-val="any" aria-pressed="true"><span class="asg-chip-label">Any</span></button><button type="button" class="asg-chip" data-group="difficulty" data-val="Low" aria-pressed="false"><svg class="asg-icon-diff" width="52" height="14" viewBox="0 0 80 24" role="img" aria-label="Difficulty: Low"><polygon points="12.0,3.0 14.5,9.4 21.4,9.4 16.0,13.9 18.2,20.7 12.0,17.1 5.8,20.7 8.0,13.9 2.6,9.4 9.5,9.4" fill="#DA7756" stroke="#B8553A" stroke-width="1" stroke-linejoin="round"/><polygon points="40.0,3.0 42.5,9.4 49.4,9.4 44.0,13.9 46.2,20.7 40.0,17.1 33.8,20.7 36.0,13.9 30.6,9.4 37.5,9.4" fill="none" stroke="#C8B8B0" stroke-width="1.4" stroke-linejoin="round"/><polygon points="68.0,3.0 70.5,9.4 77.4,9.4 72.0,13.9 74.2,20.7 68.0,17.1 61.8,20.7 64.0,13.9 58.6,9.4 65.5,9.4" fill="none" stroke="#C8B8B0" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="asg-chip-label">Low</span></button><button type="button" class="asg-chip" data-group="difficulty" data-val="Medium" aria-pressed="false"><svg class="asg-icon-diff" width="52" height="14" viewBox="0 0 80 24" role="img" aria-label="Difficulty: Medium"><polygon points="12.0,3.0 14.5,9.4 21.4,9.4 16.0,13.9 18.2,20.7 12.0,17.1 5.8,20.7 8.0,13.9 2.6,9.4 9.5,9.4" fill="#DA7756" stroke="#B8553A" stroke-width="1" stroke-linejoin="round"/><polygon points="40.0,3.0 42.5,9.4 49.4,9.4 44.0,13.9 46.2,20.7 40.0,17.1 33.8,20.7 36.0,13.9 30.6,9.4 37.5,9.4" fill="#DA7756" stroke="#B8553A" stroke-width="1" stroke-linejoin="round"/><polygon points="68.0,3.0 70.5,9.4 77.4,9.4 72.0,13.9 74.2,20.7 68.0,17.1 61.8,20.7 64.0,13.9 58.6,9.4 65.5,9.4" fill="none" stroke="#C8B8B0" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="asg-chip-label">Medium</span></button></div><span class="asg-count">showing 2 of 2</span></div></div><div class="asg-cards"><article class="asg-card" data-access="Free account" data-difficulty="Medium" data-format="" aria-collapsed><button type="button" class="asg-card-head" aria-expanded="false" aria-controls="asg-panel-ch02-five-decisions-assignment"><span class="asg-card-main"><span class="asg-card-title">Read a Brand&#x27;s Five Decisions with AI</span><ul class="asg-card-tags"><li class="asg-tag asg-tag-ai" title="Minimum AI Tool Requirement: Free account"><svg class="asg-icon-ai" width="16" height="16" viewBox="0 0 24 24" role="img" aria-label="Minimum AI Tool Requirement: Free account"><line x1="12" y1="3" x2="12" y2="6" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="2.6" r="1" fill="currentColor"/><rect x="5" y="6" width="14" height="13" rx="2.5" fill="currentColor" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="12" r="1.3" fill="#FBEEE8"/><circle cx="15" cy="12" r="1.3" fill="#FBEEE8"/><line x1="9.5" y1="16" x2="14.5" y2="16" stroke="#FBEEE8" stroke-width="1.6" stroke-linecap="round"/></svg></li><li class="asg-tag asg-tag-diff" title="Difficulty: Medium"><svg class="asg-icon-diff" width="52" height="14" viewBox="0 0 80 24" role="img" aria-label="Difficulty: Medium"><polygon points="12.0,3.0 14.5,9.4 21.4,9.4 16.0,13.9 18.2,20.7 12.0,17.1 5.8,20.7 8.0,13.9 2.6,9.4 9.5,9.4" fill="#DA7756" stroke="#B8553A" stroke-width="1" stroke-linejoin="round"/><polygon points="40.0,3.0 42.5,9.4 49.4,9.4 44.0,13.9 46.2,20.7 40.0,17.1 33.8,20.7 36.0,13.9 30.6,9.4 37.5,9.4" fill="#DA7756" stroke="#B8553A" stroke-width="1" stroke-linejoin="round"/><polygon points="68.0,3.0 70.5,9.4 77.4,9.4 72.0,13.9 74.2,20.7 68.0,17.1 61.8,20.7 64.0,13.9 58.6,9.4 65.5,9.4" fill="none" stroke="#C8B8B0" stroke-width="1.4" stroke-linejoin="round"/></svg></li></ul><p class="asg-card-blurb">Use a free AI account to map a real brand&#x27;s five decisions, then out-judge where it knew vs. guessed.</p></span><span class="asg-card-caret" aria-hidden="true">&#9656;</span></button><div class="asg-card-panel" id="asg-panel-ch02-five-decisions-assignment" hidden><h1>Read a Brand&#x27;s Five Decisions with AI</h1>
+<p><em>Chapter 2 individual assignment. The student steps into the role of a brand&#x27;s new marketing analyst: pick a real brand, use an AI assistant to map its five marketing decisions from public information, then verify the map against the brand&#x27;s own site and ads, and name the one decision that, if it changed, would break the other four. The student directs the AI and out-judges it. About two hours of work, alone.</em></p>
+<ul class="asg-badges" aria-label="Assignment at a glance"><li class="asg-badge"><span class="asg-badge-k">Type</span><span class="asg-badge-v">Individual</span></li><li class="asg-badge"><span class="asg-badge-k">Time</span><span class="asg-badge-v">~2 hrs</span></li><li class="asg-badge"><span class="asg-badge-k">Points</span><span class="asg-badge-v">100 pts</span></li><li class="asg-badge"><span class="asg-badge-k">Chapter</span><span class="asg-badge-v">Ch 2</span></li></ul>
+<hr>
+<h2>Student instructions</h2>
+<p>Pick one real, public brand you can look up in a few minutes. The strongest picks are a brand you already use, a local or campus business with a working website, or a product line with a clear story online. Stay specific rather than picking the parent company; &quot;Crumbl Cookies&quot; or &quot;the Owala FreeSip water bottle&quot; works, while &quot;Amazon&quot; or &quot;Nike&quot; turns into a vague book report. Use only public information; never paste a real employer&#x27;s confidential data into an AI tool.</p>
+<p>Make a free account at claude.ai or chatgpt.com and treat it as the brand&#x27;s new marketing analyst. Paste the brand&#x27;s name and its About page, then ask it to map the five marketing decisions in one short line each: what the brand makes, who it serves, what it charges, where it sells, and how it talks about itself. Have it write the positioning in the four-part shape (for a target buyer who wants something, the brand is the kind of product that delivers one benefit), and have it name the single decision that, if it changed, would break the other four. The five decisions multiply rather than add, so one weak slot drags the rest down. Every line the assistant returns is a claim to verify, not a fact to keep.</p>
+<p>Then verify the map against the real brand on its own ground. Open the brand&#x27;s website, its product or shop page, and one piece of its current advertising (an Instagram or TikTok post, a YouTube ad, a homepage banner), and check at least three of the AI&#x27;s five lines against what the brand itself says and shows. Confirm the real price against the live shop page rather than the AI&#x27;s recall. Confirm the channel against the brand&#x27;s store locator or &quot;where to buy&quot; page. Confirm the voice against an actual post or ad in the brand&#x27;s own words. Mark each line you checked as confirmed or corrected, and write what the source actually says where the AI got it wrong.</p>
+<p>The grade rests on the verification, the correction, and the call for the decision that would break the rest. Name at least one line the AI guessed or invented and correct it against the brand&#x27;s real material. Then write a one-sentence takeaway in your own words on what holds this brand together, or what is about to break it. The call is yours, defended against what the brand itself shows on its own pages, not what the assistant said. Paste the full chat as your transcript.</p>
+<p><strong>Submit:</strong> one document, about a page and a half, plus your AI transcript. The document holds the five-decision map with one verified detail per line and the source you checked it against, the one-sentence four-part positioning statement, your correction of the line the AI got wrong (with the brand&#x27;s own page or post quoted briefly as evidence), the one decision that would break the other four (or, if two slots already contradict, name that instead) with a two-or-three-sentence reason in the multiply-not-add logic, and your one-sentence takeaway in your own voice.</p>
+<p><strong>On the job.</strong> Reading a brand as five decisions that have to line up is how a product marketer spots the one that is off, and checking what an AI got right against the brand&#x27;s real public material is fast becoming part of that same daily work.</p>
+<hr>
+<details class="asg-fold"><summary><span>What this assesses <span class="asg-fold-sub">&middot; learning objectives, instructor only</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><p>These are the Chapter 2 objectives the work exercises. The rubric scores against them.</p>
+<ul>
+<li><strong>LO 2.1</strong> Define marketing as an exchange, the voluntary trade where each side gives up something and gets something it values more.</li>
+<li><strong>LO 2.2</strong> Name the five marketing decisions and explain why they <em>multiply</em> rather than add, so one weak decision sinks the other four.</li>
+<li><strong>LO 2.6</strong> Use the four-part positioning statement to say who a brand is for and the one benefit it leads with.</li>
+<li><strong>LO 2.9</strong> Evaluate AI output about a brand&#x27;s marketing, say which decision the AI knew versus guessed, verify lines against the brand&#x27;s real material, and flag what the AI left out.</li>
+</ul>
+<p>The AI step trains the chapter&#x27;s tested misfire. On a brand question, a current assistant states a guess about a brand fact, a price, or a competitor in the same confident voice it uses for something it actually knows, and it caves to a leading question, agreeing with whatever framing the student implies rather than pushing back. Both are the student&#x27;s to catch against the brand&#x27;s own website, product page, and ads; the chapter&#x27;s running brands (Patagonia, Costco, Liquid Death, Bud Light) are the worked models, not the answer.</p>
+<p>Please follow your institution&#x27;s academic-integrity and AI-use policy on disclosure and acceptable use.</p>
+</div></details><hr>
+<details class="asg-fold"><summary><span>Grading rubric <span class="asg-fold-sub">&middot; instructor only; scoring out of 100</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><p>100 points. Levels describe observable work, not effort.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table><thead><tr><th>Criterion (LOs)</th><th>Excellent</th><th>Proficient</th><th>Developing</th><th>Not yet</th><th>Pts</th></tr></thead><tbody><tr><td><strong>Catching what the AI got wrong</strong> (LO 2.9)</td><td>Verifies three or more lines against the brand&#x27;s own website, product page, or current ad, with the source named for each; catches at least one line the AI guessed or invented and corrects it against what the brand&#x27;s page actually says; sets a one-line takeaway in the student&#x27;s own voice</td><td>Verifies at least two lines against the brand&#x27;s real material and corrects one thing the AI got wrong</td><td>Repeats the AI&#x27;s map with little checking against the brand&#x27;s own pages, or used AI only to generate and never to judge</td><td>Unverified AI output handed in as the student&#x27;s own, or no verification at all</td><td>30</td></tr><tr><td><strong>The five-decision map</strong> (LO 2.2)</td><td>All five decisions named and filled with verified, specific detail (a real price from the shop page, a real channel from the store locator, a real buyer the brand itself describes), not generic filler</td><td>Five named and filled, but one or two slots are thin or asserted without a source</td><td>Some slots vague or merged (&quot;good product, fair price&quot;), or one decision missing</td><td>No usable map</td><td>22</td></tr><tr><td><strong>The decision that breaks the rest</strong> (LO 2.2)</td><td>Names the single decision that would sink the other four (or two that already contradict) and traces the knock-on in the chapter&#x27;s multiply-not-add logic</td><td>Names a plausible weak decision with a partial reason</td><td>Notes a decision is weak without explaining the knock-on effect</td><td>No conflict named</td><td>20</td></tr><tr><td><strong>Positioning and exchange</strong> (LO 2.1, LO 2.6)</td><td>One-line positioning names a real buyer and one benefit (not &quot;everyone,&quot; not &quot;high quality&quot;); shows why the trade is worth it to that buyer in the chapter&#x27;s exchange logic</td><td>Positioning present and mostly specific; buyer or benefit a little loose</td><td>Positioning is buzzword filler a rival could copy word for word</td><td>No positioning, or buyer left as &quot;everyone&quot;</td><td>16</td></tr><tr><td><strong>Takeaway and writing</strong> (Written communication)</td><td>One clear sentence in the student&#x27;s own voice on what holds the brand together or what will break it; plain, correct use of the chapter&#x27;s terms</td><td>Clear takeaway; minor term slips</td><td>Restates the map without a call</td><td>Unclear or missing</td><td>12</td></tr><tr><td><strong>Total</strong></td><td></td><td></td><td></td><td></td><td><strong>100</strong></td></tr></tbody></table></div>
+<p>The catching row is the heaviest on purpose. The AI maps the brand in seconds, so the graded skill is reading its map against the brand&#x27;s own website, product page, and ads, then correcting the line it got wrong and naming the decision it could not see. A clear, honest account of how AI was used and what was caught scores well.</p></div></details><details class="asg-fold"><summary><span>Grading kit <span class="asg-fold-sub">&middot; instructor only; grade by hand, with TAs, or with AI</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><p>Grade however works for you. The grading skill is the one file you download, because you paste it into an AI; everything else opens here.</p><ul><li><details class="asg-fold"><summary><span>Grading guide <span class="asg-fold-sub">&middot; How to grade this by hand, with TAs, or with AI, with what to look for and score bands.</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><h1>Grading Guide: Read a Brand&#x27;s Five Decisions with AI</h1>
+<p><em>Chapter 2 individual assignment. This guide is for whoever grades the work: you by hand, a TA, or an AI you direct. It says what the assignment is really testing, what good and weak work look like, the failure modes to watch for, and how to turn the rubric into a fair score fast. The companion <code>ch02-five-decisions-grading-skill.md</code> turns this same rubric into something you can paste into a free Claude account if you want a first-pass score; this guide stands on its own without it.</em></p>
+<hr>
+<h3>What this assignment is really testing</h3>
+<p>Not whether the student can list the five decisions, the test bank already checks that. This assignment tests whether the student can <strong>direct an AI to map a real brand and then out-judge it against the brand&#x27;s own public material</strong>: open the brand&#x27;s website, its product page, and a current ad, check the AI&#x27;s lines against what the brand itself says, catch the line the model guessed or invented, name the one decision that would sink the other four, and say what the map cannot see. That second half is the whole point. A submission that maps the brand beautifully but takes every AI line at face value has missed the assignment. A submission with a rougher map but a sharp verification pass against the brand&#x27;s real pages has hit it.</p>
+<p>Keep the chapter&#x27;s core idea in front of you while grading: <strong>the five decisions multiply, they do not add.</strong> The strongest submissions show that the student feels this. They can point at one slot and explain how it drags the other four down, rather than grading the brand &quot;four out of five.&quot; And they can show, in plain terms, what the brand&#x27;s real homepage or product page says about that slot.</p>
+<hr>
+<h3>The three ways to grade (your choice)</h3>
+<p>You own the grade. Pick the path that fits your section and your time.</p>
+<ol>
+<li><strong>By hand.</strong> Read the submission against the five rubric rows. Budget about eight to ten minutes each. The score bands below let you land a number quickly. This is the most reliable path and the one to use for any borderline or flagged paper. Keep the brand&#x27;s website open in a tab while grading: if a student says they verified a price, you can confirm in ten seconds whether the page they cite actually shows it.</li>
+<li><strong>Hand it to TAs.</strong> Give your TAs this guide and the rubric. Calibrate first: grade three papers together (a strong, a middling, a weak one) so everyone anchors the bands the same way. The most common TA drift is over-rewarding a tidy map and under-rewarding a messy-but-real verification pass against the brand&#x27;s pages, the opposite of what this assignment values, so calibrate on that specifically. The second drift is letting a confident-sounding AI line slide without checking whether the student actually verified it against the brand&#x27;s own material.</li>
+<li><strong>Use the grading skill (optional).</strong> If you want a fast first pass, open <code>ch02-five-decisions-grading-skill.md</code>, follow its click-by-click walkthrough, and let an AI return per-criterion scores and short feedback. Treat that as a draft a human signs off on, never the final grade. It is a time-saver, not a grader of record.</li>
+</ol>
+<p>All three use the same rubric, so a student gets the same standard whichever path you pick.</p>
+<hr>
+<h3>The answer key (read this first before grading)</h3>
+<p>The student picked a real brand, so there is no single &quot;correct&quot; map to check against. Instead, the answer key is a method the student should have followed and a set of signals to look for in their submission. A strong paper shows the method on the page.</p>
+<p><strong>The verification method (what a strong submission shows).</strong> The student opens the brand&#x27;s website, its product or shop page, and at least one piece of its current advertising (an Instagram or TikTok post, a YouTube ad, a homepage banner), and checks the AI&#x27;s five lines against what the brand itself shows. The price comes from the live shop page, not the AI&#x27;s recall. The channel comes from the brand&#x27;s &quot;where to buy&quot; or store locator, not the AI&#x27;s guess. The voice comes from an actual post or ad in the brand&#x27;s own words, not a paraphrase. Each verified line in the submission should cite where it was checked.</p>
+<p><strong>The named AI error (the line that fails verification).</strong> A current AI assistant on a brand question reliably does at least one of three things, and the student should have caught at least one of them in their own transcript:</p>
+<ul>
+<li><em>An invented or stale price.</em> The model quotes a price the brand&#x27;s shop page does not actually show today, or a price that is rounded, generic, or out of date.</li>
+<li><em>A guessed channel or retailer.</em> The model lists a retailer or channel the brand does not actually sell through (a department store, a marketplace, a region the brand has not entered), or claims the brand &quot;primarily&quot; sells through one channel when its real store locator says otherwise.</li>
+<li><em>A feature or claim the brand does not make.</em> The model attributes a feature, certification, or benefit to the brand that the brand itself does not claim on its product page or About page.</li>
+</ul>
+<p>The submission should name the exact line the AI got wrong, quote or paraphrase what the brand&#x27;s real page says, and write the corrected version. &quot;The AI said the brand sells at Target, but the brand&#x27;s store locator only lists its own website and three small co-ops, so I corrected the channel slot&quot; is the assignment working.</p>
+<p><strong>The decision that breaks the rest (the multiply-not-add call).</strong> There is no single right answer here; the student picks the brand. What earns full credit is naming one decision and tracing the knock-on in the chapter&#x27;s logic, or naming two slots that already contradict each other (the Bud Light pattern). &quot;If Patagonia dropped to Walmart prices, the supply chain and the repair program and the trust all collapse, because the price funds them&quot; is the right shape. The wrong shape is &quot;the weakest decision is their advertising&quot; with no account of what it drags down.</p>
+<p><strong>The positioning statement.</strong> A defensible one names a real buyer and one benefit in the chapter&#x27;s four-part shape, and reads as something a rival could not copy word for word. &quot;For people who want soda without the sugar, Olipop is the prebiotic sparkling drink that delivers the taste without the crash&quot; works; &quot;for everyone who likes good drinks, Olipop offers high quality&quot; does not.</p>
+<hr>
+<h3>What to look for, row by row</h3>
+<p><strong>Catching what the AI got wrong (30 pts), the heaviest row, grade it first.</strong></p>
+<ul>
+<li><em>Excellent:</em> the student verified three or more specific lines against the brand&#x27;s real material (the website, the product or shop page, the store locator, a current ad), named the source for each, and caught at least one line the AI got wrong, an invented price, a guessed channel, a feature the brand does not have, and corrected it against what the brand&#x27;s own page actually says.</li>
+<li><em>Look for the catch.</em> The single best signal of a strong paper is a named, corrected AI error with the brand&#x27;s own page quoted briefly as evidence. If the student writes &quot;the AI said the brand sells at Target, but the store locator only lists its own site, so I fixed that,&quot; that is the assignment working.</li>
+<li><em>Weak:</em> &quot;The AI was very accurate and gave me a great overview.&quot; No verification, no catch. That is the Developing or Not-yet band no matter how polished the rest is.</li>
+</ul>
+<p><strong>The five-decision map (22 pts).</strong></p>
+<ul>
+<li><em>Strong:</em> all five slots named with a verified, specific detail. Not &quot;good product,&quot; but &quot;ships only four core styles and repairs them for free.&quot; Not &quot;fair price,&quot; but &quot;$2.49 to $2.99 per can at Whole Foods, the same brand sells a 12-pack for $35.88 on its own site.&quot;</li>
+<li><em>Weak:</em> slots merged or generic (&quot;great quality, fair price, sold online&quot;). A merged or missing slot caps this row at Developing.</li>
+</ul>
+<p><strong>The decision that breaks the rest (20 pts).</strong></p>
+<ul>
+<li><em>Strong:</em> names one decision and traces the knock-on in the multiply-not-add logic, or names two slots that already contradict each other and explains the risk.</li>
+<li><em>Weak:</em> &quot;the weakest decision is their advertising&quot; with no account of what it drags down. Noticing a weak slot without the knock-on is Developing.</li>
+</ul>
+<p><strong>Positioning and exchange (16 pts).</strong></p>
+<ul>
+<li><em>Strong:</em> a one-line positioning that names a real buyer and one benefit, and a sentence on why the trade is worth it to that buyer (what each side gives and gets).</li>
+<li><em>Weak:</em> the buyer is &quot;everyone,&quot; or the benefit is &quot;high quality&quot; or &quot;great value&quot;, filler any rival could claim. Cap at Developing.</li>
+</ul>
+<p><strong>Takeaway and writing (12 pts).</strong></p>
+<ul>
+<li><em>Strong:</em> one clear sentence in the student&#x27;s own voice on what holds the brand together or what will break it, plus plain, correct use of the chapter&#x27;s terms.</li>
+<li><em>Weak:</em> a summary of the map with no call, or muddy terms (calling the message &quot;the marketing&quot;).</li>
+</ul>
+<hr>
+<h3>Common failure modes (and how to score them)</h3>
+<ul>
+<li><strong>The face-value paper.</strong> Maps the brand fluently, no verification against the brand&#x27;s own pages, no catch. The most common miss. The catching row lands in Developing or Not-yet; the map row can still earn its points if the slots are specific, but re-check the verified details yourself before trusting them. Net: usually low-to-mid range.</li>
+<li><strong>The book report.</strong> The student picked a giant brand (Amazon, Nike, Coca-Cola) and wrote three pages of history. The map turns vague because the brand is too big to read on five slots. Reward whatever real five-decision reading survives; the vagueness self-penalizes through the map and conflict rows.</li>
+<li><strong>The tactics dump.</strong> The student let the AI &quot;suggest improvements&quot; and handed in a list of campaign ideas. This is the exact AI Misfire the chapter names. There is no verification pass and no conflict found, score both rows low and note in feedback that the assignment asked for the decision that breaks the rest, not a to-do list.</li>
+<li><strong>The unverified claim.</strong> A confident price or competitor with no source. If the student labeled it an estimate, fine. If they presented an AI guess as fact and the brand&#x27;s real page contradicts it, that belongs in the catching deduction, because it is precisely what they were supposed to catch.</li>
+<li><strong>The verification that did not actually verify.</strong> The student writes &quot;I checked the price on the website&quot; but the price they wrote is still the AI&#x27;s rounded number, not the live shelf price. Score the catching row down and note in feedback that the source they cite should match what the brand&#x27;s page actually shows.</li>
+<li><strong>The &quot;everyone&quot; buyer.</strong> The positioning slot says the brand is &quot;for everyone.&quot; Treat as the chapter does: a brand that serves everyone serves no one with depth. Cap the positioning row at Developing.</li>
+</ul>
+<p>If a submission appears to be unedited AI output with no transcript and no verification, follow your institution&#x27;s academic-integrity and AI-use policy rather than the rubric.</p>
+<hr>
+<h3>Score bands (for a fast, fair landing)</h3>
+<p>Use these to convert the five rows into a defensible total.</p>
+<ul>
+<li><strong>90 to 100 (Excellent).</strong> Specific five-decision map, three or more lines verified against the brand&#x27;s own website or product page with the source named, a real caught-and-corrected AI error with the brand&#x27;s page quoted as evidence, the breaking decision named with its knock-on, a sharp positioning line, and a clean takeaway. The student clearly out-judged the AI.</li>
+<li><strong>80 to 89 (Strong, Proficient).</strong> Solid map and a genuine verification pass with at least one correction, but one row is thin, the conflict is named without full knock-on logic, or the positioning is a little loose.</li>
+<li><strong>70 to 79 (Developing).</strong> The work is present but the student mostly trusted the AI: a tidy map with little checking against the brand&#x27;s own pages, a weak-slot mention without the multiply logic, or an &quot;everyone&quot; buyer. The verification half is underdone.</li>
+<li><strong>60 to 69 (Weak).</strong> Face-value AI output with no catch, or a book report with a vague map. The assignment&#x27;s core skill is missing.</li>
+<li><strong>Below 60.</strong> A missing deliverable, a brand with no real public information to verify against, or a submission that cannot be graded. Handle any concern about disclosure or AI use through your institution&#x27;s academic-integrity and AI-use policy, not the rubric.</li>
+</ul>
+<hr>
+<h3>A note for graders on the AI itself</h3>
+<p>If you run the student&#x27;s brand through your own AI account, expect the model to be confidently wrong about specific facts: prices that are stale, retailers the brand does not sell through, features the brand does not claim. That is not a reason to distrust the student; it is the exact thing the assignment trains them to catch by reading the brand&#x27;s own pages. Reward the catch. A student who notices the AI invented a price and corrects it against the live shop page has done more marketing thinking than one whose AI happened to be right and who checked nothing.</p></div></details></li><li><a href="ch02-five-decisions-grading-skill.md" download>Grading skill (AI grader)</a> &middot; A ready-made grader you read here, then download to paste into a free Claude or ChatGPT account.</li></ul></div></details></div></article><article class="asg-card" data-access="Free account" data-difficulty="Low" data-format="" aria-collapsed><button type="button" class="asg-card-head" aria-expanded="false" aria-controls="asg-panel-ch02-rebrand-assignment"><span class="asg-card-main"><span class="asg-card-title">Rebrand a Boring Product</span><ul class="asg-card-tags"><li class="asg-tag asg-tag-ai" title="Minimum AI Tool Requirement: Free account"><svg class="asg-icon-ai" width="16" height="16" viewBox="0 0 24 24" role="img" aria-label="Minimum AI Tool Requirement: Free account"><line x1="12" y1="3" x2="12" y2="6" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="2.6" r="1" fill="currentColor"/><rect x="5" y="6" width="14" height="13" rx="2.5" fill="currentColor" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="12" r="1.3" fill="#FBEEE8"/><circle cx="15" cy="12" r="1.3" fill="#FBEEE8"/><line x1="9.5" y1="16" x2="14.5" y2="16" stroke="#FBEEE8" stroke-width="1.6" stroke-linecap="round"/></svg></li><li class="asg-tag asg-tag-diff" title="Difficulty: Low"><svg class="asg-icon-diff" width="52" height="14" viewBox="0 0 80 24" role="img" aria-label="Difficulty: Low"><polygon points="12.0,3.0 14.5,9.4 21.4,9.4 16.0,13.9 18.2,20.7 12.0,17.1 5.8,20.7 8.0,13.9 2.6,9.4 9.5,9.4" fill="#DA7756" stroke="#B8553A" stroke-width="1" stroke-linejoin="round"/><polygon points="40.0,3.0 42.5,9.4 49.4,9.4 44.0,13.9 46.2,20.7 40.0,17.1 33.8,20.7 36.0,13.9 30.6,9.4 37.5,9.4" fill="none" stroke="#C8B8B0" stroke-width="1.4" stroke-linejoin="round"/><polygon points="68.0,3.0 70.5,9.4 77.4,9.4 72.0,13.9 74.2,20.7 68.0,17.1 61.8,20.7 64.0,13.9 58.6,9.4 65.5,9.4" fill="none" stroke="#C8B8B0" stroke-width="1.4" stroke-linejoin="round"/></svg></li></ul><p class="asg-card-blurb">Have a free AI account invent three brands for a plain product, then judge which is a real marketing idea.</p></span><span class="asg-card-caret" aria-hidden="true">&#9656;</span></button><div class="asg-card-panel" id="asg-panel-ch02-rebrand-assignment" hidden><h1>Rebrand a Boring Product</h1>
+<p><em>A Chapter 2 individual assignment. The student picks a deliberately plain product, hands it to a free AI account, and asks for three different brand ideas aimed at three different buyers. The skill it builds is the one that matters once an AI can invent a confident brand in seconds: telling a real marketing idea (one buyer, the five decisions agreeing) from a louder way of saying &quot;buy this&quot; (the same product with hype bolted on), and defending the call in your own words. About two hours, on your own.</em></p>
+<ul class="asg-badges" aria-label="Assignment at a glance"><li class="asg-badge"><span class="asg-badge-k">Type</span><span class="asg-badge-v">Individual</span></li><li class="asg-badge"><span class="asg-badge-k">Time</span><span class="asg-badge-v">~2 hrs</span></li><li class="asg-badge"><span class="asg-badge-k">Points</span><span class="asg-badge-v">100 pts</span></li><li class="asg-badge"><span class="asg-badge-k">Chapter</span><span class="asg-badge-v">Ch 2</span></li></ul>
+<hr>
+<h2>Student instructions</h2>
+<p>Your job is to commission three brand ideas for one deliberately plain product, then judge which one is a real marketing idea and which is just a louder pitch for the same thing. You are the strategist; the AI is the brainstormer you are reading critically.</p>
+<p>Pick a product almost nobody gets excited about, so the branding has to do the work: bottled water, a spiral notebook, a white t-shirt, a bar of soap, a phone charger, table salt, a pack of socks. The blander the better. If you reach for a sports car or a designer sneaker, the branding is already doing its job and there is nothing left to judge, so the bar below collapses.</p>
+<p>Open a free account at claude.ai or chatgpt.com, start a new chat, and ask it to invent three different brands for three different buyers from your plain product. For each brand, have it give you a name, a one-line pitch, the specific buyer the brand is for, the five marketing decisions (one line each), and the value type the brand leads with. Use the language in the box below so its answers map cleanly to the chapter. You direct the prompts; the AI invents the brands.</p>
+<blockquote><p><strong>The starter prompt.</strong> Paste this into the chat, replacing the bracketed product with the plain product you chose, and run it.</p>
+<p>&quot;Act as a brand strategist. Here is a plain product: a [bottled water / spiral notebook / white t-shirt / bar of soap / phone charger / table salt / pack of socks]. Invent three completely different brands I could build from it, each one aimed at a different kind of buyer. For each brand, give me a name, a one-line pitch, a specific buyer (not &#x27;everyone&#x27; or &#x27;people who care about quality,&#x27; a real, narrow person), the five marketing decisions one line each (what to make it feel like, who exactly it serves, what to charge, where to sell it, how to talk about it), and which of the four value types it leads with: money saved, performance, an experience, or belonging. Then write a one-line positioning statement for each in the form &#x27;For [buyer] who [wants something], [brand] is the [product] that [delivers one benefit].&#x27;&quot;</p></blockquote>
+<p>You may run one follow-up prompt if a brand is thin (for example, &quot;Brand 2&#x27;s distribution does not fit a premium price, give me a tighter version&quot;), but do not let the AI grade itself. The judgment is yours.</p>
+<h3>The framework you are judging against (use these as your ruler)</h3>
+<p>You judge the AI&#x27;s three brands against four things from the chapter. They are on this page so you do not have to flip back; the assignment expects you to use them by name.</p>
+<p><strong>The marketing concept vs. the selling concept.</strong> The marketing concept means understanding one specific buyer so well that the product almost sells itself to her. A real marketing idea picks a buyer and lines up every other decision behind that one person. The selling concept means pushing harder on a product nobody specifically asked for, the same plain product with louder talk, a buyer of &quot;everyone,&quot; and four of the five decisions essentially unchanged. Telling these two apart on a confident AI answer is the central skill being graded.</p>
+<p><strong>The five marketing decisions, which multiply rather than add.</strong> Every brand makes five choices: what to make it feel like, who exactly it serves, what to charge, where to sell it, how to talk about it. They have to agree with each other, because one wrong slot would break the others. A premium price sold at the dollar store is not a premium product, it is a confused one; a rebel voice aimed at &quot;busy professionals&quot; picks neither a rebel nor a professional. The contradiction the assignment asks you to find is that rule in action.</p>
+<p><strong>The four value types.</strong> Every brand leads with one of four kinds of value: money saved, performance, an experience, or belonging. A strong brand picks one and the other decisions back it up. Watch for a brand that puts a value-type label on something with no real mechanism behind it (calling a plain canned water &quot;performance&quot; when nothing in the can outperforms tap water is a label, not a value).</p>
+<p><strong>The positioning statement.</strong> A real positioning statement names a real buyer and a real benefit, in the form &quot;For [buyer] who [wants something], [brand] is the [product] that [delivers one benefit].&quot; The test is whether a rival could copy the statement word for word. &quot;For high-quality customers who want the best, our product is the one that delivers excellence&quot; can be pasted onto a protein bar, a laptop, or a hotel room. That is filler, not positioning.</p>
+<h3>What to turn in</h3>
+<p>A short write-up, about a page, plus the AI transcript (a copy-paste of the chat). The write-up has four pieces:</p>
+<ol>
+<li>The three brands the AI invented, presented compactly: name, buyer, one-line pitch, the five decisions (one line each), the value type each leads with, and the positioning statement.</li>
+<li>The judgment pass. Which one of the three is the real marketing idea, and which is the louder &quot;buy this,&quot; and what is the tell. Be specific. The tell is something a reader can check (a buyer who is really &quot;everyone,&quot; a slot in the five decisions that fights another, a value-type label with no mechanism, a positioning statement a rival could copy). Name at least one tell using the framework above, in your own words.</li>
+<li>The contradiction. Walk the five decisions for the brand you flagged as &quot;louder buy-this&quot; and name one specific slot that contradicts another, with one sentence on what it would break. If the loud brand turns out to be coherent and one of the others is the broken one, say so and walk that one instead.</li>
+<li>The build call. Pick one of the three brands you would actually build, name its buyer and the one benefit it leads with, and give two sentences on why. If you would build none of them and would fix the strongest, say so and write the one decision you would change.</li>
+</ol>
+<p>A reader who has not seen your AI session should be able to read your page, follow the call, and agree the tell is real. If the AI&#x27;s three brands change between sessions, your three reasons should still land.</p>
+<p>This is open AI use by design, follow your institution&#x27;s academic-integrity and AI-use policy on disclosure, attribution, and acceptable use.</p>
+<p><strong>On the job.</strong> Telling a real brand idea from a louder sales pitch is the call a brand manager makes on every pitch deck and tagline, and it is what separates a position a rival cannot copy from hype any competitor could paste over.</p>
+<hr>
+<details class="asg-fold"><summary><span>What this assesses <span class="asg-fold-sub">&middot; learning objectives, instructor only</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><p>These are the Chapter 2 objectives the work exercises. The rubric scores against them.</p>
+<ul>
+<li><strong>LO 2.2</strong> Name the five marketing decisions and use them as a coherence check on a brand idea.</li>
+<li><strong>LO 2.3</strong> Tell the marketing concept (one buyer, decisions agree, product almost sells itself) from the selling concept (the same product with hype on top).</li>
+<li><strong>LO 2.6</strong> Use the four value types and write a one-line positioning statement that names a buyer and a benefit.</li>
+<li><strong>LO 2.9</strong> Judge an AI-generated brand idea, name which one is a real marketing choice, and explain the tell.</li>
+</ul>
+<p>The AI step trains the chapter&#x27;s tested misfire. Asked to &quot;improve&quot; a brand, a current assistant adds things (a louder campaign, a discount, a new tagline) instead of picking one buyer and lining the five decisions up behind that person, and it will call a hyped-up plain product a &quot;brand&quot; when it is just the selling concept in nicer words. It also states invented details (market sizes, competitors, claims) in the same confident voice it uses for a fact. Your job is to be the reader who can tell which of the three brands actually works.</p>
+</div></details><hr>
+<details class="asg-fold"><summary><span>Grading rubric <span class="asg-fold-sub">&middot; instructor only; scoring out of 100</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><p>100 points. Levels describe observable work, not effort. The judgment row is the heaviest on purpose.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table><thead><tr><th>Criterion (LOs)</th><th>Excellent</th><th>Proficient</th><th>Developing</th><th>Not yet</th><th>Pts</th></tr></thead><tbody><tr><td><strong>Judgment pass: real idea vs. louder &quot;buy this&quot;</strong> (LO 2.3, LO 2.9)</td><td>Correctly picks which of the three is the real marketing idea and which is the louder &quot;buy this,&quot; names at least one specific tell using the framework (a buyer who is really &quot;everyone,&quot; a value-type label with no mechanism, or a positioning statement a rival could copy), and explains the call in the student&#x27;s own words</td><td>Picks the real and the louder one with a partial reason, the tell is named but generic</td><td>Calls one brand &quot;better&quot; or &quot;cooler&quot; without explaining the marketing-vs-selling difference</td><td>No real judgment, or the AI&#x27;s verdict handed in as the student&#x27;s own</td><td>40</td></tr><tr><td><strong>Five-decision coherence and the contradiction</strong> (LO 2.2)</td><td>Walks the five decisions for the chosen brand and shows they agree; finds one slot in the louder brand that contradicts another, with one sentence on what it would break</td><td>Walks the decisions; a contradiction is named but its effect is thin</td><td>Lists the decisions back without checking coherence, or finds no contradiction at all</td><td>No five-decision read</td><td>25</td></tr><tr><td><strong>Value type and positioning</strong> (LO 2.6)</td><td>Names the value each brand leads with (money saved / performance / experience / belonging) and writes a positioning statement that names a real buyer and one benefit a rival could not paste over</td><td>Value types and positioning present but one is loose or generic</td><td>Confuses the value types, or the positioning is filler (&quot;high quality&quot;) any rival could claim</td><td>Absent</td><td>20</td></tr><tr><td><strong>The build call</strong> (LO 2.2, LO 2.6)</td><td>Picks one brand to build (or rejects all three and fixes the strongest), names its buyer and lead benefit, and gives two sound sentences</td><td>A call is made but the reasoning is thin</td><td>Restates a brand without committing to a buyer</td><td>No call</td><td>15</td></tr><tr><td><strong>Total</strong></td><td></td><td></td><td></td><td></td><td><strong>100</strong></td></tr></tbody></table></div>
+<p>The first row is the heaviest because the AI invents three brands in seconds and the graded skill is telling the real marketing idea from the louder sales-pitch one in your own words. A write-up that just praises the brands the AI produced earns a Developing or Not yet on the judgment row, no matter how clean the writing is around it.</p></div></details><details class="asg-fold"><summary><span>Grading kit <span class="asg-fold-sub">&middot; instructor only; grade by hand, with TAs, or with AI</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><p>Grade however works for you. The grading skill is the one file you download, because you paste it into an AI; everything else opens here.</p><ul><li><details class="asg-fold"><summary><span>Grading guide <span class="asg-fold-sub">&middot; How to grade this by hand, with TAs, or with AI, with what to look for and score bands.</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><h1>Grading Guide: Rebrand a Boring Product</h1>
+<p><em>Instructor-facing. This is the answer key and the how-to-grade for the Chapter 2 rebrand card, and students never see it. The card hands each student the same task (pick a plain product, have a free AI invent three brands, judge which is the real marketing idea), but the AI output is unique to that student&#x27;s session, so the answer key is the AI&#x27;s most common failure pattern, not a single correct answer. Grade against the assignment&#x27;s rubric: judgment pass 40, five-decision coherence 25, value type and positioning 20, build call 15.</em></p>
+<hr>
+<h2>What this card tests</h2>
+<p>Not whether the student can get an AI to spit out three brand names; that takes one prompt and the names are the AI&#x27;s, not the student&#x27;s. This card tests one judgment: <strong>can the student tell a real marketing idea from a louder sales pitch?</strong> A real marketing idea picks one specific buyer and lines the five decisions up behind her; a louder &quot;buy this&quot; is the same plain product with a hyped-up voice, a buyer of &quot;everyone,&quot; and four of the five decisions essentially unchanged. The grade lives in the student&#x27;s call and the reasoning behind it, in their own words, not in the brands themselves.</p>
+<p>Keep the chapter&#x27;s core rule in front of you while grading. The five decisions <strong>multiply, they do not add.</strong> The contradiction the student is asked to find (a premium price with a dollar-store channel, a rebel brand for &quot;busy professionals&quot;) is that rule in action.</p>
+<hr>
+<h2>The answer key: the failure pattern to look for</h2>
+<p>Because each student picks the plain product and the AI invents the three brands, you will not see the same three brands twice. What you will see is the same failure pattern from the AI, every session, on every plain product. A student who catches it has done the work.</p>
+<p><strong>Failure 1, the &quot;louder buy-this&quot; brand has a buyer of &quot;everyone&quot; with a hype label.</strong> Across products, the model reliably produces one brand for a real, narrow buyer (and the decisions agree behind that buyer), a second brand for another real, narrow buyer (the decisions agree in the other direction, often on price or distribution), and a third brand that names a category-wide audience (&quot;anyone with ambition,&quot; &quot;everyone who lives an active lifestyle,&quot; &quot;all hard-working professionals&quot;) and stitches together a high price, maximum-reach distribution, and an aspirational voice. That third brand is the selling concept in nicer words. The tell is the buyer: ask &quot;who is NOT this brand&#x27;s customer?&quot; and the answer is &quot;no one.&quot; A real marketing idea always excludes most people.</p>
+<p><strong>Failure 2, a value-type label with no mechanism.</strong> The model labels the louder brand with one of the chapter&#x27;s four value types (&quot;performance&quot; is the most common, then &quot;experience&quot;), but the product is unchanged. A plain canned water is not &quot;performance&quot; water just because the brand says &quot;your water should work as hard as you do.&quot; Performance as a value type needs a delivery mechanism. Belonging needs a real social-identity signal. Calling a plain product &quot;performance&quot; or &quot;experience&quot; by vocabulary alone is exactly what the chapter warns against. A student who notices the value-type label has no mechanism is doing the structural judgment the card rewards.</p>
+<p><strong>Failure 3, a copyable positioning statement.</strong> The louder brand&#x27;s positioning statement reads roughly &quot;For [vague aspirational audience] who [wants to be better], [brand] is the [product] that [delivers a generic benefit].&quot; Paste it onto a protein bar, a laptop, or a hotel room. It still fits. The chapter&#x27;s test is exactly that: could a rival copy this word for word? A real positioning statement names a buyer specifically enough that the wrong buyer reads it and self-selects out.</p>
+<p><strong>Failure 4, the five decisions fight each other.</strong> The cleanest contradiction the model produces, across products, is a premium price with maximum-reach distribution. A $3.99 canned water sold next to the $1.29 generic at a gas station is not premium, it is confused. A $30 spiral notebook on Amazon Subscribe &amp; Save is not a designer product. A student who finds this slot-versus-slot break and says what it would break (&quot;the premium price stops signaling anything, because the distribution is already telling buyers it is a commodity&quot;) is using the multiply-not-add rule.</p>
+<p>If a student&#x27;s particular AI session lands a different shape (rare, but possible), the failure pattern still travels: look for the brand with a buyer of &quot;everyone&quot; + a hype label on the product + a copyable positioning statement + a slot in the five decisions that fights another. That is the louder &quot;buy this.&quot; The other two will be honest brands for narrow buyers, even if they target opposite kinds of buyer.</p>
+<hr>
+<h2>Three ways to grade</h2>
+<ol>
+<li><strong>By hand against this key (fastest).</strong> Read the student&#x27;s three brands, then the judgment pass. The two questions to land first: did the student pick the brand with the &quot;everyone&quot; buyer and the labeled-but-mechanism-less value as the louder &quot;buy this&quot;? And did they name at least one specific tell from the framework (everyone-buyer, value-type label with no mechanism, copyable positioning, slot-versus-slot break) in their own words? Both yes is an Excellent judgment pass; one yes is Proficient; neither is Developing or Not yet. Budget about eight to ten minutes per paper.</li>
+<li><strong>Hand it to a TA</strong> after calibrating on one strong and one weak submission together. The drift to watch on this card is TAs rewarding the AI&#x27;s clever brand name; the names are the AI&#x27;s, so a great name with no judgment behind it is a weak paper. Calibrate on that.</li>
+<li><strong>Use the grading skill</strong> (<code>ch02-rebrand-grading-skill.md</code>): paste it into a free Claude or ChatGPT account with the student&#x27;s write-up for a first-pass score. It carries this same key.</li>
+</ol>
+<hr>
+<h2>Row by row (rubric total 100)</h2>
+<ul>
+<li><strong>Judgment pass, real idea vs. louder &quot;buy this&quot; (40, the heaviest, grade it first).</strong> Excellent: correctly picks the real marketing idea and the louder &quot;buy this,&quot; names at least one specific tell using the framework (an &quot;everyone&quot; buyer, a value-type label with no mechanism, a positioning statement a rival could copy, or a slot in the five decisions that fights another), and explains the call in the student&#x27;s own words. Proficient: picks the two with a partial reason, the tell is named but generic (&quot;it sounds salesy&quot;). Developing: calls one &quot;better&quot; or &quot;cooler&quot; without using the marketing-vs-selling distinction. Not yet: no call, or the AI&#x27;s verdict handed in as the student&#x27;s own.</li>
+<li><strong>Five-decision coherence and the contradiction (25).</strong> Excellent: walks the five decisions for the chosen brand and shows they agree; finds one specific slot in the louder brand that contradicts another, with one sentence on what it would break. Cap at Developing if the student lists the decisions without checking coherence, or finds no contradiction at all.</li>
+<li><strong>Value type and positioning (20).</strong> Excellent: names what each brand leads with from the four value types and writes a positioning statement that names a real buyer and one benefit a rival could not paste over. Cap low if the value types are confused (calling a status purchase &quot;functional&quot;) or the positioning is &quot;high quality&quot; filler.</li>
+<li><strong>The build call (15).</strong> Excellent: commits to one brand to build, names its buyer and lead benefit, two sound sentences. Rejecting all three and fixing the strongest one is also strong, it shows real judgment. Weak if the student hedges across all three or describes a brand without committing to a buyer.</li>
+</ul>
+<hr>
+<h2>Failure modes to watch</h2>
+<ul>
+<li><strong>The beauty-contest paper.</strong> Picks the brand with the best-sounding name and stops. No marketing-vs-selling reasoning, no five-decision check. The names came from the AI, so this rewards the model, not the student. Judgment row and five-decision row land low.</li>
+<li><strong>The &quot;all three are great&quot; paper.</strong> Praises every brand and makes no real call. The whole card is the discrimination, so refusing to discriminate is the miss. Judgment row and build-call row score low.</li>
+<li><strong>The exciting-product paper.</strong> Student rebrands something already glamorous (a sports car, designer sneakers), so the branding does no work and there is nothing to judge. The thin judgment self-penalizes through the judgment row; note it in the feedback so the student picks a plainer product next time.</li>
+<li><strong>The tactics dump.</strong> Student let the AI &quot;improve&quot; the brands and handed in a pile of campaign ideas. This is the exact AI Misfire the chapter names: adding volume instead of choosing a buyer. There is no judgment pass; score the judgment row low and note that the card asked which idea is real, not for more tactics.</li>
+<li><strong>No contradiction found.</strong> Every brand is declared coherent. Usually means the student did not actually walk the five decisions. Cap the five-decision row at Developing.</li>
+<li><strong>The AI&#x27;s verdict copied.</strong> The transcript shows the student asked the AI to grade itself (&quot;which of these brands is the strongest?&quot;) and the write-up repeats the AI&#x27;s answer. The graded skill is the student&#x27;s own judgment of the brands; an AI-on-AI verdict is not it. Judgment row low; consider asking for a one-paragraph defense of the call in the student&#x27;s own words.</li>
+</ul>
+<hr>
+<h2>Score bands</h2>
+<ul>
+<li><strong>90 to 100:</strong> real idea vs. louder &quot;buy this&quot; called correctly with a specific tell from the framework, a real contradiction found in the five decisions, value types and positioning sharp, a committed build call.</li>
+<li><strong>80 to 89:</strong> a genuine judgment call and a five-decision read, but one row is thin (the contradiction&#x27;s effect loose, or the positioning a little generic).</li>
+<li><strong>70 to 79:</strong> present but leaned on the AI (praised the brands without the marketing-vs-selling distinction, listed decisions without checking coherence, hedged the build call).</li>
+<li><strong>60 to 69 or below:</strong> beauty contest or &quot;all three are great,&quot; no real discrimination, the core skill missing.</li>
+</ul>
+<p>Handle any academic-integrity issue (a missing transcript with writing that looks like a model dump; a submission whose judgment is the AI&#x27;s verdict re-typed) through your institution&#x27;s academic-integrity and AI-use policy, not the rubric.</p>
+<hr>
+<h2>A note for graders on the AI itself</h2>
+<p>If you run the prompts yourself on a couple of plain products, you will see the model cheerfully present a hyped-up version of a commodity as a &quot;brand&quot; and label it with a value type it has no mechanism to deliver. That is the raw material the student is meant to judge, not trust. Reward the student who looked at three confident AI brands and said, in effect, &quot;two of these are real and one is just shouting, and here is the tell.&quot; That instinct, value versus volume, is the entire point of the chapter and of this card.</p>
+<p>A worked exemplar showing this failure pattern on canned water (the AI invents Fieldwork, Source, and Elev8) is in <code>ch02-rebrand-tier1-sample.md</code>. The student does not see it; it is a calibration aid for you and your TAs.</p></div></details></li><li><a href="ch02-rebrand-grading-skill.md" download>Grading skill (AI grader)</a> &middot; A ready-made grader you read here, then download to paste into a free Claude or ChatGPT account.</li><li><details class="asg-fold"><summary><span>Pre-generated AI sample <span class="asg-fold-sub">&middot; The pre-generated AI answer students with no AI account read and critique.</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><h1>Calibration Exemplar: Rebrand a Boring Product</h1>
+<p><em>Instructor-facing. A worked example of what the AI produces on this card, with the failure pattern annotated. Each student picks their own plain product and gets their own three brands, so this is NOT what any student saw; it is a calibration aid you can read once before grading so the failure pattern is recognizable when it shows up in different shapes in real submissions. Students never see this file.</em></p>
+<p>The product below is a 12 oz canned water at roughly $0.10 per can to produce. The model was given the assignment&#x27;s starter prompt and produced three brands. Read the three, then read the instructor key below for what gives the louder &quot;buy this&quot; away and what a strong student write-up would name in its own words.</p>
+<hr>
+<h2>The AI&#x27;s three brands (one representative run)</h2>
+<p><strong>Plain product:</strong> A 12 oz can of water, still or sparkling, costing roughly $0.10 to produce.</p>
+<hr>
+<h3>Brand 1: Fieldwork</h3>
+<p><strong>Pitch:</strong> Clean water in a can built for people who are actually outside.</p>
+<p><strong>Buyer:</strong> Outdoor-active adults, hikers, trail runners, climbers, aged 22 to 40, who distrust the plastic taste and the single-use footprint of plastic bottles and want their gear to feel intentional.</p>
+<p><strong>Five decisions.</strong></p>
+<ul>
+<li><strong>What to make it feel like:</strong> A matte-finish aluminum can with a simple topographic-line illustration, still or lightly sparkling. No flavoring, no sweeteners, no electrolyte marketing. Just clean water in packaging that looks at home in a pack or on a gear-shop shelf.</li>
+<li><strong>Who exactly it serves:</strong> Outdoor-active adults who already invest in gear and personal sustainability; they have paid $30 for a stuff sack and have opinions about trail ethics.</li>
+<li><strong>What to charge:</strong> $2.49 per can, or $28 for a 12-pack online. More than a gas-station bottle, less than a specialty sports drink, so the price reads as intentional product, not impulse buy.</li>
+<li><strong>Where to sell it:</strong> REI, Backcountry, independent outdoor shops, national park visitor centers, and a direct website. Not grocery, not convenience stores, because the distribution is part of the signal.</li>
+<li><strong>How to talk about it:</strong> Dry, understated, specific. &quot;12 oz. Still. Made for the approach.&quot; No wellness claims, no athletes-on-peaks imagery. The voice talks the way a gear review talks: straightforward, knowledgeable, no hype.</li>
+</ul>
+<p><strong>Value type:</strong> Belonging. The can is a social signal: &quot;I am the kind of person who thinks about this stuff.&quot;</p>
+<p><strong>Positioning statement:</strong> For trail-active adults who want water that fits their gear-forward, low-waste ethic, Fieldwork is the canned water that makes the right choice feel like a natural part of their kit.</p>
+<hr>
+<h3>Brand 2: Source</h3>
+<p><strong>Pitch:</strong> The cheapest water you can buy by the case, honest about what it is.</p>
+<p><strong>Buyer:</strong> Budget-conscious households, families, college students, anyone stocking a fridge, who buy water in bulk and care mainly about cost and convenience.</p>
+<p><strong>Five decisions.</strong></p>
+<ul>
+<li><strong>What to make it feel like:</strong> A plain white can with the word SOURCE in bold black. No story, no lifestyle, no origin claim. The design signals that you are paying for water, not a brand.</li>
+<li><strong>Who exactly it serves:</strong> Price-first buyers who already buy the store-brand everything else; they are not embarrassed to hand someone a plain can of water.</li>
+<li><strong>What to charge:</strong> $0.49 per can, or $16 for a 36-pack at warehouse stores. The cheapest canned water on the shelf, always.</li>
+<li><strong>Where to sell it:</strong> Costco, Sam&#x27;s Club, grocery store bulk sections, Amazon Subscribe and Save. Maximum availability at maximum volume.</li>
+<li><strong>How to talk about it:</strong> Functionally, directly. &quot;It is water. It is in a can. It costs less.&quot; The brand&#x27;s only claim is that it never pretends to be more than it is.</li>
+</ul>
+<p><strong>Value type:</strong> Money saved. The whole brand is a promise that you did not overpay for water.</p>
+<p><strong>Positioning statement:</strong> For budget-conscious households who buy water by the case and want the lowest honest price, Source is the canned water that strips out everything you are not paying for.</p>
+<hr>
+<h3>Brand 3: Elev8</h3>
+<p><strong>Pitch:</strong> Premium hydration for the ambitious go-getter who refuses to settle.</p>
+<p><strong>Buyer:</strong> Everyone who wants to perform at their best and live their most elevated life, whether at the gym, in the boardroom, or on the go.</p>
+<p><strong>Five decisions.</strong></p>
+<ul>
+<li><strong>What to make it feel like:</strong> A sleek, modern can with a dynamic gradient design and the Elev8 logo prominently featured. Bold, energetic, premium-looking, a can that announces itself.</li>
+<li><strong>Who exactly it serves:</strong> Go-getters, high performers, hustlers, gym-goers, professionals, students, athletes, and anyone with ambition.</li>
+<li><strong>What to charge:</strong> $3.99 per can, a premium price that signals quality and exclusivity.</li>
+<li><strong>Where to sell it:</strong> Everywhere. Gyms, grocery stores, convenience stores, Amazon, the brand&#x27;s own website, corporate wellness programs, hotel minibars, airports. Maximum reach for maximum impact.</li>
+<li><strong>How to talk about it:</strong> High-energy, aspirational, motivational. &quot;Hydrate to elevate.&quot; &quot;Your water should work as hard as you do.&quot; Heavy digital advertising on Instagram, TikTok, YouTube, LinkedIn, podcasts.</li>
+</ul>
+<p><strong>Value type:</strong> Performance. Water that works as hard as you do.</p>
+<p><strong>Positioning statement:</strong> For ambitious people who want to perform at their best in every area of life, Elev8 is the premium hydration that fuels the unstoppable version of you.</p>
+<hr>
+<h2>Instructor key: why Elev8 is the louder &quot;buy this&quot;</h2>
+<p>Elev8 is the selling concept in nicer words. Fieldwork and Source are both real marketing ideas for two opposite buyers; Elev8 is the same plain water with a hype label on top. There are four specific tells, any one of which a strong student should name in their own words.</p>
+<p><strong>Tell 1, the buyer is &quot;everyone.&quot;</strong> The &quot;who exactly it serves&quot; slot reads &quot;go-getters, high performers, hustlers, gym-goers, professionals, students, athletes, and anyone with ambition.&quot; That is not a target; it is everyone with a pulse. The chapter&#x27;s specific test: ask &quot;who is NOT this brand&#x27;s buyer?&quot; Fieldwork excludes anyone who does not care about gear and trail ethics. Source excludes anyone willing to pay a premium for water. Elev8 excludes no one, which means it is targeting no one in particular. A real marketing idea always excludes most people.</p>
+<p><strong>Tell 2, a value-type label with no mechanism.</strong> The AI labels Elev8 &quot;performance,&quot; which is technically one of the four value types. But the product is plain canned water. There is no delivery mechanism, no electrolytes, no minerals, nothing in the can that outperforms tap water on any measurable axis. &quot;Performance&quot; as a value type needs a real mechanism, the way Gatorade leads with electrolytes or Liquid IV with osmotic absorption. Naming this water &quot;performance&quot; is a label on an identical commodity, exactly what the chapter warns about. Fieldwork leads with belonging (a real social-identity mechanism, the gear-shop shelf and the topographic packaging signal it), Source leads with money saved (a real price mechanism, the $0.49 price and the bulk distribution back it up). Elev8 claims performance by vocabulary alone.</p>
+<p><strong>Tell 3, a copyable positioning statement.</strong> &quot;For ambitious people who want to perform at their best in every area of life, Elev8 is the premium hydration that fuels the unstoppable version of you.&quot; Paste that onto a protein bar, a laptop, a luxury car, a hotel room. It fits every time. A real positioning statement names a buyer so specifically that the wrong buyer self-selects out. Fieldwork&#x27;s &quot;trail-active adults who want water that fits their gear-forward, low-waste ethic&quot; cannot be pasted onto a luxury car; the wrong buyer reads it and walks away. Source&#x27;s &quot;budget-conscious households who buy water by the case and want the lowest honest price&quot; cannot be pasted onto a protein bar; the wrong buyer reads it and walks away. Elev8&#x27;s statement walks no one away.</p>
+<p><strong>Tell 4, the five decisions fight each other.</strong> Elev8 claims premium ($3.99, top of market) while simultaneously saying &quot;sell everywhere: gyms, grocery, convenience stores, Amazon, hotel minibars, airports.&quot; A premium product sold in convenience-store impulse bins next to the $1.29 generic undermines its own premium signal. Fieldwork&#x27;s distribution (REI only, no grocery) is part of the identity. Source&#x27;s distribution (Costco, bulk) reinforces the cost claim. Elev8&#x27;s &quot;everywhere&quot; strategy fights its own $3.99 price. This is the multiply-not-add rule visible in one slot-versus-slot break. A secondary slot-versus-slot break: &quot;everyone&quot; as the buyer + a premium price. Premium positioning depends on being for someone specific, and specificity is what earns the higher price.</p>
+<hr>
+<h2>What students should find in Brands 1 and 2</h2>
+<p><strong>Fieldwork</strong> is a real marketing idea because it names a specific buyer (outdoor-active adults, gear-forward, sustainability-minded) and the five decisions all back that one buyer. The design fits the buyer, the price fits the buyer, the distribution fits the buyer, the voice fits the buyer. A price-first buyer walks past Fieldwork at REI and it does not matter, because that buyer is not Fieldwork&#x27;s. That is the marketing concept.</p>
+<p><strong>Source</strong> is also a real marketing idea, in the opposite direction. It names a different specific buyer (price-first household shoppers) and all five decisions back THAT one buyer: plain design, lowest price, bulk distribution, functional voice. No hype, no story, no premium, and that is the whole point. The buyer Source is after does not want to pay for a story.</p>
+<p>A strong student write-up names Fieldwork OR Source (either one) as a real marketing idea, names Elev8 as the louder &quot;buy this,&quot; and uses at least one of the four tells in their own words. They do not have to find all four tells; one specific, framework-based tell is enough for an Excellent on the judgment row. The contradiction the assignment asks for (one slot in the five decisions that contradicts another) is most easily found in Elev8 (premium price plus maximum-reach distribution, or &quot;everyone&quot; buyer plus a premium price).</p>
+<hr>
+<h2>Grading notes for the judgment row (40 points, the heaviest)</h2>
+<p><strong>Excellent.</strong> Picks Elev8 as the louder &quot;buy this&quot; and Fieldwork or Source as the real marketing idea. Names at least one specific tell in their own words: the &quot;everyone&quot; buyer, the hollow performance label, the copyable positioning statement, or the slot-versus-slot break (premium price + convenience-store distribution).</p>
+<p><strong>Proficient.</strong> Picks Elev8 as the weak one with a partial reason (&quot;the target is too broad&quot; without connecting it to why broad targeting breaks the rest of the brand).</p>
+<p><strong>Developing.</strong> Picks Elev8 as &quot;worse&quot; without using the marketing-versus-selling distinction, or calls it weak because it &quot;sounds generic&quot; without unpacking why.</p>
+<p><strong>Not yet.</strong> No judgment, or the student repeats the AI&#x27;s own verdict on the brands, or the student says all three are good and refuses to choose.</p>
+<hr>
+<h2>What this exemplar is not</h2>
+<p>This is one representative run of one product. A real submission may show a different plain product (a notebook, a t-shirt, a phone charger) and three brands shaped differently. The shape of the failure travels: the louder &quot;buy this&quot; brand will name a buyer who is essentially &quot;everyone,&quot; will get a value-type label slapped on a commodity with no mechanism, will write a positioning statement a rival could copy, and will fight itself on at least one slot in the five decisions. The grading guide explains how to read the failure pattern when it shows up in different shapes. Use this exemplar to calibrate your eye, not to look for these three specific brands.</p></div></details></li></ul></div></details></div></article></div></div></div></section><aside class="docs-right" aria-label="On this page and related"><div class="doc-toc"></div><div class="related-block"><h3>Related &middot; Ch 02</h3><ul class="related-list"><li><a href="../../textbook/index.html#chapter-02-what-marketing-is.html">Textbook chapter<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../materials/test-bank/ch02-what-marketing-is-test-bank.html">Test bank<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../materials/teaching-notes/ch02-what-marketing-is-teaching-notes.html">Teaching notes<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../slides/ch02/index.html">Slide deck<span class="rel-arrow" aria-hidden="true">→</span></a></li></ul></div></aside></div>
+<script>
+(function(){
+  "use strict";
+  function slugify(t) {
+    return String(t||"").toLowerCase()
+      .replace(/[^a-z0-9 \-]/g, "")
+      .replace(/\s+/g, "-").replace(/^-+|-+$/g, "")
+      .slice(0, 60) || "section";
+  }
+  var doc = document.querySelector(".doc-body");
+  var tocHost = document.querySelector(".doc-toc");
+  if (!doc || !tocHost) return;
+  var hs = doc.querySelectorAll("h2, h3");
+  if (!hs.length) { tocHost.style.display = "none"; return; }
+  // ensure each heading has an id
+  var seen = {};
+  var items = [];
+  hs.forEach(function(h){
+    var id = h.id || slugify(h.textContent);
+    if (seen[id]) { id = id + "-" + (++seen[id]); } else { seen[id] = 1; }
+    h.id = id;
+    items.push({ el: h, id: id, text: h.textContent.replace(/\s+/g, " ").trim(),
+                 tag: h.tagName.toLowerCase() });
+  });
+  // build TOC
+  var html = '<p class="toc-eyebrow">On this page</p><ul class="toc-list">';
+  items.forEach(function(it){
+    var cls = it.tag === "h3" ? "toc-h3" : "";
+    html += '<li><a class="' + cls + '" href="#' + it.id + '" data-toc-id="' + it.id + '">' +
+      it.text.replace(/[<>&]/g, function(c){return {"<":"&lt;",">":"&gt;","&":"&amp;"}[c];}) +
+      '</a></li>';
+  });
+  html += '</ul>';
+  tocHost.innerHTML = html + tocHost.innerHTML;
+
+  // active-section spy
+  var links = {};
+  tocHost.querySelectorAll("a[data-toc-id]").forEach(function(a){
+    links[a.getAttribute("data-toc-id")] = a;
+  });
+  if ("IntersectionObserver" in window) {
+    var current = null;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var id = e.target.id;
+        if (!id || !links[id]) return;
+        if (e.isIntersecting) {
+          if (current) current.classList.remove("is-current");
+          current = links[id];
+          current.classList.add("is-current");
+        }
+      });
+    }, { rootMargin: "-80px 0px -70% 0px", threshold: 0 });
+    items.forEach(function(it){ io.observe(it.el); });
+  }
+})();
+</script>
+</main>
+<footer><div class="inner">Principles of Marketing: An AI-Integrated Approach &middot; instructor courseware.</div></footer>
+</body>
+</html>

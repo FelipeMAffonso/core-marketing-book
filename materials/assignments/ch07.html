@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Assignment bank for Chapter 7 (Brands &amp; Brand Equity): filter by student access and difficulty, then expand a card for the full assignment and its rubric.">
+<title>Brands &amp; Brand Equity assignments · Principles of Marketing</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23DA7756' width='100' height='100' rx='12'/><text x='50' y='68' font-family='system-ui' font-size='36' font-weight='bold' fill='white' text-anchor='middle'>PM</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --coral:#DA7756; --coral-deep:#B8553A; --coral-soft:#E8A488;
+  --coral-text:#a8472a; --coral-tint:#fdf3ee;
+  --ink:#1a1a1a; --ink-2:#43474f; --ink-3:#5a5f67;
+  --bg:#ffffff; --bg-2:#f7f8fa; --bg-3:#f1f2f5;
+  --border:#e6e6ea; --border-strong:#d7dae0;
+  --font:'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif;
+  --font-serif:'EB Garamond',Georgia,serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Consolas,monospace;
+  --rail-w: 240px;
+  --right-w: 220px;
+  --topbar-h: 58px;
+}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.62;
+  -webkit-font-smoothing:antialiased;}
+a{color:var(--coral-text);text-decoration:none;}
+a:hover{text-decoration:underline;text-underline-offset:3px;}
+a:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;border-radius:4px;}
+.skip-link{position:absolute;left:-999px;top:0;z-index:2000;background:var(--ink);
+  color:#fff;padding:10px 16px;border-radius:0 0 6px 0;font-size:14px;font-weight:600;}
+.skip-link:focus{left:0;text-decoration:none;}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.9);
+  backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);}
+.topbar-inner{max-width:1320px;margin:0 auto;padding:0 28px;height:58px;display:flex;
+  align-items:center;gap:14px;}
+.topbar .mark{width:28px;height:28px;border-radius:7px;flex-shrink:0;background:var(--coral-deep);
+  color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;
+  letter-spacing:-0.5px;}
+.topbar .doc-title{font-size:14.5px;font-weight:600;color:var(--ink);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.topbar .back{margin-left:auto;font-size:13.5px;font-weight:600;color:var(--coral-text);
+  padding:7px 13px;border-radius:7px;border:1px solid var(--border);white-space:nowrap;}
+.topbar .back:hover{background:var(--bg-2);text-decoration:none;}
+main{max-width:860px;margin:0 auto;padding:44px 28px 96px;}
+.kicker{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--coral-text);margin-bottom:10px;}
+main h1{font-size:clamp(28px,4.4vw,40px);font-weight:700;letter-spacing:-0.02em;
+  line-height:1.12;color:var(--ink);margin:0 0 8px;}
+main h2{font-size:clamp(21px,2.8vw,26px);font-weight:700;letter-spacing:-0.015em;color:var(--ink);
+  margin:42px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+main h3{font-size:19px;font-weight:650;color:var(--ink);margin:30px 0 10px;}
+main h4{font-size:16px;font-weight:650;color:var(--ink-2);margin:24px 0 8px;}
+main h5,main h6{font-size:14px;font-weight:650;color:var(--ink-2);margin:20px 0 6px;
+  text-transform:uppercase;letter-spacing:0.04em;}
+main p{margin:0 0 16px;color:var(--ink);font-size:17px;}
+main ul,main ol{margin:0 0 18px;padding-left:26px;}
+main li{margin:0 0 7px;color:var(--ink);font-size:17px;}
+main li>ul,main li>ol{margin:7px 0 0;}
+main blockquote{margin:0 0 18px;padding:4px 18px;border-left:3px solid var(--coral);
+  background:var(--coral-tint);color:var(--ink-2);border-radius:0 6px 6px 0;}
+main blockquote p{margin:8px 0;}
+main hr{border:0;border-top:1px solid var(--border);margin:34px 0;}
+main strong{font-weight:700;color:var(--ink);}
+main em{font-style:italic;}
+main code{font-family:var(--font-mono);font-size:0.88em;background:var(--bg-3);
+  padding:2px 6px;border-radius:4px;color:var(--coral-text);border:1px solid var(--border);
+  word-break:break-word;overflow-wrap:break-word;}
+main pre{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;
+  padding:16px 18px;overflow-x:auto;margin:0 0 18px;}
+main pre:focus-visible{outline:2px solid var(--coral);outline-offset:2px;}
+main pre code{background:none;border:0;padding:0;color:var(--ink);font-size:13.5px;
+  line-height:1.55;}
+main .table-wrap{overflow-x:auto;margin:0 0 22px;border:1px solid var(--border);
+  border-radius:6px;}
+main .table-wrap:focus-visible{outline:2px solid var(--coral);outline-offset:2px;}
+main table{width:100%;border-collapse:collapse;font-size:15px;}
+main thead th{background:var(--bg-2);text-align:left;font-weight:650;color:var(--ink);
+  padding:9px 13px;border:1px solid var(--border-strong);white-space:nowrap;}
+main tbody td{padding:9px 13px;border:1px solid var(--border);color:var(--ink-2);
+  vertical-align:top;}
+main tbody tr:nth-child(even){background:var(--bg-2);}
+main a{color:var(--coral-text);font-weight:500;}
+.toc-note{font-size:14px;color:var(--ink-3);margin-bottom:30px;}
+footer{border-top:1px solid var(--border);background:var(--bg-2);padding:28px 0;
+  margin-top:60px;}
+footer .inner{max-width:860px;margin:0 auto;padding:0 28px;font-size:12.5px;color:var(--ink-3);}
+/* card grid — chapter decks + materials, echoing the dashboard tiles */
+.ccards{display:grid;grid-template-columns:repeat(auto-fill,minmax(212px,1fr));gap:14px;
+  margin:6px 0 34px;list-style:none;padding:0;}
+.ccard{display:flex;flex-direction:column;gap:7px;padding:15px 16px;min-height:108px;
+  border:1px solid var(--border);border-radius:10px;background:var(--bg);text-decoration:none;
+  transition:border-color 150ms var(--ease-coral,ease),box-shadow 150ms,transform 150ms;}
+a.ccard:hover{border-color:var(--coral);box-shadow:0 6px 20px rgba(218,119,86,0.13);
+  transform:translateY(-2px);text-decoration:none;}
+a.ccard:focus-visible{outline:2px solid var(--coral-deep);outline-offset:2px;}
+.ccard .ci-num{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:0.08em;
+  color:var(--coral-text);}
+.ccard .ci-title{font-size:15px;font-weight:650;color:var(--ink);line-height:1.28;}
+.ccard .ci-meta{font-size:12px;color:var(--ink-3);margin-top:auto;}
+.ccard.soon{background:var(--bg-2);border-style:dashed;cursor:default;}
+.ccard.soon .ci-title{color:var(--ink-3);font-weight:600;}
+.ci-pill{align-self:flex-start;font-size:9.5px;font-weight:700;letter-spacing:0.07em;
+  text-transform:uppercase;padding:2px 8px;border-radius:10px;background:var(--coral-tint);
+  color:var(--coral-text);}
+.ccard.soon .ci-pill{background:var(--bg-3);color:var(--ink-3);}
+.group-blurb{font-size:14px;color:var(--ink-3);margin:0 0 14px;}
+@media (max-width:600px){
+  main{padding:30px 18px 64px;}
+  .topbar-inner{padding:0 18px;}
+  .ccards{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+}
+
+/* ── DOCS-STYLE 3-COLUMN LAYOUT (left rail + main + right rail) ──────────
+   Used by every materials/reference/cartridge/videos page. The classic
+   API-reference docs feel: sticky left rail of siblings, sticky right rail
+   of in-page TOC + related materials, breadcrumb + prev/next around the
+   main column. Responsive collapse at 1080px (right rail hides) and 720px
+   (left rail collapses into a dropdown disclosure at top of main). */
+/* override main's narrow column when the docs layout is in use */
+main:has(.docs-layout){max-width:none;padding:0;}
+.docs-layout {
+  display: grid;
+  grid-template-columns: var(--rail-w) minmax(0, 1fr) var(--right-w);
+  gap: 36px;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 28px 28px 80px;
+  align-items: start;
+}
+.docs-rail {
+  position: sticky;
+  top: calc(var(--topbar-h) + 16px);
+  max-height: calc(100vh - var(--topbar-h) - 32px);
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.docs-rail::-webkit-scrollbar { width: 6px; }
+.docs-rail::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+.docs-rail .rail-eyebrow {
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral-text);
+  margin: 0 0 10px;
+}
+.docs-rail .rail-group {
+  margin-bottom: 22px;
+}
+.docs-rail .rail-group h3 {
+  font-size: 11.5px; font-weight: 650; color: var(--ink); text-transform: uppercase;
+  letter-spacing: 0.06em; margin: 0 0 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.docs-rail .rail-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 1px;
+}
+.docs-rail .rail-list a, .docs-rail .rail-list .rail-soon {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 5px 10px; border-radius: 6px;
+  font-size: 13px; color: var(--ink-2); text-decoration: none;
+  line-height: 1.32;
+  border-left: 2px solid transparent;
+}
+.docs-rail .rail-list a:hover {
+  background: var(--bg-2); color: var(--ink); text-decoration: none;
+}
+.docs-rail .rail-list a.is-active {
+  color: var(--coral-text); font-weight: 600;
+  background: var(--coral-tint);
+  border-left-color: var(--coral);
+}
+.docs-rail .rail-list .rail-soon {
+  color: var(--ink-3); cursor: default;
+}
+.docs-rail .rail-list .rail-soon .rail-num {
+  color: var(--ink-3);
+}
+.docs-rail .rail-num {
+  font-family: var(--font-mono); font-size: 11px; color: var(--ink-3);
+  flex-shrink: 0; min-width: 24px; letter-spacing: 0.04em;
+}
+.docs-rail .rail-list a.is-active .rail-num {
+  color: var(--coral-text);
+}
+.docs-rail .rail-soon::after {
+  content: "soon"; font-size: 9.5px; font-family: var(--font-mono);
+  color: var(--ink-3); margin-left: auto;
+  padding: 1px 5px; border-radius: 3px; background: var(--bg-3);
+  letter-spacing: 0.04em; flex-shrink: 0;
+}
+
+/* Mobile/tablet — left rail collapses to a dropdown disclosure */
+.docs-rail-mobile {
+  display: none;
+  margin-bottom: 16px;
+}
+.docs-rail-mobile summary {
+  font-size: 13px; font-weight: 600; color: var(--ink-2);
+  padding: 10px 14px; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 7px;
+  background: var(--bg-2);
+  list-style: none;
+}
+.docs-rail-mobile summary::after { content: " ▾"; color: var(--ink-3); float: right; }
+.docs-rail-mobile[open] summary::after { content: " ▴"; }
+.docs-rail-mobile .rail-group { margin: 12px 0; }
+
+/* Right rail (in-page TOC + related) */
+.docs-right .toc-eyebrow {
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral-text);
+  margin: 0 0 10px;
+}
+.docs-right .toc-list {
+  list-style: none; padding: 0; margin: 0 0 28px;
+  border-left: 2px solid var(--border);
+  display: flex; flex-direction: column; gap: 1px;
+}
+.docs-right .toc-list a {
+  display: block; padding: 4px 12px; font-size: 12.5px; color: var(--ink-3);
+  text-decoration: none; line-height: 1.4; margin-left: -2px;
+  border-left: 2px solid transparent;
+}
+.docs-right .toc-list a:hover { color: var(--ink); text-decoration: none; }
+.docs-right .toc-list a.is-current {
+  color: var(--coral-text); font-weight: 600;
+  border-left-color: var(--coral);
+}
+.docs-right .toc-list .toc-h3 { padding-left: 24px; font-size: 12px; }
+.docs-right .related-block {
+  margin-top: 20px;
+}
+.docs-right .related-block h3 {
+  font-size: 11.5px; font-weight: 650; color: var(--ink); text-transform: uppercase;
+  letter-spacing: 0.06em; margin: 0 0 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.docs-right .related-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.docs-right .related-list a {
+  display: flex; align-items: baseline; gap: 7px;
+  padding: 5px 10px; border-radius: 6px;
+  font-size: 12.5px; color: var(--ink-2); text-decoration: none;
+  line-height: 1.32;
+}
+.docs-right .related-list a:hover {
+  background: var(--bg-2); color: var(--coral-text); text-decoration: none;
+}
+.docs-right .related-list .rel-arrow {
+  color: var(--coral); font-weight: 700;
+}
+
+/* Main column */
+.docs-main { min-width: 0; }
+.breadcrumb {
+  font-size: 12.5px; color: var(--ink-3); margin: 0 0 18px;
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  font-family: var(--font);
+}
+.breadcrumb a {
+  color: var(--ink-3); text-decoration: none; font-weight: 500;
+  padding: 2px 6px; border-radius: 4px;
+}
+.breadcrumb a:hover { color: var(--coral-text); background: var(--bg-2); }
+.breadcrumb .sep { color: var(--ink-3); font-size: 11px; opacity: 0.5; }
+.breadcrumb .current { color: var(--ink); font-weight: 600; padding: 2px 6px; }
+
+.page-overview {
+  font-size: 16.5px; color: var(--ink-2); line-height: 1.55;
+  padding: 16px 0 6px; margin: 0 0 30px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Prev / Next footer */
+.prev-next {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  margin-top: 48px; padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.prev-next a {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 14px 16px; border: 1px solid var(--border); border-radius: 8px;
+  color: var(--ink-2); text-decoration: none;
+  transition: border-color 140ms ease, background 140ms ease;
+}
+.prev-next a:hover {
+  border-color: var(--coral); color: var(--coral-text); background: var(--bg-2);
+  text-decoration: none;
+}
+.prev-next .pn-eyebrow {
+  font-size: 11px; color: var(--ink-3); letter-spacing: 0.04em;
+}
+.prev-next .pn-title {
+  font-size: 14px; font-weight: 600; color: inherit;
+}
+.prev-next .pn-next { text-align: right; }
+.prev-next .pn-empty { visibility: hidden; pointer-events: none; }
+
+@media (max-width: 1100px) {
+  .docs-layout { grid-template-columns: var(--rail-w) minmax(0, 1fr); gap: 28px; }
+  .docs-right { display: none; }
+}
+@media (max-width: 760px) {
+  .docs-layout {
+    grid-template-columns: 1fr; padding: 16px 18px 60px; gap: 14px;
+  }
+  .docs-rail { display: none; }
+  .docs-rail-mobile { display: block; }
+  .topbar-inner { padding: 0 18px; }
+  .prev-next { grid-template-columns: 1fr; }
+  .page-overview { font-size: 15px; }
+}
+</style>
+
+<style>
+.asg-eyebrow{display:block;font-family:Inter,system-ui,sans-serif;font-size:13px;
+  font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#B8553A;margin:0 0 10px;}
+.asg-badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px;padding:0;list-style:none;}
+.asg-badge{display:inline-flex;align-items:center;gap:6px;font-family:Inter,system-ui,sans-serif;
+  font-size:13px;font-weight:600;line-height:1;color:#5a3527;background:#FBEEE8;
+  border:1px solid #EBC9B9;border-radius:999px;padding:8px 14px;white-space:nowrap;}
+.asg-badge .asg-badge-k{font-weight:500;color:#8a6a5c;}
+/* ── The per-chapter ASSIGNMENT BOARD: overview + two filter rows + variant cards.
+   Instructor-facing, coral #DA7756 / coral-deep #B8553A + neutrals only, AA, no emojis. */
+.asg-board-overview{margin:0 0 22px;color:#43474f;font-size:1.02rem;line-height:1.6;}
+.asg-filters{margin:0 0 10px;padding:18px 20px 14px;border:1px solid #e6ebf1;border-radius:12px;
+  background:#fcfbfa;}
+.asg-filter-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 12px;}
+.asg-filter-row:last-of-type{margin-bottom:0;}
+.asg-filter-label{flex:0 0 96px;font-family:Inter,system-ui,sans-serif;font-size:13px;
+  font-weight:700;color:#5a3527;}
+.asg-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;}
+.asg-chip{display:inline-flex;align-items:center;gap:6px;font-family:Inter,system-ui,sans-serif;font-size:13.5px;font-weight:600;
+  color:#3a2a22;background:#fff;border:1.5px solid #d9cfc8;border-radius:999px;
+  padding:6px 13px;cursor:pointer;transition:border-color .12s,background .12s,color .12s;}
+.asg-chip:hover{border-color:#B8553A;}
+.asg-chip:focus-visible{outline:3px solid #DA7756;outline-offset:2px;}
+.asg-chip[aria-pressed="true"]{background:#B8553A;border-color:#B8553A;color:#fff;}
+.asg-chip svg{flex:0 0 auto;color:#B8553A;}
+.asg-chip[aria-pressed="true"] svg{color:#fff;}
+.asg-count{margin-left:auto;font-family:Inter,system-ui,sans-serif;font-size:13px;
+  font-weight:600;color:#8a6a5c;white-space:nowrap;}
+.asg-cards{margin:22px 0 8px;display:flex;flex-direction:column;gap:14px;}
+.asg-card{border:1px solid #EBC9B9;border-radius:12px;background:#fff;overflow:hidden;}
+.asg-card.is-hidden{display:none;}
+.asg-card-head{width:100%;display:flex;align-items:flex-start;gap:14px;text-align:left;
+  background:#FBEEE8;border:none;border-bottom:1px solid #EBC9B9;padding:16px 20px;
+  cursor:pointer;font-family:inherit;}
+.asg-card[aria-collapsed] .asg-card-head{border-bottom:none;}
+.asg-card-head:hover{background:#f8e4d9;}
+.asg-card-head:focus-visible{outline:3px solid #DA7756;outline-offset:-3px;}
+.asg-card-main{flex:1 1 auto;min-width:0;}
+.asg-card-title{font-family:Inter,system-ui,sans-serif;font-weight:700;font-size:1.08rem;
+  color:#3a2a22;margin:0 0 6px;line-height:1.3;}
+.asg-card-tags{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 8px;padding:0;list-style:none;}
+.asg-tag{display:inline-flex;align-items:center;justify-content:center;gap:5px;
+  background:#FBEEE8;border:1px solid #E8A488;border-radius:999px;padding:4px 10px;
+  min-height:26px;color:#B8553A;}
+.asg-tag svg{display:block;}
+.asg-card-blurb{margin:0;color:#5a5f67;font-size:.95rem;line-height:1.5;}
+.asg-card-caret{flex:0 0 auto;color:#B8553A;font-size:.95rem;line-height:1.9;
+  transition:transform .15s;}
+.asg-card-head[aria-expanded="true"] .asg-card-caret{transform:rotate(90deg);}
+.asg-card-panel{padding:6px 22px 20px;}
+.asg-card-panel[hidden]{display:none;}
+.asg-card-panel > :first-child{margin-top:14px;}
+/* Folded instructor sections (rubric, what-this-assesses, grading kit) inside a panel. */
+details.asg-fold{margin:22px 0 0;border:1px solid #e6ebf1;border-radius:10px;
+  background:#fcfbfa;overflow:hidden;}
+details.asg-fold > summary{cursor:pointer;list-style:none;padding:14px 18px;
+  font-family:Inter,system-ui,sans-serif;font-weight:700;font-size:1rem;color:#1a1a1a;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;}
+details.asg-fold > summary::-webkit-details-marker{display:none;}
+details.asg-fold > summary:focus-visible{outline:3px solid #DA7756;outline-offset:-3px;}
+details.asg-fold > summary .asg-fold-sub{font-weight:400;font-size:.88rem;color:#777;}
+details.asg-fold > summary .asg-fold-caret{flex:0 0 auto;color:#B8553A;font-size:.82rem;
+  transition:transform .15s;}
+details.asg-fold[open] > summary .asg-fold-caret{transform:rotate(90deg);}
+details.asg-fold > .asg-fold-body{padding:2px 18px 16px;border-top:1px solid #ece3dd;}
+details.asg-fold > .asg-fold-body > :first-child{margin-top:12px;}
+@media (max-width:600px){
+  .asg-filter-label{flex-basis:100%;}
+  .asg-count{margin-left:0;flex-basis:100%;}
+}
+</style>
+<script>
+(function(){
+  "use strict";
+  function ready(fn){ if(document.readyState!=="loading"){fn();}
+    else{document.addEventListener("DOMContentLoaded",fn);} }
+  ready(function(){
+    // ── Inline accordion: each card header toggles its panel (aria-expanded).
+    document.querySelectorAll(".asg-card-head").forEach(function(head){
+      var card=head.closest(".asg-card");
+      var panel=card?card.querySelector(".asg-card-panel"):null;
+      if(!panel){return;}
+      head.addEventListener("click",function(){
+        var open=head.getAttribute("aria-expanded")==="true";
+        head.setAttribute("aria-expanded",open?"false":"true");
+        if(open){panel.setAttribute("hidden","");card.setAttribute("aria-collapsed","");}
+        else{panel.removeAttribute("hidden");card.removeAttribute("aria-collapsed");}
+      });
+    });
+    // ── Filters: access + difficulty + format chip rows AND together; "Any" = no
+    //    filter on that axis. Cards carry data-access / data-difficulty / data-format.
+    //    Generic over data-group, so another filter row needs no JS change.
+    document.querySelectorAll(".asg-board").forEach(function(board){
+      var cards=Array.prototype.slice.call(board.querySelectorAll(".asg-card"));
+      var total=cards.length;
+      var sel={};
+      var countEl=board.querySelector(".asg-count");
+      function apply(){
+        var shown=0;
+        cards.forEach(function(c){
+          var ok=true;
+          for(var g in sel){
+            if(sel[g]!=="any"&&(c.getAttribute("data-"+g)||"")!==sel[g]){ok=false;break;}
+          }
+          if(ok){c.classList.remove("is-hidden");shown++;}
+          else{c.classList.add("is-hidden");}
+        });
+        if(countEl){countEl.textContent="showing "+shown+" of "+total;}
+      }
+      board.querySelectorAll(".asg-chip[data-group]").forEach(function(chip){
+        chip.addEventListener("click",function(){
+          var group=chip.getAttribute("data-group");
+          var val=chip.getAttribute("data-val");
+          sel[group]=val;
+          board.querySelectorAll('.asg-chip[data-group="'+group+'"]').forEach(function(c){
+            c.setAttribute("aria-pressed",c===chip?"true":"false");
+          });
+          apply();
+        });
+      });
+      apply();
+    });
+  });
+})();
+</script>
+
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="mark" aria-hidden="true">PM</span>
+    <span class="doc-title">Brands &amp; Brand Equity assignments</span>
+    <a class="back" href="../../index.html">&larr; Back to courseware</a>
+  </div>
+</header>
+<main id="main">
+<div class="docs-layout"><aside class="docs-rail" aria-label="Section navigation"><div class="rail-group"><h3>Take-home Assignments</h3><ul class="rail-list"><li><span class="rail-soon"><span class="rail-num">Ch 01</span><span class="rail-label">AI for Marketers</span></span></li><li><a class="" href="ch02.html"><span class="rail-num">Ch 02</span><span class="rail-label">What Marketing Is</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 03</span><span class="rail-label">The Marketing Environment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 04</span><span class="rail-label">How Buyers Buy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 05</span><span class="rail-label">Marketing Research</span></span></li><li><a class="" href="ch06.html"><span class="rail-num">Ch 06</span><span class="rail-label">Segmentation, Targeting &amp; Positioning</span></a></li><li><a class="is-active" href="ch07.html"><span class="rail-num">Ch 07</span><span class="rail-label">Brands &amp; Brand Equity</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 08</span><span class="rail-label">Product Management</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 09</span><span class="rail-label">Services Marketing</span></span></li><li><a class="" href="ch10.html"><span class="rail-num">Ch 10</span><span class="rail-label">Pricing</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 11</span><span class="rail-label">Distribution Channels</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 12</span><span class="rail-label">Retail</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 13</span><span class="rail-label">DTC &amp; E-commerce</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 14</span><span class="rail-label">Mobile &amp; App Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 15</span><span class="rail-label">International Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 16</span><span class="rail-label">Promotions</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 17</span><span class="rail-label">Content Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 18</span><span class="rail-label">Digital Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 19</span><span class="rail-label">Social Media</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 20</span><span class="rail-label">Creator Economy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 21</span><span class="rail-label">Customer Lifecycle</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 22</span><span class="rail-label">PR &amp; Crisis</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 23</span><span class="rail-label">Sales Alignment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 24</span><span class="rail-label">Marketing Plan &amp; Analytics</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 25</span><span class="rail-label">Marketing Finance</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 26</span><span class="rail-label">Ethics &amp; Responsible AI</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 27</span><span class="rail-label">Capstone</span></span></li></ul></div></aside><section class="docs-main"><details class="docs-rail-mobile"><summary>Browse this section</summary><div class="rail-group"><h3>Take-home Assignments</h3><ul class="rail-list"><li><span class="rail-soon"><span class="rail-num">Ch 01</span><span class="rail-label">AI for Marketers</span></span></li><li><a class="" href="ch02.html"><span class="rail-num">Ch 02</span><span class="rail-label">What Marketing Is</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 03</span><span class="rail-label">The Marketing Environment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 04</span><span class="rail-label">How Buyers Buy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 05</span><span class="rail-label">Marketing Research</span></span></li><li><a class="" href="ch06.html"><span class="rail-num">Ch 06</span><span class="rail-label">Segmentation, Targeting &amp; Positioning</span></a></li><li><a class="is-active" href="ch07.html"><span class="rail-num">Ch 07</span><span class="rail-label">Brands &amp; Brand Equity</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 08</span><span class="rail-label">Product Management</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 09</span><span class="rail-label">Services Marketing</span></span></li><li><a class="" href="ch10.html"><span class="rail-num">Ch 10</span><span class="rail-label">Pricing</span></a></li><li><span class="rail-soon"><span class="rail-num">Ch 11</span><span class="rail-label">Distribution Channels</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 12</span><span class="rail-label">Retail</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 13</span><span class="rail-label">DTC &amp; E-commerce</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 14</span><span class="rail-label">Mobile &amp; App Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 15</span><span class="rail-label">International Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 16</span><span class="rail-label">Promotions</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 17</span><span class="rail-label">Content Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 18</span><span class="rail-label">Digital Marketing</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 19</span><span class="rail-label">Social Media</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 20</span><span class="rail-label">Creator Economy</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 21</span><span class="rail-label">Customer Lifecycle</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 22</span><span class="rail-label">PR &amp; Crisis</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 23</span><span class="rail-label">Sales Alignment</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 24</span><span class="rail-label">Marketing Plan &amp; Analytics</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 25</span><span class="rail-label">Marketing Finance</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 26</span><span class="rail-label">Ethics &amp; Responsible AI</span></span></li><li><span class="rail-soon"><span class="rail-num">Ch 27</span><span class="rail-label">Capstone</span></span></li></ul></div></details><nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Courseware</a><span class="sep">›</span><a href="../../index.html#assess">Assess</a><span class="sep">›</span><a href="index.html">Take-home Assignments</a><span class="sep">›</span><span class="current">Ch 07 Brands &amp; Brand Equity</span></nav><div class="doc-body"><h1>Brands &amp; Brand Equity &middot; take-home assignments</h1><p class="asg-board-overview">There is 1 Brands &amp; Brand Equity assignment, spanning student-access levels, difficulty, and solo or team formats. Filter to what your class can run, then open a card for the full assignment and its rubric.</p><div class="asg-board"><div class="asg-filters" aria-label="Filter assignments"><div class="asg-filter-row"><span class="asg-filter-label">Minimum AI Tool Requirement</span><div class="asg-chips" role="group" aria-label="Minimum AI Tool Requirement"><button type="button" class="asg-chip" data-group="access" data-val="any" aria-pressed="true"><span class="asg-chip-label">Any</span></button><button type="button" class="asg-chip" data-group="access" data-val="Free account" aria-pressed="false"><svg class="asg-icon-ai" width="16" height="16" viewBox="0 0 24 24" role="img" aria-label="Minimum AI Tool Requirement: Free account"><line x1="12" y1="3" x2="12" y2="6" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="2.6" r="1" fill="currentColor"/><rect x="5" y="6" width="14" height="13" rx="2.5" fill="currentColor" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="12" r="1.3" fill="#FBEEE8"/><circle cx="15" cy="12" r="1.3" fill="#FBEEE8"/><line x1="9.5" y1="16" x2="14.5" y2="16" stroke="#FBEEE8" stroke-width="1.6" stroke-linecap="round"/></svg><span class="asg-chip-label">Free account</span></button></div></div><div class="asg-filter-row"><span class="asg-filter-label">Difficulty</span><div class="asg-chips" role="group" aria-label="Difficulty"><button type="button" class="asg-chip" data-group="difficulty" data-val="any" aria-pressed="true"><span class="asg-chip-label">Any</span></button><button type="button" class="asg-chip" data-group="difficulty" data-val="High" aria-pressed="false"><svg class="asg-icon-diff" width="52" height="14" viewBox="0 0 80 24" role="img" aria-label="Difficulty: High"><polygon points="12.0,3.0 14.5,9.4 21.4,9.4 16.0,13.9 18.2,20.7 12.0,17.1 5.8,20.7 8.0,13.9 2.6,9.4 9.5,9.4" fill="#DA7756" stroke="#B8553A" stroke-width="1" stroke-linejoin="round"/><polygon points="40.0,3.0 42.5,9.4 49.4,9.4 44.0,13.9 46.2,20.7 40.0,17.1 33.8,20.7 36.0,13.9 30.6,9.4 37.5,9.4" fill="#DA7756" stroke="#B8553A" stroke-width="1" stroke-linejoin="round"/><polygon points="68.0,3.0 70.5,9.4 77.4,9.4 72.0,13.9 74.2,20.7 68.0,17.1 61.8,20.7 64.0,13.9 58.6,9.4 65.5,9.4" fill="#DA7756" stroke="#B8553A" stroke-width="1" stroke-linejoin="round"/></svg><span class="asg-chip-label">High</span></button></div><span class="asg-count">showing 1 of 1</span></div></div><div class="asg-cards"><article class="asg-card" data-access="Free account" data-difficulty="High" data-format="" aria-collapsed><button type="button" class="asg-card-head" aria-expanded="false" aria-controls="asg-panel-ch07-brands-assignment"><span class="asg-card-main"><span class="asg-card-title">Build a Brand Analysis App with Claude</span><ul class="asg-card-tags"><li class="asg-tag asg-tag-ai" title="Minimum AI Tool Requirement: Free account"><svg class="asg-icon-ai" width="16" height="16" viewBox="0 0 24 24" role="img" aria-label="Minimum AI Tool Requirement: Free account"><line x1="12" y1="3" x2="12" y2="6" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="2.6" r="1" fill="currentColor"/><rect x="5" y="6" width="14" height="13" rx="2.5" fill="currentColor" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="12" r="1.3" fill="#FBEEE8"/><circle cx="15" cy="12" r="1.3" fill="#FBEEE8"/><line x1="9.5" y1="16" x2="14.5" y2="16" stroke="#FBEEE8" stroke-width="1.6" stroke-linecap="round"/></svg></li><li class="asg-tag asg-tag-diff" title="Difficulty: High"><svg class="asg-icon-diff" width="52" height="14" viewBox="0 0 80 24" role="img" aria-label="Difficulty: High"><polygon points="12.0,3.0 14.5,9.4 21.4,9.4 16.0,13.9 18.2,20.7 12.0,17.1 5.8,20.7 8.0,13.9 2.6,9.4 9.5,9.4" fill="#DA7756" stroke="#B8553A" stroke-width="1" stroke-linejoin="round"/><polygon points="40.0,3.0 42.5,9.4 49.4,9.4 44.0,13.9 46.2,20.7 40.0,17.1 33.8,20.7 36.0,13.9 30.6,9.4 37.5,9.4" fill="#DA7756" stroke="#B8553A" stroke-width="1" stroke-linejoin="round"/><polygon points="68.0,3.0 70.5,9.4 77.4,9.4 72.0,13.9 74.2,20.7 68.0,17.1 61.8,20.7 64.0,13.9 58.6,9.4 65.5,9.4" fill="#DA7756" stroke="#B8553A" stroke-width="1" stroke-linejoin="round"/></svg></li></ul><p class="asg-card-blurb">Direct Claude to build an interactive perceptual-map app for a real brand, then out-judge what it plotted.</p></span><span class="asg-card-caret" aria-hidden="true">&#9656;</span></button><div class="asg-card-panel" id="asg-panel-ch07-brands-assignment" hidden><h1>Build a Brand Analysis App with Claude</h1>
+<p><em>A Chapter 7 individual assignment in which the student picks a real brand, directs a free Claude account to build an interactive perceptual-map app for it, and then out-judges what Claude plotted. The 2026 brand-strategy skill is not drawing the map by hand. It is directing AI to gather and plot the rivals, and then catching where the model chose an axis the category does not turn on, placed a brand where it does not sit, or invented a competitor that does not compete. The student picks the brand. The materials below give the student everything else.</em></p>
+<ul class="asg-badges" aria-label="Assignment at a glance"><li class="asg-badge"><span class="asg-badge-k">Type</span><span class="asg-badge-v">Individual</span></li><li class="asg-badge"><span class="asg-badge-k">Time</span><span class="asg-badge-v">~2 hrs</span></li><li class="asg-badge"><span class="asg-badge-k">Points</span><span class="asg-badge-v">100 pts</span></li><li class="asg-badge"><span class="asg-badge-k">Chapter</span><span class="asg-badge-v">Ch 7</span></li></ul>
+<hr>
+<h2>Student instructions</h2>
+<p>Pick one real brand you can find public information on, with two or three nameable competitors that actually compete with it. A direct-to-consumer brand, a campus or local business, a brand you actually use, all work. Public information only; never paste a real employer&#x27;s confidential brand data into an AI tool. Then make a free account at claude.ai if you do not already have one, since you will direct Claude to build the app for you.</p>
+<p>The work is three moves and a judgment pass. First, have Claude web-search the brand and its rivals and pull what the market thinks: how each one positions itself, what reviews and social posts praise and complain about, and the two or three attributes buyers actually weigh in this category. Second, direct Claude to make an interactive Artifact, a perceptual map (the Chapter 7 tool) that plots your brand and its rivals on the two attributes that matter most, with each brand clickable to surface its points of parity, its one or two points of difference, and one reason to believe. Iterate with Claude in plain English until the map is honest and the click states are readable; you are building a real, shareable tool, not a static chart. Third, use the app you built to read the brand&#x27;s current position and the open space on the map, the quadrant no rival owns yet, and decide whether you would hold the brand&#x27;s position, sharpen it, or reposition it onto a different attribute.</p>
+<p>Then comes the graded core, which is judging what Claude built against the real world. Claude will gather, plot, and write all of this fast, and in places it will be wrong in a way that would matter if a real brand team acted on it. The materials below give you the chapter&#x27;s quick rules for axes, positioning, and the worked example you can pattern-match against; the evaluation checklist is what you walk through point by point on Claude&#x27;s map. Pasting this prompt into a second AI tool will not help: the catch only lands once you have looked at the real product pages, the real ads, and the real reviews and compared what is actually there against what Claude plotted. The app is Claude&#x27;s build; the brand judgment is yours.</p>
+<h3>Materials you hold (use these to direct Claude and to judge its map)</h3>
+<p><strong>Quick rules for picking the two axes (Chapter 7).</strong> A perceptual map is only as good as its two axes, and the axes must be ones buyers in the category actually weigh, not ones an analyst guesses at. Use these four tests on every axis Claude proposes, in order. (1) Buyer-perceivable: a real buyer can tell where each brand sits without an expert opinion (price, sweetness, design formality, sustainability cues, brand-as-status are buyer-perceivable; &quot;innovation,&quot; &quot;quality,&quot; &quot;premium&quot; are not, they collapse into vibes). (2) Discriminating: rivals actually spread out along the axis (an axis where every brand in the category clusters at one end is not separating anything). (3) Defensible: the axis names a real attribute, not a synonym for &quot;good.&quot; (4) Decision-relevant: a buyer choosing between two brands cares about the difference. An axis that fails any of these four is one of the things to catch.</p>
+<p><strong>Quick card on the Chapter 7 building blocks.</strong> <em>Frame of reference:</em> the competitive set the buyer should judge the brand against (Hyundai&#x27;s Genesis named BMW and Mercedes as its frame to be read as a luxury car, not an economy one). <em>Points of parity (POP):</em> category must-haves that get the brand considered (every canned water is clean and cold, every laptop sleeve protects the laptop). They never win the buyer, but missing one gets the brand cut. <em>Points of difference (POD):</em> the one or two attributes the brand owns and a rival cannot truthfully claim. A real POD survives the swap test: if a rival&#x27;s name can be dropped into the same sentence and the sentence still reads true, the POD is generic and does not count. <em>Reason to believe:</em> the proof point that makes the POD credible (Avis paired &quot;We Try Harder&quot; with &quot;We are only number two,&quot; and the reason-to-believe carried the claim for half a century).</p>
+<p><strong>A worked perceptual-map example, on a different brand than yours (so it does not reveal your answer).</strong> A useful pattern to compare your own work against, on the running coffee-chains category from Chapter 7.</p>
+<blockquote><p><em>Category:</em> coffee chains. <em>Brands:</em> Starbucks, Dunkin, Dutch Bros, Blue Bottle. <em>Axes (worth defending):</em> price (cheap to premium) on the across, craft (fast and convenient to artisanal) up. <em>Where they sit:</em> Dunkin cheap and fast, Dutch Bros mid and fast-friendly, Starbucks mid and semi-craft, Blue Bottle premium and artisanal. <em>Open quadrant:</em> low-price and genuinely artisanal, where no chain sits today. <em>Candidate position:</em> the everyday-price third-wave chain for buyers who want Blue Bottle quality at Dunkin frequency. <em>POP:</em> fast service, predictable drink quality, mobile order. <em>POD for the candidate brand:</em> third-wave craft at an everyday price. <em>Reason to believe:</em> direct sourcing, no franchise tax. <em>A weak alternative axis the map should reject:</em> &quot;quality&quot; up, &quot;price&quot; across. &quot;Quality&quot; is a vibes axis (it fails the buyer-perceivable and defensible tests above), and it lets the model place any brand it likes wherever it wants.</p></blockquote>
+<p>The worked example is a pattern, not the answer key for your brand. Your axes, your placements, and your reasoning have to come from your category, not this one.</p>
+<p><strong>Evaluation checklist for Claude&#x27;s map (walk every line; this is what the judgment pass is graded on).</strong> Use it against the app Claude builds for you, not against the worked example above.</p>
+<ol>
+<li><em>The two axes.</em> Apply the four tests above to each axis Claude picked. Name one axis that fails a test and the one that should replace it. Wrong axes are the most common error Claude makes; it tends to default to &quot;price by quality&quot; because that pair looks safe.</li>
+<li><em>The frame of reference.</em> Are the rivals Claude plotted the ones the buyer actually weighs your brand against, or did Claude include a brand that does not really compete (a different price tier, a different occasion, a different distribution channel)? Drop a non-competitor if it slipped in.</li>
+<li><em>Brand placements.</em> Pick one rival on the map and ask whether its position matches its real public positioning. Open the rival&#x27;s product page, read its homepage copy, and skim recent reviews; does the brand actually sit where Claude put it, or is it nearer the opposite corner? Fix one placement that does not survive that check.</li>
+<li><em>Invented claims.</em> Spot-check three things Claude wrote: one review theme it attributes to the brand, one product feature it lists, and one competitor price (if it gave any). Go to the real source for each. Mark each one confirmed, unconfirmed, or invented. If anything is invented or unconfirmed, drop it.</li>
+<li><em>Points of parity and points of difference.</em> Do the POPs Claude listed for your brand really sit at the category floor (every rival meets them too)? Does the brand&#x27;s stated POD survive the swap test against the two or three nearest rivals (a rival&#x27;s name swapped in makes the sentence false)? If a POD is generic, name a sharper one the brand could actually defend.</li>
+<li><em>Reason to believe.</em> Is there one concrete proof point behind the POD, or is the &quot;reason&quot; a restatement of the claim? If it is a restatement, write a real one or note the brand does not yet have one.</li>
+<li><em>What the map cannot show.</em> A scatter plot can mark where brands sit; it cannot tell the brand team what to do next. In one sentence, name what the positioning means for the brand (the move the map points at) that the dots themselves are silent on.</li>
+</ol>
+<p>A submission that walks every line of the checklist and corrects the real errors is doing exactly the structural judgment the card rewards.</p>
+<p><strong>Submit:</strong> one PDF, about a page, plus the Artifact link and the AI transcript.</p>
+<ol>
+<li>The working Artifact: paste the published share link, or attach a short screen recording of you using it.</li>
+<li>A one-page brand read: the brand&#x27;s current position in one line, the open quadrant on the map, your hold or sharpen or reposition call and the attribute it turns on, and the brand&#x27;s POP, the POD (with the swap-test result), and the reason to believe.</li>
+<li>The AI transcript and the judgment pass, walked against the checklist: the prompts you gave Claude, the axis you replaced (and why), the placement you fixed (and against which real source), and any invented claim you caught and dropped.</li>
+</ol>
+<p><strong>On the job.</strong> A brand strategist or product marketer is increasingly handed an AI-drafted perceptual map and asked to act on it, so the catch you practice here, naming the axis the model leaned on by default and the placement it never verified, is exactly the review that keeps a brand team from repositioning onto a quadrant that does not exist.</p>
+<hr>
+<details class="asg-fold"><summary><span>What this assesses <span class="asg-fold-sub">&middot; learning objectives, instructor only</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><p>These are the Chapter 7 objectives the work exercises. The rubric scores against them.</p>
+<ul>
+<li><strong>LO 7.4</strong> Read a perceptual map, name the open quadrant, and choose a positioning move (hold, sharpen, reposition).</li>
+<li><strong>LO 7.5</strong> Name a brand&#x27;s frame of reference, its points of parity, its point of difference, and one reason to believe; apply the swap test.</li>
+<li><strong>LO 7.6</strong> Judge AI output about a brand, saying which axis was defensible, which placement matched the real source, and which figure or claim was invented.</li>
+</ul>
+<p>The AI step trains the chapter&#x27;s tested misfire. On a perceptual map, a current AI assistant leans on default axes the category does not actually turn on (the &quot;price by quality&quot; reflex), states a competitor as a rival when it does not really compete, places a brand from a homepage tagline rather than what the buyer perceives, and writes a generic point of difference any rival could claim. The map will look polished. The judgment pass is the student&#x27;s to do.</p>
+</div></details><hr>
+<details class="asg-fold"><summary><span>Grading rubric <span class="asg-fold-sub">&middot; instructor only; scoring out of 100</span></span><span class="asg-fold-caret" aria-hidden="true">&#9656;</span></summary><div class="asg-fold-body"><p>100 points. Levels describe observable work, not effort.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table><thead><tr><th>Criterion (LOs)</th><th>Excellent</th><th>Proficient</th><th>Developing</th><th>Not yet</th><th>Pts</th></tr></thead><tbody><tr><td><strong>Judgment pass: caught what Claude got wrong</strong> (AI-use policy, LO 7.6)</td><td>Walks the checklist; names one axis that fails a real test and the one that should replace it; fixes a brand placement against a real public source; catches and drops at least one invented claim; says what the map cannot show</td><td>Catches one real error (axis, placement, or invented claim) and corrects it against the real source, with some judgment</td><td>Walks the checklist by reflex; calls the map &quot;mostly right&quot; without catching either an axis or a placement error</td><td>Hands in Claude&#x27;s output as verified work; no judgment pass</td><td>32</td></tr><tr><td><strong>The brand-analysis app</strong> (LO 7.4)</td><td>Working, shareable Artifact, two defensible axes, the brand and two or three real rivals plotted, each brand clickable to surface its POP, POD, and reason to believe</td><td>App built and readable, but one element thin (an axis that fails one test, a missing rival, or a click state without the reason to believe)</td><td>A static chart, an app whose interaction does not really map the brand, or no rivals</td><td>No working artifact</td><td>22</td></tr><tr><td><strong>Positioning read</strong> (LO 7.4)</td><td>Brand&#x27;s current position named in one line, the open quadrant identified by name, and a defensible hold or sharpen or reposition call onto a stated attribute the brand could actually own</td><td>Position and a call given, but the open quadrant is loosely identified or the move&#x27;s attribute is fuzzy</td><td>Describes the brand without making a positioning call</td><td>No read</td><td>18</td></tr><tr><td><strong>POP, POD, reason to believe, and the swap test</strong> (LO 7.5)</td><td>All three correct and specific to this brand; the POD survives the swap test against at least two nearest rivals; the reason to believe is a concrete proof point, not a restatement</td><td>Named and mostly right, but the POD is generic (would survive only a weak swap test) or the reason to believe restates the claim</td><td>Confuses parity with difference, or asserts a POD with no reason behind it</td><td>Absent</td><td>16</td></tr><tr><td><strong>Brand memo and disclosure</strong></td><td>A one-page read a brand manager could act on; transcript and checklist walk attached; AI use disclosed clearly</td><td>Clear memo with a transcript; minor gap in the checklist walk</td><td>Restates findings without a recommendation, or transcript missing key prompts</td><td>Unclear memo or no disclosure</td><td>12</td></tr><tr><td><strong>Total</strong></td><td></td><td></td><td></td><td></td><td><strong>100</strong></td></tr></tbody></table></div>
+<p>The judgment-pass row is the heaviest on purpose. Claude builds the map; the graded skill is the eye that catches the axis it defaulted into and the placement it never verified. Disclose your AI use as your instructor asks, and follow your institution&#x27;s academic-integrity and AI-use policy.</p></div></details></div></article></div></div></div></section><aside class="docs-right" aria-label="On this page and related"><div class="doc-toc"></div><div class="related-block"><h3>Related &middot; Ch 07</h3><ul class="related-list"><li><a href="../../textbook/index.html#chapter-07-brands.html">Textbook chapter<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../materials/test-bank/ch07-brands-test-bank.html">Test bank<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../materials/teaching-notes/ch07-brands-teaching-notes.html">Teaching notes<span class="rel-arrow" aria-hidden="true">→</span></a></li><li><a href="../../slides/ch07/index.html">Slide deck<span class="rel-arrow" aria-hidden="true">→</span></a></li></ul></div></aside></div>
+<script>
+(function(){
+  "use strict";
+  function slugify(t) {
+    return String(t||"").toLowerCase()
+      .replace(/[^a-z0-9 \-]/g, "")
+      .replace(/\s+/g, "-").replace(/^-+|-+$/g, "")
+      .slice(0, 60) || "section";
+  }
+  var doc = document.querySelector(".doc-body");
+  var tocHost = document.querySelector(".doc-toc");
+  if (!doc || !tocHost) return;
+  var hs = doc.querySelectorAll("h2, h3");
+  if (!hs.length) { tocHost.style.display = "none"; return; }
+  // ensure each heading has an id
+  var seen = {};
+  var items = [];
+  hs.forEach(function(h){
+    var id = h.id || slugify(h.textContent);
+    if (seen[id]) { id = id + "-" + (++seen[id]); } else { seen[id] = 1; }
+    h.id = id;
+    items.push({ el: h, id: id, text: h.textContent.replace(/\s+/g, " ").trim(),
+                 tag: h.tagName.toLowerCase() });
+  });
+  // build TOC
+  var html = '<p class="toc-eyebrow">On this page</p><ul class="toc-list">';
+  items.forEach(function(it){
+    var cls = it.tag === "h3" ? "toc-h3" : "";
+    html += '<li><a class="' + cls + '" href="#' + it.id + '" data-toc-id="' + it.id + '">' +
+      it.text.replace(/[<>&]/g, function(c){return {"<":"&lt;",">":"&gt;","&":"&amp;"}[c];}) +
+      '</a></li>';
+  });
+  html += '</ul>';
+  tocHost.innerHTML = html + tocHost.innerHTML;
+
+  // active-section spy
+  var links = {};
+  tocHost.querySelectorAll("a[data-toc-id]").forEach(function(a){
+    links[a.getAttribute("data-toc-id")] = a;
+  });
+  if ("IntersectionObserver" in window) {
+    var current = null;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var id = e.target.id;
+        if (!id || !links[id]) return;
+        if (e.isIntersecting) {
+          if (current) current.classList.remove("is-current");
+          current = links[id];
+          current.classList.add("is-current");
+        }
+      });
+    }, { rootMargin: "-80px 0px -70% 0px", threshold: 0 });
+    items.forEach(function(it){ io.observe(it.el); });
+  }
+})();
+</script>
+</main>
+<footer><div class="inner">Principles of Marketing: An AI-Integrated Approach &middot; instructor courseware.</div></footer>
+</body>
+</html>

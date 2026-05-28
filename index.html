@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Courseware platform for Principles of Marketing: An AI-Integrated Approach. Everything an instructor needs to deploy the course.">
+  <title>Courseware · Principles of Marketing: An AI-Integrated Approach</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23DA7756' width='100' height='100' rx='12'/><text x='50' y='68' font-family='system-ui' font-size='36' font-weight='bold' fill='white' text-anchor='middle'>PM</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       COURSEWARE DASHBOARD — MODERN-PRODUCT / PLATFORM VARIANT
+       Same courseware.json data layer as the warm variant, rendered on
+       the BOOK'S OWN aesthetic: the charcoal-gradient + coral-glow
+       cover-particles hero from index.html, the book's exact coral
+       tokens (#DA7756 / #B8553A / #E8A488), Inter + EB Garamond +
+       JetBrains Mono, and rough.js / rough-notation hand-drawn accents
+       (the Attio GTM-Atlas marginalia look) rationed onto the title
+       and the section headers.
+       WCAG 2.2 AA: hero canvas is decorative (aria-hidden) with a text
+       fallback; particles + rough marks PAUSE under prefers-reduced-motion
+       and the book's data-a11y-motion="reduced" toggle; small coral text
+       → #a8472a; visible focus rings; real <a>/<button>; icons aria-hidden.
+       ============================================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* accent family — the book's exact coral tokens (index.html :root) */
+      --coral: #DA7756;
+      --coral-deep: #B8553A;
+      --coral-soft: #E8A488;
+      --coral-text: #a8472a;        /* small coral text on white → AA */
+      --ink: #1a1a1a;               /* the book's --text */
+      --ink-2: #43474f;
+      --ink-3: #5a5f67;             /* muted grey, deepened to clear AA 4.5:1 on bg-2 (was #6a6f78) */
+      --bg: #ffffff;
+      --bg-2: #f7f8fa;
+      --bg-3: #f1f2f5;
+      --border: #e6e6ea;            /* the book's --border */
+      --border-strong: #d7dae0;
+      --coral-tint: #fdf3ee;
+      --coral-light: rgba(218,119,86,0.08);
+      /* charcoal hero — the book's welcome book-cover gradient */
+      --cover-1: #2e2e2e;
+      --cover-2: #1c1c1c;
+      --cover-3: #111111;
+      /* fonts — the book's family (index.html :root) */
+      --font: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+      --shadow-1: 0 1px 2px rgba(16,24,40,0.04), 0 1px 3px rgba(16,24,40,0.06);
+      --shadow-2: 0 2px 4px rgba(16,24,40,0.05), 0 4px 12px rgba(16,24,40,0.07);
+      --shadow-3: 0 4px 8px rgba(16,24,40,0.06), 0 12px 28px rgba(16,24,40,0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    html[data-a11y-motion="reduced"] { scroll-behavior: auto; }
+
+    body {
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--coral-text); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--coral-deep);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .skip-link {
+      position: absolute; left: -999px; top: 0; z-index: 2000;
+      background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 0 0 6px 0;
+      font-size: 14px; font-weight: 600;
+    }
+    .skip-link:focus { left: 0; text-decoration: none; }
+
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+
+    /* ── Sticky top bar ── */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .navbar-inner {
+      max-width: 1160px; margin: 0 auto; padding: 0 28px; height: 60px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .brand { display: flex; align-items: center; gap: 11px; }
+    .mark {
+      width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
+      /* coral-deep behind white text → 4.77:1 (AA); same coral family, no 2nd hue */
+      background: var(--coral-deep); color: #fff; font-weight: 700; font-size: 14px;
+      display: flex; align-items: center; justify-content: center; letter-spacing: -0.5px;
+      box-shadow: var(--shadow-1);
+    }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .brand-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+    .brand-sub { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--coral-text); text-transform: uppercase; }
+    .nav-links { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+    .nav-link {
+      font-size: 14px; font-weight: 500; color: var(--ink-2);
+      padding: 8px 12px; border-radius: 7px; transition: background 140ms ease, color 140ms ease;
+    }
+    .nav-link:hover { background: var(--bg-2); color: var(--ink); text-decoration: none; }
+    .nav-cta {
+      font-size: 14px; font-weight: 600; color: #fff; background: var(--coral-deep);
+      padding: 8px 16px; border-radius: 8px; transition: background 140ms ease;
+    }
+    .nav-cta:hover { background: var(--coral-text); text-decoration: none; color: #fff; }
+    @media (max-width: 720px) { .nav-link { display: none; } }
+
+    /* ── Hero — the book's cover-particles treatment ──
+       Charcoal gradient (index.html .book-cover) + a coral radial glow +
+       the animated particle <canvas>, with light text laid on top. */
+    .hero {
+      position: relative; isolation: isolate; overflow: hidden;
+      text-align: center; padding: 92px 0 64px;
+      background:
+        radial-gradient(900px 380px at 50% -60px, rgba(218,119,86,0.30), transparent 72%),
+        linear-gradient(158deg, var(--cover-1) 0%, var(--cover-2) 55%, var(--cover-3) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    /* the particle field — DECORATIVE (aria-hidden); sits behind all hero text */
+    #cover-particles {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      z-index: -1; pointer-events: none;
+    }
+    .hero .wrap { position: relative; z-index: 1; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
+      color: #fff; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.22);
+      padding: 6px 13px; border-radius: 999px;
+      -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+      margin-bottom: 24px;
+    }
+    .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--coral-soft); }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 54px); font-weight: 700; line-height: 1.07;
+      letter-spacing: -0.025em; color: #fff;
+      max-width: 18ch; margin: 0 auto 20px;
+    }
+    /* the emphasis phrase that carries the rough-notation underline */
+    .hero h1 em { font-style: normal; color: var(--coral-soft); position: relative; }
+    .hero .lede {
+      font-size: clamp(17px, 2vw, 20px); line-height: 1.55; color: rgba(255,255,255,0.82);
+      max-width: 62ch; margin: 0 auto 30px;
+    }
+
+    /* status readiness card — a glass card on the charcoal hero */
+    .status-card {
+      display: inline-flex; flex-direction: column; gap: 12px; align-items: stretch;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16); border-radius: 14px;
+      padding: 20px 26px; box-shadow: 0 8px 28px rgba(0,0,0,0.28); min-width: min(420px, 88vw);
+      margin: 0 auto;
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    }
+    .status-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+    .status-count { font-size: 15px; color: rgba(255,255,255,0.82); }
+    .status-count strong { font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; }
+    .status-pct { font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--coral-soft); font-variant-numeric: tabular-nums; }
+    .meter { height: 8px; border-radius: 999px; background: rgba(255,255,255,0.14); overflow: hidden; }
+    .meter-fill {
+      height: 100%; width: 0; border-radius: 999px;
+      background: linear-gradient(90deg, var(--coral-deep), var(--coral-soft));
+      transition: width 900ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @media (prefers-reduced-motion: reduce) { .meter-fill { transition: none; } }
+    html[data-a11y-motion="reduced"] .meter-fill { transition: none; }
+    .status-legend {
+      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+      font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.62); letter-spacing: 0.02em;
+    }
+    .status-legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .status-legend i { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+    .lg-avail { background: #34d399; }
+    .lg-wip { background: #d8cab2; }
+    .lg-planned { background: rgba(255,255,255,0.4); }
+
+    .hero-cta { margin-top: 30px; display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-size: 15px; font-weight: 600; padding: 12px 22px; border-radius: 9px; cursor: pointer;
+      border: 1px solid transparent; transition: background 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+    }
+    .btn svg { width: 16px; height: 16px; }
+    /* coral-deep behind white label → 4.77:1 (AA); hover deepens further */
+    .btn-primary { background: var(--coral-deep); color: #fff; border-color: var(--coral-deep); box-shadow: var(--shadow-1); }
+    .btn-primary:hover { background: var(--coral-text); border-color: var(--coral-text); box-shadow: var(--shadow-2); text-decoration: none; }
+    /* ghost button on the dark hero: light outline, light text */
+    .btn-ghost {
+      background: rgba(255,255,255,0.06); color: #fff; border-color: rgba(255,255,255,0.30);
+      -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    }
+    .btn-ghost:hover { border-color: var(--coral-soft); color: var(--coral-soft); background: rgba(255,255,255,0.10); text-decoration: none; }
+    /* on the dark hero, the focus ring needs a light offset to stay visible */
+    .hero a:focus-visible, .hero button:focus-visible { outline-color: #fff; }
+
+    /* ── rough.js / rough-notation hand-drawn accents (the book's marginalia look) ──
+       rough-notation injects an absolutely-positioned <svg>. Hosts that carry a
+       mark are position:relative so the mark lands on them. The group-header
+       underline sits BEHIND the heading text so the words stay crisp. Rationed:
+       the hero emphasis phrase + each group heading + the two panel eyebrows. */
+    .group h2[data-rough], .group-eyebrow[data-rough],
+    .panel h2[data-rough], #hero-em { position: relative; }
+    .group h2[data-rough] .rough-annotation { z-index: -1; }
+    .rough-annotation svg path { stroke: var(--coral); }
+    /* under reduced-motion the marks are drawn statically (no draw-on); if the
+       libraries are unavailable the design is unchanged (accents are additive). */
+    .groups { padding: 56px 0 24px; }
+    .group { margin-bottom: 52px; }
+    .group-head {
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 20px;
+      padding-bottom: 16px; margin-bottom: 24px; border-bottom: 1px solid var(--border);
+    }
+    .group-head-left { min-width: 0; }
+    .group-eyebrow {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--coral-text);
+      margin-bottom: 8px;
+    }
+    .group h2 {
+      font-size: clamp(22px, 2.6vw, 27px); font-weight: 700; color: var(--ink);
+      letter-spacing: -0.02em; margin-bottom: 6px;
+    }
+    .group-blurb { font-size: 15px; color: var(--ink-2); max-width: 62ch; }
+    .group-count {
+      flex-shrink: 0; font-family: var(--font-mono); font-size: 12px; color: var(--ink-3);
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: 999px;
+      padding: 5px 12px; font-variant-numeric: tabular-nums; white-space: nowrap;
+    }
+    .group-count b { color: var(--coral-text); }
+
+    /* tile grid — tighter than warm */
+    .tiles { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(252px, 1fr)); }
+    .tile {
+      position: relative; display: flex; flex-direction: column;
+      background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+      padding: 18px 18px 16px; box-shadow: var(--shadow-1);
+      transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+    }
+    a.tile { color: inherit; }
+    a.tile:hover {
+      border-color: var(--coral); box-shadow: var(--shadow-3);
+      transform: translateY(-3px); text-decoration: none;
+    }
+    @media (prefers-reduced-motion: reduce) { a.tile:hover { transform: none; } }
+    /* Only PLANNED tiles read as "not yet available": the dashed border, muted
+       surface, and muted icon do that, NOT opacity. (Opacity-dimming text
+       composites the colour against the page and drops it below AA, so it is
+       removed; all muted greys below independently meet 4.5:1.) In-progress
+       (wip) tiles are NOT grayed. They keep the normal card surface and are
+       distinguished only by their "In progress" pill, since a draft is real
+       work the reader can open. */
+    .tile.is-planned {
+      background: var(--bg-2); border-style: dashed; box-shadow: none; cursor: default;
+    }
+    .tile.is-planned .tile-title { color: var(--ink-2); }
+    .tile.is-planned .tile-blurb { color: var(--ink-2); }
+    .tile.is-planned .tile-icon { color: var(--ink-3); background: var(--bg-3); border-color: var(--border-strong); }
+
+    .tile-top { display: flex; align-items: center; gap: 12px; margin-bottom: 13px; }
+    .tile-icon {
+      width: 38px; height: 38px; flex-shrink: 0; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--coral-deep); background: var(--coral-tint); border: 1px solid var(--border);
+    }
+    .tile-icon svg { width: 20px; height: 20px; }
+    .tile-heading { flex: 1; min-width: 0; }
+    .tile-title { font-size: 15.5px; font-weight: 600; color: var(--ink); line-height: 1.25; letter-spacing: -0.01em; }
+    .tile-meta { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-3); letter-spacing: 0.03em; margin-top: 3px; }
+    .tile-blurb { font-size: 14px; line-height: 1.5; color: var(--ink-2); margin-bottom: 16px; flex: 1; }
+    .tile-foot { display: flex; align-items: center; gap: 10px; margin-top: auto; }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.03em;
+      padding: 4px 9px; border-radius: 6px; border: 1px solid;
+    }
+    .pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .pill.available { color: #15803d; border-color: #b6e0c4; background: #fff; }
+    .pill.wip { color: #6f6149; border-color: #ddd0ba; background: #faf6ee; }
+    .pill.planned { color: var(--ink-3); border-color: var(--border); background: var(--bg-2); }
+
+    .tile-arrow { margin-left: auto; color: var(--coral-deep); display: flex; align-items: center; transition: transform 150ms ease; }
+    a.tile:hover .tile-arrow { transform: translateX(3px); }
+    @media (prefers-reduced-motion: reduce) { a.tile:hover .tile-arrow { transform: none; } }
+
+    /* ── Adopt + Accessibility panels ── */
+    .section { padding: 12px 0 56px; }
+    .panel {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      border: 1px solid var(--border); border-radius: 16px;
+      padding: 44px clamp(24px, 5vw, 52px); box-shadow: var(--shadow-2);
+    }
+    .panel-accent { background: linear-gradient(135deg, #fff7f3 0%, var(--bg) 60%); }
+    .panel .group-eyebrow { margin-bottom: 10px; }
+    .panel h2 { font-size: clamp(24px, 3.2vw, 32px); font-weight: 700; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 12px; }
+    .panel > p { font-size: 17px; line-height: 1.55; color: var(--ink-2); max-width: 66ch; }
+    .steps { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); margin: 28px 0 30px; list-style: none; }
+    .step {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 11px;
+      padding: 18px; box-shadow: var(--shadow-1);
+    }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 8px; background: var(--coral-tint);
+      border: 1px solid rgba(184,85,58,0.25); color: var(--coral-text);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 13px; font-weight: 700; margin-bottom: 12px;
+    }
+    .step h3 { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .step p { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; }
+
+    .a11y-points { list-style: none; margin: 22px 0 0; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .a11y-points li { font-size: 14.5px; color: var(--ink-2); display: flex; gap: 11px; align-items: flex-start; line-height: 1.5; }
+    .a11y-check { flex-shrink: 0; width: 20px; height: 20px; color: var(--coral-deep); margin-top: 1px; }
+
+    /* ── Footer ── */
+    footer { border-top: 1px solid var(--border); background: var(--bg-2); padding: 36px 0 48px; text-align: center; }
+    footer p { font-size: 13px; color: var(--ink-3); line-height: 1.6; }
+    footer .foot-title { font-weight: 600; color: var(--ink-2); }
+
+    .manifest-error {
+      display: none; background: var(--coral-tint); border: 1px solid var(--coral);
+      color: var(--coral-deep); padding: 14px 18px; border-radius: 10px; font-size: 14px; margin: 24px 0;
+    }
+
+    @media (max-width: 600px) {
+      .wrap, .navbar-inner { padding-left: 18px; padding-right: 18px; }
+      .hero { padding: 48px 0 40px; }
+      .tiles { grid-template-columns: 1fr; }
+      .group-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .panel { padding: 28px 20px; }
+    }
+    @media (max-width: 360px) {
+      .wrap, .navbar-inner { padding-left: 12px; padding-right: 12px; }
+      .brand-name { font-size: 12.5px; }
+      .status-card { padding: 16px; }
+      .hero-cta { width: 100%; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Sticky top bar -->
+  <nav class="navbar" aria-label="Primary">
+    <div class="navbar-inner">
+      <a class="brand" href="#main" aria-label="Principles of Marketing courseware home">
+        <span class="mark" aria-hidden="true">PM</span>
+        <span class="brand-text">
+          <span class="brand-name">Principles of Marketing</span>
+          <span class="brand-sub">Courseware</span>
+        </span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="#accessibility">Accessibility</a>
+        <a class="nav-cta" href="textbook/index.html">Open the textbook</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- Hero — charcoal cover-particles band (matches the book's welcome cover) -->
+    <header class="hero">
+      <!-- Decorative particle field. Purely visual: hidden from assistive tech,
+           paused under reduced-motion. The heading below is the text equivalent. -->
+      <canvas id="cover-particles" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <span class="badge"><span class="dot" aria-hidden="true"></span>Instructor courseware for the AI era</span>
+        <h1 id="hero-title">Teach <em id="hero-em">Principles of Marketing</em>, and prepare students for the world of AI</h1>
+        <p class="lede" id="course-subtitle">A complete, instructor-ready package that teaches marketing and how to practice it with AI: a dual-depth interactive textbook, slides, teaching notes, projects, a test bank, and a deploy kit, with hands-on AI in every chapter so students graduate fluent in the tools the job now expects. Held to WCAG 2.2 AA.</p>
+
+        <div class="status-card">
+          <div class="status-head">
+            <span class="status-count" id="status-count" role="status" aria-live="polite">Loading components&hellip;</span>
+            <span class="status-pct" id="status-pct"></span>
+          </div>
+          <div class="meter" role="img" aria-hidden="true"><div class="meter-fill" id="meter-fill"></div></div>
+          <div class="status-legend">
+            <span><i class="lg-avail" aria-hidden="true"></i>Available</span>
+            <span><i class="lg-wip" aria-hidden="true"></i>In progress</span>
+            <span><i class="lg-planned" aria-hidden="true"></i>Planned</span>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <p class="manifest-error wrap" id="manifest-error" role="alert">
+      Could not load <code>courseware.json</code>. Showing the built-in component list instead.
+    </p>
+
+    <!-- Grouped tiles render here -->
+    <div class="groups wrap" id="groups"></div>
+
+    <!-- Get started / Adopt -->
+    <section class="section wrap" id="get-started">
+      <div class="panel panel-accent">
+        <p class="group-eyebrow">Adopt &amp; Get started</p>
+        <h2 data-rough="underline">From curious to teaching, in four steps</h2>
+        <p>The textbook and reference layer are live today; everything else is generated from that same ground-truth text. Here is the short path to putting it to work.</p>
+        <ol class="steps">
+          <li class="step"><div class="step-num" aria-hidden="true">1</div><h3>Read the book</h3><p>Open the interactive textbook and skim a chapter at both depths, Comprehensive and Concise.</p></li>
+          <li class="step"><div class="step-num" aria-hidden="true">2</div><h3>Try the AI widgets</h3><p>Run an in-chapter exercise to see how each framework becomes a hands-on AI task.</p></li>
+          <li class="step"><div class="step-num" aria-hidden="true">3</div><h3>Check the fit</h3><p>Review the glossary, the accessibility conformance, and the components against your course.</p></li>
+          <li class="step"><div class="step-num" aria-hidden="true">4</div><h3>Deploy</h3><p>As slides, the syllabus, the LMS cartridge, and the test bank ship, pull them into your term.</p></li>
+        </ol>
+        <a class="btn btn-primary" href="textbook/chapter-01-ai-for-marketers.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Start with Chapter 1
+        </a>
+      </div>
+    </section>
+
+    <!-- Accessibility / VPAT -->
+    <section class="section wrap" id="accessibility">
+      <div class="panel">
+        <p class="group-eyebrow">Accessibility · WCAG 2.2 AA</p>
+        <h2 data-rough="underline">Compliant by default</h2>
+        <p>This courseware is built to the same bar as the textbook: it ships conformant, then layers further accommodations on top: high-contrast, large-text, reduced-motion, and dyslexia-friendly font modes.</p>
+        <ul class="a11y-points">
+          <li><svg class="a11y-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Text contrast meets WCAG&nbsp;AA 4.5:1; coral is routed to a darker terracotta (<code>#a8472a</code>) wherever it carries small text.</span></li>
+          <li><svg class="a11y-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Every control is a real link or button with a visible focus ring and a target of at least 24&times;24&nbsp;px.</span></li>
+          <li><svg class="a11y-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Decorative icons are hidden from assistive tech; planned items are announced as unavailable, not just grayed.</span></li>
+          <li><svg class="a11y-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Motion respects <code>prefers-reduced-motion</code>; the layout reflows cleanly to a 320&nbsp;px viewport.</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p class="foot-title">Principles of Marketing: An AI-Integrated Approach</p>
+      <p>Instructor courseware dashboard &middot; modern-product preview. Built on the textbook's design system &middot; WCAG 2.2 AA.</p>
+    </div>
+  </footer>
+
+  <!-- Inline fallback copy of courseware.json (file:// safe). Served over http, the fetched manifest wins. -->
+  <script type="application/json" id="courseware-inline">
+{
+  "course": {
+    "title": "Principles of Marketing: An AI-Integrated Approach",
+    "tagline": "Teach Principles of Marketing, and prepare students for the world of AI.",
+    "subtitle": "A complete, instructor-ready package that teaches marketing and how to practice it with AI: a dual-depth interactive textbook, slides, teaching notes, projects, a test bank, and a deploy kit, with hands-on AI in every chapter so students graduate fluent in the tools the job now expects. Held to WCAG 2.2 AA."
+  },
+  "groups": [
+    {
+      "id": "read-reference",
+      "title": "Read & Reference",
+      "blurb": "The text students read to learn marketing and how to do it with AI, plus the reference layer on top."
+    },
+    {
+      "id": "teach",
+      "title": "Teach",
+      "blurb": "What you bring to the room to teach marketing in the AI era: slides, notes, videos, cases, and live activities."
+    },
+    {
+      "id": "assess",
+      "title": "Assess",
+      "blurb": "Graded work and hands-on projects where students practice marketing with AI, plus the question banks behind them."
+    },
+    {
+      "id": "adopt-deploy",
+      "title": "Adopt & Deploy",
+      "blurb": "Drop this AI-ready course into your term and your LMS with the paperwork done."
+    },
+    {
+      "id": "build",
+      "title": "Build",
+      "blurb": "Go further: use AI to build your own course tools, from a teaching assistant to a Canvas dashboard and live LMS access."
+    }
+  ],
+  "components": [
+    {
+      "id": "textbook",
+      "group": "read-reference",
+      "title": "Textbook",
+      "blurb": "27 chapters in two depths, Comprehensive or Concise, each pairing a marketing concept with hands-on AI work students do themselves.",
+      "status": "available",
+      "href": "textbook/index.html",
+      "meta": "27 chapters"
+    },
+    {
+      "id": "glossary",
+      "group": "read-reference",
+      "title": "Glossary",
+      "blurb": "Every key term defined in plain language and cross-linked back to its chapter.",
+      "status": "available",
+      "href": "textbook/back-glossary.html",
+      "meta": "A–Z"
+    },
+    {
+      "id": "ai-prompt-library",
+      "group": "read-reference",
+      "title": "AI Prompt Library",
+      "blurb": "Copy-paste prompts students run to turn each chapter's framework into hands-on AI practice.",
+      "status": "wip",
+      "href": "materials/read-reference/ai-prompt-library.html",
+      "meta": "27 chapters (draft)"
+    },
+    {
+      "id": "datasets",
+      "group": "read-reference",
+      "title": "Datasets",
+      "blurb": "Clean, classroom-ready datasets students analyze with AI across the projects and in-chapter work.",
+      "status": "planned",
+      "href": null,
+      "meta": null
+    },
+    {
+      "id": "slides",
+      "group": "teach",
+      "title": "Slides",
+      "blurb": "Lecture decks per chapter, on the book's visual system, ready to present or edit.",
+      "status": "wip",
+      "href": "slides/index.html",
+      "meta": "2 of 27 (draft)"
+    },
+    {
+      "id": "teaching-notes",
+      "group": "teach",
+      "title": "Teaching Notes / Instructor Guide",
+      "blurb": "Session-by-session guidance: timing, talking points, discussion prompts, and pitfalls.",
+      "status": "wip",
+      "href": "materials/teaching-notes/index.html",
+      "meta": "4 of 27 (draft)"
+    },
+    {
+      "id": "lecture-videos",
+      "group": "teach",
+      "title": "Lecture Videos",
+      "blurb": "Short, animated lecture videos. The Pricing chapter is recorded; the rest are in production.",
+      "status": "wip",
+      "href": "videos/index.html",
+      "meta": "1 of 27: Pricing"
+    },
+    {
+      "id": "cases",
+      "group": "teach",
+      "title": "Cases",
+      "blurb": "Teaching cases students work with AI, tied to the chapters' running brand examples.",
+      "status": "wip",
+      "href": "materials/cases/index.html",
+      "meta": "1 of 27 (draft)"
+    },
+    {
+      "id": "in-class-kit",
+      "group": "teach",
+      "title": "In-class Kit",
+      "blurb": "Live polls, think-pair-share prompts, and quick activities to run the room.",
+      "status": "planned",
+      "href": null,
+      "meta": "polls + activities"
+    },
+    {
+      "id": "assignments",
+      "group": "assess",
+      "title": "Take-home Assignments",
+      "blurb": "Graded assignments students complete outside of class, tied to each chapter's frameworks; cross-axed by AI access, difficulty, and individual or group format.",
+      "status": "wip",
+      "href": "materials/assignments/index.html",
+      "meta": "4 of 27 (draft)"
+    },
+    {
+      "id": "in-class-activities",
+      "group": "assess",
+      "title": "In-class Activities",
+      "blurb": "Live in-room activities tied to each chapter's frameworks: debates, consultants exercises, played games. Time-budgeted from ten minutes to seventy-five.",
+      "status": "wip",
+      "href": "materials/in-class/ch10.html",
+      "meta": "Ch10 ready (4 activities)"
+    },
+    {
+      "id": "projects",
+      "group": "assess",
+      "title": "Projects P1–P3",
+      "blurb": "Three scaffolded team projects that take a real brand from research to a marketing plan, using AI at each step the way the job now works.",
+      "status": "planned",
+      "href": null,
+      "meta": "3 projects"
+    },
+    {
+      "id": "test-quiz-bank",
+      "group": "assess",
+      "title": "Test & Quiz Bank",
+      "blurb": "A large bank of quiz and exam items that test marketing judgment for the AI era, tagged by chapter and objective, export-ready.",
+      "status": "wip",
+      "href": "materials/test-bank/index.html",
+      "meta": "27 of 27 (draft)"
+    },
+    {
+      "id": "rubrics",
+      "group": "assess",
+      "title": "Rubrics",
+      "blurb": "Transparent grading rubrics for every project and major assignment.",
+      "status": "planned",
+      "href": null,
+      "meta": null
+    },
+    {
+      "id": "answer-keys",
+      "group": "assess",
+      "title": "Answer Keys",
+      "blurb": "Worked solutions and model answers for assignments and the test bank.",
+      "status": "planned",
+      "href": null,
+      "meta": null
+    },
+    {
+      "id": "syllabus-pacing",
+      "group": "adopt-deploy",
+      "title": "Syllabus + Pacing Guide",
+      "blurb": "An editable syllabus and a week-by-week pacing guide you can adapt to your term.",
+      "status": "wip",
+      "href": "materials/adopt-deploy/syllabus-and-pacing-guide.html",
+      "meta": "draft"
+    },
+    {
+      "id": "lms-cartridge",
+      "group": "adopt-deploy",
+      "title": "Canvas / LMS Cartridge",
+      "blurb": "A Common Cartridge import that drops modules, assignments, and the test bank into your LMS.",
+      "status": "wip",
+      "href": "cartridge/index.html",
+      "meta": "test bank · draft"
+    },
+    {
+      "id": "aacsb-map",
+      "group": "adopt-deploy",
+      "title": "AACSB Outcomes Map",
+      "blurb": "A mapping of chapters and assessments to AACSB assurance-of-learning outcomes.",
+      "status": "wip",
+      "href": "materials/adopt-deploy/aacsb-outcomes-map.html",
+      "meta": "draft"
+    },
+    {
+      "id": "ai-teaching-assistant",
+      "group": "build",
+      "title": "Build an AI Teaching Assistant",
+      "blurb": "A guided track to stand up your own AI assistant grounded in this course's materials.",
+      "status": "planned",
+      "href": null,
+      "meta": null
+    },
+    {
+      "id": "build-canvas-dashboard",
+      "group": "build",
+      "title": "Build an Interactive Dashboard on Canvas",
+      "blurb": "Use AI to build a single-page course dashboard and embed it in Canvas with one iframe, so a large, multi-section course feels navigable instead of overwhelming.",
+      "status": "planned",
+      "href": null,
+      "meta": "Canvas embed"
+    },
+    {
+      "id": "canvas-mcp",
+      "group": "build",
+      "title": "Canvas MCP",
+      "blurb": "An MCP server that gives AI coding agents full access to Canvas LMS, so Claude, Cursor, Codex, and 40+ other agents manage assignments, grades, and modules in plain language.",
+      "status": "planned",
+      "href": null,
+      "meta": "MCP server · 90+ tools"
+    }
+  ]
+}
+  </script>
+
+  <script>
+  (function () {
+    "use strict";
+
+    var ICONS = {
+      "read-reference": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
+      "teach": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>',
+      "assess": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>',
+      "adopt-deploy": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>',
+      "build": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2z"/></svg>',
+      "textbook": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+      "glossary": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>',
+      "ai-prompt-library": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>',
+      "datasets": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg>',
+      "slides": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>',
+      "teaching-notes": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>',
+      "lecture-videos": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>',
+      "cases": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
+      "in-class-kit": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>',
+      "assignments": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+      "projects": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>',
+      "test-quiz-bank": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+      "rubrics": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>',
+      "answer-keys": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>',
+      "syllabus-pacing": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+      "lms-cartridge": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.3 7 12 12 20.7 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg>',
+      "aacsb-map": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>',
+      "accessibility-vpat": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M12 6v6m0 0 5 2m-5-2-5 2m5 4v-4"/><path d="M5 8h14"/></svg>',
+      "get-started": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 3 14 9-14 9V3z"/></svg>',
+      "ai-teaching-assistant": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 8V4M9 4h6"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>',
+      "build-canvas-dashboard": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>',
+      "canvas-mcp": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="8" rx="2"/><rect x="2" y="13" width="20" height="8" rx="2"/><line x1="6" y1="7" x2="6.01" y2="7"/><line x1="6" y1="17" x2="6.01" y2="17"/></svg>'
+    };
+    var ARROW = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+    var STATUS_LABEL = { available: "Available", wip: "In progress", planned: "Planned" };
+
+    function esc(s) {
+      return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+      });
+    }
+
+    function iconFor(c) { return ICONS[c.id] || ICONS[c.group] || ICONS["read-reference"]; }
+
+    function render(data) {
+      var groups = data.groups || [];
+      var comps = data.components || [];
+
+      // ── Manifest-driven hero copy ──
+      // The lede is the manifest subtitle; the headline is the manifest tagline,
+      // with the course short-name wrapped in <em> as the rough-underline target.
+      if (data.course && data.course.subtitle) {
+        document.getElementById("course-subtitle").textContent = data.course.subtitle;
+      }
+      if (data.course && data.course.tagline) {
+        var h1 = document.getElementById("hero-title");
+        // tagline e.g. "Everything you need to teach Principles of Marketing — with AI, hands-on."
+        // Voice rule: no em dashes; emphasise the course short-name for the rough mark.
+        var line = String(data.course.tagline).replace(/—/g, ",").replace(/\s+,/g, ",").replace(/\.$/, "");
+        var emPhrase = "Principles of Marketing";
+        var safe = esc(line);
+        if (line.indexOf(emPhrase) !== -1) {
+          safe = safe.replace(esc(emPhrase), '<em id="hero-em">' + esc(emPhrase) + '</em>');
+        }
+        h1.innerHTML = safe;
+        // (re)draw the hand-drawn underline on the freshly-rendered emphasis phrase
+        if (window.__drawHeroRough__) window.__drawHeroRough__();
+      }
+
+      var total = comps.length;
+      var available = comps.filter(function (c) { return c.status === "available"; }).length;
+      var wip = comps.filter(function (c) { return c.status === "wip"; }).length;
+      var planned = comps.filter(function (c) { return c.status === "planned"; }).length;
+
+      document.getElementById("status-count").innerHTML =
+        "<strong>" + available + "</strong> of <strong>" + total + "</strong> components ready" +
+        (wip ? " · " + wip + " in progress · " + planned + " planned" : "");
+      var fillPct = total ? Math.round(((available + wip * 0.5) / total) * 100) : 0;
+      document.getElementById("status-pct").textContent = fillPct + "%";
+      requestAnimationFrame(function () {
+        document.getElementById("meter-fill").style.width = fillPct + "%";
+      });
+
+      var host = document.getElementById("groups");
+      var html = "";
+      groups.forEach(function (g) {
+        var items = comps.filter(function (c) { return c.group === g.id; });
+        if (!items.length) return;
+        var gAvail = items.filter(function (c) { return c.status === "available"; }).length;
+        html += '<section class="group" aria-labelledby="grp-' + esc(g.id) + '">';
+        html += '<div class="group-head"><div class="group-head-left">';
+        html += '<p class="group-eyebrow">' + esc(g.title) + "</p>";
+        html += '<h2 id="grp-' + esc(g.id) + '" data-rough="underline">' + esc(g.title) + "</h2>";
+        if (g.blurb) html += '<p class="group-blurb">' + esc(g.blurb) + "</p>";
+        html += "</div>";
+        html += '<span class="group-count"><b>' + gAvail + "</b> / " + items.length + " ready</span>";
+        html += "</div>";
+        html += '<div class="tiles">';
+        items.forEach(function (c) { html += tile(c); });
+        html += "</div></section>";
+      });
+      host.innerHTML = html;
+
+      // Draw hand-drawn rough underlines on the freshly-rendered group headings
+      // (on scroll, suppressed under reduced-motion). Re-derived from the manifest.
+      if (window.__drawGroupRough__) window.__drawGroupRough__();
+    }
+
+    function tile(c) {
+      var label = STATUS_LABEL[c.status] || "Planned";
+      // A tile is reachable whenever it has a real href: available, or a draft
+      // (wip) deliverable that already exists. Planned tiles (href null) stay
+      // non-clickable and grayed. WIP tiles are NOT grayed; they render as a
+      // normal openable card and read as a draft only through the "In progress"
+      // pill.
+      var clickable = !!c.href && (c.status === "available" || c.status === "wip");
+      var metaHtml = c.meta ? '<div class="tile-meta">' + esc(c.meta) + "</div>" : "";
+      var pill = '<span class="pill ' + esc(c.status) + '">' + esc(label) + "</span>";
+      var inner =
+        '<div class="tile-top">' +
+          '<div class="tile-icon">' + iconFor(c) + "</div>" +
+          '<div class="tile-heading"><div class="tile-title">' + esc(c.title) + "</div>" + metaHtml + "</div>" +
+        "</div>" +
+        '<div class="tile-blurb">' + esc(c.blurb) + "</div>" +
+        '<div class="tile-foot">' + pill + (clickable ? '<span class="tile-arrow">' + ARROW + "</span>" : "") + "</div>";
+
+      if (clickable) {
+        var external = c.href.charAt(0) !== "#";
+        var note = c.status === "wip"
+          ? " — in progress, draft" + (external ? "; opens the material" : "")
+          : " — available" + (external ? ", opens the material" : "");
+        var cls = c.status === "wip" ? "tile is-wip is-clickable" : "tile is-available";
+        return '<a class="' + cls + '" href="' + esc(c.href) + '" aria-label="' + esc(c.title) + note + '">' + inner + "</a>";
+      }
+      var state = c.status === "wip" ? "in progress, not yet available" : "planned, not yet available";
+      return '<div class="tile is-' + esc(c.status) + '" role="group" aria-label="' + esc(c.title) + " — " + state + '">' + inner + "</div>";
+    }
+
+    function loadInline() {
+      try { return JSON.parse(document.getElementById("courseware-inline").textContent); }
+      catch (e) { return null; }
+    }
+
+    fetch("courseware.json", { cache: "no-store" })
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+      .then(function (data) { render(data); })
+      .catch(function () {
+        var inline = loadInline();
+        if (inline) {
+          render(inline);
+          if (location.protocol !== "file:") {
+            document.getElementById("manifest-error").style.display = "block";
+          }
+        } else {
+          document.getElementById("status-count").textContent = "Unable to load components.";
+        }
+      });
+  })();
+  </script>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       THE BOOK'S AESTHETIC LAYER — cover-particles hero + rough-notation accents
+       Mirrors index.html: the particle <canvas> recolours from --coral, and
+       rough-notation draws hand-drawn underlines. Both are DECORATIVE and PAUSE
+       under prefers-reduced-motion + the book's data-a11y-motion="reduced".
+       ════════════════════════════════════════════════════════════════════ -->
+
+  <!-- rough-notation: animated hand-drawn underlines/brackets/circles (IIFE bundle, as the book loads it) -->
+  <script src="https://unpkg.com/rough-notation/lib/rough-notation.iife.js"></script>
+
+  <!-- Cover-particles hero engine (ported from index.html, with a reduced-motion guard) -->
+  <script>
+  (function () {
+    "use strict";
+    var canvas = document.getElementById("cover-particles");
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext("2d");
+    var hero = canvas.parentElement;
+    var W = 0, H = 0, t = 0, pts = [], raf = null, running = false;
+
+    // honour BOTH the OS setting and the book's own a11y toggle
+    var mq = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+    function reducedMotion() {
+      var attr = document.documentElement.getAttribute("data-a11y-motion") === "reduced";
+      return attr || (mq && mq.matches);
+    }
+
+    // accent pulled LIVE from --coral so it always matches the palette (as the book does)
+    function accent() {
+      var c = (getComputedStyle(document.documentElement).getPropertyValue("--coral") || "#DA7756").trim().replace("#", "");
+      if (c.length === 3) c = c[0] + c[0] + c[1] + c[1] + c[2] + c[2];
+      return [parseInt(c.substr(0, 2), 16) || 218, parseInt(c.substr(2, 2), 16) || 119, parseInt(c.substr(4, 2), 16) || 86];
+    }
+    function rgba(a) { var c = accent(); return "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a + ")"; }
+    function rnd(n) { return Math.random() * n; }
+
+    function initPattern() {
+      pts = [];
+      // the book's default "network" field, scaled to the wide hero band
+      var n = Math.max(34, Math.min(72, Math.round(W / 26)));
+      for (var i = 0; i < n; i++) {
+        pts.push({ x: rnd(W), y: rnd(H), vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25, r: rnd(2) + 1, w: i % 6 === 0 });
+      }
+    }
+    function resize() {
+      var r = hero.getBoundingClientRect();
+      if (r.width < 2 || r.height < 2) return;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(r.width * dpr); canvas.height = Math.round(r.height * dpr);
+      W = r.width; H = r.height;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      initPattern();
+      if (reducedMotion()) paint();   // redraw a single static frame on resize
+    }
+
+    // one frame of the network: drifting nodes + proximity links + glow dots
+    function paint() {
+      ctx.clearRect(0, 0, W, H);
+      var maxD = 112, i, j;
+      for (i = 0; i < pts.length; i++) for (j = i + 1; j < pts.length; j++) {
+        var a = pts[i], b = pts[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx * dx + dy * dy);
+        if (d < maxD) { ctx.strokeStyle = rgba(0.30 * (1 - d / maxD)); ctx.lineWidth = 0.8; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+      }
+      pts.forEach(function (q) { ctx.fillStyle = q.w ? "rgba(255,255,255,0.65)" : rgba(0.62); ctx.beginPath(); ctx.arc(q.x, q.y, q.r, 0, 6.3); ctx.fill(); });
+    }
+    function step() {
+      raf = requestAnimationFrame(step);
+      if (W < 2) return;
+      t += 1;
+      for (var i = 0; i < pts.length; i++) { var p = pts[i]; p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; }
+      paint();
+    }
+
+    function start() { if (running) return; running = true; raf = requestAnimationFrame(step); }
+    function stop() { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
+
+    // (re)evaluate motion preference; animate only when motion is allowed
+    function applyMotion() {
+      if (reducedMotion()) { stop(); paint(); }   // static frame, no loop
+      else start();
+    }
+
+    if (window.ResizeObserver) new ResizeObserver(resize).observe(hero);
+    window.addEventListener("resize", resize);
+    window.addEventListener("load", resize);
+    // react if the OS preference flips, or the book's a11y toggle changes <html>
+    if (mq) { try { mq.addEventListener("change", function () { resize(); applyMotion(); }); } catch (e) { try { mq.addListener(function () { resize(); applyMotion(); }); } catch (e2) {} } }
+    new MutationObserver(applyMotion).observe(document.documentElement, { attributes: true, attributeFilter: ["data-a11y-motion"] });
+
+    resize();
+    applyMotion();
+    // expose for the verify harness to confirm pause/resume
+    window.__coverParticles__ = { isRunning: function () { return running; }, reduced: reducedMotion, restart: function () { resize(); applyMotion(); } };
+  })();
+  </script>
+
+  <!-- rough-notation hand-drawn accents — rationed: hero emphasis + section headers -->
+  <script>
+  (function () {
+    "use strict";
+    function reducedMotion() {
+      var attr = document.documentElement.getAttribute("data-a11y-motion") === "reduced";
+      var mq = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+      return attr || (mq && mq.matches);
+    }
+    function coral() { return (getComputedStyle(document.documentElement).getPropertyValue("--coral") || "#DA7756").trim() || "#DA7756"; }
+    function coralSoft() { return (getComputedStyle(document.documentElement).getPropertyValue("--coral-soft") || "#E8A488").trim() || "#E8A488"; }
+
+    // draw a single mark, observing reduced-motion (animate:false) + guarding if lib absent
+    function mark(el, type, color) {
+      if (!el || !window.RoughNotation) return null;
+      if (el.__rnDone) return el.__rn;
+      var animate = !reducedMotion();
+      var ann = window.RoughNotation.annotate(el, {
+        type: type, color: color, strokeWidth: 2, padding: type === "underline" ? 2 : 4,
+        multiline: type === "underline", animate: animate, animationDuration: animate ? 650 : 0
+      });
+      el.__rn = ann; el.__rnDone = true;
+      return ann;
+    }
+    // reveal-on-scroll, one-shot per element
+    function showOnScroll(el, ann) {
+      if (!el || !ann) return;
+      if (!("IntersectionObserver" in window)) { ann.show(); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { ann.show(); io.disconnect(); } });
+      }, { threshold: 0.4 });
+      io.observe(el);
+    }
+
+    // the hero title's emphasis phrase (on the charcoal band → soft coral reads on dark)
+    window.__drawHeroRough__ = function () {
+      var em = document.getElementById("hero-em");
+      if (!em) return;
+      var ann = mark(em, "underline", coralSoft());
+      // hero is above the fold; show immediately (still respects animate flag)
+      if (ann) { if (reducedMotion() || !("IntersectionObserver" in window)) ann.show(); else showOnScroll(em, ann); }
+    };
+    // each group heading + the two panel headings (on white → deep coral)
+    window.__drawGroupRough__ = function () {
+      document.querySelectorAll('[data-rough="underline"]').forEach(function (el) {
+        var ann = mark(el, "underline", coral());
+        if (ann) showOnScroll(el, ann);
+      });
+    };
+
+    // run once the library is present (render() also calls these after it paints)
+    function boot() {
+      if (!window.RoughNotation) return;
+      if (window.__drawHeroRough__) window.__drawHeroRough__();
+      if (window.__drawGroupRough__) window.__drawGroupRough__();
+    }
+    if (window.RoughNotation) boot(); else { var n = 0, iv = setInterval(function () { if (window.RoughNotation || ++n > 40) { clearInterval(iv); boot(); } }, 120); }
+  })();
+  </script>
+</body>
+</html>
